@@ -5,10 +5,10 @@ section: docs
 path: /docs/
 -->
 
-# Supporting documentation
+# サポートドキュメント
 
-This section includes supporting documentation aimed to both improve the onboarding experience for teams that are new to Material Components, as well as cover advanced issues for those interested in the reasoning behind our decisions and contributing to the project.
+このセクションは Material Component が初めてのチームにとっての経験の改善だけでなく、私たちの意思決定の背景を論じることやプロジェクトに貢献することへの関心による高度な問題をカバーすること目的にしたサポートドキュメントを含んでいます。
 
-To jump right in and begin using the library, check out our [Getting Started Guide](./getting-started.md)
+すぐに使い始めるには [入門ガイド](./getting-started.md) を参照してください。
 
-If you're interested in a general overview of MDC-Web, check out [the MDC Repository README](../README.md).
+もし MDC-Web の概要に関心があるなら [MDC のリポジトリの README](../README.md) を確認してください。

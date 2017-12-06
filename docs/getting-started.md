@@ -5,50 +5,40 @@ section: docs
 path: /docs/getting-started/
 -->
 
-# Getting Started
+# 入門ガイド
 
-This guide will help you get started using MDC-Web on your own sites and within your own projects.
+このガイドはあなたがサイト構築やプロジェクト内で MDC-Web を使い始める手助けになります。
 
-> If you are interested in integrating MDC-Web into a framework, or building a component library for
-your framework that wraps MDC-Web, check out our [framework integration guide](./integrating-into-frameworks.md).
+> もしあなたがフレームワークと MDC-Web との統合もしくは MDC-Web をラップするフレームワークの開発に興味があるなら [フレームワークインストールガイド](./integrating-into-frameworks.md) を参照してください。
 
-## MDC-Web quick start: building a simple greeting app
+## MDC-Web クイックスタート: 単純な挨拶アプリの構築
 
-The best way to learn any new technology is to get your hands dirty and build something with it, so
-that is what we will do here!  You will be building a simple greeting page which lets you enter a name and greets you as such.
+新しい技術を学ぶ最もよい方法はあなた自身の手を動かし、それを使って何かを作ってみることです。つまり、今まさにやろうとしていることです！名前を入力し挨拶を表示する単純な挨拶ページを作っていきます。
 
-As you go through this guide, we encourage you to code along with it. By the end, you will have
-learned the fundamentals incorporating MDC-Web into simple sites, as well as worked with some of the
-components we have to offer.
+このガイドを通して、ガイドに沿ってコードを書いていくことをお勧めします。最後にはあなたは単純なサイトに MDC-Web を統合するための基本を身につけるだけでなく、私たちの提供したコンポーネントの一部を使って作業をしていけるようになるでしょう。
 
-### Setting up the project
+### プロジェクトのセットアップ
 
-Create a directory for the project where we'll serve our application out of.
+アプリケーションを提供するプロジェクトのディレクトリを作成してください。
 
 ```
 mkdir greeting-app
 cd greeting-app
 ```
 
-Additionally, if you have [NodeJS](https://nodejs.org) installed, we recommend installing and using
-[live-server](http://tapiov.net/live-server/) as your local development server. Live-server is
-simple to use and will reload the page whenever you make a change to your HTML. You can install it
-via [npm](https://www.npmjs.com/) by typing the following:
+加えて、[NodeJS](https://nodejs.org) がインストールされているならローカルの開発サーバーとして [Live-server](http://tapiov.net/live-server/) をインストールして利用することをお勧めします。Live-server は簡単に使用でき、HTML を更新したらページがリロードされます。インストールは [npm](https://www.npmjs.com/) を使って次のように行います。
 
 ```
 npm install --global live-server
 ```
 
-> NOTE: You may need to use `sudo` to install npm packages globally, depending on how your node
-installation is configured.
+> 注意: node のインストールの構成によっては npm パッケージをグローバルにインストールするために `sudo` を使う必要があります。
 
-The `--global` flag tells npm to install the package globally, so that the `live-server` program
-will be available on your `$PATH`.
+`--global` オプションは npm にパッケージをグローバルにインストールすることを伝えるので、`live-server` のプログラムは `$PATH` 上で利用できます。
 
-### Creating the skeleton index.html file
+### index.html の骨組みの作成
 
-Now that you have a directory set up, create a simple `index.html` file, and include
-the assets needed for MDC-Web. Put the following within `index.html` in the `greeting-app` directory:
+ディレクトリの設定ができたので、単純な `index.html` ファイルを作成し、MDC-Web に必要なものを入れていきます。`greeting-app` ディレクトリに以下の内容の `index.html` を作成します。
 
 ```html
 <!DOCTYPE html>
@@ -70,38 +60,23 @@ the assets needed for MDC-Web. Put the following within `index.html` in the `gre
 </html>
 ```
 
-View this page by running `live-server` (or the web server of your choice) within the
-`greeting-app` directory.
+`live-server` （もしくはあなたの選んだ Web サーバー）で `greeting-app` ディレクトにあるこのページを見てください。
 
-If you're using `live-server`, this will open up your browser to the URL which is serving our
-`index.html` file. You can leave `live-server` running for the duration of this guide. If you're
-not using `live-server`, navigate to the web server's base URL and view the page. Also be sure to
-refresh after every change you make!
+`live-server` を使っているなら、`index.html` ファイルを示す URL がブラウザで表示されます。このガイドを実行しているあいだ `live-server` は実行したままにしておくことができます。 `live-server` を使っていないなら、サーバーのベース URL に移動しページを確認し、変更するたびに必ず再読み込みをしてください。
 
-Let's take a look at a few aspects of the above HTML.
+この HTML のいくつかの側面を見ていきます。
 
-* **No JavaScript necessary (yet)** - Because we aren't using any dynamic components, we only need
-  to include the MDC-Web CSS, so that we can apply the proper CSS classes to our elements. With MDC-Web,
-  JavaScript is only necessary for dynamic components whose UI needs to be made aware of events
-  happening on the page. As we develop our greeting app, we'll
-  add in the necessary JavaScript.
-* **No automatic DOM rendering** - For all components, MDC-Web does not render _any_ DOM elements
-  itself. MDC-Web is similar to [Bootstrap](http://getbootstrap.com/) in this respect; it expects you to render the DOM using the proper CSS classes. This avoids a litany of problems for integrating MDC-Web into
-  complex applications.
-* **Elements are not natively styled** - Notice how above, we give the `<html>` element a class of
-  `mdc-typography`, the `<h1>` element a class of `mdc-typography--display1`, and the button a class
-  of `mdc-button`, along with multiple _modifier classes_. MDC-Web _never_ makes any assumptions about
-  which elements are being used for our components, instead relying on CSS classes for maximum
-  flexibility. MDC-Web's CSS class names follow a slightly modified version of the [BEM](http://getbem.com/) system.
+* **JavaScript が不要 (現時点で)** - 動的コンポーネントを使用していないので、要素に適切な CSS クラスを適用するために MDC-Web の CSS を含める必要があります。MDC-Web ではページで発生したイベントを検知する必要がある動的コンポーネントの UI だけが JavaScript を必要とします。挨拶アプリを開発するにあたり、必要な JavaScript を追加していきます。
+* **自動 DOM レンダリングがない** - すべてのコンポーネントにおいて MDC-Web はいかなる DOM オブジェクト自体を描画することはありません。この点において MDC-Web は [Bootstrap](http://getbootstrap.com/) に似ています。MDC-Web は適切な CSS クラスを使ってあなたが DOM を描画していることを前提にしています。これは MDC-Web を複雑なアプリケーションに統合するさいの問題のややこしい話を回避するためです。
+* **要素の固有のスタイルに依存しない** - 上記の通り、`<html>` 要素には `mdc-typography` クラスがあり、`<h1>` 要素には `mdc-typography--display1` というクラスがあり、ボタンには `mdc-button` というクラスが複数の <em>装飾クラス</em> とともにあります。MDC-Web では <em>決して</em> コンポーネントのどの要素に対して使用されているかは仮定せず、代わりに最大限の柔軟性を持たせるため CSS クラスに依存します。MDC-Web の CSS クラス名は [BEM](http://getbem.com/) システムに若干の変更を加えたものにしたがっています。
 
-### Adding in JavaScript for dynamic components
+### 動的コンポーネント用 JavaScript の追加
 
-Now that we've gotten the gist of MDC-Web, let us continue to build our greeting app.
+MDC-Web の骨子を確認したので、挨拶アプリの作成を続けていきましょう。
 
-The app consists of two input fields and a submit button. Material Design text input
-fields and buttons contain a lot of dynamism and animation that require the usage of JavaScript.
+このアプリは2つの入力欄と1つの送信ボタンで構成されています。マテリアルデザインのテキスト入力欄とボタンは多くの JavaScript の使用を必要とする動的要素やアニメーションを含んでいます。
 
-Replace the contents of the `<body>` tag in `index.html` with the following:
+`index.html` 内の `<body>` の内容を以下のものに置き換えましょう。
 
 ```html
 <main>
@@ -139,7 +114,7 @@ Replace the contents of the `<body>` tag in `index.html` with the following:
     </button>
   </form>
 
-  <!-- The p element below is where we'll eventually output our greeting -->
+  <!-- 下の p 要素は挨拶を表示する場所です -->
   <p class="mdc-typography--headline" id="greeting"></p>
 </main>
 
@@ -147,43 +122,25 @@ Replace the contents of the `<body>` tag in `index.html` with the following:
 <script>window.mdc.autoInit();</script>
 ```
 
-Once the changes are made, return to your browser and you will see two very nicely styled form
-fields along with a Material Design styled button. The button shows an ink ripple effect when pressed. For now, the ripple is a fairly subtle effect that will be addressed shortly.
+変更しブラウザに戻ると、2つの非常に素晴らしいスタイルのフォームフィールドとマテリアルデザインで整えられたボタンを見ることができます。ボタンは押すとインクの波紋（リップル）のエフェクトがみられます。今のところ、リップルは短い時間だけ処理されるとても巧妙なエフェクトです。
 
-Two important points that are demonstrated in the code that was added:
+追加されたコードにおいて実際に示された2つの重要点は以下通りです:
 
-#### MDC-Web does not instantiate any components automatically
+#### MDC-Web は自動的にインスタンスの生成をしない
 
-This avoids the headaches involved with lifecycle handlers management in Material Design Lite (the predecessor to MDC-Web).
-Initialization is done through the `data-mdc-auto-init` attributes added
-to those elements that are initialized when mdc.autoInit() is called.
+これは Material Design Lite (MDC-Web の前身) で存在したライフサイクル管理に関連する悩みを回避するためです。初期化は `mdc.autoInit()` が呼ばれたときに初期化する要素に加えられた `data-mdc-auto-init` 属性を通じて行われます。
 
-When `mdc.autoInit()` is called, it looks for all elements with a `data-mdc-auto-init` attribute,
-and attaches the MDC-Web JS Component with the given class name to that element.. So when it sees `MDCTextField`,
-it instantiates a [MDCTextField](../packages/mdc-textfield) instance to the corresponding elements.
-It does the same thing for the button, attaching a [MDCRipple](../packages/mdc-ripple) instance to the element.
+`mdc.autoInit()` が呼ばれると `data-mdc-auto-init` 属性のあるすべての要素を探してその要素のクラス名をもつ MDC-Web JS コンポーネントをアタッチします。そのため、`MDCTextField` を見つけたとき、[MDCTextField](../packages/mdc-textfield) インスタンスが一致した要素にインスタンス化されます（訳注: `data-mdc-auto-init` 属性が `MDCTextField` となっている要素に対して `MDCTextField` クラスがインスタンス化されるということ）。ボタンについても同様で [MDCRipple](../packages/mdc-ripple) インスタンスが要素にアタッチされます。
 
-It is worth noting that `mdc.autoInit` is provided _purely_ as a convenience function, and is not
-required to actually use the components. It is, however, the simplest way to get up and running
-quickly, and recommended for static sites that use the comprehensive `material-components-web` library.
+`mdc.autoInit` が純粋に便利な関数として提供されていることは注目に値し、実際にコンポーネントを使う上では必須ではありません。しかしながらこれは素早く立ち上げて実行するにはもっとも簡単な方法であり、広範囲に `material-components-web` ライブラリを適用する静的サイトには勧められます。
 
+#### すべてのコンポーネントがモジュールとなっている
 
-#### All components are modular
+最初にこのプロジェクトをセットアップしたとき `material-components-web` パッケージをインストールしましたが、このパッケージは [mdc-typography](../packages/mdc-typography)、[mdc-button](../packages/mdc-button)、[mdc-text-field](../packages/mdc-textfield)、 [mdc-ripple](../packages/mdc-ripple) といった個別パッケージをまとめたラッパーにすぎません。`autoInit()` 関数でさえも [固有のパッケージの中に位置し](../packages/mdc-auto-init)、`data-mdc-auto-init` 内で使われている名称のコンポーネントを登録するために `material-components-web` パッケージは `mdc-auto-init` パッケージを使います。各コンポーネントはスタンドアロンパッケージとして利用することができ、また、組み合わせることができます。これにより、カスタムビルドを行えば CSS/JS のコードを必要最小限のサイズにできます。モジュールローディングシステムや最新のフロントエンドツールチェーンとともに使っても MDC-Web はきわめてよく機能することを意味してます。
 
-Although when you initially set up this project you installed the `material-components-web` package, that
-package is simply a thin wrapper around individual component packages, such as [mdc-typography](../packages/mdc-typography), [mdc-button](../packages/mdc-button), [mdc-text-field](../packages/mdc-textfield), and [mdc-ripple](../packages/mdc-ripple).
-Even the `autoInit()` function [lives in its own package](../packages/mdc-auto-init), which the
-`material-components-web` package uses to register all of the individual components to their names used
-within `data-mdc-auto-init`. Each component can be used as a standalone package, and can be mixed
-and matched at will. This allows for custom builds requiring the minimum possible amount of CSS/JS
-code. It also means that MDC-Web works extremely well with module loading systems and modern
-front-end toolchains.
+### ビジネスロジックの追加
 
-### Adding the business logic
-
-Finally, let's add our (very simple) business logic to the bottom of the page, which intercepts the
-form submission and uses the input field values to print out an appropriate greeting. Add the
-following below the last `<script>` tag within the `<body>`:
+最後にページの下部に（非常に単純な）ビジネスロジックを追加してみましょう。ページはフォームの送信を受け取って適切な挨拶を表示するために入力欄の値を使用します。`<body>` 内の最後の `<script>` タグに以下の内容を追加してください。
 
 ```html
 <script>
@@ -209,24 +166,15 @@ following below the last `<script>` tag within the `<body>`:
 </script>
 ```
 
-When you save the file and the page reloads, you should be able to type your name into the form,
-hit the button, and get a pleasant greeting :wave:
+ファイルを保存するとページがリロードされ、フォームに名前を入力できるようになり、ボタンを押すと感じのよい挨拶が表示されます :wave:
 
-### Changing the theme
+### テーマの変更
 
-You may have noticed that the button background, as well as the label and underline on focused text
-input fields, defaults to the Indigo 500 (`#673AB7`) color from the [Material Design color palette](https://material.io/guidelines/style/color.html#color-color-palette).
-This is part of the default theme that ships with MDC-Web; it uses Indigo 500 for a primary color, and
-Pink A200 (`#FF4081`) for a secondary color. Let's change the theme's primary color.
+ボタンの背景、ラベルやフォーカスされた入力欄の下線についても注目してください。デフォルトで [マテリアルデザインカラーパレット](https://material.io/guidelines/style/color.html#color-color-palette) の Indigo 500 (`#673AB7`) が設定されています。これは MDC-Web がのせているデフォルトテーマの一部です。デフォルトテーマはプライマリカラーとして Indigo 500 を使っており、セカンダリカラーには Pink A200 (`#FF4081`) を使っています。テーマのプライマリカラーを変えてみましょう。
 
-A common misconception when implementing Material Design is that the colors you use _must_ come from
-the Material Design color palette. This is not true at all. The only defining guideline for color within Material
-Design is that it has "bold hues juxtaposed with muted environments, deep shadows, and bright
-highlights". Let's change our theme's primary color to `#0E4EAD`, the "Afternoon_Skyblue" color from
-the [Deep_Skyblues Colourlovers Palette](http://www.colourlovers.com/palette/334208/Deep_Skyblues).
+マテリアルデザインを実装する際のよくある誤解として使用する色はマテリアルデザインのカラーパレットから <em>選ばなくてはいけない</em> 、というものがあります。これはまったく正しくありません。マテリアルデザインの色に関する唯一の定められたガイドラインは「落ち着いた環境、濃い影、鮮やかなハイライトと並べられた大胆な色合い」ということだけです。テーマのプライマリカラーを `#0E4EAD` に変えてみましょう。この色は [Deep_Skyblues Colourlovers Palette](http://www.colourlovers.com/palette/334208/Deep_Skyblues) の "Afternoon_Skyblue" の色です。
 
-The easiest way to change the theme of an MDC-Web application is via [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables). Simply add the
-following to the `<head>` tag of `index.html`:
+MDC-Web アプリケーションのテーマを変える最も簡単な方法は [CSS 変数](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables) を使うことです。`index.html` の `<head>` タグに以下の内容を単に加えてみてください。
 
 ```html
 <style>
@@ -236,24 +184,19 @@ following to the `<head>` tag of `index.html`:
 </style>
 ```
 
-If you're using any supported browser, besides IE 11, you'll see that the button background as well as the focused underline and label on text
-fields are now a nice, dark shade of blue.
+CSS 変数をサポートしているブラウザ、IE 11 は置いておいて、を使っているなら、ボタンの背景だけでなく、入力欄のフォーカスされたものの下線やラベルまでいい感じに濃い青になっていることがわかるでしょう。
 
-> Note that using CSS Variables is just one way of theming using MDC-Web. Check out our
-[theming documentation](./theming.md) for more info.
+> 注意: CSS 変数を使う方法は MDC-Web の使用しているテーマを設定する方法の一つにすぎません。より多くの情報は [テーマのドキュメント](./theming.md) を参照してください。
 
-### Finishing touches: adding custom styles
+### 仕上げ: カスタムスタイルの追加
 
-Every site is different, and we cannot hope to build a user interface library that
-anticipates every design choice a user may want.
+すべてのサイトは異なっており、ユーザの望むすべてのデザインの選択肢を想定したユーザインターフェースライブラリを構築することを望むことはできません。
 
-#### SASS mixins
+#### SASS ミキシン
 
-MDC-Web provides SASS mixins to some components to help users do customization. Let's
-change the background color of the raised button to be a bright orange color (#FF9800)
-using one of those mixins.
+MDC-Web はいくつかのコンポーネントでカスタマイズするための SASS ミキシンを提供しています。これらのミキシンを使ってライズボタンの背景色を明るいオレンジ (#FF9800) に変えてみましょう。
 
-Add the following to your `scss` file if you are using SASS:
+SASS を使っているなら `scss` ファイルに次の内容を追加してください。
 
 ```scss
 @import "@material/mdc-button/mixins";
@@ -264,11 +207,9 @@ Add the following to your `scss` file if you are using SASS:
 
 #### CSS
 
-MDC-Web also uses plain old CSS to make it trivial to customize and modify its
-styles to your liking. Let's add some auxiliary styles to bump up the vertical spacing
-between the form fields and the submit button.
+MDC-Web はカスタマイズや好みのスタイルに変えるために普通の古い CSS も使っています。入力欄と送信ボタンの縦方向のスペースを広げるために補助的なスタイルを追加してみましょう。
 
-Add the following to the `<style>` tag within `<head>`:
+`<head>` 内の `<style>` タグに以下の内容を追加してください。
 
 ```css
 #greeting-form > button {
@@ -276,14 +217,10 @@ Add the following to the `<style>` tag within `<head>`:
 }
 ```
 
-Congrats! You've built your first MDC-Web app! In the process, you've learned the basics of MDC-Web,
-how to easily add components to a page, and how to customize and theme MDC-Web to your liking.
+おめでとう！あなたは初めての MDC-Web アプリを作り上げました！この過程で MDC-Web の基本、ページにコンポーネントを簡単に追加する方法、カスタマイズや好きなように MDC-Web のテーマを設定する方法を学びました。
 
-## Next steps
+## 次のステップ
 
-If you're looking to incorporate MDC-Web Components into a framework like Angular or React, check our
-[framework integration guide](./integrating-into-frameworks.md). 
+MDC-Web コンポーネントを Angular や React のようなライブラリに組み込みたいのであれば [フレームワーク統合ガイド](./integrating-into-frameworks.md) を参照してください。
 
-If you'd like to contribute to
-MDC-Web and build your own components, or extend one of ours to fit your own purposes, check out our
-guide on [authoring components](./authoring-components.md).
+MDC-Web プロジェクトに貢献したりあなた自身のコンポーネントを作りたい、もしくは、あなたの目的に合った拡張をしたいのなら、[コンポーネント制作](./authoring-components.md) にあるガイドを参照してください。

@@ -4,36 +4,34 @@
 
 # Material Components for the web
 
-Material Components for the web (MDC-Web) helps developers execute [Material Design](https://www.material.io).
-Developed by a core team of engineers and UX designers at Google, these components enable a reliable development workflow to build beautiful and functional web projects.
+Material Components for the web (MDC-Web) は開発者が [マテリアルデザイン](https://www.material.io) を実践する際の手助けになります。エンジニアのコアチームと Google の UX デザイナーによって開発され、このコンポーネントは美しくかつ機能的な Web プロジェクトを構築するための確かな開発ワークフローを可能にします。
 
-Material Components for the web is the successor to [Material Design Lite](https://getmdl.io/), and has 3 high-level goals:
+Material Components for the web は [Material Design Lite](https://getmdl.io/) の後継であり、3つのハイレベルな目的を持っています。
 
-- Production-ready components consumable in an a-la-carte fashion
-- Best-in-class performance and adherence to the [Material Design guidelines](https://material.io/guidelines)
-- Seamless integration with other JS frameworks and libraries
+- アラカルト方式で製品対応した利用可能なコンポーネント
+- 最もパフォーマンスに優れ、[マテリアルデザインガイドライン](https://material.io/guidelines)に準拠
+- 他の JS フレームワークおよびライブラリとのシームレスな統合
   - [Preact Material Components](https://github.com/prateekbh/preact-material-components)
   - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc)
   - [Angular MDC](https://github.com/trimox/angular-mdc-web)
-  - [Blox Material](https://blox.src.zone/material): Angular Integration Library.
-  - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): MDC-Web Integration for Vue.js (using [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).)
-  - [Material Components Vue](https://github.com/matsp/material-components-vue): MDC-Web Integration for Vue.js (using [vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components))
-  - More coming soon! Feel free to submit a pull request adding your library to this list, so long as you meet our [criteria](docs/integrating-into-frameworks.md).
+  - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
+  - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js ( [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用) による MDC-Web との統合
+  - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js ([vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用) による MDC-Web との統合
+  - まだまだ増えます！[基準](docs/integrating-into-frameworks.md) をみたしているならあなたのライブラリをこのリストに加えるよう、遠慮なくプルリクエストを送ってください。
 
-MDC-Web strives to seamlessly incorporate into a wider range of usage contexts, from simple static websites to complex, JavaScript-heavy applications to hybrid client/server rendering systems. In short, whether you're already heavily invested in another framework or not, it should be easy to incorporate Material Components into your site in a lightweight, idiomatic fashion.
+MDC-Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
 
-**[Demos](https://material-components-web.appspot.com/)** (updated with every release)
+**[デモ](https://material-components-web.appspot.com/)**（リリースの都度、更新されます）
 
-## Quick start
+## クイックスタート
 
-Install the library
+ライブラリをインストールします。
 
 ```
 npm install --save material-components-web
 ```
 
-Then simply include the correct files, write some HTML, and call `mdc.autoInit()` within a closing
-`<script>` tag.
+次に適切なファイルを取り込み、HTML を作り、`<script>` タグで `mdc.autoInit()` を呼んでください。
 
 ```html
 <!DOCTYPE html>
@@ -55,92 +53,80 @@ Then simply include the correct files, write some HTML, and call `mdc.autoInit()
 </html>
 ```
 
-That's all there is to it! This is the easiest way to get up and running with Material Components
-for web. Check out our [Getting Started guide](./docs/getting-started.md) for a more in-depth
-introduction to the library.
+これで完了です！これが Material Components for web を立ち上げ、実行する最も簡単な方法です。ライブラリのより深い紹介は [入門ガイド](./docs/getting-started.md) を参照してください。
 
-## Installing individual components
+## 個別コンポーネントのインストール
 
-MDC-Web is modular by design. Each component lives within its own packages under the
-[@material npm org](https://www.npmjs.com/org/material).
+MDC-Web は設計によりモジュール化されています。各コンポーネントは [@material npm org](https://www.npmjs.com/org/material) の下にあるそれぞれのパッケージに存在します。
 
 ```
 npm install --save @material/button @material/card @material/textfield @material/typography
 ```
 
-All our components can be found in the [packages](./packages) directory. Each component has a
-README documenting installation and usage.
+すべてのコンポーネントは [packages](./packages) ディレクトリにあります。各コンポーネントにはインストール方法と使用方法を記載した README があります。
 
-## Including components
+## 含まれているコンポーネント
 
 ### JavaScript
 
-If you are using a module loader such as Webpack or SystemJS to load your JS modules, you can simply
-`import` every component you need from `material-components-web` and use it as such.
+JS モジュールの読み込みに Webpack や SystemJS のようなモジュールローダを使用するなら、`material-components-web` から必要なあらゆるコンポーネントを単に `import` でき、次のように使用できます。
 
 ```js
 import {checkbox as mdcCheckbox} from 'material-components-web';
 
 const {MDCCheckbox, MDCCheckboxFoundation} = mdcCheckbox;
-// Use MDCCheckbox and/or MDCCheckboxFoundation
+// MDCCheckbox と MDCCheckboxFoundation を使う
 ```
 
-You can do the same with individual components
+次のようにしても同じです。
 
 ```js
 import {MDCCheckbox, MDCCheckboxFoundation} from '@material/checkbox';
-// Use MDCCheckbox and/or MDCCheckboxFoundation
+// MDCCheckbox と MDCCheckboxFoundation を使う
 ```
 
-We also provide [UMD](http://bob.yexley.net/umd-javascript-that-runs-anywhere/) bundles for both `material-components-web` as
-well as all individual components.
+`material-components-web` とすべての個別コンポーネントに対して [UMD](http://bob.yexley.net/umd-javascript-that-runs-anywhere/) も提供しています。
 
 ```js
 const {checkbox: mdcCheckbox} = require('material-components-web/dist/material-components-web');
-// Use mdcCheckbox
+// mdcCheckbox を使う
 
 const {MDCCheckbox, MDCCheckboxFoundation} = require('@material/checkbox/dist/mdc.checkbox');
-// Use MDCCheckbox, MDCCheckboxFoundation
+// MDCCheckbox と MDCCheckboxFoundation を使う
 ```
 
-When no module system is used, every component is added under the global `mdc` namespace. This
-occurs regardless of whether or not the entire library or the individual components are used.
+モジュールシステムを使用しない場合、すべてのコンポーネントはグローバル名前空間 `mdc` の下に加えられます。これはライブラリ全体が使われているか、個別コンポーネントが使われているかに関係ありません。
 
-Every component also ships with a minified version of its UMD bundle, which can be found at
-`dist/mdc.COMPONENT.min.js`.
+すべてのコンポーネントは UMD バンドルの圧縮バージョンがあり、`dist/mdc.COMPONENT.min.js` で探せます。
 
 ### CSS
 
-All components which include styles provide them at `dist/mdc.COMPONENT.css`, as well as a
-complementary minified version at `dist/mdc.COMPONENT.min.css`. Note that _CSS files for a
-component's dependencies are not included within the component's CSS file_, so if you are using
-individual components you'll have to include each separately.
+スタイルを含んでいるすべてのコンポーネントは `dist/mdc.COMPONENT.css` でスタイルを提供しており、加えて圧縮バージョンとして `dist/mdc.COMPONENT.min.css` もあります。<em>コンポーネントが依存しているファイルはそのコンポーネントの CSS ファイルには含まれていない</em> ので注意していください。すなわち、個別コンポーネントを使うなら、個別に依存ファイルを含めなくてはいけません。
 
-Each component also comes with a Sass source file that can be included in your application's Sass
+各コンポーネントにはあなたのアプリケーションの Sass からインクルードすることのできる Sass ソースファイルもあります。
 
 ```scss
-// Using the whole library
+// すべてのライブラリを使用
 @import "material-components-web/material-components-web";
 
-// Using individual components / mixins
+// 個別のライブラリ/ミキシンを利用
 @import '@material/checkbox';
 @import '@material/typography';
-@import '@material/elevation/mixins'; // Mixins for elevation.
+@import '@material/elevation/mixins'; // エレベーションのためのミキシン
 ```
 
-> NOTE: The components' Sass files expect that the `node_modules` directory containing the
-`@material` scope folder is present on the Sass include path.
+> 注意: コンポーネントの Sass ファイルは `@material` スコープのフォルダを含む `node_modules` ディレクトリが Sass の参照パスにあることを想定しています。
 
-## Running the demos
+## デモの実行
 
-Setup the repo:
+リポジトリを作成します。
 
 ```
 git clone https://github.com/material-components/material-components-web.git && cd material-components-web
 npm i
 ```
 
-Run the development server (served out of `demos/`):
+開発サーバを起動します（`demos/` で提供されます）。
 
 ```
 cd /path/to/material-components-web
@@ -148,18 +134,18 @@ npm run dev
 open http://localhost:8080
 ```
 
-## Useful Links
+## リンク集
 
-- [Getting Started Guide](docs/getting-started.md)
-- [All Components](packages/)
-- [Demos](demos/)
-- [Contributing](CONTRIBUTING.md)
-- [Material.io](https://www.material.io) (external site)
-- [Material Design Guidelines](https://material.io/guidelines) (external site)
+- [入門ガイド](docs/getting-started.md)
+- [すべてのコンポーネント](packages/)
+- [デモ](demos/)
+- [寄付](CONTRIBUTING.md)
+- [Material.io](https://www.material.io) （外部サイト）
+- [マテリアルデザインガイドライン](https://material.io/guidelines) （外部サイト）
 
-## Browser Support
+## ブラウザポート
 
-We officially support the last two versions of every major browser. Specifically, we test on the following browsers:
+私たちはすべての主要なブラウザの最新2つのバージョンを正式にサポートします。具体的には以下のブラウザでテストをしています。
 
 - Chrome
 - Safari

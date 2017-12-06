@@ -5,32 +5,30 @@ section: docs
 path: /docs/authoring-components/
 -->
 
-# Authoring Components
+# コンポーネントの構成
 
-This document serves as a reference for developing components either directly for MDC-Web or
-external components that would like to interface with the MDC-Web ecosystem.
+このドキュメントは MDC-Web を直接利用する場合や MDC-Web とのインターフェースを持つ外部コンポーネントを開発する場合のどちらの場合でもリファレンスとして役立ちます。
 
-> Please note that since this project is still in its early stages of development, these practices
-may be subject to change. They will stabilize as we near towards a full release.
+> このプロジェクトはまだ開発の初期段階で、これらの実践はまた変わりうることに注意してください。これらは完全なリリースに近づくにつれ安定していきます。
 
-* [Who this document is for](#who-this-document-is-for)
-* [How to build a component](#how-to-build-a-component)
-  * [Start with a simple component prototype](#start-with-a-simple-component-prototype)
-  * [Identify host environment interactions](#identify-host-environment-interactions)
-  * [Create the adapter interface](#create-the-adapter-interface)
-  * [Refactor your existing code into a foundation](#refactor-your-existing-code-into-a-foundation)
-  * [Build a component on top of that foundation, providing an adapter](#build-a-component-on-top-of-that-foundation-providing-an-adapter)
-* [What makes a good component](#what-makes-a-good-component)
-  * [Fully tested code](#fully-tested-code)
-  * [Thoroughly documented and strictly versioned adapter interface](#thoroughly-documented-and-strictly-versioned-adapter-interface)
-  * [Accessibility](#accessibility)
-  * [RTL Awareness](#rtl-awareness)
-  * [Support for theming](#support-for-theming)
-* [General Best Practices](#general-best-practices)
-  * [Do what the user expects](#do-what-the-user-expects)
-  * [Design adapter interfaces to be simple and intuitive](#design-adapter-interfaces-to-be-simple-and-intuitive)
-  * [Do not reference host objects within foundation code.](#do-not-reference-host-objects-within-foundation-code)
-  * [Clean up all references on destruction](#clean-up-all-references-on-destruction)
+* [誰のためのドキュメントか](#who-this-document-is-for)
+* [コンポーネント構築の方法](#how-to-build-a-component)
+  * [単純なコンポーネントのプロトタイプ](#start-with-a-simple-component-prototype)
+  * [ホスト環境とのやりとりの確認](#identify-host-environment-interactions)
+  * [アダプタインターフェースの作成](#create-the-adapter-interface)
+  * [既存のコードをファンデーションに再構築](#refactor-your-existing-code-into-a-foundation)
+  * [ファンデーション上のコンポーネントの構築とアダプタの提供](#build-a-component-on-top-of-that-foundation-providing-an-adapter)
+* [よいコンポーネント作るには](#what-makes-a-good-component)
+  * [完全にテストされたコード](#fully-tested-code)
+  * [徹底的な文書化と厳密にバージョン管理されたアダプタインターフェース](#thoroughly-documented-and-strictly-versioned-adapter-interface)
+  * [アクセシビリティ](#accessibility)
+  * [RTL への意識](#rtl-awareness)
+  * [テーマのサポート](#support-for-theming)
+* [ベストプラクティス](#general-best-practices)
+  * [ユーザの期待していることを実行する](#do-what-the-user-expects)
+  * [アダプタインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
+  * [ファンデーションコード内でホストオブジェクトを参照しない](#do-not-reference-host-objects-within-foundation-code)
+  * [デストラクタですべての参照を削除する](#clean-up-all-references-on-destruction)
 * [Authoring components for MDC-Web](#authoring-components-for-mdc-web)
   * [File Structure](#file-structure)
   * [License Stanzas](#license-stanzas)
@@ -53,45 +51,27 @@ may be subject to change. They will stabilize as we near towards a full release.
      * [Always clean up the DOM after every test](#always-clean-up-the-dom-after-every-test)
      * [Verify adapters via testdouble.](#verify-adapters-via-testdouble)
 
-## Who this document is for
+## <a name="who-this-document-is-for"></a>誰のためのドキュメントか
 
-The first two sections of this document describe general guidelines for how to think about building
-a component, as well as criteria for what makes a good component. Anyone interested in building
-components either directly for MDC-Web or as an external component that plays well within the
-MDC-Web ecosystem should find it useful. The third section talks about authoring components
-specifically for MDC-Web, and is best suited for those looking to contribute directly to the
-project.
+このドキュメントの最初の2つのセクションにはコンポーネント構築の考え方や良いコンポーネントの基準についての一般的なガイドラインを記載します。直接 MDC-Web を構築する場合にも MDC-Web と連携する外部コンポーネントを作成する場合にもコンポーネントの構築に関心のある人にはこれが役立つでしょう。3つ目のセクションでは特に MDC-Web のコンポーネント制作について説明します。このセクションはプロジェクトに直接貢献したい人に最適です。
 
-Note that this document assumes you are familiar with the library and its
-[architecture](code/architecture.md). If that is not the case, we recommend reading that first. If you
-are brand new to the project, we recommend starting with our [Getting Started Guide](./getting-started.md).
+このドキュメントはあなたがこのライブラリとそのアーキテクチャに精通していることを前提としています。もしそうでない場合はまず [アーキテクチャ](code/architecture.md) を読むことをお勧めします。もしこのプロジェクトに初めて触れるのであれば [入門ガイド](./getting-started.md) から始めるのが良いでしょう。
 
-## How to build a component
+## <a name="how-to-build-a-component"></a>コンポーネント構築の方法
 
-This section outlines the thought process behind authoring new components for MDC-Web. It is
-inspired by React's [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) article.
+このセクションでは MDC-Web のための新しいコンポーネントの作成の背景にある考え方のアウトラインを示します。これは React の [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) という記事に触発されました。
 
-Starting out from nothing and going straight to a component/adapter/foundation implementation can be
-at the best daunting, at worst completely impossible from a productivity and experimentation
-standpoint. Often times, you'll want to _build a prototype component in the most straightforward way
-possible, and then work your way back towards a foundation and adapter_. We usually take the
-following steps.
+何もない状態から取りかかり、コンポーネント/アダプタ/ファンデーション の実装にまっすぐ進むことは非常に困難であり、最悪の場合、生産性と実験性の観点から完全に不可能になってしまいます。そこで、しばしば<em>可能な限りもっとも簡単な方法でプロトタイプのコンポーネントを構築し、それからファンデーションとアダプタに向かって作業を進めます</em>。私たちはよくこの方法でステップを進めます。
 
-To demonstrate this approach, we will build a **red-blue toggle**, very simple toggle button that
-toggles between a red background with blue text, and vice versa. While not a Material Design
-component, it demonstrates the concepts of how to think about building for MDC-Web.
+このアプローチを実証するために私たちは **red-blue toggle** を構築します。これは赤い背景と青いテキストが入れ替わる非常に単純なトグルボタンです。マテリアルデザインのコンポーネントではありませんが、これを使って MDC-Web の構成がどのように考えられているかというコンセプトを説明します。
 
-### Start with a simple component prototype
+### <a name="start-with-a-simple-component-prototype"></a>単純なコンポーネントのプロトタイプ
 
-When first starting out on a component, start by building a prototype using vanilla
-HTML/CSS/Javascript, without worrying about any foundations or adapters. Below is the prototype code
-for our redblue-toggle, which you may also [view on codepen](http://codepen.io/traviskaufman/pen/jVxdNo).
+最初にコンポーネントに取り掛かるにあたり、ファンデーションやアダプタを気にせずに素の HTML/CSS/JavaScript を使ってプロトタイプを構築することから始めます。次のコードが redblue-toggle のプロトタイプのコードです。[CodePen](http://codepen.io/traviskaufman/pen/jVxdNo) でコードを見ることもできます。
 
-> **TIP**: When prototyping your own components, you can use [this Codepen template](http://codepen.io/traviskaufman/pen/pNQmRp) as a starting
-point.
+> **ヒント**: コメントを試すときは [この CodePen テンプレート](http://codepen.io/traviskaufman/pen/pNQmRp) を出発点とすることもできます。
 
-Start out by experimenting with a DOM structure, and writing a simple prototype component to test
-out the dynamic functionality.
+最初に DOM を使って試しすことから始め、動的な機能を試すために単純なコンポーネントを書いてみましょう。
 
 ```html
 <div class="redblue-toggle" role="button" aria-pressed="false">
@@ -144,39 +124,26 @@ class RedblueTogglePrototype {
 new RedblueTogglePrototype(document.querySelector('.redblue-toggle'));
 ```
 
-Note how the JS Component does not reference MDC-Web in any way, nor does it have any notion
-of foundations or adapters. By omitting this work, you can rapidly experiment with your component,
-incorporating changes quickly and easily. Nonetheless, the way the component is prototype looks
-quite similar to the way that the MDC-Web component will eventually be built.
+この JS コンポーネントは MDC-Web を少しも参照しておらず、ファンデーションやアダプタの概念を持っていないことに注意してください。こういったことをしないことにより、素早くコンポーネントを試してみることができ、早く簡単に変更を行うことができます。それにもかかわらずこのプロトタイプのコンポーネントのやり方は MDC-Web コンポーネントの構築によるやり方に結局のところとても似ています。
 
-### Identify host environment interactions
+### <a name="identify-host-environment-interactions"></a>ホスト環境とのやりとりの確認
 
-Once you're satisfied with your prototype, the next step is to figure out what functionality will
-need to be proxied through an adapter. Any direct interactions with the host
-environment will need to be proxied, so that our foundations will be able to integrate into all
-frameworks across the web platform.
+一旦プロトタイプができれば、次のステップはアダプタを通して機能させることが必要であるということを理解することです。ホスト環境との直接的なやりとりは代わりにやってくれるものを必要としています。機能は Web プラットフォーム上のすべてのフレームワークに統合できるできるようするべきだからです（訳注: ホスト環境と直接的なやりとりを行う API を使うとホスト環境を提供するフレームワークとの統合ができてもそれ以外のフレームワークでの適用が難しくなるのでホスト環境の API をラップするものを用意したほうが良いということ）。
 
-> As mentioned in our architecture doc, the term **host environment** refers to the context in which
-the component is used. It could be the browser, a server which the component is being rendered on,
-a Virtual DOM environment, or even a mobile application in the case of technologies like
-[React-Native](https://facebook.github.io/react-native/).
+> 私たちのアーキテクチャドキュメントについて簡単に説明すると、**ホスト環境** という用語はコンポーネントを使用している環境という意味で使っています。[React-Native](https://facebook.github.io/react-native/) のような技術の場合はブラウザであったりコンポーネントを描画するサーバー、仮想DOM環境、はたまたモバイルアプリケーションといったものを指します。
 
-For the redblue-toggle, it's pretty easy to see all of the instances where we interact with the host
-environment: it occurs every place we read from or write to our `root` node.
+redblue-toggle ではホスト環境とのやりに関するすべてのインスタンスをとても簡単に見ることができます。`root` ノードに対する読み書きしているところを確認すればよいのです。
 
-- Updating `aria-pressed` when toggled via `setAttribute`
-- Updating the classes on the root node when toggled via `classList.{add,remove}`.
-- Setting the `textContent` of the child color indicator element when toggled.
-- Adding/removing event listeners on the root node within `initialize()`/`destroy()` respectively.
+- 切り替える際に `setAttribute` で `aria-pressed` を更新
+- 切り替える際に `classList.{add,remove}` で root ノードのクラスを更新
+- 切り替える際に色名を表示している子要素をの `textContent` を設定
+- `initialize()`/`destroy()` を使って root ノードのイベントリスナーをそれぞれ追加または削除
 
-In other cases, host environment interaction may not be straightforward, such as
-`window.addEventListener('resize', ...)`. These are also examples of host environment interaction
-and must be taken into account.
+それ以外のケースではホスト環境とのやりとりは `window.addEventListener('resize', ...)` のように単純ではない場合があります。これらもホスト環境のやりとりの例であり、気に留めておく必要があります。
 
-### Create the adapter interface
+### <a name="create-the-adapter-interface"></a>アダプタインターフェースの作成
 
-Now that the host environment interactions are identified, an adapter interface can be carved out
-within our existing component.
+ホスト環境とのやりとりが明らかになったので、アダプターインターフェースをこのコンポーネントに構築していきます。
 
 ```js
 class RedblueTogglePrototype {
@@ -221,10 +188,9 @@ class RedblueTogglePrototype {
 }
 ```
 
-In the code above all of the host environment interactions have been replaced with fake `SOMEHOW_*`
-methods. We can now take these fake methods and transform them into an adapter interface.
+上記のコードではホスト環境とのやりとりがすべてフェイクの `SOMEHOW_*` メソッドに置き換えられています。私たちはこのフェイクのメソッドを取り出し、アダプターインターフェースに変換することができます。
 
-| Fake Method Signature | Adapter Method Signature |
+| フェイクメソッド | アダプタメソッド |
 | --- | --- |
 | SOMEHOW_GET_ATTRIBUTE(attr: string) => string | getAttr(attr: string) => string |
 | SOMEHOW_SET_ATTRIBUTE(attr: string, value: string) | setAttr(attr: string, value: string) |
@@ -234,21 +200,11 @@ methods. We can now take these fake methods and transform them into an adapter i
 | SOMEHOW_REGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | registerInteractionHandler(type: string, handler: EventListener) |
 | SOMEHOW_DEREGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | deregisterInteractionHandler(type: string, handler: EventListener) |
 
-> Note: It is a convention in our code base to use the terms `registerInteractionHandler` and
-`deregisterInteractionHandler` as adapter methods for adding/removing generic event listeners. We do
-this because we feel it more semantic in that most components are only interested in interactivity.
-However, feel free to call these methods `{add,remove}EventListener` or anything else you would
-like.
+> 注意: 私たちはコードにおいて、イベントリスナを追加/削除をおこなうのアダプタメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` という用語を使うことを使うことを慣習としています。私たちがそのような用語を使うのは大半のコンポーネントはやりとりに対してのみ関心を持っているというように感じているからです。しかし、これらのメソッドを `{add,remove}EventListener` やそれ以外の好きな名前をつけても構いません。
 
-### Refactor your existing code into a foundation
+### <a name="refactor-your-existing-code-into-a-foundation"></a>既存のコードをファンデーションに再構築
 
-Now that our adapter API is defined, our existing code can be reworked into a foundation class.
-As a convention in our codebase, we define a static `defaultAdapter` getter that returns
-an adapter with NOP signatures for each function. This helps us verify the shape of the adapter,
-prevent adapters from throwing errors when methods are forgotten, and in the future can (and should)
-be used to build out lint tools to enforce proper adapter shape. This example shows that, as well
-as making use of our `MDCFoundation` class, which is the base class which all foundations inherit
-from.
+アダプタAPIを定義しましたが、このコードをファンデーションクラスに書き直すことができます。慣習として、なにもしない各関数をもつアダプタを返す静的な `defaultAdapter` ゲッタを定義します。このメソッドは私たちがアダプタの形式を確認するのに役立ち、メソッドの実装を忘れた際にアダプタがエラーを返すことを防ぎ、将来リントツールがアダプタの形式が適切であること強制するため使うことができます（使うべきです）。その例を示しますが、これは `MDCFoundation` クラスの使用例でもあります。このクラスはすべてのファンデーションクラスの基底クラスです。
 
 ```js
 class RedblueToggleFoundation extends MDCFoundation {
@@ -301,20 +257,16 @@ class RedblueToggleFoundation extends MDCFoundation {
 }
 ```
 
-Note how `isToggled()` and `toggle()` are used in place of setters and getters. Given that a
-foundation is a lower-level API, we feel that this convention is appropriate.
+セッタとゲッタの代わりに `isToggled()` と `toggle()` が使われていることに注意してください。このファンデーションは低レベルな API であることを考えると、この慣習が適切であると思われます。
 
-### Build a component on top of that foundation, providing an adapter
+### <a name="build-a-component-on-top-of-that-foundation-providing-an-adapter"></a>ファンデーション上のコンポーネントの構築とアダプタの提供
 
-The last step is simply to build your actual component using the foundation above. The component has
-two main jobs:
+最後のステップは上記のファンデーションを使い、コンポーネントを構築することです。コンポーネントは2つの主な役割を持っています。
 
-* Provide an idiomatic interface to the foundation's functionality within the host environment
-* Provide an adapter to the foundation that will allow it to work within the host environment
+* ホスト環境内にファンデーションのもつ機能へのイディオム的なインターフェースを提供する
+* ホスト環境内で動作するファンデーションへのアダプタを提供する
 
-Since this component is a vanilla component, it should be modeled after the vanilla DOM API, which
-favors getters and setters to implement its functionality (think `checked`, `disabled`, etc.). Our
-adapter is extremely straightforward as we can simply repurpose the methods we started out with.
+このコンポーネントは素のコンポーネントなので、素の DOM API をならって作ることになります。素の DOM API はこれらの機能を実装することになるセッタやゲッタにとって好都合です（`checked`, `disabled` などを考えてみてください）。ここで実装するメソッドは簡単に再利用可能なのでアダプタは極めて簡単なものになります。
 
 ```js
 class RedblueToggle extends MDCComponent {
@@ -342,120 +294,74 @@ class RedblueToggle extends MDCComponent {
 }
 ```
 
-You can view a [finished example on CodePen](http://codepen.io/traviskaufman/pen/gLExme?editors=0010).
+このコードは [CodePen 上の最終的なサンプル](http://codepen.io/traviskaufman/pen/gLExme?editors=0010) で見ることができます。
 
-## What makes a good component
+## <a name="what-makes-a-good-component"></a>よいコンポーネント作るには
 
-These additional guidelines provide a "checklist" of sorts when building your own components. We
-strictly adhere to them within our codebase, and doing the same will ensure an enjoyable experience
-for your component's consumers.
+これらの追加のガイドラインはあなた自身のコンポーネントを作る際に「チェックリスト」を提供します。私たちはコードを書く上でおいてこれらを厳格に守っており、厳格に守ることであなたのコンポーネントの利用者にとって素晴らしい経験を確実なものにするでしょう。
 
-### Fully tested code
+### <a name="fully-tested-code"></a>完全にテストされたコード
 
-ECMAScript, by design, is a dynamic and flexible language. The benefits of this dynamicism and
-flexibility come at the cost of verifying the correctness of your program. The only way to ensure
-that your code will behave as expected is to execute that code and verify that the results are those
-you expect. Strive for 100% test coverage for your foundations, adapters, and components.
+ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟であることの利点はプログラムの正しさを検証するコストにもなります。コードが期待通りに動作していることを検証する唯一の方法はコードを実行し結果が期待したものであるかを検証することです。ファンデーション、アダプタ、コンポーネントのテストカバレッジが100%になるよう努力してください。
 
-### Thoroughly documented and strictly versioned adapter interface
+### <a name="thoroughly-documented-and-strictly-versioned-adapter-interface"></a>徹底的な文書化と厳密にバージョン管理されたアダプタインターフェース
 
-Since framework authors will be designing code around your adapter interface, it's important that
-you provide all information necessary for them to do so. Our recommended approach is to document
-the adapter's interface within a component's README, providing both the method signature as well
-as the expected behavior of the method.
+フレームワークの開発者はあなたのアダプタインターフェース周りコードを設計しいくので、あなたが開発者に設計のために必要な情報をすべて提供することは重要ことです。私たちの推奨する方法はコンポーネントの README にアダプターのインターフェースを文書化し、メソッドの期待された振る舞いはもちろんのこと、メソッドの使い方も文書に提供することです。
 
-Equally important is to _strictly version your adapter interfaces_. Changes to your adapter
-interface - even associative ones - have the potential to break existing implementations or
-trick implementors into thinking their code is working as expected whereas they may be missing a
-key aspect of the component due to having failed to implement a new adapter method. We consider
-_each change to an adapter interface a breaking change_, and recommend this approach.
+同様に重要なことは <em>アダプターインターフェースを厳格にバージョン管理すること</em> です。アダプターインターフェースが変わると既存の実装部分が壊れたり、新しいアダプターメソッドの実装とつながらなくなることによりコンポーネントの重要な部分が失われているにもかかわらず実装者は正しく期待通りにコードが動いているように思ったりする可能性があります。私たちは <em>それぞれの変更はアダプターインターフェースの破壊的な変更</em> であると考え、このやり方を推奨します。
 
-### Accessibility
+### <a name="accessibility"></a>アクセシビリティ
 
-We require all of our core components to be fully accessible. We implement [ARIA specifications](https://www.w3.org/WAI/intro/aria)
-where it makes sense to do so, and ensure that we are being semantic as possible when it comes to
-our components' behavior. The [accessibility developer tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en) are a great way to analyze how
-accessible your component is.
+すべての主要なコンポーネントが完全にアクセス可能であることが必要です。私たちは [ARIA 仕様書](https://www.w3.org/WAI/intro/aria) を実装することが理にかなっており、コンポーネントの動作に関しては可能な限り意味を持つことを保証するようにしています。[Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en) はコンポーネントがどの程度アクセシビリティを待つのかを分析する優れた方法です。
 
-### RTL Awareness
+### <a name="rtl-awareness"></a>RTL への意識
 
-Components should be RTL-aware. That is, there should be some sort of strategy a component uses to
-detect whether or not it is in an RTL context, and make proper adjustments accordingly. We use
-our [@material/rtl](../packages/mdc-rtl) library to assist us with this.
+コンポーネントは RTL 対応にすべきです。すなわち、RTL コンテキストかどうかを検出するための何らかの戦略がコンポーネントになくてはならず、そうれに応じて適切に調整しなくてはなりません。私たちはこれを支援するために [@material/rtl](../packages/mdc-rtl) ライブラリを使用します。
 
-### Support for theming
+### <a name="support-for-theming"></a>テーマのサポート
 
-A component should be able to be altered according to a **theme**. A theme can be defined any way
-you wish. It may be by using _primary_ and _secondary_ colors, or you may choose to expose scss
-variables or CSS Custom properties specific to your component. Whichever way you choose, ensure that
-_clients can easily alter common aesthetic elements of your component to make it fit with their
-overall design_. We use [@material/theme](../packages/mdc-theme) for this purpose.
+コンポーネントは **テーマ** に応じて変更できなくてはなりません。テーマは様々な方法で定義できます。_primary_ と _secondary_ の色を指定する方法や、公開された scss 変数や CSS カスタムプロパティをコンポーネントで選ぶこともできます。どの方法をえらんでも <em>クライアントが全体的なデザインに合わせて容易にコンポーネントの共通な美的要素を変更できます</em>。この目的で私たちは [@material/theme](../packages/mdc-theme) を使います。
 
-## General Best Practices
+## <a name="general-best-practices"></a>ベストプラクティス
 
-Even when a component satisfies all of the above requirements, it may still run into pitfalls.
-Follow the recommendations below to avoid pitfalls and unintended situations as much as possible.
+コンポーネントが上記の要件を満たしている場合でも落とし穴にはまるかもしれません。落とし穴や予期せぬ状況を可能な限り回避するために以下の推奨事項に従ってください。
 
-> Just like with any set of best practices, it is important to keep in mind that these are
-_guidelines_, not hard and fast rules. [If a best practice prevents you from improving or maintaining your component, ignore it](https://en.wikipedia.org/wiki/Wikipedia:Ignore_all_rules).
-However, justify your slight, preferably in the form of documentation or a code comment.
+> すべてのベストプラクティスがそうであるように、このベストプラクティスは厳格で揺るがないルールではなく <em>ガイドライン</em> であることを気に留めておくことは重要です。[もしベストプラクティスがコンポーネントの改善や維持を妨げるようであれば無視してください](https://en.wikipedia.org/wiki/Wikipedia:Ignore_all_rules)。しかし、なるべくドキュメントやコメントとして軽視したことの理由を示してください。
 
-### Do what the user expects
+### <a name="do-what-the-user-expects"></a>ユーザの期待していることを実行する
 
-This is our "golden rule", if you will. _Design your component APIs to be intuitive and
-easy-to-understand. Ensure that your components behave in a way a user could predict_. For
-example, the `checked` getter on `MDCCheckbox` returns a boolean indicating whether or not the
-internal state of the checkbox is checked. It does not produce side effects, and functions in
-exactly the sameway `HTMLInputElement.prototype.checked` functions when its `type` is set to
-`"checkbox"`. When designing your components, model them after the environment you expect your users
-to use them in. In our case, our vanilla components are modeled after the DOM APIs.
+これは私たちの「黄金の掟 (golden rule)」です。<em>コンポーネントの API は直感的でわかりやすいものになるよう設計してください。コンポーネントはユーザの予想通りのふるまいをするようにしてください。</em>例えば `MDCCheckbox` の `checked` ゲッタはチェックボックスの内部状態がチェックされているかどうかを表す真偽値を返してください。副作用ががなく、`type` が `"checkbox"` であるときは `HTMLInputElement.prototype.checked` とまったく同じ方法で動作するようにします。コンポーネントを設計する際には、ユーザがどのように使うのかを想像したことをもとに作ってください。私たちのケースでは素のコンポーネント（訳注: 手を入れていない MDC-Web の素のコンポーネントのこと）は DOM API をもとに作っています。
 
-### Design adapter interfaces to be simple and intuitive
+### <a name="design-adapter-interfaces-to-be-simple-and-ntuitive"></a>アダプタインターフェースは単純かつ直感的なものにする
 
-This follows the above practice of doing what the user expects. Since library consumers will be
-implementing the adapter methods, they should be simple to implement as well as straightforward and
-intuitive in nature. Most adapter methods should be one-liners, such as "add a class" or "update a
-style property." Users should not have to guess about what the purpose of an adapter method is, nor
-what its expected input and output should be.
+このルールは先に述べたユーザの期待しているものを作るというプラクティスに則ったものです。ライブラリの利用者はアダプタメソッドを実装することになるので、アダプタメソッドは実装することが簡単であるだけでなく、本質的に簡素で直感的でなくてはなりません。大半のアダプタメソッドは「クラスを加える」や「プロパティのスタイルを更新する」といったように一言で記述できるべきです。アダプタメソッドの目的は何かとかインプットとアウトプットが何かとかをユーザが推測するようではいけません。
 
-For example, a good adapter interface method might be
+例えば良いアダプタインターフェースは次のようになっています。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `setStyle(styleProperty: string, value: string) => void` | Sets a style on the root element given a dasherized `styleProperty` as well as a `value` for that property. |
+| `setStyle(styleProperty: string, value: string) => void` | ダッシュで連結された `styleProperty` とそのプロパティの `value` を指定してルート要素のスタイルを設定する。 |
 
-As opposed to a bad adapter interface like the one below
+対して悪いアダプタインターフェースは次のようになっています。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `applyComponentStyles() => void` | Sets the correct styles on the component's root element. Consult our documentation for more info. |
+| `applyComponentStyles() => void` | コンポーネントのルート要素に適切なスタイルを設定する。詳細はドキュメントを参照のこと。 |
 
-The above adapter interface is more suited for a foundation method. The adapter's sole
-responsibility should be performing the style updates, not determining what they are.
+上記のアダプタインターフェースはファンデーションメソッドのほうがふさわしいです。アダプタの唯一の責務はスタイルを更新することであるべきで、スタイルを決定することではありません。
 
-### Do not reference host objects within foundation code.
+### <a name="do-not-reference-host-objects-within-foundation-code"></a>ファンデーションコード内でホストオブジェクトを参照しない
 
-To ensure your foundation is as compatible with as many frameworks as possible, avoid directly
-referencing host objects within them. This includes `window`, `document`, `console`, and others.
-_Only reference global objects defined within the ECMAScript specification within your foundations._
+ファンデーションに可能な限り多くのフレームワークと互換性を持たせるために、ファンデーション内でホストオブジェクトを直接参照することを避けてください。ホストオブジェクトには `window`、 `document`、 `console` などを含みます。<em>ファンデーション内では ECMAScript 仕様で定義されたグローバルオブジェクトのみを参照するようにします。</em>
 
-We make an exception for this rule for `requestAnimationFrame`, but in the future we may refactor
-that out as well. In addition, a workaround to working with host objects in a foundation is to ask
-for them via the adapter. However, you should design your adapter APIs such that they return a
-[structural type]() representing your host object, rather than a [nominal type]() of the host object
-itself. For example, instead of asking for an `HTMLInputElement` of type `"checkbox"`, ask for an
-object that has `checked`, `indeterminate`, and `disabled` boolean properties.
+`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプタを介してホストオブジェクトを使用することです。しかし、ホストオブジェクト自身の [名目型]() よりもむしろホストオブジェクトの代理となる [構造型]() を返すようなアダプタ API を設計すべきです。例えば、タイプが `"checkbox"` の `HTMLInputElement` を使う代わりに `checked`、 `indeterminate`、 `disabled` という真偽値プロパティを持つオブジェクトを使ってください。
 
-### Clean up all references on destruction
+### <a name="clean-up-all-references-on-destruction"></a>デストラクタですべての参照を削除する
 
-This includes event handlers, timer IDs, animation frame IDs, and any other external references that
-may be retained. There are two accurate litmus tests to ensure this is being done:
+このプラクティスはイベントハンドラ、タイマー ID、アニメーションフレーム ID、保持される可能性のあるその他の外部参照を含みます。このプラクティスが実施されているかを確認するために2つの正確なリトマステストがあります。
 
-1. `init()` (or `initialize()` in a vanilla component) and `destroy()` are reflexive. For example,
-   any event listeners attached in `init()` are removed in `destroy()`.
-2. Every call which creates an external reference (e.g. `setTimeout()`, `requestAnimationFrame()`)
-   is kept track of, and cleaned up within destroy. For example, every `setTimeout()` call should have its ID retained by the foundation/component, and have `clearTimeout()` called on it within
-   destroy.
+1. `init()` （もしくは素のコンポーネントにおける  `initialize()`）と `destroy()` が対称的になっている。例えば `init()` でアタッチされたすべてのイベントリスナーは `destroy()` で削除されている。
+2. 外部参照を作成するすべての呼び出し（例: `setTimeout()`、`requestAnimationFrame()`）は追跡され、破棄する際にクリーンアップされる。例えばすべての `setTimeout()` 呼び出しはファンデーションやコンポーネントによって ID が保持され、破棄される際には `clearTimeout()` が破棄する処理の中で呼ばれる。
 
 ## Authoring components for MDC-Web
 
