@@ -8,19 +8,19 @@ path: /catalog/base/
 
 # Base
 
-MDC Base contains core foundation and component classes that serve as the base classes for all of MDC-Web's foundation classes and components (respectively).
+MDC Base には MDC-Web のファンデーションクラスとコンポーネントクラスのすべての基底クラスとして役に立つ中核となるファンデーションクラスとコンポーネントクラスが（それぞれ）含まれています。
 
-Most of the time, you shouldn't need to depend on `mdc-base` directly. It is useful however if you'd like to write custom components that follow MDC-Web's pattern and elegantly integrate with the MDC-Web ecosystem.
+多くの場合、 `mdc-base` に直接的に依存する必要はないでしょう。しかし、MDC-Web のパターンにしたがい、MDC-Web のエコシステムにきちんと統合するカスタムコンポーネントを作る必要があるなら、このパッケージが役立ちます。
 
-## Installation
+## インストール
 
-First install the module:
+まず、モジュールをインストールします。
 
 ```
 npm install --save @material/base
 ```
 
-Then include it in your code in one of the following ways:
+次に以下の方法のいずれかでコードにモジュールをインクルードします。
 
 #### ES2015+
 
@@ -50,16 +50,16 @@ const MDCComponent = mdc.base.MDCComponent;
 const MDCFoundation = mdc.base.MDCFoundation;
 ```
 
-## Usage
+## 使用法
 
-mdc-base exposes two classes: `MDCComponent` (the default export) which all components extend from, and `MDCFoundation`, which all foundation classes extend from. To learn more about foundation classes vs. components, check out our overview on [architecture and best practices](../../docs/code).
+mdc-base は2つのクラス、すなわちすべてのコンポーネントを拡張する `MDCComponent` （デフォルトのエクスポート）とすべてのファンデーションクラスを拡張する `MDCFoundation` を公開しています。ファンデーションクラスとコンポーネントクラスについてより学ぶには [アーキテクチャとベストプラクティス](../../docs/code) にある概要を参照してください。
 
 ### MDCFoundation
 
-MDCFoundation provides the basic mechanisms for implementing foundation classes. Subclasses are expected to:
+MDCFoundation はファンデーションクラスを実装するための基本的な仕組みを提供します。サブクラスは次のことをします。
 
-- Provide implementations of the proper static getters where necessary.
-- Provide `init()` and `destroy()` lifecycle methods
+- 必要なところに適切な静的ゲッタの実装を提供する。
+- ライスサイクルメソッドとして `init()` と `destroy()` を提供する。
 
 ```javascript
 import {MDCFoundation} from '@material/base';
@@ -98,33 +98,32 @@ export default class MyFoundation extends MDCFoundation {
 }
 ```
 
-#### Static Getters
+#### 静的ゲッタ
 
-The static getters specify constants that can be used within the foundation class, its component, and by 3rd-party code. _It's important to remember to always put constants into these getters_. This will ensure your component can interop in as many environments as possible, including those where CSS classes need to be overwritten by the host library (e.g., Closure Stylesheets), or strings need to be modified (for i18n, for example).
+静的ゲッタはファンデーションクラスとコンポーネントの内部そしてサードパーティのコードのよって使用される定数を提示するものです。<em>これらのゲッタの中に常に定数を入れているということを覚えておくことは重要です</em>。これはコンポーネントができる限り多くの環境と相互利用できることを保証するものです。多くの環境というのにはホストライブラリ（例えば Closure Stylesheets）によって CSS クラスが上書きされる場合や文字列を変更する必要がある（例えば i18n のように）場合があります。
 
-Note that you do not have to explicitly provide getters for constants if your component has none.
+コンポーネントに何も指定されていないときは定数ゲッタを明示的に提供する必要がないことも気に留めておいてください。
+提供されるゲッタは次のように指定します。
 
-The getters which should be provided are specified below:
-
-| getter | description |
+| ゲッタ | 説明 |
 | --- | --- |
-| cssClasses | returns an object where each key identifies a css class that some code will rely on. |
-| strings | returns an object where each key identifies a string constant, e.g. `ARIA_ROLE` |
-| numbers | returns an object where each key identifies a numeric constant, e.g. `TRANSITION_DELAY_MS` |
-| defaultAdapter | returns an object specifying the shape of the adapter. Can be used as sensible defaults for an adapter as well as a way to specify your adapter's "schema" |
+| `cssClasses` | コードの依存している CSS クラスをキーとするオブジェクトを返す。 |
+| `strings` | 識別するための文字列定数、例えば `ARIA_ROLE` の値、をキーとするオブジェクトを返す。 |
+| `numbers` | 各キーが見分けるための数値定数、例えば `TRANSITION_DELAY_MS` の値、のオブジェクトを返す。 |
+| `defaultAdapter` | アダプタの形状（訳注: アダプタのインターフェースのこと）を指定するオブジェクトを返す。アダプタにとって機能的なデフォルトとしてだけでなく、アダプタの「スキーマ」を指定する方法をして利用できる。 |
 
-#### Lifecycle Methods
+#### ライフサイクルメソッド
 
-Each foundation class has two lifecycle methods: `init()` and `destroy()`, which are described below:
+各ファンデーションクラスは2つのライフサイクルメソッド、`init()` と `destroy()`、を持ちます。そのメソッドを以下に説明します。
 
-| method | time of invocation | use case |
+| メソッド | 呼び出しタイミング | ユースケース |
 | --- | --- | --- |
-| init() | called by a host class when a component is ready to be initialized | add event listeners, query for info via adapters, etc. |
-| destroy() | called by a host class when a component is no longer in use | remove event listeners, reset any transient state, etc. |
+| `init()` | コンポーネントの初期がの準備が整ったとき、ホストクラスによって呼び出される | イベントリスナーの追加、アダプタによる情報の問い合わせなど |
+| `destroy()` | コンポーネントが使用されなくなったとき、ホストクラスによって呼び出される | イベントリスナーの削除、一時的な状態のリセットなど |
 
 ### MDCComponent
 
-MDCComponent provides the basic mechanisms for implementing component classes.
+MDCComponent はコンポーネントクラスの実装のための基本的な仕組みを提供します。
 
 ```javascript
 import MyComponentFoundation from './foundation';
@@ -151,46 +150,44 @@ export class MyComponent extends MDCComponent {
 }
 ```
 
-#### Properties
+#### プロパティ
 
-`MDCComponent` provides the following "private" properties to subclasses:
+`MDCComponent` は以下の「プライベート」なプロパティをサブクラスに提供します。
 
-| property | description |
+| プロパティ | 説明 |
 | --- | --- |
-| `root_` | The root element passed into the constructor as the first argument. |
-| `foundation_` | The foundation class for this component. This is either passed in as an optional second argument to the constructor, or assigned the result of calling `getDefaultFoundation()` |
+| `root_` | 最初の引数としてコンストラクタに渡されるルート要素。 |
+| `foundation_` | そのコンポーネントのファンデーションクラス。これはコンストラクタにオプションの第2引数としてわたされるか、 `getDefaultFoundation()` が呼び出された結果が設定される。 |
 
-#### Methods
+#### メソッド
 
-`MDCComponent` provides the following methods to subclasses:
+`MDCComponent` はサブクラスに以下のメソッドを提供します。
 
-| method | description |
+| メソッド | 説明 |
 | --- | --- |
-| `initialize(...args)` | Called after the root element is attached to the component, but _before_ the foundation is instantiated. Any positional arguments passed to the component constructor after the root element, along with the optional foundation 2nd argument, will be provided to this method. This is a good place to do any setup work normally done within a constructor function. |
-| `getDefaultFoundation()` | Returns an instance of a foundation class properly configured for the component. Called when no foundation instance is given within the constructor. Subclasses **must** implement this method. |
-| `initialSyncWithDOM()` | Called within the constructor. Subclasses may override this method if they wish to perform initial synchronization of state with the host DOM element. For example, a slider may want to check if its host element contains a pre-set value, and adjust its internal state accordingly. Note that the same caveats apply to this method as to foundation class lifecycle methods. Defaults to a no-op. |
-| `destroy()` | Subclasses may override this method if they wish to perform any additional cleanup work when a component is destroyed. For example, a component may want to deregister a window resize listener. |
-| `listen(type: string, handler: EventListener)` | Adds an event listener to the component's root node for the given `type`. Note that this is simply a proxy to `this.root_.addEventListener`. |
-| `unlisten(type: string, handler: EventListener)` | Removes an event listener from the component's root node. Note that this is simply a proxy to `this.root_.removeEventListener`. |
-| `emit(type: string, data: Object, shouldBubble: boolean = false)` | Dispatches a custom event of type `type` with detail `data` from the component's root node. It also takes an optional shouldBubble argument to specify if the event should bubble. This is the preferred way of dispatching events within our vanilla components. |
+| `initialize(...args)` | ルート要素がコンポーネントにアタッチされた後に呼び出さるが、ファンデーションがインスタンス化される <em>前に</em> 呼び出される。コンポーネントに渡されたルート要素より後ろのすべての位置引数はオプションの第2引数であるファンデーションも含めてこのメソッドに渡される。これは通常コンストラクタ内で行う初期化をするにはちょうどいい場所である。 |
+| `getDefaultFoundation()` | コンポーネントにとって適切に設定されたファンデーションクラスのインスタンスを返す。コンストラクタ内でファンデーションクラスが与えられなかった場合に呼び出される。サブクラスでは **必ず** このメソッドを実装しなくてはならない。 |
+| `initialSyncWithDOM()` | コンストラクタ内で呼び出される。サブクラスがホストの DOM 要素と状態の最初の同期を取りたい場合、このメソッドを上書きする。例えばスライダーで、ホストとなる要素に値があらかじめ設定されているかどうかを確認して、それに応じてスライダーの初期状態を設定したいときなどである。ファンデーションクラスのライフサイクルメソッドと同様の注意点がこのメソッドにも適用されることに注意。デフォルトでは何もしない。 |
+| `destroy()` | コンポーネントが破棄される際に追加でクリーンアップをしたいならサブクラスでこのメソッドを上書きする。例えばコンポーネントがウィンドウリサイズのリスナーを削除したいときに使用する。 |
+| `listen(type: string, handler: EventListener)` | コンポーネントのルートノードに `type` で指定したイベントのリスナーを追加する。`this.root_.addEventListener` の単なる代替であることに注意。 |
+| `unlisten(type: string, handler: EventListener)` | コンポーネントのルートノードからイベントリスナーを削除する。`this.root_.removeEventListener` の単なる代替であることに注意。 |
+| `emit(type: string, data: Object, shouldBubble: boolean = false)` | コンポーネントのルートノードから詳細な `data` とともに `type` のカスタムイベントを送る。オプション引数としてイベントがバブリングするかどうかを指定する `shouldBubble` をとる。これは素のコンポーネント内でイベントを発生させる好ましい方法である。 |
 
-#### Static Methods
+#### 静的メソッド
 
-In addition to methods inherited, subclasses should implement the following two static methods within their code:
+継承されるメソッドメソッドに加えてサブクラスは以下の2つの（訳注: 当初は2つあったのもが1つ削除されたが、そのことがこの原文に反映されていないため「2つの」としている。正しくは「1つの」）静的メソッドがコードに実装しなくてはならない。
 
-| method | description |
+| メソッド | 説明 |
 | --- | --- |
-| `attachTo(root) => <ComponentClass>` | Subclasses must implement this as a convenience method to instantiate and return an instance of the class using the root element provided. This will be used within `mdc-auto-init`, and in the future its presence may be enforced via a custom lint rule.|
+| `attachTo(root) => <ComponentClass>` | 与えられたルート要素を使ってインスタンスを生成し、返す便利なメソッドとしてサブクラスでこのメソッドを実装しなくてはならない。このメソッドは `mdc-auto-init` 内で使用され、将来的にはカスタムリントルールとして存在を強制されるようなる。 |
 
-#### Foundation Lifecycle handling
+#### ファンデーションのライフサイクル操作
 
-`MDCComponent` calls its foundation's `init()` function within its _constructor_, and its foundation's `destroy()` function within its own _destroy()_ function. Therefore it's important to remember to _always call super() when overriding destroy()_. Not doing so can lead to leaked resources.
+`MDCComponent` は <em>コンストラクタ</em> 内でファンデーションの `init()` 関数を呼び、コンポーネント自身の _destroy()_ 関数内でファンデーションの `destroy()` 関数を呼びます。したがって、<em>destory() を上書きしたときは常に super() を呼ぶ</em> ことを忘れないことが重要です。
 
-#### Initialization and constructor parameters
+#### 初期化とコンストラクタのパラメータ
 
-If you need to pass in additional parameters into a component's constructor, you can make use of the
-`initialize` method, as shown above. An example of this is passing in a child component as a
-dependency.
+コンポーネントのコンストラクタに追加のパラメータが必要なときは上に書いたように `initialize` メソッドを使うことができます。この一例は依存関係そして子コンポーネントを渡す時です。
 
 ```js
 class MyComponent extends MDCComponent {
@@ -208,22 +205,21 @@ class MyComponent extends MDCComponent {
 }
 ```
 
-You could call this code like so:
+このコードは次のように呼び出せます。
 
 ```js
 const childComponent = new ChildComponent(document.querySelector('.some-child'));
 const myComponent = new MyComponent(
   document.querySelector('.my-component'), /* foundation */ undefined, childComponent
 );
-// use myComponent
+// myComponent を使う
 ```
 
-> NOTE: You could also pass in an initialized foundation if you wish. The example above simply
-> showcases how you could pass in initialization arguments without instantiating a foundation.
+> 注意: 望むのなら初期化されたファンデーションを渡すこともできます。上の例ではファンデーションを初期化せずに初期化の引数を渡す方法を簡単に示しています。
 
-#### Best Practice: Keep your adapters simple
+#### ベストプラクティス: アダプタを単純なままに保つ
 
-If you find your adapters getting too complex, you should consider refactoring the complex parts out into their own implementations.
+アダプタが複雑になってきたと感じたら、複雑な部分を固有の実装にリファクタリングすることを考えるべきです。
 
 ```javascript
 import MyComponentFoundation from './foundation';
@@ -240,7 +236,7 @@ class MyComponent {
 }
 ```
 
-Where `./util` could look like:
+`./util` は次のようになっています。
 
 ```javascript
 export function toggleClass(element, className) {
@@ -252,7 +248,7 @@ export function toggleClass(element, className) {
 }
 ```
 
-This not only reduces the complexity of your component class, but allows for the functionality of complex adapters to be adequately tested:
+これは単にコンポーネントクラスの複雑さを軽減するばかりでなく、複雑なアダプタの機能が適切にテストされるようになります。
 
 ```javascript
 test('toggleClass() removes a class when present on an element', t => {

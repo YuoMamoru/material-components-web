@@ -1,26 +1,26 @@
-# Demonstrations 
+# デモ
 
-MDC Web's collection of components. Demonstrated in idiomatic JavaScript/CSS/HTML. A hosted version of this folder can be found [here](http://material-components-web.appspot.com/).
+MDC-Web のコンポーネントのコレクション。慣用的な JavaScript/CSS/HTML のデモです。このフォルダのホストされたバージョンは [ここ](http://material-components-web.appspot.com/) にあります。
 
-## Installation
+## インストール
 
-First clone MDC Web:
+まず、MDC-Web をクローンしてください。
 
 ```
 git clone git@github.com:material-components/material-components-web.git && cd material-components-web
 ```
 
-Second install MDC Web:
+次に MDC-Web をインストールします。
 
 ```
 npm i
 ```
 
-Then run the demo server:
+そしてデモサーバを起動します。
 ```
 npm run dev
 ```
 
-This will spin up a server that can be accessed at localhost:8080
+これで localhost:8080 でアクセスできるサーバがスピンアップします。
 
-Pop open any major browser and enjoy!
+主要ブラウザを立ち上げて楽しんでください！

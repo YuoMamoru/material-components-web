@@ -1,43 +1,38 @@
 # Material Components Web (MDC-Web)
 
-This package contains the master library for Material Components Web. It simply wraps all of its
-sibling packages up into one comprehensive library for convenience.
+このページは Material Components Web のマスタライブラリを含んでいます。利便性を考え、単にパッケージのすべてを一つの包括的なライブラリにまとめただけです。
 
-## Installation
+## インストール
 
 ```
 npm install --save material-components-web
 ```
 
-## Usage
+## 使用法
 
-### Including the Sass
+### Sass のインクルード
 
 ```scss
 @import "material-components-web/material-components-web";
 ```
 
-### Including the Javascript
+### Javascript のインクルード
 
 ```js
 import * as mdc from 'material-components-web';
 const checkbox = new mdc.checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'));
-// OR
+// または
 import { checkbox } from 'material-components-web';
 const checkbox = new checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'));
 ```
 
-> NOTE: Built CSS files as well as UMD JS bundles will be available as part of the package
-> post-alpha.
+> 注意: ビルドされた CSS ファイルと UMD JS バンドルはポストアルファパッケージの一部として利用できます。
 
-### Auto-initialization of components
+### コンポーネントの自動初期化
 
-The `material-components-web` package automatically registers all MDC-Web components with
-[mdc-auto-init](../mdc-auto-init), making it dead simple to create and initialize components
-with zero configuration or manual work.
+`material-components-web` パッケージはすべての MDC-Web コンポーネントを [mdc-auto-init](../mdc-auto-init) に自動的に登録するので、設定や手作業なしでコンポーネントの生成と初期化を非常に簡単に行えます。
 
-For example, say you want to use an [icon toggle](../mdc-icon-toggle). Simply render the necessary
-DOM, an attach the `data-mdc-auto-init="MDCIconToggle"` attribute.
+例として  [トグルアイコン](../mdc-icon-toggle) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCIconToggle"` 属性を追加するだけです。
 
 ```html
 <i class="mdc-icon-toggle material-icons" role="button" aria-pressed="false"
@@ -49,11 +44,10 @@ DOM, an attach the `data-mdc-auto-init="MDCIconToggle"` attribute.
 </i>
 ```
 
-Then at the bottom of your html, insert this one-line script tag:
+HTML の最後のほうに次のスクリプトタグを追加します。
 
 ```html
 <script>mdc.autoInit()</script>
 ```
 
-This will automatically initialize the icon toggle, as well as any other components marked with the
-auto init data attribute. See [mdc-auto-init](../mdc-auto-init) for more info.
+これでトグルアイコンだけでなく、`data-mdc-auto-init` をつけたそのほかのコンポーネントも自動で初期化されます。詳しい情報は [mdc-auto-init](../mdc-auto-init) を参照してください。
