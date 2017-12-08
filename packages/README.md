@@ -1,2 +1,1 @@
-This folder contains all of our individual components as npm packages, along with the comprehensive
-`material-components-web` package.
+このフォルダには npm パッケージとしてすべての個別コンポーネントに加えて包括的な `material-components-web` パッケージも含まれています。

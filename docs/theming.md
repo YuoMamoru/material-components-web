@@ -5,47 +5,36 @@ section: docs
 path: /docs/theming/
 -->
 
-# Theming Guide
+# テーマガイド
 
-## Overview
+## 概要
 
-MDC-Web includes a theming system designed to make it easy to change your application's colors. It provides multiple options
-for implementing themes, allowing for maximum flexibility. At the moment, MDC-Web supports theming with Sass and with CSS
-Custom Property, with plans for CDN support as well, once that service is available.
+MDC-Web はアプリケーションの配色の変更を容易にできるように設計されたテーマシステムを含んでいます。これはテーマを実装するための多くのオプションを提供しており、最大限の柔軟性が得られます。現在、 MDC-Web は Sass と CSS カスタムプロパティによってテーマをサポートしています。CDN サービスが利用可能になった時点での CDN サポートも計画しています。
 
-## Colors
+## 配色
 
-MDC-Web theming, like Material Design theming, uses two main colors: **primary** and **secondary**. The primary color is used
-throughout most of the application and components, as the main color for your application. The secondary color is used
-for floating action buttons and other interactive elements, serving as visual contrast to the primary.
+MDC-Web のテーマはマテリアルデザインのテーマのように **プライマリ** と **セカンダリ** という2つのメインカラーを使います。プライマリカラーはアプリケーションやコンポーネントのいたることろで使用され、アプリケーションのメインカラーとなります。セカンダリカラーはフローティング操作ボタンやそのほかのインタラクティブな要素に使用され、プライマリカラーと視覚的な対比として役立ちます。
 
-In addition to the primary and secondary colors, MDC-Web also defines a _background_ color, which is used as a background in
-components, and usually as the page background as well.
+プライマリカラーとセカンダリーカラーに加えて MDC-Web では <em>バックグランド</em> カラーも定義します。バックグランドカラーはコンポーネントの背景として使用され、通常はページの背景となります。
 
-Finally, MDC-Web has a number of text colors, which are used for rendering text and other shapes on top of the primary,
-secondary and background colors. These are specified as either dark or light, in order to provide sufficient contrast to
-what's behind them, and have
-[different levels of opacity depending on usage](https://material.io/guidelines/style/color.html#color-color-schemes):
-- Primary, used for most text.
-- Secondary, used for text which is lower in the visual hierarchy.
-- Hint, used for text hints (such as those in text fields and labels).
-- Disabled, used for text in disabled components and content.
-- Icon, used for icons.
+最後になりますが、MDC-Web はテキストカラーをいくつか持っており、プライマリカラー・セカンダリーカラー・バックグランドカラーの上に文字や図形を描くのに使われます。背景との十分なコントラストを保つためにテキストカラーには暗いか明るいかのいずれかを指定され、[用途に応じた異なるレベルの透明度](https://material.io/guidelines/style/color.html#color-color-schemes) を持ちます。用途は以下の通りです。
+- 主要部分、大部分のテキストで使用
+- 二次的部分、視覚階層上の下位にあるテキストで使用
+- ヒント、ヒントのテキストで使用（文字入力欄やラベルのヒントなど）
+- 利用できない項目、利用不可となっているコンポーネントやコンテンツのテキストに使用
+- アイコン、アイコンに使用
 
-## Building a themed application
+## テーマを持ったアプリケーションの構築
 
-Let's start with a simple application, which displays several cards for different categories. We ultimately want each
-card to have a color scheme that matches its category, but we'll start with the default theming provided by MDC-Web.
+簡単なアプリケーションから始めてみましょう。異なるカテゴリのいくつかのカードを表示するアプリです。最終的にはカテゴリにあった色を各カードに持たせたいのですが、初めは MDC-Web の提供するデフォルトのテーマを持たせてみましょう。
 
-You can [take a look at the end result here](https://plnkr.co/edit/qxt7qpPsXgkt9UbMnE36?p=preview), but let's start from
-scratch.
+[最終的に完成したものはここで見ることができます](https://plnkr.co/edit/qxt7qpPsXgkt9UbMnE36?p=preview) が、一から始めてみましょう。
 
-> Note: We won't cover the basics of starting an MDC-Web project in this guide, so please take a look at the
-[getting started guide](./getting-started.md) if you need more information.
+> 注意: このガイドでは MDC-Web のプロジェクトを開始するための基本事項は扱いません。詳しい情報が必要なら [入門ガイド](./getting-started.md) を見てください。
 
-### Step 1: No theming
+### ステップ 1: テーマなし
 
-Here's the markup:
+以下のマークアップがあります。
 
 ```html
 <!DOCTYPE html>
@@ -137,47 +126,43 @@ Here's the markup:
 </html>
 ```
 
-You'll see that we have a number of pretty empty looking cards, with black text on a white background. The only hint of color comes from the FAB, which adopts the secondary color by default.
+白い背景に黒のテキストのこぎれいなカードがいくつかあります。配色に関する唯一の手がかりは FAB です。FAB はデフォルトではセカンダリカラーを使います。
 
 
-### Step 2: Use the MDC-Web colors in your own markup
+### ステップ 2: マークアップに MDC-Web の配色を使う
 
-Not everything has a `--primary` option, though, particularly where it comes to your own markup.
+すべてが `--primary` オプションを持っているというわけではないです。特にあたながマークアップルするところにおいてはそうです。（訳注: よく意味が分からないが、この次にやるメディア領域の背景色は別に `--primary` でなくても `--secondary` や `--primary-light` やそのほかの色でもよい、という意味だと思う。）
 
-Let's make things look a bit more interesting, by using the primary color as a background to the cards' media area.
-One way of doing this would be to write your own custom CSS rules, and set the background to the same color that's being
-used as the primary:
+カードのメディア領域の背景色にプライマリカラーを使うことにより、少しばかり面白い見た目にしてみましょう。その方法の一つはカスタム CSS ルールを作ることで、プライマリカラーと同じ色を背景に設定することです。
 
 ```css
-/* Bad approach */
+/* 悪い方法 */
 .element-card > .mdc-card__media {
   background-color: #3f51b5;
 }
 ```
 
-However, that would not take advantage of MDC-Web's theming and would thus be brittle; changes to theming would need to be
-copied to your CSS rules, adding a maintenance cost.
+しかし、その方法は MDC-Web のテーマの有用性を活かさないので扱いにくいものになります。テーマを変えるには CSS ルールをコピーする必要がでてくるのでメンテナンスコストが増大します。
 
-MDC-Web provides a number of CSS classes as part of the `mdc-theme` module to help you tackle this problem in a more
-maintainable way. Here are the classes that deal with primary, secondary and background colors:
+よりメンテナンスしやすい方法でこの問題に取り組むために MDC-Web は `mdc-theme` モジュールの一部としていくつかの CSS クラスを提供しています。プライマリカラー、セカンダリカラー、バックグランドカラーとして利用できるクラスをあげます。
 
-| Class                           | Description                                                             |
+| クラス                          | 説明                                                                    |
 | ------------------------------- | ----------------------------------------------------------------------- |
-| `mdc-theme--primary`            | Sets the text color to the theme primary color.                         |
-| `mdc-theme--primary-light`      | Sets the text color to the theme primary color (light variant).         |
-| `mdc-theme--primary-dark`       | Sets the text color to the theme primary color (dark variant).          |
-| `mdc-theme--secondary`          | Sets the text color to the theme secondary color.                       |
-| `mdc-theme--secondary-light`    | Sets the text color to the theme secondary color (light variant).       |
-| `mdc-theme--secondary-dark`     | Sets the text color to the theme secondary color (dark variant).        |
-| `mdc-theme--background`         | Sets the background color to the theme background color.                |
-| `mdc-theme--primary-bg`         | Sets the background color to the theme primary color.                   |
-| `mdc-theme--primary-light-bg`   | Sets the background color to the theme primary color (light variant).   |
-| `mdc-theme--primary-dark-bg`    | Sets the background color to the theme primary color (dark variant).    |
-| `mdc-theme--secondary-bg`       | Sets the background color to the theme secondary color.                 |
-| `mdc-theme--secondary-light-bg` | Sets the background color to the theme secondary color (light variant). |
-| `mdc-theme--secondary-dark-bg`  | Sets the background color to the theme secondary color (dark variant).  |
+| `mdc-theme--primary`            | 文字色としてテーマのプライマリカラーを設定する。                        |
+| `mdc-theme--primary-light`      | 文字色としてテーマのプライマリカラーを設定する（明るいバージョン）。    |
+| `mdc-theme--primary-dark`       | 文字色としてテーマのプライマリカラーを設定する（暗いバージョン）。      |
+| `mdc-theme--secondary`          | 文字色としてテーマのセカンダリカラーを設定する。                        |
+| `mdc-theme--secondary-light`    | 文字色としてテーマのセカンダリカラーを設定する（明るいバージョン）。    |
+| `mdc-theme--secondary-dark`     | 文字色としてテーマのセカンダリカラーを設定する（暗いバージョン）。      |
+| `mdc-theme--background`         | 背景色としてテーマのバックグランドカラーを設定する。                    |
+| `mdc-theme--primary-bg`         | 背景色としてテーマのプライマリカラーを設定する。                        |
+| `mdc-theme--primary-light-bg`   | 背景色としてテーマのプライマリカラーを設定する（明るいバージョン）。    |
+| `mdc-theme--primary-dark-bg`    | 背景色としてテーマのプライマリカラーを設定する（暗いバージョン）。      |
+| `mdc-theme--secondary-bg`       | 背景色としてテーマのセカンダリカラーを設定する。                        |
+| `mdc-theme--secondary-light-bg` | 背景色としてテーマのセカンダリカラーを設定する（明るいバージョン）。    |
+| `mdc-theme--secondary-dark-bg`  | 背景色としてテーマのセカンダリカラーを設定する（暗いバージョン）。      |
 
-From here, we can see that we want to apply `mdc-theme--primary-bg` to the cards' media areas:
+この表からカードのメディア領域に `mdc-theme--primary-bg` を使うとよいことがわかります。
 
 ```html
 <div class="mdc-card element-card">
@@ -192,40 +177,33 @@ From here, we can see that we want to apply `mdc-theme--primary-bg` to the cards
 </div>
 ```
 
-All the cards now use the default primary color (Indigo 500 from the Material palette) as the background for the media
-area.
+今すぐ、すべてのカードにメディア領域の背景色としてデフォルトのプライマリカラー（マテリアルパレットの Indogo 500）を使ってみましょう。
 
-However, you'll notice that the text in the media area is still black, which provides very little contrast to the
-default primary color. Not all primary colors are dark, though, so you can't just switch the text color to white and
-call it a day. Ideally, we want a solution which is as maintainable as the `mdc-theme--primary-bg` class, and which
-takes into account the primary color, in order to determine whether to overlay white or black text on top.
+しかし、メディア領域の文字はまだ黒で、デフォルトのプライマリカラーとはほとんどコントラストがありません。すべてのプライマリカラーが暗い色というわけではないので、文字色を白に変えて終わりというわけにはいきません。理想的には `mdc-theme--primary-bg` クラスのようにメンテナンスしやすいく、白いテキストか黒いテキストかを決めるためにプライマリーカラーを考慮している解決策がほしいのです。
 
-`mdc-theme` provides utility classes for that purpose as well. Namely, for overlaying text on a primary color
-background, there are:
+`mdc-theme` はこれをも意図した汎用クラスを提供しています。つまり、プライマリカラーの背景色に文字をのせるためのもので、以下の通りになっています。
 
-| Class                                        | Description                                                                                               |
+| クラス                                       | 説明                                                                                                      |
 | -------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `mdc-theme--text-primary-on-primary`         | Set text to suitable color for primary text on top of a theme primary color background.                   |
-| `mdc-theme--text-primary-on-primary-light`   | Set text to suitable color for primary text on top of a theme primary color background (light variant).   |
-| `mdc-theme--text-primary-on-primary-dark`    | Set text to suitable color for primary text on top of a theme primary color background (dark variant).    |
-| `mdc-theme--text-secondary-on-primary`       | Set text to suitable color for secondary text on top of a theme primary color background.                 |
-| `mdc-theme--text-secondary-on-primary-light` | Set text to suitable color for secondary text on top of a theme primary color background (light variant). |
-| `mdc-theme--text-secondary-on-primary-dark`  | Set text to suitable color for secondary text on top of a theme primary color background (dark variant).  |
-| `mdc-theme--text-hint-on-primary`            | Set text to suitable color for hint text on top of a theme primary color background.                      |
-| `mdc-theme--text-hint-on-primary-light`      | Set text to suitable color for hint text on top of a theme primary color background (light variant).      |
-| `mdc-theme--text-hint-on-primary-dark`       | Set text to suitable color for hint text on top of a theme primary color background (dark variant).       |
-| `mdc-theme--text-disabled-on-primary`        | Set text to suitable color for disabled text on top of a theme primary color background.                  |
-| `mdc-theme--text-disabled-on-primary-light`  | Set text to suitable color for disabled text on top of a theme primary color background (light variant).  |
-| `mdc-theme--text-disabled-on-primary-dark`   | Set text to suitable color for disabled text on top of a theme primary color background (dark variant).   |
-| `mdc-theme--text-icon-on-primary`            | Set text to suitable color for icons on top of a theme primary color background.                          |
-| `mdc-theme--text-icon-on-primary-light`      | Set text to suitable color for icons on top of a theme primary color background (light variant).          |
-| `mdc-theme--text-icon-on-primary-dark`       | Set text to suitable color for icons on top of a theme primary color background (dark variant).           |
+| `mdc-theme--text-primary-on-primary`         | テーマのプライマリカラーの背景色の上にのせる主要な文字列に適切な色を設定します。                          |
+| `mdc-theme--text-primary-on-primary-light`   | テーマのプライマリカラーの背景色の上にのせる主要な文字列に適切な色を設定します（明るいバージョン）。      |
+| `mdc-theme--text-primary-on-primary-dark`    | テーマのプライマリカラーの背景色の上にのせる主要な文字列に適切な色を設定します（暗いバージョン）。        |
+| `mdc-theme--text-secondary-on-primary`       | テーマのプライマリカラーの背景色の上にのせる二次的な文字列に適切な色を設定します。                        |
+| `mdc-theme--text-secondary-on-primary-light` | テーマのプライマリカラーの背景色の上にのせる二次的な文字列に適切な色を設定します（明るいバージョン）。    |
+| `mdc-theme--text-secondary-on-primary-dark`  | テーマのプライマリカラーの背景色の上にのせる二次的な文字列に適切な色を設定します（暗いバージョン）。      |
+| `mdc-theme--text-hint-on-primary`            | テーマのプライマリカラーの背景色の上にのせるヒントの文字列に適切な色を設定します。                        |
+| `mdc-theme--text-hint-on-primary-light`      | テーマのプライマリカラーの背景色の上にのせるヒントの文字列に適切な色を設定します（明るいバージョン）。    |
+| `mdc-theme--text-hint-on-primary-dark`       | テーマのプライマリカラーの背景色の上にのせるヒントの文字列に適切な色を設定します（暗いバージョン）。      |
+| `mdc-theme--text-disabled-on-primary`        | テーマのプライマリカラーの背景色の上にのせる利用できない項目の文字列に適切な色を設定します。              |
+| `mdc-theme--text-disabled-on-primary-light`  | テーマのプライマリカラーの背景色の上にのせる利用できない項目の文字列に適切な色を設定します（明るいバージョン）。 |
+| `mdc-theme--text-disabled-on-primary-dark`   | テーマのプライマリカラーの背景色の上にのせる利用できない項目の文字列に適切な色を設定します（暗いバージョン）。 |
+| `mdc-theme--text-icon-on-primary`            | テーマのプライマリカラーの背景色の上にのせるアイコンに適切な色を設定します。                              |
+| `mdc-theme--text-icon-on-primary-light`      | テーマのプライマリカラーの背景色の上にのせるアイコンに適切な色を設定します（明るいバージョン）。          |
+| `mdc-theme--text-icon-on-primary-dark`       | テーマのプライマリカラーの背景色の上にのせるアイコンに適切な色を設定します（暗いバージョン）。            |
 
-> Note: `primary`, `secondary`, `hint`, `disabled` and `icon` refer to the text's function. The fact that we use the
-word _primary_ in the different contexts of _primary color_ and _primary function text_ can be confusing at first.
+> 注意:  `primary`、`secondary`、`hint`、`disabled`、`icon` はテキストの機能を意味しています。 _primary color_ と _primary function text_ とでは異なる意味でで _primary_ という単語を使っており、初めのうちは混乱することがあるでしょう。（訳注: この訳では _primary_ という語を _primary color_ という文脈では「プライマリ」、  _primary function text_ という文脈では「主要な」と訳しています。 _secondary_ も同様に「セカンダリ」「二次的」としています。）
 
-From here, we can see the right choice is `mdc-theme--text-primary-on-primary`. We could think of applying it to the
-media area, but that won't work because of scoping issues. If we apply it directly to the title and subtitle, though:
+この表から正しい選択が `mdc-theme--text-primary-on-primary` であるとわかります。メディア領域にそれを適用すればよいと思うかもしれませんが、スコープの問題でそれはうまくいきません。直接タイトルやサブタイトルに適用するなら次のようになるでしょう。
 
 ```html
 <div class="mdc-card element-card">
@@ -240,18 +218,15 @@ media area, but that won't work because of scoping issues. If we apply it direct
 </div>
 ```
 
-The text is now white, which provides much better contrast. If we were to change the primary color to a light color,
-however, the text would be dark again, for the same reason. So how _do_ we change the primary color?
+テキストが白になり、コントラストがより向上しましした。プライマリカラーを明るい色にしたければ、コントラストを向上させるためにテキストは再び暗くなります。それではどうやってプライマリカラーを変更したらよいのでしょうか？
 
 
-### Step 3: Changing the theme with Sass
+### ステップ 3: Sass を使いテーマを変える
 
-The application-wide theme colors that are used as the default across your entire application can be set in Sass.
-This is as easy as defining three variables (`$mdc-theme-primary`, `$mdc-theme-secondary` and `$mdc-theme-background`) in
-your Sass file, before importing any MDC-Web modules.
+あなたのすべてのアプリケーションでデフォルトで使用されている統一的なテーマカラーは Sass で設定できます。MDC-Web のどのモジュールを読み込むより前に Sass ファイル内に3つの変数（`$mdc-theme-primary`、`$mdc-theme-secondary`、`$mdc-theme-background`）を定義することにより、簡単に設定できます。
 
 ```scss
-// My main Sass file.
+// メインとなる Sass ファイル
 $mdc-theme-primary: #9c27b0;
 $mdc-theme-secondary: #76ff03;
 $mdc-theme-background: #fff;
@@ -259,28 +234,20 @@ $mdc-theme-background: #fff;
 @import "material-components-web/material-components-web";
 ```
 
-These definitions will override the defaults included in the `mdc-theme` module, which every themeable component depends
-on. As for the text colors, these will all be automatically calculated from the primary, secondary and background you
-provide, as part of the Sass definitions in `mdc-theme`. Pretty simple!
+これらの定義は `mdc-theme` モジュール内の初期値を上書きし、テーマを利用するすべてのコンポーネントはこれに依存します。文字色については `mdc-theme` 内で Sass 定義の一部として与えられたプライマリ/セカンダリ/バックグランドの各色から自動的に計算されます。とっても簡単でしょ！
 
-> Note: theme colors don't have to be part of the Material palette; you can use any valid color. You may want to read
-the [color section](https://material.io/guidelines/style/color.html) in the Material Design spec to inform your pick of an
-alternative palette.
+> 注意: テーマカラーはマテリアルパレットから選はなくてはいけないということはありません。任意の有効な色を使えます。マテリアルデザイン仕様の [色の節](https://material.io/guidelines/style/color.html) を読むと良いでしょう。他のパレットを使ってもよいのです。
 
 
-### Step 4: Changing the theme with CSS Custom Properties
+### ステップ 4: CSS カスタムプロパティを使いテーマを変更する
 
-Changing the theme colors with Sass affects the whole application, which is great if you want consistency across the
-board. What we want here is slightly different, though: we want each card to have its own internally consistent theme.
+Sass を使ったテーマカラーの変更はアプリケーション全体に影響し、画面全体に一貫性を求めている場合に優れた方法です。しかし、私たちがここで求めているものは少々違っており、各カードはカード内で一貫したテーマを持つようにしたいのです。
 
-So how do we keep all the current theme color "plumbing" for maintainability, while having different themes in different
-places? CSS Custom properties to the rescue!
+それでは異なる場所には異なるテーマを使う場合、現在のテーマカラーの「配管」のすべてをメンテナンスしやすく保つにはどうしたらよいでしょうか？CSS カスタムプロパティが救ってくれます！
 
-The generated MDC-Web CSS uses CSS Custom Properties with hardcoded fallbacks, which are set to the colors provided in Sass.
-This means that you can define your default theme in Sass (like we did above), but override it in CSS, dependent on
-context or user preference.
+MDC-Web が生成した CSS はハードコードされた CSS カスタムプロパティを使っています。そこには Sass で提供した配色が設定されています。あなたの設定した Sass のデフォルトテーマを（先ほどやったのと同じように）あなた自身が定義できますが、状況やユーザの好みの合わせて CSS を上書きすることもできるということです。
 
-Let's take a closer look at how MDC-Web does things. Here's an excerpt of a compiled MDC-Web CSS rule:
+MDC-Web がどのようにやっているのか見てみましょう。コンパイルされた MDC-Web の CSS ルールの一部がこれです。
 
 ```css
 .mdc-fab {
@@ -289,12 +256,9 @@ Let's take a closer look at how MDC-Web does things. Here's an excerpt of a comp
 }
 ```
 
-Here, you can see that MDC-Web sets a fallback for the color, for browsers that don't support CSS Custom Properties. If
-they do, however, that declaration gets overriden by a `var()` lookup, using the same fallback as the default value
-(in case the custom property definition isn't found).
+ここで、CSS カスタムプロパティをサポートしていないブラウザのために MDC-Web が色を2重に設定しているのがわかります。宣言は `var()` により上書きされ、デフォルト値として同じ予備の設定（カスタムプロパティの定義が見つからない場合に備えて）が使われています。
 
-As such, you can easily override the colors that get used in MDC-Web components by simply redefining the custom property at
-some level. So if we want to apply it to our cards, we can take advantage of the element classes we had set up:
+したがって、単にカスタムプロパティを再定義することにより MDC-Web コンポーネント内で利用する色を簡単に上書きできます。カードに適用したいときは設定した要素クラスを利用できます。
 
 ```css
 .element-card.earth {
@@ -314,96 +278,91 @@ some level. So if we want to apply it to our cards, we can take advantage of the
 }
 ```
 
-It works! You can see that the colors get applied to the backgrounds. If the cards had any other
-components, they'd use the correct colors as well.
+うまくいったでしょ！背景に色が適用されたのがわかります。カードが他のコンポーネントを持っていたとしても同じように適切な色が使われるはずです。
 
-The custom properties used by MDC-Web follow a similar naming convention to the Sass variables and CSS classes:
+MDC-Web が使っているカスタムプロパティは Sass 変数や CSS クラスと同じ命名規則にしたがっています。
 
-| Custom property               | Description                                 |
+| カスタムプロパティ            | 説明                                        |
 | ----------------------------- | ------------------------------------------- |
-| `--mdc-theme-primary`         | The theme primary color.                    |
-| `--mdc-theme-primary-light`   | The theme primary color (light variant).    |
-| `--mdc-theme-primary-dark`    | The theme primary color (dark variant).     |
-| `--mdc-theme-secondary`       | The theme secondary color.                  |
-| `--mdc-theme-secondary-light` | The theme secondary color (light variant).  |
-| `--mdc-theme-secondary-dark`  | The theme secondary color (dark variant).   |
-| `--mdc-theme-background`      | The theme background color.                 |
+| `--mdc-theme-primary`         | テーマのプライマリカラー。                  |
+| `--mdc-theme-primary-light`   | テーマのプライマリカラー（明るいバージョン）。 |
+| `--mdc-theme-primary-dark`    | テーマのプライマリカラー（暗いバージョン）。 |
+| `--mdc-theme-secondary`       | テーマのセカンダリカラー。                  |
+| `--mdc-theme-secondary-light` | テーマのセカンダリカラー（明るいバージョン）。 |
+| `--mdc-theme-secondary-dark`  | テーマのセカンダリカラー（暗いバージョン）。 |
+| `--mdc-theme-background`      | テーマのバックグランドカラー。              |
 
-However, if you look closely at the page, we're not quite done yet. The text colors are incorrect: the wind and water
-cards should have dark text, rather than white. So what's happening?
+しかし、ページを詳しく見るとまだ完全には完成していないのがわかります。文字色が適切ではありません。Wind と Water のカードは暗い文字色にするべきですが、まだ白いままです。なぜそうなっているのでしょう？
 
-The problem is that we only set the `--mdc-theme-primary` custom property. Whereas setting `$mdc-theme-primary` in Sass
-allows for calculating all the related text colors, it's currently not possible to perform those complex contrast
-calculations in CSS. This means you'll also have to set all the related text colors:
+問題点は `--mdc-theme-primary` カスタムプロパティだけを設定していることです。Sass での `$mdc-theme-primary` の設定は関連する文字色を計算を可能にしいるのですが、現時点では CSS で複雑なコントラストの計算を行うことはできません。これは関連する文字色も設定しなくてはいけないということです。
 
-| Custom property                               | Description                                                                |
+| カスタムプロパティ                            | 説明                                                                       |
 | --------------------------------------------- | -------------------------------------------------------------------------- |
-| `--mdc-theme-text-primary-on-primary`         | Primary text on top of a theme primary color background.                   |
-| `--mdc-theme-text-primary-on-primary-light`   | Primary text on top of a theme primary color background (light variant).   |
-| `--mdc-theme-text-primary-on-primary-dark`    | Primary text on top of a theme primary color background (dark variant).    |
-| `--mdc-theme-text-secondary-on-primary`       | Secondary text on top of a theme primary color background.                 |
-| `--mdc-theme-text-secondary-on-primary-light` | Secondary text on top of a theme primary color background (light variant). |
-| `--mdc-theme-text-secondary-on-primary-dark`  | Secondary text on top of a theme primary color background (dark variant).  |
-| `--mdc-theme-text-hint-on-primary`            | Hint text on top of a theme primary color background.                      |
-| `--mdc-theme-text-hint-on-primary-light`      | Hint text on top of a theme primary color background (light variant).      |
-| `--mdc-theme-text-hint-on-primary-dark`       | Hint text on top of a theme primary color background (dark variant).       |
-| `--mdc-theme-text-disabled-on-primary`        | Disabled text on top of a theme primary color background.                  |
-| `--mdc-theme-text-disabled-on-primary-light`  | Disabled text on top of a theme primary color background (light variant).  |
-| `--mdc-theme-text-disabled-on-primary-dark`   | Disabled text on top of a theme primary color background (dark variant).   |
-| `--mdc-theme-text-icon-on-primary`            | Icons on top of a theme primary color background.                          |
-| `--mdc-theme-text-icon-on-primary-light`      | Icons on top of a theme primary color background (light variant).          |
-| `--mdc-theme-text-icon-on-primary-dark`       | Icons on top of a theme primary color background (dark variant).           |
+| `--mdc-theme-text-primary-on-primary`         | テーマのプライマリカラーの背景上にある主要な文字列。                       |
+| `--mdc-theme-text-primary-on-primary-light`   | テーマのプライマリカラーの背景上にある主要な文字列（明るいバージョン）。   |
+| `--mdc-theme-text-primary-on-primary-dark`    | テーマのプライマリカラーの背景上にある主要な文字列（暗いバージョン）。     |
+| `--mdc-theme-text-secondary-on-primary`       | テーマのプライマリカラーの背景上にある二次的な文字列。                     |
+| `--mdc-theme-text-secondary-on-primary-light` | テーマのプライマリカラーの背景上にある二次的な文字列（明るいバージョン）。 |
+| `--mdc-theme-text-secondary-on-primary-dark`  | テーマのプライマリカラーの背景上にある二次的な文字列（暗いバージョン）。   |
+| `--mdc-theme-text-hint-on-primary`            | テーマのプライマリカラーの背景上にあるヒントの文字列。                     |
+| `--mdc-theme-text-hint-on-primary-light`      | テーマのプライマリカラーの背景上にあるヒントの文字列（明るいバージョン）。 |
+| `--mdc-theme-text-hint-on-primary-dark`       | テーマのプライマリカラーの背景上にあるヒントの文字列（暗いバージョン）。   |
+| `--mdc-theme-text-disabled-on-primary`        | テーマのプライマリカラーの背景上にある利用できない項目の文字列。           |
+| `--mdc-theme-text-disabled-on-primary-light`  | テーマのプライマリカラーの背景上にある利用できない項目の文字列（明るいバージョン）。 |
+| `--mdc-theme-text-disabled-on-primary-dark`   | テーマのプライマリカラーの背景上にある利用できない項目の文字列（暗いバージョン）。 |
+| `--mdc-theme-text-icon-on-primary`            | テーマのプライマリカラーの背景上にあるアイコン。                           |
+| `--mdc-theme-text-icon-on-primary-light`      | テーマのプライマリカラーの背景上にあるアイコン（明るいバージョン）。       |
+| `--mdc-theme-text-icon-on-primary-dark`       | テーマのプライマリカラーの背景上にあるアイコン（暗いバージョン）。         |
 
-The same pattern is followed for text colors on _secondary_ and _background_:
+<em>セカンダリ</em> や <em>バックグランド</em> 上の文字色についても同様のものがあります。
 
-| Custom property                                 | Description                                                                  |
+| カスタムプロパティ                              | 説明                                                                         |
 | ------------------------------------------------| ---------------------------------------------------------------------------- |
-| `--mdc-theme-text-primary-on-secondary`         | Primary text on top of a theme secondary color background.                   |
-| `--mdc-theme-text-primary-on-secondary-light`   | Primary text on top of a theme secondary color background (light variant).   |
-| `--mdc-theme-text-primary-on-secondary-dark`    | Primary text on top of a theme secondary color background (dark variant).    |
-| `--mdc-theme-text-secondary-on-secondary`       | Secondary text on top of a theme secondary color background.                 |
-| `--mdc-theme-text-secondary-on-secondary-light` | Secondary text on top of a theme secondary color background (light variant). |
-| `--mdc-theme-text-secondary-on-secondary-dark`  | Secondary text on top of a theme secondary color background (dark variant).  |
-| `--mdc-theme-text-hint-on-secondary`            | Hint text on top of a theme secondary color background.                      |
-| `--mdc-theme-text-hint-on-secondary-light`      | Hint text on top of a theme secondary color background (light variant).      |
-| `--mdc-theme-text-hint-on-secondary-dark`       | Hint text on top of a theme secondary color background (dark variant).       |
-| `--mdc-theme-text-disabled-on-secondary`        | Disabled text on top of a theme secondary color background.                  |
-| `--mdc-theme-text-disabled-on-secondary-light`  | Disabled text on top of a theme secondary color background (light variant).  |
-| `--mdc-theme-text-disabled-on-secondary-dark`   | Disabled text on top of a theme secondary color background (dark variant).   |
-| `--mdc-theme-text-icon-on-secondary`            | Icons on top of a theme secondary color background.                          |
-| `--mdc-theme-text-icon-on-secondary-light`      | Icons on top of a theme secondary color background (light variant).          |
-| `--mdc-theme-text-icon-on-secondary-dark`       | Icons on top of a theme secondary color background (dark variant).           |
+| `--mdc-theme-text-primary-on-secondary`         | テーマのセカンダリカラーの背景上にある主要な文字列。                         |
+| `--mdc-theme-text-primary-on-secondary-light`   | テーマのセカンダリカラーの背景上にある主要な文字列（明るいバージョン）。     |
+| `--mdc-theme-text-primary-on-secondary-dark`    | テーマのセカンダリカラーの背景上にある主要な文字列（暗いバージョン）。       |
+| `--mdc-theme-text-secondary-on-secondary`       | テーマのセカンダリカラーの背景上にある二次的な文字列。                       |
+| `--mdc-theme-text-secondary-on-secondary-light` | テーマのセカンダリカラーの背景上にある二次的な文字列（明るいバージョン）。   |
+| `--mdc-theme-text-secondary-on-secondary-dark`  | テーマのセカンダリカラーの背景上にある二次的な文字列（暗いバージョン）。     |
+| `--mdc-theme-text-hint-on-secondary`            | テーマのセカンダリカラーの背景上にあるヒントの文字列。                       |
+| `--mdc-theme-text-hint-on-secondary-light`      | テーマのセカンダリカラーの背景上にあるヒントの文字列（明るいバージョン）。   |
+| `--mdc-theme-text-hint-on-secondary-dark`       | テーマのセカンダリカラーの背景上にあるヒントの文字列（暗いバージョン）。     |
+| `--mdc-theme-text-disabled-on-secondary`        | テーマのセカンダリカラーの背景上にある利用できない項目の文字列。             |
+| `--mdc-theme-text-disabled-on-secondary-light`  | テーマのセカンダリカラーの背景上にある利用できない項目の文字列（明るいバージョン）。 |
+| `--mdc-theme-text-disabled-on-secondary-dark`   | テーマのセカンダリカラーの背景上にある利用できない項目の文字列（暗いバージョン）。 |
+| `--mdc-theme-text-icon-on-secondary`            | テーマのセカンダリカラーの背景上にあるアイコン。                             |
+| `--mdc-theme-text-icon-on-secondary-light`      | テーマのセカンダリカラーの背景上にあるアイコン（明るいバージョン）。         |
+| `--mdc-theme-text-icon-on-secondary-dark`       | テーマのセカンダリカラーの背景上にあるアイコン（暗いバージョン）。           |
 
-| Custom property                            | Description                                                |
+| カスタムプロパティ                         | 説明                                                       |
 | ------------------------------------------ | ---------------------------------------------------------- |
-| `--mdc-theme-text-primary-on-background`   | Primary text on top of the theme background color.         |
-| `--mdc-theme-text-secondary-on-background` | Secondary text on top of the theme background color.       |
-| `--mdc-theme-text-hint-on-background`      | Hint text on top of the theme background color.            |
-| `--mdc-theme-text-disabled-on-background`  | Disabled text on top of the theme background color.        |
-| `--mdc-theme-text-icon-on-background`      | Icons on top of the theme background color.                |
+| `--mdc-theme-text-primary-on-background`   | テーマのバックグランドカラーの背景上にある主要な文字列。   |
+| `--mdc-theme-text-secondary-on-background` | テーマのバックグランドカラーの背景上にある二次的な文字列。 |
+| `--mdc-theme-text-hint-on-background`      | テーマのバックグランドカラーの背景上にあるヒントの文字列。 |
+| `--mdc-theme-text-disabled-on-background`  | テーマのバックグランドカラーの背景上にある利用できない項目の文字列。 |
+| `--mdc-theme-text-icon-on-background`      | テーマのバックグランドカラーの背景上にあるアイコン。       |
 
-In addition, we also define custom properties for known dark and light backgrounds:
+加えて、既知の暗い背景、明るい背景のためのカスタムプロパティも定義しています。
 
 
-| Custom property                            | Description                                                |
+| カスタムプロパティ                         | 説明                                                       |
 | ------------------------------------------ | ---------------------------------------------------------- |
-| `--mdc-theme-text-primary-on-light`        | Primary text on top of a light-colored background.         |
-| `--mdc-theme-text-secondary-on-light`      | Secondary text on top of a light-colored background.       |
-| `--mdc-theme-text-hint-on-light`           | Hint text on top of a light-colored background.            |
-| `--mdc-theme-text-disabled-on-light`       | Disabled text on top of a light-colored background.        |
-| `--mdc-theme-text-icon-on-light`           | Icons on top of a light-colored background.                |
+| `--mdc-theme-text-primary-on-light`        | 明るい色の背景上にある主要な文字列。                       |
+| `--mdc-theme-text-secondary-on-light`      | 明るい色の背景上にある二次的な文字列。                     |
+| `--mdc-theme-text-hint-on-light`           | 明るい色の背景上にあるヒントの文字列。                     |
+| `--mdc-theme-text-disabled-on-light`       | 明るい色の背景上にある利用できない項目の文字列。           |
+| `--mdc-theme-text-icon-on-light`           | 明るい色の背景上にあるアイコン。                           |
 
-| Custom property                            | Description                                                |
+| カスタムプロパティ                         | 説明                                                       |
 | ------------------------------------------ | ---------------------------------------------------------- |
-| `--mdc-theme-text-primary-on-dark`        | Primary text on top of a dark-colored background.         |
-| `--mdc-theme-text-secondary-on-dark`      | Secondary text on top of a dark-colored background.       |
-| `--mdc-theme-text-hint-on-dark`           | Hint text on top of a dark-colored background.            |
-| `--mdc-theme-text-disabled-on-dark`       | Disabled text on top of a dark-colored background.        |
-| `--mdc-theme-text-icon-on-dark`           | Icons on top of a dark-colored background.                |
+| `--mdc-theme-text-primary-on-dark`         | 暗い色の背景上にある主要な文字列。                         |
+| `--mdc-theme-text-secondary-on-dark`       | 暗い色の背景上にある二次的な文字列。                       |
+| `--mdc-theme-text-hint-on-dark`            | 暗い色の背景上にあるヒントの文字列。                       |
+| `--mdc-theme-text-disabled-on-dark`        | 暗い色の背景上にある利用できない項目の文字列。             |
+| `--mdc-theme-text-icon-on-dark`            | 暗い色の背景上にあるアイコン。                             |
 
 
-Ideally, we should set all of the text colors on primary, since we never know which one an MDC-Web component might use.
-Since our cards only contain text and no components, let's keep it simple for now:
+MDC-Web コンポーネントのどれが使われるかわからないので、理想的にはプライマリ上の文字色のすべてを設定しておくべきです。しかし、今回のカードにはテキストのみが含まれ、コンポーネントは含んでいないので簡潔にしておきましょう。
 
 ```css
 .element-card.earth {
@@ -427,20 +386,15 @@ Since our cards only contain text and no components, let's keep it simple for no
 }
 ```
 
-> Note: in the future we plan to provide a Javascript utility method for changing all derived colors and making this
-use-case easier.
+> 注意: 将来的にはすべての生成した色を変更し、今回のユースケースを簡潔にするための JavaScript の汎用メソッドの提供を計画しています。
 
+## ダークテーマ
 
-## Dark Themes
+このドキュメントでこれまで取り上げてきたこと以外に <em>ダークテーマ</em> という概念もあります。すべての MDC-Web コンポーネントはライトテーマ（明るい背景色を仮定したもの）とダークテーマ（暗い背景色を持つもの）の両方で動作するよう設計されています。デフォルトは常にライトテーマです。
 
-Beyond what we've covered in this document so far, there's also the concept of a _dark theme_. All MDC-Web components have
-been designed to work with both light themes (that assume a light-colored background) and dark themes (with dark-colored
-backgrounds), but the default is always light.
+> 注意: ダークテーマを使用するときはおそらくページの背景として暗い色を選択し、MDC-Web の `background` と合うように調整しているでしょう。
 
-> Note: When using a dark theme, you probably want to choose a dark color as the background for your page, and adjust
-the MDC-Web `background` color to match.
-
-In order to apply a dark theme to a single element, you can use its `--theme-dark` class. For example, for a button:
+単一の要素にダークテーマを適用するためには `--theme-dark` クラスを使います。例えばボタンでは次のようにします。
 
 ```html
 <button class="mdc-button mdc-button--raised mdc-button--theme-dark">
@@ -448,7 +402,7 @@ In order to apply a dark theme to a single element, you can use its `--theme-dar
 </button>
 ```
 
-Alternatively, you can set your entire page (or a portion of it) to a dark theme by using the `mdc-theme--dark` class:
+もしくは `mdc-theme--dark` クラスを使ってページ全体（もしくはページの一部）にダークテーマを設定します。
 
 ```html
 <section class="mdc-theme--dark">
@@ -462,5 +416,4 @@ Alternatively, you can set your entire page (or a portion of it) to a dark theme
 </section>
 ```
 
-> Note: there's currently no way to set a light portion inside of a dark one, so if you want to achieve that effect
-you'll need to selectively apply dark classes to everything except the light bits.
+> 注意: 現状はダークテーマの中に明るい部分を作る方法はありません。そのため、そのような効果を実現したいときは明るい部分以外のすべての部分にダークテーマのクラスを選択的に適用する必要があります。
