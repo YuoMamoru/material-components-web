@@ -139,7 +139,7 @@ open http://localhost:8080
 - [入門ガイド](docs/getting-started.md)
 - [すべてのコンポーネント](packages/)
 - [デモ](demos/)
-- [寄付](CONTRIBUTING.md)
+- [プロジェクトへの貢献](CONTRIBUTING.md)
 - [Material.io](https://www.material.io) （外部サイト）
 - [マテリアルデザインガイドライン](https://material.io/guidelines) （外部サイト）
 
