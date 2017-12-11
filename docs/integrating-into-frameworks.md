@@ -6,89 +6,59 @@ section: docs
 path: /docs/framework-integration/
 -->
 
-# Integrating MDC-Web into Frameworks
+# MDC-Web のフレームワークへの統合
 
-MDC-Web was designed to be integrated as easily as possible into any and all web frameworks. This
-document will walk you through strategies for integrating components into various types of
-frameworks.
+MDC-Web はすべてのフレームワークにできる限り容易に統合できるように設計されています。このドキュメントは様々なタイプのフレームワークとコンポーネントを統合するための戦略について説明します。
 
-## Examples
+## 実例
 
-We maintain a list of component libraries, which wrap MDC Web for other frameworks, in our main [README](../README.md). Each library must:
-- Serve components in an à-la-carte delivery model
-- Have existed for longer than 6 weeks and show continued maintenance over time
-- Provide usage documentation per component
+このリポジトリの [README](../README.md) には MDC-Web を他のフレームワーク用にラップするコンポーネントライブラリのリストがあります。各ライブラリは次のことを満たしています。
+- アラカルトデリバリーモデル（訳注: 個々のパッケージが単体で自由に組み合わせることができるモデルという意味）でコンポーネントを提供する。
+- 6週以上にわたって存在し、継続的にメンテナンスがなされている。
+- コンポーネントごとにドキュメントが提供されている。
 
-## Approaches
+## 手法
 
-There are two approaches you can take for integrating our components into frameworks: the **simple**
-approach and the **advanced** approach. Both have their benefits and drawbacks, and are explained
-below.
+MDC-Web をフレームワークに統合ために取るべき手法は2つあります。一つは **単純な** 手法で、もう一つは **高度な** 手法です。どちらの手法も利点と欠点があり、それについて以下に説明します。
 
-### The Simple Approach: Wrapping MDC-Web vanilla components.
+### 単純な手法: MDC-Web の素のコンポーネントをラップする
 
-The easiest way to integrate MDC-Web into frameworks is to use our vanilla components directly. This
-works well for frameworks which assume they will be executed within the context of a browser, such
-as [angular v1](https://angularjs.org), [backbone.js](http://backbonejs.org/), or even things such as [jQuery plugins](https://learn.jquery.com/plugins/basic-plugin-creation/).
+MDC-Web をフレームワークに統合する最も簡単な方法は素の MDC-Web のコンポーネントを直接利用することです。コンポーネントが [angular v1](https://angularjs.org) や [backbone.js](http://backbonejs.org/)、[jQuery plugins](https://learn.jquery.com/plugins/basic-plugin-creation/) などのようにブラウザ上で動作するものであるならこの手法は非常に有効です。
 
-The simple approach can be outlined as follows:
+単純な手法の概要は以下の通りです。
 
-1. Include the Component's CSS on the page any way you wish
-2. Create a **wrapper component** for your framework of choice, and add a property which will be
-   set to the value of the MDC-Web Component. We'll call this `mdcComponent`.
-3. When the wrapper component is **initialized** (e.g. it is instantiated and attached to the DOM),
-   _instantiate the MDC-Web component with a root element, and assign it to the `mdcComponent`
-   property_.
-4. When the wrapper component is **destroyed** (e.g. it is unbound and detached from the DOM), call
-   `mdcComponent.destroy()` to clean up the MDC-Web component.
+1. 好きな方法でページにコンポーネントの CSS をインクルードする。
+2. 選んだフレームワーク用の **ラッパーコンポーネント** を作成し、MDC-Web のコンポーネントの値を設定したプロパティを追加する。私たちはこれを `mdcComponent` と呼んでいる。
+3. ラッパーコンポーネントを **初期化** し（インスタンス化し、DOM にアタッチするなど）、<em>MDC-Web コンポーネントをルート要素を使ってインスタンス化し、`mdcComponent` プロパティに設定する</em>。
+4. ラッパーコンポーネントを **破棄** する（解放し、DOM からデタッチするなど）際には、MDC-Web コンポーネントをクリーンアップするために `mdcComponent.destroy()` を呼ぶ。
 
-This general approach will work for almost all basic use-cases. For an example of this approach,
-check out [this plunk](https://plnkr.co/edit/b4v160c186ErrPG5vNza?p=preview) which
-shows how to wrap our text field within an angular v1 component, as well as our button (with a
-ripple) within an attribute directive.
+この一般的なアプローチはほぼすべての基本的なユーズケースでうまくいくでしょう。このアプローチの例として、angular v1 コンポーネント内に MDC-Web のテキストフィールドをラップする方法を示した [この plunker](https://plnkr.co/edit/b4v160c186ErrPG5vNza?p=preview) を確認してみてください。ここには属性ディレクティブ内で MDC-Web のボタン（リップルのエフェクトも付けて）をラップする方法も示されています。
 
-Note that this approach will also work for [custom elements](https://developers.google.com/web/fundamentals/getting-started/primers/customelements). Use `connectedCallback` for initialization
-and `disconnectedCallback` for destruction.
+この手法では [カスタムエレメント](https://developers.google.com/web/fundamentals/getting-started/primers/customelements) も機能することに注意してください。初期化に `connectedCallback` を、破棄には `disconnectedCallback` を使います。
 
-### The Advanced Approach: Using foundations and adapters
 
-Many modern front-end libraries/frameworks, such as react and angular2, wind up targeting more than
-just a web browser. For these frameworks - and for some highly advanced application architectures -
-a more robust approach is required. We provide foundations and adapters to accommodate this use
-case.
+### 高度な方法: ファンデーションアダプタを使用する
 
-> If you are interested in wrapping our components using foundations/adapters, you should first read
-> through our [architecture overview](code/architecture.md) in order to familiarize yourself with the
-> general concepts behind them.
+react や angular2 のようなモダンなフロントエンドのライブラリやフレームワークは単なる Web ブラウザ以上のものを対象にしています。こういったフレームワーク、そして極めて高度化されたアプリケーションアーキテクチャにとってはより強固な手法が必要です。このユースケースに対応するため、ファンデーションとアダプタを提供しています。
 
-Every component comes with a complementary foundation class, which is usually called
-`MDCComponentFoundation`, where `MDCComponent` is the name of a component. For example, we have an
-[MDCSimpleMenuFoundation](../packages/mdc-menu/simple/foundation.js) that is used by our
-[MDCSimpleMenu](../packages/mdc-menu/simple/index.js) component, and which are both exported
-publicly.
+> ファンデーションとアダプタを利用するコンポーネントをラップすることに興味があるなら、それらの背景にある一般的なコンセプトを理解するために [アーキテクチャ概要](code/architecture.md) をまず読むとよいでしょう。
 
-In order to implement a component via a foundation, take the following steps:
+すべてのコンポーネントは補助的なファンデーションクラスが付属しており、それは通常 `MDCComponentFoundation`（この `MDCComponent` の部分にコンポーネント名が入ります）と呼ばれます。例えば、[MDCSimpleMenu](../packages/mdc-menu/simple/index.js) コンポーネントにはそのコンポーネントが使用する [MDCSimpleMenuFoundation](../packages/mdc-menu/simple/foundation.js) があり、それらはともに公開されています。
 
-1. Include the component's CSS on the page any way you wish
-2. Add an instance property to your component which will be set to the proper foundation class.
-   We'll calls this `mdcFoundation`.
-3. Instantiate a foundation class, passing it a properly configured adapter as an argument
-4. When your component is initialized, call `mdcFoundation.init()`
-5. When your component is destroyed, call `mdcFoundation.destroy()`
+ファンデーションを通じてコンポーネントを実装するには以下の手順を踏みます。
 
-Because of the nature of our components, some of the adapter APIs can be quite complex. However, we
-are working as hard as we can to make writing adapters as easy and predictable as possible:
+1. 好きな方法でページにコンポーネントの CSS をインクルードする。
+2. 適切なファンデーションクラスを設定したコンポーネントにインスタンスプロパティを追加する。このプロパティを `mdcFoundation` と呼んでいる。
+3. ファンデーションクラスをインスタンス化し、それを適切に構成されたアダプタに引数として渡す。
+4. コンポーネントを初期化する際には `mdcFoundation.init()` を呼ぶ。
+5. コンポーネントが破棄される際には `mdcFoundation.destroy()` を呼ぶ。
 
-- Adapters are strictly versioned: _any_ change to an adapter interface - associative or not - is
-  considered breaking and will cause a major version update of the component.
-- Every adapter interface is thoroughly documented within each component's README
-- Most adapter methods are one-liners, and for those that aren't, we provide `util` objects which
-  implement those methods.
-- We try and provide guidance on different ways to implement certain adapter methods that may seem
-  ambiguous
-- We plan on creating Type Definitions for our adapters in the future so that TypeScript users can
-  validate that their interface conforms correctly to the adapter's specification.
+MDC-Web のコンポーネントの性質上、アダプタ API のいくつかはかなり複雑になっています。しかし、できるだけ簡単にアダプタを書けるように、そしてできる限りわかりやすいものにするために私たちは努めています。
 
-> Please file an issue with us if there are certain snags you've ran into trying to implement an
-  adapter, or if you feel that we can provide better guidance on a particular problem. This is
-  definitely something we want to know about.
+- アダプタは厳格にバージョン管理しています。アダプタインスタンスの <em>あらゆる</em> 変更は、結合の有無にかかわらず、破壊的なものであると考え、コンポーネントのメジャーバージョンアップの理由としています。
+- すべてのアダプタインターフェースは各コンポーネントの README 内に文書化しています。
+- 大半のアダプタメソッドはワンライナーであり、そうでないものにはそういったのメソッドを実装した `util` オブジェクトを提供しています。
+- あいまいに思える特定のアダプタメソッドを実装する様々な方法を、私たちは試し、そして案内しています。
+- アダプタインターフェースがアダプタの仕様に正確にしたがっているかどうか、TypeScript ユーザが検証できるようにするため、将来、アダプタの型定義を作ることを計画しています。
+
+> あたながアダプタの実装を試て欠陥を見つけた場合や、特定の問題においてより良い方法で実装できる感じたときは、問題を私たちに知らせてください。それは間違いなく私たちが知りたいことなのです。
