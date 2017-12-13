@@ -1,49 +1,29 @@
-# Architecture
+# アーキテクチャ
 
-MDC Web is split into packages. Each package is either a Subsystem or a
-Component. Subsystems apply to many components. They generally describe style
-(e.g. color) or motion (e.g. animation). Component packages tend to rely on
-many subsystem packages. But component packages rarely depend on other
-component packages. Components require an HTML struture. Some components are
-static, but most are dynamic and include some JavaScript.
+MDC-Web はパッケージに分かれています。各パッケージはサブシステムもしくはコンポーネントのいずれかです。一般的にそれらはスタイル（色など）と動作（アニメーションなど）とみなせます。コンポーネントパッケージは多くのサブシステムパッケージに依存する傾向にあります。しかし、コンポーネントパッケージは他のコンポーネントパッケージにはめったに依存しません。コンポーネントは HTML の構造を必要としています。いくつかのコンポーネントは静的ですが、大半は動的で JavaScript を含んでいます。
 
-> Each component is usable separate from any other component.
+> 各コンポーネントは他のコンポーネントとは別個に使用できます。
 
 ## Sass
 
-All of MDC Web's CSS is generated using [Sass](http://sass-lang.com/). Sass
-mixins lets us make groups of CSS declarations that we want to reuse on
-multiple components. Subsystems provide a Sass mixin, which the component
-imports in it's Sass file. Each package compiles it's Sass files into a single
-CSS file.
+すべての MDC-Web の CSS は [Sass](http://sass-lang.com/) を使って生成されます。Sass のミキシンでは複数のコンポーネントで再利用したい CSS 宣言 のグループを作ることができます。サブシステムは Sass ミキシンを提供し、コンポーネントでは Sass ファイル内でミキシンをインポートします。各パッケージはパッケージ内の Sass ファイルを一つの CSS ファイルにコンパイルします。
 
 ## HTML
 
-MDC Web does NOT provide any HTML templates. We simply provide documentation
-with the required HTML structure.
+MDC-Web は HTML テンプレートを提供しません。単に必要な HTML の構造のドキュメントを提供するだけです。
 
 ## JavaScript
 
-MDC Web has split each dynamic component's JavaScript into two pieces:
-Foundation and Adapter. This lets us reuse Foundation code across multiple web
-platforms, e.g. React and Angular, by re-implementing only the Adapter. For now
-we've only implemented a vanilla JavaScript version of the Adapter.
+MDC-Web はそれぞれの動的なコンポーネントの JavaScript をファンデーションとアダプタの2つに分けています。これにより、アダプターのみを再実装すれば React や Angular のような複数の Web プラットフォーム上でファンデーションのコードを再利用できます。今のところ、アダプタの素の JavaScript のバージョンだけが実装されています。
 
-### Foundation
+### ファンデーション
 
-The Foundation contains the business logic that best represents Material Design,
-without actually referring to any HTML elements. This lets us isolate HTML logic
-into the Adapter. Foundation has-a Adapter.
+ファンデーションはマテリアルデザインを最もよく表しているビジネスロジックを含んでおり、HTML 要素を参照することはありません。これにより、HTML のロジックをアダプタから分離させることができます。ファンデーションとアダプタは「has-a」の関係になっています。
 
-### Adapter
+### アダプタ
 
-The Adapter is an interface with all the methods the Foundation needs to
-implement Material Design business logic. There can be many implementations of
-the Adapter!
+アダプタは、マテリアルデザインのビジネスロジックを実装するためにファンデーションが必要なメソッドをすべて持つインターフェースです。アダプターには多くことを実装できます！
 
-### Vanilla Component
+### 素のコンポーネント
 
-Instantiated with a root [element](https://developer.mozilla.org/en-US/docs/Web/API/Element),
-it creates a Foundation with a Vanilla Adapter. Vanilla Adapter implements
-Adapter and directly references the root element. It also has proxy methods for
-any Foundation method a developer needs to access.
+ルート [要素](https://developer.mozilla.org/en-US/docs/Web/API/Element) を使ってインスタンス化され、素のアダプタをともなったファンデーションを生成します。素のアダプタはアダプタを実装し、ルート要素を直接参照します。これは開発者のアクセスしたいファンデーションメソッドの代理となるメソッドも持ちます。

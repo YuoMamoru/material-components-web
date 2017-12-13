@@ -1,11 +1,11 @@
-# README Standards
+# README 標準
 
-MDC Web component documentation serves two purposes:
+MDC-Web コンポーネントドキュメントには2つの目的があります。
 
-* Populate the [Catalog Site](https://material.io/components/web/catalog/)
-* Highlight how to use our APIs, for our external developers (see Usage section)
+* [カタログサイト](https://material.io/components/web/catalog/) の設置
+* 外部開発者のための [API の使用法](readme_standards.md) の要点
 
-> Developers should not have to read our code to know how to use our APIs
+> 開発者は API の使い方を知るためにコードを読む必要はありません。
 
 ## README Template
 

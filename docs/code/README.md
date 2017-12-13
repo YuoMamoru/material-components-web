@@ -1,36 +1,25 @@
-# Code
+# コード
 
-## Foundation / Adapter
+## ファンデーションとアダプタ
 
-MDC Web has split each dynamic component's JavaScript into two pieces:
-Foundation and Adapter. This lets us reuse Foundation code across multiple web
-platforms, e.g. React and Angular, by re-implementing only the Adapter. For now
-we've only implemented a vanilla JavaScript version of the Adapter
+MDC-Web はそれぞれの動的なコンポーネントの JavaScript をファンデーションとアダプタの2つに分けています。これにより、アダプターのみを再実装すれば React や Angular のような複数の Web プラットフォーム上でファンデーションのコードを再利用できます。今のところ、アダプタの素の JavaScript のバージョンだけが実装されています。
 
-## Architecture
+## アーキテクチャ
 
-MDC Web is split into packages. Each package is either a Subsystem or a
-Component. Subsystems apply to many components. They generally describe style
-(e.g.: color) or motion (e.g.: animation). Component packages tend to rely on
-many subsystem packages. But component packages rarely depend on other
-component packages. Components require an HTML struture. Some components are
-static, but most are dynamic and include some JavaScript.
+MDC-Web はパッケージに分かれています。各パッケージはサブシステムもしくはコンポーネントのいずれかです。一般的にそれらはスタイル（色など）と動作（アニメーションなど）とみなせます。コンポーネントパッケージは多くのサブシステムパッケージに依存する傾向にあります。しかし、コンポーネントパッケージは他のコンポーネントパッケージにはめったに依存しません。コンポーネントは HTML の構造を必要としています。いくつかのコンポーネントは静的ですが、大半は動的で JavaScript を含んでいます。
 
-> Each component is usable seperate from any other component.
+> 各コンポーネントは他のコンポーネントとは別個に使用できます。
 
-## Best Practices
+## ベストプラクティス
 
-MDC Web follows naming and documentation best practices to keep our code
-consistent, and our APIs user friendly. We follow isolation best practices to
-keep our code loosely coupled. And we follow performace best practices to keep
-our components fast.
+コードの一貫性を保ち、API をユーザフレンドリーに保つために MDC-Web は命名方法やドキュメントのペストプラクティスにしたがっています。結合を疎にするために分離のためのベストプラクティスにしたがっています。そしてコンポーネントの速さを維持するためにパフォーマンスのベストプラクティスにもしたがっています。
 
-## README standards
+## README 標準
 
-MDC Web component documentation serves two purposes:
+MDC-Web コンポーネントドキュメントには2つの目的があります。
 
-* Populate the [Catalog Site](https://material.io/components/web/catalog/)
-* Highlight [how to use our APIs](readme_standards.md), for our external developers
+* [カタログサイト](https://material.io/components/web/catalog/) の設置
+* 外部開発者のための [API の使用法](readme_standards.md) の要点
 
-> Developers should not have to read our code to know how to use our APIs
+> 開発者は API の使い方を知るためにコードを読む必要はありません。
 

@@ -1,29 +1,26 @@
-# Best Practices
+# ベストプラクティス
 
-MDC Web follows naming and documentation best practices to keep our code
-consistent, and our APIs user friendly. We follow isolation best practices to
-keep our code loosely coupled. And we follow performace best practices to keep
-our components fast.
+コードの一貫性を保ち、API をユーザフレンドリーに保つために MDC-Web は命名方法やドキュメントのペストプラクティスにしたがっています。結合を疎にするために分離のためのベストプラクティスにしたがっています。そしてコンポーネントの速さを維持するためにパフォーマンスのベストプラクティスにもしたがっています。
 
-### Naming
+### 命名規則
 
-*  Match [spec](https://material.io/guidelines) whenever possible. If the nomenclature used in spec conflicts with a natively implemented element or pattern, reach out for guidance
-*  Use the [BEM naming convention](http://getbem.com/naming/) for CSS classes
+* できる限り [仕様](https://material.io/guidelines) に沿うこと。仕様で使われている命名法がネイティブに実装された要素やパターンと矛盾するときはガイダンスのために手を挙げる。
+* CSS クラスについては [BEM 命名規則](http://getbem.com/naming/) を使用する。
 
-### Documentation
+### ドキュメント
 
-* Keep documentation short, don't use ten words when one will do
-* Let Material Design guidelines cover when/why to use a component
+* ドキュメントは短く保ち、一つのことをするのに10の単語を使わない。
+* マテリアルデザインのガイドラインは、いつ、どうしてコンポーネントを使わなくてはいけないのかを網羅している。
 
-### Isolation
+### 分離
 
-*  Never reference [element](https://developer.mozilla.org/en-US/docs/Web/API/Element) directly in the Foundation
+* 決してファンデーション内で [要素](https://developer.mozilla.org/en-US/docs/Web/API/Element) を直接参照しない。
 
-TODO: Add more notes about how to isolate subsystems from component specifics
+TODO: コンポーネントの仕様からサブシステムを分離する方法についての注意を記載する
 
-### Performance
+### パフォーマンス
 
-*  Only animate properties that will run on the GPU
-*  Use `requestAnimationFrame`
-*  Avoid constant synchronous DOM reads/writes
-*  Reduce the number of composite layers
+* アニメーションするプロパティは GPU 上で実行されるものだけにする。
+* `requestAnimationFrame` を使用する。
+* 不変で同期している DOM の読み書きを避ける。
+* 合成されたレイヤの数を減らす。
