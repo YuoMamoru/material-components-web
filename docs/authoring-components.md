@@ -29,27 +29,27 @@ path: /docs/authoring-components/
   * [アダプタインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
   * [ファンデーションコード内でホストオブジェクトを参照しない](#do-not-reference-host-objects-within-foundation-code)
   * [デストラクタですべての参照を削除する](#clean-up-all-references-on-destruction)
-* [Authoring components for MDC-Web](#authoring-components-for-mdc-web)
-  * [File Structure](#file-structure)
-  * [License Stanzas](#license-stanzas)
+* [MDC-Web のコンポーネントの作成](#authoring-components-for-mdc-web)
+  * [ファイル構成](#file-structure)
+  * [ライセンスの記載](#license-stanzas)
   * [Scss](#scss)
-     * [Separate reusable variables and mixins from main scss](#separate-reusable-variables-and-mixins-from-main-scss)
-     * [Follow the BEM Pattern](#follow-the-bem-pattern)
-     * [Use mdc-theme for theming](#use-mdc-theme-for-theming)
-     * [Use mdc-rtl for RTL support](#use-mdc-rtl-for-rtl-support)
+     * [再利用可能な変数とミキシンをメインの scss から分離する](#separate-reusable-variables-and-mixins-from-main-scss)
+     * [BEM の様式にしたがう](#follow-the-bem-pattern)
+     * [テーマの設定には mdc-theme を使う](#use-mdc-theme-for-theming)
+     * [RTL のサポートには mdc-rtl を使う](#use-mdc-rtl-for-rtl-support)
   * [Javascript](#javascript)
-     * [Define a static attachTo(root) method for every component](#define-a-static-attachtoroot-method-for-every-component)
-     * [Define a defaultAdapter getter for every foundation](#define-a-defaultadapter-getter-for-every-foundation)
-     * [Define all exported CSS classes, strings, and numbers as foundation constants.](#define-all-exported-css-classes-strings-and-numbers-as-foundation-constants)
-     * [Extend components and foundations from mdc-base classes.](#extend-components-and-foundations-from-mdc-base-classes)
-     * [Packages must be registered with our build infrastructure, and with material-components-web pkg](#packages-must-be-registered-with-our-build-infrastructure-and-with-material-components-web-pkg)
-     * [Closure Compatibility](#closure-compatibility)
-  * [Testing](#testing)
-     * [Verify foundation's adapters](#verify-foundations-adapters)
-     * [Use helper methods](#use-helper-methods)
-     * [Use bel for DOM fixture](#use-bel-for-dom-fixture)
-     * [Always clean up the DOM after every test](#always-clean-up-the-dom-after-every-test)
-     * [Verify adapters via testdouble.](#verify-adapters-via-testdouble)
+     * [すべてのコンポーネントに静的メソッド attachTo(root) を定義する](#define-a-static-attachtoroot-method-for-every-component)
+     * [すべてのファンデーションにゲッタ defaultAdapter を定義する](#define-a-defaultadapter-getter-for-every-foundation)
+     * [外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する](#define-all-exported-css-classes-strings-and-numbers-as-foundation-constants)
+     * [コンポーネントとファンデーションは mdc-base のクラスを継承して作成する](#extend-components-and-foundations-from-mdc-base-classes)
+     * [パッケージをビルドインフラおよび material-components-web パッケージに登録しなくてはいけない](#packages-must-be-registered-with-our-build-infrastructure-and-with-material-components-web-pkg)
+     * [クロージャの互換性](#closure-compatibility)
+  * [テスト](#testing)
+     * [ファンデーションのアダプタを検証する](#verify-foundations-adapters)
+     * [ヘルパーメソッドを使う](#use-helper-methods)
+     * [DOM フィクスチャに bel を使う](#use-bel-for-dom-fixture)
+     * [あらゆるテストの後は常に DOM をきれいにする](#always-clean-up-the-dom-after-every-test)
+     * [testdouble を通じてアダプタの検証をする](#verify-adapters-via-testdouble)
 
 ## <a name="who-this-document-is-for"></a>誰のためのドキュメントか
 
@@ -363,45 +363,38 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 1. `init()` （もしくは素のコンポーネントにおける  `initialize()`）と `destroy()` が対称的になっている。例えば `init()` でアタッチされたすべてのイベントリスナーは `destroy()` で削除されている。
 2. 外部参照を作成するすべての呼び出し（例: `setTimeout()`、`requestAnimationFrame()`）は追跡され、破棄する際にクリーンアップされる。例えばすべての `setTimeout()` 呼び出しはファンデーションやコンポーネントによって ID が保持され、破棄される際には `clearTimeout()` が破棄する処理の中で呼ばれる。
 
-## Authoring components for MDC-Web
+## <a name="authoring-components-for-mdc-web"></a>MDC-Web のコンポーネントの作成
 
-The following guidelines are for those who wish to contribute directly to MDC-web. In addition to
-adhering to all of the practices above, we have additional conventions we expect contributors to
-adhere to. It's worth noting that most of these conventions - including our coding style, commit
-message format, and test coverage - are _automatically enforced via linters_, both so that
-contributors can move quickly and confidently, and core team members do not have to waste time and
-energy nitpicking on pull requests.
+以下のガイドラインは直接 MDC-Web に貢献したい人向けのものです。上に記載したすべてのプラクティスを守ることに加え、コントリビュータに守ってほしい追加の慣習があります。それらの慣習 - コーディングスタイルやコミットメッセージの書式、テストカバレッジが含まれます - の多くは注目に値するものです。コントリビュータが素早く自信をもって行動できるようになり、コアチームメンバはプルリクエストに時間の浪費や労力の消費をする必要がなくなるからです。
 
-### File Structure
+### <a name="file-structure"></a>ファイルの構成
 
-All source files for a component reside under `packages/`. All test files reside under `test/unit`,
-which mirrors the `packages/` directory. Demos for each component are located under `demos/`.
+コンポーネントのすべてのソースファイルは `packages/` の下に置きます。すべてのテストファイルは `test/unit` の下に置き、`packages/` ディレクトリの構成を反映させます。各コンポーネントのデモは `demos/` の下に配置します。
 
-A typical component within our codebase looks like so:
+典型的なコンポーネントの構成は以下の通りです。
 
 ```
 packages
   ├── mdc-component
-      ├── README.md # The component's README
-      ├── constants.js # The component's cssClasses/strings/numbers constants
-      ├── foundation.js # The component's foundation class
-      ├── index.js # The file that contains the vanilla component class, as well as exports the foundation
-      ├── mdc-component.scss # The main source file for the component's CSS
-      └── package.json # The components package file
+      ├── README.md # コンポーネントの README
+      ├── constants.js # コンポーネントの CSSクラス/文字列/数値 の定数
+      ├── foundation.js # コンポーネントのファンデーションクラス
+      ├── index.js #　素のコンポーネントクラスを含み、ファンデーションのエクスポートの記載されたファイル
+      ├── mdc-component.scss # コンポーネントの CSS の主要なソースファイル
+      └── package.json #　コンポーネントのパッケージファイル
 test/unit
   ├── mdc-component
-      ├── foundation.test.js # Unit tests for the component's foundation
-      ├── mdc-component.test.js # Unit tests for the component's
+      ├── foundation.test.js # コンポーネントのファンデーションのユニットテスト
+      ├── mdc-component.test.js # コンポーネントのユニットテスト
 demos
   ├── component.html
 ```
 
-**Every component _must_ have these files before we will accept a PR for them.**
+**私たちがプルリクエストを受け入れる前にすべてのコンポーネントにはこれらのファイルが <em>なくてはいけません</em>。**
 
-When contributing a new component, we encourage you to look at existing components to get a better
-sense of our conventions. Your new component should "blend in" with all existing components.
+新しいコンポーネントを提供する際には、私たちの慣習の感覚をよりつかむために既存のコンポーネントを見てみることをお勧めします。あなたの新しいコンポーネントは既存のコンポーネントと「混ざりあって」いるはずです。
 
-Additionally, all new components require the following within their `package.json`:
+加えて、すべての新しいコンポーネントは `package.json` 内に以下の記載が必要です。
 
 ```
 "publishConfig": {
@@ -409,9 +402,9 @@ Additionally, all new components require the following within their `package.jso
 }
 ```
 
-This is needed so that lerna will be able to automatically publish new scoped packages.
+これは lerna が自動的に新たなスコープ付きパッケージを公開できるようにするために必要です。
 
-We also require a list of keywords for each package. This list should always include `material components` and `material design`, followed by the component name:
+各パッケージごとにキーワードのリストも必要です。このリストには常に `material components` と `material design` を入れなくてはならず、それに続けてコンポーネント名を入れます。
 
 ```
 "keywords": [
@@ -421,9 +414,9 @@ We also require a list of keywords for each package. This list should always inc
 ]
 ```
 
-For example, if you are building a checkbox component, `keywords` would include `material components`, `material design`, and `checkbox`
+例えばチェックボックスコンポーネントを作るのなら、`keywords` には `material components` と `material design`、`checkbox` を入れなくてはいけません。
 
-**Below is an example of what a full `package.json` should look like for a new component:**
+**以下は新しいコンポーネントの `package.json` の全体の例です。**
 
 ```json
 {
@@ -446,10 +439,9 @@ For example, if you are building a checkbox component, `keywords` would include 
 }
 ```
 
-### License Stanzas
+### <a name="license-stanzas"></a>ライセンスの記載
 
-We are required to put the following at the _top_ of _every source code file_, including tests,
-demos, and demo html. The stanza is as follows:
+テストやデモ、そしてデモの HTML を含む <em>すべてのソースコードファイル</em> の <em>冒頭</em> に以下の記載が必要です。内容は以下の通りです。
 
 ```
 Copyright 2016 Google Inc. All Rights Reserved.
@@ -467,20 +459,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-Please put this in a comment at the top of every source file.
+すべてのソースファイルの冒頭のコメントにこれを記載してください。
 
 ### Scss
 
-#### Separate reusable variables and mixins from main scss
+#### <a name="separate-reusable-variables-and-mixins-from-main-scss"></a>再利用可能な変数とミキシンをメインの scss から分離する
 
-If variables and mixins are intended to be used outside of a single stylesheet, refactor them out
-into [sass partials](http://sass-lang.com/guide#topic-4). These files can then be included in other
-stylesheets without having extra CSS omitted both times. As a rule of thumb, _never `@import` sass
-files which output CSS`, as it will most likely be duplicate output.
+変数やミキシンを単一のスタイルシートの外で使用するつもりであるなら、[パーシャル sass](http://sass-lang.com/guide#topic-4) 内にそれらを移してください。これらのファイルは余計な CSS を消さずにほかのスタイルシートにインクルードできます。大雑把に言うと重複した出力になる可能性が高いので CSS を出力する sass ファイルは <em>決して</em> `@import` しないでください。
 
-#### Follow the BEM Pattern
-We follow a modified version of the [BEM](http://getbem.com/) pattern, which is defined within our
-[stylelint rules](../.stylelintrc.yaml#L252-L255). It's basically:
+#### <a name="follow-the-bem-pattern"></a>BEM の様式にしたがう
+
+私たちは [BEM](http://getbem.com/) の様式の修正したバージョンにしたがっており、それは [stylelint ルール](../.stylelintrc.yaml#L252-L255) に定義されています。基本的には以下のようなものです。
 
 ```scss
 .mdc-block {
@@ -496,7 +485,7 @@ We follow a modified version of the [BEM](http://getbem.com/) pattern, which is 
 }
 ```
 
-Usually, we structure it within our code as such:
+通常、コードは次のようになっています。
 
 ```scss
 .mdc-block {
@@ -516,8 +505,7 @@ Usually, we structure it within our code as such:
 }
 ```
 
-Sometimes, you'll need to qualify selectors, which such as `.some-context .mdc-block {/* ... */}`.
-Stylelint will complain about this, which you can disable by inserting the following:
+ときより、 `.some-context .mdc-block {/* ... */}` のようにセレクタを修飾する必要がでてきます。Stylelint はこれに対して警告を出すでしょうが、以下の内容を追加することにより、無効にできます。
 
 ```scss
 // stylelint-disable plugin/selector-bem-pattern
@@ -527,23 +515,23 @@ Stylelint will complain about this, which you can disable by inserting the follo
 // stylelint-enable plugin/selector-bem-pattern
 ```
 
-#### Use mdc-theme for theming
-All thematic elements of a component should be specified via [mdc-theme](../packages/mdc-theme).
-This will ensure that the component integrates harmoniously into our theming system.
+#### <a name="use-mdc-theme-for-theming"></a>テーマの設定には mdc-theme を使う
 
-#### Use mdc-rtl for RTL support
-All RTL treatments within a component's style should be specified via [mdc-rtl](../packages/mdc-rtl).
-This will ensure that all components treat RTL contexts the same way, and will behave consistently.
+コンポーネントのすべてのテーマ要素は [mdc-theme](../packages/mdc-theme) を通じて指定してしなくてはなりません。これにより、コンポーネントが円滑にテーマシステムと統合されることが保証されます。
+
+#### <a name="use-mdc-rtl-for-rtl-support"></a>RTL のサポートには mdc-rtl を使う
+
+コンポーネントのスタイル内の RTL の扱いは、すべて [mdc-rtl](../packages/mdc-rtl) を通じて指定しなくてはなりません。これにより、すべてのコンポーネントが同じ方法で RTL コンテンツを扱え、矛盾なくふるまうことが保証されます。
 
 ### Javascript
 
-#### Define a static attachTo(root) method for every component
+#### <a name="define-a-static-attachtoroot-method-for-every-component"></a>すべてのコンポーネントに静的メソッド attachTo(root) を定義する
 
-All components _must_ define a static `attachTo` method with the following signature:
+すべてのコンポーネントに以下のシグネチャを持つ静的メソッド `attachTo` を定義 <em>しなくてはいけません</em>。
 
 `static attachTo(element: HTMLElement) => Constructor`
 
-e.g.
+例えば以下のようなコードです。
 
 ```js
 class MDCNewComponent extends MDCComponent {
@@ -553,17 +541,13 @@ class MDCNewComponent extends MDCComponent {
 }
 ```
 
-`mdc-auto-init` requires this method to be present, and we guarantee its provision as a convenience
-to our users. We have spoken about writing a lint rule for this in the future.
+`mdc-auto-init` はこのメソッドの存在を必要としており、私たちはユーザの利便性のためにこのメソッドが提供されることを保証しています。将来的にはこのためのリントルールを書こうと話しています。
 
-#### Define a defaultAdapter getter for every foundation
-All foundations _must_ define a static `defaultAdapter` method which returns an adapter with all
-functions defined. The functions should essentially be NOPs; taking no parameters and returning the
-correct type (e.g. `false` for boolean, `0` for number, `{}` for object, etc.). Our convention is
-to annotate the function via inline comments using [Typescript's type annotations](https://basarat.gitbooks.io/typescript/content/docs/types/type-system.html).
+#### <a name="define-a-defaultadapter-getter-for-every-foundation"></a>すべてのファンデーションにゲッタ defaultAdapter を定義する
 
-It is also a convention to override a foundation's constructor to mix in the passed `adapter` param
-to a default adapter object. This ensures that the adapter is guaranteed to have the correct shape.
+すべてのファンデーションには定義されている関数すべてを持つアダプタを返す静的メソッド `defaultAdapter` を定義 <em>しなくてはいけません</em>。関数は本質的には何もしないのものになるでしょう。引数は取らず、正しい型（例えば、真偽値なら `false`、数値なら `0`、オブジェクトなら `{}` など）を返すようにします。[Typescript の型注釈](https://basarat.gitbooks.io/typescript/content/docs/types/type-system.html) の書式のインラインコメントで型の注釈を付けるのが私たちの慣習です。
+
+デフォルトのアダプタオブジェクトを `adapter` 引数を通じてファンデーションのコンストラクタに渡すようにオーバーライドすることも慣習となっています。これによりアダプタが正しいインターフェースを持つことが保証されます。
 
 ```js
 class MDCNewComponentFoundation extends MDCFoundation {
@@ -581,19 +565,14 @@ class MDCNewComponentFoundation extends MDCFoundation {
 }
 ```
 
-This of course comes at the cost of potentially obscuring erroneous passed in adapters. However,
-we plan on providing type definitions for adapters in the future to help assuage this. Similar to
-the aforementioned rule, we would also like to provide lint rules to enforce these conventions.
+これにはもちろん、潜在的に誤ったアダプタを渡すことに気づかないことがあるという問題があります。しかし、将来的にはこの問題を緩和するためにアダプタの型定義を提供することを予定しています。前述のルールと同様に、これらの慣習を守ってもらうためのリントルールを提供することも考えています。
 
-#### Define all exported CSS classes, strings, and numbers as foundation constants.
-- All CSS Classes referenced by a component's foundation must be referenced by a `cssClasses` static
-  getter.
-- All strings that are used outside the context of the foundation class (CSS selectors, custom event names,
-  text that could potentially be localized, etc.) must be referenced by a `strings` static getter.
-- All semantic numbers leveraged by the foundation (timeout lengths, transition durations, etc.) must
-  be referenced by a `numbers` static getter.
-- These constants should be defined within a `constants.js` file, and then proxied through the
-  foundation.
+#### <a name="define-all-exported-css-classes-strings-and-numbers-as-foundation-constants"></a>外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する
+
+- コンポーネントのファンデーションから参照されるすべての CSS クラスは `cssClasses` 静的ゲッタを通じて参照しなくてはいけない。
+- ファンデーションクラスのコンテキスト外から使用されるすべての文字列（CSS セレクタ、カスタムイベント名、潜在的にローカライズ可能な文字列など）は `strings` 静的ゲッタを通じて参照しなくてはいけない。
+- ファンデーションが影響を与えるセマンティックなすべての数値（タイムアウトの長さ、アニメーションの継続時間など）は `numbers` 静的ゲッタを通じて参照しなくてはいけない。
+- これらの定数は `constants.js` ファイルに定義し、ファンデーションを通じてアクセスできるようにしなくてはならない。
 
 ```js
 // constants.js
@@ -636,69 +615,43 @@ class MDCNewComponentFoundation extends MDCFoundation {
 }
 ```
 
-The primary purpose of this is so that our components can interoperate with aspects of Google's
-front-end infrastructure, such as Closure Stylesheets' [CSS Class Renaming](https://github.com/google/closure-stylesheets#renaming) mechanism. In addition, it
-provides the added benefit of semantic code, and less magic strings/numbers.
+これの主たる目的は、コンポーネントが Closure Stylesheets の [CSS Class Renaming](https://github.com/google/closure-stylesheets#renaming) メカニズムのような Google のフロントエンドインフラと相互運用できるようにすることです。加えて、コードの理解するうえで良い影響を与え、マジックナンバーやマジックストリングを減らす利点もあります。
 
-#### Extend components and foundations from mdc-base classes.
-To ensure that all packages behave consistently, all components must extend `MDCComponent` and all
-foundations must extend `MDCFoundation`. More information for both of these classes can be found in
-the [mdc-base README](../packages/mdc-base).
+#### <a name="extend-components-and-foundations-from-mdc-base-classes"></a>コンポーネントとファンデーションは mdc-base のクラスを継承して作成する
 
-#### Packages must be registered with our build infrastructure, and with material-components-web pkg
-Whenever you create a new component, it's important to notify the proper tools and packages of it.
-Concretely:
+すべてのパッケージに一貫性のある振る舞いをさせるために、すべてのコンポーネントは `MDCComponent` を継承し、すべてのファンデーションは `MDCFoundation` を継承していなくてはいけません。これらのクラスのさらなる情報は [mdc-base README](../packages/mdc-base) にあります。
 
-- Ensure that an entry for it exists in `webpack.config.js` for the `js-components` and `css` module
-- Ensure that it is added as a dependency of `material-components-web`. If the component contains
-  styles, ensure that they are `@import`ed within `material-components-web.scss`. If the component
-  contains javascript, ensure that its component namespace is exported within
-  `material-components-web`, and it is registered with `mdc-auto-init`. Lastly, remember to add it
-  to `package.json` of `material-components-web`.
-- Ensure that the correct **commit subject** for the package is added to the
-  `config.validate-commit-msg.scope.allowed` array within the top-level `package.json` at the root
-  of the repo. The commit subject is the _name the component, without the `mdc-`/`@material/`_.
-  E.g., for `mdc-icon-toggle`, the correct subject is `icon-toggle`.
-- Ensure that the package name is added to the `closureWhitelist` array within the top-level
-  `package.json`.
+#### <a name="packages-must-be-registered-with-our-build-infrastructure-and-with-material-components-web-pkg"></a>パッケージをビルドインフラおよび material-components-web パッケージに登録しなくてはいけない
 
-#### Closure Compatibility
+コンポーネントを作る際に、適切なツールとパッケージに登録することは重要です。具体的には以下のことをやってください。
 
-> NOTE: This section was introduced as part of our [closure compatibility milestone](https://github.com/material-components/material-components-web/milestone/4). Our
-currently existing components are in the process of being made compatible with closure.
+- コンポーネントの登録が `webpack.config.js` 上に `js-components` と `css` のモジュールに対して存在していることを確認すること。
+- `material-components-web` の依存関係にそのコンポーネントが追加されていることを確認すること。コンポーネントが JavaScript を含んでいるなら、`material-components-web` 内でそのコンポーネントの名前空間がエクスポートされ、`mdc-auto-init` に登録されていることを確認すること。最後に `material-components-web` の `package.json` にコンポーネントを追加することを忘れないこと。
+- レポジトリのルートにあるトップレベル `package.json` の `config.validate-commit-msg.scope.allowed` にパッケージの正確な **コミットサブジェクト** が追加されていることを確認すること。コミットサブジェクトとは <em>コンポーネント名から `mdc-`/`@material/` を除いたもの</em> をいう。例えば `mdc-icon-toggle` であれば `icon-toggle` である。
+- トップレベル `package.json` の `closureWhitelist` にパッケージ名が追加されていることを確認すること。
 
-All core MDC-Web components must be fully compatible with the Google Closure Compiler using its
-advanced compilation mechanisms. We've provided a thorough explanation of this, as well as
-conventions, examples, and common closure patterns you may not be used to, in our [closure compiler documentation](./closure-compiler.md).
+#### <a name="closure-compatibility"></a>クロージャの互換性
 
-### Testing
+> 注意: このセクションは [クロージャ互換性のマイルストーン](https://github.com/material-components/material-components-web/milestone/4) （訳注: 当該ファイルは既に削除されている）の一部を紹介します。現在存在するコンポーネントはクロージャ―について互換性を持たせようとしている段階にあります。
 
-The following guidelines should be used to help write tests for MDC-Web code. Our tests are written
-using [mocha](https://mochajs.org/) with the [qunit UI](https://mochajs.org/#qunit), and are driven by [karma](https://karma-runner.github.io/1.0/index.html). We use the [chai assert API](http://chaijs.com/api/assert/)
-for assertions, and [testdouble](https://github.com/testdouble/testdouble.js/) for mocking and stubbing.
+すべてのコアな MDC-Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャコンパイラドキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャパターンについて、完全な説明を提供しています。
 
-#### Verify foundation's adapters
-When testing foundations, ensure that at least one of your test cases uses the
-`verifyDefaultAdapter` method defined with our [foundation helpers](../test/unit/helpers/foundation.js). This is done to ensure that adapter interfaces do not
-change unexpectedly.
+### <a name="testing"></a>テスト
 
-#### Use helper methods
-We have helper modules within [test/unit/helpers](../test/unit/helpers) for things like
-bootstrapping foundation tests, intercepting adapter methods used for listening to events, and
-dealing with `requestAnimationFrame`. We encourage you to make use of them in your code to make it
-as easy as possible to write tests!
+MDC-Web のコードのテストを書く際に以下のガイドラインにしたがってください。私たちはテストを [mocha](https://mochajs.org/) 上の [qunit UI](https://mochajs.org/#qunit) で書いており、[karma](https://karma-runner.github.io/1.0/index.html) で実行しています。アサーションには [chai assert API](http://chaijs.com/api/assert/) を使い、モックとスタブは [testdouble](https://github.com/testdouble/testdouble.js/) を使っています。
 
-#### Use bel for DOM fixture
-We use the [bel](https://www.npmjs.com/package/bel) library to generate fixtures for our component/adapter tests. We've found it to
-be an easy and successful way to bootstrap fixtures without having to worry about maintaining HTML
-files or write unwieldy DOM API code.
+#### <a name="verify-foundations-adapters"></a>ファンデーションのアダプタを検証する
 
-#### Always clean up the DOM after every test
-This is important. _Before a test ends, ensure that any elements attached to the DOM have been
-removed_.
+ファンデーションをテストする際、少なくともテストケースのうち一つは [foundation helpers](../test/unit/helpers/foundation.js) で定義している `verifyDefaultAdapter` メソッドを使うようにしてください。アダプタのインターフェースが予期せず変更されていないことを確認するためです。
 
-#### Verify adapters via testdouble.
-We use [testdouble.js](https://github.com/testdouble/testdouble.js) as our de-facto mocking
-framework. A huge benefit to the component/foundation/adapter pattern is it makes testing the
-functionality of our components extremely easy. We encourage you to make use of testdouble stubs for
-adapters and use them to verify your foundation's behavior (note that this is what [our foundation setup code](../test/unit/helpers/setup.js#L21) does by default).
+#### <a name="use-helper-methods"></a>ヘルパーメソッドを使う
+ファンデーション起動テストやイベントによるアダプターメソッドの起動、`requestAnimationFrame` の処理といったことのために [test/unit/helpers](../test/unit/helpers) の中にヘルパーモジュールがあります。テストができる限り簡単にかけるようにコードを書く上でこれらを使うことをお勧めしています！
+
+#### <a name="use-bel-for-dom-fixture"></a>DOM フィクスチャに bel を使う
+私たちはコンポーネントやアダプタのフィクスチャを生成するために [bel](https://www.npmjs.com/package/bel) ライブラリを使っています。これが、HTML のメンテナンスに苦しんだり厄介な DOM API のコードを書いたりぜずにフィクスチャを生成する簡単でうまくいく方法だということに気づきました。
+
+#### <a name="always-clean-up-the-dom-after-every-test"></a>あらゆるテストの後は常に DOM をきれいにする
+これは重要なことです。<em>テストが終わる前に、DOM にアタッチしたすべての要素が削除されていることを確認してください。</em>。
+
+#### <a name="verify-adapters-via-testdouble"></a>testdouble を通じてアダプタの検証をする
+私たちは事実上のモックフレームワークとして [testdouble.js](https://github.com/testdouble/testdouble.js) を使っています。コンポーネント/ファンデーション/アダプター パターンの大きな利点はコンポーネントの機能性を極めて簡単にテストできるということです。アダプタとして testdouble のスタブを使い、ファンデーションの振る舞いを検証することをお勧めします（これは [ファンデーションのセットアップコード](../test/unit/helpers/setup.js#L21) がデフォルトやっていることだということに注意してください）。
