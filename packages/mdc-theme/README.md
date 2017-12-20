@@ -16,52 +16,52 @@ path: /catalog/theme/
   </a>
 </div>-->
 
-This color palette comprises primary and secondary colors that can be used for illustration or to develop your brand colors.
+このカラーパレットはイラストやブランドカラーの表現に使用できるプライマリカラーとセカンダリカラーから構成されています。
 
-MDC Theme is a foundational module that themes MDC Web components. The colors in this module are derived from three theme colors:
+MDC Theme は MDC Web コンポーネントのテーマを表現する基盤となるモジュールです。このモジュール内の色は3つのテーマカラーから得られています。
 
-* Primary: the primary color used in your application, applies to a number of UI elements.
-* Secondary: the secondary color used in your application, applies to a number of UI elements. (Previously called "accent".)
-* Background: the background color for your application, aka the color on top of which your UI is drawn.
+* プライマリ(Primary): アプリケーションで使用される主たる色で、様々な UI 要素に適用されます。
+* セカンダリ(Secondary): アプリケーションで使用される補助的な色で、様々な UI 要素に適用されます。（かつては「アクセント」と呼んでいました。）
+* バックグランド(Background): アプリケーションの背景色、つまり、UI はその色の上に描画されます。
 
-and five text styles:
+そして、5つのスタイルがあります。
 
-* Primary: used for most text
-* Secondary: used for text which is lower in the visual hierarchy
-* Hint: used for text hints, such as those in text fields and labels
-* Disabled: used for text in disabled components and content
-* Icon: used for icons
+* 主要(Primary): 大部分のテキストに使用されます。
+* 副次的(Secondary): 視覚階層上の下位のテキストに使用されます。
+* ヒント(Hint): 文字入力欄やラベルのヒントのようなヒントのテキストに使用されます。
+* 利用できない項目(Disabled): 利用不可となっているコンポーネントやコンテンツのテキストに使用されます。
+* アイコン(Icon): アイコンに使用されます。
 
-> **A note about Primary and Secondary**, don't confuse primary/secondary _color_ with primary/secondary _text_. The former refers to the primary/secondary _theme_ color that is used to establish a visual identity and color many parts of your application. The latter refers to the style of text that is most prominent (low opacity, high contrast), and used to display most content.
+> **Primary と Secondary に関する注釈**: primary/secondary _color_ を primary/secondary _text_ と混同しないでください。前者は視覚的な独自性を持たせるために、アプリケーションの様々な場所に色を付けることを目的とした primary/secondary _theme_ color を指します。後者はより目立たせる（低い不透明度や高いコントラスト）ために表示されるほとんどの要素に対して使用されるテキストのスタイルを指します。（訳注: この訳では _primary/secondary_ を前者は「プライマリ/セカンダリ」と、後者は「主要/副次的」と訳し分けています。）
 
-Some components can change their appearance when in a Dark Theme context, aka placed on top of a dark background. There are two ways to specify if a component is in a Dark Theme context. The first is to add `mdc-theme--dark` to a *container* element, which holds the component. The second way is to add `<component_name>--theme-dark` modifier class to the actual component element. For example, `mdc-button--theme-dark` would put the MDC Button in a Dark Theme context.
+いくつかのコンポーネントは、暗い背景の上に配置するダークテーマ上で、見た目を変えることができます。ダークテーマ上にコンポーネントがあることを指定する方法は2つあります。最初の方法はコンポーネントのある <em>コンテナ</em> 要素に `mdc-theme--dark` を加える方法です。2つ目の方法はコンポーネント自体に `<component_name>--theme-dark` 修飾クラスを付ける方法です。例えばダークテーマ上の MDC Button なら `mdc-button--theme-dark` を追加します。
 
-> **A note about Dark Theme context**, don't confuse Dark Theme context with a component that has a dark color. Dark Theme context means the component sits on top of a dark background.
+> **ダークテーマに関する注釈**: ダークテーマを暗い色のコンポーネントと混同しないでください。ダークテーマというのは暗い背景色の上にコンポーネントを配置することを意味します。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/style/color.html">Material Design guidelines: Color</a>
+    <a href="https://material.io/guidelines/style/color.html">マテリアルデザインガイドライン: 配色</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/theme.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/theme.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/theme
 ```
 
-## Usage
+## 使用法
 
-### Change Theme Colors
+### テーマカラーの変更
 
-MDC Theme makes it easy to develop your brand colors. You override the default theme color through Sass variables or CSS custom properties. CSS custom properties enables runtime theming.
+MDC Theme はブランドカラーを表現することを容易に実現してくれます。Sass か CSS カスタムプロパティを通じてデフォルトのテーマカラーを上書きすればよいのです。CSS カスタムプロパティはランタイムテーマを可能にしてくれます。
 
-> **A note about Sass variables**, you need to define the three theme color variables before importing mdc-theme or any MDC-Web components that rely on it, like following:
+> **Sass 変数に関する注釈**: mdc-theme や それに依存する MDC-Web のコンポーネントをインポートする前に、次のように、 3つのテーマカラーの変数を定義する必要があります。
 
 ```scss
 $mdc-theme-primary: #9c27b0; // Purple 500
@@ -71,13 +71,9 @@ $mdc-theme-background: #fff; // White
 @import "@material/theme/mdc-theme";
 ```
 
-> **A note about `$mdc-theme-secondary`**: This variable was previously named `$mdc-theme-accent`.
-> For backward compatibility, `$mdc-theme-accent` still exists, but it is **deprecated**.
-> Apps that previously customized `$mdc-theme-accent` will continue to work, but new apps should use
-> `$mdc-theme-secondary` instead.
+> **`$mdc-theme-secondary` に関する注釈**: この変数は以前、`$mdc-theme-accent` という名前でした。下位互換のために `$mdc-theme-accent` はまだ存在しますが、この変数は **非推奨** です。かつて `$mdc-theme-accent` をカスタマイズしたアプリは引き続き動作しますが、新しいアプリでは `$mdc-theme-secondary` を代わりに使ってください。
 
-MDC Theme also exposes _light_ and _dark_ variants of the primary and secondary colors. By default, these values are
-computed by lightening and darkening the main primary/secondary colors in Sass, but you can override them if desired:
+MDC Theme はプライマリカラーとセカンダリカラーのバリエーションである _light_ と _dark_ も公開しています。デフォルトではこれらの値は Sass 内でプライマリカラー/セカンダリカラーを明るくなるよう計算した色と暗くなるよう計算した色となっています。しかしこれらも望むのであれば上書きできます。
 
 ```scss
 $mdc-theme-primary-light: #ce93d8; // Purple 200
@@ -88,87 +84,87 @@ $mdc-theme-secondary-dark: #ff6d00; // Orange A700
 @import "@material/theme/mdc-theme";
 ```
 
-The text color, for text placed on top of these selected theme colors, is programmatically computed based on color contrast. We follow the Web Content Accessibility Guidelines 2.0.
+これらの選択されたテーマカラー上に配置されるテキストの色はコントラストに基いてプログラム上で計算されます。私たちは Web Content Accessibility Guidelines 2.0 にしたがっています。
 
 https://www.w3.org/TR/WCAG20
 
-#### CSS Custom Properties
+#### CSS カスタムプロパティ
 
-> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**, `<TEXT_STYLE>` represents the lowercase name of the text styles listed above, e.g. `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g. `secondary`. When you put it all together it would be `--mdc-theme-text-hint-on-secondary`.
+> **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストにあげたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `--mdc-theme-text-hint-on-secondary` といった具合になります。
 
-CSS Custom property | Description
+CSS カスタムプロパティ | 説明
 --- | ---
-`--mdc-theme-primary` | The theme primary color
-`--mdc-theme-primary-light` | The theme primary color (light variant)
-`--mdc-theme-primary-dark` | The theme primary color (dark variant)
-`--mdc-theme-secondary` | The theme secondary color
-`--mdc-theme-secondary-light` | The theme secondary color (light variant)
-`--mdc-theme-secondary-dark` | The theme secondary color (dark variant)
-`--mdc-theme-background` | The theme background color
-`--mdc-theme-text-<TEXT_STYLE>-on-<THEME_COLOR>` | Text color for TEXT_STYLE on top of THEME_COLOR background
-`--mdc-theme-text-<TEXT_STYLE>-on-light` | Text color for TEXT_STYLE on top of light background
-`--mdc-theme-text-<TEXT_STYLE>-on-dark` | Text color for TEXT_STYLE on top of dark background
+`--mdc-theme-primary` | テーマのプライマリカラー
+`--mdc-theme-primary-light` | テーマのプライマリカラー（明るいバリエーション）
+`--mdc-theme-primary-dark` | テーマのプライマリカラー（暗いバリエーション）
+`--mdc-theme-secondary` | テーマのセカンダリカラー
+`--mdc-theme-secondary-light` | テーマのセカンダリカラー（明るいバリエーション）
+`--mdc-theme-secondary-dark` |　テーマのセカンダリカラー（暗いバリエーション）
+`--mdc-theme-background` | テーマのバックグランドカラー
+`--mdc-theme-text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE のテキストの色
+`--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色
+`--mdc-theme-text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE のテキストの色
 
-### CSS Classes
+### CSS クラス
 
-MDC-Web provides SASS mixins, such as `mdc-button-filled-accessible`, to facilitate customization of some components. For more information, consult the documentation for each component.
+MDC-Web はコンポーネントのカスタマイズを容易にするために `mdc-button-filled-accessible` のような Sass ミキシンも提供しています。より詳しい情報は各コンポーネントのドキュメントを調べてください。
 
-If you want to modify an element, which is not a Material Design component, you can apply the following modifier CSS classes.
+Material Design component 以外の要素を変更したいなら、以下の CSS 修飾クラスが使えます。
 
-> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**, `<TEXT_STYLE>` represents the lowercase name of the text styles listed above, e.g. `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g. `secondary`. When you put it all together it would be `mdc-theme--text-hint-on-secondary`.
+> **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `mdc-theme--text-hint-on-secondary` といった具合になります。
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-theme--primary` | Sets the text color to the theme primary color
-`mdc-theme--primary-light` | Sets the text color to the theme primary color (light variant)
-`mdc-theme--primary-dark` | Sets the text color to the theme primary color (dark variant)
-`mdc-theme--secondary` | Sets the text color to the theme secondary color
-`mdc-theme--secondary-light` | Sets the text color to the theme secondary color (light variant)
-`mdc-theme--secondary-dark` | Sets the text color to the theme secondary color (dark variant)
-`mdc-theme--background` | Sets the background color to the theme background color
-`mdc-theme--primary-bg` | Sets the background color to the theme primary color
-`mdc-theme--primary-light-bg` | Sets the background color to the theme primary color (light variant)
-`mdc-theme--primary-dark-bg` | Sets the background color to the theme primary color (dark variant)
-`mdc-theme--secondary-bg` | Sets the background color to the theme secondary color
-`mdc-theme--secondary-light-bg` | Sets the background color to the theme secondary color (light variant)
-`mdc-theme--secondary-dark-bg` | Sets the background color to the theme secondary color (dark variant)
-`mdc-theme--text-<TEXT_STYLE>-on-<THEME_COLOR>` | Sets text to a suitable color for TEXT_STYLE on top of THEME_COLOR background
-`mdc-theme--text-<TEXT_STYLE>-on-light` | Sets text to a suitable color for TEXT_STYLE on top of light background
-`mdc-theme--text-<TEXT_STYLE>-on-dark` | Sets text to a suitable color for TEXT_STYLE on top of dark background
+`mdc-theme--primary` | テキスト色としてテーマのプライマリカラーを設定する
+`mdc-theme--primary-light` | テキスト色としてテーマのプライマリカラーを設定する（明るいバリエーション）
+`mdc-theme--primary-dark` | テキスト色としてテーマのプライマリカラーを設定する（暗いバリエーション）
+`mdc-theme--secondary` | テキスト色としてテーマのセカンダリカラーを設定する
+`mdc-theme--secondary-light` | テキスト色としてテーマのセカンダリカラーを設定する（明るいバリエーション）
+`mdc-theme--secondary-dark` | テキスト色としてテーマのセカンダリカラーを設定する（暗いバリエーション）
+`mdc-theme--background` | 背景色としてテーマのバックグランドカラーを設定する
+`mdc-theme--primary-bg` | 背景色としてテーマのプライマリカラーを設定する
+`mdc-theme--primary-light-bg` | 背景色としてテーマのプライマリカラーを設定する（明るいバリエーション）
+`mdc-theme--primary-dark-bg` | 背景色としてテーマのプライマリカラーを設定する（暗いバリエーション）
+`mdc-theme--secondary-bg` | 背景色としてテーマのセカンダリカラーを設定する
+`mdc-theme--secondary-light-bg` | 背景色としてテーマのセカンダリカラーを設定する（明るいバリエーション）
+`mdc-theme--secondary-dark-bg` | 背景色としてテーマのセカンダリカラーを設定する（暗いバリエーション）
+`mdc-theme--text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上に、TEXT_STYLE に適切なテキスト色を設定する
+`mdc-theme--text-<TEXT_STYLE>-on-light` | 明るい背景の上に、TEXT_STYLE に適切なテキスト色を設定する
+`mdc-theme--text-<TEXT_STYLE>-on-dark` | 暗い背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 
-### Sass Mixins, Variables, and Functions
+### Sass ミキシンと変数と関数
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-theme-prop($property, $style, $important, $edgeOptOut)` | Applies a theme color or a custom color to a CSS property, optionally with `!important`. If `$edgeOptOut` is `true` and a theme color is passed, the style will be wrapped in a `@supports` clause to exclude the style in Edge to avoid issues with its buggy CSS variable support.
-`mdc-theme-dark($root-selector, $compound)` | Creates a rule that is applied when the current selector is within an Dark Theme context
+`mdc-theme-prop($property, $style, $important, $edgeOptOut)` | テーマカラーもしくは CSS プロパティ形式のカスタムカラーを、必要であれば `!important` を付けて適用する。`$edgeOptOut` が `true` でテーマカラーが渡されたときは、バグのある CSS 変数のサポートの問題を回避するため Edge においてスタイルを除外し、 `@supports` 句でスタイルをラップする。
+`mdc-theme-dark($root-selector, $compound)` | 現在のセレクタがダークテーマ内にあるときに適用するルールを作成する。
 
 #### `mdc-theme-dark($root-selector, $compound)`
 
-Creates a rule that is applied when the current selector is within an Dark Theme context. If you are using the mixin on anything other than the base selector of the component, e.g. `.mdc-button`, you need to specify `$root-selector` as the base selector as a parameter. You can also specify `$compound` to true if the the current selector is a compound selector with the base selector, e.g. a modifier class to the component root element.
+現在のセレクタがダークテーマ内にあるときに適用するルールを作成します。`.mdc-button` のようなコンポーネントのベースセレクタ以外でこのミキシンを利用するときは、`$root-selector` パラメータでベースセレクタを指定する必要があります。現在のセレクタがコンポーネントのルート要素の修飾セレクタのようにベースセレクタとの混合セレクタであるときは、`$compound` に ture を指定することもできます。
 
-#### `mdc-theme-prop` Properties
+#### `mdc-theme-prop` で使用可能なプロパティ
 
-The properties below can be used as the `$style` argument for the `mdc-theme-prop` mixin. Literal color values (e.g., `rgba(0, 0, 0, .75)`) may also be used instead.
+`mdc-theme-prop` ミキシンでは以下のプロパティを `$style` 引数として使用することができます。これらの代わりに色リテラル（例: `rgba(0, 0, 0, .75)`）を使うこともできます。
 
-> **A note about `<TEXT_STYLE>` and `<THEME_COLOR>`**, `<TEXT_STYLE>` represents the lowercase name of the text styles listed above, e.g. `hint`. `<THEME_COLOR>` represents the lowercase name of the theme colors listed above, e.g. `secondary`. When you put it all together it would be `text-hint-on-secondary`.
+> **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `text-hint-on-secondary` といった具合になります。
 
-Property Name | Description
+プロパティ名 | 説明
 --- | ---
-`primary` | The theme primary color
-`primary-light` | The theme primary color (light variant)
-`primary-dark` | The theme primary color (dark variant)
-`secondary` | The theme secondary color
-`secondary-light` | The theme secondary color (light variant)
-`secondary-dark` | The theme secondary color (dark variant)
-`background` | The theme background color
-`text-<TEXT_STYLE>-on-<THEME_COLOR>` | TEXT_STYLE on top of THEME_COLOR background
-`text-<TEXT_STYLE>-on-light` | TEXT_STYLE on top of a light background
-`text-<TEXT_STYLE>-on-dark` | TEXT_STYLE on top of a dark background
+`primary` | テーマのプライマリカラー
+`primary-light` | テーマのプライマリカラー（明るいバリエーション）
+`primary-dark` | テーマのプライマリカラー（暗いバリエーション）
+`secondary` | テーマのセカンダリカラー
+`secondary-light` | テーマのセカンダリカラー（明るいバリエーション）
+`secondary-dark` | テーマのセカンダリカラー（暗いバリエーション）
+`background` | テーマのバックグランドカラー
+`text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE
+`text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE
+`text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE
 
 #### `mdc-theme-luminance($color)`
 
-Calculates the luminance value (0 - 1) of a given color.
+与えられた色の輝度値（0～1）を計算します。
 
 ```scss
 @debug mdc-theme-luminance(#9c27b0); // 0.11654
@@ -176,7 +172,7 @@ Calculates the luminance value (0 - 1) of a given color.
 
 #### `mdc-theme-contrast($back, $front)`
 
-Calculates the contrast ratio between two colors.
+2つの色のコントラスト比を計算します。
 
 ```scss
 @debug mdc-theme-contrast(#9c27b0, #000); // 3.33071
@@ -184,9 +180,9 @@ Calculates the contrast ratio between two colors.
 
 #### `mdc-theme-tone($color)`
 
-Determines whether the given color is "light" or "dark".
+与えられた色が「明るい」か「暗い」かを判断します。
 
-If the input color is a string literal equal to `"light"` or `"dark"`, it will be returned verbatim.
+入力された色が `"light"` もしくは `"dark"` と等しい文字列リテラルのときは、入力値をそのまま返します。
 
 ```scss
 @debug mdc-theme-tone(#9c27b0); // dark
@@ -195,45 +191,36 @@ If the input color is a string literal equal to `"light"` or `"dark"`, it will b
 
 #### `mdc-theme-contrast-tone($color)`
 
-Determines whether to use light or dark text on top of a given color.
+与えられた色の上にのせるテキストを明るくすべきか暗くすべきかを判断します。
 
 ```scss
 @debug mdc-theme-contrast-tone(#9c27b0); // light
 ```
 
-#### `mdc-theme-light-variant($color)` and `mdc-theme-dark-variant($color)`
+#### `mdc-theme-light-variant($color)` と `mdc-theme-dark-variant($color)`
 
-Function | Description
+関数 | 説明
 --- | ---
-`mdc-theme-dark-variant($color, $num-indexes)` | Darken a color by a certain number of indexes within its tonal palette
-`mdc-theme-light-variant($color, $num-indexes)` | Lighten a color by a certain number of indexes within its tonal palette
+`mdc-theme-dark-variant($color, $num-indexes)` | 指定されたインデックスの分だけ、色調パレット上で色を暗くする。
+`mdc-theme-light-variant($color, $num-indexes)` | 指定されたインデックスの分だけ、色調パレット上で色を明るくする。
 
-Both functions are luminance-aware, and will always return a color that is visually distinct from both the input color
-_and_ the other function.
+どちらの関数も輝度を認識し、入力される色や他方の関数とは視覚的に異なる色を返します。
 
-That is, if the color passed to `mdc-theme-dark-variant()` is already so dark that darkening it by the requested amount
-would return `#000000`, the function will _lighten_ the color instead.
+つまり、`mdc-theme-dark-variant()` に渡した色が既に要求された分だけ暗くすると `#000000` を返してしまうくらい暗いときは、代わりに色を <em>明るく</em> します。
 
-Similarly, if the color passed to `mdc-theme-light-variant()` is already so light that lightening it by the requested
-amount would return `#ffffff`, the function will _darken_ the color instead.
+同様に、`mdc-theme-light-variant()` に渡した色が既に要求された分だけ明るくすると `#ffffff` を返してしまうくらい明るいときは、代わりに色を <em>暗く</em> します。
 
-To avoid having both functions return the same color in cases of extremely high or low input luminance,
-`mdc-theme-dark-variant()` will return a color that is _twice_ (×2) as dark as requested when the input is already very
-light. Likewise, `mdc-theme-light-variant()` will return a color that is _twice_ (×2) as light as requested when the
-input is already very dark. This ensures that the _light_ variant will always be lighter than the _dark_ variant.
+入力輝度が極端に高かったり低かったりする場合に2つの関数が同じ色を返すことを避けるために、入力が既に非常に明るいときには `mdc-theme-dark-variant()` は要求された量より <em>2倍</em> 暗い色を返します。同じく、入力が既に非常に暗いときには `mdc-theme-light-variant()` は要求された量より <em>2倍</em> 明るい色を返します。これにより、<em>明るい</em> 変数（訳注: `mdc-theme-light-variant()` が返す値のこと）は <em>暗い</em> 変数（訳注: `mdc-theme-dark-variant()` が返す値のこと）より常に明るくなることが保証されます。
 
 #### `mdc-theme-prop-value($property)`
 
-If `$property` is a literal color value (e.g., `blue`, `#fff`), it is returned verbatim. Otherwise, the value of the
-corresponding theme property (from `$mdc-theme-property-values`) is returned. If `$property` is not a color and no
-such theme property exists, an error is thrown.
+`$property` が色リテラル（例: `blue` や `#fff`）のときは入力値をそのまま返します。そうでないときはテーマのプロパティと一致する値（`$mdc-theme-property-values` に収められています）を返します。`$property` が色でもテーマプロパティに存在する値でもないときはエラーがスローされます。
 
-This is mainly useful in situations where `mdc-theme-prop` cannot be used directly (e.g., `box-shadow`).
+これは主に `mdc-theme-prop` を直接利用できない状況（例: `box-shadow`）で役立ちます。
 
-Unlike the `mdc-theme-prop` mixin, this function does _not_ support CSS custom properties.
-It only returns the raw color value of the specified theme property.
+`mdc-theme-prop` ミキシンと違って、この関数は CSS カスタムプロパティをサポートして <em>いません</em>。テーマプロパティに指定された生の色だけを返します。
 
-> NOTE: This function is defined in `_variables.scss` instead of `_functions.scss` to avoid circular imports.
+> 注意: 循環インポートを避けるため、この関数は `_functions.scss` ではなく、`_variables.scss` で定義されています。
 
 ```scss
 @debug mdc-theme-prop-value(primary); // #3f51b5
@@ -242,14 +229,14 @@ It only returns the raw color value of the specified theme property.
 
 #### `mdc-theme-accessible-ink-color($fill-color, $text-style: primary)`
 
-Returns an accessible ink color that has sufficient contrast against the given fill color.
+与えられた塗りの色に対して十分なコントラストを持ち視認性のあるインクの色を返します。
 
-Params:
+引数:
 
-- `$fill-color`: Supports the same values as `mdc-theme-prop-value`
-- `$text-style`: Value must be one of `primary`, `secondary`, `hint`, `disabled`, `icon` (see `$mdc-theme-text-colors`)
+- `$fill-color`: `mdc-theme-prop-value` と同様な値をサポートしています。
+- `$text-style`: 以下のいずれかの値でなくてはなりません: `primary`, `secondary`, `hint`, `disabled`, `icon`（`$mdc-theme-text-colors` を参照）。
 
-> NOTE: This function is defined in `_variables.scss` instead of `_functions.scss` to avoid circular imports.
+> 注意: 循環インポートを避けるため、この関数は `_functions.scss` ではなく、`_variables.scss` で定義されています。
 
 ```scss
 @debug mdc-theme-accessible-ink-color(secondary); // rgba(0, 0, 0, .87) (text-primary-on-light)
