@@ -1,6 +1,6 @@
-# Importing the JS component
+# JS コンポーネントのインポート
 
-Most components ship with Component / Foundation classes which are used to provide a full-fidelity Material Design component. Depending on what technology you use in your stack, there are several ways to import the JavaScript.
+大半のコンポーネントは完全忠実なマテリアルデザインコンポーネントを提供するために使用される コンポーネント/ファンデーション クラスが付属しています。これまでどのようなテクノロジーを使ってきたかによって、JavaScript をインポートする方法はいくつかあります。
 
 ## ES2015
 
@@ -25,20 +25,20 @@ require(['path/to/mdc-foo'], mdcFoo => {
 });
 ```
 
-## Global
+## グローバル変数の使用
 
 ```javascript
 const MDCFoo = mdc.foo.MDCFoo;
 const MDCFooFoundation = mdc.foo.MDCFooFoundation;
 ```
 
-## Automatic Instantiation
+## 自動インスタンス生成
 
 ```javascript
 mdc.foo.MDCFoo.attachTo(document.querySelector('.mdc-foo'));
 ```
 
-## Manual Instantiation
+## 手動インスタンス生成
 
 ```javascript
 import {MDCFoo} from '@material/foo';
