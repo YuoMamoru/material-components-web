@@ -42,7 +42,7 @@ MDC Theme は MDC Web コンポーネントのテーマを表現する基盤と�
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/style/color.html">マテリアルデザインガイドライン: 配色</a>
+    <a href="https://material.io/guidelines/style/color.html">マテリアルデザインガイドライン: カラー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/theme.html">デモ</a>
@@ -73,7 +73,7 @@ $mdc-theme-background: #fff; // White
 
 > **`$mdc-theme-secondary` に関する注釈**: この変数は以前、`$mdc-theme-accent` という名前でした。下位互換のために `$mdc-theme-accent` はまだ存在しますが、この変数は **非推奨** です。かつて `$mdc-theme-accent` をカスタマイズしたアプリは引き続き動作しますが、新しいアプリでは `$mdc-theme-secondary` を代わりに使ってください。
 
-MDC Theme はプライマリカラーとセカンダリカラーのバリエーションである _light_ と _dark_ も公開しています。デフォルトではこれらの値は Sass 内でプライマリカラー/セカンダリカラーを明るくなるよう計算した色と暗くなるよう計算した色となっています。しかしこれらも望むのであれば上書きできます。
+MDC Theme はプライマリカラーとセカンダリカラーのバリエーションである _light_ と _dark_ も公開しています。デフォルトではこれらの値は Sass 内でプライマリカラー/セカンダリカラーを明るくなるよう計算した色と、暗くなるよう計算した色になっています。しかしこれらも望むのであれば上書きできます。
 
 ```scss
 $mdc-theme-primary-light: #ce93d8; // Purple 200
@@ -109,7 +109,7 @@ CSS カスタムプロパティ | 説明
 
 MDC-Web はコンポーネントのカスタマイズを容易にするために `mdc-button-filled-accessible` のような Sass ミキシンも提供しています。より詳しい情報は各コンポーネントのドキュメントを調べてください。
 
-Material Design component 以外の要素を変更したいなら、以下の CSS 修飾クラスが使えます。
+マテリアルデザインのコンポーネント以外の要素を変更したいなら、以下の CSS 修飾クラスが使えます。
 
 > **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `mdc-theme--text-hint-on-secondary` といった具合になります。
 
@@ -180,7 +180,7 @@ CSS クラス | 説明
 
 #### `mdc-theme-tone($color)`
 
-与えられた色が「明るい」か「暗い」かを判断します。
+与えられた色が「明るい」か「暗い」かを判定します。
 
 入力された色が `"light"` もしくは `"dark"` と等しい文字列リテラルのときは、入力値をそのまま返します。
 
@@ -191,7 +191,7 @@ CSS クラス | 説明
 
 #### `mdc-theme-contrast-tone($color)`
 
-与えられた色の上にのせるテキストを明るくすべきか暗くすべきかを判断します。
+与えられた色の上にのせるテキストを明るくすべきか暗くすべきかを判定します。
 
 ```scss
 @debug mdc-theme-contrast-tone(#9c27b0); // light
