@@ -9,9 +9,9 @@ path: /catalog/typography/
 
 # Typography
 
-Material Design's text sizes and styles were developed to balance content density and reading comfort under typical usage conditions.
+マテリアルデザインのテキストサイズとスタイルは一般的な利用状況下でのコンテンツの密度と読みやすさのバランスをとるために作られました。
 
-MDC Typography is a foundational module that applies these styles to MDC Web components. The typographic styles in this module are derived from ten styles:
+MDC Typography は MDC Web コンポーネントにこれらのスタイルを適用する基盤となるモジュールです。このモジュールの書式は以下の10個のスタイルから派生しています。
 
 * Display 4
 * Display 3
@@ -26,7 +26,7 @@ MDC Typography is a foundational module that applies these styles to MDC Web com
 * Caption
 * Button
 
-### Usage
+### 使用法
 
 ```html
 <head>
@@ -37,28 +37,28 @@ MDC Typography is a foundational module that applies these styles to MDC Web com
 </body>
 ```
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/style/typography.html">Material Design guidelines: Typography</a>
+    <a href="https://material.io/guidelines/style/typography.html">マテリアルデザインガイドライン: タイポグラフィ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/typography.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/typography.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/typography
 ```
 
-## Usage
+## 使用法
 
-### Load Roboto
+### Roboto フォントのロード
 
-We recommend you load Roboto from Google Fonts
+私たちは Google Fonts から Roboto を読み込むことを推奨しています。
 
 ```html
 <head>
@@ -69,47 +69,47 @@ We recommend you load Roboto from Google Fonts
 </body>
 ```
 
-### CSS Classes
+### CSS クラス
 
-Some components have a set typographic style. For example, a raised MDC Card uses Body 1, Body 2, and Headline styles.
+いくつかのコンポーネントには書式セットがあります。例えば、浮き上がったように表示される MDC Card は Body 1 と Body 2、そして Headline というスタイルが使われています。
 
-If you want to set the typographic style of an element, which is not a Material Design component, you can apply the following CSS classes.
+マテリアルデザインのコンポーネントではない要素に書式を設定したいときは、以下の CSS クラスを適用することができます。
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-typography` | Sets the font to Roboto
-`mdc-typography--display4` | Sets font properties as Display 4
-`mdc-typography--display3` | Sets font properties as Display 3
-`mdc-typography--display2` | Sets font properties as Display 2
-`mdc-typography--display1` | Sets font properties as Display 1
-`mdc-typography--headline` | Sets font properties as Headline
-`mdc-typography--title` | Sets font properties as Title
-`mdc-typography--subheading2` | Sets font properties as Subheading 2
-`mdc-typography--subheading1` | Sets font properties as Subheading 1
-`mdc-typography--body2` | Sets font properties as Body 2
-`mdc-typography--body1` | Sets font properties as Body 1
-`mdc-typography--caption` | Sets font properties as Caption
-`mdc-typography--button` | Sets font properties as Button
-`mdc-typography--adjust-margin` | Positions text, used in conjunction with font classes above
+`mdc-typography` | フォントを Roboto に設定する。
+`mdc-typography--display4` | フォントのプロパティを Display 4 に設定する。
+`mdc-typography--display3` | フォントのプロパティを Display 3 に設定する。
+`mdc-typography--display2` | フォントのプロパティを Display 2 に設定する。
+`mdc-typography--display1` | フォントのプロパティを Display 1 に設定する。
+`mdc-typography--headline` | フォントのプロパティを Headline に設定する。
+`mdc-typography--title` | フォントのプロパティを Title に設定する。
+`mdc-typography--subheading2` | フォントのプロパティを Subheading 2 に設定する。
+`mdc-typography--subheading1` | フォントのプロパティを Subheading 1 に設定する。
+`mdc-typography--body2` | フォントのプロパティを Body 2 に設定する。
+`mdc-typography--body1` | フォントのプロパティを Body 1 に設定する。
+`mdc-typography--caption` | フォントのプロパティを Caption に設定する。
+`mdc-typography--button` | フォントのプロパティを Button に設定する。
+`mdc-typography--adjust-margin` | テキストを整列させる。上にあるフォントクラスと共に使用する。
 
-> **A note about `mdc-typography--adjust-margin`**, `mdc-typography--adjust-margin` will change the margin properties of the element it is applied to, to align text correctly. `mdc-typography--adjust-margin` should only be used in a text context; using this property on UI elements such as buttons may cause them to be positioned incorrectly.
+> **`mdc-typography--adjust-margin` に関する注釈**: `mdc-typography--adjust-margin` は適用された要素の margin プロパティを変更し、テキストを正しく整列させます。`mdc-typography--adjust-margin` はテキストコンテンツでのみ使用するべきで、ボタンのような UI 要素で使用しても正しく整列しないことがあります。
 
-### Sass Variables and Mixins
+### Sass 変素とミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-typography-base` | Sets the font to Roboto
-`mdc-typography($style)` | Applies one of the typography styles, including setting the font to Roboto
-`mdc-typography-adjust-margin($style)` | Positions text
-`mdc-typography-overflow-ellipsis` | Truncates overflow text to one line with an ellipsis
+`mdc-typography-base` | フォントを Roboto に設定する。
+`mdc-typography($style)` | フォントを Roboto にするなど、Typography の書式の一つを適用する。
+`mdc-typography-adjust-margin($style)` | テキストを整列させる。
+`mdc-typography-overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める
 
-> **A note about `mdc-typography-adjust-margin`**, `mdc-typography-adjust-margin` will change the margin properties of the element it is applied to, to align text correctly. `mdc-typography-adjust-margin` should only be used in a text context; using this property on UI elements such as buttons may cause them to be positioned incorrectly.
+> **`mdc-typography-adjust-margin` に関する注釈**: `mdc-typography-adjust-margin` は適用された要素の margin プロパティを変更し、テキストを正しく整列させます。`mdc-typography-adjust-margin` はテキストコンテンツでのみ使用するべきで、ボタンのような UI 要素で使用しても正しく整列しないことがあります。
 
-> **A note about `mdc-typography-overflow-ellipsis`**, `mdc-typography-overflow-ellipsis` should only be used if the element is `display: block` or `display: inline-block`.
+> **`mdc-typography-overflow-ellipsis` に関する注釈**: `mdc-typography-overflow-ellipsis` は要素が `display: block` であるか `display: inline-block` であるときにしか使ってはいけません。
 
-#### `$style` Values
+#### `$style` の値
 
-These styles can be used as the `$style` argument for `mdc-typography` and `mdc-typography-adjust-margin` mixins.
+これらのスタイルは `mdc-typography` ミキシンと `mdc-typography-adjust-margin` ミキシンにおいて `$style` 引数として使うことができます。
 
 * `display4`
 * `display3`
