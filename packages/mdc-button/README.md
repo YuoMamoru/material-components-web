@@ -16,48 +16,41 @@ path: /catalog/buttons/
   </a>
 </div>-->
 
-The MDC Button component is a spec-aligned button component adhering to the
-[Material Design button requirements](https://material.io/guidelines/components/buttons.html).
-It works without JavaScript with basic functionality for all states.
-You can enhance the button to have ripple effects by instantiating `MDCRipple` on
-the `button` element. See [MDC Ripple](../mdc-ripple) and [Demo](https://material-components-web.appspot.com/button.html) for details.
+MDC Button コンポーネントは [マテリアルデザインボタン要件](https://material.io/guidelines/components/buttons.html) に準拠したボタンコンポーネントです。このコンポーネントは JavaScritp を使用しなくても基本的な機能を備えており、あらゆる状況で機能します。`MDCRipple` をインスタンス化することにより `button` 要素にリップルエフェクトを持つようにボタンを拡張することができます。詳細は [MDC Ripple](../mdc-ripple) や [Demo](https://material-components-web.appspot.com/button.html) を参照してください。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/buttons.html">Material Design guidelines: Buttons</a>
+    <a href="https://material.io/guidelines/components/buttons.html">マテリアルデザインガイドライン: ボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/button.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/button.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/button
 ```
 
-## Usage
+## 使用法
 
-### HTML Structure
+### HTML 構造
 ```html
 <button class="mdc-button">
   Button
 </button>
 ```
 
-> Note: Examples and documents use generic `<button>`, but users can also apply
-`mdc-button` to `<a class="mdc-button">Link Button</a>` in cases where it is
-semantically correct.
+> 注意: 例とドキュメントでは一般的な `<button>` を使用していますが、`<a class="mdc-button">Link Button</a>` のように意味的に適切な場所に `mdc-button` を適用することができます。
 
-### Adding Icon
+### アイコンの追加
 
-Users can nest `mdc-button__icon` inside the button element to add an icon. The icon in button
-is set to 18px to meet legibility requirements.
+アイコンを付けるためにボタン要素内に `mdc-button__icon` をネストすることができます。視認性の要件を満足するために、ボタン内のアイコンは 18px に設定されます。
 
-We recommend you load [Material Icons](https://material.io/icons/) from Google Fonts
+私たちは Google Fonts から [Material Icons](https://material.io/icons/) を読み込むことを推奨しています。
 
 ```html
 <head>
@@ -70,25 +63,23 @@ We recommend you load [Material Icons](https://material.io/icons/) from Google F
 </button>
 ```
 
-### CSS Classes
+### CSS クラス
 
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-button` | Mandatory, defaults to a text button that is flush with the surface
-`mdc-button__icon`    | Optional, for the icon element
-`mdc-button--raised` | Optional, a contained button that is elevated upon the surface
-`mdc-button--unelevated` | Optional, a contained button that is flush with the surface
-`mdc-button--stroked` | Optional, a contained button that is flush with the surface and has a visible border
-`mdc-button--dense` | Optional, compresses the button text to make it slightly smaller
-`mdc-button--compact` | Optional, reduces the amount of horizontal padding in the button
+`mdc-button` | 必須。デフォルトでは画面の表面と同一平面上にあるテキストボタン
+`mdc-button__icon`    | オプション。アイコン要素用
+`mdc-button--raised` | オプション。画面の表面から浮き上がったボタンにつける
+`mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにつける
+`mdc-button--stroked` | オプション。画面の表面と同一平面上にあり、境界線のあるボタンにつける
+`mdc-button--dense` | オプション。少し小さくするためにボタンのテキストを縮める
+`mdc-button--compact` | オプション。ボタンの水平パディング量をへらす
 
 
-### Disabled Button
+### 無効になったボタン
 
-Users can add `disabled` directly to the button element or set the fieldset containing
-the button to `disabled` to disable a button. Disabled buttons cannot be interacted
-with and have no visual interaction effect.
+ボタン要素に直接 `disabled` を追加することも、ボタンを含んでいるフィールドセットに `disabled` を設定しボタンを無効にすることもできます。無効になったボタンは利用できなくなり、視覚的にも利用できるようなエフェクトがなくなります。
 
 ```html
 <button class="mdc-button mdc-button--raised" disabled>
@@ -96,16 +87,15 @@ with and have no visual interaction effect.
 </button>
 ```
 
-### Adding MDC Ripple
+### MDC Ripple の追加
 
-To add the ink ripple effect to a button, attach a [ripple](../mdc-ripple) instance to the
-button element.
+ボタンにインクのリップルエフェクトを追加するには [ripple](../mdc-ripple) インスタンスをボタン要素にアタッチします。
 
 ```js
 mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 ```
 
-You can also do this declaratively when using the [material-components-web](../material-components-web) package.
+ [material-components-web](../material-components-web) パッケージを使えば宣言的に行うこともできます。
 
 ```html
 <button class="mdc-button" data-mdc-auto-init="MDCRipple">
@@ -113,34 +103,30 @@ You can also do this declaratively when using the [material-components-web](../m
 </button>
 ```
 
-Buttons are fully aware of ripple styles, so no DOM or CSS changes are required to use them.
+ボタンは完全にリップルのスタイルを認識しているので、リップルエフェクトを使う上で DOM や CSS の変更は必要ありません。
 
-### Sass Mixins
+### Sass ミキシン
 
-By default an MDC Button will inherit its color from the theme and align with [Material Design button requirements](https://material.io/guidelines/components/buttons.html). To customize a Button's color and properties, you can use the following mixins.
+デフォルトでは、MDC Button はテーマから色を引き継ぎ、 [マテリアルデザインボタン要件](https://material.io/guidelines/components/buttons.html) を適用します。ボタンの色やスタイルをカスタマイズする目的で以下のミキシンを使うことができます。
 
 #### `mdc-button-filled-accessible($container-fill-color)`
 
-This mixin is provided for customizing a *raised* or *unelevated* button's color. It changes the Button's
-container color to the given color, and updates the Button's ink and ripple color to meet accessibility standards.
+このミキシンは <em>浮かび上がった (raised)</em> もしくは <em>同一平面上 (unelevated)</em> のボタンの色をカスタマイズするために提供されています。このミキシンはボタンのコンテナの色を指定した色に変え、アクセシビリティ標準に沿うようにボタンのインクとリップルの色を更新します。
 
-### Advanced Sass Mixins
+### 高度な Sass ミキシン
 
-> **A note about advanced mixins**, The following mixins are intended for advanced users. These mixins will override the color of the container, ink, stroke or ripple. You can use all of them if you want to completely customize a Button. Or you can use only one of them, e.g. if you only need to override the ripple color. **It is up to you to pick container, ink, stroke and ripple colors that work together, and meet accessibility standards.**
+> **高度なミキシンに関する注釈**: 以下のミキシンは上級者向けです。これらのミキシンはコンテナやインク、境界線、リップルの色を上書きします。完全にボタンをカスタマイズしたいのであればこれらのすべてを使えます。もしくは、例えばリップルの色だけを変えたいのであれば、これらの一つだけを使うことも可能です。**一緒に使われるコンテナ、インク、境界線、リップルの色を選び、アクセシビリティ標準を満たすことはあなたの責務になります。**
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-button-container-fill-color` | Sets the container color to the given color
-`mdc-button-ink-color` | Sets the ink color to the given color
-`mdc-button-stroke-color` | Sets the stroke color to the given color
-`mdc-button-corner-radius` | Sets the corner radius to the given number (defaults to 2px)
-`mdc-button-stroke-width` | Sets the stroke width to the given number (defaults to 2px)
+`mdc-button-container-fill-color` | 与えた色にコンテナの色を設定する
+`mdc-button-ink-color` | 与えた色にインクの色を設定する
+`mdc-button-stroke-color` | 与えた色に境界の色を設定する
+`mdc-button-corner-radius` | 与えた大きさ（デフォルトは 2px）に角の丸め半径を設定する
+`mdc-button-stroke-width` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定する
 
-The ripple effect for the Button component is styled using [MDC Ripple](../mdc-ripple) mixins.
+Button コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
-#### Caveat: Edge and CSS Variables
+#### 注意: Edge と CSS 変数
 
-In browsers that fully support CSS variables, the above mixins will hook up styles using CSS variables if a theme property is passed.
-However, due to Edge's buggy CSS variable support, `mdc-button-container-fill-color` will not honor CSS variables in Edge.
-This means you will need to override button container styles manually for Edge if you are altering the affected CSS variables for theme properties
-(raised and unelevated buttons use primary by default for the container fill color).
+CSS 変数を完全にサポートしているブラウザでは、テーマプロパティが渡されたら上記のミキシンは CSS 変数を使ってスタイルを設定します。しかし、Edge の CSS 変数サポートのバグのため、Edge では `mdc-button-container-fill-color` は CSS 変数が利用されません。もしテーマプロパティ（浮き上がったボタンや同一平面上のボタンは塗りつぶしの色にデフォルトでプライマリカラーを使っています）のために関係している CSS 変数を変えたいのであればコンテナのスタイルを手動で上書する必要がある、ということをこれは意味しています。
