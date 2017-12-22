@@ -95,7 +95,7 @@ CSS クラス | 説明
 mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 ```
 
- [material-components-web](../material-components-web) パッケージを使えば宣言的に行うこともできます。
+[material-components-web](../material-components-web) パッケージを使えば宣言的に行うこともできます。
 
 ```html
 <button class="mdc-button" data-mdc-auto-init="MDCRipple">

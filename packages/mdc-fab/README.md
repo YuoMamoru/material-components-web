@@ -16,30 +16,30 @@ path: /catalog/buttons/floating-action-buttons/
   </a>
 </div>-->
 
-A floating action button represents the primary action in an application.
+フローティング操作ボタンはアプリケーションの主要な操作を表すものです。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/buttons-floating-action-button.html">Material Design guidelines: Floating Action Button</a>
+    <a href="https://material.io/guidelines/components/buttons-floating-action-button.html">マテリアルデザインガイドライン: フローティング操作ボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/fab.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/fab.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/fab
 ```
 
-## Usage
+## 使用法
 
-### Load Material Icons
+### Material Icons のロード
 
-We recommend you load [Material Icons](https://material.io/icons/) from Google Fonts
+私たちは Google Fonts から [Material Icons](https://material.io/icons/) を読み込むことを推奨しています。
 
 ```html
 <head>
@@ -47,7 +47,7 @@ We recommend you load [Material Icons](https://material.io/icons/) from Google F
 </head>
 ```
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <button class="mdc-fab material-icons" aria-label="Favorite">
@@ -57,25 +57,25 @@ We recommend you load [Material Icons](https://material.io/icons/) from Google F
 </button>
 ```
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-fab` | Mandatory, for the button element
-`mdc-fab__icon` | Mandatory, for the icon element
-`mdc-fab--mini` | Optional, modifies the FAB to a smaller size
-`mdc-fab--exited` | Optional, animates the FAB out of view.<br>When this class is removed, the FAB will return to view.
+`mdc-fab` | 必須。ボタン要素用
+`mdc-fab__icon` | 必須。アイコン要素用
+`mdc-fab--mini` | オプション。FAB を小さいサイズにする
+`mdc-fab--exited` | オプション。FAB をビューの外にアニメーションさせる。<br>このクラスが削除されると FAB がビューに戻ってくる。
 
-> **A note about `:disabled`**, No disabled styles are defined for FABs. The FAB promotes action, and should not be displayed in a disabled state. If you want to present a FAB that does *not* perform an action, you should also present an explanation to the user.
+> **`:disabled` に関する注釈**: FAB には無効なスタイルが定義されていません。FAB は操作を促すもので、無効な状態で表示すべきではありません。もし操作を行わない FAB を置きたいのであればユーザへの説明も書いておかなくてはなりません。
 
-### Absolutely Positioned
+### 絶対位置での配置
 
-Developers must position MDC FAB as needed within their application's design.
+必要に応じてアプリケーションのデザイン内に MDC FAB を廃止しなくてはいけません。
 
 ```html
 <!--
-  This will position the FAB in the bottom-right corner.
-  Modify to fit your design's requirements.
+  ここでは FAB を右下の隅に配置している。
+  デザインの要件に合わせて変更すること。
 -->
 <style>
 .app-fab--absolute {
@@ -98,16 +98,15 @@ Developers must position MDC FAB as needed within their application's design.
 </button>
 ```
 
-### Adding MDC Ripple
+### MDC Ripple の追加
 
-To add the ripple effect to an MDC FAB, attach a [ripple](../mdc-ripple) instance to the
-`mdc-fab` element.
+MDC FAB にリップルエフェクトを追加するには [ripple](../mdc-ripple) インスタンスを `mdc-fab` 要素にアタッチします。
 
 ```js
 mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-fab'));
 ```
 
-You can also do this declaratively when using the [material-components-web](../material-components-web) package.
+[material-components-web](../material-components-web) パッケージを使えば宣言的に行うこともできます。
 
 ```html
 <button class="mdc-fab material-icons" aria-label="Favorite" data-mdc-auto-init="MDCRipple">
@@ -117,29 +116,25 @@ You can also do this declaratively when using the [material-components-web](../m
 </button>
 ```
 
-MDC FAB is fully aware of MDC Ripple styles, so no DOM or CSS changes are required.
+ボタンは完全にリップルのスタイルを認識しているので、DOM や CSS の変更は必要ありません。
 
-### Sass Mixins
+### Sass ミキシン
 
-By default an MDC FAB will inherit its color from the theme. This mixin will override the color of the MDC FAB's container, but maintain accessibility standards for the ink and ripple. The mixin is intended for customizing an MDC FAB's color to a non-theme color.
+デフォルトでは、MDC FAB はテーマから色を引き継ぎます。このミキシンは FAB のコンテナの色を上書きしますが、インクやリップルのアクセシビリティ標準は維持されます。このミキシンは MDC FAB の色をテーマ以外の色にカスタマイズすることを意図したものです。
 
 #### `mdc-fab-accessible($container-color)`
 
-Changes the FAB's container color to the given color, and updates the FAB's ink and ripple color to meet accessibility standards.
+FAB のコンテナの色を指定した色に変え、アクセシビリティ標準に沿うように FAB のインクとリップルの色を更新します。
 
-### Advanced Sass Mixins
+### 高度な Sass ミキシン
 
-> **A note about advanced mixins**, The following mixins are intended for advanced users. These mixins will override the color of the container, ink, or ripple. You can use all of them if you want to completely customize a FAB. Or you can use only one of them, e.g. if you only need to override the ripple color. **It is up to you to pick container, ink, and ripple colors that work together, and meet accessibility standards.**
+> **高度なミキシンに関する注釈**: 以下のミキシンは上級者向けです。これらのミキシンはコンテナやインク、リップルの色を上書きします。完全に FAB をカスタマイズしたいのであればこれらのすべてを使えます。もしくは、例えばリップルの色だけを変えたいのであれば、これらの一つだけを使うことも可能です。**一緒に使われるコンテナ、インク、リップルの色を選び、アクセシビリティ標準を満たすことはあなたの責務になります。**
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-fab-container-color($color)` | Sets the container color to the given color
-`mdc-fab-ink-color($color)` | Sets the ink color to the given color
+`mdc-fab-container-color($color)` | 与えた色にコンテナの色を設定する
+`mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
 
-The ripple effect for the FAB component is styled using [MDC Ripple](../mdc-ripple) mixins.
+FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
-#### Caveat: Edge and CSS Variables
-
-In browsers that fully support CSS variables, the above mixins will hook up styles using CSS variables if a theme property is passed.
-However, due to Edge's buggy CSS variable support, `mdc-fab-container-color` will not honor CSS variables in Edge.
-This means you will need to override FAB container styles manually for Edge if you are altering the affected CSS variables for theme properties (FAB uses secondary by default for the container fill color).
+CSS 変数を完全にサポートしているブラウザでは、テーマプロパティが渡されたら上記のミキシンは CSS 変数を使ってスタイルを設定します。しかし、Edge の CSS 変数サポートのバグのため、Edge では `mdc-fab-container-fill-color` は CSS 変数が利用されません。もしテーマプロパティ（FAB は塗りつぶしの色にデフォルトでプライマリカラーを使っています）のために関係している CSS 変数を変えたいのであればコンテナのスタイルを手動で上書する必要がある、ということをこれは意味しています。
