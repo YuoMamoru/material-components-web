@@ -8,26 +8,19 @@ path: /catalog/auto-init/
 
 # Auto Init
 
-`mdc-auto-init` is a utility package that provides declarative, DOM-based method of initialization
-for MDC-Web components on simple web sites. Note that for more advanced use-cases and complex sites,
-manual instantiation of components will give you more flexibility. However, `mdc-auto-init` is great
-for static websites, prototypes, and other use-cases where simplicity and convenience is most
-appropriate.
+`mdc-auto-init` は、単純な Web サイト上の MDC-Web コンポーネントを初期化するための DOM ベースで宣言的な方法を提供するユーティリティパッケージです。より高度なユースケースや複雑なサイトではコンポーネントを手動で初期化したほうが柔軟に扱えることがあることを知っておいてください。しかし、`mdc-auto-init` は静的な Web サイトやプロトタイプ、簡潔さと利便性が求められるユースケースに適しています。
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/auto-init
 ```
 
-## Usage
+## 使用法
 
-### Using as part of `material-components-web`
+### `material-components-web` の一部としての使用
 
-If you are using mdc-auto-init as part of the [material-components-web](../material-components-web)
-package, simply write the necessary DOM needed for a component, and attach a `data-mdc-auto-init`
-attribute to the root element with its value set to the Component's class name. Then, after
-writing the markup, simply insert a script tag that calls `mdc.autoInit()`. Make sure you call `mdc.autoInit()` after all scripts are loaded so it works properly.
+[material-components-web](../material-components-web) パッケージの一部として mdc-auto-init を使うのであれば、単にコンポーネントが必要な DOM に書くだけです。ルート要素の `data-mdc-auto-init` 属性にコンポーネントのクラス名に設定します。そしてマークアップを書いたら、`mdc.autoInit()` を呼び出す script タグを単に追加するだけです。正しく動作させるにはすべてのスクリプトが読み込まれた後に `mdc.autoInit()` を呼びしてください。
 
 ```html
 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
@@ -36,18 +29,17 @@ writing the markup, simply insert a script tag that calls `mdc.autoInit()`. Make
   <div class="mdc-text-field__bottom-line"></div>
 </div>
 
-<!-- at the bottom of the page -->
+<!-- ページの最後に -->
 <script type="text/javascript">
   window.mdc.autoInit();
 </script>
 ```
 
-This will attach an [MDCTextField](../mdc-textfield) instance to the root `<div>` element.
+これで `<div>` 要素に [MDCTextField](../mdc-textfield) インスタンスがアタッチされます。
 
-#### Accessing the component instance
+#### コンポーネントのインスタンスへのアクセス
 
-When `mdc-auto-init` attaches a component to an element, it assign that instance to the element
-using a property whose name is the value of `data-mdc-auto-init`. For example, given
+コンポーネントが要素にアタッチされるときに `data-mdc-auto-init` の値と同じ名称を持つ要素のプロパティにインスタンスが設定されます。例えば次コードがあったとします。
 
 ```html
 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
@@ -57,20 +49,17 @@ using a property whose name is the value of `data-mdc-auto-init`. For example, g
 </div>
 ```
 
-Once `mdc.autoInit()` is called, you can access the component instance via an `MDCTextField`
-property on that element.
+`mdc.autoInit()` を呼ぶと、要素の `MDCTextField` プロパティを通じてコンポーネントのインスタンスアクセスできます。
 
 ```js
 document.querySelector('.mdc-text-field').MDCTextField.disabled = true;
 ```
 
-### Using as a standalone module
+### 単独モジュールとしての使用
 
-#### Registering Components
+#### コンポーネントの登録
 
-If you are using `mdc-auto-init` outside of `material-components-web`, you must manually provide a
-mapping between `data-mdc-auto-init` attribute values and the components which they map to. This can
-be achieved via `mdcAutoInit.register`.
+`material-components-web` を使わずに `mdc-auto-init` を使うときは `data-mdc-auto-init` 属性値とコンポーネントとの間のマッピングを手動で書かなくてはなりません。これは `mdcAutoInit.register` を通じて行います。
 
 ```js
 import mdcAutoInit from '@material/auto-init';
@@ -79,12 +68,9 @@ import {MDCTextField} from '@material/textfield';
 mdcAutoInit.register('MDCTextField', MDCTextField);
 ```
 
-`mdcAutoInit.register()` tells `mdc-auto-init` that when it comes across an element with a
-`data-mdc-auto-init` attribute set to `"MDCTextField"`, it should initialize an `MDCTextField`
-instance on that element. The `material-components-web` package does this for all components for
-convenience.
+`mdcAutoInit.register()` は、`"MDCTextField"` が設定されている `data-mdc-auto-init` 属性を持つ要素が見つかったとき、その要素上に `MDCTextField` インスタンスを初期化するよう、  `mdc-auto-init` に伝えます。`material-components-web` パッケージは使いやすくするためにすべてのコンポーネントに対してこの処理を行っています。
 
-Also note that a component can be mapped to any string, not necessarily the name of its constructor.
+また、コンポーネントには任意の文字列をマッピングできます。必ずしもコンストラクタの名称である必要はありません。
 
 ```js
 import mdcAutoInit from '@material/auto-init';
@@ -100,72 +86,55 @@ mdcAutoInit.register('My amazing text field!!!', MDCTextField);
 <script>window.mdc.autoInit();</script>
 ```
 
-### De-registering components
+### コンポーネントの登録解除
 
-Any component can be deregistered by calling `mdcAutoInit.deregister` with the name used to register
-the component.
+コンポーネントを登録したときの名前を付けて `mdcAutoInit.deregister` を呼ぶことにより、どのコンポーネントも登録解除できます。
 
 ```js
 mdcAutoInit.deregister('MDCTextField');
 ```
 
-This will simply remove the name -> component mapping. It will _not_ affect any already-instantiated
-components on the page.
+これは単に 名前 -> コンポーネント のマッピングを削除するだけです。すでにインスタンス化されているページ上のコンポーネントに影響を与えることは <em>ありません</em>。
 
-To unregister all name -> component mappings, you can use `mdcAutoInit.deregisterAll()`.
+すべての 名前 -> コンポーネント のマッピングを削除するには `mdcAutoInit.deregisterAll()` を使います。
 
-## How `mdc-auto-init` works
+## `mdc-auto-init` は何をやっているのか
 
-`mdc-auto-init` maintains a registry object which maps string identifiers, or **names**, to
-component constructors. When the default exported function - `mdcAutoInit()` - is called,
-`mdc-auto-init` queries the DOM for all elements with a `data-mdc-auto-init` attribute. For each
-element returned, the following steps are taken:
+`mdc-auto-init` は、文字列識別子、言い換えると **名前**、とコンポーネントのコンストラクタを紐づける登録オブジェクトを管理しています。デフォルトのエクスポート関数 - `mdcAutoInit()` - が呼ばれると、`mdc-auto-init` は  `data-mdc-auto-init` 属性を持つすべての要素を DOM に対して問い合わせます。返ってきた各要素に対して以下の手順を実行します。
 
-1. If the `data-mdc-auto-init` attribute does not have a value associated with it, throw an error
-2. If the value of `data-mdc-auto-init` cannot be found in the registry, throw an error
-3. If the element has an existing property whose name is the value of `data-mdc-auto-init`, it is
-   assumed to have already been initialized. Therefore it is skipped, and a warning will be logged
-   to the console (this behavior can be overridden).
-4. Let `Ctor` be the component constructor associated with the given name in the register
-5. Let `instance` be the result of calling `Ctor.attachTo()` and passing in the element as an
-   argument.
-6. Create a non-writable, non-enumerable property on the node whose name is the value of
-   `data-mdc-auto-init` and whose value is `instance`.
+1. `data-mdc-auto-init` 要素に関連付けられた値がないときはエラーを投げる。
+2. `data-mdc-auto-init` の値が登録されていないときはエラーを投げる。
+3. `data-mdc-auto-init` の値と同じ名前のプロパティを要素が持っているときは、すでに初期化されているものとして扱う。つまり初期化をとばし、警告をコンソールに書き出す（この動作はオーバライド可能）。
+4. `Ctor` に、与えられた名称に関連付けられたコンポーネントのコンストラクタを代入する。
+5. `Ctor.attachTo()` に引数として対象要素を渡し、呼んだ結果を `instance` に代入する。
+6. 名前が `data-mdc-auto-init` の値で、値が `instance`であり、書き込み禁止、列挙不可のプロパティをノードに生成する。
 
-### Initializing only a certain part of the page
+### ページの一部に限った初期化
 
-By default, `mdc-auto-init` will query the entire document to figure out which components to
-initialize. To override this behavior, you can pass in an optional `root` first argument specifying
-the root node whose children will be queried for instantiation.
+デフォルトで `mdc-auto-init` はどのコンポーネントを初期化するのかを決めるためにページ全体を確認します。この動作をオーバライドするために、インスタンス化が必要は子要素を持つルートノードをオプションの第一引数 `root` に渡すことができます。
 
 ```html
 <div id="mdc-section">
-  <!-- MDC-Web Components, etc. -->
+  <!-- MDC-Web コンポーネントなど -->
 </div>
 <script>window.mdc.autoInit(document.getElementById('mdc-section'));</script>
 ```
 
-In the above example, only elements within `<div id="mdc-section">` will be queried.
+上の例では、`<div id="mdc-section">` 内の要素に対してのみ初期化の対象になります。
 
-### Calling autoInit() multiple times
+### autoInit() の複数回の呼び出し
 
-By default, `mdc-auto-init` only expects to be called once, at page-load time. However, there may be
-certain scenarios where one may want to use `mdc-auto-init` and may still need to call it multiple
-times, such as on a Wordpress site that contains an infinitely-scrolling list of new blog post
-elements containing MDC-Web components. `mdcAutoInit()` takes an optional second argument which is the
-function used to warn users when a component is initialized multiple times. By default, this is just
-`console.warn()`. However, to skip over already-initialized components without logging a
-warning, you could simply pass in a nop.
+デフォルトでは `mdc-auto-init` はページのロード時の一度だけ呼び出されることを想定しています。しかし、`mdc-auto-init` を使って、無限ににスクロールできる MDC-Web コンポーネントを含んだブログ投稿要素のリストを持つ Wordpress サイトのような場合、複数回 `mdcAutoInit()` を呼ぶことが必要になる場面もあるでしょう。コンポーネントが複数回初期化された際に利用するオプションの第二引数を `mdcAutoInit()` は持っています。デフォルトでこの引数は `console.warn()` をするだけです。すでに初期化されているコンポーネントで警告を出さないように処理をスキップさせるには、単に何もしない処理を渡すだけです。
 
 ```html
 <script>window.mdc.autoInit(/* root */ document, () => {});</script>
 ```
 
-This will suppress any warnings about already initialized elements.
+これですでに初期化されている要素で警告が抑制されます。
 
-### Events
+### イベント
 
 #### MDCAutoInit:End
-Triggered when initialization of all components is complete.
+すべてのコンポーネントの初期化が完了したときに発生します。
 
 `document.addEventListener("MDCAutoInit:End", () => {...});`
