@@ -15,28 +15,28 @@ path: /catalog/input-controls/text-field/
   </a>
 </div>-->
 
-Text fields allow users to input, edit, and select text.
+Text Field はユーザのテキストの入力、編集、選択に対応しています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/text-fields.html">Material Design guidelines: Text Fields</a>
+    <a href="https://material.io/guidelines/components/text-fields.html">マテリアルデザインガイドライン: テキスト欄</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/text-field.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/text-field.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/textfield
 ```
 
-## Usage
+## 使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-text-field">
@@ -46,10 +46,9 @@ npm install --save @material/textfield
 </div>
 ```
 
-#### HTML5 Validation
+#### HTML5 バリデーション
 
-`MDCTextFieldFoundation` provides validity styling by using the `:invalid` and `:required` attributes provided
-by HTML5's form validation API.
+`MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。
 
 ```html
 <div class="mdc-text-field">
@@ -59,14 +58,11 @@ by HTML5's form validation API.
 </div>
 ```
 
-`MDCTextFieldFoundation` automatically appends an asterisk to the label text if the required attribute is set.
+`MDCTextFieldFoundation` は required 属性が設定されていると自動的にラベルにアスタリスクを追加します。
 
-#### Pre-filled
+#### 入力済みのテキスト欄
 
-When dealing with JS-driven text fields that already have values, you'll want to ensure that you
-render `mdc-text-field__label` with the `mdc-text-field__label--float-above` modifier class, and `mdc-text-field` with the `mdc-text-field--upgraded` modifier class. This will
-ensure that the label moves out of the way of the text field's value and prevents a Flash Of
-Un-styled Content (**FOUC**).
+値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-text-field__label--float-above` 修飾クラスをもつ `mdc-text-field__label` と `mdc-text-field--upgraded` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
 <div class="mdc-text-field mdc-text-field--upgraded">
@@ -77,10 +73,9 @@ Un-styled Content (**FOUC**).
   <div class="mdc-text-field__bottom-line"></div>
 </div>
 ```
-> _NOTE_: Only place an `mdc-text-field__label` inside of `mdc-text-field` _if you plan on using
-> JavaScript_. Otherwise, the label must go outside of `mdc-text-field`, as shown below.
+> <em>注意</em>: <em>JavaScript を利用するときには</em> `mdc-text-field` の内側に `mdc-text-field__label` を配置してください。そうでないときは、ラベルは次項で見るように `mdc-text-field` の外側に置かなくてはなりません。
 
-#### CSS Only
+#### CSS のみでの使用
 
 ```html
 <label for="text-field-no-js">TextField with no JS: </label>
@@ -90,7 +85,7 @@ Un-styled Content (**FOUC**).
 </div>
 ```
 
-> _NOTE_: Do not use `mdc-text-field__bottom-line` inside of `mdc-text-field` _if you plan on using `mdc-text-field--box`, and do not plan on using JavaScript_. Bottom line should not be included as part of the DOM structure of a box text field.
+> <em>注意</em>: <em> `mdc-text-field--box` を使い、かつ、JavaScript を使わないときは</em> `mdc-text-field` の内側に `mdc-text-field__bottom-line` を使わないでください。ボトムラインはボックス型のテキスト欄の DOM 構造の一部として入れてはいけません。
 
 ```html
 <label for="css-only-text-field-box">Your name:</label>
@@ -99,7 +94,7 @@ Un-styled Content (**FOUC**).
 </div>
 ```
 
-#### Full Width
+#### フル幅のテキスト欄
 
 ```html
 <div class="mdc-text-field mdc-text-field--fullwidth">
@@ -110,10 +105,9 @@ Un-styled Content (**FOUC**).
 </div>
 ```
 
-> _NOTE_: Do not use `mdc-text-field__label` within `mdc-text-field--fullwidth`. Labels should not be
-included as part of the DOM structure of a full width text field.
+> <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-text-field__label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
 
-#### Textarea
+#### 複数行テキスト欄
 
 ```html
 <div class="mdc-text-field mdc-text-field--textarea">
@@ -122,8 +116,7 @@ included as part of the DOM structure of a full width text field.
 </div>
 ```
 
-> _NOTE_: Only use `mdc-text-field__label` within `mdc-text-field--textarea` _if you plan on using
-> Javascript_. Otherwise, use the `placeholder` attribute, as shown below.
+> <em>注意</em>: JavaScript を使うときには、`mdc-text-field--textarea` の内部では `mdc-text-field__label` のみを使ってください。そうでないときは以下のように `placeholder` 属性を使ってください。
 
 ```html
 <div class="mdc-text-field mdc-text-field--textarea">
@@ -135,9 +128,9 @@ included as part of the DOM structure of a full width text field.
 </div>
 ```
 
-#### Disabled
+#### 無効な状態
 
-Add the `disabled` attribute to `<input>` if the `mdc-text-field` is disabled. You also need to add `mdc-text-field--disabled` to the `mdc-text-field`.
+`mdc-text-field` を無効にするときは `<input>` に `disabled` 属性を加えてください。`mdc-text-field` に `mdc-text-field--disabled` を追加する必要もあります。
 
 ```html
 <div class="mdc-text-field mdc-text-field--disabled">
@@ -147,7 +140,7 @@ Add the `disabled` attribute to `<input>` if the `mdc-text-field` is disabled. Y
 </div>
 ```
 
-#### Outlined
+#### アウトライン
 
 ```html
 <div class="mdc-text-field mdc-text-field--outlined">
@@ -162,100 +155,97 @@ Add the `disabled` attribute to `<input>` if the `mdc-text-field` is disabled. Y
 </div>
 ```
 
-See [here](outline/) for more information on using the outline sub-component.
+アウトラインサブコンポーネントを使うにあたり、より詳細な情報は [ここ](outline/) を参照してください。
 
-> _NOTE_: Do not use `mdc-text-field__bottom-line` inside of `mdc-text-field` _if you plan on using `mdc-text-field--outlined`_. Bottom line should not be included as part of the DOM structure of an outlined text field.
+> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは<em>、`mdc-text-field` の内部で `mdc-text-field__bottom-line` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
 
-#### Helper Text
+#### ヘルプテキスト
 
-The helper text provides supplemental information and/or validation messages to users. It appears on input field focus
-and disappears on input field blur by default, or it can be persistent.
-See [here](helper-text/) for more information on using helper text.
+ヘルプテキストは補足の情報や検証のメッセージをユーザに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
 
-#### Leading and Trailing Icons
+#### 先頭と末尾のアイコン
 
-Leading and trailing icons can be added to MDC Text Fields as visual indicators as well as interaction targets.
-See [here](icon/) for more information on using icons.
+双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-text-field` | Mandatory
-`mdc-text-field--upgraded` | Indicates the text field is upgraded, normally by JavaScript
-`mdc-text-field--box` | Styles the text field as a box text field
-`mdc-text-field--outlined` | Styles the text field as an outlined text field
-`mdc-text-field--fullwidth` | Styles the text field as a full width text field
-`mdc-text-field--textarea` | Indicates the text field is a `<textarea>`
-`mdc-text-field--disabled` | Styles the text field as a disabled text field
-`mdc-text-field--dense` | Styles the text field as a dense text field
-`mdc-text-field--with-leading-icon` | Styles the text field as a text field with a leading icon
-`mdc-text-field--with-trailing-icon` | Styles the text field as a text field with a trailing icon
-`mdc-text-field--focused` | Styles the text field as a text field in focus
+`mdc-text-field` | 必須
+`mdc-text-field--upgraded` |　テキスト欄がアップグレードされたことを表す。通常は JavaScript によってアップグレード処理がなされる。
+`mdc-text-field--box` | ボックス型のテキスト欄として表示する。
+`mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
+`mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
+`mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
+`mdc-text-field--disabled` | 無効なテキスト欄として表示する。
+`mdc-text-field--dense` | 高密度のテキスト欄として表示する。
+`mdc-text-field--with-leading-icon` | 先頭にアイコンのあるテキスト欄として表示する。
+`mdc-text-field--with-trailing-icon` | 末尾にアイコンのあるテキスト欄として表示する。
+`mdc-text-field--focused` | フォーカスを持つテキスト欄として表示する。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-text-field-box-corner-radius($radius)` | Customizes the border radius for a box text field
-`mdc-text-field-textarea-corner-radius($radius)` | Customizes the border radius for a `<textarea>` text field
+`mdc-text-field-box-corner-radius($radius)` | ボックス型テキスト欄の角の半径を設定する。
+`mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
 
 ### `MDCTextField`
 
-See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+JavaScript をインポートする方法の詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-Property | Value Type | Description
+プロパティ | 型 | 説明
 --- | --- | ---
-`disable` | Boolean | Proxies to the foundation's `isDisabled`/`setDisabled` methods when retrieved/set respectively
-`valid` | Boolean | Proxies to the foundation's `setValid` method when set
-`helperTextContent` | String | Proxies to the foundation's `setHelperTextContent` method when set
-`ripple` | `MDCRipple` | The `MDCRipple` instance for the root element that `MDCTextField` initializes
+`disable` | Boolean | ファンデーションの `isDisabled`/`setDisabled` メソッドの取得/設定時のおける代替
+`valid` | Boolean |　ファンデーションの `setValid` の設定時のおける代替
+`helperTextContent` | String | ファンデーションの `setHelperTextContent` の設定時のおける代替
+`ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`layout() => void` | Adjusts the dimensions and positions for all sub-elements
+`layout() => void` | すべてのサブ要素の大きさと位置を調整する。
 
-##### `MDCTextField.ripple`
+#### `MDCTextField.ripple`
 
-`MDCRipple` instance. When given an `mdc-text-field--box` root element, this is set to the `MDCRipple` instance on the root element. When given an `mdc-text-field--outlined` root element, this is set to the `MDCRipple` instance on the `mdc-text-field__outline` element. Otherwise, the field is set to `null`.
+`MDCRipple` のインスタンス。ルート要素に `mdc-text-field--box` が与えられているとき、ルート要素には `MDCRipple` インスタンスが設定されます。ルート要素に `mdc-text-field--outlined` が与えられているとき、`mdc-text-field__outline` 要素には `MDCRipple` インスタンスが設定されます。どちらでもないときはこのフィールドには `null` が設定されます。
 
 ### `MDCTextFieldAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the root element
-`removeClass(className: string) => void` | Removes a class from the root element
-`registerTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | Registers an event handler on the root element for a given event
-`deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | Deregisters an event handler on the root element for a given event
-`registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | Registers an event listener on the native input element for a given event
-`deregisterInputInteractionHandler(evtType: string, handler: EventListener)` => void | Deregisters an event listener on the native input element for a given event
-`registerBottomLineEventHandler(evtType: string, handler: EventListener)` => void | Registers an event listener on the bottom line element for a given event
-`deregisterBottomLineEventHandler(evtType: string, handler: EventListener)` => void | Deregisters an event listener on the bottom line element for a given event
-`getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | Returns an object representing the native text input element, with a similar API shape
-`getIdleOutlineStyleValue(propertyName: string) => string` | Returns the idle outline element's computed style value of the given css property `propertyName`
-`isFocused() => boolean` | Returns whether the input is focused
-`isRtl() => boolean` | Returns whether the direction of the root element is set to RTL
+`addClass(className: string) => void` | ルート要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`registerTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素に与えたイベントのイベントハンドラを登録する。
+`deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
+`registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素に与えたイベントのイベントリスナを登録する。
+`deregisterInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素から与えたイベントのイベントリスナの登録を解除する。
+`registerBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素に与えたイベントのイベントリスナを登録する。
+`deregisterBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素から与えたイベントのイベントリスナの登録を解除する。
+`getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
+`getIdleOutlineStyleValue(propertyName: string) => string` | `propertyName` に与えられた CSS プロパティ値を計算して返す。
+`isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
+`isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
 
 #### `MDCTextFieldAdapter.getNativeInput()`
 
-Returns an object representing the native text input element, with a similar API shape. The object returned should include the `value`, `disabled` and `badInput` properties, as well as the `checkValidity()` function. We _never_ alter the value within our code, however we _do_ update the disabled property, so if you choose to duck-type the return value for this method in your implementation it's important to keep this in mind. Also note that this method can return null, which the foundation will handle gracefully.
+ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返します。返されるオブジェクトは `value`、`disabled`、`badInput` の各プロパティと `checkValidity()` 関数を持っていなければなりません。私たちはコード内で値を変えることはありませんが、disabled プロパティは更新します。もしあなたがこのメソッドの実装でダックタイピングをを選択するなら、このことを念頭に置いておく必要があります。また、このメソッドは null を返しても構わないことを覚えておいてください。その場合でもファンデーションは適切に動作します。
 
 #### `MDCTextFieldAdapter.getIdleOutlineStyleValue(propertyName: string)`
 
-Returns the idle outline element's computed style value of the given css property `propertyName`. The vanilla implementation achieves this via `getComputedStyle(...).getPropertyValue(propertyName)`.
+`propertyName` に与えられた CSS プロパティ値を計算して返します。素の実装は `getComputedStyle(...).getPropertyValue(propertyName)` を通じて処理がなされます。
 
 ### `MDCTextFieldFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`isDisabled() => boolean` | Returns whether or not the input is disabled
-`setDisabled(disabled: boolean) => void` | Updates the input's disabled state
-`setValid(isValid: boolean) => void` | Sets the validity state of the Text Field. Triggers custom validity checking
-`handleTextFieldInteraction(evt: Event) => void` | Handles click and keydown events originating from inside the Text Field component
-`activateFocus() => void` | Activates the focus state of the Text Field. Normally called in response to the input focus event.
-`deactivateFocus() => void` | Deactivates the focus state of the Text Field. Normally called in response to the input blur event.
-`handleBottomLineAnimationEnd(evt: Event) => void` | Handles the end of the bottom line animation, performing actions that must wait for animations to finish. Expects a transition-end event.
-`setHelperTextContent(content: string) => void` | Sets the content of the helper text
-`updateOutline() => void` | Updates the focus outline for outlined text fields
+`isDisabled() => boolean` | input 要素が無効かどうかを返します。
+`setDisabled(disabled: boolean) => void` | input 要素の無効かどうか状態を更新します。
+`setValid(isValid: boolean) => void` | テキスト欄の妥当性の状態を設定します。カスタム妥当性を検証するトリガーになります。
+`handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理します。
+`activateFocus() => void` | Text Field をフォーカス状態にします。通常は input の focus イベントの処理中に呼ばれます。
+`deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にします。通常は input の blur イベントの処理中に呼ばれます。
+`handleBottomLineAnimationEnd(evt: Event) => void` | ボトムラインのアニメーションの終了処理を行い、アニメーションが終わるまで待たなくてはいけない処理を実行します。transition-end イベントの処理を想定しています。
+`setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定します。
+`updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新します。
 
-`MDCTextFieldFoundation` supports multiple optional sub-elements: bottom line, helper text, icon, label, and outline. The foundations of these sub-elements must be passed in as constructor arguments to `MDCTextFieldFoundation`.
+`MDCTextFieldFoundation` は複数のオプションのサブ要素 - ボトムライン、ヘルプテキスト、アイコン、ラベル、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
