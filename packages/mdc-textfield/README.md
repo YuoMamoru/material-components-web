@@ -157,7 +157,7 @@ npm install --save @material/textfield
 
 アウトラインサブコンポーネントを使うにあたり、より詳細な情報は [ここ](outline/) を参照してください。
 
-> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは<em>、`mdc-text-field` の内部で `mdc-text-field__bottom-line` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
+> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-text-field__bottom-line` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
 
 #### ヘルプテキスト
 
