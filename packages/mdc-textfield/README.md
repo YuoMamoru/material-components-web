@@ -172,7 +172,7 @@ npm install --save @material/textfield
 CSS クラス | 説明
 --- | ---
 `mdc-text-field` | 必須
-`mdc-text-field--upgraded` |　テキスト欄がアップグレードされたことを表す。通常は JavaScript によってアップグレード処理がなされる。
+`mdc-text-field--upgraded` | テキスト欄がアップグレードされたことを表す。通常は JavaScript によってアップグレード処理がなされる。
 `mdc-text-field--box` | ボックス型のテキスト欄として表示する。
 `mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
@@ -197,7 +197,7 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 プロパティ | 型 | 説明
 --- | --- | ---
 `disable` | Boolean | ファンデーションの `isDisabled`/`setDisabled` メソッドの取得/設定時のおける代替
-`valid` | Boolean |　ファンデーションの `setValid` の設定時のおける代替
+`valid` | Boolean | ファンデーションの `setValid` の設定時のおける代替
 `helperTextContent` | String | ファンデーションの `setHelperTextContent` の設定時のおける代替
 `ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス
 

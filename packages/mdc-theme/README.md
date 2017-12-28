@@ -99,7 +99,7 @@ CSS カスタムプロパティ | 説明
 `--mdc-theme-primary-dark` | テーマのプライマリカラー（暗いバリエーション）
 `--mdc-theme-secondary` | テーマのセカンダリカラー
 `--mdc-theme-secondary-light` | テーマのセカンダリカラー（明るいバリエーション）
-`--mdc-theme-secondary-dark` |　テーマのセカンダリカラー（暗いバリエーション）
+`--mdc-theme-secondary-dark` | テーマのセカンダリカラー（暗いバリエーション）
 `--mdc-theme-background` | テーマのバックグランドカラー
 `--mdc-theme-text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE のテキストの色
 `--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色

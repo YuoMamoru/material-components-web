@@ -379,9 +379,9 @@ packages
       ├── README.md # コンポーネントの README
       ├── constants.js # コンポーネントの CSSクラス/文字列/数値 の定数
       ├── foundation.js # コンポーネントのファンデーションクラス
-      ├── index.js #　素のコンポーネントクラスを含み、ファンデーションのエクスポートの記載されたファイル
+      ├── index.js # 素のコンポーネントクラスを含み、ファンデーションのエクスポートの記載されたファイル
       ├── mdc-component.scss # コンポーネントの CSS の主要なソースファイル
-      └── package.json #　コンポーネントのパッケージファイル
+      └── package.json # コンポーネントのパッケージファイル
 test/unit
   ├── mdc-component
       ├── foundation.test.js # コンポーネントのファンデーションのユニットテスト
