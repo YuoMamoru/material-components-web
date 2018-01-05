@@ -15,28 +15,26 @@ path: /catalog/input-controls/radio-buttons/
   </a>
 </div>-->
 
-The MDC Radio Button component provides a radio button adhering to the [Material Design Specification](https://material.io/guidelines/components/selection-controls.html#selection-controls-radio-button).
-It requires no Javascript out of the box, but can be enhanced with Javascript to provide better
-interaction UX as well as a component-level API for state modification.
+MDC Radio Button コンポーネントは [マテリアルデザイン仕様](https://material.io/guidelines/components/selection-controls.html#selection-controls-radio-button) に準拠したラジオボタンを提供します。必ずしも JavaScript を必要としませんが、JavaScript を使うことにより拡張可能であり、より優れた双方向 UX や状態変化に関するコンポーネントレベルの API も提供しています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/selection-controls.html#selection-controls-radio-button">Material Design guidelines: Selection Controls – Radio buttons</a>
+    <a href="https://material.io/guidelines/components/selection-controls.html#selection-controls-radio-button">マテリアルデザインガイドライン: 選択コントロール – ラジオボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/radio.html">Demo</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/radio
 ```
 
-## Usage
+## 使用法
 
 ```html
 <div class="mdc-radio">
@@ -60,7 +58,7 @@ npm install --save @material/radio
 
 > TODO(TK): Talk about `mdc-form-field` here.
 
-#### Disabled Radios
+#### 無効なラジオボタン
 
 ```html
 <div class="mdc-radio mdc-radio--disabled">
@@ -73,16 +71,13 @@ npm install --save @material/radio
 <label id="radio-1-label" for="radio-1">Disabled Radio 1</label>
 ```
 
-Note that `mdc-radio--disabled` is necessary on the root element in order to avoid having the ripple
-elements intercept pointer events when using JS. When using the CSS-only variation, this is also
-necessary to prevent hover states from activating.
+JS を使うときには、リップル要素がポインタイベントを処理してしまうことを避けるため、ルート要素に `mdc-radio--disabled` が必要になることに気を付けてください。CSS だけで使用するときにも、ホバー状態が有効にならないようにするために必要です。
 
-### Using the JS Component
+### JS コンポーネントの使用
 
-MDC Radio ships with Component / Foundation classes which provide enhanced interaction UX via
-[mdc-ripple](../mdc-ripple), as well as APIs for programmatically altering the radio's state.
+MDC Radio には [mdc-ripple](../mdc-ripple) を通じて高度な双方向 UX やプログラムからにラジオボタンの状態を変更するための API を提供する コンポーネント/ファンデーション の各クラスが附属しています。
 
-#### Including in code
+#### コードへのインクルード
 
 ##### ES2015
 
@@ -114,18 +109,17 @@ const MDCRadio = mdc.radio.MDCRadio;
 const MDCRadioFoundation = mdc.radio.MDCRadioFoundation;
 ```
 
-#### Automatic Instantiation
+#### 自動的なインスタンス化
 
-If you do not care about retaining the component instance for the radio, simply call `attachTo()`
-and pass it a DOM element.
+ラジオボタンのコンポーネントインスタンスの保持に関して特に気にしないのであれば、単純に `attachTo()` に DOM 要素を渡して呼んでください。
 
 ```javascript
 mdc.radio.MDCRadio.attachTo(document.querySelector('.mdc-radio'));
 ```
 
-#### Manual Instantiation
+#### 手動でのインスタンス化
 
-Radios can easily be initialized using their default constructors as well, similar to `attachTo`.
+Radio はコンストラクタを使って `attachTo` と同様に簡単に初期化できます。
 
 ```javascript
 import {MDCRadio} from '@material/radio';
@@ -135,87 +129,74 @@ const radio = new MDCRadio(document.querySelector('.mdc-radio'));
 
 #### MDCRadio API
 
-Similar to regular DOM elements, the `MDCRadio` functionality is exposed through accessor
-methods.
+通常の DOM 要素と同様に、アクセサメソッドを通じて `MDCRadio` の機能が公開されています。
 
 ##### MDCRadio.checked
 
-Boolean. Proxies to the foundation's `isChecked`/`setChecked` methods when retrieved/set
-respectively.
+真偽値。取得/設定の際のファンデーションの `isChecked`/`setChecked` メソッドをプロキシする。
 
 ##### MDCRadio.disabled
 
-Boolean. Proxies to the foundation's `isDisabled/setDisabled` methods when retrieved/set
-respectively.
+真偽値。取得/設定の際のファンデーションの `isDisabled/setDisabled` メソッドをプロキシする。
 
 ##### MDCRadio.value
 
-String. Proxies to the foundation's `getValue/setValue` methods when retrieved/set
-respectively.
+真偽値。取得/設定の際のファンデーションの `getValue/setValue` メソッドをプロキシする。
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-Since MDC Radio is primarily driven by its native control, the adapter API is extremely simple.
+MDC Radio は主にネイティブなコントロールに基づき動作するので、アダプタ API は極めて単純です。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `getNativeControl() => HTMLInputElement?` | Returns the native radio control, if available. Note that if this control is not available, the methods that rely on it will exit gracefully.|
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
+| `getNativeControl() => HTMLInputElement?` | 利用できる状態であればネイティブなチェックボックスコントロールを返す。コントロールが利用できない状態であれば、直ちにそれに依存するメソッドは終了する。 |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 
 
-#### The full foundation API
+#### 完全なファンデーション API
 
 ##### MDCRadioFoundation.isChecked() => boolean
 
-Returns the value of `adapter.getNativeControl().checked`. Returns `false` if `getNativeControl()`
-does not return an object.
+`adapter.getNativeControl().checked` の値を返します。`getNativeControl()` がオブジェクトを返さないときは `false` を返します。
 
 ##### MDCRadioFoundation.setChecked(checked: boolean) => void
 
-Sets the value of `adapter.getNativeControl().checked`. Does nothing if `getNativeControl()` does
-not return an object.
+`adapter.getNativeControl().checked` の値を設定します。`getNativeControl()` がオブジェクトを返さないときは何もしません。
 
 ##### MDCRadioFoundation.isDisabled() => boolean
 
-Returns the value of `adapter.getNativeControl().disabled`. Returns `false` if `getNativeControl()`
-does not return an object.
+`adapter.getNativeControl().disabled` の値を返します。`getNativeControl()` がオブジェクトを返さないときは `false` を返します。
 
 ##### MDCRadioFoundation.setDisabled(disabled: boolean) => void
 
-Sets the value of `adapter.getNativeControl().disabled`. Also adds/removes the `mdc-radio--disabled`
-class based whether or not `disabled` is true. Gracefully handles the absence of a return value of
-`getNativeControl()`.
+`adapter.getNativeControl().disabled` の値を設定します。`disabled` が true かどうかに応じて `mdc-radio--disabled` クラスを追加/削除もします。`getNativeControl()` の戻り値がなくても正常に処理がなされます。
 
 ##### MDCRadioFoundation.getValue() => string
 
-Returns the value of `adapter.getNativeControl().value`. Returns `null` if `getNativeControl()`
-does not return an object.
+`adapter.getNativeControl().value` の値を返します。`getNativeControl()` がオブジェクトを返さないときは `null` を返します。
 
 ##### MDCRadioFoundation.setValue(value: string) => void
 
-Sets the value of `adapter.getNativeControl().value`. Does nothing if `getNativeControl()` does
-not return an object.
+`adapter.getNativeControl().value` の値を設定します。`getNativeControl()` がオブジェクトを返さないときは何もしません。
 
-## Theming
+## テーマ
 
-MDC Radios use the theme's secondary color by default for checked states, and are completely dark theme aware.
+MDC Radio はデフォルトではチェックの状態の表示にテーマのセカンダリカラーを使い、ダークテーマも完全に認識します。
 
-### Sass Mixins
+### Sass ミキシン
 
-The following mixins apply only to _enabled_ radio buttons. It is not currently possible to customize the color of a _disabled_ radio button.
+以下のミキシンは <em>有効な</em> ラジオボタンにのみ適用されます。現在、<em>無効な</em> ラジオボタンの色をカスタマイズすることはできません。
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-radio-unchecked-stroke-color($color)` | Sets the stroke color of an unchecked radio
-`mdc-radio-checked-stroke-color($color)` | Sets the stroke color of a checked radio
-`mdc-radio-ink-color($color)` | Sets the ink color
-`mdc-radio-focus-indicator-color($color)` | Sets the color of the focus indicator
+`mdc-radio-unchecked-stroke-color($color)` | チェックされていないラジオボタンの枠線の色を設定する。
+`mdc-radio-checked-stroke-color($color)` | チェックされているラジオボタンの枠線の色を設定する。
+`mdc-radio-ink-color($color)` | インクの色を設定する。
+`mdc-radio-focus-indicator-color($color)` | フォーカス時のインジケータの色を設定する。
 
-The ripple effect for the Radio Button component is styled using [MDC Ripple](../mdc-ripple) mixins.
+Radio Button コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
-### Caveat: Edge and CSS Variables
+### 注意: Edge と CSS 変数
 
-In browsers that fully support CSS variables, MDC Radio references CSS variables wherever theme properties are used.
-However, due to Edge's buggy CSS variable support, the `background-color` for `.mdc-radio__background::before` will not honor CSS variables in Edge.
-This means you will need to override this style manually for Edge if you alter the CSS variable for the primary color.
+CSS 変数を完全にサポートしているブラウザでは、MDC Radio はテーマプロパティが使用されているすべてのところで CSS 変数を参照します。しかし、Edge の CSS 変数サポートのバグのため、Edge では `.mdc-radio__background::before` の `background-color` に CSS 変数が利用されません。もし、プライマリカラー（訳注: 原文で primary color となっているがセカンダリカラーの誤り）の CSS 変数を変更したいのであれば Edge のためにスタイルを手動で上書きする必要がある、ということをこれは意味しています。

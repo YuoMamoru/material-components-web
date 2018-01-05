@@ -113,7 +113,7 @@ npm install --save @material/checkbox
 
 チェックボックスの状態を切り替える際に、マテリアルデザインモーションに完全に準拠したチェックボックスの状態変化を段階的な行う コンポーネント / ファンデーション の組み合わせが MDC Checkbox には付属しています。
 
-#### コードでのインクルード
+#### コードへのインクルード
 
 ##### ES2015
 
@@ -147,7 +147,7 @@ const MDCCheckboxFoundation = mdc.checkbox.MDCCheckboxFoundation;
 
 #### 自動的なインスタンス化
 
-チェックボックスのコンポーネントのインスタンスの保持に関して特に気にしないのであれば、単純に `attachTo()` に DOM 要素を渡して呼んでください。
+チェックボックスのコンポーネントインスタンスの保持に関して特に気にしないのであれば、単純に `attachTo()` に DOM 要素を渡して呼んでください。
 
 ```javascript
 mdc.checkbox.MDCCheckbox.attachTo(document.querySelector('.mdc-checkbox'));
@@ -155,7 +155,7 @@ mdc.checkbox.MDCCheckbox.attachTo(document.querySelector('.mdc-checkbox'));
 
 #### 手動でのインスタンス化
 
-Checkboxe はコンストラクタを使って `attachTo` と同様に簡単に初期化できます。
+Checkbox はコンストラクタを使って `attachTo` と同様に簡単に初期化できます。
 
 ```javascript
 import {MDCCheckbox} from '@material/checkbox';
@@ -246,7 +246,7 @@ MDC Checkbox はデフォルトでは「マーク」状態（チェックもし�
 --- | ---
 `mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-fill-color, $generate-keyframes)` | チェックボックスの枠線と塗りの色の設定とアニメーションのための CSS クラスを生成する。
 `mdc-checkbox-ink-color($color)` | チェックと未確定のアイコンのインクの色を設定する。
-`mdc-checkbox-focus-indicator-color($color)` | フォーカス時のインジケータの色を設定します。
+`mdc-checkbox-focus-indicator-color($color)` | フォーカス時のインジケータの色を設定する。
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
