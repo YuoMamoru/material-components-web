@@ -238,14 +238,14 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 
 メソッド | 説明
 --- | ---
-`isDisabled() => boolean` | input 要素が無効かどうかを返します。
-`setDisabled(disabled: boolean) => void` | input 要素の無効かどうか状態を更新します。
-`setValid(isValid: boolean) => void` | テキスト欄の妥当性の状態を設定します。カスタム妥当性を検証するトリガーになります。
-`handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理します。
-`activateFocus() => void` | Text Field をフォーカス状態にします。通常は input の focus イベントの処理中に呼ばれます。
-`deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にします。通常は input の blur イベントの処理中に呼ばれます。
-`handleBottomLineAnimationEnd(evt: Event) => void` | ボトムラインのアニメーションの終了処理を行い、アニメーションが終わるまで待たなくてはいけない処理を実行します。transition-end イベントの処理を想定しています。
-`setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定します。
-`updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新します。
+`isDisabled() => boolean` | input 要素が無効かどうかを返す。
+`setDisabled(disabled: boolean) => void` | input 要素の無効かどうか状態を更新する。
+`setValid(isValid: boolean) => void` | テキスト欄の妥当性の状態を設定する。カスタム妥当性を検証するトリガーになる。
+`handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理する。
+`activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
+`deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
+`handleBottomLineAnimationEnd(evt: Event) => void` | ボトムラインのアニメーションの終了処理を行い、アニメーションが終わるまで待たなくてはいけない処理を実行する。transition-end イベントの処理を想定している。
+`setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
+`updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新する。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ボトムライン、ヘルプテキスト、アイコン、ラベル、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
