@@ -15,28 +15,26 @@ path: /catalog/input-controls/switches/
   </a>
 </div>-->
 
-The MDC Switch component is a spec-aligned switch component adhering to the
-[Material Design Switch requirements](https://material.io/guidelines/components/selection-controls.html#selection-controls-switch).
-It works without JavaScript.
+MDC Switch コンポーネントは [マテリアルデザインスイッチ要件](https://material.io/guidelines/components/selection-controls.html#selection-controls-switch) に準拠したスイッチコンポーネントです。JavaScript を使わなくても動作します。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/selection-controls.html#selection-controls-switch">Material Design guidelines: Switches</a>
+    <a href="https://material.io/guidelines/components/selection-controls.html#selection-controls-switch">マテリアルデザインガイドライン: スイッチ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/switch.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/switch.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/switch
 ```
 
-## Usage
+## 使用法
 
 ```html
 <div class="mdc-switch">
@@ -48,7 +46,7 @@ npm install --save @material/switch
 <label for="basic-switch" class="mdc-switch-label">off/on</label>
 ```
 
-### Disabled
+### 無効なスイッチ
 ```html
 <div class="mdc-switch">
   <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" disabled />
@@ -59,19 +57,18 @@ npm install --save @material/switch
 <label for="another-basic-switch" class="mdc-switch-label">off/on</label>
 ```
 
-### Classes
+### クラス
 
-#### Block
+#### ブロック
 
-The block class is `mdc-switch`. This defines the top-level switch element.
+ブロッククラスは `mdc-switch` です。これはトップレベルのスイッチ要素で定義されます。
 
-### Sass Mixins
+### Sass ミキシン
 
-The following mixins apply only to _enabled_ switches in the _on_ (checked) state.
-It is not currently possible to customize the color of a _disabled_ or _off_ (unchecked) switch.
+以下のミキシンは <em>有効な</em>  _on_ （チェック）状態のスイッチにのみ適用されます。現在、<em>無効</em> もしくは _off_ （チェックなし）の状態のスイッチの色をカスタマイズすることはできません。
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-switch-track-color($color)` | Sets the track color
-`mdc-switch-knob-color($color)` | Sets the knob color
-`mdc-switch-focus-indicator-color($color)` | Sets the focus indicator color
+`mdc-switch-track-color($color)` | トラックの色を設定する。
+`mdc-switch-knob-color($color)` | つまみの色を設定する。
+`mdc-switch-focus-indicator-color($color)` | フォーカス時のインジケータの色を設定する。
