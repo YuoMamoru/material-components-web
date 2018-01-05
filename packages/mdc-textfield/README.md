@@ -81,11 +81,10 @@ npm install --save @material/textfield
 <label for="text-field-no-js">TextField with no JS: </label>
 <div class="mdc-text-field">
   <input type="text" id="text-field-no-js" class="mdc-text-field__input" placeholder="Hint text">
-  <div class="mdc-text-field__bottom-line"></div>
 </div>
 ```
 
-> <em>注意</em>: <em> `mdc-text-field--box` を使い、かつ、JavaScript を使わないときは</em> `mdc-text-field` の内側に `mdc-text-field__bottom-line` を使わないでください。ボトムラインはボックス型のテキスト欄の DOM 構造の一部として入れてはいけません。
+> <em>注意</em>: <em>JavaScript を使用せず、 `mdc-text-field--box` もしくは `mdc-text-field--outlined` を使うときは</em> `mdc-text-field` の内側に `mdc-text-field__bottom-line`、`mdc-text-field__outline`、`mdc-text-field__idle-outline` を使わないでください。ボトムラインとアウトラインは CSS のみによるテキスト欄の DOM 構造の一部として入れてはいけません。
 
 ```html
 <label for="css-only-text-field-box">Your name:</label>
@@ -215,6 +214,7 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 --- | ---
 `addClass(className: string) => void` | ルート要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`hasClass(className: string) => boolean` | ルート要素に与えられたクラス名が含まれているときに true を返す。
 `registerTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素に与えたイベントのイベントハンドラを登録する。
 `deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
 `registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素に与えたイベントのイベントリスナを登録する。
