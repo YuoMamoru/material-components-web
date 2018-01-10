@@ -11,7 +11,7 @@ path: /catalog/theme/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/theme.html">
+     href="https://material-components-web.appspot.com/theme/index.html">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/themes.png" width="241" alt="Themes screenshot">
   </a>
 </div>-->
@@ -45,7 +45,7 @@ MDC Theme は MDC Web コンポーネントのテーマを表現する基盤と�
     <a href="https://material.io/guidelines/style/color.html">マテリアルデザインガイドライン: カラー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/theme.html">デモ</a>
+    <a href="https://material-components-web.appspot.com/theme/index.html">デモ</a>
   </li>
 </ul>
 

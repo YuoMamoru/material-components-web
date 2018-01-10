@@ -11,7 +11,7 @@ path: /catalog/input-controls/text-field/
 <!--<div class="article__asset">
   <a class="article__asset-link"
      href="https://material-components-web.appspot.com/text-field.html">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/text-fields.png" width="240" alt="Text fields screenshot">
+    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/textfields.png" width="240" alt="Text fields screenshot">
   </a>
 </div>-->
 
@@ -233,7 +233,6 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `registerBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素に与えたイベントのイベントリスナを登録する。
 `deregisterBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素から与えたイベントのイベントリスナの登録を解除する。
 `getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
-`getIdleOutlineStyleValue(propertyName: string) => string` | `propertyName` に与えられた CSS プロパティ値を計算して返す。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
 
