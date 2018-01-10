@@ -15,30 +15,28 @@ path: /catalog/buttons/icon-toggle-buttons/
   </a>
 </div>-->
 
-MDC Icon Toggle provides a Material Design icon toggle button. It is fully accessible, and is
-designed to work with any icon set.
+MDC Icon Toggle はマテリアルデザインのアイコン切り替えボタンを提供します。これは完全にアクセス可能で、どのようなアイコンセットでも動作するように設計されています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons">Material Design guidelines: Toggle buttons</a>
+    <a href="https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons">マテリアルデザインガイドライン: 切り替えボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/icon-toggle.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/icon-toggle.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/icon-toggle
 ```
 
-## Usage
+## 使用法
 
-In order to use MDC Icon Toggle, you will need to import an icon set, such as
-[Material Icons](https://design.google.com/icons/) or [Font Awesome](http://fontawesome.io/).
+MDC Icon Toggle を使うには [Material Icons](https://design.google.com/icons/) や [Font Awesome](http://fontawesome.io/) のようなアイコンセットをインポートする必要があります。
 
 ```html
 <i class="mdc-icon-toggle material-icons" role="button" aria-pressed="false"
@@ -49,7 +47,7 @@ In order to use MDC Icon Toggle, you will need to import an icon set, such as
 </i>
 ```
 
-Then in JS
+JS では次のようにします。
 
 ```js
 import {MDCIconToggle} from '@material/icon-toggle';
@@ -57,18 +55,13 @@ import {MDCIconToggle} from '@material/icon-toggle';
 MDCIconToggle.attachTo(document.querySelector('.mdc-icon-toggle'));
 ```
 
-Note that you can access `MDCIconToggle` via CommonJS/AMD using the `default` property of the
-`require`d object, as well as globally via `mdc.IconToggle`.
+CommonJS/AMD の使用を通じて `require` なオブジェクトの `default` プロパティを使って `MDCIconToggle` にアクセスする以外に、グローバルな `mdc.IconToggle` を通じてアクセスすることもできます。
 
-Also note that you may omit the initial `aria-label` attribute and `favorite_border` content since
-they will be added by the component. However, we recommend adding to prevent an initial flash of
-un-styled content.
+初期化時の `aria-label` 属性と `favorite_border` コンテンツは省略することもできます。これはコンポーネントがそれらを追加するからです。しかし、最初にスタイルの設定されていないコンテンツが表示されてしまうことを防ぐためにつけることをお勧めします。
 
-### Using with Font Awesome and similar libraries
+### Font Awesome や類似したライブラリとともに使用
 
-Font Awesome - as well as other popular icon font libraries - use pseudo-elements in order to
-provide the icon, via the `content` property. However, MDC-Web uses pseudo-elements for ripple styles.
-In order to get around this, you can nest the icon itself inside the icon toggle.
+Font Awesome - それ以外のポピュラーなアイコンフォントライブラリでも同じですが - はアイコンを提供するために `content` プロパティを通じて疑似要素を使っています。しかし、MDC-Web はリップルスタイルのために疑似要素を使用しています。この問題を回避するため、アイコンをアイコン切り替えボタンの内側にネストすることができます。
 
 ```html
 <span class="mdc-icon-toggle" role="button" aria-pressed="false"
@@ -80,26 +73,19 @@ In order to get around this, you can nest the icon itself inside the icon toggle
 </span>
 ```
 
-`data-icon-inner-selector` tells MDCIconToggle to look for an element within itself that matches
-that selector, and treat it as the element containing the icon. Also note the `aria-hidden`
-attribute on the icon. This is important to ensure that screen readers produce the correct output
-when reading this element.
+`data-icon-inner-selector` は MDCIconToggle にその属性値と一致するセレクタを持つ要素を探し、アイコンを含んだ要素として扱うよう、指示します。アイコン上の `aria-hidden` 属性にも注目してください。これは要素を描画する際に、スクリーンリーダーが適切な出力を生成することを保証するために重要です。
 
-### Configuring the icon toggle states
+### アイコン切り替え状態の設定
 
-Note the use of `data-toggle-on` and `data-toggle-off` in the above examples. When an MDCIconToggle
-instance is toggled, it looks at this data to determine how to update the element. This is what
-allows MDCIconToggle to be so flexible. The `data-toggle-on` configuration will be used when the is
-MDCIconToggle is toggled on, and vice versa for `data-toggle-off`. Both data attributes are encoded
-as JSON and can contain the following properties:
+上のサンプルで `data-toggle-on` と `data-toggle-off` の使い方に注意してください。MDCIconToggle インスタンスを切り替える際、どのように要素を更新するかを決めるためにこのデータが参照されます。これにより MDCIconToggle は柔軟性を持つことができます。`data-toggle-on` の設定は MDCIconToggle の切り替えがオンの時に使われ、`data-toggle-off` は逆のケースで使われます。双方の data 属性は JSON にエンコードされます。この属性には以下のプロパティを含めることができます。
 
-Property | Description
+プロパティ | 説明
 --- | ---
-`label` | The value to apply to the element's "aria-label" attribute.
-`content` | The text content to set on the element. Note that if an inner icon is used, the text content will be set on that element instead.
-`cssClass` | A css class to apply to the icon element for the given toggle state. The same rules regarding inner icon elements described for `content` apply here as well.
+`label` | 要素の aria-label 属性に適用する値。
+`content` | 要素に設定するテキストコンテンツ。内部にアイコンを使用しているなら、代わりにテキストコンテンツがその要素に設定されることに注意。
+`cssClass` | 与えられた切り替え状態のアイコン要素に適用される CSS クラス。`content` に適用されたものと同じルールが内部のアイコン要素にして適用される。
 
-### Disabled icon toggles
+### 無効になったアイコン切り替え
 
 ```html
 <i class="material-icon mdc-icon-toggle mdc-icon-toggle--disabled"
@@ -107,14 +93,11 @@ Property | Description
    data-toggle-on='{"content": "favorite"}' data-toggle-off='{"content": "favorite_border"}'></i>
 ```
 
-### Listening for change events
+### 変更イベントの取得
 
-`MDCIconToggle` emits an `MDCIconToggle:change` custom event when the value of the icon toggle
-changes _as a result of user input_. This decision was made to align with how `change` events work
-for normal inputs. In addition, these events do not bubble and cannot be cancelled.
+<em>ユーザの操作により</em> アイコン切り替えの値が変わったときに、`MDCIconToggle` は `MDCIconToggle:change` カスタムイベントを発生させます。通常の入力における `change` イベントと連携して動作します。加えて、これらのイベントはバブリングせず、キャンセルもできません。
 
-The custom event's `detail` object contains a property `isOn` denoting whether or not the component
-is toggled on.
+カスタムイベントの `detail` オブジェクトはコンポーネントがオンになっているかどうかを示す `isOn` プロパティを持っています。
 
 ```js
 const iconEl = document.querySelector('.mdc-icon-toggle');
@@ -124,104 +107,82 @@ iconEl.addEventListener('MDCIconToggle:change', ({detail}) => {
 });
 ```
 
-### Refreshing the toggle data via the vanilla component.
+### 素のコンポーネントを通じての切り替えのリフレッシュ
 
-When the icon toggle is initialized, the `data-toggle-on` and `data-toggle-off` attributes are
-cached to prevent redundant JSON parsing whenever the element is interacted with. However, if you
-need to, you can call `refreshToggleData()`:
+アイコン切り替えを初期化した際に、要素の相互作用時に冗長な JSON の解析を避けるために `data-toggle-on` と `data-toggle-off` 属性はキャッシュされます。しかし、必要であれば `refreshToggleData()` を呼ぶことも可能です。
 
 ```js
 iconToggle.refreshToggleData();
 ```
 
-This simply forwards a call to the foundation's `refreshToggleData()` method, causing the
-`data-toggle-*` attributes to be re-parsed and updated.
+これは単純にファンデーションの `refreshToggleData()` メソッド呼び出しをするだけで、`data-toggle-*` 属性を再び解析し、更新します。
 
-This method is useful for frameworks that incrementally render DOM. If an icon toggle's data
-attributes change, the component needs a way to update itself. This is the reason why this method is
-exposed on the foundation, and simply proxied by the vanilla component.
+このメソッドは DOM を漸進的に描画していくフレームワークにとって有益です。アイコン切り替えのデータ属性が変わる際に、コンポーネントは自身を更新する方法が必要になります。このメソッドがファンデーション上で公開され、単純に素のコンポーネントによってプロキシされる理由のはそのためです。
 
 ### MDCIconToggle API
 
-Similar to regular DOM elements, the `MDCIconToggle` functionality is exposed through accessor
-methods.
+通常の DOM 要素と同様に `MDCIconToggle` の機能はアクセサメソッドを通じて公開されています。
 
 #### MDCIconToggle.on
 
-Boolean. Returns whether or not the icon toggle is currently toggled on. Setting this property
-will update the toggle state.
+真偽値。現在、アイコン切り替えがオンになっているかどうかを返します。このプロパティを設定すると切り替えの状態が更新されます。
 
 #### MDCIconToggle.disabled
 
-Boolean. Returns whether or not the icon toggle is currently disabled. Setting this property will
-update the disabled state.
+真偽値。現在、アイコン切り替えが無効になっているかどうかを返します。このプロパティを設定すると無効かどうかの状態が更新されます。
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-MDCIconToggle ships with an `MDCIconToggleFoundation` class that external frameworks and libraries
-can use to build their own MDCIconToggle components with minimal effort. As with all foundation
-classes, an adapter object must be provided. The adapter for icon toggles must provide the following
-functions, with correct signatures:
+最小限の労力で自身の MDCIconToggle コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCIconToggleFoundation` クラスが MDCIconToggle には付属しています。すべてのファンデーションクラスと同様に、アダプタオブジェクトを提供しなくてはなりません。アイコン切り替えのアダプタは以下の関数を提供しなくてはなりません。
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the root element, or the inner icon element.
-`removeClass(className: string) => void` | Removes a class from the root element, or the inner icon element.
-`registerInteractionHandler(type: string, handler: EventListener) => void` | Registers an event handler for an interaction event, such as `click` or `keydown`.
-`deregisterInteractionHandler(type: string, handler: EventListener) => void` | Removes an event handler for an interaction event, such as `click` or `keydown`.
-`setText(text: string) => void` | Sets the text content of the root element, or the inner icon element.
-`getTabIndex() => number` | Returns the tab index of the root element.
-`setTabIndex(tabIndex: number) => void` | Sets the tab index of the root element.
-`getAttr(name: string) => string` | Returns the value of the attribute `name` on the root element. Can also return `null`, similar to `getAttribute()`.
-`setAttr(name: string, value: string) => void` | Sets the attribute `name` to `value` on the root element.
-`rmAttr(name: string) => void` | Removes the attribute `name` on the root element.
-`notifyChange(evtData: {isOn: boolean}) => void` | Broadcasts a change notification, passing along the `evtData` to the environment's event handling system. In our vanilla implementation, Custom Events are used for this.
+`addClass(className: string) => void` | ルート要素、もしくは内部のアイコン要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素、もしくは内部のアイコン要素からクラスを削除する。
+`registerInteractionHandler(type: string, handler: EventListener) => void` | `click` や `keydown` のようなインタラクションイベントのためのイベントハンドラを登録する。
+`deregisterInteractionHandler(type: string, handler: EventListener) => void` | `click` や `keydown` のようなインタラクションイベントのためのイベントハンドラの登録を解除する。
+`setText(text: string) => void` | ルート要素、もしくは内部のアイコン要素のテキストコンテンツを設定する。
+`getTabIndex() => number` | ルート要素のタブインデックスを返す。
+`setTabIndex(tabIndex: number) => void` | ルート要素のタブインデックスを設定する。
+`getAttr(name: string) => string` | ルート要素の `name` に指定した属性の値を返す。`getAttribute()` と同様に `null` を返すこともできる。
+`setAttr(name: string, value: string) => void` | ルート要素の `name` に指定した属性に `value` の値を設定する。
+`rmAttr(name: string) => void` | ルート要素の `name` に指定した属性を削除する。
+`notifyChange(evtData: {isOn: boolean}) => void` | 変更の通知を受け取り、環境のイベントハンドリンクシステムに `evtData` を伝達する。素の実装ではこのメソッドのためにカスタムイベントが使用される。
 
-#### Adapter implementer considerations
+#### アダプタの実装者の考慮事項
 
-If you are writing your own adapter, one thing that needs to be considered is the use of
-`data-icon-inner-selector`. This is handled by us at the _component_ level, which means our
-foundation is completely unaware of it. To that end, if your framework's Icon Toggle support inner
-icon elements, you must ensure that `addClass`, `removeClass`, and `setText` apply to the correct
-icon element.
+あなたが独自のアダプタを作成する際に考慮すべきことの一つは `data-icon-inner-selector` の使用についてです。これは <em>コンポーネント</em> のレベルで処理されます。このことは、ファンデーションは完全にこれを関知しないということを意味します。そのため、あなたのフレームワークの Icon Toggle が内部のアイコン要素を持っているなら、`addClass` と `removeClass`、`setText` はアイコン要素に対して作用することを保証しなくはなりません。
 
-Also note that _ripples require their own foundation at the component level_. Check out our vanilla
-implementation in `index.js` as a starting point.
+<em>リップルはコンポーネントレベルで独自のファンデーションを必要とする</em> ことにも注意が必要です。出発点として `index.js` における私たちの素の実装を確かめてください。
 
-#### Full foundation API
+#### 完全なファンデーション API
 
 ##### MDCIconToggleFoundation.refreshToggleData() => void
 
-As described above, the `data-toggle-*` attributes are cached so as not to have to perform redundant
-parsing. If your framework performs incremental rendering, and these attributes change without
-re-rendering the component itself, you can call this method to re-parse the data attributes and keep
-the foundation updated.
+前述の通り、`data-toggle-*` 属性は冗長な解析を行わないようにキャッシュされます。あなたのフレームワークが漸進的な描画をしており、かつこれらの属性はコンポーネント自身を再描画せずに変更されているなら、data 属性を再解析してファンデーションを最新の状態に保つためにこのメソッドを呼ぶことができます。
 
 ##### MDCIconToggleFoundation.isOn() => boolean
 
-Returns true if the foundation's state is toggled on, false otherwise.
+ファンデーションの状態がオンになっているときは true を返し、それ以外の場合は false を返します。
 
 ##### MDCIconToggleFoundation.toggle(isOn: boolean = !this.isOn()) => void
 
-Toggles the foundation's state, updating the component via the adapter methods. Defaults to the
-toggling the opposite of the current state if no argument given. If an argument is given, will
-toggle on if true, off if false.
+ファンデーションの状態を切り替え、アダプタメソッドを通じてコンポーネントを更新します。引数が与えられていないときは、現在の状態の反対の状態にします。引数が与えられているときは、true ならオンに、false ならオフにします。
 
 ##### MDCIconToggleFoundation.isDisabled() => boolean
 
-Returns true if the foundation's state is disabled, false otherwise.
+ファンデーションが無効の状態なら true を返し、そうでないときは false を返します。
 
 ##### MDCIconToggleFoundation.setDisabled(isDisabled: boolean) => void
 
-Enables / disables the foundation's state, updating the component via the adapter methods.
+ファンデーションの状態を有効または無効にし、アダプタメソッドを通じてコンポーネント更新します。
 
 ##### MDCIconToggleFoundation.isKeyboardActivated() => boolean
 
-Returns true if the foundation is currently activated by a keyboard event, false otherwise.
-Useful for MDCRippleFoundation's `isSurfaceActive()` adapter method.
+ファンデーションが現状、キーボードイベントを有効にしていれば true を返し、そうでなければ false を返します。MDCRippleFoundation の `isSurfaceActive()` アダプタメソッドで役立ちます。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-icon-toggle-ink-color($color)` | Sets the ink color of the icon toggle
+`mdc-icon-toggle-ink-color($color)` | アイコン切り替えのインク色を設定する。
