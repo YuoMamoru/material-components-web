@@ -16,33 +16,29 @@ path: /catalog/grid-lists/
   </a>
 </div>-->
 
-MDC Grid List provides a RTL-aware Material Design Grid list component adhering to the
-[Material Design Grid list spec](https://material.io/guidelines/components/grid-lists.html).
-Grid Lists are best suited for presenting homogeneous data, typically images.
-Each item in a grid list is called a **tile**. Tiles maintain consistent width, height, and padding
-across screen sizes.
+MDC Grid List は [マテリアルデザイングリッドリスト仕様](https://material.io/guidelines/components/grid-lists.html) に準拠した RTL 対応の マテリアルデザイングリッドリストコンポーネントです。グリッドリストは均質なデータ、典型的には画像、に最も適しています。グリッド内の各項目は **タイル** と呼ばれます。タイルは画面サイズに応じて一貫した幅、高さ、余白を維持します。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/grid-lists.html">Material Design guidelines: Grid lists</a>
+    <a href="https://material.io/guidelines/components/grid-lists.html">マテリアルデザインガイドライン: グリッドリスト</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/grid-list.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/grid-list.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/grid-list
 ```
 
 
-## Usage
+## 使用法
 
-Basic Grid list has the following structure:
+基本的なグリッドリストは以下の構造をしています。
 
 ```html
 <div class="mdc-grid-list">
@@ -67,25 +63,20 @@ Basic Grid list has the following structure:
 </div>
 ```
 
-The above markup will give you a Grid list of tiles that:
+上記のマークアップは以下のタイルによるグリッドリストを生成します。
 
-- Have 4px padding in between themselves
-- Have a 1x1 aspect ratio
-- Have a one-line footer caption with no icon
+- タイルの間隔は 4px
+- 1x1 のアスペクト比
+- アイコンのない 1 行のタイトルフッタ
 
-You just need to put the content you want to load in `src` of
-`<img class="mdc-grid-tile__primary-content" src="..."/>`. However, if your
-assets don't have the same aspect ratio you as specified in the tile, it will
-distort those assets. We provide a solution of that case in
-[Using a div in place of an img](#using-a-div-in-place-of-an-img) section.
+あとは `<img class="mdc-grid-tile__primary-content" src="..."/>` の `src` にロードしたいコンテンツを置くだけです。ただし、タイルに指定したアスペクト比と同じアスペクト比の画像を置かないと、画像はゆがんでしまします。[img の場所で div を使う](#using-a-div-in-place-of-an-img) の節ではこのような場合の解決方法を提供しています。
 
 
-### Setting the tile width
+### タイル幅の設定
 
-The tile width is set to 200px by default. There are three ways that you can
-overwrite the default value for your grid list:
+タイル幅はデフォルトで 200px に設定されています。グリッドリストのデフォルト値を変更する方法は 3 つあります。
 
-1. Using CSS variables
+1. CSS 変数の使用
 
   ```css
   .mdc-grid-tile {
@@ -93,16 +84,16 @@ overwrite the default value for your grid list:
   }
   ```
 
-2. Overwriting SCSS variable
+2. SCSS 変数の上書き
 
-  You can overwrite the scss variable by
+  次のように scss 変数を上書きできます。
 
   ```scss
   $mdc-grid-list-tile-width: 300px;
   @import "@material/grid-list/mdc-grid-list";
   ```
 
-3. Add own style to tile
+3. タイルに独自のスタイルを追加
 
   ```html
   <style>
@@ -118,10 +109,9 @@ overwrite the default value for your grid list:
   </div>
   ```
 
-### Change tile padding
+### タイルの余白の変更
 
-Grid list tiles can have 1px padding instead of 4px by adding
-`mdc-grid-list--tile-gutter-1` modifier.
+グリッドリストのタイルは `mdc-grid-list--tile-gutter-1` 修飾クラスを加えると 4px の代わりに 1px の余白になります。
 
 ```html
 <div class="mdc-grid-list mdc-grid-list--tile-gutter-1">
@@ -131,10 +121,9 @@ Grid list tiles can have 1px padding instead of 4px by adding
 </div>
 ```
 
-### Image only tile
+### 画像だけのタイル
 
-Grid lists support image only tile. You can remove `mdc-grid-tile__secondary`
-and create a image only grid list.
+グリッドリストは画像だけのタイルをサポートしています。`mdc-grid-tile__secondary` を削除して画像だけのグリッドリストを作ることができます。
 
 ```html
 <div class="mdc-grid-list mdc-grid-list--tile-gutter-1">
@@ -148,10 +137,9 @@ and create a image only grid list.
 </div>
 ```
 
-### Header caption
+### タイトルヘッダ
 
-Grid lists support header caption. You can change the footer caption to be a
-header caption by adding `mdc-grid-list--header-caption` modifier.
+グリッドリストはタイトルヘッダをサポートしています。`mdc-grid-list--header-caption` 修飾クラスを追加するだけでタイトルフッタをタイトルヘッダに変えることができます。
 
 ```html
 <div class="mdc-grid-list mdc-grid-list--header-caption">
@@ -161,11 +149,9 @@ header caption by adding `mdc-grid-list--header-caption` modifier.
 </div>
 ```
 
-### Add support text to secondary content (caption)
+### 副次的コンテンツ（説明文）に補助的な文言を追加
 
-Grid lists support a one-line caption by default. You can add an additional line of support
-text if needed by adding the `mdc-grid-list--twoline-caption` modifier and additional
-markup
+グリッドリストはデフォルトで 1 行の説明文を付けることができます。必要に応じて `mdc-grid-list--twoline-caption` 修飾クラスと追加のマークアップを加ることにより、補助的な文言の追加行を加えることができます。
 
 ```html
 <div class="mdc-grid-list mdc-grid-list--twoline-caption">
@@ -183,10 +169,9 @@ markup
 </div>
 ```
 
-### Add icon to secondary content (caption)
+### 副次的なコンテンツ（説明文）にアイコンを追加
 
-You can add an icon to a caption by adding `mdc-grid-list--with-icon-align-start` or
-`mdc-grid-list--with-icon-align-end` and changing the markup.
+`mdc-grid-list--with-icon-align-start` もしくは `mdc-grid-list--with-icon-align-end` を追加し、マークアップを変えると、アイコンを説明文に追加できます。
 
 ```html
 <div class="mdc-grid-list mdc-grid-list--with-icon-align-start">
@@ -204,9 +189,9 @@ You can add an icon to a caption by adding `mdc-grid-list--with-icon-align-start
 </div>
 ```
 
-### Change aspect ratio of tile
+### タイルのアスペクト比の変更
 
-Grid list tiles support all material guideline recommended aspect ratio:
+グリッドリストはマテリアルガイドラインで推奨されているすべてのアスペクト比に対応しています。
 
 - 1x1
 - 16x9
@@ -215,11 +200,10 @@ Grid list tiles support all material guideline recommended aspect ratio:
 - 4x3
 - 3x4
 
-You can use the modifier class `mdc-grid-list--tile-aspect-$ASPECT_RATIO` to apply these aspect
-ratios to your grid list. Simply replace `$ASPECT_RATIO` with any of the predefined ratios.
+グリッドリストにこれらのアスペクト比を適用するには修飾クラス `mdc-grid-list--tile-aspect-$ASPECT_RATIO` をを使います。単純に `$ASPECT_RATIO` を事前に定義された比率のいずれかに置き換えてください。
 
 ```html
-<!-- Example of 16x9 tile -->
+<!-- 16x9 のタイルの例 -->
 <div class="mdc-grid-list mdc-grid-list--tile-aspect-16x9">
   <ul class="mdc-grid-list__tiles">
   ...
@@ -227,16 +211,11 @@ ratios to your grid list. Simply replace `$ASPECT_RATIO` with any of the predefi
 </div>
 ```
 
-As pointed out in the previous section, if your
-assets don't have the same aspect ratio you as specified in the tile, it will
-distort those assets. We provide a solution of that case in
-[Using a div in place of an img](#using-a-div-in-place-of-an-img) section.
+前の節で指摘したとおり、タイルに指定したアスペクト比と同じアスペクト比の画像でない場合、画像はゆがんでしまします。[img の場所で div を使う](#using-a-div-in-place-of-an-img) の節ではこのような場合の解決方法を提供しています。
 
-### Using a div in place of an img
+### <a name="using-a-div-in-place-of-an-img"></a>img の場所で div を使う
 
-In case you cannot ensure all your assets will have the same aspect ratio, you
-can use `div` instead of `img` markup. It will resize the assets to cover the tile
-and crop the assets to display the center part.
+すべての画像が同じアスペクト比であることを保証できない場合には `img` のマークアップの代わりに `div` を使うことができます。これはタイルを隠すために画像をリサイズし、画像の端を切り取って中心部分を表示します。
 
 ```html
 <style>
@@ -258,34 +237,27 @@ and crop the assets to display the center part.
 </div>
 ```
 
-However, the method results in a less semantic markup, so we don't use this method by
-default.
+ただし、この方法はマークアップの意味が薄れるので、私たちはデフォルトではこの方法を使いません。
 
 
-### RTL Support
+### RTL のサポート
 
-`mdc-grid-list` is automatically RTL-aware, and will re-position elements whenever
-it, or its ancestors, have a `dir="rtl"` attribute.
+`mdc-grid-list` は自動的に RTL 対応がなされており、その要素もしくはその祖先の要素に `dir="rtl"` があれば要素は配置しなおされます。
 
 
-### Theme
+### テーマ
 
-`mdc-grid-list` supports theming. `mdc-grid-tile__primary` uses the theme's background
-color for its background color. `mdc-grid-tile__secondary` uses the theme's primary
-color for it's background color, and the theme's `text-primary-on-primary` color for its text color.
+`mdc-grid-list` はテーマをサポートしています。`mdc-grid-tile__primary` は自身の背景色にテーマのバックグランドカラーを使います。`mdc-grid-tile__secondary` は自身の背景色にテーマのプライマリカラーを使い、自身のテキストの色にはテーマの `text-primary-on-primary` を使います。
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-MDCGridList ships with an `MDCGridListFoundation` class that external frameworks and libraries
-can use to build their own MDCGridList components with minimal effort. As with all foundation
-classes, an adapter object must be provided. The adapter for Grid list must provide the following
-functions, with correct signatures:
+最小限の労力で独自の MDCGridList コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCGridListFoundation` クラスが MDCGridList には付属しています。すべてのファンデーションクラスと同様に、アダプタオブジェクトを提供しなくてはなりません。グリッドリストのアダプタは以下の関数を提供しなくてはなりません。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `getOffsetWidth() => number` | Get root element `mdc-grid-list` offsetWidth. |
-| `getNumberOfTiles() => number` | Get the number of mdc-grid-tile elements contained within the grid list. |
-| `getOffsetWidthForTileAtIndex(index: number) => number` | Get offsetWidth of `mdc-grid-tile` at specified index. |
-| `setStyleForTilesElement(property: string, value: number) => void` | Set `mdc-grid-list__tiles` style property to provided value. |
-| `registerResizeHandler(handler: Function) => void` | Registers a handler to be called when the surface (or its viewport) resizes. Our default implementation adds the handler as a listener to the window's `resize()` event. |
-| `deregisterResizeHandler(handler: Function) => void` | Unregisters a handler to be called when the surface (or its viewport) resizes. Our default implementation removes the handler as a listener to the window's `resize()` event. |
+| `getOffsetWidth() => number` | ルート要素 `mdc-grid-list` の offsetWidth を取得する。 |
+| `getNumberOfTiles() => number` | グリッドリストに含まれる mdc-grid-tile 要素の数を取得する。 |
+| `getOffsetWidthForTileAtIndex(index: number) => number` | 指定した index にある `mdc-grid-tile` の offsetWidth を取得する。 |
+| `setStyleForTilesElement(property: string, value: number) => void` | `mdc-grid-list__tiles` スタイルプロパティに指定した値を設定する。 |
+| `registerResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。 |
+| `deregisterResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。 |
