@@ -9,39 +9,36 @@ path: /catalog/tabs/
 
 # MDC Tabs
 
-The MDC Tabs component contains components which are used to create spec-aligned tabbed navigation components adhering to the
-[Material Design tabs guidelines](https://material.io/guidelines/components/tabs.html). These components are:
+MDC Tabs コンポーネントには [マテリアルデザインタブガイドライン](https://material.io/guidelines/components/tabs.html) に準拠したタブナビゲーションコンポーネントを作成するためのコンポーネントが含まれています。これらのコンポーネントは以下の通りです。
 
-- **mdc-tab**: The individual tab elements
-- **mdc-tab-bar**: The main component which is composed of `mdc-tab` elements
-- **mdc-tab-bar-scroller**: The component which controls the horizontal scrolling behavior of an `mdc-tab-bar` that overflows its container
+- **mdc-tab**: 個別のタブ要素
+- **mdc-tab-bar**: `mdc-tab` 要素で構成されるメインコンポーネント
+- **mdc-tab-bar-scroller**: コンテナからあふれた `mdc-tab-bar` で水平スクロールをコントロールするコンポーネント
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/tabs.html">Material Design guidelines: Tabs</a>
+    <a href="https://material.io/guidelines/components/tabs.html">マテリアルデザインガイドライン: タブ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="http://material-components-web.appspot.com/tabs.html">Demo</a>
+    <a href="http://material-components-web.appspot.com/tabs.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/tabs
 ```
 
-## Tabs usage
+## タブの使用
 
-`mdc-tab-bar` can be used as a CSS only component, or a more dynamic JavaScript
-component.
+`mdc-tab-bar` は CSS のみのコンポーネントとしても使用で可能であり、より動的な JavaScript コンポーネントとしても使用できます。
 
-There are also three different permutations of tab labels. These include text,
-icon-only, and text with icon. An example of each is available on the demo site.
+タブのラベルには3つの異なるタイプがあります。テキスト、アイコンのみ、そしてアイコン付きテキストです。それぞれの例はデモサイトで見ることができます。
 
-#### Tab Bar with text labels
+#### テキストラベルのタブ
 ```html
 <nav id="basic-tab-bar" class="mdc-tab-bar">
   <a class="mdc-tab mdc-tab--active" href="#one">Home</a>
@@ -51,7 +48,7 @@ icon-only, and text with icon. An example of each is available on the demo site.
 </nav>
 ```
 
-#### Tab Bar with icon labels
+#### アイコンラベルのタブ
 ```html
 <nav class="mdc-tab-bar mdc-tab-bar--icon-tab-bar">
   <a class="mdc-tab mdc-tab--active" href="#recents">
@@ -67,7 +64,7 @@ icon-only, and text with icon. An example of each is available on the demo site.
 </nav>
 ```
 
-#### Tab Bar with icon and text labels
+#### アイコンとテキストのラベルのタブ
 ```html
 <nav id="icon-text-tab-bar" class="mdc-tab-bar mdc-tab-bar--icons-with-text">
   <a class="mdc-tab mdc-tab--with-icon-and-text mdc-tab--active" href="#recents">
@@ -86,10 +83,9 @@ icon-only, and text with icon. An example of each is available on the demo site.
 </nav>
 ```
 
-#### RTL Support
+#### RTL のサポート
 
-Tab Bars will reverse the order of their tabs if they are placed within an
-ancestor element with attribute `dir="rtl"`.
+祖先の要素に属性 `dir="rtl"` をもつとき、Tab Bars はタブの順序を逆転します。
 
 ```html
 <html dir="rtl">
@@ -103,11 +99,9 @@ ancestor element with attribute `dir="rtl"`.
 </html>
 ```
 
-#### Dark Mode Support
+#### ダークモードのサポート
 
-Like other MDC-Web components, tabs support dark mode either when an
-`mdc-tab-bar--theme-dark` class is attached to the root element, or the element has
-an ancestor with class `mdc-theme--dark`.
+他の MDC-Web コンポーネントと同様に `mdc-tab-bar--theme-dark` クラスがルート要素にあるときか祖先の要素に `mdc-theme--dark` クラスがあるとき、タブはダークモードをサポートします。
 
 ```html
 <html class="mdc-theme--dark">
@@ -122,12 +116,11 @@ an ancestor with class `mdc-theme--dark`.
 ```
 
 
-### Dynamic view switching
+### 動的な表示の切り替え
 
-While facilitating the view switching is left up to the developer, the demo site
-provides a minimal example of how to do so using JavaScript, also shown below.
+表示の切り替えを容易にすることは開発者に託されていますが、デモサイトでは JavaScript を使用する方法の最小限の例を提供しています。以下にも示しておきます。
 
-#### Markup:
+#### マークアップ:
 ```html
 <section id="dynamic-demo-toolbar">
   <nav id="dynamic-tab-bar" class="mdc-tab-bar mdc-tab-bar--indicator-accent" role="tablist">
@@ -154,7 +147,7 @@ provides a minimal example of how to do so using JavaScript, also shown below.
 </section>
 ```
 
-#### Script:
+#### スクリプト:
 ```js
 var dynamicTabBar = window.dynamicTabBar = new mdc.tabs.MDCTabBar(document.querySelector('#dynamic-tab-bar'));
 var dots = document.querySelector('.dots');
@@ -211,25 +204,22 @@ dots.addEventListener('click', function (evt) {
 })
 ```
 
-### Sass Mixins
+### Sass ミキシン
 
-To customize the ink color of any part of the tab, use the following mixins. We recommend you apply these mixins within CSS selectors like `.foo-tab:not(.mdc-tab--active)` to select your inactive tabs, `foo-tab:hover` to select the hover state of your tabs, and `.foo-tab.mdc-tab--active` to select your active tabs.
+タブ部分のインクの色をカスタマイズするために以下のミキシンが使用できます。アクティブでないタブを選ぶには `.foo-tab:not(.mdc-tab--active)`、ホバー状態のセレクタには `foo-tab:hover`、アクティブなセレクタには `.foo-tab.mdc-tab--active` といった CSS セレクタを使用してこれらのミキシンを適用することを推奨します。
 
 #### `mdc-tab-ink-color`
-Use this mixin to set the color of all ink on the tab.
+タブのすべてのインクの色を設定するにはこのミキシンを使います。
 
 #### `mdc-tab-icon-ink-color`
-This mixin customizes the icon ink color.
+このミキシンはアイコンのインクの色をカスタマイズします。
 
 #### `mdc-tab-label-ink-color`
-This mixin customizes the label ink color.
+このミキシンはラベルのインクの色をカスタマイズします。
 
-### Using the CSS-Only Component
+### CSS のみのコンポーネントの使用
 
-`mdc-tab-bar` ships with css for styling a tab layout according to the Material
-Design spec. To use CSS only tab bars, simply use the available class names.
-Note the available `mdc-tab--active` modifier class. This is used to denote the
-currently active tab.
+`mdc-tab-bar` にはマテリアルデザイン仕様に準じたタブのレイアウトを整える CSS が付属しています。CSS のみのタブを使うには単に利用可能なクラス名を使うだけです。利用できる `mdc-tab--active` 修飾クラスに注意してください。これは現在アクティブになっているタブを表すのに使用します。
 
 ```html
 <nav class="mdc-tab-bar">
@@ -240,14 +230,12 @@ currently active tab.
 </nav>
 ```
 
-### Using the JavaScript Component
+### JavaScript コンポーネントの使用
 
-`mdc-tab-bar` ships with a Component/Foundation combo for ingesting instances of `mdc-tab` (a tab).
-`mdc-tab-bar` uses its `initialize()` method call a factory function which gathers and instantiates
-any tab elements that are children of the `mdc-tab-bar` root element.
+`mdc-tab-bar` には `mdc-tab`（タブ）のインスタンスを取り込むためのコンポーネントとファンデーションの組が付属しています。`mdc-tab-bar` は `initialize()` メソッド呼び出しを使い、ルート要素である `mdc-tab-bar` の子のタブ要素を収集し、インスタンス化するファクトリ関数を呼び出します。
 
 
-#### Including in code
+#### コードへのインクルード
 
 ##### ES2015
 
@@ -289,21 +277,17 @@ const MDCTabBar = mdc.tabs.MDCTabBar;
 const MDCTabBarFoundation = mdc.tabs.MDCTabBarFoundation;
 ```
 
-#### Automatic Instantiation
+#### 自動的なインスタンス化
 
-If you do not care about retaining the component instance for the tabs, simply
-call `attachTo()` and pass it a DOM element.
+タブのコンポーネントインスタンスの保持に関して特に気にしないのであれば、単純に `attachTo()` に DOM 要素を渡して呼んでください。
 
 ```javascript
 mdc.tabs.MDCTabBar.attachTo(document.querySelector('#my-mdc-tab-bar'));
 ```
 
-#### Manual Instantiation
+#### 手動でのインスタンス化
 
-Tabs can easily be initialized using their default constructors as well, similar
-to `attachTo`. This process involves a factory to create an instance of MDCTab
-from each tab Element inside of the `mdc-tab-bar` node during the initialization phase
-of `MDCTabBar`, e.g.:
+タブはデフォルトのコンストラクタを使って `attachTo` と同様に簡単に初期化できます。`MDCTabBar` の初期化フェーズ中に `mdc-tab-bar` ノードの内部の各タブ要素から MDCTab のインスタンスを生成する工程がこの過程には含まれています。例えば以下のようにします。
 
 ```html
 <nav id="my-mdc-tab-bar" class="mdc-tab-bar">
@@ -321,15 +305,15 @@ const tabBar = new MDCTabBar(document.querySelector('#my-mdc-tab-bar'));
 ```
 
 
-### Using the JavaScript Tab Bar Scroller Component
+### JavaScript Tab Bar Scroller コンポーネントの使用
 
-`mdc-tab-bar-scroller` ships with a Component/Foundation combo which wraps instances of `mdc-tab-bar`. `mdc-tab-bar-scroller` uses its `initialize()` method call a factory function which gathers and instantiates any tab bar elements that are children of the `mdc-tab-bar-scroller` root element.
+`mdc-tab-bar-scroller` には `mdc-tab-bar` のインスタンスをラップするコンポーネントとファンデーションの組が付属しています。`mdc-tab-bar-scroller` は `initialize()` メソッド呼び出しを使い、ルート要素である `mdc-tab-bar-scroller` の子の tab bar 要素を収集し、インスタンス化するファクトリ関数を呼び出します。
 
-The anatomy of `mdc-tab-bar-scroller` includes an instance of `mdc-tab-bar`, RTL-aware forward and back indicators which, when actioned on, move the tab bar left and right, and a scroll frame. The scroll frame is the parent element of the tab bar, and serves to mask the tabs in the tab bar when they overflow the available width.
+`mdc-tab-bar-scroller` の構造には `mdc-tab-bar` のインスタンス、RTL 対応の前方及び後方のインジケータとスクロールフレームが含まれています。インジケータは操作された際にタブバーを左右に動かします。スクロールフレームはタブバーの親要素で、利用可能な幅からタブバーがあふれたときにタブバーを隠す役割を担います。
 
 
 
-#### Including in code
+#### コードへのインクルード
 
 ##### ES2015
 
@@ -381,21 +365,17 @@ const MDCTabBarScroller = mdc.tabs.MDCTabBarScroller;
 const MDCTabBarScrollerFoundation = mdc.tabs.MDCTabBarScrollerFoundation;
 ```
 
-#### Automatic Instantiation
+#### 自動的なインスタンス化
 
-If you do not care about retaining the component instance for the tabs, simply
-call `attachTo()` and pass it a DOM element.
+タブのコンポーネントインスタンスの保持に関して特に気にしないのであれば、単純に `attachTo()` に DOM 要素を渡して呼んでください。
 
 ```javascript
 mdc.tabs.MDCTabBarScroller.attachTo(document.querySelector('#my-mdc-tab-bar-scroller'));
 ```
 
-#### Manual Instantiation
+#### 手動でのインスタンス化
 
-Tab Bar Scrollers can easily be initialized using their default constructors as well, similar
-to `attachTo`. This process involves a factory to create an instance of `MDCTabBar`
-from the `mdc-tab-bar` Element inside of the `mdc-tab-bar-scroller` node during the initialization phase
-of `MDCTabBarScroller`, e.g.:
+Tab Bar Scroller はデフォルトのコンストラクタを使って `attachTo` と同様に簡単に初期化できます。`MDCTabBarScroller` の初期化フェーズ中に `mdc-tab-bar-scroller` ノードの内部の `mdc-tab-bar` 要素から `MDCTabBar` のインスタンスを生成する工程がこの過程には含まれています。例えば以下のようにします。
 
 ```html
 <div id="my-mdc-tab-bar-scroller" class="mdc-tab-bar-scroller">
@@ -432,7 +412,7 @@ import {MDCTabBarScroller, MDCTabBarScrollerFoundation} from '@material/tabs';
 const tabBarScroller = new MDCTabBarScroller(document.querySelector('#my-mdc-tab-bar-scroller'));
 ```
 
-Tab Bar Scrollers can also instantiate any `mdc-tab-bar` from a DOM element on the fly using a built in factory function:
+Tab Bar Scroller は DOM 要素をもとにビルドインのファクトリ関数を使用して `mdc-tab-bar` をインスタンス化できます。
 
 ```js
 import {MDCTabBarScroller, MDCTabBarScrollerFoundation} from '@material/tabs';
@@ -442,224 +422,220 @@ const scrollerEl = document.querySelector('#my-mdc-tab-bar-scroller');
 
 const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 ```
-This will create an instance of MDC Tab Bar during the initialization phase of Tab Bar Scroller.
+これにより、Tab Bar Scroller の初期化フェーズ中に MDC Tab Bar のインスタンスが生成されます。
 
 
 ## Tab
 
-### Tab component API
+### Tab コンポーネント API
 
-#### Properties
+#### プロパティ
 
-| Property Name | Type | Description |
+| プロパティ | 型 | 説明 |
 | --- | --- | --- |
-| `computedWidth` | `number` | _(read-only)_ The width of the tab. |
-| `computedLeft` | `number` | _(read-only)_ The left offset of the tab. |
-| `isActive` | `boolean` | Whether or not the tab is active. Setting this makes the tab active. |
-| `preventDefaultOnClick` | `boolean` | Whether or not the tab will call `preventDefault()` on an event. Setting this makes the tab call `preventDefault()` on events. |
+| `computedWidth` | `number` | <em>（読み取り専用）</em> タブの幅。 |
+| `computedLeft` | `number` | <em>（読み取り専用）</em> タブの左側オフセット。 |
+| `isActive` | `boolean` | タブがアクティブかどうか。これを設定するとタブがアクティブになる。 |
+| `preventDefaultOnClick` | `boolean` | タブがイベント発生時に `preventDefault()` を呼び出せるかどうか。これを設定するとタブがイベント発生時に `preventDefault()` を呼び出せるようになる。 |
 
-### Tab Events
+### Tab イベント
 
 #### MDCTab:selected
 
-Broadcast when a user actions on the tab.
+タブ上でのユーザの操作を通知する。
 
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-MDC Tab ships with an `MDCTabFoundation` class that external frameworks and libraries can
-use to integrate the component. As with all foundation classes, an adapter object must be provided.
+外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabFoundation` クラスが MDC Tab には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
 
 
-### Adapter API
+### アダプタ API
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
-| `registerInteractionHandler(evt: string, handler: EventListener) => void` | Adds an event listener to the root element, for the specified event name. |
-| `deregisterInteractionHandler(evt: string, handler: EventListener) => void` | Removes an event listener from the root element, for the specified event name. |
-| `getOffsetWidth() => number` | Return the width of the tab |
-| `getOffsetLeft() => number` | Return distance between left edge of tab and left edge of its parent element |
-| `notifySelected() => {}` | Broadcasts an event denoting that the user has actioned on the tab |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+| `registerInteractionHandler(evt: string, handler: EventListener) => void` | ルート要素に指定したイベント名のためのイベントハンドラを登録する。 |
+| `deregisterInteractionHandler(evt: string, handler: EventListener) => void` | ルート要素から指定したイベント名のためのイベントハンドラの登録を解除する。 |
+| `getOffsetWidth() => number` | タブの幅を返す。 |
+| `getOffsetLeft() => number` | タブの左端から親要素の左端までの距離を返す。 |
+| `notifySelected() => {}` | ユーザがタブに対して起こしたアクションを示すイベントを通知する。 |
 
 
-### The full foundation API
+### 完全なファンデーション API
 
 #### MDCTabFoundation.getComputedWidth() => number
 
-Return the computed width for tab.
+タブの幅を計算して返します。
 
 #### MDCTabFoundation.getComputedLeft() => number
 
-Return the computed left offset for tab.
+タブの左側オフセットを計算して返します。
 
 #### MDCTabFoundation.isActive() => boolean
 
-Return true if tab is active.
+タブがアクティブなら true を返します。
 
 #### MDCTabFoundation.setActive(isActive = false) => void
 
-Set tab to active. If `isActive` is true, adds the active modifier class, otherwise removes it.
+タブをアクティブにします。`isActive` が true ならアクティブであることを表す修飾クラスを追加し、そうでないなら、修飾クラスを削除します。
 
 #### MDCTabFoundation.preventsDefaultOnClick() => boolean
 
-Return true if the tab prevents the default click action
+タブがデフォルトのクリックアクションを妨げているときに true を返します。
 
 #### MDCTabFoundation.setPreventDefaultOnClick(preventDefaultOnClick = false) => void
 
-Sets tabs `preventDefaultOnClick` property to the value of the `preventDefaultOnClick` argument passed.
+タブの `preventDefaultOnClick` プロパティに渡された `preventDefaultOnClick` 引数の値を設定します。
 
 #### MDCTabFoundation.measureSelf() => void
 
-Sets `computedWidth_` and `computedLeft_` for a tab.
+タブに `computedWidth_` と `computedLeft_` を設定します。
 
 
 ## Tab Bar
 
-### Tab Bar component API
+### Tab Bar コンポーネント API
 
-#### Properties
+#### プロパティ
 
-| Property Name | Type | Description |
+| プロパティ | 型 | 説明 |
 | --- | --- | --- |
-| `tabs` | `MDCTab[]` | _(read-only)_ An array of the tab bar's instances of MDC Tab. |
-| `activeTab` | `MDCTab` | The currently active tab. Setting this makes the tab active. |
-| `activeTabIndex` | `number` | The index of the currently active tab. Setting this makes the tab at the given index active. |
+| `tabs` | `MDCTab[]` | <em>（読み取り専用）</em> タブバーが所有する MDC Tab のインスタンスの配列。 |
+| `activeTab` | `MDCTab` | 現在アクティブなタブ。これを設定するとそのタブがアクティブになる。 |
+| `activeTabIndex` | `number` | 現在アクティブなタブのインデックス。これを設定すると与えられたインデックスの位置のタブがアクティブになる。 |
 
 #### MDCTabBar.layout() => void
 
-Proxies to the foundation's `layout()` method.
+ファンデーションの `layout()` メソッドの代替です。
 
-### Tab Bar Events
+### Tab Bar イベント
 
 #### MDCTabBar:change
 
-Broadcast when a user actions on a tab, resulting in a change in the selected tab.
+タブに対してユーザがアクションをしたときに通知をし、選択したタブの変更が行われます。
 
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-`mdc-tab-bar` ships with an `MDCTabBarFoundation` class that external frameworks
-and libraries can use to integrate the component. As with all foundation
-classes, an adapter object must be provided.
+外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarFoundation` クラスが `mdc-tab-bar` には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
 
 
-### Adapter API
+### アダプタ API
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
-| `bindOnMDCTabSelectedEvent() => void` | Adds `MDCTab:selected` event listener to root |
-| `unbindOnMDCTabSelectedEvent() => void` | Removes `MDCTab:selected` event listener from root |
-| `registerResizeHandler(handler: EventListener) => void` | Adds an event listener to the root element, for a resize event. |
-| `deregisterResizeHandler(handler: EventListener) => void` | Removes an event listener from the root element, for a resize event. |
-| `getOffsetWidth() => number` | Returns width of root element. |
-| `setStyleForIndicator(propertyName: string, value: string) => void` | Sets style property for indicator. |
-| `getOffsetWidthForIndicator() => number` | Returns width of indicator. |
-| `notifyChange(evtData: Object) => void` | Emits `MDCTabBar:change` event, passes evtData. |
-| `getNumberOfTabs() => number` | Returns number of tabs in MDC Tabs instance. |
-| `getActiveTab() => MDCTab` | Returns the instance of MDCTab that is currently active. |
-| `isTabActiveAtIndex(index: number) => boolean` | Returns true if tab at index is active. |
-| `setTabActiveAtIndex(index: number) => void` | Sets tab active at given index. |
-| `isDefaultPreventedOnClickForTabAtIndex(index: number) => boolean` | Returns true if tab does not prevent default click action. |
-| `setPreventDefaultOnClickForTabAtIndex(index: number, preventDefaultOnClick: boolean)` | Sets preventDefaultOnClick for tab at given index |
-| `measureTabAtIndex(index: number) => void` | sets measurements (width, left offset) for tab at given index. |
-| `getComputedWidthForTabAtIndex(index: number) => number` | Returns width of tab at given index. |
-| `getComputedLeftForTabAtIndex(index: number) => number` | Returns left offset of tab at given index. |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+| `bindOnMDCTabSelectedEvent() => void` | `MDCTab:selected` イベントのリスナーをルート要素に追加する。 |
+| `unbindOnMDCTabSelectedEvent() => void` | `MDCTab:selected` イベントのリスナーをルート要素から削除する。 |
+| `registerResizeHandler(handler: EventListener) => void` | ルート要素に resize イベントのイベントリスナーを追加する。 |
+| `deregisterResizeHandler(handler: EventListener) => void` | ルート要素から resize イベントのイベントリスナーを削除する。 |
+| `getOffsetWidth() => number` | ルート要素の幅を返す。 |
+| `setStyleForIndicator(propertyName: string, value: string) => void` | インジケータのスタイルプロパティを設定する。 |
+| `getOffsetWidthForIndicator() => number` | インジケータの幅を返す。 |
+| `notifyChange(evtData: Object) => void` | evtData を渡して `MDCTabBar:change` イベントを発生させる。 |
+| `getNumberOfTabs() => number` | MDC Tabs インスタンスのタブの番号を返す。 |
+| `getActiveTab() => MDCTab` | 現在アクティブな MDCTab のインスタンスを返す。 |
+| `isTabActiveAtIndex(index: number) => boolean` | index の位置にあるタブがアクティブなら true を返す。 |
+| `setTabActiveAtIndex(index: number) => void` | 与えられた index の位置のタブをアクティブにする。 |
+| `isDefaultPreventedOnClickForTabAtIndex(index: number) => boolean` | タブがデフォルトのクリックアクションを妨げないなら true を返す。 |
+| `setPreventDefaultOnClickForTabAtIndex(index: number, preventDefaultOnClick: boolean)` | 与えられた index の位置のタブに preventDefaultOnClick を設定する。 |
+| `measureTabAtIndex(index: number) => void` | 与えられた index の位置のタブの寸法（幅と左側オフセット）を設定する。 |
+| `getComputedWidthForTabAtIndex(index: number) => number` | 与えられた index の位置のタブの幅を返す。 |
+| `getComputedLeftForTabAtIndex(index: number) => number` | 与えられた index の位置のタブの左側オフセットを返す。 |
 
 
-### The full foundation API
+### 完全なファンデーション API
 
 #### MDCTabBarFoundation.layout() => void
 
-Sets layout for the Tab Bar component.
+Tab Bar コンポーネントのレイアウトを設定します。
 
 #### MDCTabBarFoundation.getActiveTabIndex() => number
 
-Returns index of currently active tab
+現在アクティブなタブの位置を返します。
 
 #### MDCTabBarFoundation.getComputedWidth() => number
 
-Returns the width of the element containing the tabs.
+タブを含んでいる要素の幅を返します。
 
 #### MDCTabBarFoundation.switchToTabAtIndex(index, shouldNotify) => void
 
-Updates the active tab to be the tab at the given index, emits `MDCTabBar:change` if `shouldNotify` is true.
+アクティブなタブを指定されたインデックスの位置のタブに更新し、`shouldNotify` が true なら `MDCTabBar:change` を発生させます。
 
 #### MDCTabBarFoundation.getActiveTabIndex() => number
 
-Returns the index of the currently active tab.
-
+現在アクティブなタブの位置を返します。
 
 ## Tab Bar Scroller
 
-### Tab Bar Scroller component API
+### Tab Bar Scroller コンポーネント API
 
-#### Properties
+#### プロパティ
 
-| Property Name | Type | Description |
+| プロパティ | 型 | 説明 |
 | --- | --- | --- |
-| `tabBar` | `MDCTabBar` | _(read-only)_ The scroller's tab bar. |
+| `tabBar` | `MDCTabBar` | <em>（読み取り専用）</em> スクローラのタブバー。 |
 
 #### MDCTabBarScroller.layout() => void
 
-Proxies to the foundation's `layout()` method.
+ファンデーションの `layout()` メソッドの代替です。
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-MDC Tab Bar Scroller ships with an `MDCTabBarScrollerFoundation` class that external frameworks and libraries can use to integrate the component. As with all foundation classes, an adapter object must be provided.
+外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarScrollerFoundation` クラスが MDC Tab Bar Scroller には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
 
 
-### Adapter API
+### アダプタ API
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
-| `eventTargetHasClass(target: HTMLElement, className: string) => boolean` | Returns true if target has a given class name |
-| `addClassToForwardIndicator(className: string) => void` | Adds a given class to the forward indicator |
-| `removeClassFromForwardIndicator(className: string) => void` | Removes a given class from the forward indicator |
-| `addClassToBackIndicator(className: string) => void` | Adds a given class to the back indicator |
-| `removeClassFromBackIndicator(className: string) => void` | Removes a given class from the back indicator |
-| `isRTL() => boolean` | Returns true if in RTL context. False otherwise. |
-| `registerBackIndicatorClickHandler(handler: EventListener) => void` | Registers an event handler to be called when a `click` event happens on the back indicator |
-| `deregisterBackIndicatorClickHandler(handler: EventHandler) => void` | Deregisters an event handler from a `click` event happening on the back indicator |
-| `registerForwardIndicatorClickHandler(handler: EventHandler) => void` | Registers an event handler to be called when a `click` event happens on the forward indicator |
-| `deregisterForwardIndicatorClickHandler(handler: EventHandler) => void` | Deregisters an event handler from a `click` event happening on the forward indicator. |
-| `registerCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | Registers an event handler to be called when a `focus`, `touchstart`, or `mousedown` event happens on the root of the component. These events gets dispatched to the listener during the capture phase. They also govern the scrolling behavior when tabs are tabbed to or actioned on. |
-| `deregisterCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | Deregisters an event handler from a `focus`, `touchstart`, or `mousedown` events happening on the root of the component |
-| `registerWindowResizeHandler(handler: EventHandler) => void` | Registers an event handler to be called when a `resize` event happens on the `window` |
-| `deregisterWindowResizeHandler(handler: EventHandler) => void `| Deregisters an event handler from a `resize` event happening on the `window` |
-| `getNumberOfTabs() => number` | Returns the number of tabs in the scroller's tab bar |
-| `getComputedWidthForTabAtIndex(index: number) => number` | Returns the width of a tab at the given index |
-| `getComputedLeftForTabAtIndex(index: number) => number` | Returns the left offset of a tab at the given index |
-| `getOffsetWidthForScrollFrame() => number` | Returns the width of the scroll frame. This is the width of the visible tabs. |
-| `getScrollLeftForScrollFrame() => number` | Returns the `scrollLeft` value of the scroll frame |
-| `setScrollLeftForScrollFrame(scrollLeftAmount: number) => void` | Sets the value of `scrollLeft` for the scroll frame. |
-| `getOffsetWidthForTabBar() => number` | Returns the width of the _entire_ tab bar, including that which is occluded. |
-| `setTransformStyleForTabBar(value: string) => void` | Sets the `translateX` `transform` property for the tab bar. |
-| `getOffsetLeftForEventTarget(target: HTMLElement) => number`| Returns the left offset of a given element. |
-| `getOffsetWidthForEventTarget(target: HTMLElement) => number` | Returns the width of a given element. |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+| `eventTargetHasClass(target: HTMLElement, className: string) => boolean` | target が与えられたクラス名を持っているとき true を返す。 |
+| `addClassToForwardIndicator(className: string) => void` | 前方インジケータに与えられたクラスを追加する。 |
+| `removeClassFromForwardIndicator(className: string) => void` | 前方インジケータから与えられたクラスを削除する。 |
+| `addClassToBackIndicator(className: string) => void` | 後方インジケータに与えられたクラスを追加する。 |
+| `removeClassFromBackIndicator(className: string) => void` | 後方インジケータから与えられたクラスを削除する。 |
+| `isRTL() => boolean` | RTL コンテキストを含む場合は true を返し、そうでないときは false を返す。 |
+| `registerBackIndicatorClickHandler(handler: EventListener) => void` | `click` イベントが後方インジケータに発生したときに呼ばれるイベントハンドラを登録する。 |
+| `deregisterBackIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが後方インジケータに発生したときに呼ばれるイベントハンドラの登録を解除する。 |
+| `registerForwardIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが前方インジケータに発生したときに呼ばれるイベントハンドラを登録する。 |
+| `deregisterForwardIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが前方インジケータに発生したときに呼ばれるイベントハンドラの登録を解除する。 |
+| `registerCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | `focus` や `touchstart`、`mousedown` イベントがコンポーネントのルート要素に発生したときに呼ばれるイベントハンドラを登録する。これらのイベントはキャプチャフェーズ中にリスナーに送られる。これらはタブに対してアクションを起こされたときのスクロールの挙動を制御する。 |
+| `deregisterCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | `focus` や `touchstart`、`mousedown` イベントがコンポーネントのルート要素に発生したときに呼ばれるイベントハンドラの登録を解除する。 |
+| `registerWindowResizeHandler(handler: EventHandler) => void` | `resize` イベントが `window` に発生したときに呼ばれるイベントハンドラを登録する。 |
+| `deregisterWindowResizeHandler(handler: EventHandler) => void `| `resize` イベントが `window` に発生したときに呼ばれるイベントハンドラの登録を解除する。 |
+| `getNumberOfTabs() => number` | スクローラのタブバーにあるタブの数を返す。 |
+| `getComputedWidthForTabAtIndex(index: number) => number` | 与えられた位置にあるタブの幅を返す。 |
+| `getComputedLeftForTabAtIndex(index: number) => number` | 与えられた位置にあるタブの左側オフセットを返す。 |
+| `getOffsetWidthForScrollFrame() => number` | スクロールフレームの幅を返す。これは実際に見えているタブの幅と一致する。 |
+| `getScrollLeftForScrollFrame() => number` | スクロールフレームの `scrollLeft` の値を返す。 |
+| `setScrollLeftForScrollFrame(scrollLeftAmount: number) => void` | スクロールフレームの `scrollLeft` の値を設定する。 |
+| `getOffsetWidthForTabBar() => number` | 隠されたものも含めたタブバー <em>全体</em> の幅を返す。 |
+| `setTransformStyleForTabBar(value: string) => void` | タブバーの `translateX` `transform` プロパティの値を設定する。 |
+| `getOffsetLeftForEventTarget(target: HTMLElement) => number`| 与えられた要素の左側オフセットを返す。 |
+| `getOffsetWidthForEventTarget(target: HTMLElement) => number` | 与えられた要素の幅を返す。 |
 
 
-### The full foundation API
+### 完全なファンデーション API
 
 #### MDCTabBarScrollerFoundation.scrollBack() => void
 
-Scrolls the tab bar such that the leftmost tab traverses the scroll frame and becomes the rightmost tab, potentially being partially, but not fully, occluded.
+最も左側のタブがスクロールフレームを横切って一番右のタブになるようにタブバーをスクロールさせます。最も右側に移動するタブは部分的に隠れた状態になり、完全に表示されるわけでも見えなくなる位置に来るわけでもありません。
 
 #### MDCTabBarScrollerFoundation.scrollForward() => void
 
-Scrolls the tab bar such that the rightmost tab traverses the scroll frame and becomes the leftmost tab. This tabs left offset will line up with the left edge of the scroll frame, and never be partially or fully occluded.
+最も右側のタブがスクロールフレームを横切って一番左のタブになるようにタブバーをスクロールさせます。左端に移動するタブの左端がスクロールフレームの左端に一致する位置になり、部分的に隠れたり完全に見えなくなる位置に来るわけではありません。
 
-> **NOTE:** Due to a quirk in event behavior, we allow the rightmost tab to be partially occluded even when tabbed to because clicking on such an element would shift the frame on the `focus` event. This would result in a scenario where the ripple persists and the intended tab would not be selected due to the tab bar shifting before the `mouseup` or `click` events get dispatched.
+> **注意:** イベントの動作に癖があるので、右端のタブが部分的に隠れることを許容しています。そうしているのはそのようなタブをクリックした際に `focus` イベントでフレームを動かすようになっているからです。これは `mouseup` や `click` イベントが発生するより前にタブバーを動かしてしまうため、リップルが発生し、意図したタブが選択されないというシナリオをもたらしてしまいます。（訳注: 動作を確認したところ、`mouseup` や `click` 時のフォーカスではタブがスクロールしないので、ここに書いてあるような問題は生じない。何かの勘違いか、古いバージョンの問題点が記載されたままなのかではないかと思われる。もしくは私の誤訳か...）
 
 #### MDCTabBarScrollerFoundation.scrollToTabAtIndex(index: number) => void
 
-Scrolls the tab bar such that the tab at the index provided traverses the scroll frame and becomes the leftmost tab.
+index の位置のタブがスクロールフレーム上を動いて左端に来るようにタブバーをスクロールします。
 
 #### MDCTabBarScrollerFoundation.layout() => void
 
-If the tab bar is overflowing its available width, this method will reset the back and forward indicators to the correct states (visible/hidden) based on the new width.
+タブバーが利用できる幅を超えているとき、このメソッドは新しい幅に合わせて前方および後方インジケータを適切な状態（表示/非表示）に再設定します。
