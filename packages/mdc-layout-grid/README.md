@@ -16,29 +16,29 @@ path: /catalog/layout-grid/
   </a>
 </div>-->
 
-Material design’s responsive UI is based on a column-variate grid layout. It has 12 columns on desktop, 8 columns on tablet and 4 columns on phone.
+マテリアルデザインのレスポンシブ UI は列可変のグリッドレイアウトに基づいています。この UI はデスクトップでは 12 列、タブレットでは 8 列、スマートフォンでは 4 列持っています。
 
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-grid">Material Design guidelines: Layout grid</a>
+    <a href="https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-grid">マテリアルデザインガイドライン: レイアウトグリッド</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/layout-grid.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/layout-grid.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/layout-grid
 ```
 
-## Usage
+## 使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-layout-grid">
@@ -50,13 +50,13 @@ npm install --save @material/layout-grid
 </div>
 ```
 
-#### Nested grid
+#### ネストした grid
 
-When your contents need extra structure that cannot be supported by single layout grid, you can nest layout grid within each other. To nest layout grid, add a new `mdc-layout-grid__inner` to wrap around nested `mdc-layout-grid__cell` within an existing `mdc-layout-grid__cell`.
+コンテンツが単一のレイアウトグリッドでは表現できない特別な構造を必要としているとき、それぞれの中にレイアウトグリッドをネストさせることができます。レイアウトグリッドをネストするには `mdc-layout-grid__cell` の中にネストした `mdc-layout-grid__cell` の周りを囲むために新たな `mdc-layout-grid__inner` を追加します。
 
-The nested layout grid behaves exactly like when they are not nested, e.g, they have 12 columns on desktop, 8 columns on tablet and 4 columns on phone. They also use the **same gutter size** as their parents, but margins are not re-introduced since they are living within another cell.
+ネストしたレイアウトグリッドはネストしていないときと同じようにふるまいます。例えば、デスクトップでは 12、タブレットでは 8、スマートフォンでは 4 つの列を持ちます。親と **同じ幅の境界** を使用し、マージンは別のセル内にあるため再導入されません。
 
-However, the Material Design guidelines do not recommend having a deeply nested grid as it might mean an over complicated UX.
+ただし、マテリアルデザインガイドラインでは過度に複雑な UX であるので深くネストすることは推奨されていません。
 
 ```html
 <div class="mdc-layout-grid">
@@ -73,116 +73,108 @@ However, the Material Design guidelines do not recommend having a deeply nested 
 </div>
 ```
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-layout-grid` | Mandatory, for the layout grid element
-`mdc-layout-grid__inner` | Mandatory, for wrapping grid cell
-`mdc-layout-grid__cell` | Mandatory, for the layout grid cell
-`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>` | Optional, specifies the number of columns the cell spans
-`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>` | Optional, specifies the number of columns the cell spans on a type of device (desktop, tablet, mobile)
-`mdc-layout-grid__cell--order-<INDEX>` | Optional, specifies the order of the cell
-`mdc-layout-grid__cell--align-<POSITION>` | Optional, specifies the alignment of cell
-`mdc-layout-grid--fixed-column-width` | Optional, specifies the grid should have fixed column width
-`mdc-layout-grid--align-<GRID_POSITION>` | Optional, specifies the alignment of the whole grid
+`mdc-layout-grid` | 必須。レイアウトグリッド要素に付ける。
+`mdc-layout-grid__inner` | 必須。グリッドのセルをラップするために使う。
+`mdc-layout-grid__cell` | 必須。グリッドのセルにつける。
+`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>` | オプション。セルのスパンの列数を指定する。
+`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>` | オプション。デバイス（desktop、tablet、mobile）ごとのセルのスパンの列数を指定する。
+`mdc-layout-grid__cell--order-<INDEX>` | オプション。セルの並び順を指定する。
+`mdc-layout-grid__cell--align-<POSITION>` | オプション。セルの配置を指定する。
+`mdc-layout-grid--fixed-column-width` | オプション。グリッドが固定の列幅をもつときに指定する。
+`mdc-layout-grid--align-<GRID_POSITION>` | オプション。グリッド全体の配置を指定する。
 
 #### `mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>`
 
-You can set the cells span by applying one of the span classes, of the form `mdc-layout-grid__cell--span-{columns}`, where `{columns}` is an integer between 1 and 12. If the chosen span size is larger than the available number of columns at the current screen size, the cell behaves as if its chosen span size were equal to the available number of columns at that screen size. If the span classes are not set, `mdc-layout-grid__cell` will fallback to a default span size of 4 columns.
+`mdc-layout-grid__cell--span-{columns}` の形式のスパンクラスの一つを指定することにより、セルのスパンを設定します。ここで、`{columns}` は 1 から 12 までの整数です。現在のスクリーンサイズで利用可能な列数より大きなスパンサイズを指定したときは、スクリーンサイズで有効な列数と同じスパンサイズが選ばれたものとして振舞います。スパンクラスが設定されていないときは、`mdc-layout-grid__cell` はデフォルトのスパンサイズである 4 列であるとして扱われます。
 
 
 #### `mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>`
 
-The same as `mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>` but for a specific type of device(`desktop`, `tablet` or `phone`).
+`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>` と同じですが、特定のデバイス（`desktop`, `tablet` or `phone`）のためのものです。
 
 
 #### `mdc-layout-grid__cell--order-<INDEX>`
 
-By default, items are positioned in the source order. However, you can reorder them by using the
-`mdc-layout-grid__cell--order-<INDEX>` classes, where `<INDEX>` is an integer between 1 and 12.
-Please bear in mind that this may have an impact on accessibility, since screen readers and other tools tend to follow
-source order.
+デフォルトでは項目はソースの順番で並びます。しかし、`mdc-layout-grid__cell--order-<INDEX>` クラスを使うことにより順番を並び替えることができます。ここで、`<INDEX>` は 1 から 12 までの整数です。スクリーンリーダやその他のツールではソースの順番にしたがうことが多いので、アクセシビリティに影響があることを覚えておいてください。
 
 #### `mdc-layout-grid__cell--align-<POSITION>`
 
-Items are defined to stretch, by default, taking up the height of their corresponding row. You can switch to a different
-behavior by using one of the `mdc-layout-grid__cell--align-<POSITION>` alignment classes, where `<POSITION>` is one of
-`top`, `middle` or `bottom`.
+デフォルトでは、項目は対応する行の高さまで伸びるように定義されています。`mdc-layout-grid__cell--align-<POSITION>` 整列クラスの一つを使うことにより、異なった動作に変更することができます。ここで、`<POSITION>` は `top`、`middle`、`bottom` のいずれか一つです。
 
 
 #### `mdc-layout-grid--fixed-column-width`
 
-You can designate each column to have a certain width by using `mdc-layout-grid--fixed-column-width` modifier. The column width can be specified through sass map `$mdc-layout-grid-column-width` or css custom properties `--mdc-layout-grid-column-width-{screen_size}`. The column width is set to 72px on all devices by default.
+`mdc-layout-grid--fixed-column-width` 修飾クラスを使うと各列に特定の幅を指定することができます。列幅は sass マップ `$mdc-layout-grid-column-width` もしくは CSS カスタムプロパティ `--mdc-layout-grid-column-width-{screen_size}` を通じて指定することができます。列幅はデフォルトですべてのデバイスで 72px が設定されています。
 
 
 #### `mdc-layout-grid--align-<GRID_POSITION>`
 
-The grid is by default center aligned. You can add `mdc-layout-grid--align-left`
-or `mdc-layout-grid--align-right` modifier class to change this behavior. Note, these
-modifiers will have no effect when the grid already fills its container.
+グリッドはデフォルトで中央揃えになっています。この挙動を変えるために `mdc-layout-grid--align-left` もしくは `mdc-layout-grid--align-right` 修飾クラスを追加することができます。これらの修飾クラスはグリッドのコンテナが既にいっぱいになっているときは作用しません。
 
+### Sass ミキシン
 
-### Sass Mixins
-
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-layout-grid($type-of-device, $margin, $max-width)` | Generates CSS for a grid container on certain device type
-`mdc-layout-grid-inner($type-of-device, $margin, $gutter)` | Generates CSS for a grid cell wrapper on certain device type
-`mdc-layout-grid-cell($type-of-device, $default-span, $gutter)` | Generates CSS for a grid cell on certain device type
-`mdc-layout-grid-fixed-column-width($type-of-device, $margin, $gutter, $column-width)` | Generates CSS for a fixed column width container on certain device type
-`mdc-layout-grid-cell-order($order)` | Reorders a cell inside a grid
-`mdc-layout-grid-cell-align($position)` | Aligns a cell vertically inside a grid
+`mdc-layout-grid($type-of-device, $margin, $max-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り） | 特定のデバイス上でのグリッドコンテナのための CSS を生成する。
+`mdc-layout-grid-inner($type-of-device, $margin, $gutter)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り） | 特定のデバイス上でのグリッドセルのラッパーのための CSS を生成する。
+`mdc-layout-grid-cell($type-of-device, $default-span, $gutter)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り） | 特定のデバイス上でのグリッドセルのための CSS を生成する。
+`mdc-layout-grid-fixed-column-width($type-of-device, $margin, $gutter, $column-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り） | 特定のデバイス上でのコンテナを固定の列幅にする CSS を生成する。
+`mdc-layout-grid-cell-order($order)` | グリッド内のセルを並び替える。
+`mdc-layout-grid-cell-align($position)` | グリッド内のセルの垂直方向の整列を行う。
 
 
-#### `mdc-layout-grid($type-of-device, $margin, $max-width)`
+#### `mdc-layout-grid($type-of-device, $margin, $max-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-Generates CSS for a grid container on certain device type. The mixin takes three parameters:
+特定のデバイス上でのグリッドコンテナのための CSS を生成します。このミキシンは 3 つのパラメータを取ります。
 
-- `$size`: the target platform: `desktop`, `tablet` or `phone`.
-- `$margin`: the size of the grid margin.
-- `$max-width` (optional): the maximum width of the grid, at which point space stops being distributed by the columns.
+- `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
+- `$margin`: グリッドのマージンの大きさ。
+- `$max-width`（オプション）: グリッドの幅の最大値。Point space stops being distributed by the columns at the grid.
 
-#### `mdc-layout-grid-inner($type-of-device, $margin, $max-width)`
+#### `mdc-layout-grid-inner($type-of-device, $margin, $max-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-Generates CSS for a grid cell wrapper on certain device type. The mixin takes three parameters:
-- `$size`: the target platform: `desktop`, `tablet` or `phone`.
-- `$margin`: the size of the grid margin.
-- `$gutter`: the size of the gutter between cells.
+特定のデバイス上でのグリッドセルのラッパーのための CSS を生成します。このミキシンは 3 つのパラメータを取ります。
+- `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
+- `$margin`: グリッドのマージンの大きさ。
+- `$gutter`: セルの間の幅の大きさ。
 
-#### `mdc-layout-grid-cell($type-of-device, $default-span, $gutter)`
+#### `mdc-layout-grid-cell($type-of-device, $default-span, $gutter)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-Generates CSS for a grid cell on certain device type. The mixin takes three parameters:
-- `$size`: the target platform: `desktop`, `tablet` or `phone`.
-- `$default-span` (optional, default 4): how many columns this cell should span (1 to 12).
-- `$gutter`: the size of the gutter between cells. Be sure to use the same value as for the parent grid.
+特定のデバイス上でのグリッドセルのための CSS を生成します。このミキシンは 3 つのパラメータを取ります。
+- `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
+- `$default-span`（オプション、初期値: 4）: このセルの列スパンの数（1 から 12）。
+- `$gutter`:セルの間の幅の大きさ。親グリッドと同じ値を指定する。
 
-> Note even though size is passed in as one of the arguments, it won't apply any `media-query` rules. It is set for using the correct CSS custom properties to overriden the margin and gutter at runtime (See [Margins and gutters](#margins-and-gutters) section for detail).
+> 引数の一つとして size が渡されても、`media-query` ルールは適用されないことに注意してください。これは実行時にマージンとセル間の幅を上書きする正しい CSS カスタムプロパティを使用するように設定されているからです（詳細は [マージンとセル間の幅](#margins-and-gutters) の節を参照）（訳注: 「マージンとセル間の幅（Margins and gutters）」の節は削除されており、現在このドキュメントにはありません）。
 
-#### `mdc-layout-grid-fixed-column-width($type-of-device, $margin, $gutter, $column-width)`
+#### `mdc-layout-grid-fixed-column-width($type-of-device, $margin, $gutter, $column-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-Generates CSS for a fixed column width container on certain device type. The mixin takes four parameters:
-- `$size`: the target platform: `desktop`, `tablet` or `phone`.
-- `$margin`: the size of the grid margin.
-- `$gutter`: the size of the gutter between cells.
-- `$column-width`: the width of the column within the grid.
+特定のデバイス上でのコンテナを固定の列幅にする CSS を生成する。このミキシンは 4 つのパラメータを取ります。
+- `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
+- `$margin`: グリッドのマージンの大きさ。
+- `$gutter`: セルの間の幅の大きさ。
+- `$column-width`: グリッド内のカラムの幅。
 
-### Sass Variables
+### Sass 変数
 
-Variables | Description
+変数 | 説明
 --- | ---
-`mdc-layout-grid-breakpoints` | A SASS Map specifies the breakpoints width
-`mdc-layout-grid-default-margin` | A SASS Map specifies the number of columns
-`mdc-layout-grid-default-margin` | A SASS Map specifies the space between the edge of the grid and the edge of the first cell
-`mdc-layout-grid-default-gutter` | A SASS Map specifies the space between edges of adjacent cells
-`mdc-layout-grid-column-width` | A SASS Map specifies the column width of grid columns
-`mdc-layout-grid-default-column-span` | Specifies a cell's default span
-`mdc-layout-grid-max-width` | Restricts max width of the layout grid
+`mdc-layout-grid-breakpoints` | ブレークポイントの幅が設定されている SASS の Map。
+`mdc-layout-grid-default-margin`（訳注: `mdc-layout-grid-columns` の誤り） | カラム数が設定されている SASS の Map。
+`mdc-layout-grid-default-margin` | グリッドの端と最初のセルの端との間隔が設定されている SASS の Map。
+`mdc-layout-grid-default-gutter` | 隣接したセルの間隔が設定されている SASS の Map。
+`mdc-layout-grid-column-width` | グリッドの列幅が設定されている SASS の Map。
+`mdc-layout-grid-default-column-span` | セルのデフォルトのスパンが設定されている。
+`mdc-layout-grid-max-width` | レイアウトグリッドの幅の最大値を制限している。
 
 
-### CSS Custom Properties
+### CSS カスタムプロパティ
 
-CSS Custom Properties | Description
+CSS カスタムプロパティ | 説明
 --- | ---
-`mdc-layout-grid-margin-<TYPE_OF_DEVICE>` | Specifies the space between the edge of the grid and the edge of the first cell
-`mdc-layout-grid-gutter-<TYPE_OF_DEVICE>` | Specifies the space between edges of adjacent cells
+`mdc-layout-grid-margin-<TYPE_OF_DEVICE>` | グリッドの端と最初のセルの端の間隔を指定する。
+`mdc-layout-grid-gutter-<TYPE_OF_DEVICE>` | 隣接するセルの間隔を指定する。
