@@ -7,20 +7,17 @@ path: /catalog/input-controls/form-fields/
 
 # Form Fields
 
-MDC Form Field provides an `mdc-form-field` helper class for easily making theme-aware, RTL-aware
-form field + label combos. It also provides an `MDCFormField` class for easily making input ripples
-respond to label events.
+MDC Form Field はテーマ対応、RTL 対応のフィールドとラベルの組み合わせを容易に作成できる `mdc-form-field` ヘルパークラスを提供しています。これはラベルのイベントに反応する input 要素のリップルを容易に実現するための `MDCFormField` クラスも提供しています。
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/form-field
 ```
 
-## CSS Usage
+## CSS の使用
 
-The `mdc-form-field` class can be used as a parent element, with any combination of adjacent `input` and `label` as
-immediate children:
+`mdc-form-field` クラスは隣り合った `input` と `label` の任意の組み合わせを直接の子に持つ親要素で使うことができます。
 
 ```html
 <div class="mdc-form-field">
@@ -29,8 +26,7 @@ immediate children:
 </div>
 ```
 
-By default, this will position the label after the input. You can change this behavior using the
-`align-end` modifier class.
+デフォルトでは、input の後ろに label を配置します。`align-end` 修飾クラスを使用すると、この振る舞いを変更できます。
 
 ```html
 <div class="mdc-form-field mdc-form-field--align-end">
@@ -39,12 +35,11 @@ By default, this will position the label after the input. You can change this be
 </div>
 ```
 
-Now the label will be positioned before the checkbox.
+こうすると、ラベルはチェックボックスの前に来ます。
 
-### Usage with MDC-Web Components
+### MDC-Web コンポーネントとともに使用
 
-`mdc-form-field` works not just with `input` elements, but with _any_ immediate child element as long as its
-successive sibling is a `label` element. This means it will work for MDC-Web form controls such as Checkbox and Radio:
+`mdc-form-field` は `input` 要素に対してだけでなく、連続した兄弟要素が `label` 要素であれば <em>任意の</em> 直接の子要素に対して作用します。このことは、Checkbox や Radio のような MDC-Web フォームコントロールでも動作するということを意味しています。
 
 ```html
 <div class="mdc-form-field">
@@ -67,24 +62,20 @@ successive sibling is a `label` element. This means it will work for MDC-Web for
 </div>
 ```
 
-> Note that MDC Form Field is **not** intended for cases where a label and input are already handled together by
-> another component's styles and logic. For example, JavaScript-enhanced instances of MDC Text Field already manage
-> a label and input together under their own root element.
+> MDC Form Field は label と input が既にその他のコンポーネントのスタイルやロジックによってともに処理されている状況を想定して **いません**。例えば JavaScript で拡張された MDC Text Field のインスタンスは既に label と input の両方が固有のルート要素のもとで管理されています。
 
-### RTL Support
+### RTL サポート
 
-`mdc-form-field` is automatically RTL-aware, and will re-position elements within an RTL context.
-`mdc-form-field` will apply RTL styles whenever it, or its ancestors, has a `dir="rtl"` attribute.
+`mdc-form-field` は自動的に RTL 対応がなされており、RTL コンテキストの中では要素を再配置します。`mdc-form-field` はその要素もしくはその祖先の要素に `dir="rtl"` があれば RTL スタイルが適用されます。
 
-### Theming
+### テーマ
 
-`mdc-form-field` is dark theme aware, and will change the text color to the "primary on dark" text
-color when used within a dark theme.
+`mdc-form-field` はダークテーマに対応しており、ダークテーマ内ではテキストの色を "primary on dark" のテキスト色に変更します。
 
 
-## JS Usage
+## JS の使用
 
-### Including in code
+### コードへのインクルード
 
 #### ES2015
 
@@ -116,7 +107,7 @@ const MDCFormField = mdc.formField.MDCFormField;
 const MDCFormFieldFoundation = mdc.formField.MDCFormFieldFoundation;
 ```
 
-### Instantiation
+### インストール
 
 ```javascript
 import {MDCFormField} from '@material/form-field';
@@ -126,14 +117,13 @@ const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
 
 ### MDCFormField API
 
-The `MDCFormField` functionality is exposed through a single accessor method.
+`MDCFormField` の機能はたった一つのアクセサメソッドを公開しています。
 
 #### MDCFormField.input
 
-Read-write property that works with an instance of an MDC-Web input element.
+MDC-Web の input 要素のインスタンスとともに動作する読み書き可能なプロパティです。
 
-In order for the label ripple integration to work correctly, this property needs to be set to a
-valid instance of an MDC-Web input element which exposes a `ripple` getter.
+適切に動作するラベルのリップルを統合するために、このプロパティには `ripple` ゲッタを持つ MDC-Web の input 要素の有効なインスタンスを設定する必要があります。
 
 ```javascript
 const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
@@ -142,15 +132,14 @@ const radio = new MDCRadio(document.querySelector('.mdc-radio'));
 formField.input = radio;
 ```
 
-No action is taken if the `input` property is not set or the input instance doesn't expose a
-`ripple` getter.
+`input` プロパティが設定されていない、もしくは input インスタンスが `ripple` ゲッタを持っていないときは何もしません。
 
 
-### Adapter
+### アダプタ
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `registerInteractionHandler(type: string, handler: EventListener) => void` | Adds an event listener `handler` for event type `type` to the label. |
-| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | Removes an event listener `handler` for event type `type` to the label. |
-| `activateInputRipple() => void` | Activates the ripple on the input element. Should call `activate` on the input element's `ripple` property. |
-| `deactivateInputRipple() => void` | Deactivates the ripple on the input element. Should call `deactivate` on the input element's `ripple` property. |
+| `registerInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナ  `handler` をラベルに登録する。 |
+| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナ  `handler` をラベルから削除する。 |
+| `activateInputRipple() => void` | input 要素のリップルを利用できるようにする。input 要素の `ripple` プロパティが `activate` を呼べなくてはならない。 |
+| `deactivateInputRipple() => void` | input 要素のリップルを利用できないようにする。input 要素の `ripple` プロパティが `deactivate` を呼べなくてはならない。 |
