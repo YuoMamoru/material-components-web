@@ -139,7 +139,7 @@ formField.input = radio;
 
 | メソッド | 説明 |
 | --- | --- |
-| `registerInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナ  `handler` をラベルに登録する。 |
-| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナ  `handler` をラベルから削除する。 |
+| `registerInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー  `handler` をラベルに登録する。 |
+| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー  `handler` をラベルから削除する。 |
 | `activateInputRipple() => void` | input 要素のリップルを利用できるようにする。input 要素の `ripple` プロパティが `activate` を呼べなくてはならない。 |
 | `deactivateInputRipple() => void` | input 要素のリップルを利用できないようにする。input 要素の `ripple` プロパティが `deactivate` を呼べなくてはならない。 |

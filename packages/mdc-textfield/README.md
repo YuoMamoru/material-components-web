@@ -228,10 +228,10 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `hasClass(className: string) => boolean` | ルート要素に与えられたクラス名が含まれているときに true を返す。
 `registerTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素に与えたイベントのイベントハンドラを登録する。
 `deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
-`registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素に与えたイベントのイベントリスナを登録する。
-`deregisterInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素から与えたイベントのイベントリスナの登録を解除する。
-`registerBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素に与えたイベントのイベントリスナを登録する。
-`deregisterBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素から与えたイベントのイベントリスナの登録を解除する。
+`registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素に与えたイベントのイベントリスナーを登録する。
+`deregisterInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素から与えたイベントのイベントリスナーの登録を解除する。
+`registerBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素に与えたイベントのイベントリスナーを登録する。
+`deregisterBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素から与えたイベントのイベントリスナーの登録を解除する。
 `getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。

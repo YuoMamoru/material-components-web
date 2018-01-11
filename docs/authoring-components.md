@@ -137,7 +137,7 @@ redblue-toggle ではホスト環境とのやりに関するすべてのイン�
 - 切り替える際に `setAttribute` で `aria-pressed` を更新
 - 切り替える際に `classList.{add,remove}` で root ノードのクラスを更新
 - 切り替える際に色名を表示している子要素をの `textContent` を設定
-- `initialize()`/`destroy()` を使って root ノードのイベントリスナをそれぞれ追加または削除
+- `initialize()`/`destroy()` を使って root ノードのイベントリスナーをそれぞれ追加または削除
 
 それ以外のケースではホスト環境とのやりとりは `window.addEventListener('resize', ...)` のように単純ではない場合があります。これらもホスト環境のやりとりの例であり、気に留めておく必要があります。
 
@@ -200,7 +200,7 @@ class RedblueTogglePrototype {
 | SOMEHOW_REGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | registerInteractionHandler(type: string, handler: EventListener) |
 | SOMEHOW_DEREGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | deregisterInteractionHandler(type: string, handler: EventListener) |
 
-> 注意: 私たちはコードにおいて、イベントリスナを追加/削除をおこなうのアダプタメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` という用語を使うことを使うことを慣習としています。私たちがそのような用語を使うのは大半のコンポーネントはやりとりに対してのみ関心を持っているというように感じているからです。しかし、これらのメソッドを `{add,remove}EventListener` やそれ以外の好きな名前をつけても構いません。
+> 注意: 私たちはコードにおいて、イベントリスナーを追加/削除をおこなうのアダプタメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` という用語を使うことを使うことを慣習としています。私たちがそのような用語を使うのは大半のコンポーネントはやりとりに対してのみ関心を持っているというように感じているからです。しかし、これらのメソッドを `{add,remove}EventListener` やそれ以外の好きな名前をつけても構いません。
 
 ### <a name="refactor-your-existing-code-into-a-foundation"></a>既存のコードをファンデーションに再構築
 
@@ -360,7 +360,7 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 このプラクティスはイベントハンドラ、タイマー ID、アニメーションフレーム ID、保持される可能性のあるその他の外部参照を含みます。このプラクティスが実施されているかを確認するために2つの正確なリトマステストがあります。
 
-1. `init()` （もしくは素のコンポーネントにおける  `initialize()`）と `destroy()` が対称的になっている。例えば `init()` でアタッチされたすべてのイベントリスナは `destroy()` で削除されている。
+1. `init()` （もしくは素のコンポーネントにおける  `initialize()`）と `destroy()` が対称的になっている。例えば `init()` でアタッチされたすべてのイベントリスナーは `destroy()` で削除されている。
 2. 外部参照を作成するすべての呼び出し（例: `setTimeout()`、`requestAnimationFrame()`）は追跡され、破棄する際にクリーンアップされる。例えばすべての `setTimeout()` 呼び出しはファンデーションやコンポーネントによって ID が保持され、破棄される際には `clearTimeout()` が破棄する処理の中で呼ばれる。
 
 ## <a name="authoring-components-for-mdc-web"></a>MDC-Web のコンポーネントの作成
