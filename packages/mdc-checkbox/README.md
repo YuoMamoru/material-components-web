@@ -193,7 +193,7 @@ MDCCheckbox API はネイティブなチェックボックス要素で見られ�
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 | `registerAnimationEndHandler(handler: EventListener) => void` | `animationend` イベントが発生したときに呼ばれるイベントハンドラをルート要素に登録する。これを正しく動作させるにはベンダプレフィックスを考慮しなくてはいけないことに注意が必要。 |
 | `deregisterAnimationEndHandler(handler: EventListener) => void` | `animationend` イベントリスナーからイベントハンドラの登録を解除する。あらかじめ `registerAnimationEndHandler` の呼び出しを通じて設定されたハンドラに対してのみ呼びされる。 |
-| `registerChangeHandler(handler: EventListener) => void` | `change` イベントが発生したときに呼ばれるイベントハンドらをネイティブなコントロール（ルート要素では <em>ない</em>）に登録する。 |
+| `registerChangeHandler(handler: EventListener) => void` | `change` イベントが発生したときに呼ばれるイベントハンドラをネイティブなコントロール（ルート要素では <em>ない</em>）に登録する。 |
 | `deregisterChangeHandler(handler: EventListener) => void` | あらかじめ `registerChangeHandler` を通じて設定されたイベントハンドラの登録を解除する。 |
 | `getNativeControl() => HTMLInputElement?` | 利用できる状態であればネイティブなチェックボックスコントロールを返す。コントロールが利用できない状態であれば、直ちにそれに依存するメソッドは終了する。 |
 | `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。この処理はアニメーションを正しく再起動させるために必要。これが不要であることが明らかであれば、この処理を何もしないようにすることもできる。 |
