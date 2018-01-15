@@ -15,33 +15,31 @@ path: /catalog/input-controls/select-menus/
   </a>
 </div>-->
 
-MDC Select provides Material Design single-option select menus. It functions analogously to the
-browser's native `<select>` element, and includes a gracefully degraded version that can be used
-in conjunction with the browser's native element. Both are fully accessible, and fully RTL-aware.
+MDC Select はマテリアルデザインの単一選択ができるセレクトメニューを提供します。これはブラウザのネイティブな `<select>` 要素と類似した機能を持っており、ブラウザのネイティブな要素とともに使われる率直に機能を落としたバージョンを含んでいます。ともに完全にアクセス可能で、完全に RTL 対応しています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/text-fields.html">Material Design guidelines: Text Fields</a>
+    <a href="https://material.io/guidelines/components/text-fields.html">マテリアルデザインガイドライン: テキスト欄</a>
   </li>
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/menus.html">Material Design guidelines: Menus</a>
+    <a href="https://material.io/guidelines/components/menus.html">マテリアルデザインガイドライン: メニュー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/select.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/select.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/select
 ```
 
-## Usage
+## 使用法
 
-### Using the full-fidelity JS component
+### 完全につくりになっている JS コンポーネントの使用
 
 ```html
 <div class="mdc-select" role="listbox">
@@ -75,7 +73,7 @@ npm install --save @material/select
 </div>
 ```
 
-Then with JS
+JS は次の通りです。
 
 ```js
 import {MDCSelect} from '@material/select';
@@ -87,15 +85,11 @@ select.listen('MDCSelect:change', () => {
 });
 ```
 
-Note that you can include mdc-select via a UMD bundle, which will be available post-alpha.
+UMD バンドルを通じて mdc-select を含めることができることに注意してください。UMD はポストアルファで利用できます。
 
-> Note that the full-fidelity version of MDC Select requires you to manually include the styles for
-[mdc-menu](../mdc-menu) and [mdc-list](../mdc-list). If you are using the
-[material-components-web](../material-components-web) package, this is taken care of for you and you
-simply need to import the main stylesheet. Otherwise, _you must ensure that you manually include the
-style dependencies for both the mdc-list and mdc-menu for this component to function properly._
+> MDC Select の完全に作成されているバージョンは [mdc-menu](../mdc-menu) と [mdc-list](../mdc-list) のスタイルを手動で取り込んでおく必要があることに注意してください。[material-components-web](../material-components-web) パッケージを使っているのなら、パッケージを処理して、単純にメインのスタイルシートをインポートする必要があるだけです。そうでないなら、<em>このコンポーネントが適切に機能するように mdc-list と mdc-menu の両方のスタイル依存関係を手動でインクルードしなくてはなりません</em>。
 
-#### Select with pre-selected option
+#### 選択済みの選択肢を持つセレクト
 
 ```html
 <div class="mdc-select" role="listbox">
@@ -129,7 +123,7 @@ style dependencies for both the mdc-list and mdc-menu for this component to func
 </div>
 ```
 
-#### Disabled select
+#### 無効なセレクト
 
 ```html
 <div class="mdc-select" role="listbox" aria-disabled="true">
@@ -163,10 +157,9 @@ style dependencies for both the mdc-list and mdc-menu for this component to func
 </div>
 ```
 
-#### Disabled options
+#### 無効な選択肢
 
-When used in components such as MDC Select, `mdc-list-item`s can be disabled.
-To disable a list item, set `aria-disabled` to `"true"`, and set `tabindex` to `"-1"`.
+MDC Select のようなコンポーネントを使うと `mdc-list-item` を無効にすることができます。選択肢を無効にするには `aria-disabled` に `"true"` を設定し、`tabindex` を `"-1"` にします。
 
 ```html
 <div class="mdc-select" role="listbox">
@@ -200,16 +193,13 @@ To disable a list item, set `aria-disabled` to `"true"`, and set `tabindex` to `
 </div>
 ```
 
-### Using the Pure CSS Select
+### CSS だけのセレクトの使用
 
-The `mdc-select` CSS classes also work with the browser's native `<select>` element, allowing for a
-seamless, un-invasive experience in browsers where a native select may be more appropriate, such as
-on a mobile device. It does not require any javascript, nor any CSS for `mdc-menu` or `mdc-list`.
-E.g.:
+`mdc-select` CSS クラスはブラウザのネイティブな `<select>` 要素とともに機能させることもでき、モバイルデバイスのようにネイティブな select 要素がより適切なことろでブラウザ上にシームレスで非侵略的な体験を実現します。これには JavaScript は必要なく、 `mdc-menu` や `mdc-list` の CSS も不要です。例を挙げます。
 
-1. Wrap the `<select>` with a block element that has an `mdc-select` class
-2. Add the `mdc-select__surface` class to the `<select>`
-3. Append `<div class="mdc-select__bottom-line"></div>` immediately after the `<select>`
+1. `<select>` 要素を `mdc-select` クラスをもつブロック要素でラップする。
+2. `<select>` 要素に `mdc-select__surface` クラスを追加する。
+3. `<select>` 要素のすぐ後ろに `<div class="mdc-select__bottom-line"></div>` を追加する。
 
 ```html
 <div class="mdc-select">
@@ -226,174 +216,153 @@ E.g.:
 </div>
 ```
 
-#### Classes
+#### クラス
 
-| Class                    | Description                                     |
+| クラス                   | 説明                                            |
 | ------------------------ | ----------------------------------------------- |
-| `mdc-select`             | A pure css `select` element                     |
-| `mdc-list-group`         | A group of options.                             |
-| `mdc-list-item`          | A list item.                                    |
-| `mdc-list-divider`       | A divider.                                      |
+| `mdc-select`             | CSS だけの `select` 要素。                      |
+| `mdc-list-group`         | オプションのグループ。                          |
+| `mdc-list-item`          | リストの項目。                                  |
+| `mdc-list-divider`       | 分割線。                                        |
 
-It is advised that dividers also set `role="presentation"` to disable selection and not cloud accessibility.
+分割線は利用できない選択肢であり、アクセスできるかどうかあいまいにしないために `role="presentation"` も設定するようにしてください。
 
-### MDC Select Component API
+### MDC Select コンポーネント API
 
-The MDC Select component API is modeled after a subset of the `HTMLSelectElement` functionality, and
-is outlined below.
+MDC Select コンポーネント API は `HTMLSelectElement` の機能のサブセットをもとに作られており、以下に概要を記載しておきます。
 
-#### Properties
+#### プロパティ
 
-| Property Name | Type | Description |
+| プロパティ | 型 | 説明 |
 | --- | --- | --- |
-| `value` | `string` | _(read-only)_ The `id` of the currently selected option. If no `id` is present on the selected option, its `textContent` is used. Returns an empty string when no option is selected. |
-| `options` | `HTMLElement[]` | _(read-only)_ An _array_ of menu items comprising the select's options. |
-| `selectedIndex` | `number` | The index of the currently selected option. Set to -1 if no option is currently selected. Changing this property will update the select element. |
-| `selectedOptions` | `HTMLElement[]` | _(read-only)_ A NodeList of either the currently selected option, or no elements if nothing is selected. |
-| `disabled` | `boolean` | Whether or not the component is disabled. Settings this sets the disabled state on the component. |
+| `value` | `string` | <em>（読み取り専用）</em> 現在選ばれている選択肢の `id`。選ばれている選択肢に `id` がないときはその選択肢の `textContent` が使われる。選択肢が選ばれていないときは空の文字列を返す。 |
+| `options` | `HTMLElement[]` | <em>（読み取り専用）</em> 選択肢を構成しているメニュー項目の <em>配列</em>。 |
+| `selectedIndex` | `number` | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。 |
+| `selectedOptions` | `HTMLElement[]` | <em>（読み取り専用）</em> 現在選ばれている選択肢の NodeList。何も選ばれていないときは要素を含まない NodeList。 |
+| `disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。 |
 
-#### Methods
+#### メソッド
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `item(index: number) => HTMLElement?` | Analogous to `HTMLSelectElement.prototype.item`. Returns the option at the specified index, or `null` if the index is out of bounds. }
-| `nameditem(key: string) => HTMLElement?` | Analogous to `HTMLSelectElement.prototype.nameditem`. Returns the options either whose `id` equals the given `key`, or whose `name` attribute equals the given `key`. Returns `null` if no item with an `id` or `name` attribute of the specified key is found. |
+| `item(index: number) => HTMLElement?` | `HTMLSelectElement.prototype.item` に類似している。指定した位置にある選択肢を返す。インデックスが範囲外なら `null` を返す。 |
+| `nameditem(key: string) => HTMLElement?` | `HTMLSelectElement.prototype.nameditem` に類似している。与えられた `key` と等しい `id` をもつ選択肢、もしくは与えられた `key` と等しい `name` 属性をもつ選択肢。指定した key の `id` または `name` 属性が見つからないときは `null` を返す。 |
 
-#### Events
+#### イベント
 
-The MDC Select JS component emits an `MDCSelect:change` event when the selected option changes as
-the result of a user action.
+ユーザの操作の結果、選ばれた選択肢が変更されたときに MDC Select JS コンポーネントは `MDCSelect:change` イベントを発生させます。
 
-#### Instantiating using a custom `MDCSimpleMenu` component.
+#### カスタム `MDCSimpleMenu` コンポーネントを使ったインスタンス化
 
-`MDCSelect` controls an [MDCSimpleMenu](../mdc-menu) instance under the hood in order to display
-its options. If you'd like to instantiate a custom menu instance, you can provide an optional 3rd
-`menuFactory` argument to `MDCSelect`'s constructor.
+`MDCSelect` は選択肢を表示するために配下にある [MDCSimpleMenu](../mdc-menu) のインスタンスを制御しています。カスタムメニューのインスタンスをインスタンス化したいときは `MDCSelect` のコンストラクタにオプションの第 3 引数である `menuFactory` を与えることができます。
 
 ```js
 const menuFactory = menuEl => {
   const menu = new MDCSimpleMenu(menuEl);
-  // Do stuff with menu...
+  // menu を使って何かやる
   return menu;
 };
 const selectEl = document.querySelector('.mdc-select');
 const select = new MDCSelect(selectEl, /* foundation */ undefined, menuFactory);
 ```
 
-The `menuFactory` function is passed an `HTMLElement` and is expected to return an `MDCSimpleMenu`
-instance attached to that element. This is mostly used for testing purposes, but it's there if you
-need it nonetheless.
+`menuFactory` 関数は `HTMLElement` を渡されると、この要素をアタッチした `MDCSimpleMenu` インスタンスを返すでしょう。これはテスト目的で使いますが、それでもなおそれが必要であるならこのように使うことができます。
 
-## Using the foundation class
+## ファンデーションクラスの使用
 
-MDC Select ships with a foundation class that framework authors can use to integrate MDC Select
-into their custom components. Note that due to the nature of MDC Select, the adapter is quite
-complex. We try to provide as much guidance as possible, but we encourage developers to reach out
-to us via GH Issues if they run into problems.
+MDC Select をカスタムコンポーネントに統合するためにフレームワーク制作者が使用できるファンデーションクラスが MDC Select には付属しています。MDC Select の特性ゆえ、アダプタはかなり複雑です。私たちはできる限り多くの指針を示すように努めていますが、問題に遭遇したときは GH Issues を通じて私たちに連絡するようにしてください。
 
-### Notes for component implementors
+### コンポーネント実装者への注意
 
-The `MDCSelectFoundation` expects that the select component conforms to the following two requirements:
+`MDCSelectFoundation` は Select コンポーネントが以下の 2 つの要件に従っていることを前提としています。
 
-1. The component owns an element that's used as its select menu, e.g. its **menu element**.
+1. コンポーネントは選択メニューとして使用している要素、例えば  **メニュー要素**、を持っています。
 
-2. The component controls an instance of `MDCSimpleMenu`, which is attached to its menu element.
+2. コンポーネントは `MDCSimpleMenu`のインスタンスを制御し、`MDCSimpleMenu` はメニュー要素にアタッチされています。
 
-We achieve this by accepting a `menuFactory` optional constructor parameter, which is a function
-which is passed our menu element, and is expected to return an `MDCSimpleMenu` component instance.
-If you are attempting to implement mdc-select for your framework, and you find that this approach
-does not work for you, and there is no suitable way to satisfy the above two requirements, please
-[open an issue](https://github.com/material-components/material-components-web/issues/new).
+オプションのコンストラクタパラメータ `menuFactory` を使ってこれを達成しています。`menuFactory` はメニュー要素を受け取る関数で、`MDCSimpleMenu` コンポーネントインスタンスを返すことを前提としています。フレームワーク内で mdc-select を実装しようと試みたが、この方法がうまくいかず、先ほどの 2 つの要件を満たす適当な方法がないなら、[issue に投稿](https://github.com/material-components/material-components-web/issues/new) してください。
 
-`MDCSelectFoundation` also has the ability to resize itself whenever its options change, via the
-`resize()` method. We recommend calling this method on initialization, or when the menu items are
-modified. For example, if building a react component, it may be appropriate to call `resize()`
-within `componentDidUpdate`.
+`MDCSelectFoundation` は選択肢が変わったら `resize()` メソッドを使って自身の大きさを変えることもできます。初期化時、もしくはメニュー項目が変わったときにはこのメソッドを呼ぶことを推奨します。例えば、react コンポーネントを構築する際には `componentDidUpdate` 内で `resize()` を呼ぶのが良いでしょう。
 
-### Adapter API
+### アダプタ API
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
-| `addClassToLabel(className: string) => void` | Adds a class to the label |
-| `removeClassFromLabel(className: string) => void` | Removes a class from the label |
-| `addClassToBottomLine(className: string) => void` | Adds a class to the bottom line |
-| `removeClassFromBottomLine(className: string) => void` | Removes a class from the bottom line |
-| `setBottomLineAttr(attr: string, value: string) => void` | Adds an attribute to the bottom line |
-| `addBodyClass(className: string) => void` | Adds a class to the body. |
-| `removeBodyClass(className: string) => void` | Removes a class from the body. |
-| `setAttr(attr: string, value: string) => void` | Sets attribute `attr` to value `value` on the root element. |
-| `rmAttr(attr: string) => void` | Removes attribute `attr` from the root element. |
-| `computeBoundingRect() => {left: number, top: number}` | Returns an object with a shape similar to a `ClientRect` object, with a `left` and `top` property specifying the element's position on the page relative to the viewport. The easiest way to achieve this is by calling `getBoundingClientRect()` on the surface element. |
-| `registerInteractionHandler(type: string, handler: EventListener) => void` | Adds an event listener `handler` for event type `type` on the surface element. |
-| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | Removes an event listener `handler` for event type `type` on the surface element. |
-| `focus() => void` | Focuses the surface element |
-| `makeTabbable() => void` | Allows the surface element to be tab-focused via keyboard. We achieve this by setting the surface element's `tabIndex` property to `0`. |
-| `makeUntabbable() => void` | Disallows the surface element from being tab-focused via keyboard. We achieve this by setting the surface element's `tabIndex` property to `-1`. |
-| `getComputedStyleValue(propertyName: string) => string` | Get the surface element's computed style value of the given dasherized css property `propertyName`. We achieve this via `getComputedStyle(...).getPropertyValue(propertyName). `|
-| `setStyle(propertyName: string, value: string) => void` | Sets a dasherized css property `propertyName` to the value `value` on the surface element. We achieve this via `root.style.setProperty(propertyName, value)`. |
-| `create2dRenderingContext() => {font: string, measureText: (string) => {width: number}}` | Returns an object which has the shape of a CanvasRenderingContext2d instance. Namely, it has a string property `font` which is writable, and a method `measureText` which given a string of text returns an object containing a `width` property specifying how wide that text should be rendered in the `font` specified by the font property. An easy way to achieve this is simply `document.createElement('canvas').getContext('2d');`. |
-| `setMenuElStyle(propertyName: string) => void` | Sets a dasherized css property `propertyName` to the value `value` on the menu element. |
-| `setMenuElAttr(attr: string, value: string) => void` | Sets attribute `attr` to value `value` on the menu element. |
-| `rmMenuElAttr(attr: string) => void` | Removes attribute `attr` from the menu element. |
-| `getMenuElOffsetHeight() => number` | Returns the `offsetHeight` of the menu element. |
-| `openMenu(focusIndex: string) => void` | Opens the select's menu with focus on the option at the given `focusIndex`. The focusIndex is guaranteed to be in bounds. |
-| `isMenuOpen() => boolean` | Returns true if the menu is open, false otherwise. |
-| `setSelectedTextContent(selectedTextContent: string) => void` | Sets the text content of the `.mdc-select__selected-text` element to `selectedTextContent`. |
-| `getNumberOfOptions() => number` | Returns the number of options contained in the select's menu. |
-| `getTextForOptionAtIndex(index: number) => string` | Returns the text content for the option at the specified index within the select's menu. |
-| `getValueForOptionAtIndex(index: number) => string` | Returns the value for the option at the specified index within the select's menu. We adhere to the conventions of `HTMLSelectElement` - as described above - returning the value of the selected option's `id` in place of a `value` attribute and falling back to its `textContent`. Framework implementations may want to customize this method to suit their needs. |
-| `setAttrForOptionAtIndex(index: number, attr: string, value: string) => void` | Sets an attribute `attr` to value `value` for the option at the specified index within the select's menu. |
-| `rmAttrForOptionAtIndex(index: number, attr: string) => void` | Removes an attribute `attr` for the option at the specified index within the select's menu. |
-| `getOffsetTopForOptionAtIndex(index: number) => number` | Returns the `offsetTop` of the option element at the specified index. The index is guaranteed to be in bounds. |
-| `registerMenuInteractionHandler(type: string, handler: EventListener) => void` | Registers an event listener on the menu component's root element. Note that we will always listen for `MDCSimpleMenu:selected` for change events, and `MDCSimpleMenu:cancel` to know that we need to close the menu. If you are using a different events system, you could check the event type for either one of these strings and take the necessary steps to wire it up. |
-| `deregisterMenuInteractionHandler(type: string, handler: EventListener) => void` | Opposite of `registerMenuInteractionHandler`. |
-| `notifyChange() => void` | Broadcast a change event, similar to the `change` event emitted by an `HTMLSelectElement`. While we use custom events in our implementation for this, you can use any mechanism desired for notifications, such as callbacks, reactive streams, etc. Note that you can also pass data within your event if you'd like via `foundation.getValue()` and `foundation.getSelectedIndex()`. |
-| `getWindowInnerHeight() => number` | Returns the `innerHeight` property of the `window` element. |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+| `addClassToLabel(className: string) => void` | ラベルにクラスを追加する。 |
+| `removeClassFromLabel(className: string) => void` | ラベルからクラスを削除する。 |
+| `addClassToBottomLine(className: string) => void` | 下線部分にクラスを追加する。 |
+| `removeClassFromBottomLine(className: string) => void` | 下線部分からクラスを削除する。 |
+| `setBottomLineAttr(attr: string, value: string) => void` | 下線部分に属性を追加する。 |
+| `addBodyClass(className: string) => void` | body にクラスを追加する。 |
+| `removeBodyClass(className: string) => void` | body からクラスを削除する。 |
+| `setAttr(attr: string, value: string) => void` | ルート要素に値 `value` の属性 `attr` を設定する。 |
+| `rmAttr(attr: string) => void` | ルート要素から属性 `attr` を削除する。 |
+| `computeBoundingRect() => {left: number, top: number}` | `ClientRect` オブジェクトに似た図形を保持するオブジェクトを返す。`left` と `top` プロパティにはビューポートに他する相対的なページ上の位置が設定されている。これを実現する最も簡単な方法はサーフェス要素の `getBoundingClientRect()` を呼ぶことである。（訳注: サーフェス要素とは `mdc-select__surface` クラスが付加された選択結果を表示している要素のこと） |
+| `registerInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー `handler` をサーフェス要素に追加する。 |
+| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー `handler` をサーフェス要素から削除する。 |
+| `focus() => void` | サーフェス要素にフォーカスをあてる。 |
+| `makeTabbable() => void` | サーフェス要素がキーボードを通じたタブフォーカスの対象になるようにする。`tabIndex` プロパティに `0` を設定することにより実現している。 |
+| `makeUntabbable() => void` | サーフェス要素がキーボードを通じたタブフォーカスの対象にならないようにする。`tabIndex` プロパティに `-1` を設定することにより実現している。 |
+| `getComputedStyleValue(propertyName: string) => string` | サーフェスの与えられたダッシュで連結された CSS プロパティ `propertyName` のスタイル値の計算結果を取得する。`getComputedStyle(...).getPropertyValue(propertyName). ` を使用して実現している。 |
+| `setStyle(propertyName: string, value: string) => void` | サーフェス要素のダッシュで連結された CSS プロパティ `propertyName` に値 `value` を設定する。`root.style.setProperty(propertyName, value)`を使用して実現している。 |
+| `create2dRenderingContext() => {font: string, measureText: (string) => {width: number}}` | CanvasRenderingContext2d インスタンスの図形を持つオブジェクトを返す。つまり、書き込み可能な文字列プロパティ `font`、文字列を与えたとき指定したフォントで描画した際にどれくらいの幅になるかを意味する `width` プロパティを含むオブジェクトを返すメソッド `measureText` を持つオブジェクトを返す。これを実現する簡単な方法は単純に `document.createElement('canvas').getContext('2d');` を使うことである。 |
+| `setMenuElStyle(propertyName: string) => void` | メニュー要素のダッシュで連結された CSS プロパティ `propertyName` に値 `value` を設定する。 |
+| `setMenuElAttr(attr: string, value: string) => void` | メニュー要素に値 `value` の属性 `attr` を設定する。 |
+| `rmMenuElAttr(attr: string) => void` | メニュー要素から属性 `attr` を削除する。 |
+| `getMenuElOffsetHeight() => number` | メニュー要素の `offsetHeight` を返す。 |
+| `openMenu(focusIndex: string) => void` | セレクトのニューを開き、与えられた `focusIndex` の位置にある選択肢にフォーカスを移す。focusIndex は範囲内にあることが保証される。 |
+| `isMenuOpen() => boolean` | メニューが開かれていれば true を返し、そうでなければ false を返す。 |
+| `setSelectedTextContent(selectedTextContent: string) => void` | `.mdc-select__selected-text` 要素のテキストコンテンツに `selectedTextContent` を設定する。 |
+| `getNumberOfOptions() => number` | セレクトのニューに含まれている選択肢の数を返す。 |
+| `getTextForOptionAtIndex(index: number) => string` | セレクトのメニュー内の指定された index の位置の選択肢のテキストコンテンツを返す。 |
+| `getValueForOptionAtIndex(index: number) => string` | セレクトのメニュー内の指定された index の位置の選択肢の value を返す。前述の通り、`HTMLSelectElement` の慣習に沿うようにしている。`value` 属性の代わりに選択された選択肢の `id` の値を返し、選択された選択肢の `textContent` を表示する。フレームワークの実装はその要件にふさわしいようにこのメソッドをカスタマイズしなくてはならない。 |
+| `setAttrForOptionAtIndex(index: number, attr: string, value: string) => void` | セレクトのメニュー内の指定した index の位置の選択肢の属性 `attr` に値 `value` を設定する。 |
+| `rmAttrForOptionAtIndex(index: number, attr: string) => void` | セレクトのメニュー内の指定した index の位置の選択肢の属性 `attr` を削除する。 |
+| `getOffsetTopForOptionAtIndex(index: number) => number` | 指定した index の位置の選択肢要素の `offsetTop` を返す。index は範囲内にあることが保証される。 |
+| `registerMenuInteractionHandler(type: string, handler: EventListener) => void` | メニューコンポーネントのルート要素にイベントリスナーを登録する。change イベントのために `MDCSimpleMenu:selected` を、メニューを閉じる必要があることを知るために `MDCSimpleMenu:cancel` を常時監視している。別のイベントシステムを利用するなら、これらの文字列のいずれか一つのイベントタイプを確認することができ、イベントシステムにつなぐための手順を取ることができる。 |
+| `deregisterMenuInteractionHandler(type: string, handler: EventListener) => void` | `registerMenuInteractionHandler` の反対の処理。 |
+| `notifyChange() => void` | `HTMLSelectElement` の発行する `change` イベントと同様に、change イベントを送出する。私たちのこのメソッドの実装においてはカスタムイベントを使用しているが、コールバックやリアクティブストリームなどのような通知に必要な仕組みを利用することができる。`foundation.getValue()` と `foundation.getSelectedIndex()` を使いさえすれば、イベント内ではデータを渡すことができることに注意。 |
+| `getWindowInnerHeight() => number` | `window` 要素の `innerHeight` プロパティを返す。 |
 
-### The full foundation API
+### 完全なファンデーション API
 
 #### MDCSelectFoundation.getValue() => string
 
-Returns the value of the currently selected option, or an empty string if no option is selected.
+現在選択されている選択肢の value を返します。選択されていないときは空の文字列を返します。
 
 #### MDCSelectFoundation.getSelectedIndex() => number
 
-Returns the index of the currently selected option. Returns -1 if no option is currently selected.
+現在選択されている選択肢の index を返します。選択されていないときは -1 を返します。
 
 #### MDCSelectFoundation.setSelectedIndex(selectedIndex: number) => void
 
-Sets the selected index of the component.
+コンポーネントの選択されている index を設定します。
 
 #### MDCSelectFoundation.isDisabled() => boolean
 
-Returns whether or not the select is disabled.
+セレクトが無効かそうでないかを返します。
 
 #### MDCSelectFoundation.setDisabled(disabled: boolean) => void
 
-Enables/disables the select.
+セレクトを有効または無効にします。
 
-## Theming
+## テーマ
 
-The select's bottom border is set to the current theme's primary color when focused. The select is
-fully dark theme aware.
+セレクトの下線部分はフォーカス時に現在のテーマのプライマリカラーが設定されます。セレクトは完全にダークテーマに対応しています。
 
-## Tips / Tricks
+## ヒントとコツ
 
-### Switching between selects for better cross-device UX
+### より良いクロスデバイス UX のためのセレクトの切り替え
 
-Selects are a tricky beast on the web. Many times, a custom select component will work well on large
-devices with mouse/keyboard capability, but fail miserably on smaller-scale devices without
-fine-grained pointer capability, such as a phone. Because `mdc-select` works on native selects, you
-can easily switch between a custom select on larger devices and a native element on smaller ones.
+セレクトは Web 上では扱いの難しい猛獣です。多く場合、マウスとキーボードの力を使う大きなデバイス上でカスタムセレクトコンポーネントは非常にうまくは機能しますが、スマートフォンのような繊細なポインタの能力を使用しない小さな規模のデバイスではひどくうまくいきません。`mdc-select` はネイティブな select を利用して動かせるので、大きなデバイス上のカスタムセレクトと小さなデバイスのネイティブ要素とを容易に切り替えることができます。
 
-First, wrap both a custom select and a native select within a wrapper element, let's call it the
-`select-manager`.
+まず、ラッパー要素内でカスタムセレクトとネイティブなセレクトの両方をラップし、それを `select-manager` と呼ぶことにしましょう。
 
 ```html
 <div class="select-manager">
-  <!-- Custom MDC Select, shown on desktop -->
+  <!-- デスクトップ表示用のカスタム MDC Select -->
   <div class="mdc-select" role="listbox">
     <div class="mdc-select__surface" tabindex="0">
       <div class="mdc-select__label">Pick One</div>
@@ -408,7 +377,7 @@ First, wrap both a custom select and a native select within a wrapper element, l
       </ul>
     </div>
   </div>
-  <!-- Native element, shown on mobile devices -->
+  <!-- モバイルデバイス表示用のネイティブ要素 -->
   <div class="mdc-select">
     <select class="mdc-select__surface">
       <option value="" selected disabled>Pick one</option>
@@ -421,10 +390,7 @@ First, wrap both a custom select and a native select within a wrapper element, l
 </div>
 ```
 
-Then, write some CSS that implements a media query checking for a small screen as well as
-[course pointer interaction](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer). This
-will ensure that the custom select will still be present on smaller devices that do have
-mouse/keyboard capability, such as a hybrid tablet or a small browser window on a desktop.
+次に、[course pointer interaction](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) のように小さな画面かどうかの確認のためのメディアクエリを実装した CSS を書きます。これは、ハイブリッドタブレットやデスクトップ上の小さなブラウザウィンドウのようなマウス・キーボードを持つ小さなデバイス上でもカスタムセレクトが表示されることを保証するものです。
 
 ```css
 .select-manager > select.mdc-select {
@@ -442,9 +408,7 @@ mouse/keyboard capability, such as a hybrid tablet or a small browser window on 
 }
 ```
 
-Finally, we need to be able to react to events and keep each component in sync. We can do this in
-a few lines of JS, and check where the event came from by looking at its `type`. If it came from the
-custom component, the type will be `MDCSelect:change`, otherwise it will simply be `change`.
+最後に、イベントに反応し、各コンポーネントの同期が維持できる必要があります。数行の JS でこれが可能になり、イベントの発生元を確認するにはその `type` をみるることにより行えます。カスタムコンポーネントが発生元のとき、type は `MDCSelect:change` となっており、そうでないときは単に `change` になっています。
 
 ```js
 const selectManager = document.querySelector('.select-manager');
@@ -470,4 +434,4 @@ selects.custom.listen('MDCSelect:change', changeHandler);
 selects.native.addEventListener('change', changeHandler);
 ```
 
-We are looking into building this functionality into `MDCSelect` in the future.
+将来、`MDCSelect` ではこの機能を構築しようと調査しています。
