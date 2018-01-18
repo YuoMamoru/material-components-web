@@ -216,7 +216,7 @@ MDC Select のようなコンポーネントを使うと `mdc-list-item` を無�
 </div>
 ```
 
-#### クラス
+#### CSS クラス
 
 | クラス                   | 説明                                            |
 | ------------------------ | ----------------------------------------------- |
@@ -226,6 +226,19 @@ MDC Select のようなコンポーネントを使うと `mdc-list-item` を無�
 | `mdc-list-divider`       | 分割線。                                        |
 
 分割線は利用できない選択肢であり、アクセスできるかどうかあいまいにしないために `role="presentation"` も設定するようにしてください。
+
+### Sass ミキシン
+
+セレクトの任意の部分の色を変更するには、以下のミキシンを使ってください。スタイルを適用するにあたり、`.foo-select` のような CSS セレクタ内でこれらのミキシンを使用することを推奨します。
+
+Mixin | Description
+--- | ---
+`mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。CSS バージョンではラベルの色も設定される。
+`mdc-select-container-fill-color($color)` | セレクトの背景色を設定する。 
+`mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。このミキシンはセレクトの JS バージョンに対してのみ、使用される。
+`mdc-select-focused-label-color($color, $opacity: 0.87)` | フォーカス時のセレクトのラベルの色を設定する。フローティングの際のラベルの不透明度の変更はオプション。
+`mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
+`mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
 
 ### MDC Select コンポーネント API
 

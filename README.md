@@ -4,7 +4,7 @@
 
 # Material Components for the web
 
-Material Components for the web (MDC-Web) は開発者が [マテリアルデザイン](https://www.material.io) を実践する際の手助けになります。エンジニアのコアチームと Google の UX デザイナーによって開発され、このコンポーネントは美しくかつ機能的な Web プロジェクトを構築するための確かな開発ワークフローを可能にします。
+Material Components for the web (MDC Web) は開発者が [マテリアルデザイン](https://www.material.io) を実践する際の手助けになります。エンジニアのコアチームと Google の UX デザイナーによって開発され、このコンポーネントは美しくかつ機能的な Web プロジェクトを構築するための確かな開発ワークフローを可能にします。
 
 Material Components for the web は [Material Design Lite](https://getmdl.io/) の後継であり、3つのハイレベルな目的を持っています。
 
@@ -15,11 +15,11 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
   - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc)
   - [Angular MDC](https://github.com/trimox/angular-mdc-web)
   - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
-  - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js ( [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用) による MDC-Web との統合
-  - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js ([vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用) による MDC-Web との統合
+  - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js ( [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用) による MDC Web との統合
+  - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js ([vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用) による MDC Web との統合
   - まだまだ増えます！[基準](docs/integrating-into-frameworks.md) をみたしているならあなたのライブラリをこのリストに加えるよう、遠慮なくプルリクエストを送ってください。
 
-MDC-Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
+MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
 
 **[デモ](https://material-components-web.appspot.com/)**（リリースの都度、更新されます）
 
@@ -57,7 +57,7 @@ npm install --save material-components-web
 
 ## 個別コンポーネントのインストール
 
-MDC-Web は設計によりモジュール化されています。各コンポーネントは [@material npm org](https://www.npmjs.com/org/material) の下にあるそれぞれのパッケージに存在します。
+MDC Web は設計によりモジュール化されています。各コンポーネントは [@material npm org](https://www.npmjs.com/org/material) の下にあるそれぞれのパッケージに存在します。
 
 ```
 npm install --save @material/button @material/card @material/textfield @material/typography

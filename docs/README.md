@@ -11,4 +11,4 @@ path: /docs/
 
 すぐに使い始めるには [入門ガイド](./getting-started.md) を参照してください。
 
-もし MDC-Web の概要に関心があるなら [MDC のリポジトリの README](../README.md) を確認してください。
+もし MDC Web の概要に関心があるなら [MDC のリポジトリの README](../README.md) を確認してください。

@@ -1,4 +1,4 @@
-# Material Components Web (MDC-Web)
+# Material Components Web (MDC Web)
 
 このページは Material Components Web のマスタライブラリを含んでいます。利便性を考え、単にパッケージのすべてを一つの包括的なライブラリにまとめただけです。
 
@@ -30,7 +30,7 @@ const checkbox = new checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'
 
 ### コンポーネントの自動初期化
 
-`material-components-web` パッケージはすべての MDC-Web コンポーネントを [mdc-auto-init](../mdc-auto-init) に自動的に登録するので、設定や手作業なしでコンポーネントの生成と初期化を非常に簡単に行えます。
+`material-components-web` パッケージはすべての MDC Web コンポーネントを [mdc-auto-init](../mdc-auto-init) に自動的に登録するので、設定や手作業なしでコンポーネントの生成と初期化を非常に簡単に行えます。
 
 例として  [トグルアイコン](../mdc-icon-toggle) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCIconToggle"` 属性を追加するだけです。
 

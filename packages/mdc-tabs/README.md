@@ -101,7 +101,7 @@ npm install --save @material/tabs
 
 #### ダークモードのサポート
 
-他の MDC-Web コンポーネントと同様に `mdc-tab-bar--theme-dark` クラスがルート要素にあるときか祖先の要素に `mdc-theme--dark` クラスがあるとき、タブはダークモードをサポートします。
+他の MDC Web コンポーネントと同様に `mdc-tab-bar--theme-dark` クラスがルート要素にあるときか祖先の要素に `mdc-theme--dark` クラスがあるとき、タブはダークモードをサポートします。
 
 ```html
 <html class="mdc-theme--dark">

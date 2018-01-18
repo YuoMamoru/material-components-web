@@ -2,7 +2,7 @@
 title: "Theme"
 layout: detail
 section: components
-excerpt: "Color theming for MDC-Web components."
+excerpt: "Color theming for MDC Web components."
 iconId: theme
 path: /catalog/theme/
 -->
@@ -61,7 +61,7 @@ npm install --save @material/theme
 
 MDC Theme はブランドカラーを表現することを容易に実現してくれます。Sass か CSS カスタムプロパティを通じてデフォルトのテーマカラーを上書きすればよいのです。CSS カスタムプロパティはランタイムテーマを可能にしてくれます。
 
-> **Sass 変数に関する注釈**: mdc-theme や それに依存する MDC-Web のコンポーネントをインポートする前に、次のように、 3つのテーマカラーの変数を定義する必要があります。
+> **Sass 変数に関する注釈**: mdc-theme や それに依存する MDC Web のコンポーネントをインポートする前に、次のように、 3つのテーマカラーの変数を定義する必要があります。
 
 ```scss
 $mdc-theme-primary: #9c27b0; // Purple 500
@@ -107,7 +107,7 @@ CSS カスタムプロパティ | 説明
 
 ### CSS クラス
 
-MDC-Web はコンポーネントのカスタマイズを容易にするために `mdc-button-filled-accessible` のような Sass ミキシンも提供しています。より詳しい情報は各コンポーネントのドキュメントを調べてください。
+MDC Web はコンポーネントのカスタマイズを容易にするために `mdc-button-filled-accessible` のような Sass ミキシンも提供しています。より詳しい情報は各コンポーネントのドキュメントを調べてください。
 
 マテリアルデザインのコンポーネント以外の要素を変更したいなら、以下の CSS 修飾クラスが使えます。
 

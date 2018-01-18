@@ -7,7 +7,7 @@ path: /docs/authoring-components/
 
 # コンポーネントの構成
 
-このドキュメントは MDC-Web を直接利用する場合や MDC-Web とのインターフェースを持つ外部コンポーネントを開発する場合のどちらの場合でもリファレンスとして役立ちます。
+このドキュメントは MDC Web を直接利用する場合や MDC Web とのインターフェースを持つ外部コンポーネントを開発する場合のどちらの場合でもリファレンスとして役立ちます。
 
 > このプロジェクトはまだ開発の初期段階で、これらの実践はまた変わりうることに注意してください。これらは完全なリリースに近づくにつれ安定していきます。
 
@@ -29,7 +29,7 @@ path: /docs/authoring-components/
   * [アダプタインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
   * [ファンデーションコード内でホストオブジェクトを参照しない](#do-not-reference-host-objects-within-foundation-code)
   * [デストラクタですべての参照を削除する](#clean-up-all-references-on-destruction)
-* [MDC-Web のコンポーネントの作成](#authoring-components-for-mdc-web)
+* [MDC Web のコンポーネントの作成](#authoring-components-for-mdc-web)
   * [ファイル構成](#file-structure)
   * [ライセンスの記載](#license-stanzas)
   * [Scss](#scss)
@@ -53,17 +53,17 @@ path: /docs/authoring-components/
 
 ## <a name="who-this-document-is-for"></a>誰のためのドキュメントか
 
-このドキュメントの最初の2つのセクションにはコンポーネント構築の考え方や良いコンポーネントの基準についての一般的なガイドラインを記載します。直接 MDC-Web を構築する場合にも MDC-Web と連携する外部コンポーネントを作成する場合にもコンポーネントの構築に関心のある人にはこれが役立つでしょう。3つ目のセクションでは特に MDC-Web のコンポーネント制作について説明します。このセクションはプロジェクトに直接貢献したい人に最適です。
+このドキュメントの最初の2つのセクションにはコンポーネント構築の考え方や良いコンポーネントの基準についての一般的なガイドラインを記載します。直接 MDC Web を構築する場合にも MDC Web と連携する外部コンポーネントを作成する場合にもコンポーネントの構築に関心のある人にはこれが役立つでしょう。3つ目のセクションでは特に MDC Web のコンポーネント制作について説明します。このセクションはプロジェクトに直接貢献したい人に最適です。
 
 このドキュメントはあなたがこのライブラリとそのアーキテクチャに精通していることを前提としています。もしそうでない場合はまず [アーキテクチャ](code/architecture.md) を読むことをお勧めします。もしこのプロジェクトに初めて触れるのであれば [入門ガイド](./getting-started.md) から始めるのが良いでしょう。
 
 ## <a name="how-to-build-a-component"></a>コンポーネント構築の方法
 
-このセクションでは MDC-Web のための新しいコンポーネントの作成の背景にある考え方のアウトラインを示します。これは React の [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) という記事に触発されました。
+このセクションでは MDC Web のための新しいコンポーネントの作成の背景にある考え方のアウトラインを示します。これは React の [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) という記事に触発されました。
 
 何もない状態から取りかかり、コンポーネント/アダプタ/ファンデーション の実装にまっすぐ進むことは非常に困難であり、最悪の場合、生産性と実験性の観点から完全に不可能になってしまいます。そこで、しばしば<em>可能な限りもっとも簡単な方法でプロトタイプのコンポーネントを構築し、それからファンデーションとアダプタに向かって作業を進めます</em>。私たちはよくこの方法でステップを進めます。
 
-このアプローチを実証するために私たちは **red-blue toggle** を構築します。これは赤い背景と青いテキストが入れ替わる非常に単純なトグルボタンです。マテリアルデザインのコンポーネントではありませんが、これを使って MDC-Web の構成がどのように考えられているかというコンセプトを説明します。
+このアプローチを実証するために私たちは **red-blue toggle** を構築します。これは赤い背景と青いテキストが入れ替わる非常に単純なトグルボタンです。マテリアルデザインのコンポーネントではありませんが、これを使って MDC Web の構成がどのように考えられているかというコンセプトを説明します。
 
 ### <a name="start-with-a-simple-component-prototype"></a>単純なコンポーネントのプロトタイプ
 
@@ -124,7 +124,7 @@ class RedblueTogglePrototype {
 new RedblueTogglePrototype(document.querySelector('.redblue-toggle'));
 ```
 
-この JS コンポーネントは MDC-Web を少しも参照しておらず、ファンデーションやアダプタの概念を持っていないことに注意してください。こういったことをしないことにより、素早くコンポーネントを試してみることができ、早く簡単に変更を行うことができます。それにもかかわらずこのプロトタイプのコンポーネントのやり方は MDC-Web コンポーネントの構築によるやり方に結局のところとても似ています。
+この JS コンポーネントは MDC Web を少しも参照しておらず、ファンデーションやアダプタの概念を持っていないことに注意してください。こういったことをしないことにより、素早くコンポーネントを試してみることができ、早く簡単に変更を行うことができます。それにもかかわらずこのプロトタイプのコンポーネントのやり方は MDC Web コンポーネントの構築によるやり方に結局のところとても似ています。
 
 ### <a name="identify-host-environment-interactions"></a>ホスト環境とのやりとりの確認
 
@@ -330,7 +330,7 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 ### <a name="do-what-the-user-expects"></a>ユーザの期待していることを実行する
 
-これは私たちの「黄金の掟 (golden rule)」です。<em>コンポーネントの API は直感的でわかりやすいものになるよう設計してください。コンポーネントはユーザの予想通りのふるまいをするようにしてください。</em>例えば `MDCCheckbox` の `checked` ゲッタはチェックボックスの内部状態がチェックされているかどうかを表す真偽値を返してください。副作用ががなく、`type` が `"checkbox"` であるときは `HTMLInputElement.prototype.checked` とまったく同じ方法で動作するようにします。コンポーネントを設計する際には、ユーザがどのように使うのかを想像したことをもとに作ってください。私たちのケースでは素のコンポーネント（訳注: 手を入れていない MDC-Web の素のコンポーネントのこと）は DOM API をもとに作っています。
+これは私たちの「黄金の掟 (golden rule)」です。<em>コンポーネントの API は直感的でわかりやすいものになるよう設計してください。コンポーネントはユーザの予想通りのふるまいをするようにしてください。</em>例えば `MDCCheckbox` の `checked` ゲッタはチェックボックスの内部状態がチェックされているかどうかを表す真偽値を返してください。副作用ががなく、`type` が `"checkbox"` であるときは `HTMLInputElement.prototype.checked` とまったく同じ方法で動作するようにします。コンポーネントを設計する際には、ユーザがどのように使うのかを想像したことをもとに作ってください。私たちのケースでは素のコンポーネント（訳注: 手を入れていない MDC Web の素のコンポーネントのこと）は DOM API をもとに作っています。
 
 ### <a name="design-adapter-interfaces-to-be-simple-and-ntuitive"></a>アダプタインターフェースは単純かつ直感的なものにする
 
@@ -363,9 +363,9 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 1. `init()` （もしくは素のコンポーネントにおける  `initialize()`）と `destroy()` が対称的になっている。例えば `init()` でアタッチされたすべてのイベントリスナーは `destroy()` で削除されている。
 2. 外部参照を作成するすべての呼び出し（例: `setTimeout()`、`requestAnimationFrame()`）は追跡され、破棄する際にクリーンアップされる。例えばすべての `setTimeout()` 呼び出しはファンデーションやコンポーネントによって ID が保持され、破棄される際には `clearTimeout()` が破棄する処理の中で呼ばれる。
 
-## <a name="authoring-components-for-mdc-web"></a>MDC-Web のコンポーネントの作成
+## <a name="authoring-components-for-mdc-web"></a>MDC Web のコンポーネントの作成
 
-以下のガイドラインは直接 MDC-Web に貢献したい人向けのものです。上に記載したすべてのプラクティスを守ることに加え、コントリビュータに守ってほしい追加の慣習があります。それらの慣習 - コーディングスタイルやコミットメッセージの書式、テストカバレッジが含まれます - の多くは注目に値するものです。コントリビュータが素早く自信をもって行動できるようになり、コアチームメンバはプルリクエストに時間の浪費や労力の消費をする必要がなくなるからです。
+以下のガイドラインは直接 MDC Web に貢献したい人向けのものです。上に記載したすべてのプラクティスを守ることに加え、コントリビュータに守ってほしい追加の慣習があります。それらの慣習 - コーディングスタイルやコミットメッセージの書式、テストカバレッジが含まれます - の多くは注目に値するものです。コントリビュータが素早く自信をもって行動できるようになり、コアチームメンバはプルリクエストに時間の浪費や労力の消費をする必要がなくなるからです。
 
 ### <a name="file-structure"></a>ファイルの構成
 
@@ -634,11 +634,11 @@ class MDCNewComponentFoundation extends MDCFoundation {
 
 > 注意: このセクションは [クロージャ互換性のマイルストーン](https://github.com/material-components/material-components-web/milestone/4) （訳注: 当該ファイルは既に削除されている）の一部を紹介します。現在存在するコンポーネントはクロージャ―について互換性を持たせようとしている段階にあります。
 
-すべてのコアな MDC-Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャコンパイラドキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャパターンについて、完全な説明を提供しています。
+すべてのコアな MDC Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャコンパイラドキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャパターンについて、完全な説明を提供しています。
 
 ### <a name="testing"></a>テスト
 
-MDC-Web のコードのテストを書く際に以下のガイドラインにしたがってください。私たちはテストを [mocha](https://mochajs.org/) 上の [qunit UI](https://mochajs.org/#qunit) で書いており、[karma](https://karma-runner.github.io/1.0/index.html) で実行しています。アサーションには [chai assert API](http://chaijs.com/api/assert/) を使い、モックとスタブは [testdouble](https://github.com/testdouble/testdouble.js/) を使っています。
+MDC Web のコードのテストを書く際に以下のガイドラインにしたがってください。私たちはテストを [mocha](https://mochajs.org/) 上の [qunit UI](https://mochajs.org/#qunit) で書いており、[karma](https://karma-runner.github.io/1.0/index.html) で実行しています。アサーションには [chai assert API](http://chaijs.com/api/assert/) を使い、モックとスタブは [testdouble](https://github.com/testdouble/testdouble.js/) を使っています。
 
 #### <a name="verify-foundations-adapters"></a>ファンデーションのアダプタを検証する
 

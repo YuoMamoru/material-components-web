@@ -112,14 +112,7 @@ document.querySelector('.some-button').addEventListener('click', () => menu.open
 </div>
 ```
 
-メニューはデフォルトで左上（RTL では右上）から開きます。どのようにボタンを配置したかによって開く起点を変えることができます。開く起点を上書きするには `transform-origin` を直接設定するか、以下の便利なクラスを使うことができます。
-
-| クラス                                    | 説明                                 |
-| ----------------------------------------- | ------------------------------------ |
-| `mdc-simple-menu--open-from-top-left`     | 左上からメニューを開く。             |
-| `mdc-simple-menu--open-from-top-right`    | 右上からメニューを開く。             |
-| `mdc-simple-menu--open-from-bottom-left`  | 左下からメニューを開く。             |
-| `mdc-simple-menu--open-from-bottom-right` | 右下からメニューを開く。             |
+メニューはデフォルトで左上（RTL では右上）から開きます。どのようにボタンを配置したかによって開く起点を変えることができます。開く起点を上書きするには `transform-origin` を直接設定することができます。
 
 
 #### 無効なメニュー項目

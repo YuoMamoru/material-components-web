@@ -8,7 +8,7 @@ path: /catalog/auto-init/
 
 # Auto Init
 
-`mdc-auto-init` は、単純な Web サイト上の MDC-Web コンポーネントを初期化するための DOM ベースで宣言的な方法を提供するユーティリティパッケージです。より高度なユースケースや複雑なサイトではコンポーネントを手動で初期化したほうが柔軟に扱えることがあることを知っておいてください。しかし、`mdc-auto-init` は静的な Web サイトやプロトタイプ、簡潔さと利便性が求められるユースケースに適しています。
+`mdc-auto-init` は、単純な Web サイト上の MDC Web コンポーネントを初期化するための DOM ベースで宣言的な方法を提供するユーティリティパッケージです。より高度なユースケースや複雑なサイトではコンポーネントを手動で初期化したほうが柔軟に扱えることがあることを知っておいてください。しかし、`mdc-auto-init` は静的な Web サイトやプロトタイプ、簡潔さと利便性が求められるユースケースに適しています。
 
 ## インストール
 
@@ -115,7 +115,7 @@ mdcAutoInit.deregister('MDCTextField');
 
 ```html
 <div id="mdc-section">
-  <!-- MDC-Web コンポーネントなど -->
+  <!-- MDC Web コンポーネントなど -->
 </div>
 <script>window.mdc.autoInit(document.getElementById('mdc-section'));</script>
 ```
@@ -124,7 +124,7 @@ mdcAutoInit.deregister('MDCTextField');
 
 ### autoInit() の複数回の呼び出し
 
-デフォルトでは `mdc-auto-init` はページのロード時の一度だけ呼び出されることを想定しています。しかし、`mdc-auto-init` を使って、無限ににスクロールできる MDC-Web コンポーネントを含んだブログ投稿要素のリストを持つ Wordpress サイトのような場合、複数回 `mdcAutoInit()` を呼ぶことが必要になる場面もあるでしょう。コンポーネントが複数回初期化された際に利用するオプションの第二引数を `mdcAutoInit()` は持っています。デフォルトでこの引数は `console.warn()` をするだけです。すでに初期化されているコンポーネントで警告を出さないように処理をスキップさせるには、単に何もしない処理を渡すだけです。
+デフォルトでは `mdc-auto-init` はページのロード時の一度だけ呼び出されることを想定しています。しかし、`mdc-auto-init` を使って、無限ににスクロールできる MDC Web コンポーネントを含んだブログ投稿要素のリストを持つ Wordpress サイトのような場合、複数回 `mdcAutoInit()` を呼ぶことが必要になる場面もあるでしょう。コンポーネントが複数回初期化された際に利用するオプションの第二引数を `mdcAutoInit()` は持っています。デフォルトでこの引数は `console.warn()` をするだけです。すでに初期化されているコンポーネントで警告を出さないように処理をスキップさせるには、単に何もしない処理を渡すだけです。
 
 ```html
 <script>window.mdc.autoInit(/* root */ document, () => {});</script>

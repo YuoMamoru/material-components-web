@@ -197,6 +197,11 @@ CSS クラス | 説明
 `mdc-text-field-focused-bottom-line-color($color)` | テキスト欄がフォーカスを得たときの下線のリップルの色を設定する。
 `mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
 `mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
+`mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
+`mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
+`mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
+`mdc-text-field-helper-text-color($color)` | テキスト欄の下のヘルプテキストの色を設定する。
+`mdc-text-field-helper-text-validation-color($color)` | ヘルプテキストがバリデーションメッセージとして使用されるときのヘルプテキストの色を設定する。
 
 ### `MDCTextField`
 

@@ -1,6 +1,6 @@
 # README 標準
 
-MDC-Web コンポーネントドキュメントには2つの目的があります。
+MDC Web コンポーネントドキュメントには2つの目的があります。
 
 * [カタログサイト](https://material.io/components/web/catalog/) の設置
 * 外部開発者のための [API の使用法](readme_standards.md) の要点

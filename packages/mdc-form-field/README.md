@@ -37,9 +37,9 @@ npm install --save @material/form-field
 
 こうすると、ラベルはチェックボックスの前に来ます。
 
-### MDC-Web コンポーネントとともに使用
+### MDC Web コンポーネントとともに使用
 
-`mdc-form-field` は `input` 要素に対してだけでなく、連続した兄弟要素が `label` 要素であれば <em>任意の</em> 直接の子要素に対して作用します。このことは、Checkbox や Radio のような MDC-Web フォームコントロールでも動作するということを意味しています。
+`mdc-form-field` は `input` 要素に対してだけでなく、連続した兄弟要素が `label` 要素であれば <em>任意の</em> 直接の子要素に対して作用します。このことは、Checkbox や Radio のような MDC Web フォームコントロールでも動作するということを意味しています。
 
 ```html
 <div class="mdc-form-field">
@@ -121,9 +121,9 @@ const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
 
 #### MDCFormField.input
 
-MDC-Web の input 要素のインスタンスとともに動作する読み書き可能なプロパティです。
+MDC Web の input 要素のインスタンスとともに動作する読み書き可能なプロパティです。
 
-適切に動作するラベルのリップルを統合するために、このプロパティには `ripple` ゲッタを持つ MDC-Web の input 要素の有効なインスタンスを設定する必要があります。
+適切に動作するラベルのリップルを統合するために、このプロパティには `ripple` ゲッタを持つ MDC Web の input 要素の有効なインスタンスを設定する必要があります。
 
 ```javascript
 const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
