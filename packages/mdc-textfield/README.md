@@ -73,25 +73,6 @@ npm install --save @material/textfield
   <div class="mdc-text-field__bottom-line"></div>
 </div>
 ```
-> <em>注意</em>: <em>JavaScript を利用するときには</em> `mdc-text-field` の内側に `mdc-text-field__label` を配置してください。そうでないときは、ラベルは次項で見るように `mdc-text-field` の外側に置かなくてはなりません。
-
-#### CSS のみでの使用
-
-```html
-<label for="text-field-no-js">TextField with no JS: </label>
-<div class="mdc-text-field">
-  <input type="text" id="text-field-no-js" class="mdc-text-field__input" placeholder="Hint text">
-</div>
-```
-
-> <em>注意</em>: <em>JavaScript を使用せず、 `mdc-text-field--box` もしくは `mdc-text-field--outlined` を使うときは</em> `mdc-text-field` の内側に `mdc-text-field__bottom-line`、`mdc-text-field__outline`、`mdc-text-field__idle-outline` を使わないでください。ボトムラインとアウトラインは CSS のみによるテキスト欄の DOM 構造の一部として入れてはいけません。
-
-```html
-<label for="css-only-text-field-box">Your name:</label>
-<div class="mdc-text-field mdc-text-field--box">
-  <input type="text" class="mdc-text-field__input" id="css-only-text-field-box" placeholder="Name">
-</div>
-```
 
 #### フル幅のテキスト欄
 
@@ -112,18 +93,6 @@ npm install --save @material/textfield
 <div class="mdc-text-field mdc-text-field--textarea">
   <textarea id="textarea" class="mdc-text-field__input" rows="8" cols="40"></textarea>
   <label for="textarea" class="mdc-text-field__label">Textarea Label</label>
-</div>
-```
-
-> <em>注意</em>: JavaScript を使うときには、`mdc-text-field--textarea` の内部では `mdc-text-field__label` のみを使ってください。そうでないときは以下のように `placeholder` 属性を使ってください。
-
-```html
-<div class="mdc-text-field mdc-text-field--textarea">
-  <textarea id="textarea-css-only"
-    class="mdc-text-field__input"
-    rows="8"
-    cols="40"
-    placeholder="Enter something about yourself"></textarea>
 </div>
 ```
 

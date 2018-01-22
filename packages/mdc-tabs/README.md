@@ -83,6 +83,27 @@ npm install --save @material/tabs
 </nav>
 ```
 
+#### CSS のみでの実装
+
+CSS だけを利用してインジケータを表示するにはマークアップを変更する必要があります。各 `.mdc-tab` に以下のようにクラス `.mdc-tab__indicator` を伴った子要素を持たせます。
+
+```html
+<nav id="basic-tab-bar" class="mdc-tab-bar">
+  <a class="mdc-tab mdc-tab--active" href="#one">
+    Home
+    <span class="mdc-tab__indicator"></span>
+  </a>
+  <a class="mdc-tab" href="#two">
+    Merchandise
+    <span class="mdc-tab__indicator"></span>
+  </a>
+  <a class="mdc-tab" href="#three">
+    About Us
+    <span class="mdc-tab__indicator"></span>
+  </a>
+</nav>
+```
+
 #### RTL のサポート
 
 祖先の要素に属性 `dir="rtl"` をもつとき、Tab Bars はタブの順序を逆転します。
@@ -123,7 +144,7 @@ npm install --save @material/tabs
 #### マークアップ:
 ```html
 <section id="dynamic-demo-toolbar">
-  <nav id="dynamic-tab-bar" class="mdc-tab-bar mdc-tab-bar--indicator-accent" role="tablist">
+  <nav id="dynamic-tab-bar" class="mdc-tab-bar" role="tablist">
     <a role="tab" aria-controls="panel-1"
        class="mdc-tab mdc-tab--active" href="#panel-1">Item One</a>
     <a role="tab" aria-controls="panel-2"
@@ -216,6 +237,9 @@ dots.addEventListener('click', function (evt) {
 
 #### `mdc-tab-label-ink-color`
 このミキシンはラベルのインクの色をカスタマイズします。
+
+#### `mdc-tab-bar-indicator-ink-color`
+このミキシンはインジケータのインクの色をカスタマイズします。
 
 ### CSS のみのコンポーネントの使用
 
