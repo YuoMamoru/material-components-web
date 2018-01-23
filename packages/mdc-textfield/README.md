@@ -161,14 +161,19 @@ CSS クラス | 説明
 --- | ---
 `mdc-text-field-box-corner-radius($radius)` | ボックス型テキスト欄の角の半径を設定する。
 `mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
+`mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
+`mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
 `mdc-text-field-bottom-line-color($color)` | テキスト欄のデフォルトの下線の色を設定する。
 `mdc-text-field-hover-bottom-line-color($color)` | テキスト欄の下線のホバー時の色を設定する。
 `mdc-text-field-focused-bottom-line-color($color)` | テキスト欄がフォーカスを得たときの下線のリップルの色を設定する。
-`mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
-`mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
 `mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
 `mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
 `mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
+`mdc-text-field-box-fill-color($color)` | テキスト欄のボックスの背景色を設定する。
+`mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
+`mdc-text-field-textarea-fill-color($color)` | textarea の背景色を設定する。
+`mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄の下線の色を設定する。textarea には適用されない。
+`mdc-text-field-icon-color($color)` | 先頭・末尾のアイコンの色を設定する。
 `mdc-text-field-helper-text-color($color)` | テキスト欄の下のヘルプテキストの色を設定する。
 `mdc-text-field-helper-text-validation-color($color)` | ヘルプテキストがバリデーションメッセージとして使用されるときのヘルプテキストの色を設定する。
 
