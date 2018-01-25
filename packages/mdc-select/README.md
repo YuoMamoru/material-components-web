@@ -48,8 +48,8 @@ npm install --save @material/select
     <div class="mdc-select__selected-text"></div>
     <div class="mdc-select__bottom-line"></div>
   </div>
-  <div class="mdc-simple-menu mdc-select__menu">
-    <ul class="mdc-list mdc-simple-menu__items">
+  <div class="mdc-menu mdc-select__menu">
+    <ul class="mdc-list mdc-menu__items">
       <li class="mdc-list-item" role="option" tabindex="0">
         Bread, Cereal, Rice, and Pasta
       </li>
@@ -98,8 +98,8 @@ UMD バンドルを通じて mdc-select を含めることができることに�
     <div class="mdc-select__selected-text"></div>
     <div class="mdc-select__bottom-line"></div>
   </div>
-  <div class="mdc-simple-menu mdc-select__menu">
-    <ul class="mdc-list mdc-simple-menu__items">
+  <div class="mdc-menu mdc-select__menu">
+    <ul class="mdc-list mdc-menu__items">
       <li class="mdc-list-item" role="option" tabindex="0">
         Bread, Cereal, Rice, and Pasta
       </li>
@@ -132,8 +132,8 @@ UMD バンドルを通じて mdc-select を含めることができることに�
     <div class="mdc-select__selected-text"></div>
     <div class="mdc-select__bottom-line"></div>
   </div>
-  <div class="mdc-simple-menu mdc-select__menu">
-    <ul class="mdc-list mdc-simple-menu__items">
+  <div class="mdc-menu mdc-select__menu">
+    <ul class="mdc-list mdc-menu__items">
       <li class="mdc-list-item" role="option" tabindex="0">
         Bread, Cereal, Rice, and Pasta
       </li>
@@ -168,8 +168,8 @@ MDC Select のようなコンポーネントを使うと `mdc-list-item` を無�
     <div class="mdc-select__selected-text"></div>
     <div class="mdc-select__bottom-line"></div>
   </div>
-  <div class="mdc-simple-menu mdc-select__menu">
-    <ul class="mdc-list mdc-simple-menu__items">
+  <div class="mdc-menu mdc-select__menu">
+    <ul class="mdc-list mdc-menu__items">
       <li class="mdc-list-item" role="option" tabindex="0">
         Bread, Cereal, Rice, and Pasta
       </li>
@@ -265,13 +265,13 @@ MDC Select コンポーネント API は `HTMLSelectElement` の機能のサブ�
 
 ユーザの操作の結果、選ばれた選択肢が変更されたときに MDC Select JS コンポーネントは `MDCSelect:change` イベントを発生させます。
 
-#### カスタム `MDCSimpleMenu` コンポーネントを使ったインスタンス化
+#### カスタム `MDCMenu` コンポーネントを使ったインスタンス化
 
-`MDCSelect` は選択肢を表示するために配下にある [MDCSimpleMenu](../mdc-menu) のインスタンスを制御しています。カスタムメニューのインスタンスをインスタンス化したいときは `MDCSelect` のコンストラクタにオプションの第 3 引数である `menuFactory` を与えることができます。
+`MDCSelect` は選択肢を表示するために配下にある [MDCMenu](../mdc-menu) のインスタンスを制御しています。カスタムメニューのインスタンスをインスタンス化したいときは `MDCSelect` のコンストラクタにオプションの第 3 引数である `menuFactory` を与えることができます。
 
 ```js
 const menuFactory = menuEl => {
-  const menu = new MDCSimpleMenu(menuEl);
+  const menu = new MDCMenu(menuEl);
   // menu を使って何かやる
   return menu;
 };
@@ -279,7 +279,7 @@ const selectEl = document.querySelector('.mdc-select');
 const select = new MDCSelect(selectEl, /* foundation */ undefined, menuFactory);
 ```
 
-`menuFactory` 関数は `HTMLElement` を渡されると、この要素をアタッチした `MDCSimpleMenu` インスタンスを返すでしょう。これはテスト目的で使いますが、それでもなおそれが必要であるならこのように使うことができます。
+`menuFactory` 関数は `HTMLElement` を渡されると、この要素をアタッチした `MDCMenu` インスタンスを返すでしょう。これはテスト目的で使いますが、それでもなおそれが必要であるならこのように使うことができます。
 
 ## ファンデーションクラスの使用
 
@@ -291,9 +291,9 @@ MDC Select をカスタムコンポーネントに統合するためにフレー
 
 1. コンポーネントは選択メニューとして使用している要素、例えば  **メニュー要素**、を持っています。
 
-2. コンポーネントは `MDCSimpleMenu`のインスタンスを制御し、`MDCSimpleMenu` はメニュー要素にアタッチされています。
+2. コンポーネントは `MDCMenu`のインスタンスを制御し、`MDCMenu` はメニュー要素にアタッチされています。
 
-オプションのコンストラクタパラメータ `menuFactory` を使ってこれを達成しています。`menuFactory` はメニュー要素を受け取る関数で、`MDCSimpleMenu` コンポーネントインスタンスを返すことを前提としています。フレームワーク内で mdc-select を実装しようと試みたが、この方法がうまくいかず、先ほどの 2 つの要件を満たす適当な方法がないなら、[issue に投稿](https://github.com/material-components/material-components-web/issues/new) してください。
+オプションのコンストラクタパラメータ `menuFactory` を使ってこれを達成しています。`menuFactory` はメニュー要素を受け取る関数で、`MDCMenu` コンポーネントインスタンスを返すことを前提としています。フレームワーク内で mdc-select を実装しようと試みたが、この方法がうまくいかず、先ほどの 2 つの要件を満たす適当な方法がないなら、[issue に投稿](https://github.com/material-components/material-components-web/issues/new) してください。
 
 `MDCSelectFoundation` は選択肢が変わったら `resize()` メソッドを使って自身の大きさを変えることもできます。初期化時、もしくはメニュー項目が変わったときにはこのメソッドを呼ぶことを推奨します。例えば、react コンポーネントを構築する際には `componentDidUpdate` 内で `resize()` を呼ぶのが良いでしょう。
 
@@ -334,7 +334,7 @@ MDC Select をカスタムコンポーネントに統合するためにフレー
 | `setAttrForOptionAtIndex(index: number, attr: string, value: string) => void` | セレクトのメニュー内の指定した index の位置の選択肢の属性 `attr` に値 `value` を設定する。 |
 | `rmAttrForOptionAtIndex(index: number, attr: string) => void` | セレクトのメニュー内の指定した index の位置の選択肢の属性 `attr` を削除する。 |
 | `getOffsetTopForOptionAtIndex(index: number) => number` | 指定した index の位置の選択肢要素の `offsetTop` を返す。index は範囲内にあることが保証される。 |
-| `registerMenuInteractionHandler(type: string, handler: EventListener) => void` | メニューコンポーネントのルート要素にイベントリスナーを登録する。change イベントのために `MDCSimpleMenu:selected` を、メニューを閉じる必要があることを知るために `MDCSimpleMenu:cancel` を常時監視している。別のイベントシステムを利用するなら、これらの文字列のいずれか一つのイベントタイプを確認することができ、イベントシステムにつなぐための手順を取ることができる。 |
+| `registerMenuInteractionHandler(type: string, handler: EventListener) => void` | メニューコンポーネントのルート要素にイベントリスナーを登録する。change イベントのために `MDCMenu:selected` を、メニューを閉じる必要があることを知るために `MDCMenu:cancel` を常時監視している。別のイベントシステムを利用するなら、これらの文字列のいずれか一つのイベントタイプを確認することができ、イベントシステムにつなぐための手順を取ることができる。 |
 | `deregisterMenuInteractionHandler(type: string, handler: EventListener) => void` | `registerMenuInteractionHandler` の反対の処理。 |
 | `notifyChange() => void` | `HTMLSelectElement` の発行する `change` イベントと同様に、change イベントを送出する。私たちのこのメソッドの実装においてはカスタムイベントを使用しているが、コールバックやリアクティブストリームなどのような通知に必要な仕組みを利用することができる。`foundation.getValue()` と `foundation.getSelectedIndex()` を使いさえすれば、イベント内ではデータを渡すことができることに注意。 |
 | `getWindowInnerHeight() => number` | `window` 要素の `innerHeight` プロパティを返す。 |
@@ -382,8 +382,8 @@ MDC Select をカスタムコンポーネントに統合するためにフレー
       <div class="mdc-select__selected-text"></div>
       <div class="mdc-select__bottom-line"></div>
     </div>
-    <div class="mdc-simple-menu mdc-select__menu">
-      <ul class="mdc-list mdc-simple-menu__items">
+    <div class="mdc-menu mdc-select__menu">
+      <ul class="mdc-list mdc-menu__items">
         <li id="a" class="mdc-list-item" role="option" tabindex="0">A</li>
         <li id="b" class="mdc-list-item" role="option" tabindex="0">B</li>
         <li id="c" class="mdc-list-item" role="option" tabindex="0">C</li>
