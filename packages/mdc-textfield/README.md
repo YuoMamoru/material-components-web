@@ -76,6 +76,8 @@ npm install --save @material/textfield
 
 #### フル幅のテキスト欄
 
+フル幅のテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
+
 ```html
 <div class="mdc-text-field mdc-text-field--fullwidth">
   <input class="mdc-text-field__input"
@@ -84,6 +86,8 @@ npm install --save @material/textfield
          aria-label="Full-Width Text Field">
 </div>
 ```
+
+> <em>注意</em>: `mdc-text-field--box` や `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。
 
 > <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-text-field__label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
 
