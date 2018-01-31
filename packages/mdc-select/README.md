@@ -193,34 +193,11 @@ MDC Select のようなコンポーネントを使うと `mdc-list-item` を無�
 </div>
 ```
 
-### CSS だけのセレクトの使用
-
-`mdc-select` CSS クラスはブラウザのネイティブな `<select>` 要素とともに機能させることもでき、モバイルデバイスのようにネイティブな select 要素がより適切なことろでブラウザ上にシームレスで非侵略的な体験を実現します。これには JavaScript は必要なく、 `mdc-menu` や `mdc-list` の CSS も不要です。例を挙げます。
-
-1. `<select>` 要素を `mdc-select` クラスをもつブロック要素でラップする。
-2. `<select>` 要素に `mdc-select__surface` クラスを追加する。
-3. `<select>` 要素のすぐ後ろに `<div class="mdc-select__bottom-line"></div>` を追加する。
-
-```html
-<div class="mdc-select">
-  <select class="mdc-select__surface">
-    <option value="" default selected>Pick a food group</option>
-    <option value="grains">Bread, Cereal, Rice, and Pasta</option>
-    <option value="vegetables" disabled>Vegetables</option>
-    <option value="fruit">Fruit</option>
-    <option value="dairy">Milk, Yogurt, and Cheese</option>
-    <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
-    <option value="fats">Fats, Oils, and Sweets</option>
-  </select>
-  <div class="mdc-select__bottom-line"></div>
-</div>
-```
-
 #### CSS クラス
 
 | クラス                   | 説明                                            |
 | ------------------------ | ----------------------------------------------- |
-| `mdc-select`             | CSS だけの `select` 要素。                      |
+| `mdc-select`             | 必須。                      |
 | `mdc-list-group`         | オプションのグループ。                          |
 | `mdc-list-item`          | リストの項目。                                  |
 | `mdc-list-divider`       | 分割線。                                        |
@@ -233,7 +210,7 @@ MDC Select のようなコンポーネントを使うと `mdc-list-item` を無�
 
 Mixin | Description
 --- | ---
-`mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。CSS バージョンではラベルの色も設定される。
+`mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
 `mdc-select-container-fill-color($color)` | セレクトの背景色を設定する。 
 `mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。このミキシンはセレクトの JS バージョンに対してのみ、使用される。
 `mdc-select-focused-label-color($color, $opacity: 0.87)` | フォーカス時のセレクトのラベルの色を設定する。フローティングの際のラベルの不透明度の変更はオプション。
@@ -366,87 +343,3 @@ MDC Select をカスタムコンポーネントに統合するためにフレー
 ## テーマ
 
 セレクトの下線部分はフォーカス時に現在のテーマのプライマリカラーが設定されます。
-
-## ヒント/小技
-
-### より良いクロスデバイス UX のためのセレクトの切り替え
-
-セレクトは Web 上では扱いの難しい猛獣です。多く場合、マウスとキーボードの力を使う大きなデバイス上でカスタムセレクトコンポーネントは非常にうまくは機能しますが、スマートフォンのような繊細なポインタの能力を使用しない小さな規模のデバイスではひどくうまくいきません。`mdc-select` はネイティブな select を利用して動かせるので、大きなデバイス上のカスタムセレクトと小さなデバイスのネイティブ要素とを容易に切り替えることができます。
-
-まず、ラッパー要素内でカスタムセレクトとネイティブなセレクトの両方をラップし、それを `select-manager` と呼ぶことにしましょう。
-
-```html
-<div class="select-manager">
-  <!-- デスクトップ表示用のカスタム MDC Select -->
-  <div class="mdc-select" role="listbox">
-    <div class="mdc-select__surface" tabindex="0">
-      <div class="mdc-select__label">Pick One</div>
-      <div class="mdc-select__selected-text"></div>
-      <div class="mdc-select__bottom-line"></div>
-    </div>
-    <div class="mdc-menu mdc-select__menu">
-      <ul class="mdc-list mdc-menu__items">
-        <li id="a" class="mdc-list-item" role="option" tabindex="0">A</li>
-        <li id="b" class="mdc-list-item" role="option" tabindex="0">B</li>
-        <li id="c" class="mdc-list-item" role="option" tabindex="0">C</li>
-      </ul>
-    </div>
-  </div>
-  <!-- モバイルデバイス表示用のネイティブ要素 -->
-  <div class="mdc-select">
-    <select class="mdc-select__surface">
-      <option value="" selected disabled>Pick one</option>
-      <option value="a">A</option>
-      <option value="b">B</option>
-      <option value="c">C</option>
-    </select>
-    <div class="mdc-select__bottom-line"></div>
-  <div>
-</div>
-```
-
-次に、[course pointer interaction](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) のように小さな画面かどうかの確認のためのメディアクエリを実装した CSS を書きます。これは、ハイブリッドタブレットやデスクトップ上の小さなブラウザウィンドウのようなマウス・キーボードを持つ小さなデバイス上でもカスタムセレクトが表示されることを保証するものです。
-
-```css
-.select-manager > select.mdc-select {
-  display: none;
-}
-
-@media (max-width: 600px) and (pointer: coarse) {
-  .select-manager > .mdc-select[role="listbox"] {
-    display: none;
-  }
-
-  .select-manager > select.mdc-select {
-    display: block;
-  }
-}
-```
-
-最後に、イベントに反応し、各コンポーネントの同期が維持できる必要があります。数行の JS でこれが可能になり、イベントの発生元を確認するにはその `type` をみるることにより行えます。カスタムコンポーネントが発生元のとき、type は `MDCSelect:change` となっており、そうでないときは単に `change` になっています。
-
-```js
-const selectManager = document.querySelector('.select-manager');
-const selects = {
-  custom: MDCSelect.attachTo(selectManager.querySelector('.mdc-select[role="listbox"]')),
-  native: MDCSelect.attachTo(selectManager.querySelector('select.mdc-select__surface'))
-};
-const changeHandler = ({type}) =>  {
-  let changedSelect, selectToUpdate, value;
-  if (type === 'MDCSelect:change') {
-    changedSelect = selects.custom;
-    selectToUpdate = selects.native;
-    value = changedSelect.selectedOptions[0].id;
-  } else {
-    changedSelect = selects.native;
-    selectToUpdate = selects.custom;
-    value = changedSelect.selectedOptions[0].value;
-  }
-  selectToUpdate.selectedIndex = changedSelect.selectedIndex;
-  console.info('Selected value', value);
-};
-selects.custom.listen('MDCSelect:change', changeHandler);
-selects.native.addEventListener('change', changeHandler);
-```
-
-将来、`MDCSelect` ではこの機能を構築しようと調査しています。

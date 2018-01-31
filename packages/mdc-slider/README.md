@@ -247,7 +247,7 @@ const {MDCSlider} = mdc.slider;
 
 ### テーマ
 
-デフォルトでスライダーのすべてのテーマを持つ要素は、コンポーネントがダークテーマを使っている場合も含め、**セカンダリテーマカラー** を使用します。
+デフォルトでスライダーのすべてのテーマを持つ要素は **セカンダリテーマカラー** を使用します。
 
 #### Sass ミキシン
 
@@ -280,16 +280,6 @@ const {MDCSlider} = mdc.slider;
   --mdc-slider-bg-color-behind-component: #fafafa;
 }
 ```
-
-カスタムプロパティをサポートしていないブラウザ（IE11 と古いバージョンの Edge）でこれを実現する必要のあるなら、Sass 変数 `$mdc-slider-default-assumed-bg-color` を上書きできます。
-
-```scss
-$mdc-slider-default-assumed-bg-color: #fafafa;
-
-@import "@material/slider/mdc-slider";
-```
-
-`.mdc-theme--dark` クラスを使っているのなら、代わりに `$mdc-slider-dark-theme-assumed-bg-color` を上書きする必要があるでしょう。
 
 ### ヒント/小技
 
