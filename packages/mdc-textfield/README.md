@@ -42,7 +42,7 @@ npm install --save @material/textfield
 <div class="mdc-text-field">
   <input type="text" id="my-text-field" class="mdc-text-field__input">
   <label class="mdc-text-field__label" for="my-text-field">Hint text</label>
-  <div class="mdc-text-field__bottom-line"></div>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -54,7 +54,7 @@ npm install --save @material/textfield
 <div class="mdc-text-field">
   <input type="password" id="pw" class="mdc-text-field__input" required minlength=8>
   <label for="pw" class="mdc-text-field__label">Password</label>
-  <div class="mdc-text-field__bottom-line"></div>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -70,7 +70,7 @@ npm install --save @material/textfield
   <label class="mdc-text-field__label mdc-text-field__label--float-above" for="pre-filled">
     Label in correct place
   </label>
-  <div class="mdc-text-field__bottom-line"></div>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -108,7 +108,7 @@ npm install --save @material/textfield
 <div class="mdc-text-field mdc-text-field--disabled">
   <input type="text" id="disabled-text-field" class="mdc-text-field__input" disabled>
   <label class="mdc-text-field__label" for="disabled-text-field">Disabled text field</label>
-  <div class="mdc-text-field__bottom-line"></div>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -129,7 +129,7 @@ npm install --save @material/textfield
 
 アウトラインサブコンポーネントを使うにあたり、より詳細な情報は [ここ](outline/) を参照してください。
 
-> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-text-field__bottom-line` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
+> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-line-ripple` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
 
 #### ヘルプテキスト
 
@@ -137,7 +137,7 @@ npm install --save @material/textfield
 
 #### 先頭と末尾のアイコン
 
-双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
+双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields のボックスもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
 
 ### CSS クラス
 
@@ -159,7 +159,7 @@ CSS クラス | 説明
 
 テキスト欄の任意の部分の色をカスタマイズするには以下のミキシンを使用します。フォーカスのないテキスト欄を選択するには `.foo-text-field:not(.mdc-text-field--focused)`、フォーカスのあるテキスト欄を選択するには `.foo-tab.mdc-text-field--focused` のような CSS セレクタ内にこれらのミキシンを適用することを推奨しています。テキスト欄を無効にするには `.foo-text-field.mdc-text-field--invalid` のような CSS セレクタ内にこれらのミキシンを適用します。
 
-> <em>注意</em>: `mdc-text-field-focused-bottom-line-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-tab--focused)`）から適用する必要があります。
+> <em>注意</em>: `mdc-line-ripple-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-tab--focused)`）から適用する必要があります。
 
 ミキシン | 説明
 --- | ---
@@ -167,16 +167,16 @@ CSS クラス | 説明
 `mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
 `mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
 `mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
-`mdc-text-field-bottom-line-color($color)` | テキスト欄のデフォルトの下線の色を設定する。
-`mdc-text-field-hover-bottom-line-color($color)` | テキスト欄の下線のホバー時の色を設定する。
-`mdc-text-field-focused-bottom-line-color($color)` | テキスト欄がフォーカスを得たときの下線のリップルの色を設定する。
+`mdc-text-field-ripple-line-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
+`mdc-text-field-hover-ripple-line-color($color)` | テキスト欄のリップルする線のホバー時の色を設定する。
+`mdc-text-field-focused-ripple-line-color($color)` | テキスト欄がフォーカスを得たときのリップルする線のリップルの色を設定する。
 `mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
 `mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
 `mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
 `mdc-text-field-box-fill-color($color)` | テキスト欄のボックスの背景色を設定する。
 `mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
 `mdc-text-field-textarea-fill-color($color)` | textarea の背景色を設定する。
-`mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄の下線の色を設定する。textarea には適用されない。
+`mdc-text-field-fullwidth-ripple-line-color($color)` | フル幅のテキスト欄のリップルする線の色を設定する。textarea には適用されない。
 `mdc-text-field-icon-color($color)` | 先頭・末尾のアイコンの色を設定する。
 `mdc-text-field-helper-text-color($color)` | テキスト欄の下のヘルプテキストの色を設定する。
 `mdc-text-field-helper-text-validation-color($color)` | ヘルプテキストがバリデーションメッセージとして使用されるときのヘルプテキストの色を設定する。
@@ -213,8 +213,6 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
 `registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素に与えたイベントのイベントリスナーを登録する。
 `deregisterInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素から与えたイベントのイベントリスナーの登録を解除する。
-`registerBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素に与えたイベントのイベントリスナーを登録する。
-`deregisterBottomLineEventHandler(evtType: string, handler: EventListener)` => void | ボトムラインの要素から与えたイベントのイベントリスナーの登録を解除する。
 `getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
@@ -242,8 +240,7 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理する。
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
 `deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
-`handleBottomLineAnimationEnd(evt: Event) => void` | ボトムラインのアニメーションの終了処理を行い、アニメーションが終わるまで待たなくてはいけない処理を実行する。transition-end イベントの処理を想定している。
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
 `updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新する。
 
-`MDCTextFieldFoundation` は複数のオプションのサブ要素 - ボトムライン、ヘルプテキスト、アイコン、ラベル、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
+`MDCTextFieldFoundation` は複数のオプションのサブ要素 - リップルライン、ヘルプテキスト、アイコン、ラベル、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。

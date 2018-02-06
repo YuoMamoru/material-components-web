@@ -388,32 +388,23 @@ MDC Web コンポーネントのどれが使われるかわからないので、
 
 > 注意: 将来的にはすべての生成した色を変更し、今回のユースケースを簡潔にするための JavaScript の汎用メソッドの提供を計画しています。
 
-## ダークテーマ
+## カスタムテーマ
 
-このドキュメントでこれまで取り上げてきたこと以外に <em>ダークテーマ</em> という概念もあります。すべての MDC Web コンポーネントはライトテーマ（明るい背景色を仮定したもの）とダークテーマ（暗い背景色を持つもの）の両方で動作するよう設計されています。デフォルトは常にライトテーマです。
+大部分の MDC Web コンポーネントは、塗りの色、インクの色、線の太さ等のような見た目を変更するための Sass ミキシンを提供しています。これらのミキシンは各コンポーネントの README ファイル（例えば [Button readme](../packages/mdc-button/README.md#advanced-sass-mixins)）に記載があります。
 
-> 注意: ダークテーマを使用するときはおそらくページの背景として暗い色を選択し、MDC Web の `background` と合うように調整しているでしょう。
+例えば、ボタンの塗りの色を変更し、見やすいインクの色を自動的に選ぶには、カスタム CSS クラス内で単純に `mdc-button-filled-accessible` ミキシンを呼べばよいのです。
 
-単一の要素にダークテーマを適用するためには `--theme-dark` クラスを使います。例えばボタンでは次のようにします。
+```scss
+.accessible-button {
+  @include mdc-button-filled-accessible(blue);
+}
+```
+
+そして、ボタン要素にカスタムクラスを適用します。
 
 ```html
-<button class="mdc-button mdc-button--raised mdc-button--theme-dark">
-  Raised dark button
+<button class="mdc-button accessible-button">
+  <i class="material-icons mdc-button__icon">favorite</i>
+  Button
 </button>
 ```
-
-もしくは `mdc-theme--dark` クラスを使ってページ全体（もしくはページの一部）にダークテーマを設定します。
-
-```html
-<section class="mdc-theme--dark">
-  <button class="mdc-button mdc-button--raised">
-    Still dark
-  </button>
-
-  <button class="mdc-button">
-    Me too!
-  </button>
-</section>
-```
-
-> 注意: 現状はダークテーマの中に明るい部分を作る方法はありません。そのため、そのような効果を実現したいときは明るい部分以外のすべての部分にダークテーマのクラスを選択的に適用する必要があります。

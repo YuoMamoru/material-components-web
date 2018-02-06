@@ -135,6 +135,9 @@ CSS クラス | 説明
   
   // Bottom End に基準の角を設定
   menu.setAnchorCorner(Corner.BOTTOM_END); 
+  
+  // メニューを開くアニメーションをオフにする
+  menu.quickOpen = false;
 ```
 
 ### `MDCMenu`
@@ -146,6 +149,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `open` | Boolean | ファンデーションの `isOpen`/(`open`, `close`) メソッドの代替。
 `items` | Array<Element> | すべての `.mdc-list-item[role]` 要素を取得するファンデーションのコンテナの代替。
 `itemsContainer` | Element | ファンデーションのルート要素に対して `mdc-menu__items` コンテナ要素を照会する。
+`quickOpen` | Boolean | ファンネーションの `setQuickOpen()` メソッドの代替。
 
 メソッド | 説明
 --- | ---
@@ -164,7 +168,6 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `hasClass(className: string) => boolean` | ルート要素が与えられたクラスをもっているかどうかを表す真偽値を返す。
 `hasNecessaryDom() => boolean` | 必要な DOM が存在しているかどうか（つまり `mdc-menu__items` コンテナがあるか）を表す真偽値を返す。
 `getAttributeForEventTarget(target: EventTarget, attributeName: string) => string` | イベントの対象の与えられた属性の値を返す。
-`eventTargetHasClass: (target: EventTarget, className: string) => boolean` | イベントの対象に与えられたクラスがあれば true を返す。
 `getInnerDimensions() => {width: number, height: number}` | 項目のコンテナの幅と高さを持つオブジェクトを返す。
 `hasAnchor: () => boolean` | メニューが位置を決めるためのアンカーを持っているかどうかを返す。
 `getAnchorDimensions() => {width: number, height: number, top: number, right: number, bottom: number, left: number}` | アンカーの大きさと位置を持つオブジェクト（意味的には `DOMRect` と同じ）を返す。
@@ -198,6 +201,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `open({focusIndex: ?number}) => void` | メニューを開く。オプションで、メニューが開いた際にフォーカスを受けるリスト項目を指定する `focusIndex` パラメータを持つオブジェクトを指定できる。
 `close(evt: ?Event)` | メニューを閉じる。オプションで、メニューが閉じる前にターゲットが無効であるかどうかを確認するためのイベントを指定できる。
 `isOpen() => boolean` | メニューが開いているかどうかを表す真偽値を返す。
+`setQuickOpen(quickOpen: boolean) => void` | メニューが `open`/`close` メソッドを呼ばれたときにアニメーションなしで開閉するかどうかを設定する。
 
 ### イベント
 

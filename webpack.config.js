@@ -16,13 +16,11 @@
 
 'use strict';
 
-const os = require('os');
 const path = require('path');
-
-const fsx = require('fs-extra');
 const glob = require('glob');
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const PluginFactory = require('./scripts/webpack/plugin-factory');
+const pluginFactory = new PluginFactory();
 
 const OUT_DIR_ABS = path.resolve('./build');
 const DEMO_ASSET_DIR_REL = '/assets/'; // Used by webpack-dev-server and MDC_BUILD_STATIC_DEMO_ASSETS
@@ -35,24 +33,9 @@ const WRAP_CSS_IN_JS = process.env.MDC_WRAP_CSS_IN_JS === 'true' && IS_DEV;
 const GENERATE_SOURCE_MAPS =
     process.env.MDC_GENERATE_SOURCE_MAPS === 'true' ||
     (process.env.MDC_GENERATE_SOURCE_MAPS !== 'false' && IS_DEV && WRAP_CSS_IN_JS);
-const BUILD_STATIC_DEMO_ASSETS = process.env.MDC_BUILD_STATIC_DEMO_ASSETS === 'true';
 
 const SASS_DEVTOOL = GENERATE_SOURCE_MAPS ? 'source-map' : false;
 const JS_DEVTOOL = 'source-map';
-
-const banner = [
-  '/*!',
-  ' Material Components for the web',
-  ` Copyright (c) ${new Date().getFullYear()} Google Inc.`,
-  ' License: Apache-2.0',
-  '*/',
-].join('\n');
-
-const createBannerPlugin = () => new webpack.BannerPlugin({
-  banner: banner,
-  raw: true,
-  entryOnly: true,
-});
 
 const LIFECYCLE_EVENT = process.env.npm_lifecycle_event;
 if (LIFECYCLE_EVENT == 'test' || LIFECYCLE_EVENT == 'test:watch') {
@@ -88,63 +71,16 @@ const CSS_LOADER_CONFIG = [
 const CSS_JS_FILENAME_OUTPUT_PATTERN = `[name]${IS_PROD ? '.min' : ''}.css${IS_DEV ? '.js' : '.js-entry'}`;
 const CSS_FILENAME_OUTPUT_PATTERN = `[name]${IS_PROD ? '.min' : ''}.css`;
 
+const copyrightBannerPlugin = pluginFactory.createCopyrightBannerPlugin();
+const cssExtractionPlugin = pluginFactory.createCssExtractionPlugin(CSS_FILENAME_OUTPUT_PATTERN);
+
 const createCssLoaderConfig = () =>
   WRAP_CSS_IN_JS ?
     [{loader: 'style-loader'}].concat(CSS_LOADER_CONFIG) :
-    ExtractTextPlugin.extract({
+    cssExtractionPlugin.extract({
       fallback: 'style-loader',
       use: CSS_LOADER_CONFIG,
     });
-
-const createCssExtractTextPlugin = () => new ExtractTextPlugin(CSS_FILENAME_OUTPUT_PATTERN);
-
-class PostCompilePlugin {
-  constructor(fn) {
-    this.fn = fn;
-  }
-
-  apply(compiler) {
-    compiler.plugin('done', (stats) => this.fn(stats));
-  }
-}
-
-const createStaticDemoPlugin = () => {
-  return new PostCompilePlugin(() => {
-    if (!BUILD_STATIC_DEMO_ASSETS || !fsx.existsSync(OUT_DIR_ABS)) {
-      return;
-    }
-
-    const demosDirAbs = path.resolve('./demos');
-    const tmpDirAbs = fsx.mkdtempSync(path.join(os.tmpdir(), 'mdc-web-demo-output-'));
-
-    const copyOptions = {
-      filter: (src) => {
-        return !/\.(scss|css.js)$/.test(src);
-      },
-    };
-
-    fsx.copySync(demosDirAbs, tmpDirAbs, copyOptions);
-    fsx.copySync(OUT_DIR_ABS, path.join(tmpDirAbs, DEMO_ASSET_DIR_REL), copyOptions);
-
-    if (!WRAP_CSS_IN_JS) {
-      glob.sync(path.join(tmpDirAbs, '**/*.html'))
-        .forEach((absPath) => {
-          const oldHtml = fsx.readFileSync(absPath, {encoding: 'utf8'});
-          const newHtml = oldHtml.replace(
-            /<script src="([^"]+\.css)\.js"><\/script>/ig,
-            '<link rel="stylesheet" href="$1">');
-          fsx.writeFileSync(absPath, newHtml, {encoding: 'utf8'});
-        });
-    }
-
-    // The `npm run build` command emits JS/CSS files directly to the $REPO/build/ directory (for distribution via npm).
-    // The `npm run build:demo` command, however, outputs _all_ static demo files (including HTML and images).
-    // Because the demo site expects JS/CSS files to be in /assets/, we need to reorganize the output folders to combine
-    // $REPO/demos/ and $REPO/build/ such that the demo site's import paths don't need to change.
-    fsx.removeSync(OUT_DIR_ABS);
-    fsx.moveSync(tmpDirAbs, OUT_DIR_ABS);
-  });
-};
 
 module.exports = [{
   name: 'js-all',
@@ -174,7 +110,7 @@ module.exports = [{
     }],
   },
   plugins: [
-    createBannerPlugin(),
+    copyrightBannerPlugin,
   ],
 }];
 
@@ -185,7 +121,9 @@ if (!IS_DEV) {
       animation: [path.resolve('./packages/mdc-animation/index.js')],
       autoInit: [path.resolve('./packages/mdc-auto-init/index.js')],
       base: [path.resolve('./packages/mdc-base/index.js')],
+      lineRipple: [path.resolve('./packages/mdc-line-ripple/index.js')],
       checkbox: [path.resolve('./packages/mdc-checkbox/index.js')],
+      chips: [path.resolve('./packages/mdc-chips/index.js')],
       dialog: [path.resolve('./packages/mdc-dialog/index.js')],
       drawer: [path.resolve('./packages/mdc-drawer/index.js')],
       formField: [path.resolve('./packages/mdc-form-field/index.js')],
@@ -222,7 +160,7 @@ if (!IS_DEV) {
       }],
     },
     plugins: [
-      createBannerPlugin(),
+      copyrightBannerPlugin,
     ],
   }, {
     name: 'css',
@@ -230,8 +168,10 @@ if (!IS_DEV) {
       'material-components-web': path.resolve(
         './packages/material-components-web/material-components-web.scss'),
       'mdc.button': path.resolve('./packages/mdc-button/mdc-button.scss'),
+      'mdc.line-ripple': path.resolve('./packages/mdc-line-ripple/mdc-line-ripple.scss'),
       'mdc.card': path.resolve('./packages/mdc-card/mdc-card.scss'),
       'mdc.checkbox': path.resolve('./packages/mdc-checkbox/mdc-checkbox.scss'),
+      'mdc.chips': path.resolve('./packages/mdc-chips/mdc-chips.scss'),
       'mdc.dialog': path.resolve('./packages/mdc-dialog/mdc-dialog.scss'),
       'mdc.drawer': path.resolve('./packages/mdc-drawer/mdc-drawer.scss'),
       'mdc.elevation': path.resolve('./packages/mdc-elevation/mdc-elevation.scss'),
@@ -268,8 +208,8 @@ if (!IS_DEV) {
       }],
     },
     plugins: [
-      createCssExtractTextPlugin(),
-      createBannerPlugin(),
+      cssExtractionPlugin,
+      copyrightBannerPlugin,
     ],
   });
 }
@@ -307,9 +247,8 @@ if (IS_DEV) {
       }],
     },
     plugins: [
-      createCssExtractTextPlugin(),
-      createBannerPlugin(),
-      createStaticDemoPlugin(),
+      cssExtractionPlugin,
+      copyrightBannerPlugin,
     ],
   });
 
@@ -338,7 +277,7 @@ if (IS_DEV) {
       }],
     },
     plugins: [
-      createBannerPlugin(),
+      copyrightBannerPlugin,
     ],
   });
 }

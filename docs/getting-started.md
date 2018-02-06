@@ -90,7 +90,7 @@ MDC Web の骨子を確認したので、挨拶アプリの作成を続けてい
           <label for="firstname" class="mdc-text-field__label">
             First Name
           </label>
-          <div class="mdc-text-field__bottom-line"></div>
+          <div class="mdc-line-ripple"></div>
         </div>
       </div>
 
@@ -100,7 +100,7 @@ MDC Web の骨子を確認したので、挨拶アプリの作成を続けてい
           <label for="lastname" class="mdc-text-field__label">
             Last Name
           </label>
-          <div class="mdc-text-field__bottom-line"></div>
+          <div class="mdc-line-ripple"></div>
         </div>
       </div>
     </div>

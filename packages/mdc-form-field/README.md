@@ -68,10 +68,6 @@ npm install --save @material/form-field
 
 `mdc-form-field` は自動的に RTL 対応がなされており、RTL コンテキストの中では要素を再配置します。`mdc-form-field` はその要素もしくはその祖先の要素に `dir="rtl"` があれば RTL スタイルが適用されます。
 
-### テーマ
-
-`mdc-form-field` はダークテーマに対応しており、ダークテーマ内ではテキストの色を "primary on dark" のテキスト色に変更します。
-
 
 ## JS の使用
 
