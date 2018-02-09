@@ -91,10 +91,12 @@ UMD バンドルを通じて mdc-select を含めることができることに�
 
 #### 選択済みの選択肢を持つセレクト
 
+選択済みの値を持つセレクトコンポーネントを扱う際には、`mdc-select__label` に `mdc-select__label--float-above` 修飾クラスを付加し、選択された選択肢に `aria-selected` を付けるようにしてください。これによりラベルが選択された値の上に移動し、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+
 ```html
 <div class="mdc-select" role="listbox">
   <div class="mdc-select__surface" tabindex="0">
-    <div class="mdc-select__label">Pick a Food Group</div>
+    <div class="mdc-select__label mdc-select__label--float-above">Pick a Food Group</div>
     <div class="mdc-select__selected-text"></div>
     <div class="mdc-select__bottom-line"></div>
   </div>

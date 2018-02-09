@@ -137,7 +137,7 @@ CSS クラス | 説明
   menu.setAnchorCorner(Corner.BOTTOM_END); 
   
   // メニューを開くアニメーションをオフにする
-  menu.quickOpen = false;
+  menu.quickOpen = true;
 ```
 
 ### `MDCMenu`
