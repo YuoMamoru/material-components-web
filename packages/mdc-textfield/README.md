@@ -157,9 +157,9 @@ CSS クラス | 説明
 
 ### Sass ミキシン
 
-テキスト欄の任意の部分の色をカスタマイズするには以下のミキシンを使用します。フォーカスのないテキスト欄を選択するには `.foo-text-field:not(.mdc-text-field--focused)`、フォーカスのあるテキスト欄を選択するには `.foo-tab.mdc-text-field--focused` のような CSS セレクタ内にこれらのミキシンを適用することを推奨しています。テキスト欄を無効にするには `.foo-text-field.mdc-text-field--invalid` のような CSS セレクタ内にこれらのミキシンを適用します。
+テキスト欄の任意の部分の色をカスタマイズするには以下のミキシンを使用します。フォーカスのないテキスト欄を選択するには `.foo-text-field:not(.mdc-text-field--focused)`、フォーカスのあるテキスト欄を選択するには `.foo-text-field.mdc-text-field--focused` のような CSS セレクタ内にこれらのミキシンを適用することを推奨しています。テキスト欄を無効にするには `.foo-text-field.mdc-text-field--invalid` のような CSS セレクタ内にこれらのミキシンを適用します。
 
-> <em>注意</em>: `mdc-line-ripple-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-tab--focused)`）から適用する必要があります。
+> <em>注意</em>: `mdc-line-ripple-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-text-field--focused)`）から適用する必要があります。
 
 ミキシン | 説明
 --- | ---

@@ -16,7 +16,7 @@ path: /catalog/menus/
   </a>
 </div>-->
 
-MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/guidelines/components/menus.html) に準拠したメニューコンポーネントです。メニューが正しく動作するには JavaScript が必要ですが、最初の描画時に開いた状態と閉じた状態は正しく表示されます。
+MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/guidelines/components/menus.html) に準拠したメニューコンポーネントです。メニューが開く際に正しい位置に配置するには JavaScript が必要です。
 
 ## デザインと API ドキュメント
 
@@ -39,7 +39,7 @@ npm install --save @material/menu
 
 ### HTML 構造
 
-メニューは通常閉じた状態で、開かれるときに表示されます。任意の画面サイズに対応しています。
+メニューは最初は非表示で、JS の API を通じて開かれるときに表示されます。
 
 ```html
 <div class="mdc-menu" tabindex="-1">
@@ -51,16 +51,6 @@ npm install --save @material/menu
       Another Menu Item
     </li>
   </ul>
-</div>
-```
-
-#### メニューを開く
-
-メニューは要素に `mdc-menu--open` クラスを追加することで開いた状態で開始することができます。
-
-```html
-<div class="mdc-menu mdc-menu--open">
-...
 </div>
 ```
 
@@ -122,20 +112,20 @@ CSS クラス | 説明
   var menuEl = document.querySelector('#toolbar');
   var menu = new mdc.menu.MDCMenu(menuEl);
   var menuButtonEl = document.querySelector('#menu-button');
-  
+
   // メニューの 開く/閉じる を切り替える
   menuButtonEl.addEventListener('click', function() {
     menu.open = !menu.open;
   });
-  
+
   // 選択項目の取得
   menuEl.addEventListener('MDCMenu:selected', function(evt) {
      var detail = evt.detail;
   });
-  
+
   // Bottom End に基準の角を設定
-  menu.setAnchorCorner(Corner.BOTTOM_END); 
-  
+  menu.setAnchorCorner(Corner.BOTTOM_END);
+
   // メニューを開くアニメーションをオフにする
   menu.quickOpen = true;
 ```
