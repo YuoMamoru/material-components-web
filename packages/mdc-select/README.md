@@ -215,7 +215,7 @@ Mixin | Description
 --- | ---
 `mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
 `mdc-select-container-fill-color($color)` | セレクトの背景色を設定する。 
-`mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。このミキシンはセレクトの JS バージョンに対してのみ、使用される。
+`mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
 `mdc-select-focused-label-color($color, $opacity: 0.87)` | フォーカス時のセレクトのラベルの色を設定する。フローティングの際のラベルの不透明度の変更はオプション。
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
@@ -247,22 +247,6 @@ MDC Select コンポーネント API は `HTMLSelectElement` の機能のサブ�
 
 ユーザの操作の結果、選ばれた選択肢が変更されたときに MDC Select JS コンポーネントは `MDCSelect:change` イベントを発生させます。
 
-#### カスタム `MDCMenu` コンポーネントを使ったインスタンス化
-
-`MDCSelect` は選択肢を表示するために配下にある [MDCMenu](../mdc-menu) のインスタンスを制御しています。カスタムメニューのインスタンスをインスタンス化したいときは `MDCSelect` のコンストラクタにオプションの第 3 引数である `menuFactory` を与えることができます。
-
-```js
-const menuFactory = menuEl => {
-  const menu = new MDCMenu(menuEl);
-  // menu を使って何かやる
-  return menu;
-};
-const selectEl = document.querySelector('.mdc-select');
-const select = new MDCSelect(selectEl, /* foundation */ undefined, menuFactory);
-```
-
-`menuFactory` 関数は `HTMLElement` を渡されると、この要素をアタッチした `MDCMenu` インスタンスを返すでしょう。これはテスト目的で使いますが、それでもなおそれが必要であるならこのように使うことができます。
-
 ## ファンデーションクラスの使用
 
 MDC Select をカスタムコンポーネントに統合するためにフレームワーク制作者が使用できるファンデーションクラスが MDC Select には付属しています。MDC Select の特性ゆえ、アダプタはかなり複雑です。私たちはできる限り多くの指針を示すように努めていますが、問題に遭遇したときは GH Issues を通じて私たちに連絡するようにしてください。
@@ -285,8 +269,7 @@ MDC Select をカスタムコンポーネントに統合するためにフレー
 | --- | --- |
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
-| `addClassToLabel(className: string) => void` | ラベルにクラスを追加する。 |
-| `removeClassFromLabel(className: string) => void` | ラベルからクラスを削除する。 |
+| `floatLabel(value: boolean) => void` | 必要に応じてラベルを上に動かしたり戻したりする。 |
 | `addClassToBottomLine(className: string) => void` | 下線部分にクラスを追加する。 |
 | `removeClassFromBottomLine(className: string) => void` | 下線部分からクラスを削除する。 |
 | `setBottomLineAttr(attr: string, value: string) => void` | 下線部分に属性を追加する。 |
