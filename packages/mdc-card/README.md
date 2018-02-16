@@ -16,30 +16,28 @@ path: /catalog/cards/
   </a>
 </div>-->
 
-MDC Card is a component that implements the
-[Material Design card component](https://material.io/guidelines/components/cards.html), and makes it available to
-developers as a set of CSS classes.
+MDC Card は [マテリアルデザインカードコンポーネント](https://material.io/guidelines/components/cards.html) を実装したコンポーネントで、CSS クラスの集まりとして開発者が利用できます。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/cards.html">Material Design guidelines: Cards</a>
+    <a href="https://material.io/guidelines/components/cards.html">マテリアルデザインガイドライン: カード</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/card.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/card.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install --save @material/card
 ```
 
-## Usage
+## 使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-card">
@@ -47,14 +45,14 @@ npm install --save @material/card
 </div>
 ```
 
-Fully-featured:
+完全な機能を使うと以下のようになります。
 
 ```html
 <div class="mdc-card">
   <div class="mdc-card__media mdc-card__media--square">
     <div class="mdc-card__media-content">Title</div>
   </div>
-  <!-- ... content ... -->
+  <!-- ... コンテンツ ... -->
   <div class="mdc-card__actions">
     <div class="mdc-card__action-buttons">
       <button class="mdc-button mdc-card__action mdc-card__action--button">Action 1</button>
@@ -68,12 +66,11 @@ Fully-featured:
 </div>
 ```
 
-Cards don't come with a predefined width, height, padding, or margin. In its simplest form (just a single element with
-`mdc-card`), a card is basically just `mdc-elevation` + `border-radius`.
+カードには事前に定義された幅、高さ、パディング、マージンはありません。もっとも単純な形式（`mdc-card` を持つ単一の要素のとき）では、カードは基本的に  `mdc-elevation` + `border-radius` だけになります。
 
-Cards expand horizontally to fill all available space, and vertically to fit their contents.
+カードは利用できる場所いっぱいに水平方向に拡張され、垂直方向はコンテンツが収まる高さになります。
 
-If you'd like to maintain a consistent width and height across cards, you'll need to set it in your styles:
+カードの幅と高さを一貫性のあるものにしたいのなら、スタイルを設定する必要があります。
 
 ```css
 .my-card {
@@ -82,15 +79,15 @@ If you'd like to maintain a consistent width and height across cards, you'll nee
 }
 ```
 
-#### Content blocks
+#### コンテンツブロック
 
-Cards are composed of different content blocks, which are typically laid out vertically.
+カードは異なるコンテンツブロックで構成され、コンテンツブロックは通常垂直方向に配置されます。
 
-Because every app is different, there are no "standard" layouts for card content; each app should define their own.
+アプリケーションによる違いがあるため、カードコンテンツには「標準的」なレイアウトはありません。それぞれのアプリは独自のものを定義する必要があります。
 
-However, MDC Card _does_ provide styles for two common card elements: _rich media_ (images or video) and _actions_.
+しかし、MDC Card は 2 つの共用のカード要素を提供しています。<em>リッチメディア</em>（画像もしくは映像）と <em>アクション</em> です。
 
-##### Rich media
+##### リッチメディア
 
 ```css
 .my-card__media {
@@ -104,10 +101,9 @@ However, MDC Card _does_ provide styles for two common card elements: _rich medi
 </div>
 ```
 
-This area is used for showing rich media in cards, and optionally as a container. Use the `mdc-card__media` CSS class
-and the [optional modifier classes](#css-classes).
+この領域はカード内のリッチメディアを表示するために使用され、オプションでコンテナとして使用することもできます。`mdc-card__media` CSS クラスと [オプションの CSS クラス](#css-classes) を使用してください。
 
-##### Actions
+##### アクション
 
 ```html
 <div class="mdc-card__actions">
@@ -116,8 +112,7 @@ and the [optional modifier classes](#css-classes).
 </div>
 ```
 
-This area is used for showing different actions the user can take. It's typically used with buttons, as in the example
-above, or with icon buttons, as below:
+この領域はユーザがとりうる様々なアクションを表示するために使用します。通常は上に示したようにボタンを使用し、以下のようにアイコンボタンを使うこともあります。
 
 ```html
 <div class="mdc-card__actions">
@@ -136,10 +131,10 @@ above, or with icon buttons, as below:
 </div>
 ```
 
-Be sure to include the `mdc-card__action` class on every action for correct positioning. In addition, _button_ icons
-should use the `mdc-card__action--button` class, and _icon_ actions should use the `mdc-card__action--icon` class.
+正確な位置決めのためにすべてのアクションには `mdc-card__action` クラスを含めてください。加えて、<em>ボタン</em> アイコンには `mdc-card__action--button` クラスを、<em>アイコン</em> アクションには `mdc-card__action--icon` クラスを使わなくてはいけません。
 
-To have a single action button take up the entire width of the action row, use the `--full-bleed` modifier on the row:
+アクション領域の幅いっぱいを占める単一のアクションボタンを使うには `--full-bleed` 修飾子を領域に使います。
+
 
 ```html
 <div class="mdc-card__actions mdc-card__actions--full-bleed">
@@ -150,8 +145,7 @@ To have a single action button take up the entire width of the action row, use t
 </div>
 ```
 
-To display buttons _and_ icons in the same row, wrap them in `mdc-card__action-buttons` and `mdc-card__action-icons`
-elements:
+ボタン <em>と</em> アイコンを同じ行に表示するには、それらを `mdc-card__action-buttons` 要素と `mdc-card__action-icons` 要素で囲います。
 
 ```html
 <div class="mdc-card__actions">
@@ -166,30 +160,30 @@ elements:
 </div>
 ```
 
-### CSS Classes
+### <a name="css-classes"></a>CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-card` | Mandatory, for the card element
-`mdc-card--stroked` | Removes the shadow and displays a hairline stroke instead
-`mdc-card__primary-action` | The main tappable area of the card. Typically contains most (or all) card content _except_ `mdc-card__actions`. Only applicable to cards that have a primary action that the main surface should trigger.
-`mdc-card__media` | Media area that displays a custom `background-image` with `background-size: cover`
-`mdc-card__media--square` | Automatically scales the media area's height to equal its width
-`mdc-card__media--16-9` | Automatically scales the media area's height according to its width, maintaining a 16:9 aspect ratio
-`mdc-card__media-content` | An absolutely-positioned box the same size as the media area, for displaying a title or icon on top of the `background-image`
-`mdc-card__actions` | Row containing action buttons and/or icons
-`mdc-card__actions--full-bleed` | Removes the action area's padding and causes its only child (an `mdc-card__action` element) to consume 100% of the action area's width
-`mdc-card__action-buttons` | A group of action buttons, displayed on the left side of the card (in LTR), adjacent to `mdc-card__action-icons`
-`mdc-card__action-icons` | A group of supplemental action icons, displayed on the right side of the card (in LTR), adjacent to `__action-buttons`
-`mdc-card__action` | An individual action button or icon
-`mdc-card__action--button` | An action button with text
-`mdc-card__action--icon` | An action icon with no text
+`mdc-card` | カード要素では必須。
+`mdc-card--stroked` | 影を消し、代わりに細い線を表示する。
+`mdc-card__primary-action` | カードの主たるタップ可能な領域。一般的には `mdc-card__actions` を除く大半（もしくはすべて）のカードコンテンツを含む。主たる表示をきっかけとした主要なアクションのあるカードに対してのみ適用する。
+`mdc-card__media` | `background-size: cover` のあるカスタム `background-image` を表示するメディア領域。
+`mdc-card__media--square` | 自動的にメディア領域の高さを幅と同じにする。
+`mdc-card__media--16-9` | 自動的にメディア領域の高さを幅に基づいて 16:9 のアスペクト比になるようにする。
+`mdc-card__media-content` | タイトルもしくはアイコンを `background-image` の上に表示するために、メディア領域と同じ大きさの絶対座標にボックスを配置する。
+`mdc-card__actions` | アクションボタン・アイコンを含む行。
+`mdc-card__actions--full-bleed` | アクション領域のパディングを削除し、その唯一の子（`mdc-card__action` 要素）がアクション領域の幅の 100% を使えるようにする。
+`mdc-card__action-buttons` | アクションボタンのグループ。（LTR のときは）カードの左側から表示し、`mdc-card__action-icons` に隣接させる。
+`mdc-card__action-icons` | 追加のアクションボタンのグループ。（LTR のときは）カードの左側から表示し、`mdc-card__action-buttons` に隣接させる。
+`mdc-card__action` | 個々のアクションボタンもしくはアイコン。
+`mdc-card__action--button` | テキストのあるアクションボタン。
+`mdc-card__action--icon` | テキストのないアクションボタン。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-card-fill-color($color)` | Sets the fill color of a card
-`mdc-card-stroke($color, $thickness)` | Sets the color and thickness of a card's stroke (but does _not_ remove its shadow)
-`mdc-card-corner-radius($radius)` | Sets the corner radius of a card
-`mdc-card-media-aspect-ratio($x, $y)` | Maintains the given aspect ratio on a `mdc-card__media` subelement by dynamically scaling its height relative to its width
+`mdc-card-fill-color($color)` | カードの塗りの色を設定する。
+`mdc-card-stroke($color, $thickness)` | カードの枠の色と太さを設定する（ただし、影は <em>消さない</em>）。
+`mdc-card-corner-radius($radius)` | カードの角の丸みを設定する。
+`mdc-card-media-aspect-ratio($x, $y)` | 幅に合わせて動的に高さを変えることにより、`mdc-card__media` サブ要素を与えられたアスペクト比に保つ。
