@@ -18,6 +18,13 @@
 /** @enum {string} */
 const strings = {
   INTERACTION_EVENT: 'MDCChip:interaction',
+  TRAILING_ICON_INTERACTION_EVENT: 'MDCChip:trailingIconInteraction',
+  TRAILING_ICON_SELECTOR: '.mdc-chip__icon--trailing',
 };
 
-export {strings};
+/** @enum {string} */
+const cssClasses = {
+  ACTIVATED: 'mdc-chip--activated',
+};
+
+export {strings, cssClasses};

@@ -36,6 +36,8 @@ npm install --save @material/switch
 
 ## 使用法
 
+### HTML Structure
+
 ```html
 <div class="mdc-switch">
   <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" />
@@ -43,10 +45,13 @@ npm install --save @material/switch
     <div class="mdc-switch__knob"></div>
   </div>
 </div>
-<label for="basic-switch" class="mdc-switch-label">off/on</label>
+<label for="basic-switch">off/on</label>
 ```
 
 ### 無効なスイッチ
+
+スイッチを無効にするには、input 要素に直接 `disabled` を加えるか、スイッチを含んでいる fieldset に `disabled` を設定することによってできます。無効なスイッチは操作できず、視覚的な操作効果も持ちません。
+
 ```html
 <div class="mdc-switch">
   <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" disabled />
@@ -54,14 +59,21 @@ npm install --save @material/switch
     <div class="mdc-switch__knob"></div>
   </div>
 </div>
-<label for="another-basic-switch" class="mdc-switch-label">off/on</label>
+<label for="another-basic-switch">off/on</label>
 ```
 
-### クラス
+### CSS クラス
 
-#### ブロック
-
-ブロッククラスは `mdc-switch` です。これはトップレベルのスイッチ要素で定義されます。
+CSS クラス | 説明
+--- | ---
+`mdc-switch` | Mandatory, for the parent element
+`mdc-switch__native-control` | Mandatory, for the input checkbox
+`mdc-switch__background` | Mandatory, for the background element
+`mdc-switch__knob` | Mandatory, for the knob element
+`mdc-switch` | 必須。親要素につける。
+`mdc-switch__native-control` | 必須。input のチェックボックスにつける。
+`mdc-switch__background` | 必須。背景要素につける。
+`mdc-switch__knob` | 必須。つまみの要素につける。
 
 ### Sass ミキシン
 
