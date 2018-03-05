@@ -80,6 +80,7 @@ CSS Class | Description
 --- | ---
 `mdc-chip-set` | Mandatory. Indicates the set that the chip belongs to
 `mdc-chip-set--choice` | Optional. Indicates that the chips in the set are choice chips, which allow a single selection from a set of options.
+`mdc-chip-set--filter` | Optional. Indicates that the chips in the set are filter chips, which allow multiple selection from a set of options.
 `mdc-chip` | Mandatory.
 `mdc-chip__text` | Mandatory. Indicates the text content of the chip
 `mdc-chip__icon` | Optional. Indicates an icon in the chip
@@ -99,15 +100,13 @@ Mixin | Description
 `mdc-chip-fill-color-accessible($color)` | Customizes the background fill color for a chip, and updates the chip's ink and ripple color to meet accessibility standards
 `mdc-chip-fill-color($color)` | Customizes the background fill color for a chip
 `mdc-chip-ink-color($color)` | Customizes the text ink color for a chip, and updates the chip's ripple color to match
-`mdc-chip-activated-ink-color($color)` | Customizes text ink color and updates the ripple opacity of a chip in the _activated_ state
+`mdc-chip-selected-ink-color($color)` | Customizes text ink and ripple color of a chip in the _selected_ state
 `mdc-chip-stroke($width, $style, $color)` | Customizes the border stroke properties for a chip
 `mdc-chip-stroke-width($width)` | Customizes the border stroke width for a chip
 `mdc-chip-stroke-style($style)` | Customizes the border stroke style for a chip
 `mdc-chip-stroke-color($color)` | Customizes the border stroke color for a chip
 
 > _NOTE_: `mdc-chip-set-spacing` also sets the amount of space between a chip and the edge of the set it's contained in.
-
-> _NOTE_: `mdc-chip-ink-color` also updates the chip's text ink color for _hover_ and _activated_ states, and updates the ripple opacity of the chip in the _activated_ state.
 
 ### `MDCChip` and `MDCChipSet`
 
@@ -121,7 +120,7 @@ To use the `MDCChip` and `MDCChipSet` classes, [import](../../docs/importing-js.
 
 Method Signature | Description
 --- | ---
-`toggleActive() => void` | Proxies to the foundation's `toggleActive` method
+`toggleSelected() => void` | Proxies to the foundation's `toggleSelected` method
 
 Property | Value Type | Description
 --- | --- | ---
@@ -163,7 +162,7 @@ Method Signature | Description
 
 Method Signature | Description
 --- | ---
-`toggleActive() => void` | Toggles the activated class on the chip element
+`toggleSelected() => void` | Toggles the selected class on the chip element
 
 #### `MDCChipSetFoundation`
 None yet, coming soon.

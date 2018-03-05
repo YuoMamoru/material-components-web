@@ -25,7 +25,7 @@ npm install --save @material/auto-init
 ```html
 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
   <input class="mdc-text-field__input" type="text" id="input">
-  <label for="input" class="mdc-text-field__label">Input Label</label>
+  <label for="input" class="mdc-floating-label">Input Label</label>
   <div class="mdc-line-ripple"></div>
 </div>
 
@@ -44,7 +44,7 @@ npm install --save @material/auto-init
 ```html
 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
   <input class="mdc-text-field__input" type="text" id="input">
-  <label for="input" class="mdc-text-field__label">Input Label</label>
+  <label for="input" class="mdc-floating-label">Input Label</label>
   <div class="mdc-line-ripple"></div>
 </div>
 ```

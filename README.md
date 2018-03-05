@@ -25,114 +25,78 @@ MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプ�
 
 ## クイックスタート
 
-ライブラリをインストールします。
+> 注意: このガイドは npm がローカルにインストールされていることを前提にしています。
+
+### コンポーネントに CSS を追加する
+
+> 注意: このガイドは Sass を CSS にコンパイルするように webpack を設定していることを前提としています。webpack の設定方法については [入門ガイド](./docs/getting-started.md) を参照してください。
+
+マテリアルデザインボタンの Sass ファイルを含めるには、Node の依存関係をインストールします。
 
 ```
-npm install --save material-components-web
+npm install @material/button
 ```
 
-次に適切なファイルを取り込み、HTML を作り、`<script>` タグで `mdc.autoInit()` を呼んでください。
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Material Components for the web</title>
-    <link rel="stylesheet"
-          href="node_modules/material-components-web/dist/material-components-web.css">
-  </head>
-  <body class="mdc-typography">
-    <h2 class="mdc-typography--display2">Hello, Material Components!</h2>
-    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-      <input type="text" class="mdc-text-field__input" id="demo-input">
-      <label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
-    </div>
-    <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
-    <script>mdc.autoInit()</script>
-  </body>
-</html>
-```
-
-これで完了です！これが Material Components for web を立ち上げ、実行する最も簡単な方法です。ライブラリのより深い紹介は [入門ガイド](./docs/getting-started.md) を参照してください。
-
-## 個別コンポーネントのインストール
-
-MDC Web は設計によりモジュール化されています。各コンポーネントは [@material npm org](https://www.npmjs.com/org/material) の下にあるそれぞれのパッケージに存在します。
-
-```
-npm install --save @material/button @material/card @material/textfield @material/typography
-```
-
-すべてのコンポーネントは [packages](./packages) ディレクトリにあります。各コンポーネントにはインストール方法と使用方法を記載した README があります。
-
-## 含まれているコンポーネント
-
-### JavaScript
-
-JS モジュールの読み込みに Webpack や SystemJS のようなモジュールローダを使用するなら、`material-components-web` から必要なあらゆるコンポーネントを単に `import` でき、次のように使用できます。
-
-```js
-import {checkbox as mdcCheckbox} from 'material-components-web';
-
-const {MDCCheckbox, MDCCheckboxFoundation} = mdcCheckbox;
-// MDCCheckbox と MDCCheckboxFoundation を使う
-```
-
-次のようにしても同じです。
-
-```js
-import {MDCCheckbox, MDCCheckboxFoundation} from '@material/checkbox';
-// MDCCheckbox と MDCCheckboxFoundation を使う
-```
-
-`material-components-web` とすべての個別コンポーネントに対して [UMD](http://bob.yexley.net/umd-javascript-that-runs-anywhere/) も提供しています。
-
-```js
-const {checkbox: mdcCheckbox} = require('material-components-web/dist/material-components-web');
-// mdcCheckbox を使う
-
-const {MDCCheckbox, MDCCheckboxFoundation} = require('@material/checkbox/dist/mdc.checkbox');
-// MDCCheckbox と MDCCheckboxFoundation を使う
-```
-
-モジュールシステムを使用しない場合、すべてのコンポーネントはグローバル名前空間 `mdc` の下に加えられます。これはライブラリ全体が使われているか、個別コンポーネントが使われているかに関係ありません。
-
-すべてのコンポーネントは UMD バンドルの圧縮バージョンがあり、`dist/mdc.COMPONENT.min.js` で探せます。
-
-### CSS
-
-スタイルを含んでいるすべてのコンポーネントは `dist/mdc.COMPONENT.css` でスタイルを提供しており、加えて圧縮バージョンとして `dist/mdc.COMPONENT.min.css` もあります。<em>コンポーネントが依存しているファイルはそのコンポーネントの CSS ファイルには含まれていない</em> ので注意していください。すなわち、個別コンポーネントを使うなら、個別に依存ファイルを含めなくてはいけません。
-
-各コンポーネントにはあなたのアプリケーションの Sass からインクルードすることのできる Sass ソースファイルもあります。
+次にアプリケーションに @material/button の Sass ファイルをインポートします。これでボタンのカスタマイズに Sass ミキシンを使うことができます。
 
 ```scss
-// すべてのライブラリを使用
-@import "material-components-web/material-components-web";
+@import "@material/button/mdc-button";
 
-// 個別のライブラリ/ミキシンを利用
-@import '@material/checkbox';
-@import '@material/typography';
-@import '@material/elevation/mixins'; // エレベーションのためのミキシン
+.foo-button {
+  @include mdc-button-ink-color(teal);
+  @include mdc-states(teal);
+}
+```
+@material/button にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。アプリケーションの HTML を以下の HTML を含めるように修正し、要素に foo-button クラスを加えてください。
+
+```html
+<button class="foo-button mdc-button">
+  Button
+</button>
 ```
 
-> 注意: コンポーネントの Sass ファイルは `@material` スコープのフォルダを含む `node_modules` ディレクトリが Sass の参照パスにあることを想定しています。
+@material 構文を解釈できるようにするために Sass ローダを設定する必要があります。webpack.config.js の `{ loader: 'sass-loader' }` を次のように修正してください。
 
-## デモの実行
+```javascript
+{
+  loader: 'sass-loader',
+  options: {
+    importer: function(url, prev) {
+      if(url.indexOf('@material') === 0) {
+        var filePath = url.split('@material')[1];
+        var nodeModulePath = `./node_modules/@material/${filePath}`;
+        return { file: require('path').resolve(nodeModulePath) };
+      }
+      return { file: url };
+    }
+  }
+}
+```
 
-リポジトリを作成します。
+これでカスタマイズされたマテリアルデザインボタンが完成しました！
+
+![ボタン](docs/button.png)
+
+### コンポーネントに JavaScript を追加する
+
+> 注意: このガイドは JavaScript を ES2015 形式でコンパイルするように webpack を設定していることを前提にしています。webpack の設定方法については [入門ガイド](./docs/getting-started.md) を参照してください。
+
+マテリアルデザインのリップル用に ES2015 ファイルを含めるために Node の依存関係をインストールします。
 
 ```
-git clone https://github.com/material-components/material-components-web.git && cd material-components-web
-npm i
+npm install @material/ripple
 ```
 
-開発サーバを起動します（`demos/` で提供されます）。
+次にアプリケーションに @material/ripple 用の ES2015 ファイルをインポートし、DOM 要素を使って MDCRipple を初期化してください。
 
+```javascript
+import {MDCRipple} from '@material/ripple';
+const ripple = new MDCRipple(document.querySelector('.foo-button'));
 ```
-cd /path/to/material-components-web
-npm run dev
-open http://localhost:8080
-```
+
+これでボタンにマテリアルデザインリップルが追加されました！
+
+![Button with Ripple](docs/button_with_ripple.png)
 
 ## リンク集
 

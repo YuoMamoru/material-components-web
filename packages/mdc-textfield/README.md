@@ -41,7 +41,7 @@ npm install --save @material/textfield
 ```html
 <div class="mdc-text-field">
   <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-text-field__label" for="my-text-field">Hint text</label>
+  <label class="mdc-floating-label" for="my-text-field">Hint text</label>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -53,7 +53,7 @@ npm install --save @material/textfield
 ```html
 <div class="mdc-text-field">
   <input type="password" id="pw" class="mdc-text-field__input" required minlength=8>
-  <label for="pw" class="mdc-text-field__label">Password</label>
+  <label for="pw" class="mdc-floating-label">Password</label>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -62,12 +62,12 @@ npm install --save @material/textfield
 
 #### 入力済みのテキスト欄
 
-値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-text-field__label--float-above` 修飾クラスをもつ `mdc-text-field__label` と `mdc-text-field--upgraded` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` と `mdc-text-field--upgraded` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
 <div class="mdc-text-field mdc-text-field--upgraded">
   <input type="text" id="pre-filled" class="mdc-text-field__input" value="Pre-filled value">
-  <label class="mdc-text-field__label mdc-text-field__label--float-above" for="pre-filled">
+  <label class="mdc-floating-label mdc-floating-label--float-above" for="pre-filled">
     Label in correct place
   </label>
   <div class="mdc-line-ripple"></div>
@@ -89,14 +89,14 @@ npm install --save @material/textfield
 
 > <em>注意</em>: `mdc-text-field--box` や `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。
 
-> <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-text-field__label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
+> <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-floating-label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
 
 #### 複数行テキスト欄
 
 ```html
 <div class="mdc-text-field mdc-text-field--textarea">
   <textarea id="textarea" class="mdc-text-field__input" rows="8" cols="40"></textarea>
-  <label for="textarea" class="mdc-text-field__label">Textarea Label</label>
+  <label for="textarea" class="mdc-floating-label">Textarea Label</label>
 </div>
 ```
 
@@ -107,7 +107,7 @@ npm install --save @material/textfield
 ```html
 <div class="mdc-text-field mdc-text-field--disabled">
   <input type="text" id="disabled-text-field" class="mdc-text-field__input" disabled>
-  <label class="mdc-text-field__label" for="disabled-text-field">Disabled text field</label>
+  <label class="mdc-floating-label" for="disabled-text-field">Disabled text field</label>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -117,7 +117,7 @@ npm install --save @material/textfield
 ```html
 <div class="mdc-text-field mdc-text-field--outlined">
   <input type="text" id="tf-outlined" class="mdc-text-field__input">
-  <label for="tf-outlined" class="mdc-text-field__label">Your Name</label>
+  <label for="tf-outlined" class="mdc-floating-label">Your Name</label>
   <div class="mdc-text-field__outline">
     <svg>
       <path class="mdc-text-field__outline-path"/>
@@ -163,23 +163,18 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
+`mdc-text-field-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインの色を設定する。
 `mdc-text-field-box-corner-radius($radius)` | ボックス型テキスト欄の角の半径を設定する。
-`mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
+`mdc-text-field-box-fill-color($color)` | テキスト欄のボックスの背景色を設定する。
+`mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄のボトムラインの色を設定する。
+`mdc-text-field-hover-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインのホバー時の色を設定する。
 `mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
 `mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
 `mdc-text-field-ripple-line-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
-`mdc-text-field-hover-ripple-line-color($color)` | テキスト欄のリップルする線のホバー時の色を設定する。
-`mdc-text-field-focused-ripple-line-color($color)` | テキスト欄がフォーカスを得たときのリップルする線のリップルの色を設定する。
-`mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
-`mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
-`mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
-`mdc-text-field-box-fill-color($color)` | テキスト欄のボックスの背景色を設定する。
-`mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
+`mdc-text-field-outlined-corner-radius($radius)` | アウトラインされたテキスト欄の角の半径を設定する。
+`mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
 `mdc-text-field-textarea-fill-color($color)` | textarea の背景色を設定する。
-`mdc-text-field-fullwidth-ripple-line-color($color)` | フル幅のテキスト欄のリップルする線の色を設定する。textarea には適用されない。
-`mdc-text-field-icon-color($color)` | 先頭・末尾のアイコンの色を設定する。
-`mdc-text-field-helper-text-color($color)` | テキスト欄の下のヘルプテキストの色を設定する。
-`mdc-text-field-helper-text-validation-color($color)` | ヘルプテキストがバリデーションメッセージとして使用されるときのヘルプテキストの色を設定する。
+`mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
 
 ### `MDCTextField`
 
@@ -243,4 +238,4 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
 `updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新する。
 
-`MDCTextFieldFoundation` は複数のオプションのサブ要素 - リップルライン、ヘルプテキスト、アイコン、ラベル、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
+`MDCTextFieldFoundation` は複数のオプションのサブ要素 - リップルライン、ヘルプテキスト、アイコン、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
