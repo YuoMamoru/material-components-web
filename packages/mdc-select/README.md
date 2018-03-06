@@ -76,14 +76,14 @@ npm install --save @material/select
 JS は次の通りです。
 
 ```js
-import {MDCSelect} from '@material/select';
-
-const select = new MDCSelect(document.querySelector('.mdc-select'));
+const select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
 select.listen('MDCSelect:change', () => {
   alert(`Selected "${select.selectedOptions[0].textContent}" at index ${select.selectedIndex} ` +
         `with value "${select.value}"`);
 });
 ```
+
+JavaScript をインポートする方法についてのより多くの情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 UMD バンドルを通じて mdc-select を含めることができることに注意してください。UMD はポストアルファで利用できます。
 
