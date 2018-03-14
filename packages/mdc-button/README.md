@@ -63,6 +63,17 @@ npm install --save @material/button
 </button>
 ```
 
+SVG アイコンを使うことも可能です。
+
+```html
+<button class="mdc-button">
+  <svg class="mdc-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="...">
+  ...
+  </svg>
+  SVG Icon
+</button>
+```
+
 ### CSS クラス
 
 
@@ -74,7 +85,6 @@ CSS クラス | 説明
 `mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにつける
 `mdc-button--stroked` | オプション。画面の表面と同一平面上にあり、境界線のあるボタンにつける
 `mdc-button--dense` | オプション。少し小さくするためにボタンのテキストを縮める
-`mdc-button--compact` | オプション。ボタンの水平パディング量をへらす
 
 
 ### 無効になったボタン
