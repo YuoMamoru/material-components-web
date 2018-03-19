@@ -118,16 +118,16 @@ npm install --save @material/textfield
 <div class="mdc-text-field mdc-text-field--outlined">
   <input type="text" id="tf-outlined" class="mdc-text-field__input">
   <label for="tf-outlined" class="mdc-floating-label">Your Name</label>
-  <div class="mdc-text-field__outline">
+  <div class="mdc-notched-outline">
     <svg>
-      <path class="mdc-text-field__outline-path"/>
+      <path class="mdc-notched-outline__path"/>
     </svg>
   </div>
-  <div class="mdc-text-field__idle-outline"></div>
+  <div class="mdc-notched-outline__idle"></div>
 </div>
 ```
 
-アウトラインサブコンポーネントを使うにあたり、より詳細な情報は [ここ](outline/) を参照してください。
+アウトラインサブコンポーネントを使うにあたり、より詳細な情報は [ここ](../mdc-notched-outline/) を参照してください。
 
 > <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-line-ripple` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
 
@@ -161,20 +161,45 @@ CSS クラス | 説明
 
 > <em>注意</em>: `mdc-line-ripple-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-text-field--focused)`）から適用する必要があります。
 
+#### ボックス型テキスト欄のためのミキシン
+
 ミキシン | 説明
 --- | ---
-`mdc-text-field-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインの色を設定する。
 `mdc-text-field-box-corner-radius($radius)` | ボックス型テキスト欄の角の半径を設定する。
 `mdc-text-field-box-fill-color($color)` | テキスト欄のボックスの背景色を設定する。
-`mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄のボトムラインの色を設定する。
-`mdc-text-field-hover-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインのホバー時の色を設定する。
-`mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
-`mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
-`mdc-text-field-ripple-line-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
-`mdc-text-field-outlined-corner-radius($radius)` | アウトラインされたテキスト欄の角の半径を設定する。
+
+#### アウトラインされたテキスト欄のためのミキシン
+
+ミキシン | 説明
+--- | ---
+`mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
+`mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
+`mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
+`mdc-text-field-outline-corner-radius($radius)` | アウトラインされたテキスト欄の角の半径を設定する。
+
+#### テキストエリアのためのミキシン
+
+ミキシン | 説明
+--- | ---
 `mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
 `mdc-text-field-textarea-fill-color($color)` | textarea の背景色を設定する。
 `mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
+
+
+#### フル幅のテキスト欄のためのミキシン
+
+Mixin | Description
+--- | ---
+`mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄のボトムラインの色を設定する。
+
+#### その他のミキシン
+Mixin | Description
+--- | ---
+`mdc-text-field-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインの色を設定する。
+`mdc-text-field-hover-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインのホバー時の色を設定する。
+`mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
+`mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
+`mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
 
 ### `MDCTextField`
 
@@ -195,7 +220,7 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 
 #### `MDCTextField.ripple`
 
-`MDCRipple` のインスタンス。ルート要素に `mdc-text-field--box` が与えられているとき、ルート要素には `MDCRipple` インスタンスが設定されます。ルート要素に `mdc-text-field--outlined` が与えられているとき、`mdc-text-field__outline` 要素には `MDCRipple` インスタンスが設定されます。どちらでもないときはこのフィールドには `null` が設定されます。
+`MDCRipple` のインスタンス。ルート要素に `mdc-text-field--box` が与えられているとき、ルート要素には `MDCRipple` インスタンスが設定されます。ルート要素に `mdc-text-field--outlined` が与えられているとき、`mdc-notched-outline` 要素には `MDCRipple` インスタンスが設定されます。どちらでもないときはこのフィールドには `null` が設定されます。
 
 ### `MDCTextFieldAdapter`
 
@@ -211,6 +236,8 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
+`hasOutline() => boolean` | アウトライン要素があるかどうかを返す。
+`updateOutlinePath(labelWidth: number, isRtl: boolean) => void` | ラベル要素のノッチを作るためのアウトラインのパスを更新する。
 
 #### `MDCTextFieldAdapter.getNativeInput()`
 
@@ -238,4 +265,4 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
 `updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新する。
 
-`MDCTextFieldFoundation` は複数のオプションのサブ要素 - リップルライン、ヘルプテキスト、アイコン、アウトライン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
+`MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルプテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
