@@ -130,7 +130,8 @@ mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 ミキシン | 説明
 --- | ---
 `mdc-button-container-fill-color` | 与えた色にコンテナの色を設定する
-`mdc-button-ink-color` | 与えた色にインクの色を設定する
+`mdc-button-icon-color` | 与えられた色にアイコンの色を設定する
+`mdc-button-ink-color` | 与えた色にインクの色を設定する。`mdc-button-icon-color` を使わないときはテキストとアイコンの両方に作用する
 `mdc-button-stroke-color` | 与えた色に境界の色を設定する
 `mdc-button-corner-radius` | 与えた大きさ（デフォルトは 2px）に角の丸め半径を設定する
 `mdc-button-stroke-width` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定する
