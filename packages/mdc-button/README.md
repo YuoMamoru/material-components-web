@@ -32,7 +32,7 @@ MDC Button コンポーネントは [マテリアルデザインボタン要件]
 ## インストール
 
 ```
-npm install --save @material/button
+npm install @material/button
 ```
 
 ## 使用法
@@ -129,12 +129,13 @@ mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 
 ミキシン | 説明
 --- | ---
-`mdc-button-container-fill-color` | 与えた色にコンテナの色を設定する
-`mdc-button-icon-color` | 与えられた色にアイコンの色を設定する
-`mdc-button-ink-color` | 与えた色にインクの色を設定する。`mdc-button-icon-color` を使わないときはテキストとアイコンの両方に作用する
-`mdc-button-stroke-color` | 与えた色に境界の色を設定する
-`mdc-button-corner-radius` | 与えた大きさ（デフォルトは 2px）に角の丸め半径を設定する
-`mdc-button-stroke-width` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定する
+`mdc-button-container-fill-color($color)` | 与えた色にコンテナの色を設定する
+`mdc-button-icon-color($color)` | 与えられた色にアイコンの色を設定する
+`mdc-button-ink-color($color)` | 与えた色にインクの色を設定する。`mdc-button-icon-color` を使わないときはテキストとアイコンの両方に作用する
+`mdc-button-corner-radius($corner-radius)` | 与えた大きさ（デフォルトは 2px）に角の丸め半径を設定する
+`mdc-button-horizontal-padding($padding)` | 与えた大きさに水平方向のパディングを設定する
+`mdc-button-stroke-color($color)` | 与えた色に境界の色を設定する
+`mdc-button-stroke-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須
 
 Button コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 

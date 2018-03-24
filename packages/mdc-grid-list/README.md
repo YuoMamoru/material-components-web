@@ -32,7 +32,7 @@ MDC Grid List は [マテリアルデザイングリッドリスト仕様](https
 ## インストール
 
 ```
-npm install --save @material/grid-list
+npm install @material/grid-list
 ```
 
 

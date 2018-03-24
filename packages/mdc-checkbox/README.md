@@ -31,7 +31,7 @@ MDC Checkbox コンポーネントは [マテリアルデザインチェック�
 ## インストール
 
 ```
-npm install --save @material/checkbox
+npm install @material/checkbox
 ```
 
 ## 使用法

@@ -31,7 +31,7 @@ MDC Icon Toggle はマテリアルデザインのアイコン切り替えボタ�
 ## インストール
 
 ```
-npm install --save @material/icon-toggle
+npm install @material/icon-toggle
 ```
 
 ## 使用法

@@ -34,7 +34,7 @@ MDC Select はマテリアルデザインの単一選択ができるセレクト
 ## インストール
 
 ```
-npm install --save @material/select
+npm install @material/select
 ```
 
 ## 使用法

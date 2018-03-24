@@ -29,7 +29,7 @@ MDC Tabs コンポーネントには [マテリアルデザインタブガイド
 ## インストール
 
 ```
-npm install --save @material/tabs
+npm install @material/tabs
 ```
 
 ## タブの使用

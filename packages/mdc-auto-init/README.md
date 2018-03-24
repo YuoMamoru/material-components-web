@@ -13,7 +13,7 @@ path: /catalog/auto-init/
 ## インストール
 
 ```
-npm install --save @material/auto-init
+npm install @material/auto-init
 ```
 
 ## 使用法

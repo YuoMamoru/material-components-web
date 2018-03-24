@@ -48,7 +48,7 @@ MDC Theme は MDC Web コンポーネントのテーマを表現する基盤と�
 ## インストール
 
 ```
-npm install --save @material/theme
+npm install @material/theme
 ```
 
 ## 使用法

@@ -5,7 +5,7 @@
 ## インストール
 
 ```
-npm install --save material-components-web
+npm install material-components-web
 ```
 
 ## 使用法

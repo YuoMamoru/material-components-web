@@ -36,7 +36,7 @@ MDC Slider はマテリアルデザインのスライダーコンポーネント
 ## インストール
 
 ```
-npm i --save @material/slider
+npm install @material/slider
 ```
 
 ## 使用法

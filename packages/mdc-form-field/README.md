@@ -12,7 +12,7 @@ MDC Form Field はテーマ対応、RTL 対応のフィールドとラベルの�
 ## インストール
 
 ```
-npm install --save @material/form-field
+npm install @material/form-field
 ```
 
 ## CSS の使用

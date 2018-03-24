@@ -31,7 +31,7 @@ Text Field はユーザのテキストの入力、編集、選択に対応して
 ## インストール
 
 ```
-npm install --save @material/textfield
+npm install @material/textfield
 ```
 
 ## 使用法
@@ -237,7 +237,8 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
 `hasOutline() => boolean` | アウトライン要素があるかどうかを返す。
-`updateOutlinePath(labelWidth: number, isRtl: boolean) => void` | ラベル要素のノッチを作るためのアウトラインのパスを更新する。
+`notchOutline(labelWidth: number, isRtl: boolean) => void` | ノッチを開くためにアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
+`closeOutline() => void` | アウトラン要素上のノッチを閉じる。
 
 #### `MDCTextFieldAdapter.getNativeInput()`
 
@@ -263,6 +264,6 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
 `deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
-`updateOutline() => void` |アウトラインされたテキスト欄のフォーカスされたアウトラインを更新する。
+`notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルプテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。

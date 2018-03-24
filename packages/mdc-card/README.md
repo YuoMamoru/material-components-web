@@ -32,7 +32,7 @@ MDC Card は [マテリアルデザインカードコンポーネント](https:/
 ## インストール
 
 ```
-npm install --save @material/card
+npm install @material/card
 ```
 
 ## 使用法

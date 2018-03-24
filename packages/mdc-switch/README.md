@@ -31,7 +31,7 @@ MDC Switch コンポーネントは [マテリアルデザインスイッチ要�
 ## インストール
 
 ```
-npm install --save @material/switch
+npm install @material/switch
 ```
 
 ## 使用法

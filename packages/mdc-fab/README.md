@@ -32,7 +32,7 @@ path: /catalog/buttons/floating-action-buttons/
 ## インストール
 
 ```
-npm install --save @material/fab
+npm install @material/fab
 ```
 
 ## 使用法

@@ -33,7 +33,7 @@ path: /catalog/layout-grid/
 ## インストール
 
 ```
-npm install --save @material/layout-grid
+npm install @material/layout-grid
 ```
 
 ## 使用法

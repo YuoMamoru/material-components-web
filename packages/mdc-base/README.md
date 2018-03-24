@@ -17,7 +17,7 @@ MDC Base には MDC Web のファンデーションクラスとコンポーネ�
 まず、モジュールをインストールします。
 
 ```
-npm install --save @material/base
+npm install @material/base
 ```
 
 次に以下の方法のいずれかでコードにモジュールをインクルードします。

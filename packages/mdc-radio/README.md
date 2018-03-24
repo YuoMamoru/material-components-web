@@ -31,7 +31,7 @@ MDC Radio Button コンポーネントは [マテリアルデザイン仕様](ht
 ## インストール
 
 ```
-npm install --save @material/radio
+npm install @material/radio
 ```
 
 ## 使用法

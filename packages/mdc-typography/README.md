@@ -51,7 +51,7 @@ MDC Typography は MDC Web コンポーネントにこれらのスタイルを�
 ## インストール
 
 ```
-npm install --save @material/typography
+npm install @material/typography
 ```
 
 ## 使用法

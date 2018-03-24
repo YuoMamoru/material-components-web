@@ -32,7 +32,7 @@ MDC Menu コンポーネントは [マテリアルデザインメニュー仕様
 ## インストール
 
 ```
-npm install --save @material/menu
+npm install @material/menu
 ```
 
 ## 使用法
