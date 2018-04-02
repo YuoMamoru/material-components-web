@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2018 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,21 @@
 // limitations under the License.
 //
 
-@import "./variables";
-@import "./mixins";
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-.mdc-typography {
-  @include mdc-typography-base;
+.test-main {
+  padding: 16px;
 }
 
-@each $style in map-keys($mdc-typography-styles) {
-  .mdc-typography--#{$style} {
-    @include mdc-typography($style);
-  }
+.test-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 0 24px 0;
+}
+
+.test-cell {
+  // Ensure that shadows from adjacent components don't overlap
+  margin: 8px;
 }

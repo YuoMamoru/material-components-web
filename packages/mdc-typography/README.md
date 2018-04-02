@@ -90,9 +90,6 @@ CSS クラス | 説明
 `mdc-typography--body1` | フォントのプロパティを Body 1 に設定する。
 `mdc-typography--caption` | フォントのプロパティを Caption に設定する。
 `mdc-typography--button` | フォントのプロパティを Button に設定する。
-`mdc-typography--adjust-margin` | テキストを整列させる。上にあるフォントクラスと共に使用する。
-
-> **`mdc-typography--adjust-margin` に関する注釈**: `mdc-typography--adjust-margin` は適用された要素の margin プロパティを変更し、テキストを正しく整列させます。`mdc-typography--adjust-margin` はテキストコンテンツでのみ使用するべきで、ボタンのような UI 要素で使用しても正しく整列しないことがあります。
 
 ### Sass 変素とミキシン
 
@@ -100,16 +97,13 @@ CSS クラス | 説明
 --- | ---
 `mdc-typography-base` | フォントを Roboto に設定する。
 `mdc-typography($style)` | フォントを Roboto にするなど、Typography の書式の一つを適用する。
-`mdc-typography-adjust-margin($style)` | テキストを整列させる。
 `mdc-typography-overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める
-
-> **`mdc-typography-adjust-margin` に関する注釈**: `mdc-typography-adjust-margin` は適用された要素の margin プロパティを変更し、テキストを正しく整列させます。`mdc-typography-adjust-margin` はテキストコンテンツでのみ使用するべきで、ボタンのような UI 要素で使用しても正しく整列しないことがあります。
 
 > **`mdc-typography-overflow-ellipsis` に関する注釈**: `mdc-typography-overflow-ellipsis` は要素が `display: block` であるか `display: inline-block` であるときにしか使ってはいけません。
 
 #### `$style` の値
 
-これらのスタイルは `mdc-typography` ミキシンと `mdc-typography-adjust-margin` ミキシンにおいて `$style` 引数として使うことができます。
+これらのスタイルは `mdc-typography` ミキシンにおいて `$style` 引数として使うことができます。
 
 * `display4`
 * `display3`

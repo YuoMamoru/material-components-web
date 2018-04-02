@@ -69,17 +69,6 @@ $mdc-theme-background: #fff; // White
 
 > **`$mdc-theme-secondary` に関する注釈**: この変数は以前、`$mdc-theme-accent` という名前でした。下位互換のために `$mdc-theme-accent` はまだ存在しますが、この変数は **非推奨** です。かつて `$mdc-theme-accent` をカスタマイズしたアプリは引き続き動作しますが、新しいアプリでは `$mdc-theme-secondary` を代わりに使ってください。
 
-MDC Theme はプライマリカラーとセカンダリカラーのバリエーションである _light_ と _dark_ も公開しています。デフォルトではこれらの値は Sass 内でプライマリカラー/セカンダリカラーを明るくなるよう計算した色と、暗くなるよう計算した色になっています。しかしこれらも望むのであれば上書きできます。
-
-```scss
-$mdc-theme-primary-light: #ce93d8; // Purple 200
-$mdc-theme-primary-dark: #6a1b9a; // Purple 800
-$mdc-theme-secondary-light: #ffd180; // Orange A100
-$mdc-theme-secondary-dark: #ff6d00; // Orange A700
-
-@import "@material/theme/mdc-theme";
-```
-
 これらの選択されたテーマカラー上に配置されるテキストの色はコントラストに基いてプログラム上で計算されます。私たちは Web Content Accessibility Guidelines 2.0 にしたがっています。
 
 https://www.w3.org/TR/WCAG20
@@ -91,11 +80,7 @@ https://www.w3.org/TR/WCAG20
 CSS カスタムプロパティ | 説明
 --- | ---
 `--mdc-theme-primary` | テーマのプライマリカラー
-`--mdc-theme-primary-light` | テーマのプライマリカラー（明るいバリエーション）
-`--mdc-theme-primary-dark` | テーマのプライマリカラー（暗いバリエーション）
 `--mdc-theme-secondary` | テーマのセカンダリカラー
-`--mdc-theme-secondary-light` | テーマのセカンダリカラー（明るいバリエーション）
-`--mdc-theme-secondary-dark` | テーマのセカンダリカラー（暗いバリエーション）
 `--mdc-theme-background` | テーマのバックグランドカラー
 `--mdc-theme-text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE のテキストの色
 `--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色
@@ -112,18 +97,10 @@ MDC Web はコンポーネントのカスタマイズを容易にするために
 CSS クラス | 説明
 --- | ---
 `mdc-theme--primary` | テキスト色としてテーマのプライマリカラーを設定する
-`mdc-theme--primary-light` | テキスト色としてテーマのプライマリカラーを設定する（明るいバリエーション）
-`mdc-theme--primary-dark` | テキスト色としてテーマのプライマリカラーを設定する（暗いバリエーション）
 `mdc-theme--secondary` | テキスト色としてテーマのセカンダリカラーを設定する
-`mdc-theme--secondary-light` | テキスト色としてテーマのセカンダリカラーを設定する（明るいバリエーション）
-`mdc-theme--secondary-dark` | テキスト色としてテーマのセカンダリカラーを設定する（暗いバリエーション）
 `mdc-theme--background` | 背景色としてテーマのバックグランドカラーを設定する
 `mdc-theme--primary-bg` | 背景色としてテーマのプライマリカラーを設定する
-`mdc-theme--primary-light-bg` | 背景色としてテーマのプライマリカラーを設定する（明るいバリエーション）
-`mdc-theme--primary-dark-bg` | 背景色としてテーマのプライマリカラーを設定する（暗いバリエーション）
 `mdc-theme--secondary-bg` | 背景色としてテーマのセカンダリカラーを設定する
-`mdc-theme--secondary-light-bg` | 背景色としてテーマのセカンダリカラーを設定する（明るいバリエーション）
-`mdc-theme--secondary-dark-bg` | 背景色としてテーマのセカンダリカラーを設定する（暗いバリエーション）
 `mdc-theme--text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 `mdc-theme--text-<TEXT_STYLE>-on-light` | 明るい背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 `mdc-theme--text-<TEXT_STYLE>-on-dark` | 暗い背景の上に、TEXT_STYLE に適切なテキスト色を設定する
@@ -143,11 +120,7 @@ CSS クラス | 説明
 プロパティ名 | 説明
 --- | ---
 `primary` | テーマのプライマリカラー
-`primary-light` | テーマのプライマリカラー（明るいバリエーション）
-`primary-dark` | テーマのプライマリカラー（暗いバリエーション）
 `secondary` | テーマのセカンダリカラー
-`secondary-light` | テーマのセカンダリカラー（明るいバリエーション）
-`secondary-dark` | テーマのセカンダリカラー（暗いバリエーション）
 `background` | テーマのバックグランドカラー
 `text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE
 `text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE
@@ -187,21 +160,6 @@ CSS クラス | 説明
 ```scss
 @debug mdc-theme-contrast-tone(#9c27b0); // light
 ```
-
-#### `mdc-theme-light-variant($color)` と `mdc-theme-dark-variant($color)`
-
-関数 | 説明
---- | ---
-`mdc-theme-dark-variant($color, $num-indexes)` | 指定されたインデックスの分だけ、色調パレット上で色を暗くする。
-`mdc-theme-light-variant($color, $num-indexes)` | 指定されたインデックスの分だけ、色調パレット上で色を明るくする。
-
-どちらの関数も輝度を認識し、入力される色や他方の関数とは視覚的に異なる色を返します。
-
-つまり、`mdc-theme-dark-variant()` に渡した色が既に要求された分だけ暗くすると `#000000` を返してしまうくらい暗いときは、代わりに色を <em>明るく</em> します。
-
-同様に、`mdc-theme-light-variant()` に渡した色が既に要求された分だけ明るくすると `#ffffff` を返してしまうくらい明るいときは、代わりに色を <em>暗く</em> します。
-
-入力輝度が極端に高かったり低かったりする場合に2つの関数が同じ色を返すことを避けるために、入力が既に非常に明るいときには `mdc-theme-dark-variant()` は要求された量より <em>2倍</em> 暗い色を返します。同じく、入力が既に非常に暗いときには `mdc-theme-light-variant()` は要求された量より <em>2倍</em> 明るい色を返します。これにより、<em>明るい</em> 変数（訳注: `mdc-theme-light-variant()` が返す値のこと）は <em>暗い</em> 変数（訳注: `mdc-theme-dark-variant()` が返す値のこと）より常に明るくなることが保証されます。
 
 #### `mdc-theme-prop-value($property)`
 
