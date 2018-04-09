@@ -212,15 +212,11 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `valid` | Boolean | ファンデーションの `isValid`/`setValid` の代替
 `required` | Boolean | ファンデーションの `isRequired`/`setRequired` の代替
 `helperTextContent` | String | ファンデーションの `setHelperTextContent` の設定時のおける代替
-`ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス
+`ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはボックス型のテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
 
 メソッド | 説明
 --- | ---
 `layout() => void` | すべてのサブ要素の大きさと位置を調整する。
-
-#### `MDCTextField.ripple`
-
-`MDCRipple` のインスタンス。ルート要素に `mdc-text-field--box` が与えられているとき、ルート要素には `MDCRipple` インスタンスが設定されます。ルート要素に `mdc-text-field--outlined` が与えられているとき、`mdc-notched-outline` 要素には `MDCRipple` インスタンスが設定されます。どちらでもないときはこのフィールドには `null` が設定されます。
 
 ### `MDCTextFieldAdapter`
 

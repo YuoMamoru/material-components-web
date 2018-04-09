@@ -1,3 +1,11 @@
+<!--docs:
+title: "Importing JS Components"
+navTitle: "Importing JS Components"
+layout: landing
+section: docs
+path: /docs/importing-js/
+-->
+
 # JS コンポーネントのインポート
 
 大半のコンポーネントは完全忠実なマテリアルデザインコンポーネントを提供するために使用される コンポーネント/ファンデーション クラスが付属しています。これまでどのようなテクノロジーを使ってきたかによって、JavaScript をインポートする方法はいくつかあります。
