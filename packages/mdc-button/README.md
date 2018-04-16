@@ -139,6 +139,8 @@ mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 
 Button コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
+> **注意:** 水平パディングと境界線の太さの両方を変更したいときは、単に `mdc-button-stroke-width` ミキシンの両方の引数を設定してください。このミキシンは `mdc-button-horizontal-padding` を包含しています。
+
 #### 注意: Edge と CSS 変数
 
 CSS 変数を完全にサポートしているブラウザでは、テーマプロパティが渡されたら上記のミキシンは CSS 変数を使ってスタイルを設定します。しかし、Edge の CSS 変数サポートのバグのため、Edge では `mdc-button-container-fill-color` は CSS 変数が利用されません。もしテーマプロパティ（浮き上がったボタンや同一平面上のボタンは塗りつぶしの色にデフォルトでプライマリカラーを使っています）のために関係している CSS 変数を変えたいのであればコンテナのスタイルを手動で上書する必要がある、ということをこれは意味しています。

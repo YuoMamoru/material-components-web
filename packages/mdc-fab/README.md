@@ -57,6 +57,8 @@ npm install @material/fab
 </button>
 ```
 
+> _注意:_ フローティング操作ボタンには `span`、`i`、`img` もしくは `svg` 要素を使うことができます。
+
 ### CSS クラス
 
 CSS クラス | 説明
@@ -133,6 +135,7 @@ FAB のコンテナの色を指定した色に変え、アクセシビリティ�
 ミキシン | 説明
 --- | ---
 `mdc-fab-container-color($color)` | 与えた色にコンテナの色を設定する
+`mdc-fab-icon-size($width, $height)` |  `width` と `height` を指定することにより、アイコンの `width`、`height` と `font-size` プロパティを設定する。`$height` はオプションで省略した際には `$width` の値が設定される。`font-size` は `$width` の値に応じて設定される。
 `mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
 
 FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。

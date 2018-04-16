@@ -52,8 +52,8 @@ npm install @material/select
       Fruit
     </option>
   </select>
-  <div class="mdc-select__label">Pick a Food Group</div>
-  <div class="mdc-select__bottom-line"></div>
+  <label class="mdc-floating-label">Pick a Food Group</label>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -70,7 +70,7 @@ JavaScript をインポートする方法についてのより多くの情報は
 
 #### 選択済みの選択肢を持つセレクト
 
-選択済みの値を持つセレクトコンポーネントを扱う際には、`mdc-select__label` に `mdc-select__label--float-above` 修飾クラスを付加し、選択された選択肢に `selected` 属性を付けるようにしてください。これによりラベルが選択された値の上に移動し、Flash Of Unstyled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+選択済みの値を持つセレクトコンポーネントを扱う際には、`mdc-floating-label` に `mdc-floating-label--float-above` 修飾クラスを付加し、選択された選択肢に `selected` 属性を付けるようにしてください。これによりラベルが選択された値の上に移動し、Flash Of Unstyled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
 <div class="mdc-select">
@@ -85,8 +85,8 @@ JavaScript をインポートする方法についてのより多くの情報は
       Milk, Yogurt, and Cheese
     </option>
   </select>
-  <div class="mdc-select__label mdc-select__label--float-above">Pick a Food Group</div>
-  <div class="mdc-select__bottom-line"></div>
+  <label class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</label>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -115,8 +115,8 @@ JavaScript をインポートする方法についてのより多くの情報は
       Fruit
     </option>
   </select>
-  <div class="mdc-select__label">Pick a Food Group</div>
-  <div class="mdc-select__bottom-line"></div>
+  <label class="mdc-floating-label">Pick a Food Group</label>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -138,8 +138,8 @@ MDC Select は `<select>` 要素と `<option>` 要素を使っているので、
       Fruit
     </option>
   </select>
-  <div class="mdc-select__label">Pick a Food Group</div>
-  <div class="mdc-select__bottom-line"></div>
+  <label class="mdc-floating-label">Pick a Food Group</label>
+  <div class="mdc-line-ripple"></div>
 </div>
 ```
 
@@ -158,12 +158,13 @@ Mixin | Description
 --- | ---
 `mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
 `mdc-select-container-fill-color($color)` | セレクトの背景色を設定する。 
-`mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
+`mdc-select-label-color($color, $opacity: 1)` | フォーカスのないセレクトのラベルの色を設定する。
 `mdc-select-focused-label-color($color, $opacity: 0.87)` | フォーカス時のセレクトのラベルの色を設定する。フローティングの際のラベルの不透明度の変更はオプション。
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
+`mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 
-> 注意: ラベルの色を変更する方法は [ラベルの readme](./label/README.md) を参照してください。
+> 注意: これ以上にラベルの色を変更する方法は [フローティングラベルの readme](./../mdc-floating-label/README.md) を参照してください。
 
 ### MDC Select コンポーネント API
 

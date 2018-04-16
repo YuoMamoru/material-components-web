@@ -11,31 +11,21 @@ path: /catalog/typography/
 
 マテリアルデザインのテキストサイズとスタイルは一般的な利用状況下でのコンテンツの密度と読みやすさのバランスをとるために作られました。
 
-MDC Typography は MDC Web コンポーネントにこれらのスタイルを適用する基盤となるモジュールです。このモジュールの書式は以下の10個のスタイルから派生しています。
+MDC Typography は MDC Web コンポーネントにこれらのスタイルを適用する基盤となるモジュールです。このモジュールの書式は以下の13個のスタイルから派生しています。
 
-* Display 4
-* Display 3
-* Display 2
-* Display 1
-* Headline
-* Title
-* Subheading 2
-* Subheading 1
-* Body 2
+* Headline 1
+* Headline 2
+* Headline 3
+* Headline 4
+* Headline 5
+* Headline 6
+* Subtitle 1
+* Subtitle 2
 * Body 1
+* Body 2
 * Caption
 * Button
-
-### 使用法
-
-```html
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-</head>
-<body class="mdc-typography">
-  <h1 class="mdc-typography--display4">Big header</h1>
-</body>
-```
+* Overline
 
 ## デザインと API ドキュメント
 
@@ -56,8 +46,6 @@ npm install @material/typography
 
 ## 使用法
 
-### Roboto フォントのロード
-
 私たちは Google Fonts から Roboto を読み込むことを推奨しています。
 
 ```html
@@ -65,7 +53,7 @@ npm install @material/typography
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 </head>
 <body class="mdc-typography">
-  <h1 class="mdc-typography--display4">Big header</h1>
+  <h1 class="mdc-typography--headline1">Big header</h1>
 </body>
 ```
 
@@ -78,18 +66,19 @@ npm install @material/typography
 CSS クラス | 説明
 --- | ---
 `mdc-typography` | フォントを Roboto に設定する。
-`mdc-typography--display4` | フォントのプロパティを Display 4 に設定する。
-`mdc-typography--display3` | フォントのプロパティを Display 3 に設定する。
-`mdc-typography--display2` | フォントのプロパティを Display 2 に設定する。
-`mdc-typography--display1` | フォントのプロパティを Display 1 に設定する。
-`mdc-typography--headline` | フォントのプロパティを Headline に設定する。
-`mdc-typography--title` | フォントのプロパティを Title に設定する。
-`mdc-typography--subheading2` | フォントのプロパティを Subheading 2 に設定する。
-`mdc-typography--subheading1` | フォントのプロパティを Subheading 1 に設定する。
-`mdc-typography--body2` | フォントのプロパティを Body 2 に設定する。
+`mdc-typography--headline1` | フォントのプロパティを Headline 1 に設定する。
+`mdc-typography--headline2` | フォントのプロパティを Headline 2 に設定する。
+`mdc-typography--headline3` | フォントのプロパティを Headline 3 に設定する。
+`mdc-typography--headline4` | フォントのプロパティを Headline 4 に設定する。
+`mdc-typography--headline5` | フォントのプロパティを Headline 5 に設定する。
+`mdc-typography--headline6` | フォントのプロパティを Headline 6 に設定する。
+`mdc-typography--subtitle1` | フォントのプロパティを Subtitle 1 に設定する。
+`mdc-typography--subtitle2` | フォントのプロパティを Subtitle 2 に設定する。
 `mdc-typography--body1` | フォントのプロパティを Body 1 に設定する。
+`mdc-typography--body2` | フォントのプロパティを Body 2 に設定する。
 `mdc-typography--caption` | フォントのプロパティを Caption に設定する。
 `mdc-typography--button` | フォントのプロパティを Button に設定する。
+`mdc-typography--overline` | フォントのプロパティを Overline に設定する。
 
 ### Sass 変素とミキシン
 
@@ -105,15 +94,52 @@ CSS クラス | 説明
 
 これらのスタイルは `mdc-typography` ミキシンにおいて `$style` 引数として使うことができます。
 
-* `display4`
-* `display3`
-* `display2`
-* `display1`
-* `headline`
-* `title`
-* `subheading2`
-* `subheading1`
-* `body2`
+* `headline1`
+* `headline2`
+* `headline3`
+* `headline4`
+* `headline5`
+* `headline6`
+* `subtitle1`
+* `subtitle2`
 * `body1`
+* `body2`
 * `caption`
 * `button`
+* `overline`
+
+#### スタイルの上書き
+
+コンポーネントをインポートする <em>前に</em> `$mdc-typography-styles-{style}` という名前のグローバル変数を設定することにより、すべてのスタイルを上書きできます。この変数には上書きしたい具体的スタイルのすべてを含んだマップを指定する必要があります。
+
+例: `font-size` と `text-transform` プロパティを上書きする
+
+```scss
+$mdc-typography-styles-button: (
+  font-size: 16px,
+  text-transform: none,
+);
+
+@import "@material/button/mdc-button";
+```
+
+例: グローパルな `font-family` プロパティを上書きする
+```scss
+$mdc-typography-font-family: "Arial, Helvetica, sans-serif";
+
+...
+@import ...
+```
+
+例:  `headline1` と `headline2` の `font-family` プロパティを上書きする
+```scss
+$mdc-typography-styles-headline1: (
+  font-family: "Arial, Helvetica, sans-serif";
+);
+$mdc-typography-styles-headline2: (
+  font-family: "Arial, Helvetica, sans-serif";
+);
+
+...
+@import ...
+```
