@@ -20,7 +20,7 @@ npm install @material/auto-init
 
 ### `material-components-web` の一部としての使用
 
-[material-components-web](../material-components-web) パッケージの一部として mdc-auto-init を使うのであれば、単にコンポーネントが必要な DOM に書くだけです。ルート要素の `data-mdc-auto-init` 属性にコンポーネントのクラス名に設定します。そしてマークアップを書いたら、`mdc.autoInit()` を呼び出す script タグを単に追加するだけです。正しく動作させるにはすべてのスクリプトが読み込まれた後に `mdc.autoInit()` を呼びしてください。
+[material-components-web](../material-components-web) パッケージの一部として mdc-auto-init を使うのであれば、単にコンポーネントが必要な DOM に書くだけです。ルート要素の `data-mdc-auto-init` 属性にコンポーネントの JavaScript クラス名（例: `MDCTextField`）を設定します。そしてマークアップを書いたら、`mdc.autoInit()` を呼び出す script タグを単に追加するだけです。正しく動作させるにはすべてのスクリプトが読み込まれた後に `mdc.autoInit()` を呼びしてください。
 
 ```html
 <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
