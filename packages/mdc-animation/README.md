@@ -9,9 +9,9 @@ path: /catalog/animation/
 
 # Animation
 
-Material in motion is responsive and natural. Use these easing curves and duration patterns to create smooth and consistent motion.
+動作をともなうマテリアルは反応があり自然なものです。スムーズで一貫性のある動きを作るにはイージングカーブとデュレーションパターンを使ってください。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
@@ -19,17 +19,17 @@ Material in motion is responsive and natural. Use these easing curves and durati
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/animation
 ```
 
-## Usage
+## 使用法
 
-### Sass Variables
+### Sass 変数
 
-We provide timing functions which you can use with the `animation` or `transition` CSS properties
+`animation` や `transition` CSS プロパティで使用できるタイミング関数を提供しています。
 
 ```scss
 @import "@material/animation/variables";
@@ -39,14 +39,14 @@ We provide timing functions which you can use with the `animation` or `transitio
 }
 ```
 
-Variable | Description
+変数 | 説明
 --- | ---
-`mdc-animation-deceleration-curve-timing-function` | Timing function to decelerate
-`mdc-animation-standard-curve-timing-function` | Timing function to quickly accelerate and slowly decelerate
-`mdc-animation-acceleration-curve-timing-function` | Timing function to accelerate
-`mdc-animation-sharp-curve-timing-function` | Timing function to quickly accelerate and decelerate
+`mdc-animation-deceleration-curve-timing-function` | 減速していくタイミング関数
+`mdc-animation-standard-curve-timing-function` | 素早く加速し、ゆっくり減速していくタイミング関数
+`mdc-animation-acceleration-curve-timing-function` | 加速していくタイミング関数
+`mdc-animation-sharp-curve-timing-function` | 素早く加速、減速をしていくタイミング関数
 
-The following functions create transitions given `$name` and the `$duration`. You can also specify `$delay`, but the default is 0ms. `$name` can either refer to the keyframe, or to CSS property used in `transition`.
+以下の関数は `$name` と `$duration` を与えるトランジッションを生成します。`$delay`を指定することもできますが、初期値は 0 ミリ秒です。`$name` はキーフレームを参照することも `transition` で使っている CSS プロパティを参照することもできます。
 
 ```scss
 @import "@material/animation/functions";
@@ -84,15 +84,15 @@ The following functions create transitions given `$name` and the `$duration`. Yo
 }
 ```
 
-Function | Description
+関数 | 説明
 --- | ---
-`mdc-animation-enter($name, $duration, $delay)` | Defines transition for entering the frame
-`mdc-animation-exit-permanent($name, $duration, $delay)` | Defines transition for exiting the frame permanently
-`mdc-animation-exit-temporary($name, $duration, $delay)` | Defines transition for exiting the frame temporarily
+`mdc-animation-enter($name, $duration, $delay)` | フレームに入るためのトランジッションを定義する
+`mdc-animation-exit-permanent($name, $duration, $delay)` | 恒久的にフレームに入るためのトランジッションを定義する
+`mdc-animation-exit-temporary($name, $duration, $delay)` | 一時的にフレームに入るためのトランジッションを定義する
 
 ### JavaScript
 
-These functions handle prefixing across various browsers
+これらの関数は様々なブラウザのプレリックスを処理します。
 
 ```js
 import {getCorrectEventName} from '@material/animation';
@@ -100,7 +100,7 @@ import {getCorrectEventName} from '@material/animation';
 const eventToListenFor = getCorrectEventName(window, 'animationstart');
 ```
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`getCorrectEventName(windowObj, eventType)` | Returns a JavaScript event name, prefixed if necessary
-`getCorrectPropertyName(windowObj, eventType)` | Returns a CSS property name, prefixed if necessary
+`getCorrectEventName(windowObj, eventType)` | JavaScript のイベント名と、必要であればプレフィックスを返す
+`getCorrectPropertyName(windowObj, eventType)` | CSS のプロパティ名と、必要であればプレフィックスを返す
