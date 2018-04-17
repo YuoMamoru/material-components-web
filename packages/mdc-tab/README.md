@@ -7,9 +7,9 @@
   </a>
 </div>-->
 
-Tab is a selectable element with an active state
+タブはアクティブな状態を持つ選択可能な要素です。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <!--
 <ul class="icon-list">
@@ -22,14 +22,14 @@ Tab is a selectable element with an active state
 </ul>
 -->
 
-## Installation
+## インストール
 ```
 npm install --save @material/tab
 ```
 
-## Usage
+## 使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <button class="mdc-tab" role="tab" aria-selected="false">
@@ -40,48 +40,48 @@ npm install --save @material/tab
 </button>
 ```
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-tab` | Mandatory.
-`mdc-tab--active` | Optional. Indicates that the tab is active.
-`mdc-tab__content` | Mandatory. Indicates the text label of the tab
-`mdc-tab__text-label` | Optional. Indicates an icon in the tab
-`mdc-tab__icon` | Optional. Indicates a leading icon in the tab
+`mdc-tab` | 必須
+`mdc-tab--active` | オプション。タブがアクティブであることを示す
+`mdc-tab__content` | 必須。タブのテキストラベルであることを示す
+`mdc-tab__text-label` | オプション。タブ内のアイコンであることを示す
+`mdc-tab__icon` | オプション。タブの先頭のアイコンであることを示す
 
-### Sass Mixins
+### Sass ミキシン
 
-To customize the colors of any part of the tab, use the following mixins.
+タブの任意の場所の色を変更するには以下のミキシンを使用します。
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-tab-text-label-color($color)` | Customizes the color of the tab text label
-`mdc-tab-icon-color($color)` | Customizes the color of the tab icon
+`mdc-tab-text-label-color($color)` | タブのテキストラベルの色を変更する
+`mdc-tab-icon-color($color)` | タブのアイコンの色を変更する
 
 ### `MDCTab`
 
-Property | Value Type | Description
+プロパティ | 値の型 | 説明
 --- | --- | ---
-`active` | `boolean` | Allows getting/setting the active state of the tab
-`ripple` | `MDCRipple` | The `MDCRipple` instance for the root element that `MDCChip` initializes
+`active` | `boolean` | タブのアクティブな状態の取得/設定をする
+`ripple` | `MDCRipple` | `MDCChip` が初期化したルート要素の `MDCRipple` インスタンス
 
 ### `MDCTabAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the root element
-`removeClass(className: string) => void` | Removes a class from the root element
-`hasClass(className: string) => boolean` | Returns true if the root element contains the given class
-`registerEventHandler(evtType: string, handler: EventListener) => void` | Registers an event listener on the root element
-`deregisterEventHandler(evtType: string, handler: EventListener) => void` | Deregisters an event listener on the root element
-`setAttr(attr: string, value: string) => void` | Sets the given attribute on the root element to the given value
+`addClass(className: string) => void` | ルート要素にクラスを追加する
+`removeClass(className: string) => void` | ルート要素からクラスを削除する
+`hasClass(className: string) => boolean` | ルート要素が与えられたクラスを含んでいれば true を返す
+`registerEventHandler(evtType: string, handler: EventListener) => void` | ルート要素にイベントリスナーを登録する
+`deregisterEventHandler(evtType: string, handler: EventListener) => void` | ルート要素からイベントリスナーの登録を解除する
+`setAttr(attr: string, value: string) => void` | ルート要素に与えられた値を属性として設定する
 
 ### `MDCTabFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`handleTransitionEnd(evt: Event) => void` | Handles the logic for the `"transitionend"` event
-`isActive() => boolean` | Returns whether the tab is active
-`activate() => void` | Activates the tab
-`deactivate() => void` | Deactivates the tab
+`handleTransitionEnd(evt: Event) => void` | `"transitionend"` イベントのためのロジックを制御する
+`isActive() => boolean` | タブがアクティブかどうかを返す
+`activate() => void` | タブをアクティブにする
+`deactivate() => void` | タブをアクティブでないようにする
