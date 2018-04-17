@@ -36,7 +36,7 @@ npm install @material/switch
 
 ## 使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-switch">

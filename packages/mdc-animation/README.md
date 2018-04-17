@@ -15,7 +15,7 @@ path: /catalog/animation/
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/motion/duration-easing.html">Material Design guidelines: Duration & easing</a>
+    <a href="https://material.io/guidelines/motion/duration-easing.html">マテリアルデザインガイドライン: 継続時間とイージング</a>
   </li>
 </ul>
 
