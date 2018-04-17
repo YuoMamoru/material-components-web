@@ -16,30 +16,28 @@ path: /catalog/snackbars/
   </a>
 </div>-->
 
-The MDC Snackbar component is a spec-aligned snackbar/toast component adhering to the
-[Material Design snackbars & toasts requirements](https://material.io/guidelines/components/snackbars-toasts.html#snackbars-toasts-specs).
-It requires JavaScript to show and hide itself.
+MDC Snackbar コンポーネントは [マテリアルデザインスナックバー/トースト要件](https://material.io/guidelines/components/snackbars-toasts.html#snackbars-toasts-specs) に準拠したスナックバー/トーストコンポーネントです。表示・非表示には JavaScript が必要です。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/snackbars-toasts.html">Material Design guidelines: Snackbars & toasts</a>
+    <a href="https://material.io/guidelines/components/snackbars-toasts.html">マテリアルデザインガイドライン: スナックバーとトースト</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/snackbar.html">Demo</a>
+    <a href="https://material-components-web.appspot.com/snackbar.html">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/snackbar
 ```
 
-## Usage
+## 使用法
 
-### Snackbar DOM
+### スナックバー DOM
 
 ```html
 <div class="mdc-snackbar"
@@ -53,10 +51,10 @@ npm install @material/snackbar
 </div>
 ```
 
-### Start Aligned Snackbars (tablet and desktop only)
+### 開始位置に配置したスナックバー（タブレットとデスクトップのみ）
 
-MDC Snackbar can be start aligned (including in RTL contexts). To create a start-aligned
-snackbar, add the `mdc-snackbar--align-start` modifier class to the root element.
+MDC Snackbar は開始位置に配置することができます（RTL コンテンツを含めて）。開始位置に配置したスナックバーを作るには `mdc-snackbar--align-start` 必須クラスをルート要素に追加します。
+（訳注: 開始位置に配置 (start aligned) とは通常の環境では画面の左に配置、RTL 環境では右に配置することをいっています）
 
 ```html
 <div class="mdc-snackbar mdc-snackbar--align-start"
@@ -70,12 +68,11 @@ snackbar, add the `mdc-snackbar--align-start` modifier class to the root element
 </div>
 ```
 
-### Using the JS Component
+### JS コンポーネントの使用
 
-MDC Snackbar ships with a Component / Foundation combo which provides the API for showing snackbar
-messages with optional action.
+スナックバーのメッセージをオプションである操作ボタンとともに表示するための API を提供する コンポーネント / ファンデーション の組み合わせが MDC Snackbar には付属しています。
 
-#### Including in code
+#### コードへのインクルード
 
 ##### ES2015
 
@@ -107,18 +104,17 @@ const MDCSnackbar = mdc.snackbar.MDCSnackbar;
 const MDCSnackbarFoundation = mdc.snackbar.MDCSnackbarFoundation;
 ```
 
-#### Automatic Instantiation
+#### 自動的なインスタンス化
 
-If you do not care about retaining the component instance for the snackbar, simply call `attachTo()`
-and pass it a DOM element.
+スナックバーのコンポーネントインスタンスの保持に関して特に気にしないのであれば、単純に `attachTo()` に DOM 要素を渡して呼んでください。
 
 ```javascript
 mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
 ```
 
-#### Manual Instantiation
+#### 手動でのインスタンス化
 
-Snackbars can easily be initialized using their default constructors as well, similar to `attachTo`.
+Snackbars はコンストラクタを使って `attachTo` と同様に簡単に初期化できます。
 
 ```javascript
 import {MDCSnackbar} from '@material/snackbar';
@@ -126,30 +122,26 @@ import {MDCSnackbar} from '@material/snackbar';
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 ```
 
-#### Handling events
+#### イベントのハンドリング
 
-When snackbar is shown or dismissed, the component will emit a `MDCSnackbar:show` or
-`MDCSnackbar:hide` custom event with no data attached.
+スナックバーを表示したり破棄したりする際には、データが付随しない `MDCSnackbar:show` もしくは `MDCSnackbar:hide` カスタムイベントをコンポーネントは生成します。
 
-### Showing a message and action
+### メッセージの表示と操作
 
-Once you have obtained an MDCSnackbar instance attached to the DOM, you can use
-the `show` method to trigger the display of a message with optional action. The
-`show`  method takes an object for snackbar data. The table below shows the
-properties and their usage.
+DOM にアタッチされた MDCSnackbar インスタンスを取得したら、オプションである操作ボタンとともにメッセージを表示するトリガーとなる `show` メソッドを使うことができます。`show` メソッドはスナックバーのデータオブジェクトを引数に取ります。以下の表にプロパティと使い方を示します。
 
-| Property | Effect | Remarks | Type |
+| プロパティ | 効果 | 注意 | 型 |
 |-----------|--------|---------|---------|
-| message   | The text message to display. | Required | String |
-| timeout   | The amount of time in milliseconds to show the snackbar. | Optional (default 2750) | Integer |
-| actionHandler | The function to execute when the action is clicked. | Optional | Function |
-| actionText | The text to display for the action button. | Required if actionHandler is set |  String |
-| multiline | Whether to show the snackbar with space for multiple lines of text | Optional |  Boolean |
-| actionOnBottom | Whether to show the action below the multiple lines of text | Optional, applies when multiline is true |  Boolean |
+| message   | 表示するテキストメッセージ。 | 必須 | String |
+| timeout   | スナックバーを表示する時間（ミリ秒）。 | オプション（初期値は 2750） | Integer |
+| actionHandler | 操作ボタンをクリックされたときに実行する関数。 | オプション | Function |
+| actionText | 操作ボタンに表示するテキスト。 | actionHandler を設定したときは必須 |  String |
+| multiline | 複数行テキスト用のスペースを持つスナックバーを表示するかどうか。 | オプション |  Boolean |
+| actionOnBottom | 複数行テキストの下に操作ボタンを表示するかどうか。 | オプション。multiline が true のときのみ適用される |  Boolean |
 
-### Responding to a Snackbar Action
+### スナックバーの操作ボタンの対応
 
-To respond to a snackbar action, assign a function to the optional `actionHandler` property in the object that gets passed to the `show` method. If you choose to set this property, you *must _also_* set the `actionText` property.
+スナックバーの操作ボタンに対応するには、`show` メソッドに渡すオブジェクトの `actionHandler` オプションプロパティに関数を割り当てます。このプロパティを設定したときは `actionText` プロパティも *設定しなくてはなりません*。
 
 ```html
 <div class="mdc-snackbar"
@@ -179,56 +171,49 @@ snackbar.show(dataObj);
 ```
 
 
-### Keep snackbar when the action button is pressed
+### 操作ボタンを押された際にスナックバーを維持する
 
-By default the snackbar will be dimissed when the user presses the action button.
-If you want the snackbar to remain visible until the timeout is reached (regardless of
-whether the user pressed the action button or not) you can set the `dismissesOnAction`
-property to `false`:
+デフォルトでは操作ボタンが押されるとスナックバーが破棄されます。タイムアウトになるまで（ユーザが操作ボタンを押したかどうかにかかわらず）スナックバーを残しておきたいときは `dismissesOnAction` プロパティを `false` に設定します。
 
 ```
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 snackbar.dismissesOnAction = false
 ```
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-MDC Snackbar ships with an `MDCSnackbarFoundation` class that external frameworks and libraries can
-use to integrate the component. As with all foundation classes, an adapter object must be provided.
-The adapter for snackbars must provide the following functions, with correct signatures:
+外部のフレームワークやライブラリがコンポーネントを統合するために使用可能な `MDCSnackbarFoundation` クラスが MDC Snackbar には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。スナックバーのアダプタは以下の関数を提供しなくてはいけません。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
-| `setAriaHidden() => void` | Sets `aria-hidden="true"` on the root element. |
-| `unsetAriaHidden() => void` | Removes the `aria-hidden` attribute from the root element. |
-| `setActionAriaHidden() => void` | Sets `aria-hidden="true"` on the action element. |
-| `unsetActionAriaHidden() => void` | Removes the `aria-hidden` attribute from the action element. |
-| `setActionText(actionText: string) => void` | Set the text content of the action element. |
-| `setMessageText(message: string) => void` | Set the text content of the message element. |
-| `setFocus() => void` | Sets focus on the action button. |
-| `visibilityIsHidden() => boolean` | Returns document.hidden property. |
-| `registerBlurHandler(handler: EventListener) => void` | Registers an event handler to be called when a `blur` event is triggered on the action button |
-| `deregisterBlurHandler(handler: EventListener) => void` | Deregisters a `blur` event handler from the actionButton |
-| `registerVisibilityChangeHandler(handler: EventListener) => void` | Registers an event handler to be called when a 'visibilitychange' event occurs |
-| `deregisterVisibilityChangeHandler(handler: EventListener) => void` | Deregisters an event handler to be called when a 'visibilitychange' event occurs |
-| `registerCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | Registers an event handler to be called when the given event type is triggered on the `body` |
-| `deregisterCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | Deregisters an event handler from the `body` |
-| `registerActionClickHandler(handler: EventListener) => void` | Registers an event handler to be called when a `click` event is triggered on the action element. |
-| `deregisterActionClickHandler(handler: EventListener) => void` | Deregisters an event handler from a `click` event on the action element. This will only be called with handlers that have previously been passed to `registerActionClickHandler` calls. |
-| `registerTransitionEndHandler(handler: EventListener) => void` | Registers an event handler to be called when an `transitionend` event is triggered on the root element. Note that you must account for vendor prefixes in order for this to work correctly. |
-| `deregisterTransitionEndHandler(handler: EventListener) => void` | Deregisters an event handler from an `transitionend` event listener. This will only be called with handlers that have previously been passed to `registerTransitionEndHandler` calls. |
-| `notifyShow() => void` | Dispatches an event notifying listeners that the snackbar has been shown. |
-| `notifyHide() => void` | Dispatches an event notifying listeners that the snackbar has been hidden. |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+| `setAriaHidden() => void` | ルート要素に `aria-hidden="true"` を追加する。 |
+| `unsetAriaHidden() => void` | ルート要素から `aria-hidden` 属性を削除する。 |
+| `setActionAriaHidden() => void` | 操作ボタン要素に `aria-hidden="true"`  を追加する。 |
+| `unsetActionAriaHidden() => void` | 操作ボタン要素から `aria-hidden` 属性を削除する。 |
+| `setActionText(actionText: string) => void` | 操作ボタン要素のテキストを設定する。 |
+| `setMessageText(message: string) => void` | メッセージ要素のテキストを設定する。 |
+| `setFocus() => void` | 操作ボタンにフォーカスを設定する。 |
+| `visibilityIsHidden() => boolean` | document.hidden プロパティを返す。 |
+| `registerBlurHandler(handler: EventListener) => void` | 操作ボタン上で `blur` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
+| `deregisterBlurHandler(handler: EventListener) => void` | 操作ボタンから `blur` イベントハンドラの登録を解除する。 |
+| `registerVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
+| `deregisterVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラの登録を解除する。 |
+| `registerCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` に与えられたイベントタイプのイベントが発生した際に呼ばれるイベントハンドラを登録する。 |
+| `deregisterCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` からイベントハンドラの登録を解除する。 |
+| `registerActionClickHandler(handler: EventListener) => void` | 操作ボタン要素で `click` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
+| `deregisterActionClickHandler(handler: EventListener) => void` | 操作ボタン要素から `click` イベントハンドラの登録を解除する。これまでに `registerActionClickHandler` を通じて設定されたイベントハンドラに対してのみ呼びだす。 |
+| `registerTransitionEndHandler(handler: EventListener) => void` | ルート要素上で `transitionend` イベントが呼び出された際に呼ばれるイベントハンドラを登録する。これが正しく動作するにはベンダプレフィックスを考慮する必要があることに注意。 |
+| `deregisterTransitionEndHandler(handler: EventListener) => void` | `transitionend` イベントリスナーからイベントハンドラの登録を解除する。これまでに `registerTransitionEndHandler` を通じて設定されたイベントハンドラに対してのみ呼びだす。 |
+| `notifyShow() => void` | スナックバーが表示されたことをリスナーに通知するイベントを発生させる。 |
+| `notifyHide() => void` | スナックバーが非表示になったことをリスナーに通知するイベントを発生させる。 |
 
-## Avoiding Flash-Of-Unstyled-Content (FOUC)
+## Flash-Of-Unstyled-Content (FOUC) の回避
 
-If you are loading the `mdc-snackbar` CSS asynchronously, you may experience a brief flash-of-unstyled-content (FOUC) due to the
-snackbar's translate transition running once the CSS loads. To avoid this temporary FOUC, you can add the following simple style
-before the `mdc-snackbar` CSS is loaded:
+`mdc-snackbar` の CSS を非同期で読み込んだ際に、CSS が読み込まれるとスナックバーの移動の動きが走ってしまうため、一瞬 flash-of-unstyled-content (FOUC) が発生するかもしれません。一時的な FOUC を避けるには、`mdc-snackbar` の CSS が読み込まれる前に次のような単純なスタイルを加えます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。）
 
 ```css
 .mdc-snackbar { transform: translateY(100%); }
 ```
-This will move the snackbar offscreen until the CSS is fully loaded and avoids a translate transition upon load.
+これで CSS が完全に読み込まれるまでスナックバーが画面外に移動し、読み込みによる移動の動きを避けることができます。
