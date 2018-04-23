@@ -404,7 +404,7 @@ MDC Web コンポーネントのどれが使われるかわからないので、
 
 ```html
 <button class="mdc-button accessible-button">
-  <i class="material-icons mdc-button__icon">favorite</i>
+  <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
   Button
 </button>
 ```

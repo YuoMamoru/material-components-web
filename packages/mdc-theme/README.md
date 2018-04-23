@@ -16,23 +16,7 @@ path: /catalog/theme/
   </a>
 </div>-->
 
-このカラーパレットはイラストやブランドカラーの表現に使用できるプライマリカラーとセカンダリカラーから構成されています。
-
-MDC Theme は MDC Web コンポーネントのテーマを表現する基盤となるモジュールです。このモジュール内の色は3つのテーマカラーから得られています。
-
-* プライマリ(Primary): アプリケーションで使用される主たる色で、様々な UI 要素に適用されます。
-* セカンダリ(Secondary): アプリケーションで使用される補助的な色で、様々な UI 要素に適用されます。（かつては「アクセント」と呼んでいました。）
-* バックグランド(Background): アプリケーションの背景色、つまり、UI はその色の上に描画されます。
-
-そして、5つのスタイルがあります。
-
-* 主要(Primary): 大部分のテキストに使用されます。
-* 副次的(Secondary): 視覚階層上の下位のテキストに使用されます。
-* ヒント(Hint): 文字入力欄やラベルのヒントのようなヒントのテキストに使用されます。
-* 利用できない項目(Disabled): 利用不可となっているコンポーネントやコンテンツのテキストに使用されます。
-* アイコン(Icon): アイコンに使用されます。
-
-> **Primary と Secondary に関する注釈**: primary/secondary _color_ を primary/secondary _text_ と混同しないでください。前者は視覚的な独自性を持たせるために、アプリケーションの様々な場所に色を付けることを目的とした primary/secondary _theme_ color を指します。後者はより目立たせる（低い不透明度や高いコントラスト）ために表示されるほとんどの要素に対して使用されるテキストのスタイルを指します。（訳注: この訳では _primary/secondary_ を前者は「プライマリ/セカンダリ」と、後者は「主要/副次的」と訳し分けています。）
+あなたのブランドやスタイルを反映した色の体系を作るためにマテリアルデザインのカラーシステムは使用されます。
 
 ## デザインと API ドキュメント
 
@@ -53,55 +37,58 @@ npm install @material/theme
 
 ## 使用法
 
-### テーマカラーの変更
+### 色の体系
 
-MDC Theme はブランドカラーを表現することを容易に実現してくれます。Sass か CSS カスタムプロパティを通じてデフォルトのテーマカラーを上書きすればよいのです。CSS カスタムプロパティはランタイムテーマを可能にしてくれます。
-
-> **Sass 変数に関する注釈**: mdc-theme や それに依存する MDC Web のコンポーネントをインポートする前に、次のように、 3つのテーマカラーの変数を定義する必要があります。
+MDC Web のコンポーネントをインポートする前にテーマカラーの変数を定義できます。
 
 ```scss
-$mdc-theme-primary: #9c27b0; // Purple 500
-$mdc-theme-secondary: #ffab40; // Orange A200
-$mdc-theme-background: #fff; // White
+$mdc-theme-primary: #fcb8ab;
+$mdc-theme-secondary: #feeae6;
+$mdc-theme-on-primary: #442b2d;
+$mdc-theme-on-secondary: #442b2d;
 
-@import "@material/theme/mdc-theme";
+@import "@material/button/mdc-button";
 ```
 
-> **`$mdc-theme-secondary` に関する注釈**: この変数は以前、`$mdc-theme-accent` という名前でした。下位互換のために `$mdc-theme-accent` はまだ存在しますが、この変数は **非推奨** です。かつて `$mdc-theme-accent` をカスタマイズしたアプリは引き続き動作しますが、新しいアプリでは `$mdc-theme-secondary` を代わりに使ってください。
-
-これらの選択されたテーマカラー上に配置されるテキストの色はコントラストに基いてプログラム上で計算されます。私たちは Web Content Accessibility Guidelines 2.0 にしたがっています。
+on-primary や on-secondary などの値を決める際には、Web Content Accessibility Guidelines 2.0 にしたがうことを推奨します。これらの値は primary や secondary といった該当する値の上で視認性を確保する必要があります。
 
 https://www.w3.org/TR/WCAG20
 
+### 高度なカスタマイズ
+
+色の体系ではよく設計されたアプリにおける道のりの80%しか得られません。必然的に「枠の外」には動作しないコンポーネントがでてきます。視認性とデザインの問題を解決するためには、`mdc-button-filled-accessible` のような Sass ミキシンを使うとよいでしょう。詳細は各コンポーネントのドキュメントを参照してください。
+
+### Sass を使わないカスタマイズ
+
+マテリアルデザインの色のカスタマイズ機能の中の非常に限定されたものですが、Sass を使わない方法を提供しています。CSS カスタムプロパティを設定する方法と CSS クラスを設定する方ホです。
+
 #### CSS カスタムプロパティ
 
-> **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストにあげたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `--mdc-theme-text-hint-on-secondary` といった具合になります。
+> **`<TEXT_STYLE>` に関する注釈**: `<TEXT_STYLE>` は上でリストにあげたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。
 
 CSS カスタムプロパティ | 説明
 --- | ---
 `--mdc-theme-primary` | テーマのプライマリカラー
 `--mdc-theme-secondary` | テーマのセカンダリカラー
 `--mdc-theme-background` | テーマのバックグランドカラー
-`--mdc-theme-text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE のテキストの色
+`--mdc-theme-text-<TEXT_STYLE>-on-primary` | プライマリカラーの背景の上にある TEXT_STYLE のテキストの色
+`--mdc-theme-text-<TEXT_STYLE>-on-secondary` | セカンダリカラーの背景の上にある TEXT_STYLE のテキストの色
 `--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色
 `--mdc-theme-text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE のテキストの色
 
-### CSS クラス
+#### CSS クラス
 
-MDC Web はコンポーネントのカスタマイズを容易にするために `mdc-button-filled-accessible` のような Sass ミキシンも提供しています。より詳しい情報は各コンポーネントのドキュメントを調べてください。
-
-マテリアルデザインのコンポーネント以外の要素を変更したいなら、以下の CSS 修飾クラスが使えます。
-
-> **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `mdc-theme--text-hint-on-secondary` といった具合になります。
+> **`<TEXT_STYLE>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。
 
 CSS クラス | 説明
 --- | ---
 `mdc-theme--primary` | テキスト色としてテーマのプライマリカラーを設定する
 `mdc-theme--secondary` | テキスト色としてテーマのセカンダリカラーを設定する
 `mdc-theme--background` | 背景色としてテーマのバックグランドカラーを設定する
+`mdc-theme--text-<TEXT_STYLE>-on-primary` | プライマリカラーの背景の上に、TEXT_STYLE に適切なテキスト色を設定する
+`mdc-theme--text-<TEXT_STYLE>-on-secondary` | セカンダリカラーの背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 `mdc-theme--primary-bg` | 背景色としてテーマのプライマリカラーを設定する
 `mdc-theme--secondary-bg` | 背景色としてテーマのセカンダリカラーを設定する
-`mdc-theme--text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 `mdc-theme--text-<TEXT_STYLE>-on-light` | 明るい背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 `mdc-theme--text-<TEXT_STYLE>-on-dark` | 暗い背景の上に、TEXT_STYLE に適切なテキスト色を設定する
 
@@ -115,16 +102,17 @@ CSS クラス | 説明
 
 `mdc-theme-prop` ミキシンでは以下のプロパティを `$style` 引数として使用することができます。これらの代わりに色リテラル（例: `rgba(0, 0, 0, .75)`）を使うこともできます。
 
-> **`<TEXT_STYLE>` と `<THEME_COLOR>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。`<THEME_COLOR>` は上でリストに挙げたテーマカラーを小文字にした名前を表しています（例: `secondary`）。両方配置すると `text-hint-on-secondary` といった具合になります。
+> **`<TEXT_STYLE>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。
 
 プロパティ名 | 説明
 --- | ---
 `primary` | テーマのプライマリカラー
 `secondary` | テーマのセカンダリカラー
 `background` | テーマのバックグランドカラー
-`text-<TEXT_STYLE>-on-<THEME_COLOR>` | THEME_COLOR の背景の上にある TEXT_STYLE
 `text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE
 `text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE
+`on-primary` | プライマリカラーの背景の上に使用されるテキスト/アイコンの色
+`on-secondary` | セカンダリカラーの背景の上に使用されるテキスト/アイコンの色
 
 #### `mdc-theme-luminance($color)`
 

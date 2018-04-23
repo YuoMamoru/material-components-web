@@ -46,6 +46,12 @@ npm install @material/textfield
 </div>
 ```
 
+#### Input の Type
+
+Text field は input の type のうち、 `text` と `password` に対応しています（例えば `<input type="password" class="mdc-text-field__input">`）。
+
+その他の input type（`number` や `date` のような）には現在は対応していません。
+
 #### HTML5 バリデーション
 
 `MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。

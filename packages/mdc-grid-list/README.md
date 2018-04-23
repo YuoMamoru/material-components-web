@@ -247,7 +247,7 @@ npm install @material/grid-list
 
 ### テーマ
 
-`mdc-grid-list` はテーマをサポートしています。`mdc-grid-tile__primary` は自身の背景色にテーマのバックグランドカラーを使います。`mdc-grid-tile__secondary` は自身の背景色にテーマのプライマリカラーを使い、自身のテキストの色にはテーマの `text-primary-on-primary` を使います。
+`mdc-grid-list` はテーマをサポートしています。`mdc-grid-tile__primary` は自身の背景色にテーマのバックグランドカラーを使います。`mdc-grid-tile__secondary` は自身の背景色にテーマのプライマリカラーを使い、自身のテキストの色にはテーマの `on-primary` を使います。
 
 ### ファンデーションクラスの使用
 

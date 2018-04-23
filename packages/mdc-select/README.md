@@ -158,8 +158,8 @@ Mixin | Description
 --- | ---
 `mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
 `mdc-select-container-fill-color($color)` | セレクトの背景色を設定する。 
-`mdc-select-label-color($color, $opacity: 1)` | フォーカスのないセレクトのラベルの色を設定する。
-`mdc-select-focused-label-color($color, $opacity: 0.87)` | フォーカス時のセレクトのラベルの色を設定する。フローティングの際のラベルの不透明度の変更はオプション。
+`mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
+`mdc-select-focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
 `mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。

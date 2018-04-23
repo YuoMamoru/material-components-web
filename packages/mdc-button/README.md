@@ -48,7 +48,7 @@ npm install @material/button
 
 ### アイコンの追加
 
-アイコンを付けるためにボタン要素内に `mdc-button__icon` をネストすることができます。視認性の要件を満足するために、ボタン内のアイコンは 18px に設定されます。
+アイコンを付けるためにボタン要素内に `mdc-button__icon` をネストすることができます。視認性の要件を満足するために、ボタン内のアイコンは 18px に設定されます。この要素には `aria-hidden="true"` も含める必要があります。
 
 私たちは Google Fonts から [Material Icons](https://material.io/icons/) を読み込むことを推奨しています。
 
@@ -58,7 +58,7 @@ npm install @material/button
 </head>
 
 <button class="mdc-button">
-  <i class="material-icons mdc-button__icon">favorite</i>
+  <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
   Button
 </button>
 ```
@@ -67,7 +67,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button">
-  <svg class="mdc-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="...">
+  <svg class="mdc-button__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="...">
   ...
   </svg>
   SVG Icon
