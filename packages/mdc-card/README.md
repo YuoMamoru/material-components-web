@@ -165,7 +165,7 @@ npm install @material/card
 CSS クラス | 説明
 --- | ---
 `mdc-card` | カード要素では必須。
-`mdc-card--stroked` | 影を消し、代わりに細い線を表示する。
+`mdc-card--outlined` | 影を消し、代わりに細い枠を表示する。
 `mdc-card__primary-action` | カードの主たるタップ可能な領域。一般的には `mdc-card__actions` を除く大半（もしくはすべて）のカードコンテンツを含む。主たる表示をきっかけとした主要なアクションのあるカードに対してのみ適用する。
 `mdc-card__media` | `background-size: cover` のあるカスタム `background-image` を表示するメディア領域。
 `mdc-card__media--square` | 自動的にメディア領域の高さを幅と同じにする。
@@ -184,6 +184,6 @@ CSS クラス | 説明
 ミキシン | 説明
 --- | ---
 `mdc-card-fill-color($color)` | カードの塗りの色を設定する。
-`mdc-card-stroke($color, $thickness)` | カードの枠の色と太さを設定する（ただし、影は <em>消さない</em>）。
+`mdc-card-outline($color, $thickness)` | カードの枠の色と太さを設定する（ただし、影は <em>消さない</em>）。
 `mdc-card-corner-radius($radius)` | カードの角の丸みを設定する。
 `mdc-card-media-aspect-ratio($x, $y)` | 幅に合わせて動的に高さを変えることにより、`mdc-card__media` サブ要素を与えられたアスペクト比に保つ。

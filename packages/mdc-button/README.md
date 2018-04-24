@@ -83,7 +83,7 @@ CSS クラス | 説明
 `mdc-button__icon`    | オプション。アイコン要素用
 `mdc-button--raised` | オプション。画面の表面から浮き上がったボタンにつける
 `mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにつける
-`mdc-button--stroked` | オプション。画面の表面と同一平面上にあり、境界線のあるボタンにつける
+`mdc-button--outlined` | オプション。画面の表面と同一平面上にあり、境界線のあるボタンにつける
 `mdc-button--dense` | オプション。少し小さくするためにボタンのテキストを縮める
 
 
@@ -134,12 +134,12 @@ mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 `mdc-button-ink-color($color)` | 与えた色にインクの色を設定する。`mdc-button-icon-color` を使わないときはテキストとアイコンの両方に作用する
 `mdc-button-corner-radius($corner-radius)` | 与えた大きさ（デフォルトは 2px）に角の丸め半径を設定する
 `mdc-button-horizontal-padding($padding)` | 与えた大きさに水平方向のパディングを設定する
-`mdc-button-stroke-color($color)` | 与えた色に境界の色を設定する
-`mdc-button-stroke-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須
+`mdc-button-outline-color($color)` | 与えた色に境界の色を設定する
+`mdc-button-outline-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須
 
 Button コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
-> **注意:** 水平パディングと境界線の太さの両方を変更したいときは、単に `mdc-button-stroke-width` ミキシンの両方の引数を設定してください。このミキシンは `mdc-button-horizontal-padding` を包含しています。
+> **注意:** 水平パディングと境界線の太さの両方を変更したいときは、単に `mdc-button-outline-width` ミキシンの両方の引数を設定してください。このミキシンは `mdc-button-horizontal-padding` を包含しています。
 
 #### 注意: Edge と CSS 変数
 
