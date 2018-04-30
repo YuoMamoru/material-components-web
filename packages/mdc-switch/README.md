@@ -15,7 +15,7 @@ path: /catalog/input-controls/switches/
   </a>
 </div>-->
 
-MDC Switch コンポーネントは [マテリアルデザインスイッチ要件](https://material.io/guidelines/components/selection-controls.html#selection-controls-switch) に準拠したスイッチコンポーネントです。JavaScript を使わなくても動作します。
+スイッチはオンまたはオフの単一の状態を切り替えるもので、モバイルを優先したものです。
 
 ## デザインと API ドキュメント
 
@@ -34,7 +34,7 @@ MDC Switch コンポーネントは [マテリアルデザインスイッチ要�
 npm install @material/switch
 ```
 
-## 使用法
+## 基本的な使用法
 
 ### HTML 構造
 
@@ -47,10 +47,11 @@ npm install @material/switch
 </div>
 <label for="basic-switch">off/on</label>
 ```
+## 別の使用法
 
 ### 無効なスイッチ
 
-スイッチを無効にするには、input 要素に直接 `disabled` を加えるか、スイッチを含んでいる fieldset に `disabled` を設定することによってできます。無効なスイッチは操作できず、視覚的な操作効果も持ちません。
+スイッチを無効にするには、`<input>` 要素かスイッチを含んでいる `<fieldset>` 要素に直接 `disabled` 属性を加えることによってできます。
 
 ```html
 <div class="mdc-switch">
@@ -62,14 +63,12 @@ npm install @material/switch
 <label for="another-basic-switch">off/on</label>
 ```
 
+## スタイルのカスタマイズ
+
 ### CSS クラス
 
 CSS クラス | 説明
 --- | ---
-`mdc-switch` | Mandatory, for the parent element
-`mdc-switch__native-control` | Mandatory, for the input checkbox
-`mdc-switch__background` | Mandatory, for the background element
-`mdc-switch__knob` | Mandatory, for the knob element
 `mdc-switch` | 必須。親要素につける。
 `mdc-switch__native-control` | 必須。input のチェックボックスにつける。
 `mdc-switch__background` | 必須。背景要素につける。

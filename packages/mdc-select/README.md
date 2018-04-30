@@ -34,9 +34,9 @@ MDC Select はマテリアルデザインの単一選択ができるセレクト
 npm install @material/select
 ```
 
-## 使用法
+## 基本的な使用法
 
-### 完全につくりになっている JS コンポーネントの使用
+### HTML構造
 
 ```html
 <div class="mdc-select">
@@ -57,7 +57,13 @@ npm install @material/select
 </div>
 ```
 
-JS は次の通りです。
+### スタイル
+
+```scss
+@import "@material/select/mdc-select";
+```
+
+### JavaScript オブジェクトのインスタンス化
 
 ```js
 const select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
@@ -68,9 +74,27 @@ select.listen('change', () => {
 
 JavaScript をインポートする方法についてのより多くの情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
+## 別の使用法
+
+### セレクトボックス
+
+セレクトボックス形式は標準の形式として多くのマークアップで使用され、ルート要素に `mdc-select--box` 修飾クラスを加えることによって作成します。
+
+```html
+<div class="mdc-select mdc-select--box">
+  <select class="mdc-select__native-control">
+    ...
+  </select>
+  <label class="mdc-floating-label">Pick a Food Group</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+```
+
+### 追加情報
+
 #### 選択済みの選択肢を持つセレクト
 
-選択済みの値を持つセレクトコンポーネントを扱う際には、`mdc-floating-label` に `mdc-floating-label--float-above` 修飾クラスを付加し、選択された選択肢に `selected` 属性を付けるようにしてください。これによりラベルが選択された値の上に移動し、Flash Of Unstyled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+選択済みの値を持つセレクトコンポーネントを扱う際には、`mdc-floating-label` 要素に `mdc-floating-label--float-above` 修飾クラスを追加し、選択する要素に `selected` 要素を付加します。これによりラベルが選択された値の上に移動し、Flash Of Unstyled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
 <div class="mdc-select">
@@ -90,7 +114,7 @@ JavaScript をインポートする方法についてのより多くの情報は
 </div>
 ```
 
-#### プレースホルダーなるフローティングラベルを伴ったセレクト
+#### プレースホルダーとしてのフローティングラベルの使用
 
 デフォルトでは、`<select>` 要素は最初の利用可能はオプションが選択されています。その代わりに初期表示にプレースフォルダーを表示するには、最初の `<option>` 要素に `disabled` 属性<em>と</em> `selected` 属性を設定し、 `value` を `""` にします。
 
@@ -105,15 +129,7 @@ JavaScript をインポートする方法についてのより多くの情報は
 ```html
 <div class="mdc-select mdc-select--disabled">
   <select class="mdc-select__native-control" disabled>
-    <option value="grains">
-      Bread, Cereal, Rice, and Pasta
-    </option>
-    <option value="vegetables">
-      Vegetables
-    </option>
-    <option value="fruit">
-      Fruit
-    </option>
+    ...
   </select>
   <label class="mdc-floating-label">Pick a Food Group</label>
   <div class="mdc-line-ripple"></div>
@@ -143,16 +159,21 @@ MDC Select は `<select>` 要素と `<option>` 要素を使っているので、
 </div>
 ```
 
-#### CSS クラス
+## スタイルのカスタマイズ
 
-| クラス                   | 説明                                            |
-| ------------------------ | ----------------------------------------------- |
-| `mdc-select`             | 必須。                                          |
-| `mdc-select--box`        | ボックスセレクトのようなセレクトのスタイル。    |
+### CSS クラス
+
+| クラス | 説明 |
+| --- | --- |
+| `mdc-select` | 必須。 |
+| `mdc-select--box` | ボックスセレクトのようなセレクトのスタイル。 |
+| `mdc-select--disabled` | 無効となっているセレクトのスタイル。このクラスは `<select>` 要素に`disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
+| `mdc-select__native-control` | 必須。ネイティブな `<select>` 要素。 |
 
 ### Sass ミキシン
 
-セレクトの任意の部分の色を変更するには、以下のミキシンを使ってください。スタイルを適用するにあたり、`.foo-select` のような CSS セレクタ内でこれらのミキシンを使用することを推奨します。
+Mixins should be included in the context of a custom class applied to the component's root element, e.g. `.my-select`.
+ミキシンはコンポーネントのルート要素に `.my-select` のようにカスタムクラスを適用しているコンテキストに含めなくてはなりません。
 
 Mixin | Description
 --- | ---
@@ -164,13 +185,11 @@ Mixin | Description
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
 `mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 
-> 注意: これ以上にラベルの色を変更する方法は [フローティングラベルの readme](./../mdc-floating-label/README.md) を参照してください。
+> 注意: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 
-### MDC Select コンポーネント API
+### `MDCSelect` API
 
-MDC Select コンポーネント API は `HTMLSelectElement` の機能のサブセットをもとに作られており、以下に概要を記載しておきます。
-
-#### プロパティ
+`MDCSelect` コンポーネント API は `HTMLSelectElement` の機能のサブセットをもとに作られています。
 
 | プロパティ | 型 | 説明 |
 | --- | --- | --- |
@@ -178,9 +197,13 @@ MDC Select コンポーネント API は `HTMLSelectElement` の機能のサブ�
 | `selectedIndex` | `number` | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。 |
 | `disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。 |
 
-#### イベント
+### イベント
 
 ユーザの操作の結果、選ばれた選択肢が変更されたときに MDC Select JS コンポーネントは `change` イベントを発生させます。
+
+## Web フレームワークでの使用
+
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCSelectAdapter`
 
