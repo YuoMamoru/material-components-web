@@ -16,13 +16,13 @@ path: /catalog/cards/
   </a>
 </div>-->
 
-MDC Card は [マテリアルデザインカードコンポーネント](https://material.io/guidelines/components/cards.html) を実装したコンポーネントで、CSS クラスの集まりとして開発者が利用できます。
+MDC Card は [マテリアルデザインカードコンポーネント](https://material.io/go/design-cards) を実装したコンポーネントで、CSS クラスの集まりとして開発者が利用できます。
 
 ## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/cards.html">マテリアルデザインガイドライン: カード</a>
+    <a href="https://material.io/go/design-cards">マテリアルデザインガイドライン: カード</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/card.html">デモ</a>

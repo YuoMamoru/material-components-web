@@ -22,7 +22,7 @@ path: /catalog/buttons/floating-action-buttons/
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/buttons-floating-action-button.html">マテリアルデザインガイドライン: フローティング操作ボタン</a>
+    <a href="https://material.io/go/design-fab">マテリアルデザインガイドライン: フローティング操作ボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/fab.html">デモ</a>
@@ -35,7 +35,7 @@ path: /catalog/buttons/floating-action-buttons/
 npm install @material/fab
 ```
 
-## 使用法
+## 基本的な使用法
 
 ### Material Icons のロード
 
@@ -59,6 +59,26 @@ npm install @material/fab
 
 > _注意:_ フローティング操作ボタンには `span`、`i`、`img` もしくは `svg` 要素を使うことができます。
 
+### スタイル
+
+```scss
+@import "@material/fab/mdc-fab";
+```
+
+### JavaScript のインスタンス化
+
+FAB は JavaScript なしでも動作しますが、ルート要素上の `MDCRipple` をインスタンス化することによりリップルエフェクトをつけることができます。詳細は [MDC Ripple](../mdc-ripple) を参照してください。
+
+```js
+import {MDCRipple} from '@material/ripple';
+
+const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
+```
+
+> JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+
+## スタイルのカスタマイズ
+
 ### CSS クラス
 
 CSS クラス | 説明
@@ -70,7 +90,36 @@ CSS クラス | 説明
 
 > **`:disabled` に関する注釈**: FAB には無効なスタイルが定義されていません。FAB は操作を促すもので、無効な状態で表示すべきではありません。もし操作を行わない FAB を置きたいのであればユーザへの説明も書いておかなくてはなりません。
 
-### 絶対位置での配置
+### Sass ミキシン
+
+#### 基本的な Sass ミキシン
+
+MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラーを使います。カスタマイズするには次のミキシンを使います。
+
+ミキシン | 説明
+--- | ---
+`mdc-fab-accessible($container-color)` | FAB のコンテナの色を指定した色に変え、アクセシビリティ標準に沿うように FAB のインクとリップルの色を更新する。
+
+#### 高度な Sass ミキシン
+
+> **高度なミキシンに関する注釈**: 以下のミキシンは上級者向けです。これらのミキシンはコンテナやインク、リップルの色を上書きします。完全に FAB をカスタマイズしたいのであればこれらのすべてを使えます。もしくは、例えばリップルの色だけを変えたいのであれば、これらの一つだけを使うことも可能です。**一緒に使われるコンテナ、インク、リップルの色を選び、アクセシビリティ標準を満たすことはあなたの責務になります。**
+
+ミキシン | 説明
+--- | ---
+`mdc-fab-container-color($color)` | 与えた色にコンテナの色を設定する
+`mdc-fab-icon-size($width, $height)` |  `width` と `height` を指定することにより、アイコンの `width`、`height` と `font-size` プロパティを設定する。`$height` はオプションで省略した際には `$width` の値が設定される。`font-size` は `$width` の値に応じて設定される。
+`mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
+
+
+FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
+
+### 注意: Edge と CSS 変数
+
+CSS カスタムプロパティを完全にサポートしているブラウザでは、引数として [MDC Theme](../mdc-theme) プロパティ（例えば `primary`）を与えても上記のミキシンは動作します。しかし、Edge は CSS カスタムプロパティを完全にサポートしていません。`mdc-fab-container-color` ミキシンを使うときは、Edge をサポートするためには実際の色を指定する必要があります。
+
+### 追加情報
+
+#### 配置
 
 必要に応じてアプリケーションのデザイン内に MDC FAB を配置しなくてはいけません。
 
@@ -99,45 +148,3 @@ CSS クラス | 説明
   </span>
 </button>
 ```
-
-### MDC Ripple の追加
-
-MDC FAB にリップルエフェクトを追加するには [ripple](../mdc-ripple) インスタンスを `mdc-fab` 要素にアタッチします。
-
-```js
-mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-fab'));
-```
-
-[material-components-web](../material-components-web) パッケージを使えば宣言的に行うこともできます。
-
-```html
-<button class="mdc-fab material-icons" aria-label="Favorite" data-mdc-auto-init="MDCRipple">
-  <span class="mdc-fab__icon">
-    favorite
-  </span>
-</button>
-```
-
-ボタンは完全にリップルのスタイルを認識しているので、DOM や CSS の変更は必要ありません。
-
-### Sass ミキシン
-
-デフォルトでは、MDC FAB はテーマから色を引き継ぎます。このミキシンは FAB のコンテナの色を上書きしますが、インクやリップルのアクセシビリティ標準は維持されます。このミキシンは MDC FAB の色をテーマ以外の色にカスタマイズすることを意図したものです。
-
-#### `mdc-fab-accessible($container-color)`
-
-FAB のコンテナの色を指定した色に変え、アクセシビリティ標準に沿うように FAB のインクとリップルの色を更新します。
-
-### 高度な Sass ミキシン
-
-> **高度なミキシンに関する注釈**: 以下のミキシンは上級者向けです。これらのミキシンはコンテナやインク、リップルの色を上書きします。完全に FAB をカスタマイズしたいのであればこれらのすべてを使えます。もしくは、例えばリップルの色だけを変えたいのであれば、これらの一つだけを使うことも可能です。**一緒に使われるコンテナ、インク、リップルの色を選び、アクセシビリティ標準を満たすことはあなたの責務になります。**
-
-ミキシン | 説明
---- | ---
-`mdc-fab-container-color($color)` | 与えた色にコンテナの色を設定する
-`mdc-fab-icon-size($width, $height)` |  `width` と `height` を指定することにより、アイコンの `width`、`height` と `font-size` プロパティを設定する。`$height` はオプションで省略した際には `$width` の値が設定される。`font-size` は `$width` の値に応じて設定される。
-`mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
-
-FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
-
-CSS 変数を完全にサポートしているブラウザでは、テーマプロパティが渡されたら上記のミキシンは CSS 変数を使ってスタイルを設定します。しかし、Edge の CSS 変数サポートのバグのため、Edge では `mdc-fab-container-fill-color` は CSS 変数が利用されません。もしテーマプロパティ（FAB は塗りつぶしの色にデフォルトでプライマリカラーを使っています）のために関係している CSS 変数を変えたいのであればコンテナのスタイルを手動で上書する必要がある、ということをこれは意味しています。

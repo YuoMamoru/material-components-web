@@ -7,7 +7,7 @@ path: /catalog/input-controls/form-fields/
 
 # Form Fields
 
-MDC Form Field はテーマ対応、RTL 対応のフィールドとラベルの組み合わせを容易に作成できる `mdc-form-field` ヘルパークラスを提供しています。これはラベルのイベントに反応する input 要素のリップルを容易に実現するための `MDCFormField` クラスも提供しています。
+MDC Form Field は MDC Web フォームフィールド（例えばチェックボックス）をラベルで整列させ、RTL 対応を提供します。また、ラベルにインタラクティブな [ripple](../mdc-ripple) エフェクトを有効にします。
 
 ## インストール
 
@@ -15,123 +15,83 @@ MDC Form Field はテーマ対応、RTL 対応のフィールドとラベルの�
 npm install @material/form-field
 ```
 
-## CSS の使用
+## デモ
 
-`mdc-form-field` クラスは隣り合った `input` と `label` の任意の組み合わせを直接の子に持つ親要素で使うことができます。
+<ul class="icon-list">
+  <li class="icon-list-item icon-list-item--link">
+    <a href="https://material-components-web.appspot.com/checkbox.html">チェックボックスのデモ</a>
+  </li>
+  <li class="icon-list-item icon-list-item--link">
+    <a href="https://material-components-web.appspot.com/radio.html">ラジオボタンのデモ</a>
+  </li>
+</ul>
 
-```html
-<div class="mdc-form-field">
-  <input type="checkbox" id="input">
-  <label for="input">Input Label</label>
-</div>
-```
+## 基本的な使用法
 
-デフォルトでは、input の後ろに label を配置します。`align-end` 修飾クラスを使用すると、この振る舞いを変更できます。
+### HTML 構造
 
-```html
-<div class="mdc-form-field mdc-form-field--align-end">
-  <input type="checkbox" id="input">
-  <label for="input">Input Label</label>
-</div>
-```
-
-こうすると、ラベルはチェックボックスの前に来ます。
-
-### MDC Web コンポーネントとともに使用
-
-`mdc-form-field` は `input` 要素に対してだけでなく、連続した兄弟要素が `label` 要素であれば <em>任意の</em> 直接の子要素に対して作用します。このことは、Checkbox や Radio のような MDC Web フォームコントロールでも動作するということを意味しています。
+[MDC Checkbox](../mdc-checkbox) や [MDC Radio](../mdc-radio) のような MDC Web フォームコントロールの _input_ と _label_ 要素の組み合わせをラップするには `mdc-form-field` 要素を使用します。ここに MDC Checkbox の例を記載します。
 
 ```html
 <div class="mdc-form-field">
   <div class="mdc-checkbox">
-    <input type="checkbox"
-           id="my-checkbox"
-           class="mdc-checkbox__native-control"/>
+    <input type="checkbox" id="my-checkbox" class="mdc-checkbox__native-control"/>
     <div class="mdc-checkbox__background">
-      <svg class="mdc-checkbox__checkmark"
-           viewBox="0 0 24 24">
-        <path class="mdc-checkbox__checkmark-path"
-              fill="none"
-              stroke="white"
-              d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-      </svg>
-      <div class="mdc-checkbox__mixedmark"></div>
+      ...
     </div>
   </div>
-  <label for="my-checkbox" id="my-checkbox-label">This is my checkbox</label>
+  <label for="my-checkbox">This is my checkbox</label>
 </div>
 ```
 
-> MDC Form Field は label と input が既にその他のコンポーネントのスタイルやロジックによってともに処理されている状況を想定して **いません**。例えば JavaScript で拡張された MDC Text Field のインスタンスは既に label と input の両方が固有のルート要素のもとで管理されています。
+> <em>注意</em>: MDC Form Field は label と input が既にコンポーネントのスタイルやロジックによってともに処理されている状況を想定して **いません**。例えば JavaScript で拡張された [MDC Text Field](../mdc-textfield) のインスタンスは既に label と input の両方が固有のルート要素のもとで管理されています。
 
-### RTL サポート
+### JavaScript のインスタンス化
 
-`mdc-form-field` は自動的に RTL 対応がなされており、RTL コンテキストの中では要素を再配置します。`mdc-form-field` はその要素もしくはその祖先の要素に `dir="rtl"` があれば RTL スタイルが適用されます。
+MDC Form Field を [ripple](../mdc-ripple) エフェクトのある MDC Web コンポーネントと共に使うときは、ラベルにインタラクティブなリップルエフェクトを有効にするために `MDCFormField` をインスタンス化し、[`input` プロパティ](#mdcformfield-properties-and-methods) を設定することができます。
 
-
-## JS の使用
-
-### コードへのインクルード
-
-#### ES2015
-
-```javascript
-import {MDCFormField, MDCFormFieldFoundation} from '@material/form-field';
-```
-
-#### CommonJS
-
-```javascript
-const mdcFormField = require('mdc-form-field');
-const MDCFormField = mdcFormField.MDCFormField;
-const MDCFormFieldFoundation = mdcFormField.MDCFormFieldFoundation;
-```
-
-#### AMD
-
-```javascript
-require(['path/to/mdc-form-field'], mdcFormField => {
-  const MDCFormField = mdcFormField.MDCFormField;
-  const MDCFormFieldFoundation = mdcFormField.MDCFormFieldFoundation;
-});
-```
-
-#### Global
-
-```javascript
-const MDCFormField = mdc.formField.MDCFormField;
-const MDCFormFieldFoundation = mdc.formField.MDCFormFieldFoundation;
-```
-
-### インストール
-
-```javascript
+```js
 import {MDCFormField} from '@material/form-field';
+import {MDCCheckbox} from '@material/checkbox';
 
 const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
+const checkbox = new MDCCheckbox(document.querySelector('.mdc-checkbox'));
+formField.input = checkbox;
 ```
 
-### MDCFormField API
+> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
 
-`MDCFormField` の機能はたった一つのアクセサメソッドを公開しています。
+## 様々な使用法
 
-#### MDCFormField.input
+### ラベルの位置
 
-MDC Web の input 要素のインスタンスとともに動作する読み書き可能なプロパティです。
+デフォルトでは、input はラベルの前に配置されます。`mdc-form-field--align-end` クラスを追加することにより input をラベルの後ろに配置することができます。
 
-適切に動作するラベルのリップルを統合するために、このプロパティには `ripple` ゲッタを持つ MDC Web の input 要素の有効なインスタンスを設定する必要があります。
-
-```javascript
-const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
-const radio = new MDCRadio(document.querySelector('.mdc-radio'));
-
-formField.input = radio;
+```html
+<div class="mdc-form-field mdc-form-field--align-end">
+  <div class="mdc-checkbox">
+    <input type="checkbox" id="my-checkbox" class="mdc-checkbox__native-control"/>
+    <div class="mdc-checkbox__background">
+      ...
+    </div>
+  </div>
+  <label for="my-checkbox">This is my checkbox</label>
+</div>
 ```
 
-`input` プロパティが設定されていない、もしくは input インスタンスが `ripple` ゲッタを持っていないときは何もしません。
+## <a name="mdcformfield-properties-and-methods"></a>`MDCFormField` プロパティとメソッド
 
+プロパティ | 値の型 | 説明
+--- | --- | ---
+`input` | String | フォームフィールドの input を取得/設定する。
 
-### アダプタ
+ラベルのリップル作用を正しく動作させるために、`input` プロパティには `ripple` ゲッタを公開している MDC Web input 要素の有効なインスタンスが設定されている必要があります。`input` プロパティが設定されていなかったり input インスタンスが `ripple` ゲッタを公開していない時には動作しません。
+
+## Web フレームワークでの使用
+
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
+
+### `MDCFormFieldAdapter`
 
 | メソッド | 説明 |
 | --- | --- |

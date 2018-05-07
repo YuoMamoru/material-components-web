@@ -16,13 +16,13 @@ path: /catalog/snackbars/
   </a>
 </div>-->
 
-MDC Snackbar コンポーネントは [マテリアルデザインスナックバー/トースト要件](https://material.io/guidelines/components/snackbars-toasts.html#snackbars-toasts-specs) に準拠したスナックバー/トーストコンポーネントです。表示・非表示には JavaScript が必要です。
+MDC Snackbar コンポーネントは [マテリアルデザインスナックバー/トースト要件](https://material.io/go/design-snackbars#snackbars-toasts-specs) に準拠したスナックバー/トーストコンポーネントです。表示・非表示には JavaScript が必要です。
 
 ## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/snackbars-toasts.html">マテリアルデザインガイドライン: スナックバーとトースト</a>
+    <a href="https://material.io/go/design-snackbars">マテリアルデザインガイドライン: スナックバーとトースト</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/snackbar.html">デモ</a>

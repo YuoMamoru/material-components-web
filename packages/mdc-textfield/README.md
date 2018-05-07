@@ -21,7 +21,7 @@ Text Field はユーザのテキストの入力、編集、選択に対応して
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/text-fields.html">マテリアルデザインガイドライン: テキスト欄</a>
+    <a href="https://material.io/go/design-text-fields">マテリアルデザインガイドライン: テキスト欄</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/text-field.html">デモ</a>

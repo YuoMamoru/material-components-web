@@ -16,13 +16,13 @@ path: /catalog/menus/
   </a>
 </div>-->
 
-MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/guidelines/components/menus.html) に準拠したメニューコンポーネントです。メニューが開く際に正しい位置に配置するには JavaScript が必要です。
+MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/go/design-menus) に準拠したメニューコンポーネントです。メニューが開く際に正しい位置に配置するには JavaScript が必要です。
 
 ## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/menus.html">マテリアルデザインガイドライン: メニュー</a>
+    <a href="https://material.io/go/design-menus">マテリアルデザインガイドライン: メニュー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/menu.html">デモ</a>

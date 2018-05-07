@@ -21,7 +21,7 @@ MDC Select はマテリアルデザインの単一選択ができるセレクト
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/text-fields.html">マテリアルデザインガイドライン: テキスト欄</a>
+    <a href="https://material.io/go/design-text-fields">マテリアルデザインガイドライン: テキスト欄</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/select.html">デモ</a>
@@ -74,7 +74,7 @@ select.listen('change', () => {
 
 JavaScript をインポートする方法についてのより多くの情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## 別の使用法
+## 様々な使用法
 
 ### セレクトボックス
 
@@ -172,7 +172,6 @@ MDC Select は `<select>` 要素と `<option>` 要素を使っているので、
 
 ### Sass ミキシン
 
-Mixins should be included in the context of a custom class applied to the component's root element, e.g. `.my-select`.
 ミキシンはコンポーネントのルート要素に `.my-select` のようにカスタムクラスを適用しているコンテキストに含めなくてはなりません。
 
 Mixin | Description

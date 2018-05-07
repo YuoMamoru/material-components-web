@@ -25,7 +25,7 @@ MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプ�
 
 ## クイックスタート
 
-> 注意: このガイドは npm がローカルにインストールされていることを前提にしています。
+> 注意: このガイドは Node.js と npm がローカルにインストールされていることを前提にしています。
 
 ### コンポーネントに CSS を追加する
 
@@ -37,7 +37,7 @@ MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプ�
 npm install @material/button
 ```
 
-次にアプリケーションに @material/button の Sass ファイルをインポートします。これでボタンのカスタマイズに Sass ミキシンを使うことができます。
+次にアプリケーションに `@material/button` の Sass ファイルをインポートします。これでボタンのカスタマイズに Sass ミキシンを使うことができます。
 
 ```scss
 @import "@material/button/mdc-button";
@@ -47,17 +47,10 @@ npm install @material/button
   @include mdc-states(teal);
 }
 ```
-@material/button にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。アプリケーションの HTML を以下の HTML を含めるように修正し、要素に foo-button クラスを加えてください。
 
-```html
-<button class="foo-button mdc-button">
-  Button
-</button>
-```
+MDC Web を使うには `@material` のインポートを解釈できるようにするために Sass ローダを設定する必要があります。`webpack.config.js` の `{ loader: 'sass-loader' }` を次のように修正してください。
 
-@material 構文を解釈できるようにするために Sass ローダを設定する必要があります。webpack.config.js の `{ loader: 'sass-loader' }` を次のように修正してください。
-
-```javascript
+```js
 {
   loader: 'sass-loader',
   options: {
@@ -66,15 +59,23 @@ npm install @material/button
 }
 ```
 
+`@material/button` にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。アプリケーションの HTML に MDC Button のマークアップを入れ、要素に `foo-button` クラスを追加しましょう。
+
+```html
+<button class="foo-button mdc-button">
+  Button
+</button>
+```
+
 これでカスタマイズされたマテリアルデザインボタンが完成しました！
 
-![ボタン](docs/button.png)
+<img src="docs/button.png" alt="Button" width="90" height="36">
 
 ### コンポーネントに JavaScript を追加する
 
 > 注意: このガイドは JavaScript を ES2015 形式でコンパイルするように webpack を設定していることを前提にしています。webpack の設定方法については [入門ガイド](./docs/getting-started.md) を参照してください。
 
-マテリアルデザインのリップル用に ES2015 ファイルを含めるために Node の依存関係をインストールします。
+マテリアルデザインのリップル用に ES2015 ファイルを含めるために依存関係をインストールします。
 
 ```
 npm install @material/ripple
@@ -82,14 +83,14 @@ npm install @material/ripple
 
 次にアプリケーションに @material/ripple 用の ES2015 ファイルをインポートし、DOM 要素を使って MDCRipple を初期化してください。
 
-```javascript
+```js
 import {MDCRipple} from '@material/ripple';
 const ripple = new MDCRipple(document.querySelector('.foo-button'));
 ```
 
 これでボタンにマテリアルデザインリップルが追加されました！
 
-![Button with Ripple](docs/button_with_ripple.png)
+<img src="docs/button_with_ripple.png" alt="Button with Ripple" width="90" height="36">
 
 ## リンク集
 

@@ -22,7 +22,7 @@ path: /catalog/theme/
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/style/color.html">マテリアルデザインガイドライン: カラー</a>
+    <a href="https://material.io/go/design-theming">マテリアルデザインガイドライン: カラー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components-web.appspot.com/theme/index.html">デモ</a>
@@ -71,8 +71,10 @@ CSS カスタムプロパティ | 説明
 `--mdc-theme-primary` | テーマのプライマリカラー
 `--mdc-theme-secondary` | テーマのセカンダリカラー
 `--mdc-theme-background` | テーマのバックグランドカラー
-`--mdc-theme-text-<TEXT_STYLE>-on-primary` | プライマリカラーの背景の上にある TEXT_STYLE のテキストの色
-`--mdc-theme-text-<TEXT_STYLE>-on-secondary` | セカンダリカラーの背景の上にある TEXT_STYLE のテキストの色
+`--mdc-theme-surface` | テーマのサーフェイスカラー
+`--mdc-theme-on-primary` | プライマリカラーの背景の上にあるテキストの色
+`--mdc-theme-on-secondary` | セカンダリカラーの背景の上にあるテキストの色
+`--mdc-theme-on-surface` | サーフェイスカラーの背景の上にあるテキストの色
 `--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色
 `--mdc-theme-text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE のテキストの色
 
@@ -85,8 +87,10 @@ CSS クラス | 説明
 `mdc-theme--primary` | テキスト色としてテーマのプライマリカラーを設定する
 `mdc-theme--secondary` | テキスト色としてテーマのセカンダリカラーを設定する
 `mdc-theme--background` | 背景色としてテーマのバックグランドカラーを設定する
-`mdc-theme--text-<TEXT_STYLE>-on-primary` | プライマリカラーの背景の上に、TEXT_STYLE に適切なテキスト色を設定する
-`mdc-theme--text-<TEXT_STYLE>-on-secondary` | セカンダリカラーの背景の上に、TEXT_STYLE に適切なテキスト色を設定する
+`mdc-theme--surface` | 表面色としてテーマのサーフェイスカラーを設定する
+`mdc-theme--on-primary` | プライマリカラーの背景の上に適切なテキスト色を設定する
+`mdc-theme--on-secondary` | セカンダリカラーの背景の上に適切なテキスト色を設定する
+`mdc-theme--on-surface` | サーフェイスカラーの背景の上に適切なテキスト色を設定する
 `mdc-theme--primary-bg` | 背景色としてテーマのプライマリカラーを設定する
 `mdc-theme--secondary-bg` | 背景色としてテーマのセカンダリカラーを設定する
 `mdc-theme--text-<TEXT_STYLE>-on-light` | 明るい背景の上に、TEXT_STYLE に適切なテキスト色を設定する
@@ -109,10 +113,12 @@ CSS クラス | 説明
 `primary` | テーマのプライマリカラー
 `secondary` | テーマのセカンダリカラー
 `background` | テーマのバックグランドカラー
+`surface` | テーマのサーフェイスカラー
 `text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE
 `text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE
 `on-primary` | プライマリカラーの背景の上に使用されるテキスト/アイコンの色
 `on-secondary` | セカンダリカラーの背景の上に使用されるテキスト/アイコンの色
+`on-surface` | サーフェイスカラーの背景の上に使用されるテキスト/アイコンの色
 
 #### `mdc-theme-luminance($color)`
 

@@ -7,9 +7,34 @@ path: /docs/getting-started/
 
 # 入門ガイド
 
-このガイドでは [MDC Web Node モジュールのインストール](https://www.npmjs.com/org/material) の方法と [Webpack](https://webpack.js.org/) の設定によってこれらの Node モジュールから Sass と JavaScript をバンドルする方法を説明します。
+## クイックスタート
 
-> 注意: このガイドは npm がローカルにインストールされていることを前提にしています。
+最小限の構成で Material Components for the web を試すには、unpkg から CSS と JS をロードします。
+
+```html
+https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css
+https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js
+```
+
+そして MDC のマークアップを入れていきます。
+
+```html
+<button class="foo-button mdc-button">Button</button>
+```
+
+JavaScript をインスタンス化します。
+
+```js
+mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+```
+
+しかし、npm を通じて Material Components for the web をインストールし、ES2015 モジュールと Sass を直接利用することを強くお勧めします。以下のステップで説明していきます。
+
+## MDC Web を ES2015 と Sass とともに利用する
+
+この節では [MDC Web Node モジュールをインストールする](https://www.npmjs.com/org/material)  方法を説明し、[webpack](https://webpack.js.org/) の設定することにより、Node モジュールを使って Sass と JavaScript をバンドルしていきます。
+
+> 注意: このガイドは Node.js と npm がローカルにインストールされていることを前提にしています。
 
 ### ステップ 1: Webpack の Sass の設定
 
@@ -29,8 +54,8 @@ webpack-dev-server を使ってどのように webpack が Sass と JavaScript �
 - [sass-loader](https://www.npmjs.com/package/sass-loader): Sass ファイルを読み込み CSS にコンパイルする
 - [node-sass](https://www.npmjs.com/package/node-sass): Node.js を Sass にバインドし、sass-loader と同等の依存関係を提供する
 - [css-loader](https://www.npmjs.com/package/css-loader): CSS の @import と url() のパスを解決する
-- [extract-loader](https://github.com/peerigon/extract-loader): .css ファイル内の CSS を抽出する
-- [file-loader](https://github.com/webpack-contrib/file-loader): .css ファイルを公開 URL として扱う
+- [extract-loader](https://github.com/peerigon/extract-loader): `.css` ファイル内の CSS を抽出する
+- [file-loader](https://github.com/webpack-contrib/file-loader): `.css` ファイルを公開 URL として扱う
 
 次のコマンドでこれらすべてをインストールできます。
 
@@ -38,9 +63,9 @@ webpack-dev-server を使ってどのように webpack が Sass と JavaScript �
 npm install --save-dev webpack@3 webpack-dev-server@2 css-loader sass-loader node-sass extract-loader file-loader
 ```
 
-> 注意: 私たちは webpack 3 を使うことを推奨します。なぜなら、webpack 4 がまだ調査中だからです。また、webpack-dev-server 2 の使用を推奨します。このバージョンが webpack 3 上で動作しているからです。
+> 注意: 私たちは Webpack 3 を使うことを推奨します。なぜなら、Webpack 4 がまだ調査中だからです。また、webpack-dev-server 2 の使用を推奨します。このバージョンが Webpack 3 上で動作しているからです。
 
-webpack が Sass をどのようにバンドルかを確認するには index.html が必要です。この HTML ファイルには CSS を含める必要があります。この CSS は sass-loader によって生成され、sass-loader が Sass から CSS にコンパイルします。CSS は .css ファイルから extract-loader によって抽出されます。単純な「hello world」の index.html を作成してください。
+webpack が Sass をどのようにバンドルかを確認するには index.html が必要です。この HTML ファイルには CSS を含める必要があります。この CSS は sass-loader によって生成され、sass-loader が Sass から CSS にコンパイルします。CSS は .css ファイルから extract-loader によって抽出されます。単純な “Hello World” の `index.html` を作成してください。
 
 ```html
 <html>
@@ -51,7 +76,7 @@ webpack が Sass をどのようにバンドルかを確認するには index.ht
 </html>
 ```
 
-そして、app.scss という単純な Sass ファイルを作ってください。
+そして、`app.scss` という単純な Sass ファイルを作ってください。
 
 ```scss
 body {
@@ -59,7 +84,7 @@ body {
 }
 ```
 
-次に、app.scss を bundle.css に変換する webpack を設定します。それには新たな webpack.config.js が必要です。
+次に、`app.scss` を `bundle.css` に変換する webpack を設定します。それには新たな `webpack.config.js` が必要です。
 
 ```js
 module.exports = [{
@@ -94,9 +119,9 @@ webpack の設定をテストしましょう。
 npm start
 ```
 
-ブラウザで localhost:8080 を開いてください。青い “Hello World” が見れるはずです。
+ブラウザで http://localhost:8080 を開いてください。青い “Hello World” が見れるはずです。
 
-![Hello World](hello_world.png)
+<img src="hello_world.png" alt="Hello World" width="92" height="34">
 
 ### ステップ 2: コンポーネントに CSS を含める
 
@@ -106,7 +131,7 @@ Sass から CSS にコンパイルするように webpack を設定したので�
 npm install @material/button
 ```
 
-@material/button の Sass ファイルをインポートするように app.scss に記述する必要があります。ボタンをカスタマイズするために Sass ミキシンを使うことができます。以下のコードで「hello world」の app.scss を置き換えてください。
+`@material/button` の Sass ファイルをインポートするように `app.scss` に記述する必要があります。ボタンをカスタマイズするために Sass ミキシンを使うことができます。以下のコードで “Hello World” の `app.scss` を置き換えてください。
 
 ```scss
 @import "@material/button/mdc-button";
@@ -116,7 +141,19 @@ npm install @material/button
   @include mdc-states(teal);
 }
 ```
-@material/button にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。index.html を以下の HTML を含めるように修正し、要素に foo-button クラスを加えてください。
+
+MDC Web を使うには `@material` のインポートを解釈できるようにするために Sass ローダを設定する必要があります。`webpack.config.js` の `{ loader: 'sass-loader' }` を次のように修正してください。
+
+```js
+{
+  loader: 'sass-loader',
+  options: {
+    includePaths: ['./node_modules']
+  }
+}
+```
+
+`@material/button` にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。`index.html` に MDC Button のマークアップを入れ、要素に `foo-button` クラスを追加しましょう。
 
 ```html
 <body>
@@ -126,20 +163,9 @@ npm install @material/button
 </body>
 ```
 
-@material 構文を解釈できるようにするために Sass ローダを設定する必要があります。webpack.config.js の `{ loader: 'sass-loader' }` を次のように修正してください。
+さあ、`npm start` を再び実行して http://localhost:8080 を開いてください。マテリアルデザインボタンが確認できたでしょ！
 
-```javascript
-{
-  loader: 'sass-loader',
-  options: {
-    includePaths: ['./node_modules']
-  }
-}
-```
-
-さあ、npm start を再び実行して localhost:8080 を開いてください。マテリアルデザインボタンが確認できたでしょ！
-
-![Button](button.png)
+<img src="button.png" alt="Button" width="90" height="36">
 
 ### ステップ 3: Webpack の ES2015 の設定
 
@@ -155,21 +181,21 @@ npm install @material/button
 npm install --save-dev babel-core babel-loader babel-preset-es2015
 ```
 
-webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように index.html を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。以下の script タグを index.html に追加してください。
+webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。以下の script タグを `index.html` に追加してください。
 
 ```html
 <script src="bundle.js" async></script>
 ```
 
-そして app.js という単純な ES2015 ファイルを作ってください。
+そして `app.js` という単純な ES2015 ファイルを作ってください。
 
-```javascript
+```js
 console.log('hello world');
 ```
 
-次に、app.js を bundle.js に変換する webpack を設定します。それには webpack.config.js ファイルに次のコードの追加が必要です。
+次に、`webpack.config.js` ファイルに次のコードの追加し、`app.js` を `bundle.js` に変換する webpack を設定します。
 
-```javascript
+```js
 module.exports.push({
   entry: "./app.js",
   output: {
@@ -187,7 +213,7 @@ module.exports.push({
 });
 ```
 
-さあ、npm start を再び実行して localhost:8080 を開いてください。コンソールに「hello world」が確認できたでしょ！
+さあ、`npm start` を再び実行して http://localhost:8080 を開いてください。コンソールに “hello world” が確認できたでしょ！
 
 ### ステップ 4: コンポーネントに JavaScript を含める 
 
@@ -197,15 +223,13 @@ ES2015 から JavaScript にコンパイルするように webpack を設定し�
 npm install @material/ripple
 ```
 
-@material/ripple の ES2015 ファイルをインポートするように app.js に記述する必要があります。DOM 要素を使って MDCRipple を初期化することができます。以下のコードで「hello world」の app.js を置き換えてください。
+`@material/ripple` の ES2015 ファイルをインポートするように `app.js` に記述する必要があります。DOM 要素を使って MDCRipple を初期化することができます。以下のコードで “hello world” の `app.js` を置き換えてください。
 
-```javascript
+```js
 import {MDCRipple} from '@material/ripple';
 const ripple = new MDCRipple(document.querySelector('.foo-button'));
 ```
 
-さあ、npm start を再び実行して localhost:8080 を開いてください。ボタン上にマテリアルデザインリップルが確認できたでしょ！
+さあ、`npm start` を再び実行して http://localhost:8080 を開いてください。ボタン上にマテリアルデザインリップルが確認できたでしょ！
 
-![リップル付きボタン](button_with_ripple.png)
-
-TODO: Write a getting started guide for our CDN users
+<img src="button_with_ripple.png" alt="Button with Ripple" width="90" height="36">

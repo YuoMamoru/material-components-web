@@ -9,7 +9,7 @@ path: /catalog/tabs/
 
 # MDC Tabs
 
-MDC Tabs コンポーネントには [マテリアルデザインタブガイドライン](https://material.io/guidelines/components/tabs.html) に準拠したタブナビゲーションコンポーネントを作成するためのコンポーネントが含まれています。これらのコンポーネントは以下の通りです。
+MDC Tabs コンポーネントには [マテリアルデザインタブガイドライン](https://material.io/go/design-tabs) に準拠したタブナビゲーションコンポーネントを作成するためのコンポーネントが含まれています。これらのコンポーネントは以下の通りです。
 
 - **mdc-tab**: 個別のタブ要素
 - **mdc-tab-bar**: `mdc-tab` 要素で構成されるメインコンポーネント
@@ -19,7 +19,7 @@ MDC Tabs コンポーネントには [マテリアルデザインタブガイド
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/tabs.html">マテリアルデザインガイドライン: タブ</a>
+    <a href="https://material.io/go/design-tabs">マテリアルデザインガイドライン: タブ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="http://material-components-web.appspot.com/tabs.html">デモ</a>
