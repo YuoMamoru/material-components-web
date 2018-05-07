@@ -11,7 +11,7 @@ path: /catalog/cards/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/card.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/card">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/cards.png" width="328" alt="Cards screenshot">
   </a>
 </div>-->
@@ -25,7 +25,7 @@ MDC Card は [マテリアルデザインカードコンポーネント](https:/
     <a href="https://material.io/go/design-cards">マテリアルデザインガイドライン: カード</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/card.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/card">デモ</a>
   </li>
 </ul>
 

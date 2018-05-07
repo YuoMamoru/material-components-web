@@ -10,7 +10,7 @@ path: /catalog/input-controls/select-menus/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/select.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/select">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/selects.png" width="376" alt="Select screenshot">
   </a>
 </div>-->
@@ -24,7 +24,7 @@ MDC Select はマテリアルデザインの単一選択ができるセレクト
     <a href="https://material.io/go/design-text-fields">マテリアルデザインガイドライン: テキスト欄</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/select.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/select">デモ</a>
   </li>
 </ul>
 

@@ -21,7 +21,7 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 
 MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
 
-**[デモ](https://material-components-web.appspot.com/)**（リリースの都度、更新されます）
+**[デモ](https://material-components.github.io/material-components-web-catalog/)**（リリースの都度、更新されます）
 
 ## クイックスタート
 

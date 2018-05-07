@@ -19,10 +19,7 @@ npm install @material/form-field
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/checkbox.html">チェックボックスのデモ</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/radio.html">ラジオボタンのデモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/radio">ラジオボタンのデモ</a>
   </li>
 </ul>
 

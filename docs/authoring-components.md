@@ -354,7 +354,7 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 ファンデーションに可能な限り多くのフレームワークと互換性を持たせるために、ファンデーション内でホストオブジェクトを直接参照することを避けてください。ホストオブジェクトには `window`、 `document`、 `console` などを含みます。<em>ファンデーション内では ECMAScript 仕様で定義されたグローバルオブジェクトのみを参照するようにします。</em>
 
-`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプタを介してホストオブジェクトを使用することです。しかし、ホストオブジェクト自身の [名目型]() よりもむしろホストオブジェクトの代理となる [構造型]() を返すようなアダプタ API を設計すべきです。例えば、タイプが `"checkbox"` の `HTMLInputElement` を使う代わりに `checked`、 `indeterminate`、 `disabled` という真偽値プロパティを持つオブジェクトを使ってください。
+`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプタを介してホストオブジェクトを使用することです。しかし、ホストオブジェクト自身の名目型よりもむしろホストオブジェクトの代理となる [構造型](https://github.com/google/closure-compiler/wiki/Structural-Interfaces-in-Closure-Compiler) を返すようなアダプタ API を設計すべきです。例えば、タイプが `"checkbox"` の `HTMLInputElement` を使う代わりに `checked`、 `indeterminate`、 `disabled` という真偽値プロパティを持つオブジェクトを使ってください。
 
 ### <a name="clean-up-all-references-on-destruction"></a>デストラクタですべての参照を削除する
 
@@ -632,7 +632,7 @@ class MDCNewComponentFoundation extends MDCFoundation {
 
 #### <a name="closure-compatibility"></a>クロージャの互換性
 
-> 注意: このセクションは [クロージャ互換性のマイルストーン](https://github.com/material-components/material-components-web/milestone/4) （訳注: 当該ファイルは既に削除されている）の一部を紹介します。現在存在するコンポーネントはクロージャ―について互換性を持たせようとしている段階にあります。
+> 注意: 現在存在するコンポーネントはクロージャ―について互換性を持たせようとしている段階にあります。
 
 すべてのコアな MDC Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャコンパイラドキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャパターンについて、完全な説明を提供しています。
 

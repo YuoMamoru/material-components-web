@@ -11,7 +11,7 @@ path: /catalog/menus/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/menu.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/menu">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/menus.png" width="178" alt="Menus screenshot">
   </a>
 </div>-->
@@ -25,7 +25,7 @@ MDC Menu コンポーネントは [マテリアルデザインメニュー仕様
     <a href="https://material.io/go/design-menus">マテリアルデザインガイドライン: メニュー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/menu.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/menu">デモ</a>
   </li>
 </ul>
 

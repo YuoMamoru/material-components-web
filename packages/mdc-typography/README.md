@@ -34,7 +34,7 @@ MDC Typography は MDC Web コンポーネントにこれらのスタイルを�
     <a href="https://material.io/go/design-typography">マテリアルデザインガイドライン: タイポグラフィ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/typography.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/typography">デモ</a>
   </li>
 </ul>
 

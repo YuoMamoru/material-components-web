@@ -2,7 +2,7 @@
 title: "Snackbars"
 layout: detail
 section: components
-excerpt: "Brief feedback for an action through a message at the bottom of the screen."
+excerpt: "Snackbars provide brief messages about app processes at the bottom of the screen."
 iconId: toast
 path: /catalog/snackbars/
 -->
@@ -11,21 +11,21 @@ path: /catalog/snackbars/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/snackbar.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/snackbar">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/snackbars.png" width="336" alt="Snackbars screenshot">
   </a>
 </div>-->
 
-MDC Snackbar コンポーネントは [マテリアルデザインスナックバー/トースト要件](https://material.io/go/design-snackbars#snackbars-toasts-specs) に準拠したスナックバー/トーストコンポーネントです。表示・非表示には JavaScript が必要です。
+スナックバーは画面の下部にアプリのプロセスに関する簡素なメッセージを提供します。
 
 ## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-snackbars">マテリアルデザインガイドライン: スナックバーとトースト</a>
+    <a href="https://material.io/go/design-snackbar">マテリアルデザインガイドライン: スナックバーとトースト</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/snackbar.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/snackbar">デモ</a>
   </li>
 </ul>
 

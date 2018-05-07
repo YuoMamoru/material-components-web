@@ -10,7 +10,7 @@ path: /catalog/input-controls/text-field/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/text-field.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/text-field">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/textfields.png" width="240" alt="Text fields screenshot">
   </a>
 </div>-->
@@ -24,7 +24,7 @@ Text Field はユーザのテキストの入力、編集、選択に対応して
     <a href="https://material.io/go/design-text-fields">マテリアルデザインガイドライン: テキスト欄</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/text-field.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/text-field">デモ</a>
   </li>
 </ul>
 
@@ -34,7 +34,7 @@ Text Field はユーザのテキストの入力、編集、選択に対応して
 npm install @material/textfield
 ```
 
-## 使用法
+## 基本的な使用法
 
 ### HTML 構造
 
@@ -46,41 +46,31 @@ npm install @material/textfield
 </div>
 ```
 
-#### Input の Type
+> 注意: Text field は input の type のうち、 `text` と `password` に対応しています（例えば `<input type="password" class="mdc-text-field__input">`）。
+>
+> その他の input type（`number` や `date` のような）には現在は対応していません。
 
-Text field は input の type のうち、 `text` と `password` に対応しています（例えば `<input type="password" class="mdc-text-field__input">`）。
+> 注意: 詳細については、[MDC Line Ripple](../mdc-line-ripple/README.md) と [MDC Floating Label](../mdc-floating-label/README.md) を参照してください。
 
-その他の input type（`number` や `date` のような）には現在は対応していません。
+### スタイル
 
-#### HTML5 バリデーション
-
-`MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。
-
-```html
-<div class="mdc-text-field">
-  <input type="password" id="pw" class="mdc-text-field__input" required minlength=8>
-  <label for="pw" class="mdc-floating-label">Password</label>
-  <div class="mdc-line-ripple"></div>
-</div>
+```scss
+@import "@material/textfield/mdc-text-field";
 ```
 
-`MDCTextFieldFoundation` は required 属性が設定されていると自動的にラベルにアスタリスクを追加します。
+### JavaScript のインスタンス化
 
-#### 入力済みのテキスト欄
+```js
+import {MDCTextField} from '@material/textfield';
 
-値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` と `mdc-text-field--upgraded` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
-
-```html
-<div class="mdc-text-field mdc-text-field--upgraded">
-  <input type="text" id="pre-filled" class="mdc-text-field__input" value="Pre-filled value">
-  <label class="mdc-floating-label mdc-floating-label--float-above" for="pre-filled">
-    Label in correct place
-  </label>
-  <div class="mdc-line-ripple"></div>
-</div>
+const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ```
 
-#### フル幅のテキスト欄
+> JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+
+## 様々な使用法
+
+### フル幅のテキスト欄
 
 フル幅のテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
 
@@ -97,7 +87,7 @@ Text field は input の type のうち、 `text` と `password` に対応して
 
 > <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-floating-label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
 
-#### 複数行テキスト欄
+### 複数行テキスト欄
 
 ```html
 <div class="mdc-text-field mdc-text-field--textarea">
@@ -106,19 +96,7 @@ Text field は input の type のうち、 `text` と `password` に対応して
 </div>
 ```
 
-#### 無効な状態
-
-`mdc-text-field` を無効にするときは `<input>` に `disabled` 属性を加えてください。`mdc-text-field` に `mdc-text-field--disabled` を追加する必要もあります。
-
-```html
-<div class="mdc-text-field mdc-text-field--disabled">
-  <input type="text" id="disabled-text-field" class="mdc-text-field__input" disabled>
-  <label class="mdc-floating-label" for="disabled-text-field">Disabled text field</label>
-  <div class="mdc-line-ripple"></div>
-</div>
-```
-
-#### アウトライン
+### アウトライン
 
 ```html
 <div class="mdc-text-field mdc-text-field--outlined">
@@ -133,24 +111,67 @@ Text field は input の type のうち、 `text` と `password` に対応して
 </div>
 ```
 
-アウトラインサブコンポーネントを使うにあたり、より詳細な情報は [ここ](../mdc-notched-outline/) を参照してください。
+ノッチ付きアウトラインサブコンポーネントの使用についてのより詳しい情報は [ここ](../mdc-notched-outline/) を参照してください。
 
-> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-line-ripple` を使わないでください。ボトムラインはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
+> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-line-ripple` を使わないでください。ラインリップルはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
 
-#### ヘルプテキスト
+### 無効の状態
+
+テキスト欄を無効にするには、`<input>` 要素に `disabled` 属性を追加し、`mdc-text-field` 要素に `mdc-text-field--disabled` クラスを追加します。
+
+```html
+<div class="mdc-text-field mdc-text-field--disabled">
+  <input type="text" id="disabled-text-field" class="mdc-text-field__input" disabled>
+  <label class="mdc-floating-label" for="disabled-text-field">Disabled text field</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+```
+
+### ヘルプテキスト付きテキスト欄
 
 ヘルプテキストは補足の情報や検証のメッセージをユーザに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
 
-#### 先頭と末尾のアイコン
+### 先頭と末尾のアイコン
 
 双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields のボックスもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
+
+
+### HTML5 バリデーション
+
+`MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。
+
+```html
+<div class="mdc-text-field">
+  <input type="password" id="pw" class="mdc-text-field__input" required minlength=8>
+  <label for="pw" class="mdc-floating-label">Password</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+```
+
+`MDCTextFieldFoundation` は required 属性が設定されていると自動的にラベルにアスタリスクを追加します。
+
+### 入力済みのテキスト欄
+
+値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` と `mdc-text-field--upgraded` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+
+```html
+<div class="mdc-text-field mdc-text-field--upgraded">
+  <input type="text" id="pre-filled" class="mdc-text-field__input" value="Pre-filled value">
+  <label class="mdc-floating-label mdc-floating-label--float-above" for="pre-filled">
+    Label in correct place
+  </label>
+  <div class="mdc-line-ripple"></div>
+</div>
+```
+
+## スタイルのカスタマイズ
 
 ### CSS クラス
 
 CSS クラス | 説明
 --- | ---
-`mdc-text-field` | 必須
-`mdc-text-field--upgraded` | テキスト欄がアップグレードされたことを表す。通常は JavaScript によってアップグレード処理がなされる。
+`mdc-text-field` | 必須。
+`mdc-text-field--upgraded` | テキスト欄がアップグレードされたことを表す。JavaScript を使っている。
 `mdc-text-field--box` | ボックス型のテキスト欄として表示する。
 `mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
@@ -207,9 +228,7 @@ Mixin | Description
 `mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
 `mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
 
-### `MDCTextField`
-
-JavaScript をインポートする方法の詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+### `MDCTextField` プロパティとメソッド
 
 プロパティ | 型 | 説明
 --- | --- | ---
@@ -223,6 +242,11 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 メソッド | 説明
 --- | ---
 `layout() => void` | すべてのサブ要素の大きさと位置を調整する。
+
+## Web フレームワークでの使用
+
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
+
 
 ### `MDCTextFieldAdapter`
 
@@ -239,8 +263,8 @@ JavaScript をインポートする方法の詳細な情報は [JS コンポー�
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
 `hasOutline() => boolean` | アウトライン要素があるかどうかを返す。
-`notchOutline(labelWidth: number, isRtl: boolean) => void` | ノッチを開くためにアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
-`closeOutline() => void` | アウトラン要素上のノッチを閉じる。
+`notchOutline(labelWidth: number, isRtl: boolean) => void` | ノッチを開くためにノッチ付きアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
+`closeOutline() => void` | ノッチ付きアウトラン要素上のノッチを閉じる。
 
 #### `MDCTextFieldAdapter.getNativeInput()`
 

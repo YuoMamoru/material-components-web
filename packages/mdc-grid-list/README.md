@@ -7,29 +7,16 @@ iconId: card
 path: /catalog/grid-lists/
 -->
 
+## Important - Deprecation Notice
+## 重要 - 非推奨のお知らせ
+
+既存の `MDCGridList` コンポーネントとスタイルは将来のリリースで削除されます。この機能のいくつかは代わりに [MDC Image List](../mdc-image-list) パッケージで利用できます。バグや機能の要求は `mdc-grid-list` パッケージでは受け付けなくなります。新たな機能や更新を受け取るために `mdc-image-list` パッケージに移行することを推奨します。
+
 # Grid Lists
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/grid-list.html">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/grids.png" width="320" alt="Grid lists screenshot">
-  </a>
-</div>-->
+MDC Grid List はマテリアルデザイングリッドリスト仕様に準拠した RTL 対応の マテリアルデザイングリッドリストコンポーネントです。グリッドリストは均質なデータ、典型的には画像、に最も適しています。グリッド内の各項目は **タイル** と呼ばれます。タイルは画面サイズに応じて一貫した幅、高さ、余白を維持します。
 
-MDC Grid List は [マテリアルデザイングリッドリスト仕様](https://material.io/guidelines/components/grid-lists.html) に準拠した RTL 対応の マテリアルデザイングリッドリストコンポーネントです。グリッドリストは均質なデータ、典型的には画像、に最も適しています。グリッド内の各項目は **タイル** と呼ばれます。タイルは画面サイズに応じて一貫した幅、高さ、余白を維持します。
-
-## デザインと API ドキュメント
-
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/guidelines/components/grid-lists.html">マテリアルデザインガイドライン: グリッドリスト</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/grid-list.html">デモ</a>
-  </li>
-</ul>
-
-## インストール
+## Installation
 
 ```
 npm install @material/grid-list

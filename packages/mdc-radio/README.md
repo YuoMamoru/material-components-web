@@ -10,7 +10,7 @@ path: /catalog/input-controls/radio-buttons/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/radio.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/radio">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/radios.png" width="60" alt="Radio buttons screenshot">
   </a>
 </div>-->
@@ -24,7 +24,7 @@ path: /catalog/input-controls/radio-buttons/
     <a href="https://material.io/go/design-radio-buttons">マテリアルデザインガイドライン: 選択コントロール – ラジオボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/radio.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/radio">デモ</a>
   </li>
 </ul>
 

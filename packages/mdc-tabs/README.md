@@ -22,7 +22,7 @@ MDC Tabs コンポーネントには [マテリアルデザインタブガイド
     <a href="https://material.io/go/design-tabs">マテリアルデザインガイドライン: タブ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="http://material-components-web.appspot.com/tabs.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/tabs">デモ</a>
   </li>
 </ul>
 

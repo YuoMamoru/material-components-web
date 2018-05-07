@@ -9,13 +9,6 @@ path: /catalog/theme/
 
 # Theme
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/theme/index.html">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/themes.png" width="241" alt="Themes screenshot">
-  </a>
-</div>-->
-
 あなたのブランドやスタイルを反映した色の体系を作るためにマテリアルデザインのカラーシステムは使用されます。
 
 ## デザインと API ドキュメント
@@ -23,9 +16,6 @@ path: /catalog/theme/
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
     <a href="https://material.io/go/design-theming">マテリアルデザインガイドライン: カラー</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/theme/index.html">デモ</a>
   </li>
 </ul>
 

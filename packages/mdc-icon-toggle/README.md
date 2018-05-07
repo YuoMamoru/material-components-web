@@ -10,7 +10,7 @@ path: /catalog/buttons/icon-toggle-buttons/
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components-web.appspot.com/icon-toggle.html">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/icon-toggle">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/icon-toggles.png" width="20" alt="Icon toggles screenshot">
   </a>
 </div>-->
@@ -24,7 +24,7 @@ MDC Icon Toggle はマテリアルデザインのアイコン切り替えボタ�
     <a href="https://material.io/go/design-buttons#buttons-toggle-buttons">マテリアルデザインガイドライン: 切り替えボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components-web.appspot.com/icon-toggle.html">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-toggle">デモ</a>
   </li>
 </ul>
 
