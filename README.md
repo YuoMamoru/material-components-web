@@ -11,12 +11,15 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 - アラカルト方式で製品対応した利用可能なコンポーネント
 - 最もパフォーマンスに優れ、[マテリアルデザインガイドライン](https://material.io/guidelines)に準拠
 - 他の JS フレームワークおよびライブラリとのシームレスな統合
-  - [Preact Material Components](https://github.com/prateekbh/preact-material-components)
-  - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc)
-  - [Angular MDC](https://github.com/trimox/angular-mdc-web)
-  - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
-  - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js ( [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用) による MDC Web との統合
-  - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js ([vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用) による MDC Web との統合
+  - [Material Components for React](https://github.com/material-components/material-components-web-react): React と MDC Web の統合 ( [foundations/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
+  - [Material Web Components](https://github.com/material-components/material-components-web-components): Web Components と MDC Web の統合 ( [vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
+  - 追加されたサードパーティ製の統合
+    - [Preact Material Components](https://github.com/prateekbh/preact-material-components)
+    - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc)
+    - [Angular MDC](https://github.com/trimox/angular-mdc-web)
+    - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
+    - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js と MDC Web の統合 ( [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
+    - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js と MDC Web の統合 ( [vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
   - まだまだ増えます！[基準](docs/integrating-into-frameworks.md) をみたしているならあなたのライブラリをこのリストに加えるよう、遠慮なくプルリクエストを送ってください。
 
 MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
