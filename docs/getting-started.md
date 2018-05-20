@@ -197,9 +197,9 @@ console.log('hello world');
 
 ```js
 module.exports.push({
-  entry: "./app.js",
+  entry: './app.js',
   output: {
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{
