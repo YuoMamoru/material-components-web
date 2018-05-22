@@ -287,6 +287,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `isRequired() => boolean` | input 要素が必須であるかどうかを返す。
 `setRequired(isRequired: boolean)` | input 要素が必須であるかどうかを設定する。
 `handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理する。
+`handleValidationAttributeMutation(mutationsList: !Array<MutationRecord>) => void` | 属性変更の検証を処理する。
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
 `deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
