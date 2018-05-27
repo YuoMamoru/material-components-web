@@ -59,8 +59,8 @@ npm install @material/card
       <button class="mdc-button mdc-card__action mdc-card__action--button">Action 2</button>
     </div>
     <div class="mdc-card__action-icons">
-      <i class="material-icons mdc-card__action mdc-card__action--icon" tabindex="0" role="button" title="Share">share</i>
-      <i class="material-icons mdc-card__action mdc-card__action--icon" tabindex="0" role="button" title="More options">more_vert</i>
+      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
     </div>
   </div>
 </div>
@@ -116,18 +116,16 @@ npm install @material/card
 
 ```html
 <div class="mdc-card__actions">
-  <i class="mdc-icon-toggle material-icons mdc-card__action mdc-card__action--icon"
-     tabindex="0"
-     role="button"
+  <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
      aria-pressed="false"
      aria-label="Add to favorites"
      title="Add to favorites"
-     data-toggle-on='{"content": "favorite", "label": "Remove from favorites"}'
-     data-toggle-off='{"content": "favorite_border", "label": "Add to favorites"}'>
-    favorite_border
-  </i>
-  <i class="material-icons mdc-card__action mdc-card__action--icon" tabindex="0" role="button" title="Share">share</i>
-  <i class="material-icons mdc-card__action mdc-card__action--icon" tabindex="0" role="button" title="More options">more_vert</i>
+     data-toggle-on-content="favorite"
+     data-toggle-on-label="Remove from favorites"
+     data-toggle-off-content="favorite_border"
+     data-toggle-off-label="Add to favorites">favorite_border</button>
+  <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+  <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
 </div>
 ```
 
@@ -154,8 +152,8 @@ npm install @material/card
     <button class="mdc-button mdc-card__action mdc-card__action--button">Bookmark</button>
   </div>
   <div class="mdc-card__action-icons">
-    <i class="material-icons mdc-card__action mdc-card__action--icon" tabindex="0" role="button" title="Share">share</i>
-    <i class="material-icons mdc-card__action mdc-card__action--icon" tabindex="0" role="button" title="More options">more_vert</i>
+   <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+    <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
   </div>
 </div>
 ```

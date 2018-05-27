@@ -44,7 +44,9 @@ MDC Typography は MDC Web コンポーネントにこれらのスタイルを�
 npm install @material/typography
 ```
 
-## 使用法
+## 基本的な使用法
+
+### HTML 構造
 
 私たちは Google Fonts から Roboto を読み込むことを推奨しています。
 
@@ -56,6 +58,14 @@ npm install @material/typography
   <h1 class="mdc-typography--headline1">Big header</h1>
 </body>
 ```
+
+### スタイル
+
+```css
+@import "@material/typography/mdc-typography";
+```
+
+## スタイルのカスタマイズ
 
 ### CSS クラス
 

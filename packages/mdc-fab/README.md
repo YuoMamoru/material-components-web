@@ -50,8 +50,8 @@ npm install @material/fab
 ### HTML 構造
 
 ```html
-<button class="mdc-fab material-icons" aria-label="Favorite">
-  <span class="mdc-fab__icon">
+<button class="mdc-fab" aria-label="Favorite">
+  <span class="mdc-fab__icon material-icons">
     favorite
   </span>
 </button>
@@ -142,8 +142,8 @@ CSS カスタムプロパティを完全にサポートしているブラウザ�
   }
 }
 </style>
-<button class="mdc-fab material-icons app-fab--absolute" aria-label="Favorite">
-  <span class="mdc-fab__icon">
+<button class="mdc-fab app-fab--absolute" aria-label="Favorite">
+  <span class="mdc-fab__icon material-icons">
     favorite
   </span>
 </button>

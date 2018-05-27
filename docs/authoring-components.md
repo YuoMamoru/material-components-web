@@ -627,7 +627,7 @@ class MDCNewComponentFoundation extends MDCFoundation {
 
 - コンポーネントの登録が `webpack.config.js` 上に `js-components` と `css` のモジュールに対して存在していることを確認すること。
 - `material-components-web` の依存関係にそのコンポーネントが追加されていることを確認すること。コンポーネントが JavaScript を含んでいるなら、`material-components-web` 内でそのコンポーネントの名前空間がエクスポートされ、`mdc-auto-init` に登録されていることを確認すること。最後に `material-components-web` の `package.json` にコンポーネントを追加することを忘れないこと。
-- レポジトリのルートにあるトップレベル `package.json` の `config.validate-commit-msg.scope.allowed` にパッケージの正確な **コミットサブジェクト** が追加されていることを確認すること。コミットサブジェクトとは <em>コンポーネント名から `mdc-`/`@material/` を除いたもの</em> をいう。例えば `mdc-icon-toggle` であれば `icon-toggle` である。
+- レポジトリのルートにあるトップレベル `package.json` の `config.validate-commit-msg.scope.allowed` にパッケージの正確な **コミットサブジェクト** が追加されていることを確認すること。コミットサブジェクトとは <em>コンポーネント名から `mdc-`/`@material/` を除いたもの</em> をいう。例えば `mdc-icon-button` であれば `icon-button` である。
 - トップレベル `package.json` の `closureWhitelist` にパッケージ名が追加されていることを確認すること。
 
 #### <a name="closure-compatibility"></a>クロージャの互換性

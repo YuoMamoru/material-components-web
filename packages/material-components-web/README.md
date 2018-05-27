@@ -32,16 +32,16 @@ const checkbox = new checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'
 
 `material-components-web` パッケージはすべての MDC Web コンポーネントを [mdc-auto-init](../mdc-auto-init) に自動的に登録するので、設定や手作業なしでコンポーネントの生成と初期化を非常に簡単に行えます。
 
-例として  [トグルアイコン](../mdc-icon-toggle) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCIconToggle"` 属性を追加するだけです。
+例として  [トグルアイコンボタン](../mdc-icon-button) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCICconButtonToggle"` 属性を追加するだけです。
 
 ```html
-<i class="mdc-icon-toggle material-icons" role="button" aria-pressed="false"
-   aria-label="Add to favorites" tabindex="0"
-   data-toggle-on='{"label": "Remove from favorites", "content": "favorite"}'
-   data-toggle-off='{"label": "Add to favorites", "content": "favorite_border"}'
-   data-mdc-auto-init="MDCIconToggle">
-  favorite_border
-</i>
+<button class="mdc-icon-button material-icons" 
+   aria-label="Add to favorites"
+   data-toggle-on-content="favorite"
+   data-toggle-on-label="Remove from favorites"
+   data-toggle-off-content="favorite_border"
+   data-toggle-off-label="Add to favorites"
+   data-mdc-auto-init="MDCIconButtonToggle">favorite_border</i>
 ```
 
 HTML の最後のほうに次のスクリプトタグを追加します。
@@ -50,4 +50,4 @@ HTML の最後のほうに次のスクリプトタグを追加します。
 <script>mdc.autoInit()</script>
 ```
 
-これでトグルアイコンだけでなく、`data-mdc-auto-init` をつけたそのほかのコンポーネントも自動で初期化されます。詳しい情報は [mdc-auto-init](../mdc-auto-init) を参照してください。
+これでトグルアイコンボタンだけでなく、`data-mdc-auto-init` をつけたそのほかのコンポーネントも自動で初期化されます。詳しい情報は [mdc-auto-init](../mdc-auto-init) を参照してください。

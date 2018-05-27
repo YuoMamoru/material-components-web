@@ -186,7 +186,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 
 メソッド | 説明
 --- | ---
-`setAnchorCorner(corder: Corner) => void` | メニューが基準とする角を設定する。[constants.js](https://github.com/material-components/material-components-web/blob/cc299230728ba5a994866ebd31aaaf1a0f4cc87f/packages/mdc-menu/constants.js#L73) を参照のこと。
+`setAnchorCorner(corder: Corner) => void` | メニューが基準とする角を設定する。[constants.js](https://github.com/material-components/material-components-web/blob/v0.35.2/packages/mdc-menu/constants.js#L73) を参照のこと。
 `setAnchorMargin(margin: AnchorMargin) => void` | メニューを表示する基準点からの距離を設定する。
 `open({focusIndex: ?number}) => void` | メニューを開く。オプションで、メニューが開いた際にフォーカスを受けるリスト項目を指定する `focusIndex` パラメータを持つオブジェクトを指定できる。
 `close(evt: ?Event)` | メニューを閉じる。オプションで、メニューが閉じる前にターゲットが無効であるかどうかを確認するためのイベントを指定できる。

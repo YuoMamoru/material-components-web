@@ -46,9 +46,9 @@ npm install @material/textfield
 </div>
 ```
 
-> 注意: Text field は input の type のうち、 `text` と `password` に対応しています（例えば `<input type="password" class="mdc-text-field__input">`）。
+> 注意: Text field は input の type のうち、 `text` 、`number` と `password` に対応しています（例えば `<input type="password" class="mdc-text-field__input">`）。
 >
-> その他の input type（`number` や `date` のような）には現在は対応していません。
+> その他の input type（`date` のような）には現在は対応していません。
 
 > 注意: 詳細については、[MDC Line Ripple](../mdc-line-ripple/README.md) と [MDC Floating Label](../mdc-floating-label/README.md) を参照してください。
 
@@ -220,6 +220,7 @@ Mixin | Description
 `mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄のボトムラインの色を設定する。
 
 #### その他のミキシン
+
 Mixin | Description
 --- | ---
 `mdc-text-field-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインの色を設定する。
@@ -255,10 +256,12 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `addClass(className: string) => void` | ルート要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
 `hasClass(className: string) => boolean` | ルート要素に与えられたクラス名が含まれているときに true を返す。
-`registerTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素に与えたイベントのイベントハンドラを登録する。
-`deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener)` => void | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
-`registerInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素に与えたイベントのイベントリスナーを登録する。
-`deregisterInputInteractionHandler(evtType: string, handler: EventListener)` => void | ネイティブな input 要素から与えたイベントのイベントリスナーの登録を解除する。
+`registerTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素に与えたイベントのイベントハンドラを登録する。
+`deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
+`registerInputInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブな input 要素に与えたイベントのイベントリスナーを登録する。
+`deregisterInputInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブな input 要素から与えたイベントのイベントリスナーの登録を解除する。
+`registerValidationAttributeChangeHandler(handler: function(!Array<string>) => undefined) => !MutationObserver` | 検証属性の変更のイベントリスナーを input 要素に対して登録する。リスナーは属性変更のリストを受け取る。
+`deregisterValidationAttributeChangeHandler(!MutationObserver) => void` | 検証属性の変更のオブザーバーとの接続を input 要素から削除する。
 `getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
@@ -287,10 +290,12 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `isRequired() => boolean` | input 要素が必須であるかどうかを返す。
 `setRequired(isRequired: boolean)` | input 要素が必須であるかどうかを設定する。
 `handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理する。
-`handleValidationAttributeMutation(mutationsList: !Array<MutationRecord>) => void` | 属性変更の検証を処理する。
+`handleValidationAttributeChange(attributesList: !Array<string>) => void` | 属性変更の検証を処理する。
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
 `deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
+`setIconAriaLabel(label: string) => void` | アイコンの領域ラベルを設定する。
+`setIconContent(content: string) => void` | アイコンのテキストコンテンツを設定する。
 `notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルプテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
