@@ -51,13 +51,13 @@ npm install @material/fab
 
 ```html
 <button class="mdc-fab" aria-label="Favorite">
-  <span class="mdc-fab__icon material-icons">
-    favorite
-  </span>
+  <span class="mdc-fab__icon material-icons">favorite</span>
 </button>
 ```
 
 > _注意:_ フローティング操作ボタンには `span`、`i`、`img` もしくは `svg` 要素を使うことができます。
+
+> _注意:_ マテリアルアイコンテキストの後ろに改行もしくはスペースがあるとき、IE 11 はアイコンを正しく中央に配置しません。
 
 ### スタイル
 
@@ -143,8 +143,6 @@ CSS カスタムプロパティを完全にサポートしているブラウザ�
 }
 </style>
 <button class="mdc-fab app-fab--absolute" aria-label="Favorite">
-  <span class="mdc-fab__icon material-icons">
-    favorite
-  </span>
+  <span class="mdc-fab__icon material-icons">favorite</span>
 </button>
 ```

@@ -118,9 +118,7 @@ MDC Web のテーマはマテリアルデザインのテーマのように **プ
       </div>
     </div>
     <button class="mdc-fab" id="demo-absolute-fab" aria-label="Favorite">
-      <span class="mdc-fab__icon material-icons">
-        favorite
-      </span>
+      <span class="mdc-fab__icon material-icons">favorite</span>
     </button>
   </body>
 </html>
