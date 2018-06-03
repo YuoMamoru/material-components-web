@@ -158,6 +158,11 @@ npm install @material/card
 </div>
 ```
 
+### スタイル
+```css
+@import "@material/card/mdc-card";
+```
+
 ### <a name="css-classes"></a>CSS クラス
 
 CSS クラス | 説明

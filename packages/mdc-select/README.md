@@ -6,6 +6,10 @@ iconId: menu
 path: /catalog/input-controls/select-menus/
 -->
 
+## 重要 - デフォルトスタイルが非推奨になります
+
+現在のデフォルトの select のスタイルは将来のバージョンで変更される予定です。マテリアルデザイン仕様ではデフォルトのスタイルが塗り変数を使うとなっています（現在、ボックス変数と呼んでいるものです）。これをデフォルトのスタイルに変更します。`mdc-select--box` クラスを追加することですたいるの変更が起こらないようにできます。
+
 # Select Menus
 
 <!--<div class="article__asset">

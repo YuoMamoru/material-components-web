@@ -153,6 +153,39 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
 }
 ```
 
+ベンダに固有のスタイルを Sass ファイルに追加するために、PostCSS に `autoprefixer` を設定する必要があります。
+
+次の Node 依存関係がすべて必要です。
+- [autoprefixer](https://www.npmjs.com/package/autoprefixer): CSS を解析し、ベンダプレフィックスを CSS ルールに追加する
+- [postcss-loader](https://github.com/postcss/postcss-loader): autoprefixer と組み合わせて使用する Webpack のローダー
+
+これらは以下のコマンドを実行してインストールできます。
+
+```
+npm install --save-dev autoprefixer postcss-loader
+```
+
+`webpack.config.js` の冒頭に `autoprefixer` を追加します。
+
+```js
+const autoprefixer = require('autoprefixer');
+```
+
+プラグインとして `autoprefixer` を使うために `postcss-loader` を追加します。
+
+```js
+{ loader: 'extract-loader' },
+{ loader: 'css-loader' },
+{ loader: 'postcss-loader',
+  options: {
+     plugins: () => [autoprefixer({ grid: false })]
+  }
+},
+{ loader: 'sass-loader' },
+```
+
+> 注意: MDC Web Layout Grid を正しく動作させるには CSS Grid では autoprefixer を無効にします。また、webpack のローダーの順序が重要であることにも気を付けてください。
+
 `@material/button` にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。`index.html` に MDC Button のマークアップを入れ、要素に `foo-button` クラスを追加しましょう。
 
 ```html

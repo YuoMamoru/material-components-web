@@ -81,7 +81,7 @@ CSS クラス | 説明
 `mdc-layout-grid__inner` | 必須。グリッドのセルをラップするために使う。
 `mdc-layout-grid__cell` | 必須。グリッドのセルにつける。
 `mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>` | オプション。セルのスパンの列数を指定する。
-`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>` | オプション。デバイス（desktop、tablet、mobile）ごとのセルのスパンの列数を指定する。
+`mdc-layout-grid__cell--span-<NUMBER_OF_COLUMNS>-<TYPE_OF_DEVICE>` | オプション。デバイス（desktop、tablet、phone）ごとのセルのスパンの列数を指定する。
 `mdc-layout-grid__cell--order-<INDEX>` | オプション。セルの並び順を指定する。
 `mdc-layout-grid__cell--align-<POSITION>` | オプション。セルの配置を指定する。
 `mdc-layout-grid--fixed-column-width` | オプション。グリッドが固定の列幅をもつときに指定する。
@@ -164,7 +164,7 @@ CSS クラス | 説明
 変数 | 説明
 --- | ---
 `mdc-layout-grid-breakpoints` | ブレークポイントの幅が設定されている SASS の Map。
-`mdc-layout-grid-default-margin`（訳注: `mdc-layout-grid-columns` の誤り） | カラム数が設定されている SASS の Map。
+`mdc-layout-grid-columns` | カラム数が設定されている SASS の Map。
 `mdc-layout-grid-default-margin` | グリッドの端と最初のセルの端との間隔が設定されている SASS の Map。
 `mdc-layout-grid-default-gutter` | 隣接したセルの間隔が設定されている SASS の Map。
 `mdc-layout-grid-column-width` | グリッドの列幅が設定されている SASS の Map。
