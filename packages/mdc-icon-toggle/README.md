@@ -28,10 +28,10 @@ MDC Icon Toggle はマテリアルデザインのアイコン切り替えボタ�
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-buttons#buttons-toggle-buttons">マテリアルデザインガイドライン: 切り替えボタン</a>
+    <a href="https://material.io/go/design-buttons#toggle-button">マテリアルデザインガイドライン: 切り替えボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-toggle">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">デモ（アイコンボタン）</a>
   </li>
 </ul>
 
