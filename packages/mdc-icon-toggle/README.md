@@ -17,7 +17,7 @@ will no longer be accepted for the `mdc-icon-toggle` package. It is recommended 
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/icon-toggle">
+     href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">
     <img src="{{ site.rootpath }}/images/mdc_web_screenshots/icon-toggles.png" width="20" alt="Icon toggles screenshot">
   </a>
 </div>-->
@@ -28,10 +28,10 @@ MDC Icon Toggle はマテリアルデザインのアイコン切り替えボタ�
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-buttons#buttons-toggle-buttons">マテリアルデザインガイドライン: 切り替えボタン</a>
+    <a href="https://material.io/go/design-buttons#toggle-button">マテリアルデザインガイドライン: 切り替えボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-toggle">デモ</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">デモ（アイコンボタン）</a>
   </li>
 </ul>
 

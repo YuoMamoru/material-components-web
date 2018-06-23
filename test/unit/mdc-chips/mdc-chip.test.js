@@ -202,3 +202,20 @@ test('#isSelected proxies to foundation', () => {
   component.isSelected();
   td.verify(mockFoundation.isSelected());
 });
+
+test('#get shouldRemoveOnTrailingIconClick proxies to foundation', () => {
+  const {component, mockFoundation} = setupMockFoundationTest();
+  assert.equal(component.shouldRemoveOnTrailingIconClick, mockFoundation.getShouldRemoveOnTrailingIconClick());
+});
+
+test('#set shouldRemoveOnTrailingIconClick proxies to foundation', () => {
+  const {component, mockFoundation} = setupMockFoundationTest();
+  component.shouldRemoveOnTrailingIconClick = false;
+  td.verify(mockFoundation.setShouldRemoveOnTrailingIconClick(false));
+});
+
+test('#beginExit proxies to foundation', () => {
+  const {component, mockFoundation} = setupMockFoundationTest();
+  component.beginExit();
+  td.verify(mockFoundation.beginExit());
+});

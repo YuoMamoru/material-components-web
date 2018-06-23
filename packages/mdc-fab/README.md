@@ -85,7 +85,9 @@ CSS クラス | 説明
 --- | ---
 `mdc-fab` | 必須。ボタン要素用
 `mdc-fab__icon` | 必須。アイコン要素用
+`mdc-fab__label` | オプション。テキストラベルで使われる。拡張 FAB にのみ適用される。
 `mdc-fab--mini` | オプション。FAB を小さいサイズにする
+`mdc-fab--extended` | オプション。FAB をテキストラベルが収まる大きさにする。
 `mdc-fab--exited` | オプション。FAB をビューの外にアニメーションさせる。<br>このクラスが削除されると FAB がビューに戻ってくる。
 
 > **`:disabled` に関する注釈**: FAB には無効なスタイルが定義されていません。FAB は操作を促すもので、無効な状態で表示すべきではありません。もし操作を行わない FAB を置きたいのであればユーザへの説明も書いておかなくてはなりません。
@@ -99,6 +101,7 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 ミキシン | 説明
 --- | ---
 `mdc-fab-accessible($container-color)` | FAB のコンテナの色を指定した色に変え、アクセシビリティ標準に沿うように FAB のインクとリップルの色を更新する。
+`mdc-fab-extended-fluid` | 拡張 FAB をスクリーン幅やレイアウトグリッドのようなコンテナに対してリキッドレイアウトにする。`@media` クエリの使用をサポートする幹審として公開されている。
 
 #### 高度な Sass ミキシン
 
@@ -109,6 +112,8 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 `mdc-fab-container-color($color)` | 与えた色にコンテナの色を設定する
 `mdc-fab-icon-size($width, $height)` |  `width` と `height` を指定することにより、アイコンの `width`、`height` と `font-size` プロパティを設定する。`$height` はオプションで省略した際には `$width` の値が設定される。`font-size` は `$width` の値に応じて設定される。
 `mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
+`mdc-fab-extended-padding($icon-padding, $label-padding)` | アイコンの両側およびラベルと FAB の端の間のパディングを設定する。アイコンがないときは、`$label-padding` は両側に適用される。
+`mdc-fab-extended-label-padding($label-padding)` | 拡張 FAB のラベルの両側のパディングを設定する。アイコンのない拡張 FAB のスタイルを設定するする際に便利。
 
 
 FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。

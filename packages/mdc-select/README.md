@@ -94,6 +94,25 @@ JavaScript をインポートする方法についてのより多くの情報は
 </div>
 ```
 
+### アウトラインされたセレクト
+
+アウトラインされたセレクトにおいては `mdc-line-ripple` 要素の代わりに `mdc-notched-outline` が使用し、ルート要素に `mdc-select--outlined` 修飾クラスを追加します。
+
+```html
+<div class="mdc-select mdc-select--outlined">
+  <select class="mdc-select__native-control">
+   ...
+  </select>
+  <label class="mdc-floating-label">Pick a Food Group</label>
+   <div class="mdc-notched-outline">
+     <svg>
+       <path class="mdc-notched-outline__path"></path>
+     </svg>
+   </div>
+   <div class="mdc-notched-outline__idle"></div>
+</div>
+```
+
 ### 追加情報
 
 #### 選択済みの選択肢を持つセレクト
@@ -187,6 +206,7 @@ Mixin | Description
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
 `mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
+`mdc-select-outline-corner-radius($color)` | セレクトがフォーカスしているときのへこんだ輪郭の色を設定する。
 
 > 注意: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 
@@ -229,11 +249,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 | メソッド | 説明 |
 | --- | --- |
+| `notchOutline(openNotch: boolean) => void` |　へこんだ輪郭を開く、もしくは閉じる。 |
 | `setValue(value: string) => void` | コンポーネントの値を設定する。 |
 | `setDisabled(disabled: boolean) => void` | disabled クラスを追加/削除し、コンポーネントの disabled 属性を設定する。 |
 | `setSelectedIndex(selectedIndex: number) => void` | コンポーネントの選択されているインデックスを設定する。 |
-
-
-| `setValue(value: string) => void` | Sets the value of the component. |
-| `setDisabled(disabled: boolean) => void` | Adds/removes disabled class, and sets disabled attribute on the component. |
-| `setSelectedIndex(selectedIndex: number) => void` | Sets the selected index of the component. |

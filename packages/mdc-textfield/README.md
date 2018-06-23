@@ -232,6 +232,7 @@ Mixin | Description
 `mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
 `mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
 `mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
+`mdc-text-field-caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
 
 ### `MDCTextField` プロパティとメソッド
 

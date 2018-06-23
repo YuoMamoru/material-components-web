@@ -234,7 +234,7 @@ module.exports.push({
   output: {
     filename: 'bundle.js'
   },
-  module: {
+  rules: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',

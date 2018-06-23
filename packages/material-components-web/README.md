@@ -32,7 +32,7 @@ const checkbox = new checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'
 
 `material-components-web` パッケージはすべての MDC Web コンポーネントを [mdc-auto-init](../mdc-auto-init) に自動的に登録するので、設定や手作業なしでコンポーネントの生成と初期化を非常に簡単に行えます。
 
-例として  [トグルアイコンボタン](../mdc-icon-button) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCICconButtonToggle"` 属性を追加するだけです。
+例として  [トグルアイコンボタン](../mdc-icon-button) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCIConButtonToggle"` 属性を追加するだけです。
 
 ```html
 <button class="mdc-icon-button material-icons" 
