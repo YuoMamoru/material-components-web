@@ -38,7 +38,7 @@ mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
 
 ### ステップ 1: Webpack の Sass の設定
 
-webpack-dev-server を使ってどのように webpack が Sass と JavaScript をバンドルするのかを見ていきます。まず、次のような package.json を作成します。
+`webpack-dev-server` を使ってどのように webpack が Sass と JavaScript をバンドルするのかを見ていきます。まず、`package.json` ファイルを作成するために `npm init` を実行します。完了したら、`scripts` セクションに `start` プロパティを追加します。
 
 ```json
 {
@@ -60,7 +60,7 @@ webpack-dev-server を使ってどのように webpack が Sass と JavaScript �
 次のコマンドでこれらすべてをインストールできます。
 
 ```
-npm install --save-dev webpack@3 webpack-dev-server@2 css-loader sass-loader node-sass extract-loader file-loader
+npm install webpack@3 webpack-dev-server@2 css-loader sass-loader node-sass extract-loader file-loader
 ```
 
 > 注意: 私たちは Webpack 3 を使うことを推奨します。なぜなら、Webpack 4 がまだ調査中だからです。また、webpack-dev-server 2 の使用を推奨します。このバージョンが Webpack 3 上で動作しているからです。
@@ -162,7 +162,7 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
 これらは以下のコマンドを実行してインストールできます。
 
 ```
-npm install --save-dev autoprefixer postcss-loader
+npm install autoprefixer postcss-loader
 ```
 
 `webpack.config.js` の冒頭に `autoprefixer` を追加します。
@@ -178,10 +178,15 @@ const autoprefixer = require('autoprefixer');
 { loader: 'css-loader' },
 { loader: 'postcss-loader',
   options: {
-     plugins: () => [autoprefixer({ grid: false })]
+     plugins: () => [autoprefixer()]
   }
 },
-{ loader: 'sass-loader' },
+{
+  loader: 'sass-loader',
+  options: {
+    includePaths: ['./node_modules']
+  }
+},
 ```
 
 > 注意: MDC Web Layout Grid を正しく動作させるには CSS Grid では autoprefixer を無効にします。また、webpack のローダーの順序が重要であることにも気を付けてください。
@@ -211,7 +216,7 @@ const autoprefixer = require('autoprefixer');
 以下のコマンドを実行するとこれらのすべてがインストールできます。
 
 ```
-npm install --save-dev babel-core babel-loader babel-preset-es2015
+npm install babel-core babel-loader babel-preset-es2015
 ```
 
 webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。以下の script タグを `index.html` に追加してください。
@@ -226,24 +231,73 @@ webpack が JavaScript をどのようにバンドルかを確認するには Ja
 console.log('hello world');
 ```
 
-次に、`webpack.config.js` ファイルに次のコードの追加し、`app.js` を `bundle.js` に変換する webpack を設定します。
+次に、`webpack.config.js` ファイルの次のプロパティを変更し、`app.js` を `bundle.js` に変換する webpack を設定します。
 
 ```js
-module.exports.push({
-  entry: './app.js',
+// entry を app.js と app.scss の配列に変更
+  entry: ['./app.scss', './app.js']
+  
+// output.filename を bundle.js に変更
   output: {
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+  }
+  
+// scss loader オブジェクトの後に babel-loader オブジェクトをルールへ追加
+...
+   {
+     test: /\.js$/,
+     loader: 'babel-loader',
+     query: {
+       presets: ['es2015'],
+     },
+   }]
+  
+```
+
+最終的に `webpack.config.js` ファイルはこのようになります。
+
+```js
+const autoprefixer = require('autoprefixer');
+
+module.exports = {
+  entry: ['./app.scss', './app.js'],
+  output: {
+    filename: 'bundle.js',
   },
-  rules: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015']
-      }
-    }]
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'bundle.css',
+            },
+          },
+          {loader: 'extract-loader'},
+          {loader: 'css-loader'},
+          {loader: 'postcss-loader',
+            options: {
+              plugins: () => [autoprefixer()],
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: ['./node_modules'],
+            },
+          }],
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015'],
+        },
+      }],
   },
-});
+};
 ```
 
 さあ、`npm start` を再び実行して http://localhost:8080 を開いてください。コンソールに “hello world” が確認できたでしょ！
