@@ -189,8 +189,9 @@ MDC Select は `<select>` 要素と `<option>` 要素を使っているので、
 | クラス | 説明 |
 | --- | --- |
 | `mdc-select` | 必須。 |
-| `mdc-select--box` | ボックスセレクトのようなセレクトのスタイル。 |
-| `mdc-select--disabled` | 無効となっているセレクトのスタイル。このクラスは `<select>` 要素に`disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
+| `mdc-select--box` | オプション。ボックスセレクトのようなセレクトのスタイル。 |
+| `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に`disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
+| `mdc-select--outlined` | オプション。アウトラインされたセレクトのようなセレクトのスタイル。 |
 | `mdc-select__native-control` | 必須。ネイティブな `<select>` 要素。 |
 
 ### Sass ミキシン

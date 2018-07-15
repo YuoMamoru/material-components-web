@@ -60,7 +60,7 @@ mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
 次のコマンドでこれらすべてをインストールできます。
 
 ```
-npm install webpack@3 webpack-dev-server@2 css-loader sass-loader node-sass extract-loader file-loader
+npm install --save-dev webpack@3 webpack-dev-server@2 css-loader sass-loader node-sass extract-loader file-loader
 ```
 
 > 注意: 私たちは Webpack 3 を使うことを推奨します。なぜなら、Webpack 4 がまだ調査中だからです。また、webpack-dev-server 2 の使用を推奨します。このバージョンが Webpack 3 上で動作しているからです。
@@ -128,7 +128,7 @@ npm start
 Sass から CSS にコンパイルするように webpack を設定したので、マテリアルデザインボタン用の Sass ファイルを入れてみましょう。まず、Node の依存関係をインストールします。
 
 ```
-npm install @material/button
+npm install --save-dev @material/button
 ```
 
 `@material/button` の Sass ファイルをインポートするように `app.scss` に記述する必要があります。ボタンをカスタマイズするために Sass ミキシンを使うことができます。以下のコードで “Hello World” の `app.scss` を置き換えてください。
@@ -153,6 +153,8 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
 }
 ```
 
+> 注意: `includePaths` の設定はすべての MDC Web パッケージが最新の状態に保たれているほとんどすべての場合において十分です。`node_modules` ディレクトリがネストしているが故の Sass のコンパイル上の問題が起きた場合は、代わりにカスタムインポーターを設定する方法が書かれた以下の [付録](#appendix-configuring-a-sass-importer-for-nested-node_modules) を参照してください。
+
 ベンダに固有のスタイルを Sass ファイルに追加するために、PostCSS に `autoprefixer` を設定する必要があります。
 
 次の Node 依存関係がすべて必要です。
@@ -162,7 +164,7 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
 これらは以下のコマンドを実行してインストールできます。
 
 ```
-npm install autoprefixer postcss-loader
+npm install --save-dev autoprefixer postcss-loader
 ```
 
 `webpack.config.js` の冒頭に `autoprefixer` を追加します。
@@ -189,8 +191,6 @@ const autoprefixer = require('autoprefixer');
 },
 ```
 
-> 注意: MDC Web Layout Grid を正しく動作させるには CSS Grid では autoprefixer を無効にします。また、webpack のローダーの順序が重要であることにも気を付けてください。
-
 `@material/button` にはボタンに必要な HTML についての [ドキュメント](packages/mdc-button/README.md) があります。`index.html` に MDC Button のマークアップを入れ、要素に `foo-button` クラスを追加しましょう。
 
 ```html
@@ -216,7 +216,7 @@ const autoprefixer = require('autoprefixer');
 以下のコマンドを実行するとこれらのすべてがインストールできます。
 
 ```
-npm install babel-core babel-loader babel-preset-es2015
+npm install --save-dev babel-core babel-loader babel-preset-es2015
 ```
 
 webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。以下の script タグを `index.html` に追加してください。
@@ -236,12 +236,12 @@ console.log('hello world');
 ```js
 // entry を app.js と app.scss の配列に変更
   entry: ['./app.scss', './app.js']
-  
+
 // output.filename を bundle.js に変更
   output: {
     filename: 'bundle.js',
   }
-  
+
 // scss loader オブジェクトの後に babel-loader オブジェクトをルールへ追加
 ...
    {
@@ -251,7 +251,7 @@ console.log('hello world');
        presets: ['es2015'],
      },
    }]
-  
+
 ```
 
 最終的に `webpack.config.js` ファイルはこのようになります。
@@ -307,7 +307,7 @@ module.exports = {
 ES2015 から JavaScript にコンパイルするように webpack を設定したので、マテリアルデザインリップル用の ES2015 ファイルを入れてみましょう。まず、Node の依存関係をインストールします。
 
 ```
-npm install @material/ripple
+npm install --save-dev @material/ripple
 ```
 
 `@material/ripple` の ES2015 ファイルをインポートするように `app.js` に記述する必要があります。DOM 要素を使って MDCRipple を初期化することができます。以下のコードで “hello world” の `app.js` を置き換えてください。
@@ -320,3 +320,50 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 さあ、`npm start` を再び実行して http://localhost:8080 を開いてください。ボタン上にマテリアルデザインリップルが確認できたでしょ！
 
 <img src="button_with_ripple.png" alt="Button with Ripple" width="90" height="36">
+
+## <a name="appendix-configuring-a-sass-importer-for-nested-node_modules"></a>付録: ネストしている node_modules のための Sass インポーターの設定
+
+競合する個別の MDC Web パッケージのバージョンに依存している場合は、`node_modules` フォルダをネストさせることができます。このようなときには上に記載した `includePaths` の設定だと Sass のコンパイルの際にエラーが発生することがあります。これは Sass が最上位階層の `node_modules` ディレクトリの直下の `@material` パッケージのみを参照するからです。
+
+あるいは、次のようにインポーターを実装することもできます。これは node のモジュール解決アルゴリズムをインポートするファイルに最も近い依存関係を探すために利用しています。
+
+```js
+const path = require('path');
+
+function tryResolve_(url, sourceFilename) {
+  // インポーターが例外を発生したときに潜在的な libsass のエラーによる node-sass の失敗を回避するため、
+  // try/catch 内に require.resolve を入れる
+  try {
+    return require.resolve(url, {paths: [path.dirname(sourceFilename)]});
+  } catch (e) {
+    return '';
+  }
+}
+
+function tryResolveScss(url, sourceFilename) {
+  // .scss と _ での開始は省略できる
+  const normalizedUrl = url.endsWith('.scss') ? url : `${url}.scss`;
+  return tryResolve_(normalizedUrl, sourceFilename) ||
+    tryResolve_(path.join(path.dirname(normalizedUrl), `_${path.basename(normalizedUrl)}`),
+      sourceFilename);
+}
+
+function materialImporter(url, prev) {
+  if (url.startsWith('@material')) {
+    const resolved = tryResolveScss(url, prev);
+    return {file: resolved || url};
+  }
+  return {file: url};
+}
+```
+
+そして、`sass-loader` の設定は次のようになります。
+
+```js
+{
+  loader: 'sass-loader',
+  options: {
+    importer: materialImporter
+  },
+}
+```
