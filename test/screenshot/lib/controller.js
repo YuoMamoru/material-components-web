@@ -24,6 +24,7 @@ const CloudStorage = require('./cloud-storage');
 const Duration = require('./duration');
 const GitRepo = require('./git-repo');
 const GoldenIo = require('./golden-io');
+const Logger = require('./logger');
 const ReportBuilder = require('./report-builder');
 const ReportWriter = require('./report-writer');
 const SeleniumApi = require('./selenium-api');
@@ -54,6 +55,12 @@ class Controller {
      * @private
      */
     this.goldenIo_ = new GoldenIo();
+
+    /**
+     * @type {!Logger}
+     * @private
+     */
+    this.logger_ = new Logger(__filename);
 
     /**
      * @type {!ReportBuilder}
@@ -128,7 +135,9 @@ class Controller {
    * @return {!Promise<!mdc.proto.ReportData>}
    */
   async uploadAllAssets(reportData) {
+    this.logger_.foldStart('screenshot.upload', 'Controller#uploadAllAssets()');
     await this.cloudStorage_.uploadAllAssets(reportData);
+    this.logger_.foldEnd('screenshot.upload');
     return reportData;
   }
 
@@ -137,8 +146,10 @@ class Controller {
    * @return {!Promise<!mdc.proto.ReportData>}
    */
   async captureAllPages(reportData) {
+    this.logger_.foldStart('screenshot.capture', 'Controller#captureAllPages()');
     await this.seleniumApi_.captureAllPages(reportData);
     await this.cloudStorage_.uploadAllScreenshots(reportData);
+    this.logger_.foldEnd('screenshot.capture');
     return reportData;
   }
 
@@ -147,6 +158,8 @@ class Controller {
    * @return {!Promise<!mdc.proto.ReportData>}
    */
   async compareAllScreenshots(reportData) {
+    this.logger_.foldStart('screenshot.compare', 'Controller#compareAllScreenshots()');
+
     await this.reportBuilder_.populateScreenshotMaps(reportData.user_agents, reportData.screenshots);
     await this.cloudStorage_.uploadAllDiffs(reportData);
 
@@ -157,6 +170,8 @@ class Controller {
     meta.end_time_iso_utc = new Date().toISOString();
     meta.duration_ms = Duration.elapsed(meta.start_time_iso_utc, meta.end_time_iso_utc).toMillis();
 
+    this.logger_.foldEnd('screenshot.compare');
+
     return reportData;
   }
 
@@ -165,10 +180,25 @@ class Controller {
    * @return {!Promise<!mdc.proto.ReportData>}
    */
   async generateReportPage(reportData) {
+    this.logger_.foldStart('screenshot.report', 'Controller#generateReportPage()');
+
     await this.reportWriter_.generateReportPage(reportData);
     await this.cloudStorage_.uploadDiffReport(reportData);
 
-    console.log('Diff report:', reportData.meta.report_html_file.public_url);
+    this.logger_.foldEnd('screenshot.report');
+
+    // TODO(acdvorak): Store this directly in the proto so we don't have to recalculate it all over the place
+    const numChanges =
+      reportData.screenshots.changed_screenshot_list.length +
+      reportData.screenshots.added_screenshot_list.length +
+      reportData.screenshots.removed_screenshot_list.length;
+
+    if (numChanges > 0) {
+      this.logger_.error(`\n\n${numChanges} screenshot${numChanges === 1 ? '' : 's'} changed!\n`);
+    } else {
+      this.logger_.log(`\n\n${numChanges} screenshot${numChanges === 1 ? '' : 's'} changed!\n`);
+    }
+    this.logger_.log('Diff report:', Logger.colors.bold.red(reportData.meta.report_html_file.public_url));
 
     return reportData;
   }
@@ -178,26 +208,19 @@ class Controller {
    * @return {!Promise<number>}
    */
   async getTestExitCode(reportData) {
-    const isOnline = await this.cli_.isOnline();
+    // Pull requests display screenshot diffs as a separate "status check" in the GitHub UI, so we don't want to mark
+    // the Travis run as "failed".
+    if (Number(process.env.TRAVIS_PULL_REQUEST)) {
+      return ExitCode.OK;
+    }
+
+    // TODO(acdvorak): Store this directly in the proto so we don't have to recalculate it all over the place
     const numChanges =
       reportData.screenshots.changed_screenshot_list.length +
       reportData.screenshots.added_screenshot_list.length +
       reportData.screenshots.removed_screenshot_list.length;
 
-    if (numChanges === 0) {
-      console.log('\n0 screenshots changed!');
-      return ExitCode.OK;
-    }
-
-    console.error(`\n${numChanges} screenshot${numChanges === 1 ? '' : 's'} changed!`);
-
-    if (isOnline) {
-      return ExitCode.CHANGES_FOUND;
-    }
-
-    // Allow the report HTTP server to keep running by waiting for a promise that never resolves.
-    console.log('\nPress Ctrl-C to kill the report server');
-    await new Promise(() => {});
+    return numChanges > 0 ? ExitCode.CHANGES_FOUND : ExitCode.OK;
   }
 
   /**
@@ -225,6 +248,7 @@ class Controller {
   }
 
   /**
+   * @param {string} title
    * @param {!Array<!mdc.proto.Screenshot>} screenshots
    * @private
    */
