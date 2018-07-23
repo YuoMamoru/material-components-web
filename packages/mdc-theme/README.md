@@ -145,9 +145,9 @@ CSS クラス | 説明
 @debug mdc-theme-contrast-tone(#9c27b0); // light
 ```
 
-#### `mdc-theme-prop-value($property)`
+#### `mdc-theme-prop-value($style)`
 
-`$property` が色リテラル（例: `blue` や `#fff`）のときは入力値をそのまま返します。そうでないときはテーマのプロパティと一致する値（`$mdc-theme-property-values` に収められています）を返します。`$property` が色でもテーマプロパティに存在する値でもないときはエラーがスローされます。
+`$style` が色（色リテラルや `currentColor` 、もしくは CSS カスタムプロパティ）のときは入力値をそのまま返します。そうでないときは `$style` をテーマのプロパティ名とみなし、`$mdc-theme-property-values` から一致する値を返します。処理が失敗するときにはエラーがスローされます。
 
 これは主に `mdc-theme-prop` を直接利用できない状況（例: `box-shadow`）で役立ちます。
 
