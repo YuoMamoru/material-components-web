@@ -238,19 +238,14 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `floatLabel(value: boolean) => void` | ラベルを上に動かしたり戻したりする。 |
 | `activateBottomLine() => void` | 下線のコンポーネントを有効にする。 |
 | `deactivateBottomLine() => void` | 下線のコンポーネントを無効にする。 |
-| `setDisabled(disabled: boolean) => void` | `<select>` 要素に `disabled` プロパティを設定する |
-| `registerInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー `handler` を `<select>` 要素に追加する。 |
-| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー `handler` を `<select>` 要素から削除する。 |
-| `getSelectedIndex() => number` | `<select>` 要素の選択されているインデックスを返す。 |
-| `setSelectedIndex(index: number) => void` | `<select>` 要素の選択されているインデックスを設定する。 |
-| `getValue() => string` | `<select>` 要素の選択されている値を返す。 |
-| `setValue(value: string) => void` | `<select>` 要素の値を設定する。 |
+| `getValue() => string` | `select` 要素の選択されている値を返す。 |
 
 ### `MDCSelectFoundation`
 
 | メソッド | 説明 |
 | --- | --- |
-| `notchOutline(openNotch: boolean) => void` |　へこんだ輪郭を開く、もしくは閉じる。 |
-| `setValue(value: string) => void` | コンポーネントの値を設定する。 |
-| `setDisabled(disabled: boolean) => void` | disabled クラスを追加/削除し、コンポーネントの disabled 属性を設定する。 |
-| `setSelectedIndex(selectedIndex: number) => void` | コンポーネントの選択されているインデックスを設定する。 |
+| `notchOutline(openNotch: boolean) => void` | へこんだ輪郭を開く、もしくは閉じる。 |
+| `updateDisabledStyle(disabled: boolean) => void` | disabled の状態に応じて外観を更新する。`disabled` の状態が変わるたびにこれを呼び出す必要がある。 |
+| `handleFocus() => void` | `select` 要素の focus イベントを処理する。 |
+| `handleBlur() => void` | `select` 要素の blur イベントを処理する。 |
+| `handleChange() => void` | `select` 要素の値の変更を処理する。`change` イベントとコンポーネント API を通じて要求されたプログラム上での変更の両方でこれを呼び出す必要がある。 |

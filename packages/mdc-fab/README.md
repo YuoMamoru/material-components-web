@@ -77,6 +77,19 @@ const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
 
 > JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
+## 様々な使用法
+
+### 拡張された FAB
+
+```html
+<button class="mdc-fab mdc-fab--extended">
+  <span class="material-icons mdc-fab__icon">add</span>
+  <span class="mdc-fab__label">Create</span>
+</button>
+```
+
+> _注意:_ 拡張 FAB はアイコンがオプションであるのに対してラベルは必ず入れる必要があります。アイコントラベルはコンテキストに基づいて適切な順序で指定することができます。
+
 ## スタイルのカスタマイズ
 
 ### CSS クラス
