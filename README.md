@@ -113,3 +113,16 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 - **Safari** on iOS and macOS
 - **Edge** on Windows
 - **IE 11** on Windows
+
+## 謝辞
+
+速く、信頼性の高い [自動スクリーンショットテスト](test/screenshot/) は以下の人たちが気前よく提供してくれました。
+
+[![CrossBrowserTesting logo](test/screenshot/static/images/cbt-logo.png)](https://crossbrowsertesting.com/)
+
+オープンソースプロジェクトはフリーなのです！
+
+追加の継続的インテグレーションサービスは以下のご好意によるものです。
+
+- [Travis CI](https://travis-ci.com/)
+- [Sauce Labs](https://saucelabs.com/)

@@ -195,6 +195,7 @@ snackbar.dismissesOnAction = false
 | `setActionText(actionText: string) => void` | 操作ボタン要素のテキストを設定する。 |
 | `setMessageText(message: string) => void` | メッセージ要素のテキストを設定する。 |
 | `setFocus() => void` | 操作ボタンにフォーカスを設定する。 |
+| `isFocused() => boolean` | アクションボタンにフォーカスがあるかどうかを検出します。 |
 | `visibilityIsHidden() => boolean` | document.hidden プロパティを返す。 |
 | `registerBlurHandler(handler: EventListener) => void` | 操作ボタン上で `blur` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
 | `deregisterBlurHandler(handler: EventListener) => void` | 操作ボタンから `blur` イベントハンドラの登録を解除する。 |

@@ -50,10 +50,6 @@ npm install @material/textfield
 </div>
 ```
 
-> 注意: Text field は input の type のうち、 `text` 、`number` と `password` に対応しています（例えば `<input type="password" class="mdc-text-field__input">`）。
->
-> その他の input type（`date` のような）には現在は対応していません。
-
 > 注意: 詳細については、[MDC Line Ripple](../mdc-line-ripple/README.md) と [MDC Floating Label](../mdc-floating-label/README.md) を参照してください。
 
 ### スタイル
@@ -240,6 +236,7 @@ Mixin | Description
 --- | --- | ---
 `value` | String | ファンデーションの `getValue`/`setValue` メソッドの代替
 `disable` | Boolean | ファンデーションの `isDisabled`/`setDisabled` メソッドの代替
+`useNativeValidation` | Boolean (書込専用) | ファンデーションの `setUseNativeValidation` メソッドの代替
 `valid` | Boolean | ファンデーションの `isValid`/`setValid` の代替
 `required` | Boolean | ファンデーションの `isRequired`/`setRequired` の代替
 `helperTextContent` | String | ファンデーションの `setHelperTextContent` の設定時のおける代替
@@ -288,8 +285,9 @@ React や Angular のような JavaScript フレームワークを使ってい�
 --- | ---
 `getValue() => string` | input 要素の値を返す。
 `setValue(value: string)` | input 要素の値を設定する。
-`isValid() => boolean` | カスタムバリデーションが設定されていればその値を返す。そうでないときはネイティブなバリデーションチェックの結果を返す。
-`setValid(isValid: boolean)` | カスタムバリデーションを設定する。一度設定するとネイティブなバリデーションチェックは無効になる。
+`setUseNativeValidation(useNativeValidation: boolean)` | ネイティブな HTML の検証を使う（`true`、初期値）か、スタイルを更新によるカスタム検証使う（`false`）かを設定する。
+`setValid(isValid: boolean)` | カスタム検証を設定し、それにそったスタイルで更新する。`setUseNativeValidation(false)` も呼ばない限り、ネイティブ検証が引き続き利用されることに気を付けること。
+`isValid() => boolean` | コンポーネントの現在の検証状態（ネイティブもしくはカスタムのいずれか、`setUseNativeValidation()` がどのように設定されたかによる）を返す。
 `isDisabled() => boolean` | input 要素が無効かどうかを返す。
 `setDisabled(disabled: boolean) => void` | input 要素の無効かどうか状態を更新する。
 `isRequired() => boolean` | input 要素が必須であるかどうかを返す。
