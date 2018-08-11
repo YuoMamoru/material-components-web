@@ -325,7 +325,7 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 
 競合する個別の MDC Web パッケージのバージョンに依存している場合は、`node_modules` フォルダをネストさせることができます。このようなときには上に記載した `includePaths` の設定だと Sass のコンパイルの際にエラーが発生することがあります。これは Sass が最上位階層の `node_modules` ディレクトリの直下の `@material` パッケージのみを参照するからです。
 
-あるいは、次のようにインポーターを実装することもできます。これは node のモジュール解決アルゴリズムをインポートするファイルに最も近い依存関係を探すために利用しています。
+あるいは、次のようにインポーターを実装することもできます。これは node のモジュール解決アルゴリズムをインポートするファイルに最も近い依存関係を探すために利用しています。以下のコードを `webpack.config.js` の冒頭付近（`exports` の前に）追加してください。
 
 ```js
 const path = require('path');
@@ -357,7 +357,7 @@ function materialImporter(url, prev) {
 }
 ```
 
-そして、`sass-loader` の設定は次のようになります。
+そして `sass-loader` の設定を次のように更新してください。
 
 ```js
 {

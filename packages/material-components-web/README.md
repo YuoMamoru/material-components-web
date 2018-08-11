@@ -37,13 +37,13 @@ const checkbox = new checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'
 例として  [トグルアイコンボタン](../mdc-icon-button) を使いたい場合で言うと、必要な DOM を記述し、`data-mdc-auto-init="MDCIConButtonToggle"` 属性を追加するだけです。
 
 ```html
-<button class="mdc-icon-button material-icons" 
+<button class="mdc-icon-button" 
    aria-label="Add to favorites"
-   data-toggle-on-content="favorite"
-   data-toggle-on-label="Remove from favorites"
-   data-toggle-off-content="favorite_border"
-   data-toggle-off-label="Add to favorites"
-   data-mdc-auto-init="MDCIconButtonToggle">favorite_border</i>
+   aria-pressed="false"
+   data-mdc-auto-init="MDCIconButtonToggle">
+  <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
+  <i class="material-icons mdc-icon-button__icon">favorite_border</i>
+</button>
 ```
 
 HTML の最後のほうに次のスクリプトタグを追加します。
