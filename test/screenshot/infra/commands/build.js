@@ -21,6 +21,7 @@ const debounce = require('debounce');
 
 const CleanCommand = require('./clean');
 const Cli = require('../lib/cli');
+const CliColor = require('../lib/logger').colors;
 const IndexCommand = require('./index');
 const Logger = require('../lib/logger');
 const ProcessManager = require('../lib/process-manager');
@@ -29,7 +30,7 @@ const {TEST_DIR_RELATIVE_PATH} = require('../lib/constants');
 
 class BuildCommand {
   constructor() {
-    this.logger_ = new Logger(__filename);
+    this.logger_ = new Logger();
     this.processManager_ = new ProcessManager();
 
     this.cleanCommand_ = new CleanCommand();
@@ -65,6 +66,13 @@ class BuildCommand {
     }
 
     this.logger_.foldEnd('screenshot.build');
+
+    if (!shouldWatch) {
+      this.logger_.log('');
+      this.logger_.log('');
+      this.logger_.log(CliColor.bold.green('✨✨✨ Aww yiss - MDC Web build succeeded! ✨✨✨'));
+      this.logger_.log('');
+    }
   }
 
   /**
@@ -119,13 +127,15 @@ class BuildCommand {
   async shouldBuild_() {
     const cli = new Cli();
     if (cli.skipBuild) {
-      console.error('Skipping build step');
+      console.error(CliColor.magenta('Skipping build step.'));
+      console.error('');
       return false;
     }
 
     const pid = await this.getExistingProcessId_();
     if (pid) {
-      console.log(`Build is already running (pid ${pid})`);
+      console.log(CliColor.bold(`Build is already running (pid ${pid}).`));
+      console.log('');
       return false;
     }
 

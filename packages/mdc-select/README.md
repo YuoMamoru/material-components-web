@@ -235,10 +235,17 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | --- | --- |
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
-| `floatLabel(value: boolean) => void` | ラベルを上に動かしたり戻したりする。 |
+| `hasClass(className: string) => boolean` | ルート要素がクラスリストにクラス名を持っていれば true を返す。 |
 | `activateBottomLine() => void` | 下線のコンポーネントを有効にする。 |
 | `deactivateBottomLine() => void` | 下線のコンポーネントを無効にする。 |
 | `getValue() => string` | `select` 要素の選択されている値を返す。 |
+| `isRtl() => boolean` | ルート要素の親要素が RTL 内にあれば true を返す。 |
+| `hasLabel() => boolean` | `select` がラベルと関連付けられていれば true を返す。 |
+| `floatLabel(value: boolean) => void` | ラベルを上に動かしたり戻したりする。 |
+| `getLabelWidth() => number` | ラベル要素の offsetWidth を返す。 |
+| `hasOutline() => boolean` | `select` にへこんだ輪郭要素があれば true を返す。 |
+| `notchOutline(labelWidth: number, isRtl, boolean) => void` | へこんだ輪郭要素を "へこんだ状態" に切り替える。 |
+| `closeOutline() => void` | へこんだ輪郭要素を閉じた状態に切り替える。 |
 
 ### `MDCSelectFoundation`
 

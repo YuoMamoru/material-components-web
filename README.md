@@ -113,3 +113,16 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 - **Safari** on iOS and macOS
 - **Edge** on Windows
 - **IE 11** on Windows
+
+## Thank you
+
+Fast, reliable [automated screenshot testing](test/screenshot/) is generously provided by:
+
+[![CrossBrowserTesting logo](test/screenshot/static/images/cbt-logo.png)](https://crossbrowsertesting.com/)
+
+Free for open source projects!
+
+Additional continuous integration services courtesy of:
+
+- [Travis CI](https://travis-ci.com/)
+- [Sauce Labs](https://saucelabs.com/)
