@@ -70,9 +70,9 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 
 ## 様々な使用法
 
-### 無効なスイッチ
+### 無効なスイッチの初期化
 
-スイッチを無効にするには、'mdc-switch' 要素に 'mdc-switch--disabled' クラスを加えることによってできます。
+`mdc-switch` 要素に `mdc-switch--disabled` クラスを追加し、スイッチを無効にするために `mdc-switch__native-control` 要素に `disabled` 属性を追加します。このロジックは `MDCSwitchFoundation.setDisabled` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
 
 ```html
 <div class="mdc-switch mdc-switch--disabled">
@@ -86,6 +86,23 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 <label for="another-basic-switch">off/on</label>
 ```
 
+### "On" のスイッチの初期化
+
+`mdc-switch` 要素に `mdc-switch--checked` クラスを追加し、スイッチを "on" に切り替えるために `mdc-switch__native-control` 要素に `checked` 属性を追加します。このロジックは `MDCSwitchFoundation.setChecked` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
+
+
+```html
+<div class="mdc-switch mdc-switch--checked">
+  <div class="mdc-switch__track"></div>
+  <div class="mdc-switch__thumb-underlay">
+    <div class="mdc-switch__thumb">
+        <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" checked>
+    </div>
+  </div>
+</div>
+<label for="another-basic-switch">off/on</label>
+```
+
 ## スタイルのカスタマイズ
 
 ### CSS クラス
@@ -93,6 +110,8 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 CSS クラス | 説明
 --- | ---
 `mdc-switch` | 必須。親要素につける。
+`mdc-switch--disabled` | オプション。スイッチを無効にする。
+`mdc-switch--checked` | オプション。スイッチをチェック状態（"on"）にする。
 `mdc-switch__track` | 必須。トラック要素につける。
 `mdc-switch__thumb-underlay` | 必須。リップル効果に必要。
 `mdc-switch__thumb` | 必須。つまみ要素につける。
@@ -131,19 +150,15 @@ React や Angular といった JavaScript フレームワークを使用して�
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 | `setNativeControlChecked(checked: boolean)` | ネイティブコントロールのチェック状態を設定する。 |
-| `isNativeControlChecked() => boolean` | ネイティブコントロールのチェック状態を返す。 | 
 | `setNativeControlDisabled(disabled: boolean)` | ネイティブコントロールの利用不可の状態を設定する。 |
-| `isNativeControlDisabled() => boolean` | ネイティブコントロールの利用不可の状態を返す。 | 
 
 ### `MDCSwitchFoundation`
 
 | メソッド | 説明 |
 | --- | --- |
-| `isChecked() => boolean` | コントロールがチェックされているかどうかを返す。 |
 | `setChecked(checked: boolean) => void` | ネイティブコントロールのチェック状態を設定し、チェック状態を反映したスタイルに更新する。 |
-| `isDisabled() => boolean` | ネイティブコントロールが利用不可かどうかを返す。 |
 | `setDisabled(disabled: boolean) => void` | ネイティブコントロールの利用不可かどうかの値を設定し、利用不可かどうかの状態を反映したスタイルに更新する。 |
-| `handleChange() => void` | ネイティブコントロールからの change イベントをハンドリングする。 |
+| `handleChange(evt: Event) => void` | ネイティブコントロールからの change イベントをハンドリングする。 |
 
 ### `MDCSwitchFoundation` イベントハンドラ
 スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラを追加する必要があります。この例としては、[MDCSwitch](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。

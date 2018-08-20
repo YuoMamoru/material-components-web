@@ -135,8 +135,6 @@ React や Angular といった JavaScript フレームワークを使用して�
 `addClass(className: string) => void` | ルート要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
 `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを含んでいれば true を返す。
-`registerEventHandler(evtType: string, handler: EventListener) => void` | ルート要素にイベントリスナーを登録する。
-`deregisterEventHandler(evtType: string, handler: EventListener) => void` | ルート要素からイベントリスナーの登録を解除する。
 `setAttr(attr: string, value: string) => void` | ルート要素に与えられた値を属性として設定する。
 `activateIndicator(previousIndicatorClientRect: ClientRect=) => void` | タブインジケータサブコンポーネントを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivateIndicator() => void` | タブインジケータサブコンポーネントを無効にする。
@@ -152,10 +150,17 @@ React や Angular といった JavaScript フレームワークを使用して�
 
 メソッド | 説明
 --- | ---
-`handleTransitionEnd(evt: Event) => void` | `"transitionend"` イベントのためのロジックを制御する。
 `handleClick() => void` | `"click"` イベントのロジックをハンドリングする。
 `isActive() => boolean` | タブがアクティブかどうかを返す。
 `activate(previousIndicatorClientRect: ClientRect=) => void` | タブを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivate() => void` | タブを無効にする。
 `computeIndicatorClientRect() => ClientRect` | タブインジケータサブコンポーネントのコンテンツ境界のクライアントレクトを返す。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
+
+### `MDCTabFoundation` イベントハンドラ
+
+タブコンポーネントをラップする際には、以下のイベントハンドラを登録する必要があります。この例としては [MDCTab](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
+
+イベント | 要素 | ファンデーションハンドラ
+--- | --- | ---
+`click` | ルート要素 | `handleClick()`

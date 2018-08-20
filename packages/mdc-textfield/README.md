@@ -152,10 +152,10 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### 入力済みのテキスト欄
 
-値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` と `mdc-text-field--upgraded` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
-<div class="mdc-text-field mdc-text-field--upgraded">
+<div class="mdc-text-field">
   <input type="text" id="pre-filled" class="mdc-text-field__input" value="Pre-filled value">
   <label class="mdc-floating-label mdc-floating-label--float-above" for="pre-filled">
     Label in correct place
@@ -171,7 +171,6 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 CSS クラス | 説明
 --- | ---
 `mdc-text-field` | 必須。
-`mdc-text-field--upgraded` | テキスト欄がアップグレードされたことを表す。JavaScript を使っている。
 `mdc-text-field--box` | ボックス型のテキスト欄として表示する。
 `mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。

@@ -18,6 +18,8 @@ path: /catalog/menus/
 
 MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/go/design-menus) に準拠したメニューコンポーネントです。メニューが開く際に正しい位置に配置するには JavaScript が必要です。
 
+メニューは一時的な領域に選択肢のリストを表示します。ユーザがボタン、アクション、その他のコントロールを使う際に選択肢のリストは表示されます。
+
 ## デザインと API ドキュメント
 
 <ul class="icon-list">
@@ -35,11 +37,9 @@ MDC Menu コンポーネントは [マテリアルデザインメニュー仕様
 npm install @material/menu
 ```
 
-## 使用法
+## 基本的な使用法
 
 ### HTML 構造
-
-メニューは最初は非表示で、JS の API を通じて開かれるときに表示されます。
 
 ```html
 <div class="mdc-menu" tabindex="-1">
@@ -54,13 +54,66 @@ npm install @material/menu
 </div>
 ```
 
-#### 親要素に基づく配置
+### スタイル
+
+```scss
+@import "@material/menu/mdc-list";
+@import "@material/menu/mdc-menu-surface";
+@import "@material/menu/mdc-menu";
+```
+
+### JavaScript のインスタンス化
+
+```js
+import {MDCMenu} from '@material/menu';
+
+const menu = new MDCMenu(document.querySelector('.mdc-menu'));
+menu.show();
+```
+
+> JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+
+## 様々な使用法
+
+### 選択肢をグループ化したメニュー
+
+メニューにはグループ内の要素の選択状態を表すことの可能なリスト項目のグループを含めることができます。
+
+```html
+<div class="mdc-menu mdc-menu-surface" tabindex="-1" id="demo-menu">
+  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+    <li>
+      <ul class="mdc-menu__selection-group">
+        <li class="mdc-list-item" role="menuitem">
+          <span class="mdc-menu__selection-group-icon">
+            ...
+          </span>
+          Single
+        </li>
+        <li class="mdc-list-item" role="menuitem">
+          <span class="mdc-menu__selection-group-icon">
+           ...
+          </span>
+          1.15
+        </li>
+      </ul>
+    </li>
+    <li class="mdc-list-divider" role="separator"></li>
+    <li class="mdc-list-item" role="menuitem">Add space before paragraph</li>
+    ...
+  </ul>
+</div>
+```
+
+### アンカーと配置
+
+#### 親要素へのアンカー
 
 メニューは開く際に親要素に基づいて自動的に配置されます。
 
 ```html
-<div id="toolbar" class="toolbar mdc-menu-anchor">
-  <div class="mdc-menu">
+<div id="toolbar" class="toolbar mdc-menu-surface--anchor">
+  <div class="mdc-menu mdc-menu-surface">
   ...
   </div>
 </div>
@@ -71,131 +124,120 @@ npm install @material/menu
 メニューはアンカークラスをもつほかの要素でラップすることで、その要素に基づいて配置することもできます。
 
 ```html
-<div id="demo-menu" class="mdc-menu-anchor">
+<div id="demo-menu" class="mdc-menu-surface--anchor">
   <button id="menu-button">Open Menu</button>
-  <div class="mdc-menu">
+  <div class="mdc-menu mdc-menu-surface">
   ...
   </div>
 </div>
 ```
 
-#### 無効なメニュー項目
+#### 固定配置
 
-MDC Menu のようなコンポーネントを使うとリスト項目を無効にすることができます。リスト項目を無効にするには `aria-disabled` プロパティに `"true"` を設定し、`tabindex` を `"-1"` にします。
+メニューは表示の際に固定された配置を使うことができます。
 
 ```html
-<div class="mdc-menu" tabindex="-1">
-  <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
-    <li class="mdc-list-item" role="menuitem" tabindex="0">
-      A Menu Item
-    </li>
-    <li class="mdc-list-item" role="menuitem" tabindex="-1" aria-disabled="true">
-      Disabled Menu Item
-    </li>
-  </ul>
+<div class="mdc-menu mdc-menu-surface">
+...
 </div>
 ```
+
+```js
+// ...
+menu.setFixedPosition(true);
+```
+
+#### 絶対座標配置
+
+The menu can use absolutely positioned when being displayed.
+メニューは表示する際に絶対座標で配置することができます。
+
+```html
+<div class="mdc-menu mdc-menu-surface">
+...
+</div>
+```
+
+```js
+// ...
+menu.hoistMenuToBody(); // メニューがすでに body に配置されている場合は不要。
+menu.setAbsolutePosition(100, 100);
+```
+
+## スタイルのカスタマイズ
 
 ### CSS クラス
 
 CSS クラス | 説明
 --- | ---
-`mdc-menu` | 必須
-`mdc-menu--animating-open` | メニューが現在開くアニメーションを実行していることを示します。アニメーションが完了するとこのクラスは削除されます。
-`mdc-menu--open` | メニューが現在開いている、もしくは、開くアニメーションを実行していることを示します。
-`mdc-menu--animating-closed` | メニューが現在閉じるアニメーションを実行していることを示します。アニメーションが完了するとこのクラスは削除されます。
+`mdc-menu` | ルート要素に必須
+`mdc-menu-surface` | ルート要素に必須。その他の `mdc-menu-surface` クラスに関しては[`mdc-menu-surface` ドキュメント](../mdc-menu-surface) を参照のこと。
+`mdc-list` | ネストした `ul` 要素に必須。その他の `mdc-list` クラスに関しては[`mdc-list` ドキュメント](../mdc-list) を参照のこと。
+`mdc-menu__selection-group` | 選択肢のグループを表す `mdc-list-item` 要素のグループをラップする際に利用する。
+`mdc-menu__selection-group-icon` | どの項目が選択されているかを表すために選択肢グループを使う場合は必須。リスト項目の選択状態を表すアイコンもしくは SVG を含めなくてはならない。
+`mdc-menu-item--selected` | 選択肢グループ内のどの項目が選ばれているかを表すために使用する。
 
-### JS の例
+### Sass ミキシン
 
-```js
-  // インスタンス化
-  var menuEl = document.querySelector('#toolbar');
-  var menu = new mdc.menu.MDCMenu(menuEl);
-  var menuButtonEl = document.querySelector('#menu-button');
+ミキシン | 説明
+--- | ---
+`mdc-menu-width($width)` | メニューの `width` を設定するために使う。単位なし（例えば `4` or `5`）で使うときにはベースの幅（`56px`）をかけて `width` を計算する。単位あり（例えば `240px`、`15%` や `calc(200px + 10px)`）で使うときには与えられた値を厳密に利用して `width` を設定する。
 
-  // メニューの 開く/閉じる を切り替える
-  menuButtonEl.addEventListener('click', function() {
-    menu.open = !menu.open;
-  });
-
-  // 選択項目の取得
-  menuEl.addEventListener('MDCMenu:selected', function(evt) {
-     var detail = evt.detail;
-  });
-
-  // Bottom End に基準の角を設定
-  menu.setAnchorCorner(Corner.BOTTOM_END);
-
-  // メニューを開くアニメーションをオフにする
-  menu.quickOpen = true;
-```
-
-### `MDCMenu`
+## `MDCMenu` のプロパティとメソッド
 
 JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 プロパティ | 型 | 説明
 --- | --- | ---
-`open` | Boolean | ファンデーションの `isOpen`/(`open`, `close`) メソッドの代替。
-`items` | Array<Element> | すべての `.mdc-list-item[role]` 要素を取得するファンデーションのコンテナの代替。
-`itemsContainer` | Element | ファンデーションのルート要素に対して `mdc-menu__items` コンテナ要素を照会する。
-`quickOpen` | Boolean | ファンネーションの `setQuickOpen()` メソッドの代替。
+`open` | Boolean | メニュー表面の `open` プロパティの代替。
+`items` | Array<Element> | 全 `.mdc-list-item` 要素の問い合わせ用のリストの代替。
+`quickOpen` | Boolean | メニュー表面の `quickOpen` プロパティの代替。
 
 メソッド | 説明
 --- | ---
-`show({focusIndex: ?number}) => void` | ファンデーションの `open()` メソッドの代替。オプションのパラメータを使うと、メニューが開いた後にどの項目がフォーカスを受けるかを指定できる。
-`hide() => void` | ファンデーションの `close()` メソッドの代替。
-`setAnchorCorner(Corner) => void` | ファンデーションの `setAnchorCorner(Corner)` メソッドの代替。
-`setAnchorMargin(AnchorMargin) => void` | ファンデーションの `setAnchorMargin(AnchorMargin)` メソッドの代替。
+`setAnchorCorner(Corner) => void` | メニュー表面の `setAnchorCorner(Corner)` メソッドの代替。
+`setAnchorMargin(AnchorMargin) => void` | メニュー表面の `setAnchorMargin(AnchorMargin)` メソッドの代替。
+`setAbsolutePosition(x: number, y: number) => void` | メニュー表面の `setAbsolutePosition(x: number, y: number)` メソッドの代替。
+`setFixedPosition(isFixed: boolean) => void` | メニュー表面の `setFixedPosition(isFixed: boolean)` メソッドの代替。
+`hoistMenuToBody() => void` | メニュー表面の `hoistMenuToBody()` メソッドの代替。
+`setIsHoisted(isHoisted: boolean) => void` | メニュー表面の `setIsHoisted(isHoisted: boolean)` メソッドの代替。
+`setAnchorElement(element: HTMLElement) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
+`getOptionByIndex(index: number) => ?HTMLElement` | `index` に指定したところにあるリスト項目を返す。
 `getDefaultFoundation() => MDCMenuFoundation` | ファンデーションを返す。
+
+> See [Menu Surface](../mdc-menu-surface/README.md) and [List](../mdc-list/README.md) documentation for more information on proxied methods and properties.
+プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
+
+## Web フレームワーク内での使用
+
+React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのメニューを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
 
 ### `MDCMenuAdapter`
 
 メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | ルート要素にクラスを追加する。
-`removeClass(className: string) => void` | ルート要素からクラスを削除する。
-`hasClass(className: string) => boolean` | ルート要素が与えられたクラスをもっているかどうかを表す真偽値を返す。
-`hasNecessaryDom() => boolean` | 必要な DOM が存在しているかどうか（つまり `mdc-menu__items` コンテナがあるか）を表す真偽値を返す。
-`getAttributeForEventTarget(target: EventTarget, attributeName: string) => string` | イベントの対象の与えられた属性の値を返す。
-`getInnerDimensions() => {width: number, height: number}` | 項目のコンテナの幅と高さを持つオブジェクトを返す。
-`hasAnchor: () => boolean` | メニューが位置を決めるためのアンカーを持っているかどうかを返す。
-`getAnchorDimensions() => {width: number, height: number, top: number, right: number, bottom: number, left: number}` | アンカーの大きさと位置を持つオブジェクト（意味的には `DOMRect` と同じ）を返す。
-`getWindowDimensions() => {width: number, height: number}` | ページのピクセル単位の幅と高さを持つオブジェクトを返す。
-`getNumberOfItems() => number` | 項目のコンテナ内にある <em>項目</em> 要素の数を返す。素のコンポーネントでは、`role` 属性がメニューリスト要素にあるロールの正しい子ロールと一致するリスト項目の数を数えることによって決めている。例えば、リスト要素が `menu` というロールを持っているなら、`menuitem` というロールを持っているすべての要素を照会する。
-`registerInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー `handler` を追加する。
-`deregisterInteractionHandler(type: string, handler: EventListener) => void` | イベント `type` のイベントリスナー `handler` を削除する。
-`registerBodyClickHandler(handler: EventListener) => void` | `click` イベントのイベントリスナー `handler` を追加する。
-`deregisterBodyClickHandler(handler: EventListener) => void` | `click` イベントのイベントリスナー `handler` を削除する。
-`getIndexForEventTarget(target: EventTarget) => number` | イベントの `target` がメニュー項目の一つであるかどうかを確認し、そうならその項目の index を返す。target がメニュー項目の一つでないなら -1 を返す。
-`notifySelected(evtData: {index: number}) => void` | メニュー項目が選択されたということをリスナーに通知するイベントを送出する。この関数は選択された項目の位置を表す `index` プロパティを持つオブジェクトを含んだ `evtData` パラメータを受け取る。実装ではこのデータに項目自身のような追加データを追加することもできる。
-`notifyCancel() => void` | 項目が選択されずに閉じられたということをリスナーに通知するイベントを送出する。
-`saveFocus() => void` | 現在、ドキュメント上のフォーカスのある要素を保存する。復帰させるには `restoreFocus` を使う。
-`restoreFocus() => void` | 以前フォーカスされていた要素を再びフォーカスさせることにより、以前保存したフォーカスの状態を復元する。
-`isFocused() => boolean` | メニューのルート要素がフォーカスされているかどうかを表す真偽値を返す。
-`focus() => void` | メニューのルート要素にフォーカスをあてる。
-`getFocusedItemIndex() => number` | 現在フォーカスのあるメニュー項目のインデックスを返す（なければ -1 を返す）。
-`focusItemAtIndex(index: number) => void` | 与えられたインデックスを持つメニュー項目にフォーカスをあてる。
-`isRtl() => boolean` | 現在の環境が RTL かどうかを表す真偽値を返す。
-`setTransformOrigin(value: string) => void` | メニュー要素の transform origin を設定する。
-`setPosition(position: {top: string, right: string, bottom: string, left: string}) => void` | メニュー要素の位置を設定する。
-`setMaxHeight(value: string) => void` | メニュー要素の `max-height` スタイルを設定する。
-
+`addClassToElementAtIndex(index: number, className: string) => void` | `index` に指定したところにある要素に `className` のクラスを追加する。
+`removeClassFromElementAtIndex(index: number, className: string) => void` | `index` に指定したところにある要素から `className` のクラスを削除する。
+`addAttributeToElementAtIndex(index: number, attr: string, value: string) => void` | `index` に指定したところにある要素に値 `value` を持つ `attr` 属性を追加する。
+`removeAttributeFromElementAtIndex(index: number, attr: string) => void` | `index` に指定したところにある要素から `attr` 属性を削除する。
+`elementContainsClass(element: HTMLElement, className: string) => boolean` | `element` が `className` のクラスを含んでいれば true を返す。
+`closeSurface() => void` | メニューを閉じる。
+`getElementIndex(element: HTMLElement) => number` | `element` の `index` の値を返す。
+`getParentElement(element: HTMLElement) => ?HTMLElement` | 与えられた `element` の `.parentElement` 要素を返す。
+`getSelectedElementIndex(element: HTMLElement) => number` | `mdc-menu-item--selected` クラスを含んでいる `element` で与えられる選択肢グループ内の要素の `index` の値を返す。
+`notifySelected(index: number) => void` | `index` に指定したところにある要素に対して `MDCMenu:selected` イベントを発行する。
+`getCheckboxAtIndex(index: number) => ?HTMLElement` | `index` に指定したところにある要素内に含まれているチェックボックス要素を返す。
+`toggleCheckbox(checkbox: HTMLElement) => void` | 指定された `checkbox` 用をの値を切り替え、その要素に `change` イベントを起こす。
 
 ### `MDCMenuFoundation`
 
 メソッド | 説明
 --- | ---
-`setAnchorCorner(corder: Corner) => void` | メニューが基準とする角を設定する。[constants.js](https://github.com/material-components/material-components-web/blob/v0.35.2/packages/mdc-menu/constants.js#L73) を参照のこと。
-`setAnchorMargin(margin: AnchorMargin) => void` | メニューを表示する基準点からの距離を設定する。
-`open({focusIndex: ?number}) => void` | メニューを開く。オプションで、メニューが開いた際にフォーカスを受けるリスト項目を指定する `focusIndex` パラメータを持つオブジェクトを指定できる。
-`close(evt: ?Event)` | メニューを閉じる。オプションで、メニューが閉じる前にターゲットが無効であるかどうかを確認するためのイベントを指定できる。
-`isOpen() => boolean` | メニューが開いているかどうかを表す真偽値を返す。
-`setQuickOpen(quickOpen: boolean) => void` | メニューが `open`/`close` メソッドを呼ばれたときにアニメーションなしで開閉するかどうかを設定する。
+`handleKeydown(evt: Event) => void` | メニュー内の `keydown` イベントのイベントハンドラ。
+`handleClick(evt: Event) => void` | メニュー内の `click` イベントのイベントハンドラ。
 
 ### イベント
 
 イベント名 | データ | 説明
 --- | --- | ---
 `MDCMenu:selected` | `{detail: {item: HTMLElement, index: number}}` | 要素が選択されたことを示すために使用する。このイベントには選択された項目とその項目のリストのインデックスも含まれている。
-`MDCMenu:cancel` | none | メニューが何も選択されずに閉じたとき（例えば、開いているときに `Esc` を押したり、ページ上のほかの場所をクリックしたときなど）に送出されるイベント。
