@@ -1,3 +1,4 @@
+[![Version](https://img.shields.io/npm/v/material-components-web.svg)](https://www.npmjs.com/package/material-components-web)
 [![Build Status](https://travis-ci.com/material-components/material-components-web.svg?branch=master)](https://travis-ci.com/material-components/material-components-web/)
 [![codecov](https://codecov.io/gh/material-components/material-components-web/branch/master/graph/badge.svg)](https://codecov.io/gh/material-components/material-components-web)
 [![Chat](https://img.shields.io/discord/259087343246508035.svg)](https://discord.gg/material-components)
@@ -26,6 +27,9 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
 
 **[デモ](https://material-components.github.io/material-components-web-catalog/)**（リリースの都度、更新されます）
+
+> 注意: Material Components Web はセマンティックバージョニングに基づいてまだバージョン 0.x としています。これは破壊的な変更が定期的に起こることを前提としていることを意味しています。月に1回の破壊的な変更を含むマイナーリリースとバグ修正を含む中間パッチリリースを含む2週間のリリーススケジュールに私たちは通常したがっています。
+> 変更のリストは常に [CHANGELOG](./CHANGELOG.md) で確認でき、次回の作業の内容の暫定スケジュールは [ROADMAP](./ROADMAP.md) で確認できます。
 
 ## クイックスタート
 

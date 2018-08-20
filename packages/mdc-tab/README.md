@@ -138,7 +138,6 @@ React や Angular といった JavaScript フレームワークを使用して�
 `setAttr(attr: string, value: string) => void` | ルート要素に与えられた値を属性として設定する。
 `activateIndicator(previousIndicatorClientRect: ClientRect=) => void` | タブインジケータサブコンポーネントを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivateIndicator() => void` | タブインジケータサブコンポーネントを無効にする。
-`computeIndicatorClientRect() => ClientRect` | タブインジケータサブコンポーネントのコンテンツ境界のクライアントレクトを返す。
 `getOffsetLeft() => number` | ルート要素の `offsetLeft` の値を返す。
 `getOffsetWidth() => number` | ルート要素の `offsetWidth` の値を返す。
 `getContentOffsetLeft() => number` | コンテンツ要素の `offsetLeft` の値を返す。
@@ -154,7 +153,6 @@ React や Angular といった JavaScript フレームワークを使用して�
 `isActive() => boolean` | タブがアクティブかどうかを返す。
 `activate(previousIndicatorClientRect: ClientRect=) => void` | タブを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivate() => void` | タブを無効にする。
-`computeIndicatorClientRect() => ClientRect` | タブインジケータサブコンポーネントのコンテンツ境界のクライアントレクトを返す。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
 
 ### `MDCTabFoundation` イベントハンドラ
