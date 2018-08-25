@@ -6,18 +6,7 @@ iconId: text_field
 path: /catalog/input-controls/text-field/
 -->
 
-## 重要 - デフォルトスタイルが非推奨になります
-
-現在のデフォルトの text field のスタイルは将来のバージョンで変更される予定です。マテリアルデザイン仕様ではデフォルトのスタイルが塗り変数を使うとなっています（現在、ボックス変数と呼んでいるものです）。これをデフォルトのスタイルに変更します。`mdc-text-field--box` クラスを追加することですたいるの変更が起こらないようにできます。
-
 # Text Field
-
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/text-field">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/textfields.png" width="240" alt="Text fields screenshot">
-  </a>
-</div>-->
 
 Text Field はユーザのテキストの入力、編集、選択に対応しています。
 
@@ -83,7 +72,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </div>
 ```
 
-> <em>注意</em>: `mdc-text-field--box` や `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。
+> <em>注意</em>: `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。
 
 > <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-floating-label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
 
@@ -133,7 +122,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### 先頭と末尾のアイコン
 
-双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields のボックスもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
+双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields のデフォルトのもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
 
 
 ### HTML5 バリデーション
@@ -171,7 +160,6 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 CSS クラス | 説明
 --- | ---
 `mdc-text-field` | 必須。
-`mdc-text-field--box` | ボックス型のテキスト欄として表示する。
 `mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
@@ -187,12 +175,23 @@ CSS クラス | 説明
 
 > <em>注意</em>: `mdc-line-ripple-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-text-field--focused)`）から適用する必要があります。
 
-#### ボックス型テキスト欄のためのミキシン
+#### すべてのテキスト欄のためのミキシン
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-box-corner-radius($radius)` | ボックス型テキスト欄の角の半径を設定する。
-`mdc-text-field-box-fill-color($color)` | テキスト欄のボックスの背景色を設定する。
+`mdc-text-field-ink-color($color)` | テキスト欄に入力されたテキストの色を設定する。
+`mdc-text-field-label-color($color)` | ラベルのテキスト色を設定する。
+`mdc-text-field-caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
+
+#### 塗りつぶされたテキスト欄のためのミキシン
+
+ミキシン | 説明
+--- | ---
+`mdc-text-field-corner-radius($radius)` | テキスト欄の縁の角丸の半径を設定する。
+`mdc-text-field-fill-color($color)` |　テキスト欄の背景色を設定する。
+`mdc-text-field-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてテキスト欄下部の線の色を設定する。
+`mdc-text-field-hover-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてホバー時のテキスト欄下部の線の色を設定する。
+`mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのラインリップルの色を設定する。
 
 #### アウトラインされたテキスト欄のためのミキシン
 
@@ -218,18 +217,7 @@ Mixin | Description
 --- | ---
 `mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄のボトムラインの色を設定する。
 
-#### その他のミキシン
-
-Mixin | Description
---- | ---
-`mdc-text-field-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインの色を設定する。
-`mdc-text-field-hover-bottom-line-color($color)` | アウトラインされている場合と textarea の場合以外のテキスト欄のボトムラインのホバー時の色を設定する。
-`mdc-text-field-ink-color($color)` | テキスト欄の入力されたテキストの色を設定する。
-`mdc-text-field-label-color($color)` | テキスト欄のラベルの色を設定する。
-`mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのリップルする線の色を設定する。
-`mdc-text-field-caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
-
-### `MDCTextField` プロパティとメソッド
+## `MDCTextField` プロパティとメソッド
 
 プロパティ | 型 | 説明
 --- | --- | ---
@@ -239,7 +227,7 @@ Mixin | Description
 `valid` | Boolean | ファンデーションの `isValid`/`setValid` の代替
 `required` | Boolean | ファンデーションの `isRequired`/`setRequired` の代替
 `helperTextContent` | String | ファンデーションの `setHelperTextContent` の設定時のおける代替
-`ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはボックス型のテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
+`ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはデフォルトのテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
 
 メソッド | 説明
 --- | ---

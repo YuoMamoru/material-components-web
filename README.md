@@ -109,6 +109,10 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 - [Material.io](https://www.material.io) （外部サイト）
 - [マテリアルデザインガイドライン](https://material.io/guidelines) （外部サイト）
 
+## 助けが必要ですか？
+
+私たちは絶えずコンポーネントの改善を試みています。もし Github の Issues がニーズに合わないなら、[Discord Channel](https://discord.gg/material-components) に来てください。
+
 ## ブラウザポート
 
 私たちはすべての主要なブラウザの最新2つのバージョンを正式にサポートします。具体的には以下のブラウザでテストをしています。

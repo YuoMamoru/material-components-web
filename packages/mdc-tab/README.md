@@ -35,7 +35,7 @@ npm install @material/tab
 ```html
 <button class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
   <span class="mdc-tab__content">
-    <span class="mdc-tab__icon">heart</span>
+    <span class="mdc-tab__icon material-icons">favorite</span>
     <span class="mdc-tab__text-label">Favorites</span>
   </span>
   <span class="mdc-tab-indicator">
@@ -70,11 +70,28 @@ const tab = new MDCTab(document.querySelector('.mdc-tab'));
 ```html
 <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true">
   <span class="mdc-tab__content">
-    <span class="mdc-tab__icon">heart</span>
+    <span class="mdc-tab__icon material-icons">favorite</span>
     <span class="mdc-tab__text-label">Favorites</span>
   </span>
   <span class="mdc-tab-indicator mdc-tab-indicator--active">
     <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+  </span>
+  <span class="mdc-tab__ripple"></span>
+</button>
+```
+
+### コンテンツのみにまたがるインジケータを持つタブ
+
+基本的な使い方の例では、タブのインジケータはすべてのタブにまたがっていました。代わりに `mdc-tab__content` 要素の <em>中に</em> インジケータを置けばタブインジケータはタブのそのコンテンツにのみ設定することができます。
+
+```html
+<button class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+  <span class="mdc-tab__content">
+    <span class="mdc-tab__icon material-icons">favorite</span>
+    <span class="mdc-tab__text-label">Favorites</span>
+    <span class="mdc-tab-indicator">
+      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+    </span>
   </span>
   <span class="mdc-tab__ripple"></span>
 </button>

@@ -175,3 +175,15 @@ CSS クラス | 説明
 @debug mdc-theme-accessible-ink-color(secondary); // rgba(0, 0, 0, .87) (text-primary-on-light)
 @debug mdc-theme-accessible-ink-color(blue);      // white              (text-primary-on-dark)
 ```
+#### `mdc-theme-text-emphasis($emphasis)`
+
+与えられた修飾子の不透明度の値を返します。
+
+引数:
+
+- `$emphasis`: `high`, `medium` や `disabled` といった修飾子のタイプ。
+
+```scss
+@debug mdc-theme-text-emphasis(high); // .87
+@debug mdc-theme-text-emphasis(disabled); // .38
+```

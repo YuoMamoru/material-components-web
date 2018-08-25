@@ -157,10 +157,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | --- | --- |
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
-| `registerAnimationEndHandler(handler: EventListener) => void` | `animationend` イベントが発生したときに呼ばれるイベントハンドラをルート要素に登録する。これを正しく動作させるにはベンダプレフィックスを考慮しなくてはいけないことに注意が必要。 |
-| `deregisterAnimationEndHandler(handler: EventListener) => void` | `animationend` イベントリスナーからイベントハンドラの登録を解除する。あらかじめ `registerAnimationEndHandler` の呼び出しを通じて設定されたハンドラに対してのみ呼びされる。 |
-| `registerChangeHandler(handler: EventListener) => void` | `change` イベントが発生したときに呼ばれるイベントハンドラをネイティブなコントロール（ルート要素では <em>ない</em>）に登録する。 |
-| `deregisterChangeHandler(handler: EventListener) => void` | あらかじめ `registerChangeHandler` を通じて設定されたイベントハンドラの登録を解除する。 |
 | `getNativeControl() => HTMLInputElement?` | 利用できる状態であればネイティブなチェックボックスコントロールを返す。コントロールが利用できない状態であれば、直ちにそれに依存するメソッドは終了する。 |
 | `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。この処理はアニメーションを正しく再起動させるために必要。これが不要であることが明らかであれば、この処理を何もしないようにすることもできる。 |
 | `isAttachedToDOM() => boolean` | コンポーネントが正しく DOM にアタッチされていれば true を返し、そうでなければ false を返す。 |
@@ -177,3 +173,5 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setDisabled(disabled: boolean) => void` | 基盤となっている input 要素の `disabled` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
 `getValue() => string` | `MDCCheckboxAdapter.getNativeControl().value` の値を返す。`getNativeControl()` がオブジェクトを返さないときは `null` を返す。
 `setValue(value: string) => void` | `adapter.getNativeControl().value` の値を設定する。`getNativeControl()` がオブジェクトを返さないときは何もしない。
+`handleAnimationEnd() => void` | ルート要素に適用された `animationend` イベントハンドラ。
+`handleChange() => void` | チェックボックス要素に適用された `change` イベントハンドラ。
