@@ -160,6 +160,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `getNativeControl() => HTMLInputElement?` | 利用できる状態であればネイティブなチェックボックスコントロールを返す。コントロールが利用できない状態であれば、直ちにそれに依存するメソッドは終了する。 |
 | `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。この処理はアニメーションを正しく再起動させるために必要。これが不要であることが明らかであれば、この処理を何もしないようにすることもできる。 |
 | `isAttachedToDOM() => boolean` | コンポーネントが正しく DOM にアタッチされていれば true を返し、そうでなければ false を返す。 |
+| `isIndeterminate() => boolean` | コンポーネントが未確定状態のとき true を返す。 |
+| `isChecked() => boolean` | コンポーネントがチェックされていれば true を返す。 |
+| `hasNativeControl() => boolean` | コンポーネント内に input があれば true を返す。 |
+| `setNativeControlDisabled(disabled: boolean) => void` | input を利用不可にする。 |
 
 ### `MDCCheckboxFoundation`
 
@@ -167,11 +171,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 --- | ---
 `isChecked() => boolean` | 基盤となっている input がチェックされているかどうかを返す。利用できない状態のときは false を返す。
 `setChecked(checked: boolean) => void` | 基盤となっている input の `checked` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
-`isIndeterminate() => boolean` | 基盤となっている input 要素が未確定かどうかを返す。利用できない状態のときは false を返す。
-`setIndeterminate(indeterminate: boolean) => void` | 基盤となっている input 要素の `indeterminate` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
-`isDisabled() => boolean` | 基盤となっている input 要素が無効かどうかを返す。利用できない状態のときは false を返す。
 `setDisabled(disabled: boolean) => void` | 基盤となっている input 要素の `disabled` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
-`getValue() => string` | `MDCCheckboxAdapter.getNativeControl().value` の値を返す。`getNativeControl()` がオブジェクトを返さないときは `null` を返す。
-`setValue(value: string) => void` | `adapter.getNativeControl().value` の値を設定する。`getNativeControl()` がオブジェクトを返さないときは何もしない。
 `handleAnimationEnd() => void` | ルート要素に適用された `animationend` イベントハンドラ。
 `handleChange() => void` | チェックボックス要素に適用された `change` イベントハンドラ。

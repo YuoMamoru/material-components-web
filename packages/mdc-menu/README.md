@@ -42,13 +42,13 @@ npm install @material/menu
 ### HTML 構造
 
 ```html
-<div class="mdc-menu" tabindex="-1">
-  <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
-    <li class="mdc-list-item" role="menuitem" tabindex="0">
-      A Menu Item
+<div class="mdc-menu mdc-menu-surface" tabindex="-1">
+  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+    <li class="mdc-list-item" role="menuitem">
+      <span class="mdc-list-item__text">A Menu Item</span>
     </li>
-    <li class="mdc-list-item" role="menuitem" tabindex="0">
-      Another Menu Item
+    <li class="mdc-list-item" role="menuitem">
+      <span class="mdc-list-item__text">Another Menu Item</span>
     </li>
   </ul>
 </div>
@@ -57,8 +57,8 @@ npm install @material/menu
 ### スタイル
 
 ```scss
-@import "@material/menu/mdc-list";
-@import "@material/menu/mdc-menu-surface";
+@import "@material/list/mdc-list";
+@import "@material/menu-surface/mdc-menu-surface";
 @import "@material/menu/mdc-menu";
 ```
 
@@ -88,18 +88,20 @@ menu.show();
           <span class="mdc-menu__selection-group-icon">
             ...
           </span>
-          Single
+          <span class="mdc-list-item__text">Single</span>
         </li>
         <li class="mdc-list-item" role="menuitem">
           <span class="mdc-menu__selection-group-icon">
            ...
           </span>
-          1.15
+          <span class="mdc-list-item__text">1.15</span>
         </li>
       </ul>
     </li>
     <li class="mdc-list-divider" role="separator"></li>
-    <li class="mdc-list-item" role="menuitem">Add space before paragraph</li>
+    <li class="mdc-list-item" role="menuitem">
+      <span class="mdc-list-item__text">Add space before paragraph</span>
+    </li>
     ...
   </ul>
 </div>
