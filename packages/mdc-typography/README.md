@@ -143,13 +143,14 @@ $mdc-typography-font-family: "Arial, Helvetica, sans-serif";
 @import ...
 ```
 
-例:  `headline1` と `headline2` の `font-family` プロパティを上書きする
+例:  `headline1` の `font-family` プロパティと `headline2` の `font-family` と `font-size` を上書きする
 ```scss
 $mdc-typography-styles-headline1: (
-  font-family: "Arial, Helvetica, sans-serif";
+  font-family: unquote("Arial, Helvetica, sans-serif")
 );
 $mdc-typography-styles-headline2: (
-  font-family: "Arial, Helvetica, sans-serif";
+  font-family: unquote("Arial, Helvetica, sans-serif"),
+  font-size: 3.25rem
 );
 
 ...

@@ -206,8 +206,12 @@ Mixin | Description
 `mdc-select-focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
+`mdc-select-corner-radius($radius)` | ボックス型セレクトの角の丸目を設定する。
 `mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
-`mdc-select-outline-corner-radius($color)` | セレクトがフォーカスしているときのへこんだ輪郭の色を設定する。
+`mdc-select-outline-color($color)` | へこんだ輪郭の色を設定する。
+`mdc-select-outline-corner-radius($radius)` | アウトラインされたタイプのセレクトの角の丸目を設定する。
+`mdc-select-focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
+`mdc-select-hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
 
 > 注意: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 
