@@ -80,20 +80,6 @@ JavaScript をインポートする方法についてのより多くの情報は
 
 ## 様々な使用法
 
-### セレクトボックス
-
-セレクトボックス形式は標準の形式として多くのマークアップで使用され、ルート要素に `mdc-select--box` 修飾クラスを加えることによって作成します。
-
-```html
-<div class="mdc-select mdc-select--box">
-  <select class="mdc-select__native-control">
-    ...
-  </select>
-  <label class="mdc-floating-label">Pick a Food Group</label>
-  <div class="mdc-line-ripple"></div>
-</div>
-```
-
 ### アウトラインされたセレクト
 
 アウトラインされたセレクトにおいては `mdc-line-ripple` 要素の代わりに `mdc-notched-outline` が使用し、ルート要素に `mdc-select--outlined` 修飾クラスを追加します。
@@ -189,7 +175,6 @@ MDC Select は `<select>` 要素と `<option>` 要素を使っているので、
 | クラス | 説明 |
 | --- | --- |
 | `mdc-select` | 必須。 |
-| `mdc-select--box` | オプション。ボックスセレクトのようなセレクトのスタイル。 |
 | `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に`disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
 | `mdc-select--outlined` | オプション。アウトラインされたセレクトのようなセレクトのスタイル。 |
 | `mdc-select__native-control` | 必須。ネイティブな `<select>` 要素。 |
@@ -206,7 +191,7 @@ Mixin | Description
 `mdc-select-focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
-`mdc-select-corner-radius($radius)` | ボックス型セレクトの角の丸めを設定する。
+`mdc-select-corner-radius($radius)` | 塗りつぶされたセレクトの角の丸めを設定する。
 `mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 `mdc-select-outline-color($color)` | へこんだ輪郭の色を設定する。
 `mdc-select-outline-corner-radius($radius)` | アウトラインされたタイプのセレクトの角の丸目を設定する。

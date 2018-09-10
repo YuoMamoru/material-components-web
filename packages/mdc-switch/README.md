@@ -79,7 +79,7 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__thumb-underlay">
     <div class="mdc-switch__thumb">
-        <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" disabled>
+      <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" disabled>
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__thumb-underlay">
     <div class="mdc-switch__thumb">
-        <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" checked>
+      <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" checked>
     </div>
   </div>
 </div>
