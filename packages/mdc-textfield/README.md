@@ -221,13 +221,23 @@ Mixin | Description
 
 プロパティ | 型 | 説明
 --- | --- | ---
-`value` | String | ファンデーションの `getValue`/`setValue` メソッドの代替
-`disable` | Boolean | ファンデーションの `isDisabled`/`setDisabled` メソッドの代替
-`useNativeValidation` | Boolean (書込専用) | ファンデーションの `setUseNativeValidation` メソッドの代替
-`valid` | Boolean | ファンデーションの `isValid`/`setValid` の代替
-`required` | Boolean | ファンデーションの `isRequired`/`setRequired` の代替
-`helperTextContent` | String | ファンデーションの `setHelperTextContent` の設定時のおける代替
-`ripple` | `MDCRipple` | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはデフォルトのテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
+`value` | string | ファンデーションの `getValue`/`setValue` メソッドの代替
+`disable` | boolean | ファンデーションの `isDisabled`/`setDisabled` メソッドの代替
+`useNativeValidation` | boolean (書込専用) | ファンデーションの `setUseNativeValidation` メソッドの代替
+`valid` | boolean | ファンデーションの `isValid`/`setValid` の代替
+`helperTextContent` (書込専用) | string | ファンデーションの `setHelperTextContent` の設定時のおける代替
+`iconAriaLabel` | string (書込専用) | ファンデーションの  `setIconAriaLabel` の設定時のおける代替
+`iconContent` | string (書込専用) | ファンデーションの  `setIconContent` の設定時のおける代替
+`ripple` | `MDCRipple` (読取専用) | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはデフォルトのテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
+
+上に挙げたものに加えて、以下のプロパティが同名の `input` 要素のプロパティの代替として用意されている。
+
+* `required`
+* `minLength`
+* `maxLength`
+* `min`
+* `max`
+* `step`
 
 メソッド | 説明
 --- | ---
@@ -277,8 +287,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `isValid() => boolean` | コンポーネントの現在の検証状態（ネイティブもしくはカスタムのいずれか、`setUseNativeValidation()` がどのように設定されたかによる）を返す。
 `isDisabled() => boolean` | input 要素が無効かどうかを返す。
 `setDisabled(disabled: boolean) => void` | input 要素の無効かどうか状態を更新する。
-`isRequired() => boolean` | input 要素が必須であるかどうかを返す。
-`setRequired(isRequired: boolean)` | input 要素が必須であるかどうかを設定する。
 `handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理する。
 `handleValidationAttributeChange(attributesList: !Array<string>) => void` | 属性変更の検証を処理する。
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
