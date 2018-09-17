@@ -120,15 +120,15 @@ MDC Checkbox は「マーク」の状態（例えばチェックされている�
 
 Mixin | Description
 --- | ---
-`mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-fill-color, $generate-keyframes)` | チェックボックスの枠線と塗りの色の設定とアニメーションのための CSS クラスを生成する
+`mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | チェックボックスの枠線と塗りの色の設定とアニメーションのための CSS クラスを生成する
 `mdc-checkbox-ink-color($color)` | チェックと未確定のアイコンのインクの色を設定する
 `mdc-checkbox-focus-indicator-color($color)` | フォーカス時のインジケータの色を設定する
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
-#### `mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-fill-color, $generate-keyframes)`
+#### `mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)`
 
-マークされていないときは枠線と塗りの色を個別にカスタマイズできます。マークされているときは塗りの色だけをカスタマイズでき、枠線には自動的に塗りの色が使われます。
+枠線と塗りの色はマークされているときとマークされていないときの双方で個別に設定できます。
 
 すべてのパラメータはオプションで、指定されていないものにはデフォルト値が使われます。
 

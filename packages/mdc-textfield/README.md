@@ -124,7 +124,6 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields のデフォルトのもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
 
-
 ### HTML5 バリデーション
 
 `MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。
@@ -226,9 +225,11 @@ Mixin | Description
 `useNativeValidation` | boolean (書込専用) | ファンデーションの `setUseNativeValidation` メソッドの代替
 `valid` | boolean | ファンデーションの `isValid`/`setValid` の代替
 `helperTextContent` (書込専用) | string | ファンデーションの `setHelperTextContent` の設定時のおける代替
-`iconAriaLabel` | string (書込専用) | ファンデーションの  `setIconAriaLabel` の設定時のおける代替
-`iconContent` | string (書込専用) | ファンデーションの  `setIconContent` の設定時のおける代替
-`ripple` | `MDCRipple` (読取専用) | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはデフォルトのテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
+`ripple` | `MDCRipple` (書込専用) | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはデフォルトのテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
+`leadingIconAriaLabel` | string (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替
+`trailingIconAriaLabel` | string (書込専用) | ファンデーションの `setTrailingIconAriaLabel` メソッドの代替
+`leadingIconContent` | string (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替
+`trailingIconContent` | string (書込専用) | ファンデーションの `setTrailingIconContent` メソッドの代替
 
 上に挙げたものに加えて、以下のプロパティが同名の `input` 要素のプロパティの代替として用意されている。
 
@@ -292,8 +293,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
 `deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
 `setHelperTextContent(content: string) => void` | ヘルプテキストの内容を設定する。
-`setIconAriaLabel(label: string) => void` | アイコンの領域ラベルを設定する。
-`setIconContent(content: string) => void` | アイコンのテキストコンテンツを設定する。
+`setLeadingIconAriaLabel(label: string) => void` | 先頭のアイコンの領域ラベルを設定する。
+`setLeadingIconContent(content: string) => void` | 先頭のアイコンのテキストコンテンツを設定する。
+`setTrailingIconAriaLabel(label: string) => void` | 末尾のアイコンの領域ラベルを設定する。
+`setTrailingIconContent(content: string) => void` | 末尾のアイコンのテキストコンテンツを設定する。
 `notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルプテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
