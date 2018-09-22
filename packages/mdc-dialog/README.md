@@ -82,9 +82,20 @@ const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
 
 > See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
 
-> *NOTE*: MDC Dialog makes no assumptions about what will be added to the `mdc-dialog__content` element.
-> Any List, Checkboxes, etc. must also be instantiated.
-> Additionally, call `layout` on any components within the content when `MDCDialog:opened` is emitted.
+MDC Dialog makes no assumptions about what will be added to the `mdc-dialog__content` element. Any List, Checkboxes,
+etc. must also be instantiated. Additionally, call `layout` on any applicable components within the content when
+`MDCDialog:opened` is emitted.
+
+For example, to instantiate an MDC List inside of a Simple or Confirmation Dialog:
+
+```js
+import {MDCList} from '@material/list';
+const list = new MDCList(document.querySelector('.mdc-dialog .mdc-list'));
+
+dialog.listen('MDCDialog:opened', () => {
+  list.layout();
+});
+```
 
 ## Variants
 
@@ -104,11 +115,11 @@ The Simple Dialog contains a list of potential actions. It does not contain butt
    -->Choose a Ringtone<!--
  --></h2>
     <section class="mdc-dialog__content" id="my-dialog-content">
-      <ul class="mdc-list">
-        <li class="mdc-list-item">
+      <ul class="mdc-list mdc-list--avatar-list">
+        <li class="mdc-list-item" tabindex="0" data-mdc-dialog-action="none">
           <span class="mdc-list-item__text">None</span>
         </li>
-        <li class="mdc-list-item">
+        <li class="mdc-list-item" data-mdc-dialog-action="callisto">
           <span class="mdc-list-item__text">Callisto</span>
         </li>
         <!-- ... -->
@@ -118,6 +129,8 @@ The Simple Dialog contains a list of potential actions. It does not contain butt
   <div class="mdc-dialog__scrim"></div>
 </div>
 ```
+
+> Note the inclusion of the `mdc-list--avatar-list` class, which aligns with the Simple Dialog spec.
 
 ### Confirmation Dialog
 
@@ -152,7 +165,8 @@ radio buttons (indicating single selection) or checkboxes (indicating multiple s
             </div>
           </span>
           <label id="test-dialog-baseline-confirmation-radio-1-label"
-                 for="test-dialog-baseline-confirmation-radio-1">None</label>
+                 for="test-dialog-baseline-confirmation-radio-1"
+                 class="mdc-list-item__text">None</label>
         </li>
         <!-- ... -->
       </ul>
@@ -193,6 +207,43 @@ for a user to dismiss the dialog.
 Any action buttons within the dialog which equate strictly to a dismissal with no further action should also use the
 `close` action; this will make it easy to handle all such interactions consistently, while separately handling other
 actions.
+
+#### Action Button Arrangement
+
+As indicated in the [Dialog design article](https://material.io/design/components/dialogs.html#anatomy), buttons within
+the `mdc-dialog__actions` element are arranged horizontally by default, with the confirming action _last_.
+
+In cases where the button text is too long for all buttons to fit on a single line, the buttons are stacked vertically,
+with the confirming action _first_.
+
+MDC Dialog detects and handles this automatically by default, reversing the buttons when applying the stacked layout.
+This automatic behavior can be disabled by setting `autoStackButtons` to `false` on the component instance:
+
+```js
+dialog.autoStackButtons = false;
+```
+
+This will also be disabled if the `mdc-dialog--stacked` modifier class is applied manually to the root element before the
+component is instantiated, but note that dialog action button labels are recommended to be short enough to fit on a
+single line if possible.
+
+#### Default Action Button
+
+MDC Dialog supports indicating that one of its action buttons represents the default action, triggered by pressing the
+Enter key. This can be used e.g. for single-choice Confirmation Dialogs to accelerate the process of making a selection,
+avoiding the need to tab through to the appropriate button to confirm the choice.
+
+To indicate that a button represents the default action, add the `mdc-dialog__button--default` modifier class.
+For example:
+
+```html
+...
+<footer class="mdc-dialog__actions">
+  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">Cancel</button>
+  <button type="button" class="mdc-button mdc-dialog__button mdc-dialog__button--default" data-mdc-dialog-action="accept">OK</button>
+</footer>
+...
+```
 
 #### Actions and Selections
 
@@ -243,6 +294,7 @@ Property | Value Type | Description
 `isOpen` | `boolean` (read-only) | Proxies to the foundation's `isOpen` method.
 `escapeKeyAction` | `string` | Proxies to the foundation's `getEscapeKeyAction` and `setEscapeKeyAction` methods.
 `scrimClickAction` | `string` | Proxies to the foundation's `getScrimClickAction` and `setScrimClickAction` methods.
+`autoStackButtons` | `boolean` | Proxies to the foundation's `getAutoStackButtons` and `setAutoStackButtons` methods.
 
 Method Signature | Description
 --- | ---
@@ -269,15 +321,18 @@ Method Signature | Description
 --- | ---
 `addClass(className: string) => void` | Adds a class to the root element.
 `removeClass(className: string) => void` | Removes a class from the root element.
+`hasClass(className: string) => boolean` | Returns whether the given class exists on the root element.
 `addBodyClass(className: string) => void` | Adds a class to the `<body>`.
 `removeBodyClass(className: string) => void` | Removes a class from the `<body>`.
-`eventTargetHasClass(target: !EventTarget, className: string) => void` | Returns `true` if the target element has the given CSS class, otherwise `false`.
+`eventTargetMatches(target: !EventTarget, selector: string) => void` | Returns `true` if the target element matches the given CSS selector, otherwise `false`.
 `computeBoundingRect()`: Forces the component to recalculate its layout; in the vanilla DOM implementation, this calls `computeBoundingClientRect`.
 `trapFocus() => void` | Sets up the DOM such that keyboard navigation is restricted to focusable elements within the dialog surface (see [Handling Focus Trapping](#handling-focus-trapping) below for more details).
 `releaseFocus() => void` | Removes any effects of focus trapping on the dialog surface (see [Handling Focus Trapping](#handling-focus-trapping) below for more details).
 `isContentScrollable() => boolean` | Returns `true` if `mdc-dialog__content` can be scrolled by the user, otherwise `false`.
 `areButtonsStacked() => boolean` | Returns `true` if `mdc-dialog__action` buttons (`mdc-dialog__button`) are stacked vertically, otherwise `false` if they are side-by-side.
-`getActionFromEvent(event: !Event) => ?string` | Retrieves the value of the `data-mdc-dialog-action` attribute from the given event's target.
+`getActionFromEvent(event: !Event) => ?string` | Retrieves the value of the `data-mdc-dialog-action` attribute from the given event's target, or an ancestor of the target.
+`clickDefaultButton() => void` | Invokes `click()` on the `mdc-dialog__button--default` element, if one exists in the dialog.
+`reverseButtons() => void` | Reverses the order of action buttons in the `mdc-dialog__actions` element. Used when switching between stacked and unstacked button layouts.
 `notifyOpening() => void` | Broadcasts an event denoting that the dialog has just started to open.
 `notifyOpened() => void` | Broadcasts an event denoting that the dialog has finished opening.
 `notifyClosing(action: string) {}` | Broadcasts an event denoting that the dialog has just started closing. If a non-empty `action` is passed, the event's `detail` object should include its value in the `action` property.
@@ -295,6 +350,8 @@ Method Signature | Description
 `setEscapeKeyAction(action: string)` | Sets the action reflected when the Escape key is pressed. Setting to `''` disables closing the dialog via Escape key.
 `getScrimClickAction() => string` | Returns the action reflected when the scrim is clicked.
 `setScrimClickAction(action: string)` | Sets the action reflected when the scrim is clicked. Setting to `''` disables closing the dialog via scrim click.
+`getAutoStackButtons() => boolean` | Returns whether stacked/unstacked action button layout is automatically handled during layout logic.
+`setAutoStackButtons(autoStack: boolean) => void` | Sets whether stacked/unstacked action button layout is automatically handled during layout logic.
 `handleClick(event: Event)` | Handles `click` events on or within the dialog's root element
 `handleDocumentKeydown(event: Event)` | Handles `keydown` events on or within the document while the dialog is open
 

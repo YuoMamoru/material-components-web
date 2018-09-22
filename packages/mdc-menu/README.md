@@ -228,8 +228,6 @@ React や Angular といった JavaScript フレームワークを使用して�
 `getParentElement(element: HTMLElement) => ?HTMLElement` | 与えられた `element` の `.parentElement` 要素を返す。
 `getSelectedElementIndex(element: HTMLElement) => number` | `mdc-menu-item--selected` クラスを含んでいる `element` で与えられる選択肢グループ内の要素の `index` の値を返す。
 `notifySelected(index: number) => void` | `index` に指定したところにある要素に対して `MDCMenu:selected` イベントを発行する。
-`getCheckboxAtIndex(index: number) => ?HTMLElement` | `index` に指定したところにある要素内に含まれているチェックボックス要素を返す。
-`toggleCheckbox(checkbox: HTMLElement) => void` | 指定された `checkbox` 用をの値を切り替え、その要素に `change` イベントを起こす。
 
 ### `MDCMenuFoundation`
 

@@ -37,7 +37,6 @@ function getFixture() {
       <div id="test-dialog"
            class="mdc-dialog"
            role="alertdialog"
-           aria-hidden="true"
            aria-labelledby="test-dialog-label"
            aria-describedby="test-dialog-description">
         <div class="mdc-dialog__container">
@@ -63,16 +62,16 @@ function getFixture() {
     </div>`;
 }
 
-function setupTest() {
-  const fixture = getFixture();
+function setupTest(fixture = getFixture()) {
   const root = fixture.querySelector('.mdc-dialog');
   const component = new MDCDialog(root);
   const title = fixture.querySelector('.mdc-dialog__title');
   const content = fixture.querySelector('.mdc-dialog__content');
+  const actions = fixture.querySelector('.mdc-dialog__actions');
   const yesButton = fixture.querySelector('[data-mdc-dialog-action="yes"]');
   const noButton = fixture.querySelector('[data-mdc-dialog-action="no"]');
   const cancelButton = fixture.querySelector('[data-mdc-dialog-action="cancel"]');
-  return {root, component, title, content, yesButton, noButton, cancelButton};
+  return {root, component, title, content, actions, yesButton, noButton, cancelButton};
 }
 
 function setupTestWithMocks() {
@@ -92,13 +91,20 @@ function setupTestWithMocks() {
 suite('MDCDialog');
 
 test('attachTo returns a component instance', () => {
-  assert.isOk(MDCDialog.attachTo(getFixture().querySelector('.mdc-dialog')) instanceof MDCDialog);
+  assert.instanceOf(MDCDialog.attachTo(getFixture().querySelector('.mdc-dialog')), MDCDialog);
 });
 
 test('#initialSyncWithDOM registers click handler on the root element', () => {
   const {root, component, mockFoundation} = setupTestWithMocks();
   domEvents.emit(root, 'click');
-  td.verify(mockFoundation.handleClick(td.matchers.isA(Event)), {times: 1});
+  td.verify(mockFoundation.handleInteraction(td.matchers.isA(Event)), {times: 1});
+  component.destroy();
+});
+
+test('#initialSyncWithDOM registers keydown handler on the root element', () => {
+  const {root, component, mockFoundation} = setupTestWithMocks();
+  domEvents.emit(root, 'keydown');
+  td.verify(mockFoundation.handleInteraction(td.matchers.isA(Event)), {times: 1});
   component.destroy();
 });
 
@@ -106,7 +112,14 @@ test('#destroy deregisters click handler on the root element', () => {
   const {root, component, mockFoundation} = setupTestWithMocks();
   component.destroy();
   domEvents.emit(root, 'click');
-  td.verify(mockFoundation.handleClick(td.matchers.isA(Event)), {times: 0});
+  td.verify(mockFoundation.handleInteraction(td.matchers.isA(Event)), {times: 0});
+});
+
+test('#destroy deregisters keydown handler on the root element', () => {
+  const {root, component, mockFoundation} = setupTestWithMocks();
+  component.destroy();
+  domEvents.emit(root, 'keydown');
+  td.verify(mockFoundation.handleInteraction(td.matchers.isA(Event)), {times: 0});
 });
 
 test(`${strings.OPENING_EVENT} registers document keydown handler and ${strings.CLOSING_EVENT} deregisters it`, () => {
@@ -231,23 +244,44 @@ test('set scrimClickAction forwards to MDCDialogFoundation#setScrimClickAction',
   td.verify(mockFoundation.setScrimClickAction('action'));
 });
 
+test('get autoStackButtons forwards to MDCDialogFoundation#getAutoStackButtons', () => {
+  const {component, mockFoundation} = setupTestWithMocks();
+
+  component.autoStackButtons;
+  td.verify(mockFoundation.getAutoStackButtons());
+});
+
+test('set autoStackButtons forwards to MDCDialogFoundation#setAutoStackButtons', () => {
+  const {component, mockFoundation} = setupTestWithMocks();
+
+  component.autoStackButtons = false;
+  td.verify(mockFoundation.setAutoStackButtons(false));
+});
+
 test('adapter#addClass adds a class to the root element', () => {
   const {root, component} = setupTest();
   component.getDefaultFoundation().adapter_.addClass('foo');
-  assert.isOk(root.classList.contains('foo'));
+  assert.isTrue(root.classList.contains('foo'));
 });
 
 test('adapter#removeClass removes a class from the root element', () => {
   const {root, component} = setupTest();
   root.classList.add('foo');
   component.getDefaultFoundation().adapter_.removeClass('foo');
-  assert.isNotOk(root.classList.contains('foo'));
+  assert.isFalse(root.classList.contains('foo'));
+});
+
+test('adapter#hasClass returns whether a class exists on the root element', () => {
+  const {root, component} = setupTest();
+  root.classList.add('foo');
+  assert.isTrue(component.getDefaultFoundation().adapter_.hasClass('foo'));
+  assert.isFalse(component.getDefaultFoundation().adapter_.hasClass('does-not-exist'));
 });
 
 test('adapter#addBodyClass adds a class to the body', () => {
   const {component} = setupTest();
   component.getDefaultFoundation().adapter_.addBodyClass('mdc-dialog--scroll-lock');
-  assert.isOk(document.querySelector('body').classList.contains('mdc-dialog--scroll-lock'));
+  assert.isTrue(document.querySelector('body').classList.contains('mdc-dialog--scroll-lock'));
 });
 
 test('adapter#removeBodyClass removes a class from the body', () => {
@@ -256,16 +290,16 @@ test('adapter#removeBodyClass removes a class from the body', () => {
 
   body.classList.add('mdc-dialog--scroll-lock');
   component.getDefaultFoundation().adapter_.removeBodyClass('mdc-dialog--scroll-lock');
-  assert.isNotOk(body.classList.contains('mdc-dialog--scroll-lock'));
+  assert.isFalse(body.classList.contains('mdc-dialog--scroll-lock'));
 });
 
-test('adapter#eventTargetHasClass returns whether or not the className is in the target\'s classList', () => {
+test('adapter#eventTargetMatches returns whether or not the target matches the selector', () => {
   const {component} = setupTest();
   const target = bel`<div class="existent-class"></div>`;
   const {adapter_: adapter} = component.getDefaultFoundation();
 
-  assert.isTrue(adapter.eventTargetHasClass(target, 'existent-class'));
-  assert.isFalse(adapter.eventTargetHasClass(target, 'non-existent-class'));
+  assert.isTrue(adapter.eventTargetMatches(target, '.existent-class'));
+  assert.isFalse(adapter.eventTargetMatches(target, '.non-existent-class'));
 });
 
 test('adapter#computeBoundingRect calls getBoundingClientRect() on root', () => {
@@ -388,9 +422,17 @@ test('adapter#areButtonsStacked returns result of util.areTopsMisaligned', () =>
     util.areTopsMisaligned([yesButton, noButton, cancelButton]));
 });
 
-test('adapter#getActionFromEvent returns attribute value', () => {
+test('adapter#getActionFromEvent returns attribute value on event target', () => {
   const {component, yesButton} = setupTest();
   const action = component.getDefaultFoundation().adapter_.getActionFromEvent({target: yesButton});
+  assert.equal(action, 'yes');
+});
+
+test('adapter#getActionFromEvent returns attribute value on parent of event target', () => {
+  const {component, yesButton} = setupTest();
+  const childEl = bel`<span></span>`;
+  yesButton.appendChild(childEl);
+  const action = component.getDefaultFoundation().adapter_.getActionFromEvent({target: childEl});
   assert.equal(action, 'yes');
 });
 
@@ -398,6 +440,34 @@ test('adapter#getActionFromEvent returns null when attribute is not present', ()
   const {component, title} = setupTest();
   const action = component.getDefaultFoundation().adapter_.getActionFromEvent({target: title});
   assert.isNull(action);
+});
+
+test(`adapter#clickDefaultButton invokes click() on button matching ${strings.DEFAULT_BUTTON_SELECTOR}`, () => {
+  const fixture = getFixture();
+  const yesButton = fixture.querySelector('[data-mdc-dialog-action="yes"]');
+  yesButton.classList.add(strings.DEFAULT_BUTTON_SELECTOR.slice(1));
+
+  const {component} = setupTest(fixture);
+  yesButton.click = td.func('click');
+
+  component.getDefaultFoundation().adapter_.clickDefaultButton();
+  td.verify(yesButton.click());
+});
+
+test(`adapter#clickDefaultButton does nothing if nothing matches ${strings.DEFAULT_BUTTON_SELECTOR}`, () => {
+  const {component, yesButton, noButton} = setupTest();
+  yesButton.click = td.func('click');
+  noButton.click = td.func('click');
+
+  assert.doesNotThrow(() => component.getDefaultFoundation().adapter_.clickDefaultButton());
+  td.verify(yesButton.click(), {times: 0});
+  td.verify(noButton.click(), {times: 0});
+});
+
+test('adapter#reverseButtons reverses the order of children under the actions element', () => {
+  const {component, actions, yesButton, noButton, cancelButton} = setupTest();
+  component.getDefaultFoundation().adapter_.reverseButtons();
+  assert.sameOrderedMembers([yesButton, noButton, cancelButton], [].slice.call(actions.children));
 });
 
 test('#layout proxies to foundation', () => {

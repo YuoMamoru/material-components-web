@@ -42,15 +42,18 @@ class MDCDialogFoundation extends MDCFoundation {
     return /** @type {!MDCDialogAdapter} */ ({
       addClass: (/* className: string */) => {},
       removeClass: (/* className: string */) => {},
+      hasClass: (/* className: string */) => {},
       addBodyClass: (/* className: string */) => {},
       removeBodyClass: (/* className: string */) => {},
-      eventTargetHasClass: (/* target: !EventTarget, className: string */) => {},
+      eventTargetMatches: (/* target: !EventTarget, selector: string */) => {},
       computeBoundingRect: () => {},
       trapFocus: () => {},
       releaseFocus: () => {},
       isContentScrollable: () => {},
       areButtonsStacked: () => {},
       getActionFromEvent: (/* event: !Event */) => {},
+      clickDefaultButton: () => {},
+      reverseButtons: () => {},
       notifyOpening: () => {},
       notifyOpened: () => {},
       notifyClosing: (/* action: ?string */) => {},
@@ -78,6 +81,18 @@ class MDCDialogFoundation extends MDCFoundation {
 
     /** @private {string} */
     this.scrimClickAction_ = strings.CLOSE_ACTION;
+
+    /** @private {boolean} */
+    this.autoStackButtons_ = true;
+
+    /** @private {boolean} */
+    this.areButtonsStacked_ = false;
+  };
+
+  init() {
+    if (this.adapter_.hasClass(cssClasses.STACKED)) {
+      this.setAutoStackButtons(false);
+    }
   };
 
   destroy() {
@@ -120,6 +135,11 @@ class MDCDialogFoundation extends MDCFoundation {
    * @param {string=} action
    */
   close(action = '') {
+    if (!this.isOpen_) {
+      // Avoid redundant close calls (and events), e.g. from keydown on elements that inherently emit click
+      return;
+    }
+
     this.isOpen_ = false;
     this.adapter_.notifyClosing(action);
     this.adapter_.releaseFocus();
@@ -158,6 +178,16 @@ class MDCDialogFoundation extends MDCFoundation {
     this.scrimClickAction_ = action;
   }
 
+  /** @return {boolean} */
+  getAutoStackButtons() {
+    return this.autoStackButtons_;
+  }
+
+  /** @param {boolean} autoStack */
+  setAutoStackButtons(autoStack) {
+    this.autoStackButtons_ = autoStack;
+  }
+
   layout() {
     if (this.layoutFrame_) {
       cancelAnimationFrame(this.layoutFrame_);
@@ -169,7 +199,9 @@ class MDCDialogFoundation extends MDCFoundation {
   }
 
   layoutInternal_() {
-    this.detectStackedButtons_();
+    if (this.autoStackButtons_) {
+      this.detectStackedButtons_();
+    }
     this.detectScrollableContent_();
   }
 
@@ -177,8 +209,16 @@ class MDCDialogFoundation extends MDCFoundation {
   detectStackedButtons_() {
     // Remove the class first to let us measure the buttons' natural positions.
     this.adapter_.removeClass(cssClasses.STACKED);
-    if (this.adapter_.areButtonsStacked()) {
+
+    const areButtonsStacked = this.adapter_.areButtonsStacked();
+
+    if (areButtonsStacked) {
       this.adapter_.addClass(cssClasses.STACKED);
+    }
+
+    if (areButtonsStacked !== this.areButtonsStacked_) {
+      this.adapter_.reverseButtons();
+      this.areButtonsStacked_ = areButtonsStacked;
     }
   }
 
@@ -195,12 +235,21 @@ class MDCDialogFoundation extends MDCFoundation {
    * @param {!Event} evt
    * @private
    */
-  handleClick(evt) {
-    const action = this.adapter_.getActionFromEvent(evt);
-    if (action) {
-      this.close(action);
-    } else if (this.adapter_.eventTargetHasClass(evt.target, cssClasses.SCRIM) && this.scrimClickAction_) {
+  handleInteraction(evt) {
+    const isClick = evt.type === 'click';
+    const isEnter = evt.key === 'Enter' || evt.keyCode === 13;
+
+    // Check for scrim click first since it doesn't require querying ancestors
+    if (isClick && this.adapter_.eventTargetMatches(evt.target, strings.SCRIM_SELECTOR) &&
+      this.scrimClickAction_ !== '') {
       this.close(this.scrimClickAction_);
+    } else if (isClick || evt.key === 'Space' || evt.keyCode === 32 || isEnter) {
+      const action = this.adapter_.getActionFromEvent(evt);
+      if (action) {
+        this.close(action);
+      } else if (isEnter && !this.adapter_.eventTargetMatches(evt.target, strings.SUPPRESS_DEFAULT_PRESS_SELECTOR)) {
+        this.adapter_.clickDefaultButton();
+      }
     }
   }
 
@@ -209,7 +258,7 @@ class MDCDialogFoundation extends MDCFoundation {
    * @private
    */
   handleDocumentKeydown(evt) {
-    if ((evt.key === 'Escape' || evt.keyCode === 27) && this.escapeKeyAction_) {
+    if ((evt.key === 'Escape' || evt.keyCode === 27) && this.escapeKeyAction_ !== '') {
       this.close(this.escapeKeyAction_);
     }
   }
