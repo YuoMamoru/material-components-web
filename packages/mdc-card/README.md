@@ -188,4 +188,5 @@ CSS クラス | 説明
 `mdc-card-fill-color($color)` | カードの塗りの色を設定する。
 `mdc-card-outline($color, $thickness)` | カードの枠の色と太さを設定する（ただし、影は <em>消さない</em>）。
 `mdc-card-corner-radius($radius)` | カードの角の丸みを設定する。
+`mdc-card-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にカードを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-card-media-aspect-ratio($x, $y)` | 幅に合わせて動的に高さを変えることにより、`mdc-card__media` サブ要素を与えられたアスペクト比に保つ。

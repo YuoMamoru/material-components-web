@@ -191,10 +191,10 @@ Mixin | Description
 `mdc-select-focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
 `mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
-`mdc-select-corner-radius($radius)` | 塗りつぶされたセレクトの角の丸めを設定する。
+`mdc-select-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型セレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 `mdc-select-outline-color($color)` | へこんだ輪郭の色を設定する。
-`mdc-select-outline-corner-radius($radius)` | アウトラインされたタイプのセレクトの角の丸目を設定する。
+`mdc-select-outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-select-focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
 `mdc-select-hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
 

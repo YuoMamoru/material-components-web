@@ -186,8 +186,8 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-corner-radius($radius)` | テキスト欄の縁の角丸の半径を設定する。
-`mdc-text-field-fill-color($color)` |　テキスト欄の背景色を設定する。
+`mdc-text-field-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型テキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`mdc-text-field-fill-color($color)` | テキスト欄の背景色を設定する。
 `mdc-text-field-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてテキスト欄下部の線の色を設定する。
 `mdc-text-field-hover-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてホバー時のテキスト欄下部の線の色を設定する。
 `mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのラインリップルの色を設定する。
@@ -199,13 +199,13 @@ CSS クラス | 説明
 `mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
 `mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
 `mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
-`mdc-text-field-outline-corner-radius($radius)` | アウトラインされたテキスト欄の角の半径を設定する。
+`mdc-text-field-outline-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にアウトラインされたテキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 
 #### テキストエリアのためのミキシン
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-textarea-corner-radius($radius)` | `<textarea>` の角の半径を設定する。
+`mdc-text-field-textarea-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にテキストエリアを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-text-field-textarea-fill-color($color)` | textarea の背景色を設定する。
 `mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
 

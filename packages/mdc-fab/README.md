@@ -127,6 +127,7 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 `mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
 `mdc-fab-extended-padding($icon-padding, $label-padding)` | アイコンの両側およびラベルと FAB の端の間のパディングを設定する。アイコンがないときは、`$label-padding` は両側に適用される。
 `mdc-fab-extended-label-padding($label-padding)` | 拡張 FAB のラベルの両側のパディングを設定する。アイコンのない拡張 FAB のスタイルを設定するする際に便利。
+`mdc-fab-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にすべての FAB を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 
 
 FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。

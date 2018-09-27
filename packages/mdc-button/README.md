@@ -75,7 +75,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 枠線付きボタンにするには、`<button>` 要素にクラス `mdc-button--outlined` を追加します。
 
-### アイコン 
+### アイコン
 
 アイコンを追加するには、ボタン要素の内部に `mdc-button__icon` クラスをもつ要素を追加し、属性 `aria-hidden="true"` を設定します。アイコンは可読性を満たすために 18px に設定されます。
 
@@ -143,7 +143,7 @@ MDC Button はデフォルトで [MDC Theme](../mdc-theme) の `primary` カラ�
 `mdc-button-container-fill-color($color)` | 与えた色にコンテナの塗りの色を設定する
 `mdc-button-icon-color($color)` | 与えられた色にアイコンの色を設定する
 `mdc-button-ink-color($color)` | 与えた色にインクの色を設定し、`mdc-button-icon-color` を使わないときはアイコンの色も与えられた色にする
-`mdc-button-corner-radius($corner-radius)` | 与えた大きさ（デフォルトは 2px）に角の丸め半径を設定する
+`mdc-button-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボタンを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-button-horizontal-padding($padding)` | 与えた大きさに水平方向のパディングを設定する
 `mdc-button-outline-color($color)` | 与えた色に境界の色を設定する
 `mdc-button-outline-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須
