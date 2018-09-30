@@ -48,7 +48,7 @@ npm install @material/typography
 
 ### HTML 構造
 
-私たちは Google Fonts から Roboto を読み込むことを推奨しています。
+私たちは Google Fonts から Roboto を使うことを推奨しています。
 
 ```html
 <head>

@@ -12,13 +12,25 @@ path: /docs/importing-js/
 
 ## ES2015
 
-```javascript
+```js
 import {MDCFoo, MDCFooFoundation} from '@material/foo';
 ```
 
+互換性を最大化するために MDC Web のパッケージは `dist` 内のプリコンパイル済み UMD モジュールに対して `main` を指していることに注意してください。ビルドツールチェーンは `node_modules` 内の依存関係がすでに ES5 であると仮定しているため、トランスパイルの工程をスキップします。
+
+ただし、構築されたアセットのサイズを小さくするために MDC Web のコード内でツリーシェイキングと依存関係の共有を利用するには、ES2015+ ソースを含むパッケージの `index.js` を明示的に参照することが必要です。
+
+```js
+import {MDCFoo, MDCFooFoundation} from '@material/foo/index';
+```
+
+この場合、ビルドツールチェインが MDC Web のモジュールと自分自身のモジュールを処理してトランスパイルするように構成されていることを確認する必要があります。 IE 11 をサポートするには、babel の[`transform-object-assign`](https://www.npmjs.com/package/babel-plugin-transform-object-assign) プラグインも含める必要があります。
+
+環境設定の詳細については [Getting Started guide](getting-started.md) を参照してください。
+
 ## CommonJS
 
-```javascript
+```js
 const mdcFoo = require('mdc-foo');
 const MDCFoo = mdcFoo.MDCFoo;
 const MDCFooFoundation = mdcFoo.MDCFooFoundation;
@@ -26,7 +38,7 @@ const MDCFooFoundation = mdcFoo.MDCFooFoundation;
 
 ## AMD
 
-```javascript
+```js
 require(['path/to/mdc-foo'], mdcFoo => {
   const MDCFoo = mdcFoo.MDCFoo;
   const MDCFooFoundation = mdcFoo.MDCFooFoundation;
@@ -35,21 +47,7 @@ require(['path/to/mdc-foo'], mdcFoo => {
 
 ## グローバル変数の使用
 
-```javascript
+```js
 const MDCFoo = mdc.foo.MDCFoo;
 const MDCFooFoundation = mdc.foo.MDCFooFoundation;
-```
-
-## 自動インスタンス生成
-
-```javascript
-mdc.foo.MDCFoo.attachTo(document.querySelector('.mdc-foo'));
-```
-
-## 手動インスタンス生成
-
-```javascript
-import {MDCFoo} from '@material/foo';
-
-const foo = new MDCFoo(document.querySelector('.mdc-foo'));
 ```

@@ -92,9 +92,11 @@ npm install @material/ripple
 次にアプリケーションに @material/ripple 用の ES2015 ファイルをインポートし、DOM 要素を使って MDCRipple を初期化してください。
 
 ```js
-import {MDCRipple} from '@material/ripple';
+import {MDCRipple} from '@material/ripple/index';
 const ripple = new MDCRipple(document.querySelector('.foo-button'));
 ```
+
+> 注意: ビルドプロセスで MDC web の ES2015 ソースをトランスパイルしたいのであれば `@material/ripple/index` をインポートしてください。ビルドのツールチェーンがあなたのソースだけをトランスパいるするように設定されているなら、代わりに `@material/ripple` をインポートします。これは代わりに分散 UMD モジュールを参照しています。
 
 これでボタンにマテリアルデザインリップルが追加されました！
 

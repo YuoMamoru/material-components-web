@@ -69,14 +69,6 @@ class TestCommand {
     const snapshotDiffBase = await this.diffBaseParser_.parseGoldenDiffBase();
     const snapshotGitRev = snapshotDiffBase.git_revision;
 
-    const isTravisPr = snapshotGitRev && snapshotGitRev.type === GitRevision.Type.TRAVIS_PR;
-    const shouldExit = process.env.HAS_TESTABLE_FILES === 'false';
-
-    if (shouldExit) {
-      this.logUntestableFiles_();
-      return ExitCode.OK;
-    }
-
     // TODO(acdvorak): Find a better word than "local"
     /** @type {!mdc.proto.ReportData} */
     const localReportData = await this.diffAgainstLocal_(snapshotDiffBase);
@@ -86,6 +78,7 @@ class TestCommand {
       return localExitCode;
     }
 
+    const isTravisPr = snapshotGitRev && snapshotGitRev.type === GitRevision.Type.TRAVIS_PR;
     if (isTravisPr) {
       /** @type {!mdc.proto.ReportData} */
       const masterReportData = await this.diffAgainstMaster_({localReportData, snapshotGitRev});
@@ -105,15 +98,15 @@ class TestCommand {
   }
 
   /**
-   * @param {!mdc.proto.DiffBase} goldenDiffBase
+   * @param {!mdc.proto.DiffBase} snapshotDiffBase
    * @return {!Promise<!mdc.proto.ReportData>}
    * @private
    */
-  async diffAgainstLocal_(goldenDiffBase) {
+  async diffAgainstLocal_(snapshotDiffBase) {
     const controller = new Controller();
 
     /** @type {!mdc.proto.ReportData} */
-    const reportData = await controller.initForCapture(goldenDiffBase);
+    const reportData = await controller.initForCapture(snapshotDiffBase);
 
     try {
       await this.gitHubApi_.setPullRequestStatusAuto(reportData);
@@ -140,17 +133,17 @@ class TestCommand {
   /**
    * TODO(acdvorak): Rename this method
    * @param {!mdc.proto.ReportData} localReportData
-   * @param {!mdc.proto.DiffBase} goldenDiffBase
+   * @param {!mdc.proto.DiffBase} masterDiffBase
    * @param {!Array<!mdc.proto.Screenshot>} capturedScreenshots
    * @param {string} startTimeIsoUtc
    * @return {!Promise<!mdc.proto.ReportData>}
    * @private
    */
-  async diffAgainstMasterImpl_({localReportData, goldenDiffBase, capturedScreenshots, startTimeIsoUtc}) {
+  async diffAgainstMasterImpl_({localReportData, masterDiffBase, capturedScreenshots, startTimeIsoUtc}) {
     const controller = new Controller();
 
     /** @type {!mdc.proto.ReportData} */
-    const masterReportData = await controller.initForCapture(goldenDiffBase);
+    const masterReportData = await controller.initForCapture(masterDiffBase);
 
     const localReportDataWithMasterUploadDir = ReportData.create(localReportData);
     localReportDataWithMasterUploadDir.meta.remote_upload_base_dir = masterReportData.meta.remote_upload_base_dir;
@@ -198,7 +191,7 @@ class TestCommand {
     /** @type {!mdc.proto.ReportData} */
     const masterReportData = await this.diffAgainstMasterImpl_({
       localReportData,
-      goldenDiffBase: masterDiffBase,
+      masterDiffBase,
       capturedScreenshots,
       startTimeIsoUtc: localReportData.meta.start_time_iso_utc,
     });
@@ -227,7 +220,6 @@ class TestCommand {
     const masterScreenshotList = masterScreenshotSets.actual_screenshot_list;
 
     masterScreenshotSets.added_screenshot_list.length = 0;
-    masterScreenshotSets.removed_screenshot_list.length = 0;
     masterScreenshotSets.changed_screenshot_list.length = 0;
     masterScreenshotSets.unchanged_screenshot_list.length = 0;
     masterScreenshotSets.comparable_screenshot_list.length = 0;
@@ -240,15 +232,14 @@ class TestCommand {
         }
 
         comparisonFunctions.push(async (resolve) => {
+          masterScreenshot.user_agent = capturedScreenshot.user_agent;
           masterScreenshot.actual_html_file = capturedScreenshot.actual_html_file;
           masterScreenshot.actual_image_file = capturedScreenshot.actual_image_file;
           masterScreenshot.capture_state = capturedScreenshot.capture_state;
 
           if (masterScreenshot.inclusion_type === InclusionType.ADD) {
             masterScreenshotSets.added_screenshot_list.push(masterScreenshot);
-          } else if (masterScreenshot.inclusion_type === InclusionType.REMOVE) {
-            masterScreenshotSets.removed_screenshot_list.push(masterScreenshot);
-          } else if (masterScreenshot.inclusion_type === InclusionType.COMPARE) {
+          } else {
             /** @type {!mdc.proto.DiffImageResult} */
             const diffImageResult = await this.imageDiffer_.compareOneScreenshot({
               meta: masterReportData.meta,
@@ -263,6 +254,7 @@ class TestCommand {
             } else {
               masterScreenshotSets.unchanged_screenshot_list.push(masterScreenshot);
             }
+
             masterScreenshotSets.comparable_screenshot_list.push(masterScreenshot);
           }
 
@@ -302,7 +294,7 @@ class TestCommand {
     const masterReportPageUrl = this.analytics_.getUrl({
       url: masterReportData.meta.report_html_file.public_url,
       source: 'github',
-      type: 'pr_comment',
+      medium: 'pr_comment',
     });
     const masterScreenshots = masterReportData.screenshots;
     const masterGitRev = masterReportData.meta.golden_diff_base.git_revision;
@@ -368,7 +360,7 @@ ${listMarkdown}
       const htmlFileUrl = this.analytics_.getUrl({
         url: (firstScreenshot.actual_html_file || firstScreenshot.expected_html_file).public_url,
         source: 'github',
-        type: 'pr_comment',
+        medium: 'pr_comment',
       });
 
       return `
@@ -404,7 +396,7 @@ ${listItemMarkdown}
     const linkUrl = this.analytics_.getUrl({
       url: imgFile.public_url,
       source: 'github',
-      type: 'pr_comment',
+      medium: 'pr_comment',
     });
 
     const untrimmed = `
@@ -460,19 +452,6 @@ ${CliColor.bold.red('Skipping screenshot tests.')}
   }
 
   /**
-   * @private
-   */
-  logUntestableFiles_() {
-    const range = process.env.TRAVIS_COMMIT_RANGE;
-
-    this.logger_.log(`
-${CliColor.bold.magenta(`No testable source files were found for commit range ${range}.`)}
-
-${CliColor.bold.magenta('Skipping screenshot tests.')}
-`.trim());
-  }
-
-  /**
    * @param {!mdc.proto.ReportData} reportData
    * @private
    */
@@ -508,7 +487,7 @@ ${CliColor.bold.magenta('Skipping screenshot tests.')}
     const reportPageUrl = this.analytics_.getUrl({
       url: reportData.meta.report_html_file.public_url,
       source: 'cli',
-      type: 'test_results',
+      medium: 'test_results',
     });
 
     const headingPlain = 'Screenshot Test Results';

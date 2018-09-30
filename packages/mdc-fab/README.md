@@ -39,13 +39,15 @@ npm install @material/fab
 
 ### Material Icons のロード
 
-私たちは Google Fonts から [Material Icons](https://material.io/icons/) を読み込むことを推奨しています。
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
 ```html
 <head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 ```
+
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
 
 ### HTML 構造
 

@@ -77,9 +77,18 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 ### アイコン
 
-アイコンを追加するには、ボタン要素の内部に `mdc-button__icon` クラスをもつ要素を追加し、属性 `aria-hidden="true"` を設定します。アイコンは可読性を満たすために 18px に設定されます。
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
-Google フォントにある [Material Icons](https://material.io/icons/) を使うことを推奨します。
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+```
+
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
+
+To add an icon, add an element with the `mdc-button__icon` class inside the button element and set the attribute `aria-hidden="true"`. The icon is set to 18px to meet legibility requirements.
+アイコンを追加するには、`mdc-button__icon` クラスをボタン要素の中に追加し、`aria-hidden="true"` 属性を設定します。アイコンは可視性が必要であるので 18px に設定します。
 
 ```html
 <button class="mdc-button">

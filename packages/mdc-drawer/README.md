@@ -28,8 +28,6 @@ The MDC Navigation Drawer is used to organize access to destinations and other f
 npm install @material/drawer
 ```
 
-## Basic Usage
-
 ### HTML Structure
 
 ```html
@@ -52,6 +50,18 @@ npm install @material/drawer
   </div>
 </aside>
 ```
+
+#### Menu Icon
+
+We recommend using [Material Icons](https://material.io/tools/icons/) from Google Fonts:
+
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+```
+
+However, you can also use SVG, [Font Awesome](https://fontawesome.com/), or any other icon library you wish.
 
 ### Styles
 
@@ -261,7 +271,7 @@ import {MDCTopAppBar} from "@material/top-app-bar";
 const topAppBar = MDCTopAppBar.attachTo(document.getElementById('app-bar'));
 topAppBar.setScrollTarget(document.getElementById('main-content'));
 topAppBar.listen('MDCTopAppBar:nav', () => {
-    drawer.open = !drawer.open;
+  drawer.open = !drawer.open;
 });
 ```
 

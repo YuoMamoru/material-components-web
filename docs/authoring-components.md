@@ -271,7 +271,7 @@ class RedblueToggleFoundation extends MDCFoundation {
 ```js
 class RedblueToggle extends MDCComponent {
   get toggled() {
-    return this.foundations_.isToggled();
+    return this.foundation_.isToggled();
   }
 
   set toggled(toggled) {
