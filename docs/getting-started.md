@@ -238,7 +238,7 @@ const autoprefixer = require('autoprefixer');
 以下のコマンドを実行するとこれらのすべてがインストールできます。
 
 ```
-npm install --save-dev babel-core@7 babel-loader@6 babel-preset-es2015 babel-plugin-transform-object-assign
+npm install --save-dev babel-core@6 babel-loader@7 babel-preset-es2015 babel-plugin-transform-object-assign
 ```
 
 webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。`</body>` タグで閉じる前に以下の script タグを `index.html` に追加してください。
