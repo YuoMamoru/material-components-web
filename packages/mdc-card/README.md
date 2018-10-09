@@ -79,6 +79,18 @@ npm install @material/card
 }
 ```
 
+#### アイコン
+
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
+
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+```
+
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
+
 #### コンテンツブロック
 
 カードは異なるコンテンツブロックで構成され、コンテンツブロックは通常垂直方向に配置されます。
@@ -166,27 +178,26 @@ npm install @material/card
 
 CSS クラス | 説明
 --- | ---
-`mdc-card` | カード要素では必須。
-`mdc-card--outlined` | 影を消し、代わりに細い枠を表示する。
-`mdc-card__primary-action` | カードの主たるタップ可能な領域。一般的には `mdc-card__actions` を除く大半（もしくはすべて）のカードコンテンツを含む。主たる表示をきっかけとした主要なアクションのあるカードに対してのみ適用する。
-`mdc-card__media` | `background-size: cover` のあるカスタム `background-image` を表示するメディア領域。
-`mdc-card__media--square` | 自動的にメディア領域の高さを幅と同じにする。
-`mdc-card__media--16-9` | 自動的にメディア領域の高さを幅に基づいて 16:9 のアスペクト比になるようにする。
-`mdc-card__media-content` | タイトルもしくはアイコンを `background-image` の上に表示するために、メディア領域と同じ大きさの絶対座標にボックスを配置する。
-`mdc-card__actions` | アクションボタン・アイコンを含む行。
-`mdc-card__actions--full-bleed` | アクション領域のパディングを削除し、その唯一の子（`mdc-card__action` 要素）がアクション領域の幅の 100% を使えるようにする。
-`mdc-card__action-buttons` | アクションボタンのグループ。（LTR のときは）カードの左側から表示し、`mdc-card__action-icons` に隣接させる。
-`mdc-card__action-icons` | 追加のアクションボタンのグループ。（LTR のときは）カードの左側から表示し、`mdc-card__action-buttons` に隣接させる。
-`mdc-card__action` | 個々のアクションボタンもしくはアイコン。
-`mdc-card__action--button` | テキストのあるアクションボタン。
-`mdc-card__action--icon` | テキストのないアクションボタン。
+`mdc-card` | 必須。メインのカード要素。
+`mdc-card--outlined` | オプション。影を消し、代わりに細い枠を表示する。
+`mdc-card__primary-action` | オプション。カードの主たるタップ可能な領域。一般的には `mdc-card__actions` を除く大半（もしくはすべて）のカードコンテンツを含む。主たる表示をきっかけとした主要なアクションのあるカードに対してのみ適用する。
+`mdc-card__media` | オプション。`background-size: cover` のあるカスタム `background-image` を表示するメディア領域。
+`mdc-card__media--square` | オプション。自動的にメディア領域の高さを幅と同じにする。
+`mdc-card__media--16-9` | オプション。自動的にメディア領域の高さを幅に基づいて 16:9 のアスペクト比になるようにする。
+`mdc-card__media-content` | オプション。タイトルもしくはアイコンを `background-image` の上に表示するために、メディア領域と同じ大きさの絶対座標にボックスを配置する。
+`mdc-card__actions` | オプション。アクションボタン・アイコンを含む行。
+`mdc-card__actions--full-bleed` | オプション。アクション領域のパディングを削除し、その唯一の子（`mdc-card__action` 要素）がアクション領域の幅の 100% を使えるようにする。
+`mdc-card__action-buttons` | オプション。アクションボタンのグループ。（LTR のときは）カードの左側から表示し、`mdc-card__action-icons` に隣接させる。
+`mdc-card__action-icons` | オプション。追加のアクションボタンのグループ。（LTR のときは）カードの左側から表示し、`mdc-card__action-buttons` に隣接させる。
+`mdc-card__action` | オプション。個々のアクションボタンもしくはアイコン。
+`mdc-card__action--button` | オプション。テキストのあるアクションボタン。
+`mdc-card__action--icon` | オプション。テキストのないアクションボタン。Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨。
 
-### Sass ミキシン
+### Sass Mixins
 
-ミキシン | 説明
+Mixin | Description
 --- | ---
 `mdc-card-fill-color($color)` | カードの塗りの色を設定する。
 `mdc-card-outline($color, $thickness)` | カードの枠の色と太さを設定する（ただし、影は <em>消さない</em>）。
-`mdc-card-corner-radius($radius)` | カードの角の丸みを設定する。
 `mdc-card-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にカードを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-card-media-aspect-ratio($x, $y)` | 幅に合わせて動的に高さを変えることにより、`mdc-card__media` サブ要素を与えられたアスペクト比に保つ。

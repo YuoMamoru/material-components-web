@@ -68,11 +68,12 @@ npm install --save-dev webpack@3 webpack-dev-server@2 css-loader sass-loader nod
 webpack が Sass をどのようにバンドルかを確認するには index.html が必要です。この HTML ファイルには CSS を含める必要があります。この CSS は sass-loader によって生成され、sass-loader が Sass から CSS にコンパイルします。CSS は .css ファイルから extract-loader によって抽出されます。単純な “Hello World” の `index.html` を作成してください。
 
 ```html
+<!DOCTYPE html>
 <html>
- <head>
-   <link rel="stylesheet" href="bundle.css">
- </head>
- <body>Hello World</body>
+  <head>
+    <link rel="stylesheet" href="bundle.css">
+  </head>
+  <body>Hello World</body>
 </html>
 ```
 
@@ -95,20 +96,22 @@ module.exports = [{
     filename: 'style-bundle.js',
   },
   module: {
-    rules: [{
-      test: /\.scss$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: 'bundle.css',
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'bundle.css',
+            },
           },
-        },
-        { loader: 'extract-loader' },
-        { loader: 'css-loader' },
-        { loader: 'sass-loader' },
-      ]
-    }]
+          { loader: 'extract-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+        ]
+      }
+    ]
   },
 }];
 ```
@@ -178,7 +181,8 @@ const autoprefixer = require('autoprefixer');
 ```js
 { loader: 'extract-loader' },
 { loader: 'css-loader' },
-{ loader: 'postcss-loader',
+{
+  loader: 'postcss-loader',
   options: {
      plugins: () => [autoprefixer()]
   }
@@ -212,14 +216,15 @@ const autoprefixer = require('autoprefixer');
 - [babel-core](https://www.npmjs.com/package/babel-core)
 - [babel-loader](https://www.npmjs.com/package/babel-loader): babel を使って JavaScript ファイルをコンパイルする
 - [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015): ES2015 をコンパイルするための調整をする
+- [babel-plugin-transform-object-assign](http://npmjs.org/package/babel-plugin-transform-object-assign) IE 11 をサポートするため
 
 以下のコマンドを実行するとこれらのすべてがインストールできます。
 
 ```
-npm install --save-dev babel-core babel-loader babel-preset-es2015
+npm install --save-dev babel-core@6 babel-loader@7 babel-preset-es2015 babel-plugin-transform-object-assign
 ```
 
-webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。以下の script タグを `index.html` に追加してください。
+webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。`</body>` タグで閉じる前に以下の script タグを `index.html` に追加してください。
 
 ```html
 <script src="bundle.js" async></script>
@@ -233,26 +238,27 @@ console.log('hello world');
 
 次に、`webpack.config.js` ファイルの次のプロパティを変更し、`app.js` を `bundle.js` に変換する webpack を設定します。
 
-```js
-// entry を app.js と app.scss の配列に変更
-  entry: ['./app.scss', './app.js']
-
-// output.filename を bundle.js に変更
-  output: {
-    filename: 'bundle.js',
-  }
-
-// scss loader オブジェクトの後に babel-loader オブジェクトをルールへ追加
-...
+1. `entry` を `app.js` と `app.scss` の配列に変更
+   ```js
+   entry: ['./app.scss', './app.js']
+   ```
+2. `output.filename` を `bundle.js` に変更
+   ```js
+   output: {
+     filename: 'bundle.js',
+   }
+   ```
+3. `scss-loader` オブジェクトの後に `babel-loader` オブジェクトをルールへ追加
+   ```js
    {
      test: /\.js$/,
      loader: 'babel-loader',
      query: {
        presets: ['es2015'],
+       plugins: ['transform-object-assign']
      },
-   }]
-
-```
+   }
+   ```
 
 最終的に `webpack.config.js` ファイルはこのようになります。
 
@@ -287,15 +293,18 @@ module.exports = {
             options: {
               includePaths: ['./node_modules'],
             },
-          }],
+          }
+        ],
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         query: {
           presets: ['es2015'],
+          plugins: ['transform-object-assign']
         },
-      }],
+      }
+    ],
   },
 };
 ```
@@ -320,6 +329,27 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 さあ、`npm start` を再び実行して http://localhost:8080 を開いてください。ボタン上にマテリアルデザインリップルが確認できたでしょ！
 
 <img src="button_with_ripple.png" alt="Button with Ripple" width="90" height="36">
+
+### Step 5: 本番用にファイルをビルドする
+
+これまでは、 `webpack-dev-server` を使用してライブアップデートで作業をプレビューしました。しかし、 `webpack-dev-server` は本番用ではありません。代わりに、本番用のファイルを生成する必要があります。
+
+`package.json` にスクリプトを追加します。
+
+```json
+  "scripts": {
+    "build": "webpack -p",
+    "start": "webpack-dev-server"
+  }
+```
+
+さあ、以下のコマンドを実行しましょう。
+
+```
+npm run build
+```
+
+これでプロジェクトのディレクトリに `bundle.js` と `bundle.css` が生成されます。ここにはコンパイルされた CSS とトランスパイルされた JS が含まれ、Web サーバーの提供するディレクトリにコピーすることができます。
 
 ## <a name="appendix-configuring-a-sass-importer-for-nested-node_modules"></a>付録: ネストしている node_modules のための Sass インポーターの設定
 

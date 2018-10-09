@@ -68,7 +68,7 @@ npm install @material/menu
 import {MDCMenu} from '@material/menu';
 
 const menu = new MDCMenu(document.querySelector('.mdc-menu'));
-menu.show();
+menu.open = true;
 ```
 
 > JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。

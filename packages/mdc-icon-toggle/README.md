@@ -41,9 +41,9 @@ MDC Icon Toggle はマテリアルデザインのアイコン切り替えボタ�
 npm install @material/icon-toggle
 ```
 
-## 使用法
+## 基本的な使用法
 
-MDC Icon Toggle を使うには [Material Icons](https://design.google.com/icons/) や [Font Awesome](http://fontawesome.io/) のようなアイコンセットをインポートする必要があります。
+### HTML 構造
 
 ```html
 <i class="mdc-icon-toggle material-icons" role="button" aria-pressed="false"
@@ -66,9 +66,24 @@ CommonJS/AMD の使用を通じて `require` なオブジェクトの `default` 
 
 初期化時の `aria-label` 属性と `favorite_border` コンテンツは省略することもできます。これはコンポーネントがそれらを追加するからです。しかし、最初にスタイルの設定されていないコンテンツが表示されてしまうことを防ぐためにつけることをお勧めします。
 
-### Font Awesome や類似したライブラリとともに使用
+### アイコンセット
 
-Font Awesome - それ以外のポピュラーなアイコンフォントライブラリでも同じですが - はアイコンを提供するために `content` プロパティを通じて疑似要素を使っています。しかし、MDC Web はリップルスタイルのために疑似要素を使用しています。この問題を回避するため、アイコンをアイコン切り替えボタンの内側にネストすることができます。
+MDC Icon Toggle を使うには、アイコンセットをインポートする必要があります。
+
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
+
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+```
+
+また、あなたの好きなアイコンセットを使うこともできます。詳細は [Font Awesome の節](#font-awesome) を参照してください。
+
+<a id="font-awesome"></a>
+#### Font Awesome とそれに類似したライブラリを使用する
+
+[Font Awesome](https://fontawesome.com/) とそのほかのポピュラーなアイコンフォントライブラリはアイコンを表示するために `content` プロパティを通じて疑似要素を使います。また、MDC Web はリップルスタイルに疑似要素を使います。これに対応するため、アイコントグル内にアイコン自体をネストすることができます。
 
 ```html
 <span class="mdc-icon-toggle" role="button" aria-pressed="false"
@@ -126,15 +141,15 @@ iconToggle.refreshToggleData();
 
 このメソッドは DOM を漸進的に描画していくフレームワークにとって有益です。アイコン切り替えのデータ属性が変わる際に、コンポーネントは自身を更新する方法が必要になります。このメソッドがファンデーション上で公開され、単純に素のコンポーネントによってプロキシされる理由のはそのためです。
 
-### MDCIconToggle API
+### `MDCIconToggle` API
 
 通常の DOM 要素と同様に `MDCIconToggle` の機能はアクセサメソッドを通じて公開されています。
 
-#### MDCIconToggle.on
+#### `MDCIconToggle.on`
 
 真偽値。現在、アイコン切り替えがオンになっているかどうかを返します。このプロパティを設定すると切り替えの状態が更新されます。
 
-#### MDCIconToggle.disabled
+#### `MDCIconToggle.disabled`
 
 真偽値。現在、アイコン切り替えが無効になっているかどうかを返します。このプロパティを設定すると無効かどうかの状態が更新されます。
 
@@ -164,29 +179,29 @@ iconToggle.refreshToggleData();
 
 #### 完全なファンデーション API
 
-##### MDCIconToggleFoundation.refreshToggleData() => void
+##### `MDCIconToggleFoundation.refreshToggleData() => void`
 
 前述の通り、`data-toggle-*` 属性は冗長な解析を行わないようにキャッシュされます。あなたのフレームワークが漸進的な描画をしており、かつこれらの属性はコンポーネント自身を再描画せずに変更されているなら、data 属性を再解析してファンデーションを最新の状態に保つためにこのメソッドを呼ぶことができます。
 
-##### MDCIconToggleFoundation.isOn() => boolean
+##### `MDCIconToggleFoundation.isOn() => boolean`
 
 ファンデーションの状態がオンになっているときは true を返し、それ以外の場合は false を返します。
 
-##### MDCIconToggleFoundation.toggle(isOn: boolean = !this.isOn()) => void
+##### `MDCIconToggleFoundation.toggle(isOn: boolean = !this.isOn()) => void`
 
 ファンデーションの状態を切り替え、アダプタメソッドを通じてコンポーネントを更新します。引数が与えられていないときは、現在の状態の反対の状態にします。引数が与えられているときは、true ならオンに、false ならオフにします。
 
-##### MDCIconToggleFoundation.isDisabled() => boolean
+##### `MDCIconToggleFoundation.isDisabled() => boolean`
 
-ファンデーションが無効の状態なら true を返し、そうでないときは false を返します。
+ファンデーションが無効の状態なら `true` を返し、そうでないときは `false` を返します。
 
-##### MDCIconToggleFoundation.setDisabled(isDisabled: boolean) => void
+##### `MDCIconToggleFoundation.setDisabled(isDisabled: boolean) => void`
 
 ファンデーションの状態を有効または無効にし、アダプタメソッドを通じてコンポーネント更新します。
 
-##### MDCIconToggleFoundation.isKeyboardActivated() => boolean
+##### `MDCIconToggleFoundation.isKeyboardActivated() => boolean`
 
-ファンデーションが現状、キーボードイベントを有効にしていれば true を返し、そうでなければ false を返します。MDCRippleFoundation の `isSurfaceActive()` アダプタメソッドで役立ちます。
+ファンデーションが現状、キーボードイベントを有効にしていれば `true` を返し、そうでなければ `false` を返します。`MDCRippleFoundation.isSurfaceActive()` アダプタメソッドで役立ちます。
 
 ### Sass ミキシン
 

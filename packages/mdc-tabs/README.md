@@ -46,7 +46,20 @@ npm install @material/tabs
 
 タブのラベルには3つの異なるタイプがあります。テキスト、アイコンのみ、そしてアイコン付きテキストです。それぞれの例はデモサイトで見ることができます。
 
+### アイコン
+
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
+
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+```
+
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
+
 #### テキストラベルのタブ
+
 ```html
 <nav id="basic-tab-bar" class="mdc-tab-bar">
   <a class="mdc-tab mdc-tab--active" href="#one">Home</a>
@@ -57,6 +70,7 @@ npm install @material/tabs
 ```
 
 #### アイコンラベルのタブ
+
 ```html
 <nav class="mdc-tab-bar mdc-tab-bar--icon-tab-bar">
   <a class="mdc-tab mdc-tab--active" href="#recents">
@@ -73,6 +87,7 @@ npm install @material/tabs
 ```
 
 #### アイコンとテキストのラベルのタブ
+
 ```html
 <nav id="icon-text-tab-bar" class="mdc-tab-bar mdc-tab-bar--icons-with-text">
   <a class="mdc-tab mdc-tab--with-icon-and-text mdc-tab--active" href="#recents">
@@ -128,7 +143,6 @@ CSS だけを利用してインジケータを表示するにはマークアッ�
 </html>
 ```
 
-
 ### 動的な表示の切り替え
 
 表示の切り替えを容易にすることは開発者に託されていますが、デモサイトでは JavaScript を使用する方法の最小限の例を提供しています。以下にも示しておきます。
@@ -161,6 +175,7 @@ CSS だけを利用してインジケータを表示するにはマークアッ�
 ```
 
 #### スクリプト:
+
 ```js
 var dynamicTabBar = window.dynamicTabBar = new mdc.tabs.MDCTabBar(document.querySelector('#dynamic-tab-bar'));
 var dots = document.querySelector('.dots');
@@ -222,15 +237,19 @@ dots.addEventListener('click', function (evt) {
 タブ部分のインクの色をカスタマイズするために以下のミキシンが使用できます。アクティブでないタブを選ぶには `.foo-tab:not(.mdc-tab--active)`、ホバー状態のセレクタには `foo-tab:hover`、アクティブなセレクタには `.foo-tab.mdc-tab--active` といった CSS セレクタを使用してこれらのミキシンを適用することを推奨します。
 
 #### `mdc-tab-ink-color`
+
 タブのすべてのインクの色を設定するにはこのミキシンを使います。
 
 #### `mdc-tab-icon-ink-color`
+
 このミキシンはアイコンのインクの色をカスタマイズします。
 
 #### `mdc-tab-label-ink-color`
+
 このミキシンはラベルのインクの色をカスタマイズします。
 
 #### `mdc-tab-bar-indicator-ink-color`
+
 このミキシンはインジケータのインクの色をカスタマイズします。
 
 ### CSS のみのコンポーネントの使用
@@ -249,7 +268,6 @@ dots.addEventListener('click', function (evt) {
 ### JavaScript コンポーネントの使用
 
 `mdc-tab-bar` には `mdc-tab`（タブ）のインスタンスを取り込むためのコンポーネントとファンデーションの組が付属しています。`mdc-tab-bar` は `initialize()` メソッド呼び出しを使い、ルート要素である `mdc-tab-bar` の子のタブ要素を収集し、インスタンス化するファクトリ関数を呼び出します。
-
 
 #### コードへのインクルード
 
@@ -320,14 +338,11 @@ import {MDCTabBar, MDCTabBarFoundation} from '@material/tabs';
 const tabBar = new MDCTabBar(document.querySelector('#my-mdc-tab-bar'));
 ```
 
-
 ### JavaScript Tab Bar Scroller コンポーネントの使用
 
 `mdc-tab-bar-scroller` には `mdc-tab-bar` のインスタンスをラップするコンポーネントとファンデーションの組が付属しています。`mdc-tab-bar-scroller` は `initialize()` メソッド呼び出しを使い、ルート要素である `mdc-tab-bar-scroller` の子の tab bar 要素を収集し、インスタンス化するファクトリ関数を呼び出します。
 
 `mdc-tab-bar-scroller` の構造には `mdc-tab-bar` のインスタンス、RTL 対応の前方及び後方のインジケータとスクロールフレームが含まれています。インジケータは操作された際にタブバーを左右に動かします。スクロールフレームはタブバーの親要素で、利用可能な幅からタブバーがあふれたときにタブバーを隠す役割を担います。
-
-
 
 #### コードへのインクルード
 
@@ -438,8 +453,8 @@ const scrollerEl = document.querySelector('#my-mdc-tab-bar-scroller');
 
 const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 ```
-これにより、Tab Bar Scroller の初期化フェーズ中に MDC Tab Bar のインスタンスが生成されます。
 
+これにより、Tab Bar Scroller の初期化フェーズ中に MDC Tab Bar のインスタンスが生成されます。
 
 ## Tab
 
@@ -460,11 +475,9 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 
 タブ上でのユーザの操作を通知する。
 
-
 ### ファンデーションクラスの使用
 
 外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabFoundation` クラスが MDC Tab には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
-
 
 ### アダプタ API
 
@@ -477,7 +490,6 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 | `getOffsetWidth() => number` | タブの幅を返す。 |
 | `getOffsetLeft() => number` | タブの左端から親要素の左端までの距離を返す。 |
 | `notifySelected() => {}` | ユーザがタブに対して起こしたアクションを示すイベントを通知する。 |
-
 
 ### 完全なファンデーション API
 
@@ -509,7 +521,6 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 
 タブに `computedWidth_` と `computedLeft_` を設定します。
 
-
 ## Tab Bar
 
 ### Tab Bar コンポーネント API
@@ -532,11 +543,9 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 
 タブに対してユーザがアクションをしたときに通知をし、選択したタブの変更が行われます。
 
-
 ### ファンデーションクラスの使用
 
 外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarFoundation` クラスが `mdc-tab-bar` には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
-
 
 ### アダプタ API
 
@@ -561,7 +570,6 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 | `measureTabAtIndex(index: number) => void` | 与えられた index の位置のタブの寸法（幅と左側オフセット）を設定する。 |
 | `getComputedWidthForTabAtIndex(index: number) => number` | 与えられた index の位置のタブの幅を返す。 |
 | `getComputedLeftForTabAtIndex(index: number) => number` | 与えられた index の位置のタブの左側オフセットを返す。 |
-
 
 ### 完全なファンデーション API
 
@@ -603,7 +611,6 @@ Tab Bar コンポーネントのレイアウトを設定します。
 
 外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarScrollerFoundation` クラスが MDC Tab Bar Scroller には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
 
-
 ### アダプタ API
 
 | メソッド | 説明 |
@@ -634,7 +641,6 @@ Tab Bar コンポーネントのレイアウトを設定します。
 | `setTransformStyleForTabBar(value: string) => void` | タブバーの `translateX` `transform` プロパティの値を設定する。 |
 | `getOffsetLeftForEventTarget(target: HTMLElement) => number`| 与えられた要素の左側オフセットを返す。 |
 | `getOffsetWidthForEventTarget(target: HTMLElement) => number` | 与えられた要素の幅を返す。 |
-
 
 ### 完全なファンデーション API
 

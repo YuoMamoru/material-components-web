@@ -1,6 +1,6 @@
 # デモ
 
-MDC Web のコンポーネントのコレクション。慣用的な JavaScript/CSS/HTML のデモです。このフォルダのホストされたバージョンは [ここ](http://material-components-web.appspot.com/) にあります。
+MDC Web のコンポーネントのコレクション。慣用的な JavaScript/CSS/HTML のデモです。
 
 ## インストール
 

@@ -169,8 +169,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 メソッド | 説明
 --- | ---
-`isChecked() => boolean` | 基盤となっている input がチェックされているかどうかを返す。利用できない状態のときは false を返す。
-`setChecked(checked: boolean) => void` | 基盤となっている input の `checked` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
 `setDisabled(disabled: boolean) => void` | 基盤となっている input 要素の `disabled` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
 `handleAnimationEnd() => void` | ルート要素に適用された `animationend` イベントハンドラ。
 `handleChange() => void` | チェックボックス要素に適用された `change` イベントハンドラ。
