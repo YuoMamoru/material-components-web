@@ -46,7 +46,7 @@ npm install @material/tabs
 
 タブのラベルには3つの異なるタイプがあります。テキスト、アイコンのみ、そしてアイコン付きテキストです。それぞれの例はデモサイトで見ることができます。
 
-### Icons
+### アイコン
 
 Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 

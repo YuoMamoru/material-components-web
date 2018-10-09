@@ -370,7 +370,6 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 npm run build
 ```
 
-This will produce `bundle.js` and `bundle.css` in the project directory. These contain the compiled CSS and transpiled JS, which you can then copy into a directory served by any web server.
 これにより `bundle.js`と `bundle.css` がプロジェクトのディレクトリに生成されます。これらのファイルにはコンパイル済み CSS とトランスパイルされた JS が含まれています。これらは Web サーバーのディレクトリにコピーできます。
 
 ## <a name="appendix-configuring-a-sass-importer-for-nested-node_modules"></a>付録: ネストしている node_modules のための Sass インポーターの設定
