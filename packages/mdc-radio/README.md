@@ -115,9 +115,9 @@ CSS カスタムプロパティを完全にサポートしているブラウザ�
 
 プロパティ | 値の型 | 説明
 --- | --- | ---
-`checked` | Boolean | ファンデーションの `isChecked`/`setChecked` メソッドの代替。
-`disabled` | Boolean | ファンデーションの `isDisabled/setDisabled` メソッドの代替。
-`value` | String | ファンデーションの `getValue/setValue` メソッドの代替。
+`checked` | Boolean | ラジオボタンのチェック状態を取得/設定する。
+`disabled` | Boolean | ラジオボタンが無効かどうかの状態を取得/設定する。セッタはファンデーションの `setDisabled` の代替。
+`value` | String | ラジオボタンの値を取得/設定する。
 
 ## Web フレームワークでの使用
 
@@ -125,19 +125,14 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 ### `MDCRadioAdapter`
 
-| メソッド | 説明 |
-| --- | --- |
-| `getNativeControl() => HTMLInputElement?` | 利用できる状態であればネイティブなチェックボックスコントロールを返す。 |
-| `addClass(className: string) => void` | ート要素にクラスを追加する。 |
-| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+メソッド | 説明
+--- | ---
+`setNativeControlDisabled(disabled: boolean) => void` | インプットの `disabled` プロパティを与えられた値に設定する。
+`addClass(className: string) => void` | ート要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素からクラスを削除する。
 
 ### `MDCRadioFoundation`
 
-| メソッド | 説明 |
-| --- | --- |
-| `isChecked() => boolean` | ネイティブなコントロールがチェックされているかどうかを返し、ネイティブなコントロールがないときときは `false` を返す。 |
-| `setChecked(checked: boolean) => void` | ネイティブなコントロールのチェック値を設定する。 |
-| `isDisabled() => boolean` | ネイティブなコントロールが無効かどうかを返し、ネイティブなコントロールがないときときは `false` を返す。 |
-| `setDisabled(disabled: boolean) => void` | ネイティブなコントロールの無効かどうかの値を設定する。 |
-| `getValue() => string` | ネイティブなコントロールの値を返し、ネイティブなコントロールがないときときは `null` を返す。 |
-| `setValue(value: string) => void` | ネイティブなコントロールの値を設定する。 |
+メソッド | 説明
+--- | ---
+`setDisabled(disabled: boolean) => void` | ネイティブなコントロールの無効かどうかの値を設定する。

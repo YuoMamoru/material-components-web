@@ -139,7 +139,8 @@ CSS クラス | 説明
 
 プロパティ | 値の型 | 説明
 --- | --- | ---
-`active` | `boolean` | タブのアクティブな状態の取得する。
+`active` | `boolean` （読取専用） | タブのアクティブな状態の取得する。
+`focusOnActivate` | `boolean` (書込専用) |　有効にする際にタブが自身にフォーカスするかどうかを設定する。デフォルトは `true`。
 
 メソッド | 説明
 --- | ---
@@ -180,6 +181,7 @@ React や Angular といった JavaScript フレームワークを使用して�
 --- | ---
 `handleClick() => void` | `"click"` イベントのロジックをハンドリングする。
 `isActive() => boolean` | タブがアクティブかどうかを返す。
+`setFocusOnActivate(focusOnActivate: boolean) => void` | 有効にする際にタブが自身にフォーカスするかどうかを設定する。
 `activate(previousIndicatorClientRect: ClientRect=) => void` | タブを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivate() => void` | タブを無効にする。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
