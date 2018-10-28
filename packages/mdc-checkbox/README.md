@@ -122,7 +122,7 @@ Mixin | Description
 --- | ---
 `mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | チェックボックスの枠線と塗りの色の設定とアニメーションのための CSS クラスを生成する
 `mdc-checkbox-ink-color($color)` | チェックと未確定のアイコンのインクの色を設定する
-`mdc-checkbox-focus-indicator-color($color)` | フォーカス時のインジケータの色を設定する
+`mdc-checkbox-focus-indicator-color($color)` | フォーカス時のインジケーターの色を設定する
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
@@ -130,7 +130,7 @@ Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../
 
 枠線と塗りの色はマークされているときとマークされていないときの双方で個別に設定できます。
 
-すべてのパラメータはオプションで、指定されていないものにはデフォルト値が使われます。
+すべてのパラメーターはオプションで、指定されていないものにはデフォルト値が使われます。
 
 CSS だけのチェックボックスを使うときは、ミキシンが `@keyframes` と JavaScript コンポーネントが使う CSS クラスを生成しないようにするため、 `$generate-keyframes` に `false` を設定してください。
 
@@ -149,7 +149,7 @@ CSS 変数を完全にサポートしているブラウザでは、MDC Checkbox 
 
 ## Web フレームワークでの使用
 
-React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCCheckboxAdapter`
 
@@ -170,5 +170,5 @@ React や Angular のような JavaScript フレームワークを使ってい�
 メソッド | 説明
 --- | ---
 `setDisabled(disabled: boolean) => void` | 基盤となっている input 要素の `disabled` プロパティを更新する。基盤となる input 要素が存在しないときは何もしない。
-`handleAnimationEnd() => void` | ルート要素に適用された `animationend` イベントハンドラ。
-`handleChange() => void` | チェックボックス要素に適用された `change` イベントハンドラ。
+`handleAnimationEnd() => void` | ルート要素に適用された `animationend` イベントハンドラー。
+`handleChange() => void` | チェックボックス要素に適用された `change` イベントハンドラー。

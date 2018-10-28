@@ -114,7 +114,7 @@ mdc.snackbar.MDCSnackbar.attachTo(document.querySelector('.mdc-snackbar'));
 
 #### 手動でのインスタンス化
 
-Snackbars はコンストラクタを使って `attachTo` と同様に簡単に初期化できます。
+Snackbars はコンストラクターを使って `attachTo` と同様に簡単に初期化できます。
 
 ```javascript
 import {MDCSnackbar} from '@material/snackbar';
@@ -173,7 +173,7 @@ snackbar.show(dataObj);
 
 ### 操作ボタンを押された際にスナックバーを維持する
 
-デフォルトでは操作ボタンが押されるとスナックバーが破棄されます。タイムアウトになるまで（ユーザが操作ボタンを押したかどうかにかかわらず）スナックバーを残しておきたいときは `dismissesOnAction` プロパティを `false` に設定します。
+デフォルトでは操作ボタンが押されるとスナックバーが破棄されます。タイムアウトになるまで（ユーザーが操作ボタンを押したかどうかにかかわらず）スナックバーを残しておきたいときは `dismissesOnAction` プロパティを `false` に設定します。
 
 ```
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
@@ -182,7 +182,7 @@ snackbar.dismissesOnAction = false
 
 ### ファンデーションクラスの使用
 
-外部のフレームワークやライブラリがコンポーネントを統合するために使用可能な `MDCSnackbarFoundation` クラスが MDC Snackbar には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。スナックバーのアダプタは以下の関数を提供しなくてはいけません。
+外部のフレームワークやライブラリがコンポーネントを統合するために使用可能な `MDCSnackbarFoundation` クラスが MDC Snackbar には付属しています。すべてのファンデーションクラスでアダプターオブジェクトが提供されなくてはなりません。スナックバーのアダプターは以下の関数を提供しなくてはいけません。
 
 | メソッド | 説明 |
 | --- | --- |
@@ -197,16 +197,16 @@ snackbar.dismissesOnAction = false
 | `setFocus() => void` | 操作ボタンにフォーカスを設定する。 |
 | `isFocused() => boolean` | アクションボタンにフォーカスがあるかどうかを検出します。 |
 | `visibilityIsHidden() => boolean` | document.hidden プロパティを返す。 |
-| `registerBlurHandler(handler: EventListener) => void` | 操作ボタン上で `blur` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
-| `deregisterBlurHandler(handler: EventListener) => void` | 操作ボタンから `blur` イベントハンドラの登録を解除する。 |
-| `registerVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
-| `deregisterVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラの登録を解除する。 |
-| `registerCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` に与えられたイベントタイプのイベントが発生した際に呼ばれるイベントハンドラを登録する。 |
-| `deregisterCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` からイベントハンドラの登録を解除する。 |
-| `registerActionClickHandler(handler: EventListener) => void` | 操作ボタン要素で `click` イベントが発生した際に呼ばれるイベントハンドラを登録する。 |
-| `deregisterActionClickHandler(handler: EventListener) => void` | 操作ボタン要素から `click` イベントハンドラの登録を解除する。これまでに `registerActionClickHandler` を通じて設定されたイベントハンドラに対してのみ呼びだす。 |
-| `registerTransitionEndHandler(handler: EventListener) => void` | ルート要素上で `transitionend` イベントが呼び出された際に呼ばれるイベントハンドラを登録する。これが正しく動作するにはベンダプレフィックスを考慮する必要があることに注意。 |
-| `deregisterTransitionEndHandler(handler: EventListener) => void` | `transitionend` イベントリスナーからイベントハンドラの登録を解除する。これまでに `registerTransitionEndHandler` を通じて設定されたイベントハンドラに対してのみ呼びだす。 |
+| `registerBlurHandler(handler: EventListener) => void` | 操作ボタン上で `blur` イベントが発生した際に呼ばれるイベントハンドラーを登録する。 |
+| `deregisterBlurHandler(handler: EventListener) => void` | 操作ボタンから `blur` イベントハンドラーの登録を解除する。 |
+| `registerVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラーを登録する。 |
+| `deregisterVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラーの登録を解除する。 |
+| `registerCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` に与えられたイベントタイプのイベントが発生した際に呼ばれるイベントハンドラーを登録する。 |
+| `deregisterCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` からイベントハンドラーの登録を解除する。 |
+| `registerActionClickHandler(handler: EventListener) => void` | 操作ボタン要素で `click` イベントが発生した際に呼ばれるイベントハンドラーを登録する。 |
+| `deregisterActionClickHandler(handler: EventListener) => void` | 操作ボタン要素から `click` イベントハンドラーの登録を解除する。これまでに `registerActionClickHandler` を通じて設定されたイベントハンドラーに対してのみ呼びだす。 |
+| `registerTransitionEndHandler(handler: EventListener) => void` | ルート要素上で `transitionend` イベントが呼び出された際に呼ばれるイベントハンドラーを登録する。これが正しく動作するにはベンダプレフィックスを考慮する必要があることに注意。 |
+| `deregisterTransitionEndHandler(handler: EventListener) => void` | `transitionend` イベントリスナーからイベントハンドラーの登録を解除する。これまでに `registerTransitionEndHandler` を通じて設定されたイベントハンドラーに対してのみ呼びだす。 |
 | `notifyShow() => void` | スナックバーが表示されたことをリスナーに通知するイベントを発生させる。 |
 | `notifyHide() => void` | スナックバーが非表示になったことをリスナーに通知するイベントを発生させる。 |
 

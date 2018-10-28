@@ -129,7 +129,7 @@ CSS クラス | 説明
 
 #### `mdc-layout-grid($type-of-device, $margin, $max-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-特定のデバイス上でのグリッドコンテナのための CSS を生成します。このミキシンは 3 つのパラメータを取ります。
+特定のデバイス上でのグリッドコンテナのための CSS を生成します。このミキシンは 3 つのパラメーターを取ります。
 
 - `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
 - `$margin`: グリッドのマージンの大きさ。
@@ -137,14 +137,14 @@ CSS クラス | 説明
 
 #### `mdc-layout-grid-inner($type-of-device, $margin, $max-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-特定のデバイス上でのグリッドセルのラッパーのための CSS を生成します。このミキシンは 3 つのパラメータを取ります。
+特定のデバイス上でのグリッドセルのラッパーのための CSS を生成します。このミキシンは 3 つのパラメーターを取ります。
 - `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
 - `$margin`: グリッドのマージンの大きさ。
 - `$gutter`: セルの間の幅の大きさ。
 
 #### `mdc-layout-grid-cell($type-of-device, $default-span, $gutter)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-特定のデバイス上でのグリッドセルのための CSS を生成します。このミキシンは 3 つのパラメータを取ります。
+特定のデバイス上でのグリッドセルのための CSS を生成します。このミキシンは 3 つのパラメーターを取ります。
 - `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
 - `$default-span`（オプション、初期値: 4）: このセルの列スパンの数（1 から 12）。
 - `$gutter`:セルの間の幅の大きさ。親グリッドと同じ値を指定する。
@@ -153,7 +153,7 @@ CSS クラス | 説明
 
 #### `mdc-layout-grid-fixed-column-width($type-of-device, $margin, $gutter, $column-width)`（訳注: 第一引数の `$type-of-device` は `$size` の誤り）
 
-特定のデバイス上でのコンテナを固定の列幅にする CSS を生成する。このミキシンは 4 つのパラメータを取ります。
+特定のデバイス上でのコンテナを固定の列幅にする CSS を生成する。このミキシンは 4 つのパラメーターを取ります。
 - `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
 - `$margin`: グリッドのマージンの大きさ。
 - `$gutter`: セルの間の幅の大きさ。

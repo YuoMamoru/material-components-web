@@ -141,7 +141,7 @@ MDC Switch はデフォルトでチェックさえた状態（トグルが ON）
 
 ## Web フレームワーク内での使用
 
-React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
+React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
 
 ### `MDCSwitchAdapter`
 
@@ -160,9 +160,9 @@ React や Angular といった JavaScript フレームワークを使用して�
 | `setDisabled(disabled: boolean) => void` | ネイティブコントロールの利用不可かどうかの値を設定し、利用不可かどうかの状態を反映したスタイルに更新する。 |
 | `handleChange(evt: Event) => void` | ネイティブコントロールからの change イベントをハンドリングする。 |
 
-### `MDCSwitchFoundation` イベントハンドラ
-スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラを追加する必要があります。この例としては、[MDCSwitch](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
+### `MDCSwitchFoundation` イベントハンドラー
+スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラーを追加する必要があります。この例としては、[MDCSwitch](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
 
-| イベント | 要素セレクタ | ファンデーションハンドラ |
+| イベント | 要素セレクタ | ファンデーションハンドラー |
 | --- | --- | --- |
 | `change` | `.mdc-switch__native-control` | `handleChange()` |

@@ -16,11 +16,11 @@ git clone git@github.com:material-components/material-components-web.git && cd m
 npm i
 ```
 
-そしてデモサーバを起動します。
+そしてデモサーバーを起動します。
 ```
 npm run dev
 ```
 
-これで localhost:8080 でアクセスできるサーバがスピンアップします。
+これで localhost:8080 でアクセスできるサーバーがスピンアップします。
 
 主要ブラウザを立ち上げて楽しんでください！

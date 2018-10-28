@@ -18,7 +18,7 @@ path: /catalog/menus/
 
 MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/go/design-menus) に準拠したメニューコンポーネントです。メニューが開く際に正しい位置に配置するには JavaScript が必要です。
 
-メニューは一時的な領域に選択肢のリストを表示します。ユーザがボタン、アクション、その他のコントロールを使う際に選択肢のリストは表示されます。
+メニューは一時的な領域に選択肢のリストを表示します。ユーザーがボタン、アクション、その他のコントロールを使う際に選択肢のリストは表示されます。
 
 ## デザインと API ドキュメント
 
@@ -212,7 +212,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 
 ## Web フレームワーク内での使用
 
-React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのメニューを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
+React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのメニューを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
 
 ### `MDCMenuAdapter`
 
@@ -233,9 +233,9 @@ React や Angular といった JavaScript フレームワークを使用して�
 
 メソッド | 説明
 --- | ---
-`handleKeydown(evt: Event) => void` | メニュー内の `keydown` イベントのイベントハンドラ。
-`handleClick(evt: Event) => void` | メニュー内の `click` イベントのイベントハンドラ。
-`handleSelection(listItem: Element) => void` | 選択項目のためのハンドラ。選択項目のクリックイベントにアクセスがないときに `handleClick` の代わりに利用する。
+`handleKeydown(evt: Event) => void` | メニュー内の `keydown` イベントのイベントハンドラー。
+`handleClick(evt: Event) => void` | メニュー内の `click` イベントのイベントハンドラー。
+`handleSelection(listItem: Element) => void` | 選択項目のためのハンドラー。選択項目のクリックイベントにアクセスがないときに `handleClick` の代わりに利用する。
 
 ### イベント
 

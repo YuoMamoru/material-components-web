@@ -394,7 +394,7 @@ Event Name | Data | Description
 
 ## Web フレームワークでの使用
 
-React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCSelectAdapter`
 
@@ -433,15 +433,15 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `handleBlur() => void` | `select` 要素の blur イベントを処理する。 |
 | `handleClick(normalizedX: number) => void` | ラインリップルの中心を normalizedX に設定する。 |
 | `handleChange() => void` | `select` 要素の値の変更を処理する。`change` イベントとコンポーネント API を通じて要求されたプログラム上での変更の両方でこれを呼び出す必要がある。 |
-| `handleKeydown(event: Event) => void` | `mdc-select__selected-text` 要素がフォーカスを持っており、ユーザが `Enter` または `Space` キーを押した際にメニュー（拡張セレクト）が開くことをハンドリングする。 |
+| `handleKeydown(event: Event) => void` | `mdc-select__selected-text` 要素がフォーカスを持っており、ユーザーが `Enter` または `Space` キーを押した際にメニュー（拡張セレクト）が開くことをハンドリングする。 |
 | `setSelectedIndex(index: number) => void` | `mdc-select__selected-text` 要素を設定しメニューを閉じる（拡張セレクトのみ）ことをハンドリングする。必要であればラベルを浮かせ、輪郭をへこませる。 |
-| `setValue(value: string) => void` | アダプタを介して値の設定をハンドリングし、必要であればラベルを浮かせ、輪郭をへこませる。 |
-| `getValue() => string` | アダプタを介して値の取得をハンドリングする。 |
-| `setValid(isValid: boolean) => void` | アダプタを介して有効状態を設定する。 |
-| `isValid() => boolean` | アダプタの `checkValidity` API を介して有効状態を取得する。 |
+| `setValue(value: string) => void` | アダプターを介して値の設定をハンドリングし、必要であればラベルを浮かせ、輪郭をへこませる。 |
+| `getValue() => string` | アダプターを介して値の取得をハンドリングする。 |
+| `setValid(isValid: boolean) => void` | アダプターを介して有効状態を設定する。 |
+| `isValid() => boolean` | アダプターの `checkValidity` API を介して有効状態を取得する。 |
 | `layout() => void` | へこんだ輪郭をへこませるべきかどうかの判断をハンドリングする。 |
 | `setLeadingIconAriaLabel(label: string) => void` | 先頭アイコンの aria ラベルを設定する。 |
 | `setLeadingIconContent(content: string) => void` | 先頭アイコンのテキストコンテンツを設定する。 |
 | `setHelperTextContent(content: string) => void` | ヘルパーテキストのコンテンツを設定する。 |
 
-`MDCSelectFoundation` は複数のオプションのサブ要素（ヘルパーテキストとアイコン）をサポートしています。これらのサブ要素のファンデーションは `MDCSelectFoundation` にコンストラクタの引数として渡さなくてはなりません。
+`MDCSelectFoundation` は複数のオプションのサブ要素（ヘルパーテキストとアイコン）をサポートしています。これらのサブ要素のファンデーションは `MDCSelectFoundation` にコンストラクターの引数として渡さなくてはなりません。

@@ -70,7 +70,7 @@ mdcAutoInit.register('MDCTextField', MDCTextField);
 
 `mdcAutoInit.register()` は、`"MDCTextField"` が設定されている `data-mdc-auto-init` 属性を持つ要素が見つかったとき、その要素上に `MDCTextField` インスタンスを初期化するよう、  `mdc-auto-init` に伝えます。`material-components-web` パッケージは使いやすくするためにすべてのコンポーネントに対してこの処理を行っています。
 
-また、コンポーネントには任意の文字列をマッピングできます。必ずしもコンストラクタの名称である必要はありません。
+また、コンポーネントには任意の文字列をマッピングできます。必ずしもコンストラクターの名称である必要はありません。
 
 ```js
 import mdcAutoInit from '@material/auto-init';
@@ -100,12 +100,12 @@ mdcAutoInit.deregister('MDCTextField');
 
 ## `mdc-auto-init` は何をやっているのか
 
-`mdc-auto-init` は、文字列識別子、言い換えると **名前**、とコンポーネントのコンストラクタを紐づける登録オブジェクトを管理しています。デフォルトのエクスポート関数 - `mdcAutoInit()` - が呼ばれると、`mdc-auto-init` は  `data-mdc-auto-init` 属性を持つすべての要素を DOM に対して問い合わせます。返ってきた各要素に対して以下の手順を実行します。
+`mdc-auto-init` は、文字列識別子、言い換えると **名前**、とコンポーネントのコンストラクターを紐づける登録オブジェクトを管理しています。デフォルトのエクスポート関数 - `mdcAutoInit()` - が呼ばれると、`mdc-auto-init` は  `data-mdc-auto-init` 属性を持つすべての要素を DOM に対して問い合わせます。返ってきた各要素に対して以下の手順を実行します。
 
 1. `data-mdc-auto-init` 要素に関連付けられた値がないときはエラーを投げる。
 2. `data-mdc-auto-init` の値が登録されていないときはエラーを投げる。
 3. `data-mdc-auto-init` の値と同じ名前のプロパティを要素が持っているときは、すでに初期化されているものとして扱う。つまり初期化をとばし、警告をコンソールに書き出す（この動作はオーバライド可能）。
-4. `Ctor` に、与えられた名称に関連付けられたコンポーネントのコンストラクタを代入する。
+4. `Ctor` に、与えられた名称に関連付けられたコンポーネントのコンストラクターを代入する。
 5. `Ctor.attachTo()` に引数として対象要素を渡し、呼んだ結果を `instance` に代入する。
 6. 名前が `data-mdc-auto-init` の値で、値が `instance`であり、書き込み禁止、列挙不可のプロパティをノードに生成する。
 

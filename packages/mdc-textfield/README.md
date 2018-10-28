@@ -8,7 +8,7 @@ path: /catalog/input-controls/text-field/
 
 # Text Field
 
-Text Field はユーザのテキストの入力、編集、選択に対応しています。
+Text Field はユーザーのテキストの入力、編集、選択に対応しています。
 
 ## デザインと API ドキュメント
 
@@ -118,11 +118,11 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### ヘルプテキスト付きテキスト欄
 
-ヘルプテキストは補足の情報や検証のメッセージをユーザに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
+ヘルプテキストは補足の情報や検証のメッセージをユーザーに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
 
 ### 先頭と末尾のアイコン
 
-双方向ターゲットとしてだけでなく視覚インジケータとして MDC Text Fields のデフォルトのもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
+双方向ターゲットとしてだけでなく視覚インジケーターとして MDC Text Fields のデフォルトのもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
 
 ### HTML5 バリデーション
 
@@ -246,7 +246,7 @@ Mixin | Description
 
 ## Web フレームワークでの使用
 
-React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワークのセレクトを作ることができます。ニーズに合わせて <em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 
 ### `MDCTextFieldAdapter`
@@ -256,8 +256,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `addClass(className: string) => void` | ルート要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
 `hasClass(className: string) => boolean` | ルート要素に与えられたクラス名が含まれているときに true を返す。
-`registerTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素に与えたイベントのイベントハンドラを登録する。
-`deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素から与えたイベントのイベントハンドラの登録を解除する。
+`registerTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素に与えたイベントのイベントハンドラーを登録する。
+`deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素から与えたイベントのイベントハンドラーの登録を解除する。
 `registerInputInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブな input 要素に与えたイベントのイベントリスナーを登録する。
 `deregisterInputInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブな input 要素から与えたイベントのイベントリスナーの登録を解除する。
 `registerValidationAttributeChangeHandler(handler: function(!Array<string>) => undefined) => !MutationObserver` | 検証属性の変更のイベントリスナーを input 要素に対して登録する。リスナーは属性変更のリストを受け取る。
@@ -299,4 +299,4 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setTrailingIconContent(content: string) => void` | 末尾のアイコンのテキストコンテンツを設定する。
 `notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
 
-`MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルプテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクタの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
+`MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルパーテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクターの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。

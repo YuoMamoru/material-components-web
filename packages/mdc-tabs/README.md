@@ -108,7 +108,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 #### CSS のみでの実装
 
-CSS だけを利用してインジケータを表示するにはマークアップを変更する必要があります。各 `.mdc-tab` に以下のようにクラス `.mdc-tab__indicator` を伴った子要素を持たせます。
+CSS だけを利用してインジケーターを表示するにはマークアップを変更する必要があります。各 `.mdc-tab` に以下のようにクラス `.mdc-tab__indicator` を伴った子要素を持たせます。
 
 ```html
 <nav id="basic-tab-bar" class="mdc-tab-bar">
@@ -250,7 +250,7 @@ dots.addEventListener('click', function (evt) {
 
 #### `mdc-tab-bar-indicator-ink-color`
 
-このミキシンはインジケータのインクの色をカスタマイズします。
+このミキシンはインジケーターのインクの色をカスタマイズします。
 
 ### CSS のみのコンポーネントの使用
 
@@ -321,7 +321,7 @@ mdc.tabs.MDCTabBar.attachTo(document.querySelector('#my-mdc-tab-bar'));
 
 #### 手動でのインスタンス化
 
-タブはデフォルトのコンストラクタを使って `attachTo` と同様に簡単に初期化できます。`MDCTabBar` の初期化フェーズ中に `mdc-tab-bar` ノードの内部の各タブ要素から MDCTab のインスタンスを生成する工程がこの過程には含まれています。例えば以下のようにします。
+タブはデフォルトのコンストラクターを使って `attachTo` と同様に簡単に初期化できます。`MDCTabBar` の初期化フェーズ中に `mdc-tab-bar` ノードの内部の各タブ要素から MDCTab のインスタンスを生成する工程がこの過程には含まれています。例えば以下のようにします。
 
 ```html
 <nav id="my-mdc-tab-bar" class="mdc-tab-bar">
@@ -342,7 +342,7 @@ const tabBar = new MDCTabBar(document.querySelector('#my-mdc-tab-bar'));
 
 `mdc-tab-bar-scroller` には `mdc-tab-bar` のインスタンスをラップするコンポーネントとファンデーションの組が付属しています。`mdc-tab-bar-scroller` は `initialize()` メソッド呼び出しを使い、ルート要素である `mdc-tab-bar-scroller` の子の tab bar 要素を収集し、インスタンス化するファクトリ関数を呼び出します。
 
-`mdc-tab-bar-scroller` の構造には `mdc-tab-bar` のインスタンス、RTL 対応の前方及び後方のインジケータとスクロールフレームが含まれています。インジケータは操作された際にタブバーを左右に動かします。スクロールフレームはタブバーの親要素で、利用可能な幅からタブバーがあふれたときにタブバーを隠す役割を担います。
+`mdc-tab-bar-scroller` の構造には `mdc-tab-bar` のインスタンス、RTL 対応の前方及び後方のインジケーターとスクロールフレームが含まれています。インジケーターは操作された際にタブバーを左右に動かします。スクロールフレームはタブバーの親要素で、利用可能な幅からタブバーがあふれたときにタブバーを隠す役割を担います。
 
 #### コードへのインクルード
 
@@ -406,7 +406,7 @@ mdc.tabs.MDCTabBarScroller.attachTo(document.querySelector('#my-mdc-tab-bar-scro
 
 #### 手動でのインスタンス化
 
-Tab Bar Scroller はデフォルトのコンストラクタを使って `attachTo` と同様に簡単に初期化できます。`MDCTabBarScroller` の初期化フェーズ中に `mdc-tab-bar-scroller` ノードの内部の `mdc-tab-bar` 要素から `MDCTabBar` のインスタンスを生成する工程がこの過程には含まれています。例えば以下のようにします。
+Tab Bar Scroller はデフォルトのコンストラクターを使って `attachTo` と同様に簡単に初期化できます。`MDCTabBarScroller` の初期化フェーズ中に `mdc-tab-bar-scroller` ノードの内部の `mdc-tab-bar` 要素から `MDCTabBar` のインスタンスを生成する工程がこの過程には含まれています。例えば以下のようにします。
 
 ```html
 <div id="my-mdc-tab-bar-scroller" class="mdc-tab-bar-scroller">
@@ -473,23 +473,23 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 
 #### MDCTab:selected
 
-タブ上でのユーザの操作を通知する。
+タブ上でのユーザーの操作を通知する。
 
 ### ファンデーションクラスの使用
 
-外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabFoundation` クラスが MDC Tab には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
+外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabFoundation` クラスが MDC Tab には付属しています。すべてのファンデーションクラスでアダプターオブジェクトが提供されなくてはなりません。
 
-### アダプタ API
+### アダプター API
 
 | メソッド | 説明 |
 | --- | --- |
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
-| `registerInteractionHandler(evt: string, handler: EventListener) => void` | ルート要素に指定したイベント名のためのイベントハンドラを登録する。 |
-| `deregisterInteractionHandler(evt: string, handler: EventListener) => void` | ルート要素から指定したイベント名のためのイベントハンドラの登録を解除する。 |
+| `registerInteractionHandler(evt: string, handler: EventListener) => void` | ルート要素に指定したイベント名のためのイベントハンドラーを登録する。 |
+| `deregisterInteractionHandler(evt: string, handler: EventListener) => void` | ルート要素から指定したイベント名のためのイベントハンドラーの登録を解除する。 |
 | `getOffsetWidth() => number` | タブの幅を返す。 |
 | `getOffsetLeft() => number` | タブの左端から親要素の左端までの距離を返す。 |
-| `notifySelected() => {}` | ユーザがタブに対して起こしたアクションを示すイベントを通知する。 |
+| `notifySelected() => {}` | ユーザーがタブに対して起こしたアクションを示すイベントを通知する。 |
 
 ### 完全なファンデーション API
 
@@ -541,13 +541,13 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 
 #### MDCTabBar:change
 
-タブに対してユーザがアクションをしたときに通知をし、選択したタブの変更が行われます。
+タブに対してユーザーがアクションをしたときに通知をし、選択したタブの変更が行われます。
 
 ### ファンデーションクラスの使用
 
-外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarFoundation` クラスが `mdc-tab-bar` には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
+外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarFoundation` クラスが `mdc-tab-bar` には付属しています。すべてのファンデーションクラスでアダプターオブジェクトが提供されなくてはなりません。
 
-### アダプタ API
+### アダプター API
 
 | メソッド | 説明 |
 | --- | --- |
@@ -558,8 +558,8 @@ const tabBarScroller = new MDCTabBarScroller(scrollerEl, undefined, tabBarEl);
 | `registerResizeHandler(handler: EventListener) => void` | ルート要素に resize イベントのイベントリスナーを追加する。 |
 | `deregisterResizeHandler(handler: EventListener) => void` | ルート要素から resize イベントのイベントリスナーを削除する。 |
 | `getOffsetWidth() => number` | ルート要素の幅を返す。 |
-| `setStyleForIndicator(propertyName: string, value: string) => void` | インジケータのスタイルプロパティを設定する。 |
-| `getOffsetWidthForIndicator() => number` | インジケータの幅を返す。 |
+| `setStyleForIndicator(propertyName: string, value: string) => void` | インジケーターのスタイルプロパティを設定する。 |
+| `getOffsetWidthForIndicator() => number` | インジケーターの幅を返す。 |
 | `notifyChange(evtData: Object) => void` | evtData を渡して `MDCTabBar:change` イベントを発生させる。 |
 | `getNumberOfTabs() => number` | MDC Tabs インスタンスのタブの番号を返す。 |
 | `getActiveTab() => MDCTab` | 現在アクティブな MDCTab のインスタンスを返す。 |
@@ -609,28 +609,28 @@ Tab Bar コンポーネントのレイアウトを設定します。
 
 ### ファンデーションクラスの使用
 
-外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarScrollerFoundation` クラスが MDC Tab Bar Scroller には付属しています。すべてのファンデーションクラスでアダプタオブジェクトが提供されなくてはなりません。
+外部のフレームワークやライブラリコンポーネントを統合するために使用可能な `MDCTabBarScrollerFoundation` クラスが MDC Tab Bar Scroller には付属しています。すべてのファンデーションクラスでアダプターオブジェクトが提供されなくてはなりません。
 
-### アダプタ API
+### アダプター API
 
 | メソッド | 説明 |
 | --- | --- |
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 | `eventTargetHasClass(target: HTMLElement, className: string) => boolean` | target が与えられたクラス名を持っているとき true を返す。 |
-| `addClassToForwardIndicator(className: string) => void` | 前方インジケータに与えられたクラスを追加する。 |
-| `removeClassFromForwardIndicator(className: string) => void` | 前方インジケータから与えられたクラスを削除する。 |
-| `addClassToBackIndicator(className: string) => void` | 後方インジケータに与えられたクラスを追加する。 |
-| `removeClassFromBackIndicator(className: string) => void` | 後方インジケータから与えられたクラスを削除する。 |
+| `addClassToForwardIndicator(className: string) => void` | 前方インジケーターに与えられたクラスを追加する。 |
+| `removeClassFromForwardIndicator(className: string) => void` | 前方インジケーターから与えられたクラスを削除する。 |
+| `addClassToBackIndicator(className: string) => void` | 後方インジケーターに与えられたクラスを追加する。 |
+| `removeClassFromBackIndicator(className: string) => void` | 後方インジケーターから与えられたクラスを削除する。 |
 | `isRTL() => boolean` | RTL コンテキストを含む場合は true を返し、そうでないときは false を返す。 |
-| `registerBackIndicatorClickHandler(handler: EventListener) => void` | `click` イベントが後方インジケータに発生したときに呼ばれるイベントハンドラを登録する。 |
-| `deregisterBackIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが後方インジケータに発生したときに呼ばれるイベントハンドラの登録を解除する。 |
-| `registerForwardIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが前方インジケータに発生したときに呼ばれるイベントハンドラを登録する。 |
-| `deregisterForwardIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが前方インジケータに発生したときに呼ばれるイベントハンドラの登録を解除する。 |
-| `registerCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | `focus` や `touchstart`、`mousedown` イベントがコンポーネントのルート要素に発生したときに呼ばれるイベントハンドラを登録する。これらのイベントはキャプチャフェーズ中にリスナーに送られる。これらはタブに対してアクションを起こされたときのスクロールの挙動を制御する。 |
-| `deregisterCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | `focus` や `touchstart`、`mousedown` イベントがコンポーネントのルート要素に発生したときに呼ばれるイベントハンドラの登録を解除する。 |
-| `registerWindowResizeHandler(handler: EventHandler) => void` | `resize` イベントが `window` に発生したときに呼ばれるイベントハンドラを登録する。 |
-| `deregisterWindowResizeHandler(handler: EventHandler) => void `| `resize` イベントが `window` に発生したときに呼ばれるイベントハンドラの登録を解除する。 |
+| `registerBackIndicatorClickHandler(handler: EventListener) => void` | `click` イベントが後方インジケーターに発生したときに呼ばれるイベントハンドラーを登録する。 |
+| `deregisterBackIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが後方インジケーターに発生したときに呼ばれるイベントハンドラーの登録を解除する。 |
+| `registerForwardIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが前方インジケーターに発生したときに呼ばれるイベントハンドラーを登録する。 |
+| `deregisterForwardIndicatorClickHandler(handler: EventHandler) => void` | `click` イベントが前方インジケーターに発生したときに呼ばれるイベントハンドラーの登録を解除する。 |
+| `registerCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | `focus` や `touchstart`、`mousedown` イベントがコンポーネントのルート要素に発生したときに呼ばれるイベントハンドラーを登録する。これらのイベントはキャプチャフェーズ中にリスナーに送られる。これらはタブに対してアクションを起こされたときのスクロールの挙動を制御する。 |
+| `deregisterCapturedInteractionHandler(evt: string, handler: EventHandler) => void` | `focus` や `touchstart`、`mousedown` イベントがコンポーネントのルート要素に発生したときに呼ばれるイベントハンドラーの登録を解除する。 |
+| `registerWindowResizeHandler(handler: EventHandler) => void` | `resize` イベントが `window` に発生したときに呼ばれるイベントハンドラーを登録する。 |
+| `deregisterWindowResizeHandler(handler: EventHandler) => void `| `resize` イベントが `window` に発生したときに呼ばれるイベントハンドラーの登録を解除する。 |
 | `getNumberOfTabs() => number` | スクローラのタブバーにあるタブの数を返す。 |
 | `getComputedWidthForTabAtIndex(index: number) => number` | 与えられた位置にあるタブの幅を返す。 |
 | `getComputedLeftForTabAtIndex(index: number) => number` | 与えられた位置にあるタブの左側オフセットを返す。 |
@@ -660,4 +660,4 @@ index の位置のタブがスクロールフレーム上を動いて左端に�
 
 #### MDCTabBarScrollerFoundation.layout() => void
 
-タブバーが利用できる幅を超えているとき、このメソッドは新しい幅に合わせて前方および後方インジケータを適切な状態（表示/非表示）に再設定します。
+タブバーが利用できる幅を超えているとき、このメソッドは新しい幅に合わせて前方および後方インジケーターを適切な状態（表示/非表示）に再設定します。

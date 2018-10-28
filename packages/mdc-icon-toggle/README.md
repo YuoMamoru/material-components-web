@@ -117,7 +117,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ### 変更イベントの取得
 
-<em>ユーザの操作により</em> アイコン切り替えの値が変わったときに、`MDCIconToggle` は `MDCIconToggle:change` カスタムイベントを発生させます。通常の入力における `change` イベントと連携して動作します。加えて、これらのイベントはバブリングせず、キャンセルもできません。
+<em>ユーザーの操作により</em> アイコン切り替えの値が変わったときに、`MDCIconToggle` は `MDCIconToggle:change` カスタムイベントを発生させます。通常の入力における `change` イベントと連携して動作します。加えて、これらのイベントはバブリングせず、キャンセルもできません。
 
 カスタムイベントの `detail` オブジェクトはコンポーネントがオンになっているかどうかを示す `isOn` プロパティを持っています。
 
@@ -155,14 +155,14 @@ iconToggle.refreshToggleData();
 
 ### ファンデーションクラスの使用
 
-最小限の労力で独自の MDCIconToggle コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCIconToggleFoundation` クラスが MDCIconToggle には付属しています。すべてのファンデーションクラスと同様に、アダプタオブジェクトを提供しなくてはなりません。アイコン切り替えのアダプタは以下の関数を提供しなくてはなりません。
+最小限の労力で独自の MDCIconToggle コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCIconToggleFoundation` クラスが MDCIconToggle には付属しています。すべてのファンデーションクラスと同様に、アダプターオブジェクトを提供しなくてはなりません。アイコン切り替えのアダプターは以下の関数を提供しなくてはなりません。
 
 メソッド | 説明
 --- | ---
 `addClass(className: string) => void` | ルート要素、もしくは内部のアイコン要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素、もしくは内部のアイコン要素からクラスを削除する。
-`registerInteractionHandler(type: string, handler: EventListener) => void` | `click` や `keydown` のようなインタラクションイベントのためのイベントハンドラを登録する。
-`deregisterInteractionHandler(type: string, handler: EventListener) => void` | `click` や `keydown` のようなインタラクションイベントのためのイベントハンドラの登録を解除する。
+`registerInteractionHandler(type: string, handler: EventListener) => void` | `click` や `keydown` のようなインタラクションイベントのためのイベントハンドラーを登録する。
+`deregisterInteractionHandler(type: string, handler: EventListener) => void` | `click` や `keydown` のようなインタラクションイベントのためのイベントハンドラーの登録を解除する。
 `setText(text: string) => void` | ルート要素、もしくは内部のアイコン要素のテキストコンテンツを設定する。
 `getTabIndex() => number` | ルート要素のタブインデックスを返す。
 `setTabIndex(tabIndex: number) => void` | ルート要素のタブインデックスを設定する。
@@ -171,9 +171,9 @@ iconToggle.refreshToggleData();
 `rmAttr(name: string) => void` | ルート要素の `name` に指定した属性を削除する。
 `notifyChange(evtData: {isOn: boolean}) => void` | 変更の通知を受け取り、環境のイベントハンドリンクシステムに `evtData` を伝達する。素の実装ではこのメソッドのためにカスタムイベントが使用される。
 
-#### アダプタの実装者の考慮事項
+#### アダプターの実装者の考慮事項
 
-あなたが独自のアダプタを作成する際に考慮すべきことの一つは `data-icon-inner-selector` の使用についてです。これは <em>コンポーネント</em> のレベルで処理されます。このことは、ファンデーションは完全にこれを関知しないということを意味します。そのため、あなたのフレームワークの Icon Toggle が内部のアイコン要素を持っているなら、`addClass` と `removeClass`、`setText` はアイコン要素に対して作用することを保証しなくはなりません。
+あなたが独自のアダプターを作成する際に考慮すべきことの一つは `data-icon-inner-selector` の使用についてです。これは <em>コンポーネント</em> のレベルで処理されます。このことは、ファンデーションは完全にこれを関知しないということを意味します。そのため、あなたのフレームワークの Icon Toggle が内部のアイコン要素を持っているなら、`addClass` と `removeClass`、`setText` はアイコン要素に対して作用することを保証しなくはなりません。
 
 <em>リップルはコンポーネントレベルで独自のファンデーションを必要とする</em> ことにも注意が必要です。出発点として `index.js` における私たちの素の実装を確かめてください。
 
@@ -189,7 +189,7 @@ iconToggle.refreshToggleData();
 
 ##### `MDCIconToggleFoundation.toggle(isOn: boolean = !this.isOn()) => void`
 
-ファンデーションの状態を切り替え、アダプタメソッドを通じてコンポーネントを更新します。引数が与えられていないときは、現在の状態の反対の状態にします。引数が与えられているときは、true ならオンに、false ならオフにします。
+ファンデーションの状態を切り替え、アダプターメソッドを通じてコンポーネントを更新します。引数が与えられていないときは、現在の状態の反対の状態にします。引数が与えられているときは、true ならオンに、false ならオフにします。
 
 ##### `MDCIconToggleFoundation.isDisabled() => boolean`
 
@@ -197,11 +197,11 @@ iconToggle.refreshToggleData();
 
 ##### `MDCIconToggleFoundation.setDisabled(isDisabled: boolean) => void`
 
-ファンデーションの状態を有効または無効にし、アダプタメソッドを通じてコンポーネント更新します。
+ファンデーションの状態を有効または無効にし、アダプターメソッドを通じてコンポーネント更新します。
 
 ##### `MDCIconToggleFoundation.isKeyboardActivated() => boolean`
 
-ファンデーションが現状、キーボードイベントを有効にしていれば `true` を返し、そうでなければ `false` を返します。`MDCRippleFoundation.isSurfaceActive()` アダプタメソッドで役立ちます。
+ファンデーションが現状、キーボードイベントを有効にしていれば `true` を返し、そうでなければ `false` を返します。`MDCRippleFoundation.isSurfaceActive()` アダプターメソッドで役立ちます。
 
 ### Sass ミキシン
 

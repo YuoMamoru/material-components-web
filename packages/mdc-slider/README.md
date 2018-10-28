@@ -120,7 +120,7 @@ const {MDCSlider} = mdc.slider;
 
 > **注意**: スライダーに刻み幅があるということは「非連続」スライダーであるということを意味するものでは <em>ありません</em>。「非連続スライダー」は UX の議論であり、刻み幅は振舞いの話です。
 
-`MDCSlider` は `data-step` 属性を使って不動小数点の `step` の値をユーザに提供することにより離散的な値を取ることができます。
+`MDCSlider` は `data-step` 属性を使って不動小数点の `step` の値をユーザーに提供することにより離散的な値を取ることができます。
 
 ```html
 <div class="mdc-slider" tabindex="0" role="slider"
@@ -190,15 +190,15 @@ const {MDCSlider} = mdc.slider;
 
 #### イベント
 
-ユーザのイベントによりスライダーの値が変更されたときに、`MDCSlider` はルート要素から `MDCSlider:input` カスタムイベントを送出します。例えば、ユーザがスライダーをドラッグしたり、方向キーで値を変更したりしたときに発生します。イベントの `detail` プロパティには対象となったスライダーのインスタンスが設定されます。
+ユーザーのイベントによりスライダーの値が変更されたときに、`MDCSlider` はルート要素から `MDCSlider:input` カスタムイベントを送出します。例えば、ユーザーがスライダーをドラッグしたり、方向キーで値を変更したりしたときに発生します。イベントの `detail` プロパティには対象となったスライダーのインスタンスが設定されます。
 
-ユーザのイベントによりスライダーの値の変更が <em>確定</em> したときに、`MDCSlider` はルート要素から `MDCSlider:change` カスタムイベントを送出します。例えば、ユーザがスライダーをドラッグし終えたり、方向キーで値を変更したりしたときに発生します。イベントの `detail` プロパティには対象となったスライダーのインスタンスが設定されます。
+ユーザーのイベントによりスライダーの値の変更が <em>確定</em> したときに、`MDCSlider` はルート要素から `MDCSlider:change` カスタムイベントを送出します。例えば、ユーザーがスライダーをドラッグし終えたり、方向キーで値を変更したりしたときに発生します。イベントの `detail` プロパティには対象となったスライダーのインスタンスが設定されます。
 
 ### ファンデーションクラスの使用
 
 フレームワーク制作者が自身のフレームワークにおいてカスタム MDCSlicer コンポーネントを構築するために使用できる `MDCSliderFoundation` クラスが `@material/slider` パッケージには付属しています。
 
-#### アダプタ API
+#### アダプター API
 
 | メソッド | 説明 |
 | --- | --- |
@@ -219,7 +219,7 @@ const {MDCSlider} = mdc.slider;
 | `registerResizeHandler(handler: EventListener) => void` | コンポーネントのビューポートがリサイズされたとき（例えば `window.onresize`）に呼び出されるイベントリスナー `handler` を追加する。 |
 | `deregisterResizeHandler(handler: EventListener) => void` | `registerResizeHandler` を使ってアタッチしたイベントリスナー `handler` を削除する。 |
 | `notifyInput() => void` | スライダーの値が現在変わっている最中であることをクライアントに通知する "input" イベントを発生させる。実装ではこのイベントに関連する適切な情報を渡さなくてはならない。私たちのケースではイベントのトリガーとなったコンポーネントのインスタンスを渡している。 |
-| `notifyChange() => void` | ユーザによってスライダーの値の変更が確定したことをクライアントに通知する "change" イベントを発生させる。`notifyInput()` と同じことがここでもいえる。 |
+| `notifyChange() => void` | ユーザーによってスライダーの値の変更が確定したことをクライアントに通知する "change" イベントを発生させる。`notifyInput()` と同じことがここでもいえる。 |
 | `setThumbContainerStyleProperty(propertyName: string, value: string) => void` | つまみのコンテナ要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
 | `setTrackStyleProperty(propertyName: string, value: string) => void` | トラック要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
 | `setMarkerValue(value: number) => void` | 非連続スライダーのつまみが動かす際にピンの値にマーカーの値を設定する。 |

@@ -80,9 +80,9 @@ const tab = new MDCTab(document.querySelector('.mdc-tab'));
 </button>
 ```
 
-### コンテンツのみにまたがるインジケータを持つタブ
+### コンテンツのみにまたがるインジケーターを持つタブ
 
-基本的な使い方の例では、タブのインジケータはすべてのタブにまたがっていました。代わりに `mdc-tab__content` 要素の <em>中に</em> インジケータを置けばタブインジケータはタブのそのコンテンツにのみ設定することができます。
+基本的な使い方の例では、タブのインジケーターはすべてのタブにまたがっていました。代わりに `mdc-tab__content` 要素の <em>中に</em> インジケーターを置けばタブインジケーターはタブのそのコンテンツにのみ設定することができます。
 
 ```html
 <button class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
@@ -147,7 +147,7 @@ CSS クラス | 説明
 `activate(previousIndicatorClientRect: ClientRect=) => void` | インジケーターを有効にする。`previousIndicatorClientRect` はオプションの引数。
 `deactivate() => void` | インジケーターを無効にする。
 `focus() => void` | タブにフォーカスをあてる。
-`computeIndicatorClientRect() => ClientRect` | インジケータの境界のクライアントレクトを返す。
+`computeIndicatorClientRect() => ClientRect` | インジケーターの境界のクライアントレクトを返す。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
 
 イベント | イベントのデータ構造 | 説明
@@ -156,7 +156,7 @@ CSS クラス | 説明
 
 ## Web フレームワーク内での使用
 
-React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプタを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
+React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
 
 ### `MDCTabAdapter`
 
@@ -166,8 +166,8 @@ React や Angular といった JavaScript フレームワークを使用して�
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
 `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを含んでいれば true を返す。
 `setAttr(attr: string, value: string) => void` | ルート要素に与えられた値を属性として設定する。
-`activateIndicator(previousIndicatorClientRect: ClientRect=) => void` | タブインジケータサブコンポーネントを有効にする。`previousIndicatorClientRect` はオプション引数。
-`deactivateIndicator() => void` | タブインジケータサブコンポーネントを無効にする。
+`activateIndicator(previousIndicatorClientRect: ClientRect=) => void` | タブインジケーターサブコンポーネントを有効にする。`previousIndicatorClientRect` はオプション引数。
+`deactivateIndicator() => void` | タブインジケーターサブコンポーネントを無効にする。
 `getOffsetLeft() => number` | ルート要素の `offsetLeft` の値を返す。
 `getOffsetWidth() => number` | ルート要素の `offsetWidth` の値を返す。
 `getContentOffsetLeft() => number` | コンテンツ要素の `offsetLeft` の値を返す。
@@ -186,10 +186,10 @@ React や Angular といった JavaScript フレームワークを使用して�
 `deactivate() => void` | タブを無効にする。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
 
-### `MDCTabFoundation` イベントハンドラ
+### `MDCTabFoundation` イベントハンドラー
 
-タブコンポーネントをラップする際には、以下のイベントハンドラを登録する必要があります。この例としては [MDCTab](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
+タブコンポーネントをラップする際には、以下のイベントハンドラーを登録する必要があります。この例としては [MDCTab](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
 
-イベント | 要素 | ファンデーションハンドラ
+イベント | 要素 | ファンデーションハンドラー
 --- | --- | ---
 `click` | ルート要素 | `handleClick()`

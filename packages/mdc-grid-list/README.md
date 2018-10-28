@@ -238,7 +238,7 @@ npm install @material/grid-list
 
 ### ファンデーションクラスの使用
 
-最小限の労力で独自の MDCGridList コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCGridListFoundation` クラスが MDCGridList には付属しています。すべてのファンデーションクラスと同様に、アダプタオブジェクトを提供しなくてはなりません。グリッドリストのアダプタは以下の関数を提供しなくてはなりません。
+最小限の労力で独自の MDCGridList コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCGridListFoundation` クラスが MDCGridList には付属しています。すべてのファンデーションクラスと同様に、アダプターオブジェクトを提供しなくてはなりません。グリッドリストのアダプターは以下の関数を提供しなくてはなりません。
 
 | メソッド | 説明 |
 | --- | --- |
@@ -246,5 +246,5 @@ npm install @material/grid-list
 | `getNumberOfTiles() => number` | グリッドリストに含まれる mdc-grid-tile 要素の数を取得する。 |
 | `getOffsetWidthForTileAtIndex(index: number) => number` | 指定した index にある `mdc-grid-tile` の offsetWidth を取得する。 |
 | `setStyleForTilesElement(property: string, value: number) => void` | `mdc-grid-list__tiles` スタイルプロパティに指定した値を設定する。 |
-| `registerResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。 |
-| `deregisterResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。 |
+| `registerResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。 |
+| `deregisterResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。 |

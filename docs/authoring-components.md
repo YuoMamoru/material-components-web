@@ -15,20 +15,20 @@ path: /docs/authoring-components/
 * [コンポーネント構築の方法](#how-to-build-a-component)
   * [単純なコンポーネントのプロトタイプ](#start-with-a-simple-component-prototype)
   * [ホスト環境とのやりとりの確認](#identify-host-environment-interactions)
-  * [アダプタインターフェースの作成](#create-the-adapter-interface)
+  * [アダプターインターフェースの作成](#create-the-adapter-interface)
   * [既存のコードをファンデーションに再構築](#refactor-your-existing-code-into-a-foundation)
-  * [ファンデーション上のコンポーネントの構築とアダプタの提供](#build-a-component-on-top-of-that-foundation-providing-an-adapter)
+  * [ファンデーション上のコンポーネントの構築とアダプターの提供](#build-a-component-on-top-of-that-foundation-providing-an-adapter)
 * [よいコンポーネント作るには](#what-makes-a-good-component)
   * [完全にテストされたコード](#fully-tested-code)
-  * [徹底的な文書化と厳密にバージョン管理されたアダプタインターフェース](#thoroughly-documented-and-strictly-versioned-adapter-interface)
+  * [徹底的な文書化と厳密にバージョン管理されたアダプターインターフェース](#thoroughly-documented-and-strictly-versioned-adapter-interface)
   * [アクセシビリティ](#accessibility)
   * [RTL への意識](#rtl-awareness)
   * [テーマのサポート](#support-for-theming)
 * [ベストプラクティス](#general-best-practices)
-  * [ユーザの期待していることを実行する](#do-what-the-user-expects)
-  * [アダプタインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
+  * [ユーザーの期待していることを実行する](#do-what-the-user-expects)
+  * [アダプターインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
   * [ファンデーションコード内でホストオブジェクトを参照しない](#do-not-reference-host-objects-within-foundation-code)
-  * [デストラクタですべての参照を削除する](#clean-up-all-references-on-destruction)
+  * [デストラクターですべての参照を削除する](#clean-up-all-references-on-destruction)
 * [MDC Web のコンポーネントの作成](#authoring-components-for-mdc-web)
   * [ファイル構成](#file-structure)
   * [ライセンスの記載](#license-stanzas)
@@ -43,31 +43,31 @@ path: /docs/authoring-components/
      * [外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する](#define-all-exported-css-classes-strings-and-numbers-as-foundation-constants)
      * [コンポーネントとファンデーションは mdc-base のクラスを継承して作成する](#extend-components-and-foundations-from-mdc-base-classes)
      * [パッケージをビルドインフラおよび material-components-web パッケージに登録しなくてはいけない](#packages-must-be-registered-with-our-build-infrastructure-and-with-material-components-web-pkg)
-     * [クロージャの互換性](#closure-compatibility)
+     * [クロージャーの互換性](#closure-compatibility)
   * [テスト](#testing)
-     * [ファンデーションのアダプタを検証する](#verify-foundations-adapters)
+     * [ファンデーションのアダプターを検証する](#verify-foundations-adapters)
      * [ヘルパーメソッドを使う](#use-helper-methods)
-     * [DOM フィクスチャに bel を使う](#use-bel-for-dom-fixture)
+     * [DOM フィクスチャーに bel を使う](#use-bel-for-dom-fixture)
      * [あらゆるテストの後は常に DOM をきれいにする](#always-clean-up-the-dom-after-every-test)
-     * [testdouble を通じてアダプタの検証をする](#verify-adapters-via-testdouble)
+     * [testdouble を通じてアダプターの検証をする](#verify-adapters-via-testdouble)
 
 ## <a name="who-this-document-is-for"></a>誰のためのドキュメントか
 
 このドキュメントの最初の2つのセクションにはコンポーネント構築の考え方や良いコンポーネントの基準についての一般的なガイドラインを記載します。直接 MDC Web を構築する場合にも MDC Web と連携する外部コンポーネントを作成する場合にもコンポーネントの構築に関心のある人にはこれが役立つでしょう。3つ目のセクションでは特に MDC Web のコンポーネント制作について説明します。このセクションはプロジェクトに直接貢献したい人に最適です。
 
-このドキュメントはあなたがこのライブラリとそのアーキテクチャに精通していることを前提としています。もしそうでない場合はまず [アーキテクチャ](code/architecture.md) を読むことをお勧めします。もしこのプロジェクトに初めて触れるのであれば [入門ガイド](./getting-started.md) から始めるのが良いでしょう。
+このドキュメントはあなたがこのライブラリとそのアーキテクチャーに精通していることを前提としています。もしそうでない場合はまず [アーキテクチャー](code/architecture.md) を読むことをお勧めします。もしこのプロジェクトに初めて触れるのであれば [入門ガイド](./getting-started.md) から始めるのが良いでしょう。
 
 ## <a name="how-to-build-a-component"></a>コンポーネント構築の方法
 
 このセクションでは MDC Web のための新しいコンポーネントの作成の背景にある考え方のアウトラインを示します。これは React の [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) という記事に触発されました。
 
-何もない状態から取りかかり、コンポーネント/アダプタ/ファンデーション の実装にまっすぐ進むことは非常に困難であり、最悪の場合、生産性と実験性の観点から完全に不可能になってしまいます。そこで、しばしば<em>可能な限りもっとも簡単な方法でプロトタイプのコンポーネントを構築し、それからファンデーションとアダプタに向かって作業を進めます</em>。私たちはよくこの方法でステップを進めます。
+何もない状態から取りかかり、コンポーネント/アダプター/ファンデーション の実装にまっすぐ進むことは非常に困難であり、最悪の場合、生産性と実験性の観点から完全に不可能になってしまいます。そこで、しばしば<em>可能な限りもっとも簡単な方法でプロトタイプのコンポーネントを構築し、それからファンデーションとアダプターに向かって作業を進めます</em>。私たちはよくこの方法でステップを進めます。
 
 このアプローチを実証するために私たちは **red-blue toggle** を構築します。これは赤い背景と青いテキストが入れ替わる非常に単純なトグルボタンです。マテリアルデザインのコンポーネントではありませんが、これを使って MDC Web の構成がどのように考えられているかというコンセプトを説明します。
 
 ### <a name="start-with-a-simple-component-prototype"></a>単純なコンポーネントのプロトタイプ
 
-最初にコンポーネントに取り掛かるにあたり、ファンデーションやアダプタを気にせずに素の HTML/CSS/JavaScript を使ってプロトタイプを構築することから始めます。次のコードが redblue-toggle のプロトタイプのコードです。[CodePen](http://codepen.io/traviskaufman/pen/jVxdNo) でコードを見ることもできます。
+最初にコンポーネントに取り掛かるにあたり、ファンデーションやアダプターを気にせずに素の HTML/CSS/JavaScript を使ってプロトタイプを構築することから始めます。次のコードが redblue-toggle のプロトタイプのコードです。[CodePen](http://codepen.io/traviskaufman/pen/jVxdNo) でコードを見ることもできます。
 
 > **ヒント**: コメントを試すときは [この CodePen テンプレート](http://codepen.io/traviskaufman/pen/pNQmRp) を出発点とすることもできます。
 
@@ -124,13 +124,13 @@ class RedblueTogglePrototype {
 new RedblueTogglePrototype(document.querySelector('.redblue-toggle'));
 ```
 
-この JS コンポーネントは MDC Web を少しも参照しておらず、ファンデーションやアダプタの概念を持っていないことに注意してください。こういったことをしないことにより、素早くコンポーネントを試してみることができ、早く簡単に変更を行うことができます。それにもかかわらずこのプロトタイプのコンポーネントのやり方は MDC Web コンポーネントの構築によるやり方に結局のところとても似ています。
+この JS コンポーネントは MDC Web を少しも参照しておらず、ファンデーションやアダプターの概念を持っていないことに注意してください。こういったことをしないことにより、素早くコンポーネントを試してみることができ、早く簡単に変更を行うことができます。それにもかかわらずこのプロトタイプのコンポーネントのやり方は MDC Web コンポーネントの構築によるやり方に結局のところとても似ています。
 
 ### <a name="identify-host-environment-interactions"></a>ホスト環境とのやりとりの確認
 
-一旦プロトタイプができれば、次のステップはアダプタを通して機能させることが必要であるということを理解することです。ホスト環境との直接的なやりとりは代わりにやってくれるものを必要としています。機能は Web プラットフォーム上のすべてのフレームワークに統合できるできるようするべきだからです（訳注: ホスト環境と直接的なやりとりを行う API を使うとホスト環境を提供するフレームワークとの統合ができてもそれ以外のフレームワークでの適用が難しくなるのでホスト環境の API をラップするものを用意したほうが良いということ）。
+一旦プロトタイプができれば、次のステップはアダプターを通して機能させることが必要であるということを理解することです。ホスト環境との直接的なやりとりは代わりにやってくれるものを必要としています。機能は Web プラットフォーム上のすべてのフレームワークに統合できるできるようするべきだからです（訳注: ホスト環境と直接的なやりとりを行う API を使うとホスト環境を提供するフレームワークとの統合ができてもそれ以外のフレームワークでの適用が難しくなるのでホスト環境の API をラップするものを用意したほうが良いということ）。
 
-> 私たちのアーキテクチャドキュメントについて簡単に説明すると、**ホスト環境** という用語はコンポーネントを使用している環境という意味で使っています。[React-Native](https://facebook.github.io/react-native/) のような技術の場合はブラウザであったりコンポーネントを描画するサーバー、仮想DOM環境、はたまたモバイルアプリケーションといったものを指します。
+> 私たちのアーキテクチャードキュメントについて簡単に説明すると、**ホスト環境** という用語はコンポーネントを使用している環境という意味で使っています。[React-Native](https://facebook.github.io/react-native/) のような技術の場合はブラウザであったりコンポーネントを描画するサーバー、仮想DOM環境、はたまたモバイルアプリケーションといったものを指します。
 
 redblue-toggle ではホスト環境とのやりに関するすべてのインスタンスをとても簡単に見ることができます。`root` ノードに対する読み書きしているところを確認すればよいのです。
 
@@ -141,9 +141,9 @@ redblue-toggle ではホスト環境とのやりに関するすべてのイン�
 
 それ以外のケースではホスト環境とのやりとりは `window.addEventListener('resize', ...)` のように単純ではない場合があります。これらもホスト環境のやりとりの例であり、気に留めておく必要があります。
 
-### <a name="create-the-adapter-interface"></a>アダプタインターフェースの作成
+### <a name="create-the-adapter-interface"></a>アダプターインターフェースの作成
 
-ホスト環境とのやりとりが明らかになったので、アダプタインターフェースをこのコンポーネントに構築していきます。
+ホスト環境とのやりとりが明らかになったので、アダプターインターフェースをこのコンポーネントに構築していきます。
 
 ```js
 class RedblueTogglePrototype {
@@ -188,9 +188,9 @@ class RedblueTogglePrototype {
 }
 ```
 
-上記のコードではホスト環境とのやりとりがすべてフェイクの `SOMEHOW_*` メソッドに置き換えられています。私たちはこのフェイクのメソッドを取り出し、アダプタインターフェースに変換することができます。
+上記のコードではホスト環境とのやりとりがすべてフェイクの `SOMEHOW_*` メソッドに置き換えられています。私たちはこのフェイクのメソッドを取り出し、アダプターインターフェースに変換することができます。
 
-| フェイクメソッド | アダプタメソッド |
+| フェイクメソッド | アダプターメソッド |
 | --- | --- |
 | SOMEHOW_GET_ATTRIBUTE(attr: string) => string | getAttr(attr: string) => string |
 | SOMEHOW_SET_ATTRIBUTE(attr: string, value: string) | setAttr(attr: string, value: string) |
@@ -200,11 +200,11 @@ class RedblueTogglePrototype {
 | SOMEHOW_REGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | registerInteractionHandler(type: string, handler: EventListener) |
 | SOMEHOW_DEREGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | deregisterInteractionHandler(type: string, handler: EventListener) |
 
-> 注意: 私たちはコードにおいて、イベントリスナーを追加/削除をおこなうのアダプタメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` という用語を使うことを使うことを慣習としています。私たちがそのような用語を使うのは大半のコンポーネントはやりとりに対してのみ関心を持っているというように感じているからです。しかし、これらのメソッドを `{add,remove}EventListener` やそれ以外の好きな名前をつけても構いません。
+> 注意: 私たちはコードにおいて、イベントリスナーを追加/削除をおこなうのアダプターメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` という用語を使うことを使うことを慣習としています。私たちがそのような用語を使うのは大半のコンポーネントはやりとりに対してのみ関心を持っているというように感じているからです。しかし、これらのメソッドを `{add,remove}EventListener` やそれ以外の好きな名前をつけても構いません。
 
 ### <a name="refactor-your-existing-code-into-a-foundation"></a>既存のコードをファンデーションに再構築
 
-アダプタAPIを定義しましたが、このコードをファンデーションクラスに書き直すことができます。慣習として、なにもしない各関数をもつアダプタを返す静的な `defaultAdapter` ゲッタを定義します。このメソッドは私たちがアダプタの形式を確認するのに役立ち、メソッドの実装を忘れた際にアダプタがエラーを返すことを防ぎ、将来リントツールがアダプタの形式が適切であること強制するため使うことができます（使うべきです）。その例を示しますが、これは `MDCFoundation` クラスの使用例でもあります。このクラスはすべてのファンデーションクラスの基底クラスです。
+アダプター API を定義しましたが、このコードをファンデーションクラスに書き直すことができます。慣習として、なにもしない各関数をもつアダプターを返す静的な `defaultAdapter` ゲッタを定義します。このメソッドは私たちがアダプターの形式を確認するのに役立ち、メソッドの実装を忘れた際にアダプターがエラーを返すことを防ぎ、将来リントツールがアダプターの形式が適切であること強制するため使うことができます（使うべきです）。その例を示しますが、これは `MDCFoundation` クラスの使用例でもあります。このクラスはすべてのファンデーションクラスの基底クラスです。
 
 ```js
 class RedblueToggleFoundation extends MDCFoundation {
@@ -259,14 +259,14 @@ class RedblueToggleFoundation extends MDCFoundation {
 
 セッタとゲッタの代わりに `isToggled()` と `toggle()` が使われていることに注意してください。このファンデーションは低レベルな API であることを考えると、この慣習が適切であると思われます。
 
-### <a name="build-a-component-on-top-of-that-foundation-providing-an-adapter"></a>ファンデーション上のコンポーネントの構築とアダプタの提供
+### <a name="build-a-component-on-top-of-that-foundation-providing-an-adapter"></a>ファンデーション上のコンポーネントの構築とアダプターの提供
 
 最後のステップは上記のファンデーションを使い、コンポーネントを構築することです。コンポーネントは2つの主な役割を持っています。
 
 * ホスト環境内にファンデーションのもつ機能へのイディオム的なインターフェースを提供する
-* ホスト環境内で動作するファンデーションへのアダプタを提供する
+* ホスト環境内で動作するファンデーションへのアダプターを提供する
 
-このコンポーネントは素のコンポーネントなので、素の DOM API をならって作ることになります。素の DOM API はこれらの機能を実装することになるセッタやゲッタにとって好都合です（`checked`, `disabled` などを考えてみてください）。ここで実装するメソッドは簡単に再利用可能なのでアダプタは極めて簡単なものになります。
+このコンポーネントは素のコンポーネントなので、素の DOM API をならって作ることになります。素の DOM API はこれらの機能を実装することになるセッタやゲッタにとって好都合です（`checked`, `disabled` などを考えてみてください）。ここで実装するメソッドは簡単に再利用可能なのでアダプターは極めて簡単なものになります。
 
 ```js
 class RedblueToggle extends MDCComponent {
@@ -302,13 +302,13 @@ class RedblueToggle extends MDCComponent {
 
 ### <a name="fully-tested-code"></a>完全にテストされたコード
 
-ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟であることの利点はプログラムの正しさを検証するコストにもなります。コードが期待通りに動作していることを検証する唯一の方法はコードを実行し結果が期待したものであるかを検証することです。ファンデーション、アダプタ、コンポーネントのテストカバレッジが100%になるよう努力してください。
+ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟であることの利点はプログラムの正しさを検証するコストにもなります。コードが期待通りに動作していることを検証する唯一の方法はコードを実行し結果が期待したものであるかを検証することです。ファンデーション、アダプター、コンポーネントのテストカバレッジが100%になるよう努力してください。
 
-### <a name="thoroughly-documented-and-strictly-versioned-adapter-interface"></a>徹底的な文書化と厳密にバージョン管理されたアダプタインターフェース
+### <a name="thoroughly-documented-and-strictly-versioned-adapter-interface"></a>徹底的な文書化と厳密にバージョン管理されたアダプターインターフェース
 
-フレームワークの開発者はあなたのアダプタインターフェース周りコードを設計しいくので、あなたが開発者に設計のために必要な情報をすべて提供することは重要ことです。私たちの推奨する方法はコンポーネントの README にアダプタのインターフェースを文書化し、メソッドの期待された振る舞いはもちろんのこと、メソッドの使い方も文書に提供することです。
+フレームワークの開発者はあなたのアダプターインターフェース周りコードを設計しいくので、あなたが開発者に設計のために必要な情報をすべて提供することは重要ことです。私たちの推奨する方法はコンポーネントの README にアダプターのインターフェースを文書化し、メソッドの期待された振る舞いはもちろんのこと、メソッドの使い方も文書に提供することです。
 
-同様に重要なことは <em>アダプタインターフェースを厳格にバージョン管理すること</em> です。アダプタインターフェースが変わると既存の実装部分が壊れたり、新しいアダプタメソッドの実装とつながらなくなることによりコンポーネントの重要な部分が失われているにもかかわらず実装者は正しく期待通りにコードが動いているように思ったりする可能性があります。私たちは <em>それぞれの変更はアダプタインターフェースの破壊的な変更</em> であると考え、このやり方を推奨します。
+同様に重要なことは <em>アダプターインターフェースを厳格にバージョン管理すること</em> です。アダプターインターフェースが変わると既存の実装部分が壊れたり、新しいアダプターメソッドの実装とつながらなくなることによりコンポーネントの重要な部分が失われているにもかかわらず実装者は正しく期待通りにコードが動いているように思ったりする可能性があります。私たちは <em>それぞれの変更はアダプターインターフェースの破壊的な変更</em> であると考え、このやり方を推奨します。
 
 ### <a name="accessibility"></a>アクセシビリティ
 
@@ -328,44 +328,44 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 > すべてのベストプラクティスがそうであるように、このベストプラクティスは厳格で揺るがないルールではなく <em>ガイドライン</em> であることを気に留めておくことは重要です。[もしベストプラクティスがコンポーネントの改善や維持を妨げるようであれば無視してください](https://en.wikipedia.org/wiki/Wikipedia:Ignore_all_rules)。しかし、なるべくドキュメントやコメントとして軽視したことの理由を示してください。
 
-### <a name="do-what-the-user-expects"></a>ユーザの期待していることを実行する
+### <a name="do-what-the-user-expects"></a>ユーザーの期待していることを実行する
 
-これは私たちの「黄金の掟 (golden rule)」です。<em>コンポーネントの API は直感的でわかりやすいものになるよう設計してください。コンポーネントはユーザの予想通りのふるまいをするようにしてください。</em>例えば `MDCCheckbox` の `checked` ゲッタはチェックボックスの内部状態がチェックされているかどうかを表す真偽値を返してください。副作用ががなく、`type` が `"checkbox"` であるときは `HTMLInputElement.prototype.checked` とまったく同じ方法で動作するようにします。コンポーネントを設計する際には、ユーザがどのように使うのかを想像したことをもとに作ってください。私たちのケースでは素のコンポーネント（訳注: 手を入れていない MDC Web の素のコンポーネントのこと）は DOM API をもとに作っています。
+これは私たちの「黄金の掟 (golden rule)」です。<em>コンポーネントの API は直感的でわかりやすいものになるよう設計してください。コンポーネントはユーザーの予想通りのふるまいをするようにしてください。</em>例えば `MDCCheckbox` の `checked` ゲッタはチェックボックスの内部状態がチェックされているかどうかを表す真偽値を返してください。副作用ががなく、`type` が `"checkbox"` であるときは `HTMLInputElement.prototype.checked` とまったく同じ方法で動作するようにします。コンポーネントを設計する際には、ユーザーがどのように使うのかを想像したことをもとに作ってください。私たちのケースでは素のコンポーネント（訳注: 手を入れていない MDC Web の素のコンポーネントのこと）は DOM API をもとに作っています。
 
-### <a name="design-adapter-interfaces-to-be-simple-and-ntuitive"></a>アダプタインターフェースは単純かつ直感的なものにする
+### <a name="design-adapter-interfaces-to-be-simple-and-ntuitive"></a>アダプターインターフェースは単純かつ直感的なものにする
 
-このルールは先に述べたユーザの期待しているものを作るというプラクティスに則ったものです。ライブラリの利用者はアダプタメソッドを実装することになるので、アダプタメソッドは実装することが簡単であるだけでなく、本質的に簡素で直感的でなくてはなりません。大半のアダプタメソッドは「クラスを加える」や「プロパティのスタイルを更新する」といったように一言で記述できるべきです。アダプタメソッドの目的は何かとかインプットとアウトプットが何かとかをユーザが推測するようではいけません。
+このルールは先に述べたユーザーの期待しているものを作るというプラクティスに則ったものです。ライブラリの利用者はアダプターメソッドを実装することになるので、アダプターメソッドは実装することが簡単であるだけでなく、本質的に簡素で直感的でなくてはなりません。大半のアダプターメソッドは「クラスを加える」や「プロパティのスタイルを更新する」といったように一言で記述できるべきです。アダプターメソッドの目的は何かとかインプットとアウトプットが何かとかをユーザーが推測するようではいけません。
 
-例えば良いアダプタインターフェースは次のようになっています。
+例えば良いアダプターインターフェースは次のようになっています。
 
 | メソッド | 説明 |
 | --- | --- |
 | `setStyle(styleProperty: string, value: string) => void` | ダッシュで連結された `styleProperty` とそのプロパティの `value` を指定してルート要素のスタイルを設定する。 |
 
-対して悪いアダプタインターフェースは次のようになっています。
+対して悪いアダプターインターフェースは次のようになっています。
 
 | メソッド | 説明 |
 | --- | --- |
 | `applyComponentStyles() => void` | コンポーネントのルート要素に適切なスタイルを設定する。詳細はドキュメントを参照のこと。 |
 
-上記のアダプタインターフェースはファンデーションメソッドのほうがふさわしいです。アダプタの唯一の責務はスタイルを更新することであるべきで、スタイルを決定することではありません。
+上記のアダプターインターフェースはファンデーションメソッドのほうがふさわしいです。アダプターの唯一の責務はスタイルを更新することであるべきで、スタイルを決定することではありません。
 
 ### <a name="do-not-reference-host-objects-within-foundation-code"></a>ファンデーションコード内でホストオブジェクトを参照しない
 
 ファンデーションに可能な限り多くのフレームワークと互換性を持たせるために、ファンデーション内でホストオブジェクトを直接参照することを避けてください。ホストオブジェクトには `window`、 `document`、 `console` などを含みます。<em>ファンデーション内では ECMAScript 仕様で定義されたグローバルオブジェクトのみを参照するようにします。</em>
 
-`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプタを介してホストオブジェクトを使用することです。しかし、ホストオブジェクト自身の名目型よりもむしろホストオブジェクトの代理となる [構造型](https://github.com/google/closure-compiler/wiki/Structural-Interfaces-in-Closure-Compiler) を返すようなアダプタ API を設計すべきです。例えば、タイプが `"checkbox"` の `HTMLInputElement` を使う代わりに `checked`、 `indeterminate`、 `disabled` という真偽値プロパティを持つオブジェクトを使ってください。
+`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプターを介してホストオブジェクトを使用することです。しかし、ホストオブジェクト自身の名目型よりもむしろホストオブジェクトの代理となる [構造型](https://github.com/google/closure-compiler/wiki/Structural-Interfaces-in-Closure-Compiler) を返すようなアダプター API を設計すべきです。例えば、タイプが `"checkbox"` の `HTMLInputElement` を使う代わりに `checked`、 `indeterminate`、 `disabled` という真偽値プロパティを持つオブジェクトを使ってください。
 
-### <a name="clean-up-all-references-on-destruction"></a>デストラクタですべての参照を削除する
+### <a name="clean-up-all-references-on-destruction"></a>デストラクターですべての参照を削除する
 
-このプラクティスはイベントハンドラ、タイマー ID、アニメーションフレーム ID、保持される可能性のあるその他の外部参照を含みます。このプラクティスが実施されているかを確認するために2つの正確なリトマステストがあります。
+このプラクティスはイベントハンドラー、タイマー ID、アニメーションフレーム ID、保持される可能性のあるその他の外部参照を含みます。このプラクティスが実施されているかを確認するために2つの正確なリトマステストがあります。
 
 1. `init()` （もしくは素のコンポーネントにおける  `initialize()`）と `destroy()` が対称的になっている。例えば `init()` でアタッチされたすべてのイベントリスナーは `destroy()` で削除されている。
 2. 外部参照を作成するすべての呼び出し（例: `setTimeout()`、`requestAnimationFrame()`）は追跡され、破棄する際にクリーンアップされる。例えばすべての `setTimeout()` 呼び出しはファンデーションやコンポーネントによって ID が保持され、破棄される際には `clearTimeout()` が破棄する処理の中で呼ばれる。
 
 ## <a name="authoring-components-for-mdc-web"></a>MDC Web のコンポーネントの作成
 
-以下のガイドラインは直接 MDC Web に貢献したい人向けのものです。上に記載したすべてのプラクティスを守ることに加え、コントリビュータに守ってほしい追加の慣習があります。それらの慣習 - コーディングスタイルやコミットメッセージの書式、テストカバレッジが含まれます - の多くは注目に値するものです。コントリビュータが素早く自信をもって行動できるようになり、コアチームメンバはプルリクエストに時間の浪費や労力の消費をする必要がなくなるからです。
+以下のガイドラインは直接 MDC Web に貢献したい人向けのものです。上に記載したすべてのプラクティスを守ることに加え、コントリビューターに守ってほしい追加の慣習があります。それらの慣習 - コーディングスタイルやコミットメッセージの書式、テストカバレッジが含まれます - の多くは注目に値するものです。コントリビューターが素早く自信をもって行動できるようになり、コアチームメンバはプルリクエストに時間の浪費や労力の消費をする必要がなくなるからです。
 
 ### <a name="file-structure"></a>ファイルの構成
 
@@ -547,13 +547,13 @@ class MDCNewComponent extends MDCComponent {
 }
 ```
 
-`mdc-auto-init` はこのメソッドの存在を必要としており、私たちはユーザの利便性のためにこのメソッドが提供されることを保証しています。将来的にはこのためのリントルールを書こうと話しています。
+`mdc-auto-init` はこのメソッドの存在を必要としており、私たちはユーザーの利便性のためにこのメソッドが提供されることを保証しています。将来的にはこのためのリントルールを書こうと話しています。
 
 #### <a name="define-a-defaultadapter-getter-for-every-foundation"></a>すべてのファンデーションにゲッタ defaultAdapter を定義する
 
-すべてのファンデーションには定義されている関数すべてを持つアダプタを返す静的メソッド `defaultAdapter` を定義 <em>しなくてはいけません</em>。関数は本質的には何もしないのものになるでしょう。引数は取らず、正しい型（例えば、真偽値なら `false`、数値なら `0`、オブジェクトなら `{}` など）を返すようにします。[Typescript の型注釈](https://basarat.gitbooks.io/typescript/content/docs/types/type-system.html) の書式のインラインコメントで型の注釈を付けるのが私たちの慣習です。
+すべてのファンデーションには定義されている関数すべてを持つアダプターを返す静的メソッド `defaultAdapter` を定義 <em>しなくてはいけません</em>。関数は本質的には何もしないのものになるでしょう。引数は取らず、正しい型（例えば、真偽値なら `false`、数値なら `0`、オブジェクトなら `{}` など）を返すようにします。[Typescript の型注釈](https://basarat.gitbooks.io/typescript/content/docs/types/type-system.html) の書式のインラインコメントで型の注釈を付けるのが私たちの慣習です。
 
-デフォルトのアダプタオブジェクトを `adapter` 引数を通じてファンデーションのコンストラクタに渡すようにオーバーライドすることも慣習となっています。これによりアダプタが正しいインターフェースを持つことが保証されます。
+デフォルトのアダプターオブジェクトを `adapter` 引数を通じてファンデーションのコンストラクターに渡すようにオーバーライドすることも慣習となっています。これによりアダプターが正しいインターフェースを持つことが保証されます。
 
 ```js
 class MDCNewComponentFoundation extends MDCFoundation {
@@ -571,7 +571,7 @@ class MDCNewComponentFoundation extends MDCFoundation {
 }
 ```
 
-これにはもちろん、潜在的に誤ったアダプタを渡すことに気づかないことがあるという問題があります。しかし、将来的にはこの問題を緩和するためにアダプタの型定義を提供することを予定しています。前述のルールと同様に、これらの慣習を守ってもらうためのリントルールを提供することも考えています。
+これにはもちろん、潜在的に誤ったアダプターを渡すことに気づかないことがあるという問題があります。しかし、将来的にはこの問題を緩和するためにアダプターの型定義を提供することを予定しています。前述のルールと同様に、これらの慣習を守ってもらうためのリントルールを提供することも考えています。
 
 #### <a name="define-all-exported-css-classes-strings-and-numbers-as-foundation-constants"></a>外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する
 
@@ -636,28 +636,28 @@ class MDCNewComponentFoundation extends MDCFoundation {
 - レポジトリのルートにあるトップレベル `package.json` の `config.validate-commit-msg.scope.allowed` にパッケージの正確な **コミットサブジェクト** が追加されていることを確認すること。コミットサブジェクトとは <em>コンポーネント名から `mdc-`/`@material/` を除いたもの</em> をいう。例えば `mdc-icon-button` であれば `icon-button` である。
 - トップレベル `package.json` の `closureWhitelist` にパッケージ名が追加されていることを確認すること。
 
-#### <a name="closure-compatibility"></a>クロージャの互換性
+#### <a name="closure-compatibility"></a>クロージャーの互換性
 
-> 注意: 現在存在するコンポーネントはクロージャ―について互換性を持たせようとしている段階にあります。
+> 注意: 現在存在するコンポーネントはクロージャーについて互換性を持たせようとしている段階にあります。
 
-すべてのコアな MDC Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャコンパイラドキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャパターンについて、完全な説明を提供しています。
+すべてのコアな MDC Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャーコンパイラードキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャーパターンについて、完全な説明を提供しています。
 
 ### <a name="testing"></a>テスト
 
 MDC Web のコードのテストを書く際に以下のガイドラインにしたがってください。私たちはテストを [mocha](https://mochajs.org/) 上の [qunit UI](https://mochajs.org/#qunit) で書いており、[karma](https://karma-runner.github.io/1.0/index.html) で実行しています。アサーションには [chai assert API](http://chaijs.com/api/assert/) を使い、モックとスタブは [testdouble](https://github.com/testdouble/testdouble.js/) を使っています。
 
-#### <a name="verify-foundations-adapters"></a>ファンデーションのアダプタを検証する
+#### <a name="verify-foundations-adapters"></a>ファンデーションのアダプターを検証する
 
-ファンデーションをテストする際、少なくともテストケースのうち一つは [foundation helpers](../test/unit/helpers/foundation.js) で定義している `verifyDefaultAdapter` メソッドを使うようにしてください。アダプタのインターフェースが予期せず変更されていないことを確認するためです。
+ファンデーションをテストする際、少なくともテストケースのうち一つは [foundation helpers](../test/unit/helpers/foundation.js) で定義している `verifyDefaultAdapter` メソッドを使うようにしてください。アダプターのインターフェースが予期せず変更されていないことを確認するためです。
 
 #### <a name="use-helper-methods"></a>ヘルパーメソッドを使う
 ファンデーション起動テストやイベントによるアダプターメソッドの起動、`requestAnimationFrame` の処理といったことのために [test/unit/helpers](../test/unit/helpers) の中にヘルパーモジュールがあります。テストができる限り簡単にかけるようにコードを書く上でこれらを使うことをお勧めしています！
 
-#### <a name="use-bel-for-dom-fixture"></a>DOM フィクスチャに bel を使う
-私たちはコンポーネントやアダプタのフィクスチャを生成するために [bel](https://www.npmjs.com/package/bel) ライブラリを使っています。これが、HTML のメンテナンスに苦しんだり厄介な DOM API のコードを書いたりぜずにフィクスチャを生成する簡単でうまくいく方法だということに気づきました。
+#### <a name="use-bel-for-dom-fixture"></a>DOM フィクスチャーに bel を使う
+私たちはコンポーネントやアダプターのフィクスチャーを生成するために [bel](https://www.npmjs.com/package/bel) ライブラリを使っています。これが、HTML のメンテナンスに苦しんだり厄介な DOM API のコードを書いたりぜずにフィクスチャーを生成する簡単でうまくいく方法だということに気づきました。
 
 #### <a name="always-clean-up-the-dom-after-every-test"></a>あらゆるテストの後は常に DOM をきれいにする
 これは重要なことです。<em>テストが終わる前に、DOM にアタッチしたすべての要素が削除されていることを確認してください。</em>。
 
-#### <a name="verify-adapters-via-testdouble"></a>testdouble を通じてアダプタの検証をする
-私たちは事実上のモックフレームワークとして [testdouble.js](https://github.com/testdouble/testdouble.js) を使っています。コンポーネント/ファンデーション/アダプター パターンの大きな利点はコンポーネントの機能性を極めて簡単にテストできるということです。アダプタとして testdouble のスタブを使い、ファンデーションの振る舞いを検証することをお勧めします（これは [ファンデーションのセットアップコード](../test/unit/helpers/setup.js#L21) がデフォルトやっていることだということに注意してください）。
+#### <a name="verify-adapters-via-testdouble"></a>testdouble を通じてアダプターの検証をする
+私たちは事実上のモックフレームワークとして [testdouble.js](https://github.com/testdouble/testdouble.js) を使っています。コンポーネント/ファンデーション/アダプター パターンの大きな利点はコンポーネントの機能性を極めて簡単にテストできるということです。アダプターとして testdouble のスタブを使い、ファンデーションの振る舞いを検証することをお勧めします（これは [ファンデーションのセットアップコード](../test/unit/helpers/setup.js#L21) がデフォルトやっていることだということに注意してください）。
