@@ -23,6 +23,8 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
     - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js と MDC Web の統合 ( [foundation/adapters](./docs/integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
     - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js と MDC Web の統合 ( [vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
     - [BalmUI](https://material.balmjs.com/): Vue.js 用の次世代マテリアル UI
+    - [Ember Material Components](https://github.com/onehilltech/ember-cli-mdc): Ember と MDC Web の統合  ( [vanilla components](./docs/integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
+
   - まだまだ増えます！[基準](docs/integrating-into-frameworks.md) をみたしているならあなたのライブラリをこのリストに加えるよう、遠慮なくプルリクエストを送ってください。
 
 MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。

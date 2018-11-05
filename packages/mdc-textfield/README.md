@@ -242,6 +242,7 @@ Mixin | Description
 
 メソッド | 説明
 --- | ---
+`focus() => void` | `input` もしくは `textarea` 要素にフォーカスする。
 `layout() => void` | すべてのサブ要素の大きさと位置を調整する。
 
 ## Web フレームワークでの使用
