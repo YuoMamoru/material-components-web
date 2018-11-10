@@ -7,6 +7,8 @@ iconId: toast
 path: /catalog/snackbars/
 -->
 
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 # Snackbars
 
 <!--<div class="article__asset">

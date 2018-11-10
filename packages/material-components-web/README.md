@@ -1,3 +1,5 @@
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 # Material Components Web (MDC Web)
 
 このページは Material Components Web のマスタライブラリを含んでいます。利便性を考え、単にパッケージのすべてを一つの包括的なライブラリにまとめただけです。

@@ -7,6 +7,8 @@ iconId: button
 path: /catalog/buttons/floating-action-buttons/
 -->
 
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 # Floating Action Button
 
 <!--<div class="article__asset">

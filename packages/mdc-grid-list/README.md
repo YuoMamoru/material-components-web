@@ -7,6 +7,8 @@ iconId: card
 path: /catalog/grid-lists/
 -->
 
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 ## Important - Deprecation Notice
 ## 重要 - 非推奨のお知らせ
 

@@ -7,6 +7,8 @@ iconId: theme
 path: /catalog/theme/
 -->
 
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 # Theme
 
 あなたのブランドやスタイルを反映した色の体系を作るためにマテリアルデザインのカラーシステムは使用されます。

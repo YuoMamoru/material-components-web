@@ -6,6 +6,8 @@ excerpt: "Base foundation and component classes."
 path: /catalog/base/
 -->
 
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 # Base
 
 MDC Base には MDC Web のファンデーションクラスとコンポーネントクラスのすべての基底クラスとして役に立つ中核となるファンデーションクラスとコンポーネントクラスが（それぞれ）含まれています。

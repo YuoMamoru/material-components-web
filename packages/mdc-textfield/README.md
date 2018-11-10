@@ -6,6 +6,8 @@ iconId: text_field
 path: /catalog/input-controls/text-field/
 -->
 
+> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
+
 # Text Field
 
 Text Field はユーザーのテキストの入力、編集、選択に対応しています。
