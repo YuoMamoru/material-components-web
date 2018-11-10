@@ -9,7 +9,6 @@ path: /catalog/grid-lists/
 
 > ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
 
-## Important - Deprecation Notice
 ## 重要 - 非推奨のお知らせ
 
 既存の `MDCGridList` コンポーネントとスタイルは将来のリリースで削除されます。この機能のいくつかは代わりに [MDC Image List](../mdc-image-list) パッケージで利用できます。バグや機能の要求は `mdc-grid-list` パッケージでは受け付けなくなります。新たな機能や更新を受け取るために `mdc-image-list` パッケージに移行することを推奨します。
@@ -18,7 +17,7 @@ path: /catalog/grid-lists/
 
 MDC Grid List はマテリアルデザイングリッドリスト仕様に準拠した RTL 対応の マテリアルデザイングリッドリストコンポーネントです。グリッドリストは均質なデータ、典型的には画像、に最も適しています。グリッド内の各項目は **タイル** と呼ばれます。タイルは画面サイズに応じて一貫した幅、高さ、余白を維持します。
 
-## Installation
+## インストール
 
 ```
 npm install @material/grid-list
