@@ -7,8 +7,6 @@ iconId: tabs
 path: /catalog/tabs/tab/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Tab
 
 タブは同階層にある関連つけられたコンテンツのグループ間の操作を構成、提供します。各タブは視覚的にコンテンツの一グループに束ねられます。

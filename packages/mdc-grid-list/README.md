@@ -7,8 +7,6 @@ iconId: card
 path: /catalog/grid-lists/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 ## 重要 - 非推奨のお知らせ
 
 既存の `MDCGridList` コンポーネントとスタイルは将来のリリースで削除されます。この機能のいくつかは代わりに [MDC Image List](../mdc-image-list) パッケージで利用できます。バグや機能の要求は `mdc-grid-list` パッケージでは受け付けなくなります。新たな機能や更新を受け取るために `mdc-image-list` パッケージに移行することを推奨します。

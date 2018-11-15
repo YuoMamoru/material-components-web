@@ -5,8 +5,6 @@ section: components
 path: /catalog/input-controls/form-fields/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Form Fields
 
 MDC Form Field は MDC Web フォームフィールド（例えばチェックボックス）をラベルで整列させ、RTL 対応を提供します。また、ラベルにインタラクティブな [ripple](../mdc-ripple) エフェクトを有効にします。

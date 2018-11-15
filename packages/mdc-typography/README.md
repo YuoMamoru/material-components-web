@@ -7,8 +7,6 @@ iconId: typography
 path: /catalog/typography/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Typography
 
 マテリアルデザインのテキストサイズとスタイルは一般的な利用状況下でのコンテンツの密度と読みやすさのバランスをとるために作られました。

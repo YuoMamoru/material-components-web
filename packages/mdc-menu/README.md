@@ -7,8 +7,6 @@ iconId: menu
 path: /catalog/menus/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Menus
 
 <!--<div class="article__asset">
@@ -196,6 +194,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `open` | Boolean | メニュー表面の `open` プロパティの代替。
 `items` | Array<Element> | 全 `.mdc-list-item` 要素の問い合わせ用のリストの代替。
 `quickOpen` | Boolean | メニュー表面の `quickOpen` プロパティの代替。
+`wrapFocus` | Boolean | リストの `wrapFocus` プロパティの代替。
 
 メソッド | 説明
 --- | ---

@@ -7,8 +7,6 @@ iconId: animation
 path: /catalog/animation/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Animation
 
 動作をともなうマテリアルは反応があり自然なものです。スムーズで一貫性のある動きを作るにはイージングカーブとデュレーションパターンを使ってください。

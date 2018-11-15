@@ -6,8 +6,6 @@ iconId: menu
 path: /catalog/input-controls/select-menus/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Select Menus
 
 <!--<div class="article__asset">
@@ -103,7 +101,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
   <div class="mdc-select__selected-text"></div>
   <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
     <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></option>
+      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
         Bread, Cereal, Rice, and Pasta
       </li>
@@ -115,7 +113,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
       </li>
     </ul>
   </div>
-  <span class="mdc-floating-label">Pick a Food Group</label>
+  <span class="mdc-floating-label">Pick a Food Group</span>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -163,7 +161,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
       </li>
     </ul>
   </div>
-  <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</label>
+  <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -231,7 +229,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
       </li>
     </ul>
   </div>
-  <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</label>
+  <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -275,7 +273,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
   <div class="mdc-select__menu mdc-menu mdc-menu-surface">
     ...
   </div>
-  <span class="mdc-floating-label">Pick a Food Group</label>
+  <span class="mdc-floating-label">Pick a Food Group</span>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -323,7 +321,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
       </li>
     </ul>
   </div>
-  <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</label>
+  <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
   <div class="mdc-line-ripple"></div>
 </div>
 ```

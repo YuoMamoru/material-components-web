@@ -6,8 +6,6 @@ excerpt: "Utilities for declarative, DOM-based initialization of components on s
 path: /catalog/auto-init/
 -->
 
-> ✨ あなたは Material Design web コミュニティの一員ですか？この <a href='https://bit.ly/materialwebsurvey'>**10分調査**</a> にご記入ください。 ✨
-
 # Auto Init
 
 `mdc-auto-init` は、単純な Web サイト上の MDC Web コンポーネントを初期化するための DOM ベースで宣言的な方法を提供するユーティリティパッケージです。より高度なユースケースや複雑なサイトではコンポーネントを手動で初期化したほうが柔軟に扱えることがあることを知っておいてください。しかし、`mdc-auto-init` は静的な Web サイトやプロトタイプ、簡潔さと利便性が求められるユースケースに適しています。
