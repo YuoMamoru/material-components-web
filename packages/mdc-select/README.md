@@ -173,13 +173,13 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
 ```html
 <div class="mdc-select mdc-select--outlined">
   <!-- ネイティブもしくは拡張セレクトのほかの要素を残す。 -->
-  <label class="mdc-floating-label">Pick a Food Group</label>
    <div class="mdc-notched-outline">
-     <svg>
-       <path class="mdc-notched-outline__path"></path>
-     </svg>
+     <div class="mdc-notched-outline__leading"></div>
+     <div class="mdc-notched-outline__notch">
+       <label class="mdc-floating-label">Pick a Food Group</label>
+     </div>
+     <div class="mdc-notched-outline__trailing"></div>
    </div>
-   <div class="mdc-notched-outline__idle"></div>
 </div>
 ```
 
@@ -408,11 +408,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `activateBottomLine() => void` | 下線のコンポーネントを有効にする。 |
 | `deactivateBottomLine() => void` | 下線のコンポーネントを無効にする。 |
 | `getValue() => string` | `select` 要素の選択されている `option` か拡張セレクトの選択されたリスト項目の `data-value` の値を返す。 |
-| `isRtl() => boolean` | ルート要素の親要素が RTL 内にあれば true を返す。 |
 | `floatLabel(value: boolean) => void` | ラベルを上に動かしたり戻したりする。 |
 | `getLabelWidth() => number` | ラベル要素の offsetWidth を返す。 |
 | `hasOutline() => boolean` | `select` にへこんだ輪郭要素があれば true を返す。 |
-| `notchOutline(labelWidth: number, isRtl, boolean) => void` | へこんだ輪郭要素を "へこんだ状態" に切り替える。 |
+| `notchOutline(labelWidth: number) => void` | へこんだ輪郭要素を "へこんだ状態" に切り替える。 |
 | `closeOutline() => void` | へこんだ輪郭要素を閉じた状態に切り替える。 |
 | `openMenu() => void` | 拡張セレクトのメニュー要素を開く。 |
 | `closeMenu() => void` | 拡張セレクトのメニュー要素を閉じる。 |

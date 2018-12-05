@@ -6,6 +6,10 @@ iconId: text_field
 path: /catalog/input-controls/text-field/
 -->
 
+## 重要 - 非推奨のお知らせ
+
+テキスト欄の高密度型は将来のリリースで削除されます。詳細は [github issue](https://github.com/material-components/material-components-web/issues/4142) を参照してください。
+
 # Text Field
 
 Text Field はユーザーのテキストの入力、編集、選択に対応しています。
@@ -90,13 +94,13 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ```html
 <div class="mdc-text-field mdc-text-field--outlined">
   <input type="text" id="tf-outlined" class="mdc-text-field__input">
-  <label for="tf-outlined" class="mdc-floating-label">Your Name</label>
   <div class="mdc-notched-outline">
-    <svg>
-      <path class="mdc-notched-outline__path"/>
-    </svg>
+    <div class="mdc-notched-outline__leading"></div>
+    <div class="mdc-notched-outline__notch">
+      <label for="tf-outlined" class="mdc-floating-label">Your Name</label>
+    </div>
+    <div class="mdc-notched-outline__trailing"></div>
   </div>
-  <div class="mdc-notched-outline__idle"></div>
 </div>
 ```
 
@@ -265,9 +269,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `deregisterValidationAttributeChangeHandler(!MutationObserver) => void` | 検証属性の変更のオブザーバーとの接続を input 要素から削除する。
 `getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
-`isRtl() => boolean` | ルート要素の方向に RTL が設定されているかどうかを返す。
 `hasOutline() => boolean` | アウトライン要素があるかどうかを返す。
-`notchOutline(labelWidth: number, isRtl: boolean) => void` | ノッチを開くためにノッチ付きアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
+`notchOutline(labelWidth: number) => void` | ノッチを開くためにノッチ付きアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
 `closeOutline() => void` | ノッチ付きアウトラン要素上のノッチを閉じる。
 
 #### `MDCTextFieldAdapter.getNativeInput()`
