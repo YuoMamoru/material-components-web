@@ -55,8 +55,12 @@ npm install @material/card
   <!-- ... コンテンツ ... -->
   <div class="mdc-card__actions">
     <div class="mdc-card__action-buttons">
-      <button class="mdc-button mdc-card__action mdc-card__action--button">Action 1</button>
-      <button class="mdc-button mdc-card__action mdc-card__action--button">Action 2</button>
+      <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <span class="mdc-button__label">Action 1</span>
+      </button>
+      <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <span class="mdc-button__label">Action 2</span>
+      </button>
     </div>
     <div class="mdc-card__action-icons">
       <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
@@ -119,8 +123,12 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```html
 <div class="mdc-card__actions">
-  <button class="mdc-button mdc-card__action mdc-card__action--button">Action 1</button>
-  <button class="mdc-button mdc-card__action mdc-card__action--button">Action 2</button>
+  <button class="mdc-button mdc-card__action mdc-card__action--button">
+    <span class="mdc-button__label">Action 1</span>
+  </button>
+  <button class="mdc-button mdc-card__action mdc-card__action--button">
+    <span class="mdc-button__label">Action 2</span>
+  </button>
 </div>
 ```
 
@@ -148,7 +156,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ```html
 <div class="mdc-card__actions mdc-card__actions--full-bleed">
   <a class="mdc-button mdc-card__action mdc-card__action--button" href="#">
-    All Business Headlines
+    <span class="mdc-button__label">All Business Headlines</span>
     <i class="material-icons" aria-hidden="true">arrow_forward</i>
   </a>
 </div>
@@ -159,8 +167,12 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ```html
 <div class="mdc-card__actions">
   <div class="mdc-card__action-buttons">
-    <button class="mdc-button mdc-card__action mdc-card__action--button">Read</button>
-    <button class="mdc-button mdc-card__action mdc-card__action--button">Bookmark</button>
+    <button class="mdc-button mdc-card__action mdc-card__action--button">
+      <span class="mdc-button__label">Read</span>
+    </button>
+    <button class="mdc-button mdc-card__action mdc-card__action--button">
+      <span class="mdc-button__label">Bookmark</span>
+    </button>
   </div>
   <div class="mdc-card__action-icons">
    <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>

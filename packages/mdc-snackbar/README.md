@@ -12,7 +12,7 @@ path: /catalog/snackbars/
 <!--<div class="article__asset">
   <a class="article__asset-link"
      href="https://material-components.github.io/material-components-web-catalog/#/component/snackbar">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/snackbars.png" width="336" alt="Snackbars screenshot">
+    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/snackbars.png" width="336" alt="Snackbar screenshot">
   </a>
 </div>-->
 
@@ -22,7 +22,7 @@ path: /catalog/snackbars/
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-snackbar">マテリアルデザインガイドライン: スナックバーとトースト</a>
+    <a href="https://material.io/go/design-snackbar">マテリアルデザインガイドライン: スナックバー</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
     <a href="https://material-components.github.io/material-components-web-catalog/#/component/snackbar">デモ</a>
@@ -40,13 +40,17 @@ npm install @material/snackbar
 ### HTML 構造
 
 ```html
-<div class="mdc-snackbar"
-     aria-live="assertive"
-     aria-atomic="true"
-     aria-hidden="true">
-  <div class="mdc-snackbar__text"></div>
-  <div class="mdc-snackbar__action-wrapper">
-    <button type="button" class="mdc-snackbar__action-button"></button>
+<div class="mdc-snackbar">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label"
+         role="status"
+         aria-live="polite">
+      Can't send photo. Retry in 5 seconds.
+    </div>
+    <div class="mdc-snackbar__actions">
+      <button type="button" class="mdc-button mdc-snackbar__action-button">Retry</button>
+      <button class="mdc-icon-button mdc-snackbar__action-icon material-icons" title="Dismiss">close</button>
+    </div>
   </div>
 </div>
 ```
@@ -59,11 +63,8 @@ npm install @material/snackbar
 
 ### JavaScript のインスタンス化
 
-MDC Snackbar にはオプションである動作とともにスナックバーメッセージを表示するための API を提供するコンポーネント/ファンデーションの組み合わせが付属しています。
-
 ```js
 import {MDCSnackbar} from '@material/snackbar';
-
 const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 ```
 
@@ -71,33 +72,59 @@ const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 
 ## 様々な使用法
 
-### 開始位置に配置したスナックバー（タブレットとデスクトップのみ）
+### スタック
 
-MDC Snackbar は開始位置に配置することができます（RTL コンテンツを含めて）。開始位置に配置したスナックバーを作るには `mdc-snackbar--align-start` 必須クラスをルート要素に追加します。
-（訳注: 開始位置に配置 (start aligned) とは通常の環境では画面の左に配置、RTL 環境では右に配置することをいっています）
+長いテキストを伴う操作ボタンはラベルの横ではなく、ラベルの下に配置するべきです。これはルート要素に `mdc-snackbar--stacked` 修飾クラスを追加することによって実現できます。
 
 ```html
-<div class="mdc-snackbar mdc-snackbar--align-start"
-     aria-live="assertive"
-     aria-atomic="true"
-     aria-hidden="true">
-  <div class="mdc-snackbar__text"></div>
-  <div class="mdc-snackbar__action-wrapper">
-    <button type="button" class="mdc-snackbar__action-button"></button>
-  </div>
+<div class="mdc-snackbar mdc-snackbar--stacked">
+  ...
 </div>
 ```
 
-### 追加の情報
+あるいは、Sass から `mdc-snackbar-layout-stacked` ミキシンを呼ぶこともできます。
 
-#### Flash-Of-Unstyled-Content (FOUC) の回避
-
-`mdc-snackbar` の CSS を非同期で読み込んだ際に、CSS が読み込まれるとスナックバーの移動の動きが走ってしまうため、一瞬 flash-of-unstyled-content (FOUC) が発生するかもしれません。一時的な FOUC を避けるには、`mdc-snackbar` の CSS が読み込まれる前に次のような単純なスタイルを加えます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。）
-
-```css
-.mdc-snackbar { transform: translateY(100%); }
+```scss
+@media (max-width: $mdc-snackbar-mobile-breakpoint) {
+  .my-snackbar {
+    @include mdc-snackbar-layout-stacked;
+  }
+}
 ```
-これで CSS が完全に読み込まれるまでスナックバーが画面外に移動し、読み込みによる移動の動きを避けることができます。
+
+### 前方配置 (タブレットとデスクトップのみ)
+
+デフォルトでは、スナックバーはビューポートの水平中央に配置されます。
+
+大きな画面では、オプションで `mdc-snackbar--leading` 修飾クラスをルート要素に追加することにより画面の前方の端（LTR では左側、RTL では右側）に表示させることができます。
+
+```html
+<div class="mdc-snackbar mdc-snackbar--leading">
+  ...
+</div>
+```
+
+あるいは、Sass から `mdc-snackbar-position-leading` ミキシンを呼ぶこともできます。
+
+```scss
+@media (min-width: $mdc-snackbar-mobile-breakpoint) {
+  .my-snackbar {
+    @include mdc-snackbar-position-leading;
+  }
+}
+```
+
+### ワイド (タブレットとデスクトップのみ)
+
+大きな画面でスナックバーとビューポートの間のマージンを増やすには、メディアクエリ内で `mdc-snackbar-viewport-margin` ミキシンを呼びます。
+
+```scss
+@media (min-width: $mdc-snackbar-mobile-breakpoint) {
+  .my-snackbar {
+    @include mdc-snackbar-viewport-margin($mdc-snackbar-viewport-margin-wide);
+  }
+}
+```
 
 ## スタイルのカスタマイズ
 
@@ -106,69 +133,150 @@ MDC Snackbar は開始位置に配置することができます（RTL コンテ
 CSS クラス | 説明
 --- | ---
 `mdc-snackbar` | 必須。スナックバー要素のコンテナ。
-`mdc-snackbar__action-wrapper` | 必須。操作ボタンをラップする。
-`mdc-snackbar__action-button` | 必須。操作ボタン。
-`mdc-snackbar__text` | 必須。スナックバーのテキスト。
-`mdc-snackbar--align-start` | オプション。LTR 依存の開始位置にスナックバーを整列させるためのクラス。
-`mdc-snackbar--action-on-bottom` | mdc-snackbar 要素につけるオプション。スナックバーを下に動かす。js で適用される。
-`mdc-snackbar--multiline` | mdc-snackbar 要素につけるオプション。スナックバーを複数行にする。js で適用される。
+`mdc-snackbar__label` | 必須。メッセージテキスト。
+`mdc-snackbar__actions` | オプション。操作ボタン/アイコン要素があればラップする。
+`mdc-snackbar__action-button` | オプション。操作ボタン。
+`mdc-snackbar__action-icon` | オプション。閉じるアイコン ("X")。
+`mdc-snackbar--opening` | オプション。スナックバーを開くアニメーションをしている際に自動的に適用される。
+`mdc-snackbar--open` | オプション。スナックバーが開いて表示されていることを示す。
+`mdc-snackbar--closing` | オプション。スナックバーを閉じるアニメーションをしている際に自動的に適用される。
+`mdc-snackbar--leading` | オプション。スナックバーを画面の中央ではなく、前方の端（LTR では左側、RTL では右側）に配置する。
+`mdc-snackbar--stacked` | オプション。操作ボタン/アイコンをラベルの横ではなく下に配置する。
 
-## `MDCSnackbar` プロパティとメソッド
+### Sass ミキシン
+
+ミキシン | 説明
+--- | ---
+`mdc-snackbar-fill-color($color)` | スナックバーの塗りの色を設定する。
+`mdc-snackbar-label-ink-color($color)` | スナックバーのラベルテキストの色を設定する。
+`mdc-snackbar-shape-radius($radius, $rtl-reflexive)` | スナックバー表面の角の丸みを与えられた値に設定する。`$rtl-reflexive` に true を設定すると RTL コンテキストで半径の値を反転する。デフォルトは false。
+`mdc-snackbar-min-width($min-width, $mobile-breakpoint)` | タブレット/デスクトップデバイス上でスナックバーの `min-width` を設定する。モバイルでは幅は自動的に 100% が設定される。
+`mdc-snackbar-max-width($max-width)` | スナックバーの `max-width` を設定する。
+`mdc-snackbar-elevation($z-index)` | スナックバーの重なりの順序を設定する。
+`mdc-snackbar-viewport-margin($margin)` | スナックバーとビューポートの間の距離を設定する。
+`mdc-snackbar-z-index($z-index)` | スナックバーの `z-index` を設定する。
+`mdc-snackbar-position-leading()` | スナックバーを画面の中央ではなく、前方の端（LTR では左側、RTL では右側）に配置する。
+`mdc-snackbar-layout-stacked()` | 操作ボタン/アイコンをラベルの横ではなく下に配置する。
+
+> **注意**: `mdc-snackbar__action-button` と `mdc-snackbar__action-icon` 要素は [`mdc-button`](../mdc-button) と [`mdc-icon-button`](../mdc-icon-button) ミキシンでカスタマイズできます。
+
+## JavaScript API
+
+### `MDCSnackbar` プロパティ
 
 プロパティ | 型 | 説明
 --- | --- | ---
-`dismissesOnAction` | `boolean` | 操作ボタンがクリックされたときにスナックバーを終了するかどうか、もしくはタイムアウトまで待機しているかどうか。デフォルトは `true`。
+`isOpen` | `boolean` (読取専用) | スナックバーが現在開いているかどうかを取得する。
+`timeoutMs` | `number` | 自動で閉じるまでのタイムアウト時間をミリ秒単位で取得/設定する。値は `4000` から `10000` でなくてはならず、そうでないとエラーが投げられる。デフォルトは `5000`（5秒）。
+`closeOnEscape` | `boolean` | スナックバーがフォーカスされている状態で <kbd>ESC</kbd> キーを押された時にスナックバーを閉じるかどうかを取得/設定する。デフォルトは `true`。
+`labelText` | `string` | ラベル要素の `textContent` を取得/設定する。
+`actionButtonText` | `string` | 操作ボタン要素の`textContent` を取得/設定する。
+
+> **注意**: スナックバーが開いているときに `labelText` を設定すると、スクリーンリーダーは新しいラベルを表示します。より詳細な情報は [スクリーンリーダー](#screen-readers) を参照してください。
+
+### `MDCSnackbar` メソッド
 
 メソッド | 説明
 --- | ---
-`show(data: DataObject=) => void` | スナックバーを表示する。`data` でスナックバーに設定がなされ、オプション（以下で説明）が設定される。
-
-### DataObject プロパティ
-
- プロパティ | 型 | 説明
---- | --- | ---
- `message` | string | 必須。表示するテキストメッセージ。
- `timeout` | number | スナックバーを表示する時間（ミリ秒）。デフォルトは `2750`。
- `actionHandler` | function | 操作ボタンをクリックされたときに実行する関数。
- `actionText` | string | `actionHandler` を設定するときは必須。操作ボタンに表示するテキスト。
- `multiline` | boolean | 複数行テキスト用のスペースを持つスナックバーを表示するかどうか。
- `actionOnBottom` | boolean | 複数行テキストの下に操作ボタンを表示するかどうか（`multiline` が true のときだけ適用できる）。
+`open() => void` | スナックバーを開く。
+`close(reason: string=) => void` | スナックバーを閉じる。オプションで閉じる理由を指定する。
 
 ### イベント
 
 イベント名 | `event.detail` | 説明
 --- | --- | ---
-`MDCSnackbar:hide` | `{}` | スナックバーが隠れたときに発生する。
-`MDCSnackbar:show` | `{}` | スナックバーが表示されたときに発生する。
+`MDCSnackbar:opening` | `{}` | スナックバーが開くアニメーションを開始していることを示す。
+`MDCSnackbar:opened` | `{}` | スナックバーが開くアニメーションを終えたことを示す。
+`MDCSnackbar:closing` | `{reason: ?string}` | スナックバーが閉じるアニメーションを開始したことを示す。`reason` にはスナックバーが閉じた理由（`dismiss` もしくは `action`）が含まれる。
+`MDCSnackbar:closed` | `{reason: ?string}` | スナックバーが閉じるアニメーションを終えたことを示す。`reason` にはスナックバーが閉じた理由（`dismiss` もしくは `action`）が含まれる。
 
-## フレームワーク内での使用
+### フレームワーク内での使用
 
 React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
 
-### `MDCSnackbarAdapter`
+#### `MDCSnackbarAdapter` メソッド
 
 メソッド | 説明
 --- | ---
 `addClass(className: string) => void` | ルート要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
-`setAriaHidden() => void` | ルート要素に `aria-hidden="true"` を追加する。
-`unsetAriaHidden() => void` | ルート要素から `aria-hidden` 属性を削除する。
-`setActionAriaHidden() => void` | 操作ボタン要素に `aria-hidden="true"`  を追加する。
-`unsetActionAriaHidden() => void` | 操作ボタン要素から `aria-hidden` 属性を削除する。
-`setActionText(actionText: string) => void` | 操作ボタン要素のテキストを設定する。
-`setMessageText(message: string) => void` | メッセージ要素のテキストを設定する。
-`setFocus() => void` | 操作ボタンにフォーカスを設定する。
-`isFocused() => boolean` | アクションボタンにフォーカスがあるかどうかを検出します。
-`visibilityIsHidden() => boolean` | document.hidden プロパティを返す。
-`registerBlurHandler(handler: EventListener) => void` | 操作ボタン上で `blur` イベントが発生した際に呼ばれるイベントハンドラーを登録する。
-`deregisterBlurHandler(handler: EventListener) => void` | 操作ボタンから `blur` イベントハンドラーの登録を解除する。
-`registerVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラーを登録する。
-`deregisterVisibilityChangeHandler(handler: EventListener) => void` | `visibilitychange` イベントが発生した際に呼ばれるイベントハンドラーの登録を解除する。
-`registerCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` に与えられたイベントタイプのイベントが発生した際に呼ばれるイベントハンドラーを登録する。
-`deregisterCapturedInteractionHandler(evtType: string, handler: EventListener) => void` | `body` からイベントハンドラーの登録を解除する。
-`registerActionClickHandler(handler: EventListener) => void` | 操作ボタン要素で `click` イベントが発生した際に呼ばれるイベントハンドラーを登録する。
-`deregisterActionClickHandler(handler: EventListener) => void` | 操作ボタン要素から `click` イベントハンドラーの登録を解除する。これまでに `registerActionClickHandler` を通じて設定されたイベントハンドラーに対してのみ呼びだす。
-`registerTransitionEndHandler(handler: EventListener) => void` | ルート要素上で `transitionend` イベントが呼び出された際に呼ばれるイベントハンドラーを登録する。これが正しく動作するにはベンダプレフィックスを考慮する必要があることに注意。
-`deregisterTransitionEndHandler(handler: EventListener) => void` | `transitionend` イベントリスナーからイベントハンドラーの登録を解除する。これまでに `registerTransitionEndHandler` を通じて設定されたイベントハンドラーに対してのみ呼びだす。
-`notifyShow() => void` | スナックバーが表示されたことをリスナーに通知するイベントを発生させる。
-`notifyHide() => void` | スナックバーが非表示になったことをリスナーに通知するイベントを発生させる。
+`announce() => void` | スナックバーのラベルテキストをスクリーンリーダーのユーザーに通知する。
+`notifyOpening() => void` | スナックバーが開き始めたことを示すイベントを送出する。
+`notifyOpened() => void` | スナックバーが開き終えたことを示すイベントを送出する。
+`notifyClosing(reason: string) {}` | スナックバーが閉じ始めたことを示すイベントを送出する。`reason` か空でないとき、イベントの `detail` オブジェクトは `reason` プロパティにその値を含む。
+`notifyClosed(reason: string) {}` | スナックバーが閉じ終えたことを示すイベントを送出する。`reason` か空でないとき、イベントの `detail` オブジェクトは `reason` プロパティにその値を含む。
+
+#### `MDCSnackbarFoundation` メソッド
+
+メソッド | 説明
+--- | ---
+`open()` | スナックバーを開く。
+`close(action: string)` | スナックバーを閉じる。オプションで閉じる原因となった操作を指定できる。
+`isOpen() => boolean` | スナックバーが開いているかどうかを返す。
+`getTimeoutMs() => number` | 自動で閉じるまでのタイムアウト時間をミリ秒単位で返す。
+`setTimeoutMs(timeoutMs: number)` | 自動で閉じるまでのタイムアウト時間をミリ秒単位で設定する。値は `4000` から `10000` でなくてはならず、そうでないとエラーが投げられる。
+`getCloseOnEscape() => boolean` | スナックバーがフォーカスされている状態で <kbd>ESC</kbd> キーを押された時にスナックバーを閉じるかどうかを返す。
+`setCloseOnEscape(closeOnEscape: boolean) => void` | スナックバーがフォーカスされている状態で <kbd>ESC</kbd> キーを押された時にスナックバーを閉じるかどうかを設定する。
+`handleKeyDown(event: !KeyEvent)` | スナックバーのルート要素上、もしくはルート要素内で `keydown` イベントを処理する。
+`handleActionButtonClick(event: !MouseEvent)` | 操作ボタン上、もしくは操作ボタン内で `click` イベントを処理する。
+`handleActionIconClick(event: !MouseEvent)` | 閉じるアイコン上、もしくは閉じるアイコン内で `click` イベントを処理する。
+
+#### イベントハンドラー
+
+スナックバーファンデーションをラップするときには、以下のイベントを指定されたファンデーションメソッドにバインドしなくてはなりません。
+
+イベント | 対象 | ファンデーションハンドラー | 登録 | 削除
+--- | --- | --- | --- | ---
+`keydown` | `.mdc-snackbar` | `handleKeyDown` | 初期の際に | 破棄する際に
+`click` | `.mdc-snackbar__action-button` | `handleActionButtonClick` | 初期の際に | 破棄する際に
+`click` | `.mdc-snackbar__action-icon` | `handleActionIconClick` | 初期の際に | 破棄する際に
+
+#### ユーティリティ API
+
+外部フレームワークとライブラリは独自のコンポーネントを実装する際に `util` モジュールから以下のユーティリティメソッドを利用することができます。
+
+メソッド | 説明
+--- | ---
+`announce(ariaEl: !HTMLElement, labelEl: !HTMLElement=) => void` | ラベルテキストをスクリーンリーダーのユーザーに通知する。
+
+あるいは、フレームワークは [クロージャライブラリの `goog.a11y.aria.Announcer#say()` メソッド](https://github.com/google/closure-library/blob/bee9ced776b4700e8076a3466bd9d3f9ade2fb54/closure/goog/a11y/aria/announcer.js#L80) を使うことができます。
+
+## アクセシビリティ
+
+### スクリーンリーダー
+
+スナックバーは `open()` が呼ばれると、 ["polite" 通知](https://www.w3.org/TR/wai-aria-1.1/#aria-live) を使って自動的にスクリーンリーダーのユーザーにラベルテキストを通知します。
+
+しかし、要素の `textContent` が <em>変わった</em> ときにスクリーンリーダーは [ARIA Live Regions](https://mdn.io/ARIA_Live_Regions) を通知するだけなので、一時的にラベル要素の `textContent` をクリアたり復元するためにMDC スナックバーは `util.announce()` メソッドを提供しています。
+
+> **注意**: スナックバーを開いている間に `labelText` を設定するとスクリーンリーダーは新しいラベルを通知します。
+
+`util.announce()` は以下のスクリーンリーダーとブラウザの最新バージョンをサポートしています。
+
+* [ChromeVox](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn)
+* [NVDA](https://www.nvaccess.org/):
+    - Chrome
+    - Firefox
+    - IE 11
+* [JAWS](https://www.freedomscientific.com/Products/Blindness/JAWS):
+    - Chrome
+    - Firefox
+    - IE 11
+
+現時点で macOS VoiceOver はサポートして<em>いません</em>。
+
+### 閉じるアイコン
+
+専用の閉じるアイコンはオプションですが、**強く** 推奨します。何らかの理由（例えば #1398）でスナックバーが動かなくなってしまった場合、ユーザーは手動で閉じる必要が出てきます。
+
+### 閉じるキー
+
+スナックバー内の要素（例えば操作ボタン）にフォーカスがあるときに <kbd>ESC</kbd> キーを押すとスナックバーは閉じます。
+
+この動作を無効にするには `closeOnEscape` を `false` に設定します。
+
+### JS リップルを使用しない
+
+`mdc-snackbar__action-button` と `mdc-snackbar__action-icon` 要素は JavaScript で利用可能な [`MDCRipple`](../mdc-ripple) の動作を<em>**するべきではありません**</em>。
+
+スナックバーの終了アニメーションと組み合わさると、リップルはあまりに動作が多く、ユーザーの注意を紛らわせ混乱させてしまいます。

@@ -41,7 +41,7 @@ npm install @material/button
 
 ```html
 <button class="mdc-button">
-  Button
+  <span class="mdc-button__label">Button</span>
 </button>
 ```
 
@@ -92,7 +92,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ```html
 <button class="mdc-button">
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
-  Button
+  <span class="mdc-button__label">Button</span>
 </button>
 ```
 
@@ -103,9 +103,22 @@ SVG アイコンを使うことも可能です。
   <svg class="mdc-button__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="...">
   ...
   </svg>
-  Button
+  <span class="mdc-button__label">Button</span>
 </button>
 ```
+
+#### 後置アイコン
+
+一部のアイコンはボタンのテキストラベルの前にあるよりも後ろにあるほうがより分かりやすくなります。アイコンのマークアップを `mdc-button__label` 要素の <em>後ろ</em> に置くことによって実現できます。
+
+```html
+<button class="mdc-button">
+  <span class="mdc-button__label">Button</span>
+  <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
+</button>
+```
+
+> <em>注意</em>: `mdc-button__label` 要素は後置アイコンが適切にスタイルされるためには <em>必須</em> です。
 
 ### 無効の状態
 
@@ -113,7 +126,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button" disabled>
-  Button
+  <span class="mdc-button__label">Button</span>
 </button>
 ```
 
@@ -123,12 +136,15 @@ SVG アイコンを使うことも可能です。
 
 CSS クラス | 説明
 --- | ---
-`mdc-button` | 必須。デフォルトでは画面の表面と同一平面上にあるテキストボタン
-`mdc-button--raised` | オプション。画面の表面から浮き上がったボタンにする
-`mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにする
-`mdc-button--outlined` | オプション。画面の表面と同一平面上にあり、枠付きボタンにする
-`mdc-button--dense` | オプション。ボタンのテキストとボタン自体を縮める
-`mdc-button__icon` | オプション。アイコン要素であることを示す
+`mdc-button` | 必須。デフォルトでは画面の表面と同一平面上にあるテキストボタン。
+`mdc-button--raised` | オプション。画面の表面から浮き上がったボタンにする。
+`mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにする。
+`mdc-button--outlined` | オプション。画面の表面と同一平面上にあり、枠付きボタンにする。
+`mdc-button--dense` | オプション。ボタンのテキストとボタン自体を縮める。
+`mdc-button__label` | 推奨\*。ボタンのテキストラベルを含む要素であることを示す。
+`mdc-button__icon` | オプション。ボタンのアイコンを含む要素であることを示す。
+
+> \*<em>注意</em>: `mdc-button__label` 要素は後置アイコンのあるボタンでは必須ですが、現状ではアイコンのないボタンや前置アイコンのボタンではオプションです。後者の場合、テキストラベルは単に直接 `mdc-button` 要素の中にあってもかまいません。しかし、`mdc-button__label` クラスは今後すべての場合で必須となるかもしれないので、今後のために常に含めることを推奨します。
 
 ### Sass ミキシン
 
