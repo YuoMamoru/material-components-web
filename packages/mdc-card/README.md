@@ -2,7 +2,7 @@
 title: "Cards"
 layout: detail
 section: components
-excerpt: "Cards for displaying content composed of different elements."
+excerpt: "Cards contain content and actions about a single subject."
 iconId: card
 path: /catalog/cards/
 -->
@@ -16,7 +16,7 @@ path: /catalog/cards/
   </a>
 </div>-->
 
-MDC Card は [マテリアルデザインカードコンポーネント](https://material.io/go/design-cards) を実装したコンポーネントで、CSS クラスの集まりとして開発者が利用できます。
+カードは単一の課題に対してのコンテンツとアクションを含んでいます。
 
 ## デザインと API ドキュメント
 
@@ -35,45 +35,35 @@ MDC Card は [マテリアルデザインカードコンポーネント](https:/
 npm install @material/card
 ```
 
-## 使用法
+## 基本的な使用法
 
 ### HTML 構造
 
 ```html
 <div class="mdc-card">
-  Simple
-</div>
-```
-
-完全な機能を使うと以下のようになります。
-
-```html
-<div class="mdc-card">
-  <div class="mdc-card__media mdc-card__media--square">
-    <div class="mdc-card__media-content">Title</div>
-  </div>
   <!-- ... コンテンツ ... -->
-  <div class="mdc-card__actions">
-    <div class="mdc-card__action-buttons">
-      <button class="mdc-button mdc-card__action mdc-card__action--button">
-        <span class="mdc-button__label">Action 1</span>
-      </button>
-      <button class="mdc-button mdc-card__action mdc-card__action--button">
-        <span class="mdc-button__label">Action 2</span>
-      </button>
-    </div>
-    <div class="mdc-card__action-icons">
-      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
-    </div>
-  </div>
 </div>
 ```
 
-カードには事前に定義された幅、高さ、パディング、マージンはありません。もっとも単純な形式（`mdc-card` を持つ単一の要素のとき）では、カードは基本的に  `mdc-elevation` + `border-radius` だけになります。
+> <em>注意</em>: MDC Card は様々なユースケースに対応できるよう設計されています。カード内の特定のタイプのヘルパーの情報については [Card Contents](#card-contents) の節を参照してください。
 
-カードは利用できる場所いっぱいに水平方向に拡張され、垂直方向はコンテンツが収まる高さになります。
+### スタイル
 
+```css
+@import "@material/card/mdc-card";
+```
+
+汎用性とカードの幅いっぱいの画像などに対応するために、MDC Card はルート要素にパディングがありません。カードに自由な形式のテキストコンテンツを追加する際には、パディングを `16px` に設定する必要があります。
+
+```css
+.my-card-content {
+  padding: 16px;
+}
+```
+
+> <em>注意</em>: コンテンツ領域用の MDC Card の適宜済みクラス（例えば `mdc-card__actions`）は独自のパディングを設定します。
+
+デフォルトでは、カードは利用できる場所いっぱいに水平方向に拡張され、垂直方向はコンテンツが収まる高さになります。
 カードの幅と高さを一貫性のあるものにしたいのなら、スタイルを設定する必要があります。
 
 ```css
@@ -83,33 +73,57 @@ npm install @material/card
 }
 ```
 
-#### アイコン
+[MDC Layout Grid](../mdc-layout-grid) や CSS フレックスボックス、グリッドのようにカードはレイアウトコンテナ内に配置することができます。
 
-Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
+### JavaScript
+
+MDC Card 自身は JavaScript を必要としません。しかし、カード内にインタラクティブなコンポーネントを配置するなら、リップルやその他のコンポーネントをインスタンス化することができます。例えば次のようにします。
+
+```js
+import {MDCRipple} from '@material/ripple';
+
+const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
+const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
+  return new MDCRipple(el);
+});
+```
+
+> <em>注意</em>: カードに [アイコン切り替えボタン](../mdc-icon-button#icon-button-toggle) があるなら、`MDCRipple` ではなく `MDCIconButtonToggle` をインスタンス化します。
+
+## 様々な使用法
+
+### 縁ありのカード
+
+デフォルトでは、カードは縁はなく、浮き上がっている表示がなされます。`mdc-card--outlined` 修飾クラスを加えると浮き上がっていない縁ありのカードが表示されます。
 
 ```html
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
+<div class="mdc-card mdc-card--outlined">
+  <!-- ... コンテンツ ... -->
+</div>
 ```
 
-また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
+### <a name="card-contents"></a>カードのコンテンツ
 
-#### コンテンツブロック
+MDC Card は様々なユースケースで使用できますが、いくつか一般的なスタイルも含んでいます。
 
-カードは異なるコンテンツブロックで構成され、コンテンツブロックは通常垂直方向に配置されます。
+#### 主要な操作領域
 
-アプリケーションによる違いがあるため、カードコンテンツには「標準的」なレイアウトはありません。それぞれのアプリは独自のものを定義する必要があります。
+カードの大部分（もしくはカード全体）が操作可能であるなら、その部分に MDC Ripple のスタイルを適用するために `mdc-card__primary-action` クラスを追加することができます。キーボードを通じて操作できるようにするために `tabindex="0"` も追加するべきです。
 
-しかし、MDC Card は 2 つの共用のカード要素を提供しています。<em>リッチメディア</em>（画像もしくは映像）と <em>アクション</em> です。
-
-##### リッチメディア
-
-```css
-.my-card__media {
-  background-image: url("pretty.jpg");
-}
+```html
+<div class="mdc-card">
+  <div class="mdc-card__primary-action" tabindex="0">
+    <!-- 操作可能な領域内のコンテンツ -->
+  </div>
+  <!-- ... コンテンツ ... -->
+</div>
 ```
+
+> <em>注意</em>: `mdc-card__primary-action` の内部にほかの操作可能な要素を追加しないようにすることをお勧めします。これはリップルや一度適用した状態を入れ子になった要素が重複して持ってしまことを避けるためです。
+
+#### リッチメディア領域
+
+この領域はカード内のリッチメディアを表示するために使用され、オプションでコンテナとして使用することもできます。`mdc-card__media` CSS クラスと [オプションの CSS クラス](#css-classes) を使用してください。
 
 ```html
 <div class="my-card__media mdc-card__media mdc-card__media--16-9">
@@ -117,9 +131,15 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 </div>
 ```
 
-この領域はカード内のリッチメディアを表示するために使用され、オプションでコンテナとして使用することもできます。`mdc-card__media` CSS クラスと [オプションの CSS クラス](#css-classes) を使用してください。
+```css
+.my-card__media {
+  background-image: url("pretty.jpg");
+}
+```
 
-##### アクション
+#### 操作領域
+
+この領域はユーザーがとりうる様々な操作を表示するために使用し、通常はカードの下部にあります。しばしば [ボタン](../mdc-button) が使われます。
 
 ```html
 <div class="mdc-card__actions">
@@ -132,7 +152,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 </div>
 ```
 
-この領域はユーザーがとりうる様々なアクションを表示するために使用します。通常は上に示したようにボタンを使用し、以下のようにアイコンボタンを使うこともあります。
+[アイコンボタン](../mdc-icon-button) を使うこともできます。
 
 ```html
 <div class="mdc-card__actions">
@@ -181,10 +201,48 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 </div>
 ```
 
-### スタイル
-```css
-@import "@material/card/mdc-card";
+##### アイコン
+
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
+
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
 ```
+
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
+
+#### 組み合わせた例
+
+以下はこれまでの要素をすべて組み込んだ例です。
+
+```html
+<div class="mdc-card">
+  <div class="mdc-card__primary-action">
+    <div class="mdc-card__media mdc-card__media--square">
+      <div class="mdc-card__media-content">Title</div>
+    </div>
+    <!-- ... 主要な操作領域のコンテンツを追加 ... -->
+  </div>
+  <div class="mdc-card__actions">
+    <div class="mdc-card__action-buttons">
+      <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <span class="mdc-button__label">Action 1</span>
+      </button>
+      <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <span class="mdc-button__label">Action 2</span>
+      </button>
+    </div>
+    <div class="mdc-card__action-icons">
+      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+    </div>
+  </div>
+</div>
+```
+
+## スタイルのカスタマイズ
 
 ### <a name="css-classes"></a>CSS クラス
 
