@@ -48,8 +48,7 @@ npm install @material/snackbar
       Can't send photo. Retry in 5 seconds.
     </div>
     <div class="mdc-snackbar__actions">
-      <button type="button" class="mdc-button mdc-snackbar__action-button">Retry</button>
-      <button class="mdc-icon-button mdc-snackbar__action-icon material-icons" title="Dismiss">close</button>
+      <button type="button" class="mdc-button mdc-snackbar__action">Retry</button>
     </div>
   </div>
 </div>
@@ -135,8 +134,8 @@ CSS クラス | 説明
 `mdc-snackbar` | 必須。スナックバー要素のコンテナ。
 `mdc-snackbar__label` | 必須。メッセージテキスト。
 `mdc-snackbar__actions` | オプション。操作ボタン/アイコン要素があればラップする。
-`mdc-snackbar__action-button` | オプション。操作ボタン。
-`mdc-snackbar__action-icon` | オプション。閉じるアイコン ("X")。
+`mdc-snackbar__action` | オプション。操作ボタン。
+`mdc-snackbar__dismiss` | オプション。閉じるアイコン ("X")。
 `mdc-snackbar--opening` | オプション。スナックバーを開くアニメーションをしている際に自動的に適用される。
 `mdc-snackbar--open` | オプション。スナックバーが開いて表示されていることを示す。
 `mdc-snackbar--closing` | オプション。スナックバーを閉じるアニメーションをしている際に自動的に適用される。
@@ -158,7 +157,7 @@ CSS クラス | 説明
 `mdc-snackbar-position-leading()` | スナックバーを画面の中央ではなく、前方の端（LTR では左側、RTL では右側）に配置する。
 `mdc-snackbar-layout-stacked()` | 操作ボタン/アイコンをラベルの横ではなく下に配置する。
 
-> **注意**: `mdc-snackbar__action-button` と `mdc-snackbar__action-icon` 要素は [`mdc-button`](../mdc-button) と [`mdc-icon-button`](../mdc-icon-button) ミキシンでカスタマイズできます。
+> **注意**: `mdc-snackbar__action` と `mdc-snackbar__dismiss` 要素は [`mdc-button`](../mdc-button) と [`mdc-icon-button`](../mdc-icon-button) ミキシンでさらにカスタマイズできます。
 
 ## JavaScript API
 
@@ -228,8 +227,8 @@ React や Angular といった JavaScript フレームワークを使用して�
 イベント | 対象 | ファンデーションハンドラー | 登録 | 削除
 --- | --- | --- | --- | ---
 `keydown` | `.mdc-snackbar` | `handleKeyDown` | 初期の際に | 破棄する際に
-`click` | `.mdc-snackbar__action-button` | `handleActionButtonClick` | 初期の際に | 破棄する際に
-`click` | `.mdc-snackbar__action-icon` | `handleActionIconClick` | 初期の際に | 破棄する際に
+`click` | `.mdc-snackbar__action` | `handleActionButtonClick` | 初期の際に | 破棄する際に
+`click` | `.mdc-snackbar__dismiss` | `handleActionIconClick` | 初期の際に | 破棄する際に
 
 #### ユーティリティ API
 
@@ -267,16 +266,16 @@ React や Angular といった JavaScript フレームワークを使用して�
 
 ### 閉じるアイコン
 
-専用の閉じるアイコンはオプションですが、**強く** 推奨します。何らかの理由（例えば #1398）でスナックバーが動かなくなってしまった場合、ユーザーは手動で閉じる必要が出てきます。
+スナックバーは数秒後に勝手に消えるようになっていますが、アクセシビリティ向上のために閉じるためのアイコンをオプションで含めることができます。
 
 ### 閉じるキー
 
-スナックバー内の要素（例えば操作ボタン）にフォーカスがあるときに <kbd>ESC</kbd> キーを押すとスナックバーは閉じます。
+スナックバーの子要素（例えば操作ボタン）にフォーカスがあるときに <kbd>ESC</kbd> キーを押すとスナックバーは閉じます。
 
 この動作を無効にするには `closeOnEscape` を `false` に設定します。
 
 ### JS リップルを使用しない
 
-`mdc-snackbar__action-button` と `mdc-snackbar__action-icon` 要素は JavaScript で利用可能な [`MDCRipple`](../mdc-ripple) の動作を<em>**するべきではありません**</em>。
+`mdc-snackbar__action` と `mdc-snackbar__dismiss` 要素は JavaScript で利用可能な [`MDCRipple`](../mdc-ripple) の動作を<em>**するべきではありません**</em>。
 
 スナックバーの終了アニメーションと組み合わさると、リップルはあまりに動作が多く、ユーザーの注意を紛らわせ混乱させてしまいます。

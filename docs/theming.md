@@ -222,6 +222,10 @@ $mdc-theme-background: #fff;
 
 > 注意: テーマカラーはマテリアルパレットから選はなくてはいけないということはありません。任意の有効な色を使えます。マテリアルデザイン仕様の [色の節](https://material.io/go/design-theming) を読むと良いでしょう。他のパレットを使ってもよいのです。
 
+If you want to go a step further with your theming then you can override any SASS variable throughout the codebase by
+redefining it in your application's SASS file. Exercise caution when doing this, however, as modifying internal variables
+may have unintended consequences.
+
 
 ### ステップ 4: CSS カスタムプロパティを使いテーマを変更する
 
