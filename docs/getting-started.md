@@ -51,6 +51,8 @@ npm i @material/button @material/ripple
 This section walks through how to [install MDC Web Node modules](https://www.npmjs.com/org/material), and bundle the Sass and JavaScript from those Node modules in your [webpack](https://webpack.js.org/) configuration.
 この節ではどのように [MDC Web Node モジュールをインストールする](https://www.npmjs.com/org/material) のかを示し、[webpack](https://webpack.js.org/) 内の Node モジュールから Sass と JavaScript をバンドルする方法を示します。
 
+最終的なコードや結果は [Material Starter Kit](https://glitch.com/~material-starter-kit) でも見ることができます。
+
 > 注意: このガイドは Node.js と npm がローカルにインストールされていることを前提にしています。
 
 ### ステップ 1: Webpack の Sass の設定
