@@ -267,7 +267,7 @@ console.log('hello world');
      filename: 'bundle.js',
    }
    ```
-3. `scss-loader` オブジェクトの後に `babel-loader` オブジェクトをルールへ追加
+3. `sass-loader` オブジェクトの後に `babel-loader` オブジェクトをルールへ追加
    ```js
    {
      test: /\.js$/,
