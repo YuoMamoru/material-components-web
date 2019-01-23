@@ -93,7 +93,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 これで一つだけある `.mdc-text-field` 要素上に text field が初期化されました。
 
-> Please see [quick start demo](https://stackblitz.com/edit/mdc-web-quick-start-demo) on stackblitz for full example.
+> すべてのサンプルについては stackblitz の [quick start demo](https://stackblitz.com/edit/mdc-web-quick-start-demo) を参照してください。
 
 ## 助けが必要ですか？
 
