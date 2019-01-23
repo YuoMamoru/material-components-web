@@ -19,6 +19,7 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 - [入門ガイド](docs/getting-started.md)
 - [デモ](https://material-components.github.io/material-components-web-catalog)
 - [ほかのフレームワーク上での MDC Web](docs/framework-wrappers.md)
+- [MDC Web の利用例](docs/examples.md)
 - [Contributing](CONTRIBUTING.md)
 - [マテリアルデザインガイドライン](https://material.io/design) (external site)
 - [ブラウザポート](docs/supported-browsers.md)
@@ -51,7 +52,9 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 
 > サンプルのすべてについては codepen 上の [クイックスタートデモ](https://codepen.io/abhiomkar/pen/gQWarJ) を参照してください。
 
-### Using NPM
+### NPM を使用する
+
+> このガイドでは Sass を CSS にコンパイルするように設定されている webpack が入っていることを想定しています。webpack の設定については [入門ガイド](docs/getting-started.md) の全文を参照してください。最終的なコードや結果は [Material Starter Kit](https://glitch.com/~material-starter-kit) でも見ることができます。
 
 プロジェクトに textfield node モジュールをインストールしてください。
 
@@ -90,9 +93,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 これで一つだけある `.mdc-text-field` 要素上に text field が初期化されました。
 
-> Please see [quick start demo](https://stackblitz.com/edit/mdc-web-quick-start-demo) on stackblitz for full example.
-
-> JavaScript と CSS をバンドルするための webpack の設定方法については [入門ガイド](docs/getting-started.md) を参照してください。
+> すべてのサンプルについては stackblitz の [quick start demo](https://stackblitz.com/edit/mdc-web-quick-start-demo) を参照してください。
 
 ## 助けが必要ですか？
 
