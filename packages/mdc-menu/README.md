@@ -241,8 +241,7 @@ React や Angular といった JavaScript フレームワークを使用して�
 メソッド | 説明
 --- | ---
 `handleKeydown(evt: Event) => void` | メニュー内の `keydown` イベントのイベントハンドラー。
-`handleClick(evt: Event) => void` | メニュー内の `click` イベントのイベントハンドラー。
-`handleSelection(listItem: Element) => void` | 選択項目のためのハンドラー。選択項目のクリックイベントにアクセスがないときに `handleClick` の代わりに利用する。
+`handleItemAction(listItem: !HTMLElement) => void` | リストのアクションイベントのイベントハンドラー。
 
 ### イベント
 

@@ -6,10 +6,6 @@ iconId: text_field
 path: /catalog/input-controls/text-field/
 -->
 
-## 重要 - 非推奨のお知らせ
-
-テキスト欄の高密度型は将来のリリースで削除されます。詳細は [github issue](https://github.com/material-components/material-components-web/issues/4142) を参照してください。
-
 # Text Field
 
 Text Field はユーザーのテキストの入力、編集、選択に対応しています。
@@ -126,9 +122,92 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </div>
 ```
 
+### ラベルなしテキスト欄
+
+テキスト欄の横に別の明確な文言表示がすでにあるなら、テキスト欄にラベルは必要ではありません。そのような場合、クラス名 `mdc-text-field--no-label` を追加し、ラベル要素を構成から削除してください。
+
+#### フル幅
+
+```html
+<div class="mdc-text-field mdc-text-field--no-label">
+  <input type="text" class="mdc-text-field__input" placeholder="Placeholder text" aria-label="Label">
+  <div class="mdc-line-ripple"></div>
+</div>
+```
+
+#### アウトライン
+
+```html
+<div class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label">
+  <input type="text" class="mdc-text-field__input" aria-label="Label">
+  <div class="mdc-notched-outline">
+    <div class="mdc-notched-outline__leading"></div>
+    <div class="mdc-notched-outline__trailing"></div>
+  </div>
+</div>
+```
+
+#### 複数行
+
+```html
+<div class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
+  <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  <div class="mdc-notched-outline">
+    <div class="mdc-notched-outline__leading"></div>
+    <div class="mdc-notched-outline__trailing"></div>
+  </div>
+</div>
+```
+
 ### ヘルプテキスト付きテキスト欄
 
-ヘルプテキストは補足の情報や検証のメッセージをユーザーに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
+ヘルプテキストは補足の情報や検証のメッセージをユーザーに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
+
+```html
+<div class="mdc-text-field">
+  <input type="text" id="my-text-field" class="mdc-text-field__input">
+  <label class="mdc-floating-label" for="my-text-field">My Label</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+<div class="mdc-text-field-helper-line">
+  <div class="mdc-text-field-helper-text">helper text</div>
+</div>
+```
+
+### 文字数カウンター付きテキスト欄
+
+文字数に制限がある場合、文字数カウンターが使われます。これは文字数制限の上限と入力された文字数の比率を表示するものです。ヘルプテキストは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。文字数カウンターの使用に関するより多くの情報は [ここ](character-counter/) を参照してください。
+
+```html
+<div class="mdc-text-field">
+  <input type="text" id="my-text-field" class="mdc-text-field__input" maxlength="10">
+  <label class="mdc-floating-label" for="my-text-field">My Label</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+<div class="mdc-text-field-helper-line">
+  <div class="mdc-text-field-character-counter">0 / 10</div>
+</div>
+```
+
+### 文字数カウンター付き複数行テキスト欄 (Textarea)
+
+複数行テキスト欄 (textarea) での文字数カウンターでは、テキスト欄のコンポーネント内にカウンターを表示するため、レイアウト構造が少々異なります。
+
+```html
+<div class="mdc-text-field mdc-text-field--textarea">
+  <div class="mdc-text-field-character-counter">0 / 140</div>
+  <textarea id="textarea" class="mdc-text-field__input" rows="8" cols="40" maxlength="140"></textarea>
+  <div class="mdc-notched-outline">
+    <div class="mdc-notched-outline__leading"></div>
+    <div class="mdc-notched-outline__notch">
+      <label for="textarea" class="mdc-floating-label">Textarea Label</label>
+    </div>
+    <div class="mdc-notched-outline__trailing"></div>
+  </div>
+</div>
+```
+
+ヘルプテキストと文字数カウンターは独立して共存できるテキスト欄のオプションサブコンポーネントです。適切なレイアウトのために `.mdc-text-field` 要素と `.mdc-text-field-helper-line` 要素は同じ幅にすることを推奨します。
 
 ### 先頭と末尾のアイコン
 
@@ -173,10 +252,16 @@ CSS クラス | 説明
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
 `mdc-text-field--disabled` | 無効なテキスト欄として表示する。
-`mdc-text-field--dense` | 高密度のテキスト欄として表示する。
+`mdc-text-field--dense` | 高密度のテキスト欄として表示する。\*
 `mdc-text-field--with-leading-icon` | 先頭にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--with-trailing-icon` | 末尾にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--focused` | フォーカスを持つテキスト欄として表示する。
+`mdc-text-field--no-label` | ラベルのないテキスト欄として表示する。
+`mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
+
+#### 非推奨のお知らせ
+
+\* テキスト欄の `--dense` のタイプは将来のリリースで削除されます。詳細は [github issue](https://github.com/material-components/material-components-web/issues/4142) を参照してください。
 
 ### Sass ミキシン
 
@@ -298,7 +383,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `isValid() => boolean` | コンポーネントの現在の検証状態（ネイティブもしくはカスタムのいずれか、`setUseNativeValidation()` がどのように設定されたかによる）を返す。
 `isDisabled() => boolean` | input 要素が無効かどうかを返す。
 `setDisabled(disabled: boolean) => void` | input 要素の無効かどうか状態を更新する。
-`handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生したクリックイベントとキーダウンイベントを処理する。
+`handleTextFieldInteraction(evt: Event) => void` | Text Field コンポーネント内で発生した click イベントと keydown イベントを処理する。
+`handleInput() => void` | text と textarea の input イベントを処理する。
 `handleValidationAttributeChange(attributesList: !Array<string>) => void` | 属性変更の検証を処理する。
 `activateFocus() => void` | Text Field をフォーカス状態にする。通常は input の focus イベントの処理中に呼ばれる。
 `deactivateFocus() => void` | Text Field をフォーカス状態を失った状態にする。通常は input の blur イベントの処理中に呼ばれる。
