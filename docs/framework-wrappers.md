@@ -4,10 +4,9 @@ Material Components for the web は様々な主要 Web フレームワークに�
 
   - [Material Components for React](https://github.com/material-components/material-components-web-react): React と MDC Web の統合 ([foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
   - [Material Web Components](https://github.com/material-components/material-components-web-components): Web Components と MDC Web の統合 ([vanilla components](./integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
-  - Additional third-party integrations
   - 追加されたサードパーティ製の統合
     - [Preact Material Components](https://github.com/prateekbh/preact-material-components)
-    - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc) (using [foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).)
+    - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc) ([foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
     - [Angular MDC](https://github.com/trimox/angular-mdc-web)
     - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
     - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js と MDC Web の統合 ([foundation/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
