@@ -176,7 +176,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### 文字数カウンター付きテキスト欄
 
-文字数に制限がある場合、文字数カウンターが使われます。これは文字数制限の上限と入力された文字数の比率を表示するものです。ヘルプテキストは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。文字数カウンターの使用に関するより多くの情報は [ここ](character-counter/) を参照してください。
+文字数に制限がある場合、文字数カウンターが使われます。これは文字数制限の上限と入力された文字数の比率を表示するものです。文字数カウンターは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。文字数カウンターの使用に関するより多くの情報は [ここ](character-counter/) を参照してください。
 
 ```html
 <div class="mdc-text-field">
