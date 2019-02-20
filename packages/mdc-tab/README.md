@@ -132,6 +132,8 @@ CSS クラス | 説明
 --- | ---
 `mdc-tab-text-label-color($color)` | タブのテキストラベルの色を変更する。
 `mdc-tab-icon-color($color)` | タブのアイコンの色を変更する。
+`mdc-tab-states-color($color)`| 基本状態の色を変更する。この色はホバー/フォーカス状態とリップルが起きた際に影響する。
+`mdc-tab-ink-color($color)` | 文字ラベル、アイコン及び基本状態の色を変更する。
 `mdc-tab-parent-positioning` | `MDCTab.computeDimensions()` がすべてのブラウザで同じ値になるように MDCTab の親要素の位置を設定する。
 `mdc-tab-fixed-width($width)` | タブの幅を固定にする。タブが与えられた幅より小さくなることがなくなる。
 
