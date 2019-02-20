@@ -1,3 +1,18 @@
+<a name="0.44.1"></a>
+## [0.44.1](https://github.com/material-components/material-components-web/compare/v0.44.0...v0.44.1) (2019-02-19)
+
+
+### Bug Fixes
+
+* **chips:** Flip leading icon margin when used in RTL contexts ([#4380](https://github.com/material-components/material-components-web/issues/4380)) ([10a384f](https://github.com/material-components/material-components-web/commit/10a384f))
+* **chips:** Use required pixel value ([#4361](https://github.com/material-components/material-components-web/issues/4361)) ([7dc2125](https://github.com/material-components/material-components-web/commit/7dc2125))
+* **feature-targeting:** fix incorrect list construction ([#4419](https://github.com/material-components/material-components-web/issues/4419)) ([37f2044](https://github.com/material-components/material-components-web/commit/37f2044))
+* **floating-label:** Add missing import to mixins ([#4434](https://github.com/material-components/material-components-web/issues/4434)) ([cd1d9fb](https://github.com/material-components/material-components-web/commit/cd1d9fb))
+* **menu-surface:** Correct open animation issue ([#4371](https://github.com/material-components/material-components-web/issues/4371)) ([189957b](https://github.com/material-components/material-components-web/commit/189957b))
+* **text-field:** Fix placeholder styles for text field fullwidth variant. ([#4385](https://github.com/material-components/material-components-web/issues/4385)) ([1edc29f](https://github.com/material-components/material-components-web/commit/1edc29f))
+
+
+
 <a name="0.44.0"></a>
 # [0.44.0](https://github.com/material-components/material-components-web/compare/v0.43.0...v0.44.0) (2019-02-04)
 
@@ -34,9 +49,10 @@
 
 ### BREAKING CHANGES
 
+* **text-field:** Helper text must now be nested within `mdc-text-field-helper-line` element. Wrappers must account for the new `character-counter` sub-component. See the Text Field documentation for examples and more information.
 * **menu:** Replaced menu's foundation methods `handleClick` and `handleSelection` with `handleItemAction` to handle list item action (i.e., list's custom event `MDCList:action`)
-* **list:** Introduced new adapter method `getAttributeForElementIndex` to determine if target list item has `href` attribute and removed `followHref` adapter API.
-* **chips:** Adds 3 new chips adapter methods: hasLeadingIcon, getRootBoundingClientRect, and getCheckmarkBoundingClientRect. Also adds a new foundation method: getDimensions.
+* **list:** Removed adapter method `followHref` and used native anchor element behaviour to follow href on <kbd>Enter</kbd> & click. Components that use MDC List should use its new custom event.
+* **chips:** Adds 3 new chips adapter methods: `hasLeadingIcon`, `getRootBoundingClientRect`, and `getCheckmarkBoundingClientRect`. Also adds a new foundation method: `getDimensions`.
 
 
 
@@ -75,8 +91,8 @@
 
 * **list:** Introduced new adapter `isFocusInsideList` for MDC List for improved accessibility.
 * **snackbar:** Snackbar's DOM and APIs have changed to match the latest design guidelines. See the Snackbar documentation for more information.
-* **button:** We recommend placing each button's text label within a mdc-button__label element. This does not immediately break existing MDC Button usage, but updating is recommended to future-proof against potential upcoming changes.
-* **tab:** MDCTabBar#getIndexOfTab(tab: MDCTab): boolean is now MDCTabBar#getIndexOfTabByID(id: string): boolean
+* **button:** We recommend placing each button's text label within a `mdc-button__label` element. This does not immediately break existing MDC Button usage, but updating is recommended to future-proof against potential upcoming changes.
+* **tab:** `MDCTabBar#getIndexOfTab(tab: MDCTab): number` is now `MDCTabBar#getIndexOfTabById(id: string): number`
 
 
 
@@ -133,8 +149,8 @@
 ### BREAKING CHANGES
 
 * **notched-outline:** The notched outline has been changed from using an SVG for the outline to using 3 div elements. This approach resolves initial rendering issues as well as inconsistencies between the different types of outlines. Please refer to the [Readme](./packages/mdc-notched-outline/README.md) or the [screenshot test pages](./test/screenshot/spec/mdc-textfield/classes) for details and examples.
-* **checkbox:** The component is now responsible for calling MDCCheckboxFoundation#handleChange when the checked and indeterminate properties change.
-* **list:** Replaced toggleCheckbox adapter method with setCheckedCheckboxOrRadioAtIndex and added 3 more new adapter methods for improved accessibility.
+* **checkbox:** The component is now responsible for calling `MDCCheckboxFoundation#handleChange` when the checked and indeterminate properties change.
+* **list:** Replaced toggleCheckbox adapter method with `setCheckedCheckboxOrRadioAtIndex` and added 3 more new adapter methods for improved accessibility.
 * **fab:** Fab now has 2 separate mixins - `mdc-fab-shape-radius` for regular / mini Fab variants & `mdc-fab-extended-shape-radius` for Extended FAB variant.
 
 

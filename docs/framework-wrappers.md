@@ -7,7 +7,7 @@ Material Components for the web は様々な主要 Web フレームワークに�
   - Additional third-party integrations
   - 追加されたサードパーティ製の統合
     - [Preact Material Components](https://github.com/prateekbh/preact-material-components)
-    - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc)
+    - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc) (using [foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters).)
     - [Angular MDC](https://github.com/trimox/angular-mdc-web)
     - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
     - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js と MDC Web の統合 ([foundation/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
