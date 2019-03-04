@@ -43,7 +43,7 @@ react や angular のようなモダンなフロントエンドのライブラ�
 
 > ファンデーションとアダプターを利用するコンポーネントをラップすることに興味があるなら、それらの背景にある一般的なコンセプトを理解するために [アーキテクチャー概要](code/architecture.md) をまず読むとよいでしょう。
 
-すべてのコンポーネントは補助的なファンデーションクラスが付属しており、それは通常 `MDCComponentFoundation`（この `MDCComponent` の部分にコンポーネント名が入ります）と呼ばれます。例えば、[MDCMenu](../packages/mdc-menu/index.js) コンポーネントにはそのコンポーネントが使用する [MDCMenuFoundation](../packages/mdc-menu/foundation.js) があり、それらはともに公開されています。
+すべてのコンポーネントは補助的なファンデーションクラスが付属しており、それは通常 `MDCComponentFoundation`（この `MDCComponent` の部分にコンポーネント名が入ります）と呼ばれます。例えば、[MDCMenu](../packages/mdc-menu/index.ts) コンポーネントにはそのコンポーネントが使用する [MDCMenuFoundation](../packages/mdc-menu/foundation.ts) があり、それらはともに公開されています。
 
 ファンデーションを通じてコンポーネントを実装するには以下の手順を踏みます。
 

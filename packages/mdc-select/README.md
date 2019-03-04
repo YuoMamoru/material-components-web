@@ -347,7 +347,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
 | `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に `disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
 | `mdc-select--outlined` | オプション。アウトラインされたセレクトのようなセレクトのスタイル。 |
 | `mdc-select__native-control` | ネイティブセレクトでは必須。ネイティブな `<select>` 要素。 |
-| `mdc-select__selected-text` |　拡張セレクトでは必須。このクラスは `mdc-select` 要素内の `div` に設定しなくてはならない。 |
+| `mdc-select__selected-text` | 拡張セレクトでは必須。このクラスは `mdc-select` 要素内の `div` に設定しなくてはならない。 |
 | `mdc-select--with-leading-icon` | 先頭アイコンのあるセレクトとしてスタイルを設定する。 |
 
 > 注意: セレクト内に含まれる [MDCMenu](./../mdc-menu) や [MDCList](./../mdc-list) コンポーネントをさらにカスタマイズするには、それぞれのドキュメントを参照してください。
@@ -379,14 +379,14 @@ Mixin | Description
 
 | プロパティ | 型 | 説明 |
 | --- | --- | --- |
-| `value` | string | 現在選択されているオプションの `value`/`data-value`。 |
-| `selectedIndex` | number | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。 |
-| `disabled` | boolean | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。 |
-| `valid` | boolean | コンポーネントが有効な状態かどうか。これを設定すると、コンポーネントのスタイルが更新されるが、ネイティブな有効状態には影響しない。 |
-| `required` | boolean | コンポーネントが必須かどうか。これおw設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。 |
-| `leadingIconAriaLabel` | string (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替。 |
-| `leadingIconContent` | string (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替。 |
-| `helperTextContent` | string (書込専用)| 設定時のファンデーションの `setHelperTextContent` メソッドの代替。 |
+| `value` | `string` | 現在選択されているオプションの `value`/`data-value`。 |
+| `selectedIndex` | `number` | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。 |
+| `disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。 |
+| `valid` | `boolean` | コンポーネントが有効な状態かどうか。これを設定すると、コンポーネントのスタイルが更新されるが、ネイティブな有効状態には影響しない。 |
+| `required` | `boolean` | コンポーネントが必須かどうか。これおw設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。 |
+| `leadingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替。 |
+| `leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替。 |
+| `helperTextContent` | `string` (書込専用)| 設定時のファンデーションの `setHelperTextContent` メソッドの代替。 |
 
 ### イベント
 
@@ -434,7 +434,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `handleBlur() => void` | `select` 要素の blur イベントを処理する。 |
 | `handleClick(normalizedX: number) => void` | ラインリップルの中心を normalizedX に設定する。 |
 | `handleChange() => void` | `select` 要素の値の変更を処理する。`change` イベントとコンポーネント API を通じて要求されたプログラム上での変更の両方でこれを呼び出す必要がある。 |
-| `handleKeydown(event: Event) => void` | `mdc-select__selected-text` 要素がフォーカスを持っており、ユーザーが `Enter` または `Space` キーを押した際にメニュー（拡張セレクト）が開くことをハンドリングする。 |
+| `handleKeydown(event: KeyboardEvent) => void` | `mdc-select__selected-text` 要素がフォーカスを持っており、ユーザーが `Enter` または `Space` キーを押した際にメニュー（拡張セレクト）が開くことをハンドリングする。 |
 | `setSelectedIndex(index: number) => void` | `mdc-select__selected-text` 要素を設定しメニューを閉じる（拡張セレクトのみ）ことをハンドリングする。必要であればラベルを浮かせ、輪郭をへこませる。 |
 | `setValue(value: string) => void` | アダプターを介して値の設定をハンドリングし、必要であればラベルを浮かせ、輪郭をへこませる。 |
 | `getValue() => string` | アダプターを介して値の取得をハンドリングする。 |

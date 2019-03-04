@@ -356,9 +356,9 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `deregisterTextFieldInteractionHandler(evtType: string, handler: EventListener) => void` | ルート要素から与えたイベントのイベントハンドラーの登録を解除する。
 `registerInputInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブな input 要素に与えたイベントのイベントリスナーを登録する。
 `deregisterInputInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブな input 要素から与えたイベントのイベントリスナーの登録を解除する。
-`registerValidationAttributeChangeHandler(handler: function(!Array<string>) => undefined) => !MutationObserver` | 検証属性の変更のイベントリスナーを input 要素に対して登録する。リスナーは属性変更のリストを受け取る。
+`registerValidationAttributeChangeHandler(handler: (attributeNames: string[]) => void) => MutationObserver` | 検証属性の変更のイベントリスナーを input 要素に対して登録する。リスナーは属性変更のリストを受け取る。
 `deregisterValidationAttributeChangeHandler(!MutationObserver) => void` | 検証属性の変更のオブザーバーとの接続を input 要素から削除する。
-`getNativeInput() => {value: string, disabled: boolean, badInput: boolean, checkValidity: () => boolean}?` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。
+`getNativeInput() => NativeInputType \| null` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。[types.ts](types.ts) 参照。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
 `hasOutline() => boolean` | アウトライン要素があるかどうかを返す。
 `notchOutline(labelWidth: number) => void` | ノッチを開くためにノッチ付きアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
@@ -366,7 +366,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 #### `MDCTextFieldAdapter.getNativeInput()`
 
-ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返します。返されるオブジェクトは `value`、`disabled`、`badInput` の各プロパティと `checkValidity()` 関数を持っていなければなりません。私たちはコード内で値を変えることはありませんが、disabled プロパティは更新します。もしあなたがこのメソッドの実装でダックタイピングをを選択するなら、このことを念頭に置いておく必要があります。また、このメソッドは null を返しても構わないことを覚えておいてください。その場合でもファンデーションは適切に動作します。
+ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返します。私たちはコード内で値を変えることはありませんが、disabled プロパティは更新します。もしあなたがこのメソッドの実装でダックタイピングをを選択するなら、このことを念頭に置いておく必要があります。また、このメソッドは null を返しても構わないことを覚えておいてください。その場合でもファンデーションは適切に動作します。
 
 #### `MDCTextFieldAdapter.getIdleOutlineStyleValue(propertyName: string)`
 

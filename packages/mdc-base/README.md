@@ -62,7 +62,7 @@ MDCFoundation はファンデーションクラスを実装するための基本
 - ライスサイクルメソッドとして `init()` と `destroy()` を提供する。
 
 ```javascript
-import MDCFoundation from '@material/base/foundation';
+import {MDCFoundation} from '@material/base/foundation';
 
 export default class MyFoundation extends MDCFoundation {
   static get cssClasses() {

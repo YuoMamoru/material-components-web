@@ -245,5 +245,5 @@ npm install @material/grid-list
 | `getNumberOfTiles() => number` | グリッドリストに含まれる mdc-grid-tile 要素の数を取得する。 |
 | `getOffsetWidthForTileAtIndex(index: number) => number` | 指定した index にある `mdc-grid-tile` の offsetWidth を取得する。 |
 | `setStyleForTilesElement(property: string, value: number) => void` | `mdc-grid-list__tiles` スタイルプロパティに指定した値を設定する。 |
-| `registerResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。 |
-| `deregisterResizeHandler(handler: Function) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。 |
+| `registerResizeHandler(handler: EventListener) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。 |
+| `deregisterResizeHandler(handler: EventListener) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。 |

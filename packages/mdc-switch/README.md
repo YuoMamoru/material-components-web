@@ -161,7 +161,7 @@ React や Angular といった JavaScript フレームワークを使用して�
 | `handleChange(evt: Event) => void` | ネイティブコントロールからの change イベントをハンドリングする。 |
 
 ### `MDCSwitchFoundation` イベントハンドラー
-スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラーを追加する必要があります。この例としては、[MDCSwitch](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
+スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラーを追加する必要があります。この例としては、[`MDCSwitch`](component.ts) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
 
 | イベント | 要素セレクタ | ファンデーションハンドラー |
 | --- | --- | --- |

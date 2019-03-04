@@ -142,11 +142,11 @@ CSS クラス | 説明
 プロパティ | 値の型 | 説明
 --- | --- | ---
 `active` | `boolean` （読取専用） | タブのアクティブな状態の取得する。
-`focusOnActivate` | `boolean` (書込専用) |　有効にする際にタブが自身にフォーカスするかどうかを設定する。デフォルトは `true`。
+`focusOnActivate` | `boolean` (書込専用) | 有効にする際にタブが自身にフォーカスするかどうかを設定する。デフォルトは `true`。
 
 メソッド | 説明
 --- | ---
-`activate(previousIndicatorClientRect: ClientRect=) => void` | インジケーターを有効にする。`previousIndicatorClientRect` はオプションの引数。
+`activate(previousIndicatorClientRect?: ClientRect) => void` | インジケーターを有効にする。`previousIndicatorClientRect` はオプションの引数。
 `deactivate() => void` | インジケーターを無効にする。
 `focus() => void` | タブにフォーカスをあてる。
 `computeIndicatorClientRect() => ClientRect` | インジケーターの境界のクライアントレクトを返す。
@@ -168,7 +168,7 @@ React や Angular といった JavaScript フレームワークを使用して�
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
 `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを含んでいれば true を返す。
 `setAttr(attr: string, value: string) => void` | ルート要素に与えられた値を属性として設定する。
-`activateIndicator(previousIndicatorClientRect: ClientRect=) => void` | タブインジケーターサブコンポーネントを有効にする。`previousIndicatorClientRect` はオプション引数。
+`activateIndicator(previousIndicatorClientRect?: ClientRect) => void` | タブインジケーターサブコンポーネントを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivateIndicator() => void` | タブインジケーターサブコンポーネントを無効にする。
 `getOffsetLeft() => number` | ルート要素の `offsetLeft` の値を返す。
 `getOffsetWidth() => number` | ルート要素の `offsetWidth` の値を返す。
@@ -184,13 +184,13 @@ React や Angular といった JavaScript フレームワークを使用して�
 `handleClick() => void` | `"click"` イベントのロジックをハンドリングする。
 `isActive() => boolean` | タブがアクティブかどうかを返す。
 `setFocusOnActivate(focusOnActivate: boolean) => void` | 有効にする際にタブが自身にフォーカスするかどうかを設定する。
-`activate(previousIndicatorClientRect: ClientRect=) => void` | タブを有効にする。`previousIndicatorClientRect` はオプション引数。
+`activate(previousIndicatorClientRect?: ClientRect) => void` | タブを有効にする。`previousIndicatorClientRect` はオプション引数。
 `deactivate() => void` | タブを無効にする。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
 
 ### `MDCTabFoundation` イベントハンドラー
 
-タブコンポーネントをラップする際には、以下のイベントハンドラーを登録する必要があります。この例としては [MDCTab](index.js) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
+タブコンポーネントをラップする際には、以下のイベントハンドラーを登録する必要があります。この例としては [`MDCTab`](component.ts) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
 
 イベント | 要素 | ファンデーションハンドラー
 --- | --- | ---

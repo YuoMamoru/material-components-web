@@ -186,8 +186,8 @@ CSS クラス | 説明
 --- | --- | ---
 `MDCSnackbar:opening` | `{}` | スナックバーが開くアニメーションを開始していることを示す。
 `MDCSnackbar:opened` | `{}` | スナックバーが開くアニメーションを終えたことを示す。
-`MDCSnackbar:closing` | `{reason: ?string}` | スナックバーが閉じるアニメーションを開始したことを示す。`reason` にはスナックバーが閉じた理由（`dismiss` もしくは `action`）が含まれる。
-`MDCSnackbar:closed` | `{reason: ?string}` | スナックバーが閉じるアニメーションを終えたことを示す。`reason` にはスナックバーが閉じた理由（`dismiss` もしくは `action`）が含まれる。
+`MDCSnackbar:closing` | `{reason?: string}` | スナックバーが閉じるアニメーションを開始したことを示す。`reason` にはスナックバーが閉じた理由（`dismiss`、`action` もしくは `undefined`）が含まれる。
+`MDCSnackbar:closed` | `{reason?: string}` | スナックバーが閉じるアニメーションを終えたことを示す。`reason` にはスナックバーが閉じた理由（`dismiss`、`action` もしくは `undefined`）が含まれる。
 
 ### フレームワーク内での使用
 
@@ -202,8 +202,8 @@ React や Angular といった JavaScript フレームワークを使用して�
 `announce() => void` | スナックバーのラベルテキストをスクリーンリーダーのユーザーに通知する。
 `notifyOpening() => void` | スナックバーが開き始めたことを示すイベントを送出する。
 `notifyOpened() => void` | スナックバーが開き終えたことを示すイベントを送出する。
-`notifyClosing(reason: string) {}` | スナックバーが閉じ始めたことを示すイベントを送出する。`reason` か空でないとき、イベントの `detail` オブジェクトは `reason` プロパティにその値を含む。
-`notifyClosed(reason: string) {}` | スナックバーが閉じ終えたことを示すイベントを送出する。`reason` か空でないとき、イベントの `detail` オブジェクトは `reason` プロパティにその値を含む。
+`notifyClosing(reason: string) => void` | スナックバーが閉じ始めたことを示すイベントを送出する。`reason` か空でないとき、イベントの `detail` オブジェクトは `reason` プロパティにその値を含む。
+`notifyClosed(reason: string) => void` | スナックバーが閉じ終えたことを示すイベントを送出する。`reason` か空でないとき、イベントの `detail` オブジェクトは `reason` プロパティにその値を含む。
 
 #### `MDCSnackbarFoundation` メソッド
 
@@ -216,9 +216,9 @@ React や Angular といった JavaScript フレームワークを使用して�
 `setTimeoutMs(timeoutMs: number)` | 自動で閉じるまでのタイムアウト時間をミリ秒単位で設定する。値は `4000` から `10000` でなくてはならず、そうでないとエラーが投げられる。
 `getCloseOnEscape() => boolean` | スナックバーがフォーカスされている状態で <kbd>ESC</kbd> キーを押された時にスナックバーを閉じるかどうかを返す。
 `setCloseOnEscape(closeOnEscape: boolean) => void` | スナックバーがフォーカスされている状態で <kbd>ESC</kbd> キーを押された時にスナックバーを閉じるかどうかを設定する。
-`handleKeyDown(event: !KeyEvent)` | スナックバーのルート要素上、もしくはルート要素内で `keydown` イベントを処理する。
-`handleActionButtonClick(event: !MouseEvent)` | 操作ボタン上、もしくは操作ボタン内で `click` イベントを処理する。
-`handleActionIconClick(event: !MouseEvent)` | 閉じるアイコン上、もしくは閉じるアイコン内で `click` イベントを処理する。
+`handleKeyDown(event: KeyEvent)` | スナックバーのルート要素上、もしくはルート要素内で `keydown` イベントを処理する。
+`handleActionButtonClick(event: MouseEvent)` | 操作ボタン上、もしくは操作ボタン内で `click` イベントを処理する。
+`handleActionIconClick(event: MouseEvent)` | 閉じるアイコン上、もしくは閉じるアイコン内で `click` イベントを処理する。
 
 #### イベントハンドラー
 
@@ -236,7 +236,7 @@ React や Angular といった JavaScript フレームワークを使用して�
 
 メソッド | 説明
 --- | ---
-`announce(ariaEl: !HTMLElement, labelEl: !HTMLElement=) => void` | ラベルテキストをスクリーンリーダーのユーザーに通知する。
+`announce(ariaEl: Element, labelEl?: Element) => void` | ラベルテキストをスクリーンリーダーのユーザーに通知する。
 
 あるいは、フレームワークは [クロージャライブラリの `goog.a11y.aria.Announcer#say()` メソッド](https://github.com/google/closure-library/blob/bee9ced776b4700e8076a3466bd9d3f9ade2fb54/closure/goog/a11y/aria/announcer.js#L80) を使うことができます。
 

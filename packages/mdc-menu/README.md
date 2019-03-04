@@ -205,17 +205,16 @@ JavaScript をインポートする方法についてのより詳細な情報は
 メソッド | 説明
 --- | ---
 `setAnchorCorner(Corner) => void` | メニュー表面の `setAnchorCorner(Corner)` メソッドの代替。
-`setAnchorMargin(AnchorMargin) => void` | メニュー表面の `setAnchorMargin(AnchorMargin)` メソッドの代替。
+`setAnchorMargin(Partial<MDCMenuDistance>) => void` | メニュー表面の `setAnchorMargin(Partial<MDCMenuDistance>)` メソッドの代替。
 `setAbsolutePosition(x: number, y: number) => void` | メニュー表面の `setAbsolutePosition(x: number, y: number)` メソッドの代替。
 `setFixedPosition(isFixed: boolean) => void` | メニュー表面の `setFixedPosition(isFixed: boolean)` メソッドの代替。
 `hoistMenuToBody() => void` | メニュー表面の `hoistMenuToBody()` メソッドの代替。
 `setIsHoisted(isHoisted: boolean) => void` | メニュー表面の `setIsHoisted(isHoisted: boolean)` メソッドの代替。
-`setAnchorElement(element: HTMLElement) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
-`getOptionByIndex(index: number) => ?HTMLElement` | `index` に指定したところにあるリスト項目を返す。
+`setAnchorElement(element: Element) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
+`getOptionByIndex(index: number) => Element \| null` | `index` に指定したところにあるリスト項目を返す。
 `getDefaultFoundation() => MDCMenuFoundation` | ファンデーションを返す。
 
-> See [Menu Surface](../mdc-menu-surface/README.md) and [List](../mdc-list/README.md) documentation for more information on proxied methods and properties.
-プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
+> プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
 
 ## Web フレームワーク内での使用
 
@@ -229,11 +228,11 @@ React や Angular といった JavaScript フレームワークを使用して�
 `removeClassFromElementAtIndex(index: number, className: string) => void` | `index` に指定したところにある要素から `className` のクラスを削除する。
 `addAttributeToElementAtIndex(index: number, attr: string, value: string) => void` | `index` に指定したところにある要素に値 `value` を持つ `attr` 属性を追加する。
 `removeAttributeFromElementAtIndex(index: number, attr: string) => void` | `index` に指定したところにある要素から `attr` 属性を削除する。
-`elementContainsClass(element: HTMLElement, className: string) => boolean` | `element` が `className` のクラスを含んでいれば true を返す。
+`elementContainsClass(element: Element, className: string) => boolean` | `element` が `className` のクラスを含んでいれば true を返す。
 `closeSurface() => void` | メニューを閉じる。
-`getElementIndex(element: HTMLElement) => number` | `element` の `index` の値を返す。
-`getParentElement(element: HTMLElement) => ?HTMLElement` | 与えられた `element` の `.parentElement` 要素を返す。
-`getSelectedElementIndex(element: HTMLElement) => number` | `mdc-menu-item--selected` クラスを含んでいる `element` で与えられる選択肢グループ内の要素の `index` の値を返す。
+`getElementIndex(element: Element) => number` | `element` の `index` の値を返す。
+`getParentElement(element: Element) => Element \| null` | 与えられた `element` の `.parentElement` 要素を返す。
+`getSelectedElementIndex(element: Element) => number` | `mdc-menu-item--selected` クラスを含んでいる `element` で与えられる選択肢グループ内の要素の `index` の値を返す。
 `notifySelected(index: number) => void` | `index` に指定したところにある要素に対して `MDCMenu:selected` イベントを発行する。
 
 ### `MDCMenuFoundation`
@@ -241,10 +240,10 @@ React や Angular といった JavaScript フレームワークを使用して�
 メソッド | 説明
 --- | ---
 `handleKeydown(evt: Event) => void` | メニュー内の `keydown` イベントのイベントハンドラー。
-`handleItemAction(listItem: !HTMLElement) => void` | リストのアクションイベントのイベントハンドラー。
+`handleItemAction(listItem: Element) => void` | リストのアクションイベントのイベントハンドラー。
 
 ### イベント
 
 イベント名 | データ | 説明
 --- | --- | ---
-`MDCMenu:selected` | `{detail: {item: HTMLElement, index: number}}` | 要素が選択されたことを示すために使用する。このイベントには選択された項目とその項目のリストのインデックスも含まれている。
+`MDCMenu:selected` | `{detail: {item: Element, index: number}}` | 要素が選択されたことを示すために使用する。このイベントには選択された項目とその項目のリストのインデックスも含まれている。
