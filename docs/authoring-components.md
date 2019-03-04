@@ -11,45 +11,46 @@ path: /docs/authoring-components/
 
 > このプロジェクトはまだ開発の初期段階で、これらの実践はまた変わりうることに注意してください。これらは完全なリリースに近づくにつれ安定していきます。
 
-* [誰のためのドキュメントか](#who-this-document-is-for)
-* [コンポーネント構築の方法](#how-to-build-a-component)
-  * [単純なコンポーネントのプロトタイプ](#start-with-a-simple-component-prototype)
-  * [ホスト環境とのやりとりの確認](#identify-host-environment-interactions)
-  * [アダプターインターフェースの作成](#create-the-adapter-interface)
-  * [既存のコードをファンデーションに再構築](#refactor-your-existing-code-into-a-foundation)
-  * [ファンデーション上のコンポーネントの構築とアダプターの提供](#build-a-component-on-top-of-that-foundation-providing-an-adapter)
-* [よいコンポーネント作るには](#what-makes-a-good-component)
-  * [完全にテストされたコード](#fully-tested-code)
-  * [徹底的な文書化と厳密にバージョン管理されたアダプターインターフェース](#thoroughly-documented-and-strictly-versioned-adapter-interface)
-  * [アクセシビリティ](#accessibility)
-  * [RTL への意識](#rtl-awareness)
-  * [テーマのサポート](#support-for-theming)
-* [ベストプラクティス](#general-best-practices)
-  * [ユーザーの期待していることを実行する](#do-what-the-user-expects)
-  * [アダプターインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
-  * [ファンデーションコード内でホストオブジェクトを参照しない](#do-not-reference-host-objects-within-foundation-code)
-  * [デストラクターですべての参照を削除する](#clean-up-all-references-on-destruction)
-* [MDC Web のコンポーネントの作成](#authoring-components-for-mdc-web)
-  * [ファイル構成](#file-structure)
-  * [ライセンスの記載](#license-stanzas)
-  * [Scss](#scss)
-     * [再利用可能な変数とミキシンをメインの scss から分離する](#separate-reusable-variables-and-mixins-from-main-scss)
-     * [BEM の様式にしたがう](#follow-the-bem-pattern)
-     * [テーマの設定には mdc-theme を使う](#use-mdc-theme-for-theming)
-     * [RTL のサポートには mdc-rtl を使う](#use-mdc-rtl-for-rtl-support)
-  * [Javascript](#javascript)
-     * [すべてのコンポーネントに静的メソッド attachTo(root) を定義する](#define-a-static-attachtoroot-method-for-every-component)
-     * [すべてのファンデーションにゲッタ defaultAdapter を定義する](#define-a-defaultadapter-getter-for-every-foundation)
-     * [外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する](#define-all-exported-css-classes-strings-and-numbers-as-foundation-constants)
-     * [コンポーネントとファンデーションは mdc-base のクラスを継承して作成する](#extend-components-and-foundations-from-mdc-base-classes)
-     * [パッケージをビルドインフラおよび material-components-web パッケージに登録しなくてはいけない](#packages-must-be-registered-with-our-build-infrastructure-and-with-material-components-web-pkg)
-     * [クロージャーの互換性](#closure-compatibility)
-  * [テスト](#testing)
-     * [ファンデーションのアダプターを検証する](#verify-foundations-adapters)
-     * [ヘルパーメソッドを使う](#use-helper-methods)
-     * [DOM フィクスチャーに bel を使う](#use-bel-for-dom-fixture)
-     * [あらゆるテストの後は常に DOM をきれいにする](#always-clean-up-the-dom-after-every-test)
-     * [testdouble を通じてアダプターの検証をする](#verify-adapters-via-testdouble)
+- [コンポーネントの構成](#authoring-components)
+  - [誰のためのドキュメントか](#who-this-document-is-for)
+  - [コンポーネント構築の方法](#how-to-build-a-component)
+    - [単純なコンポーネントのプロトタイプ](#start-with-a-simple-component-prototype)
+    - [ホスト環境とのやりとりの確認](#identify-host-environment-interactions)
+    - [アダプターインターフェースの作成](#create-the-adapter-interface)
+    - [既存のコードをファンデーションに再構築](#refactor-your-existing-code-into-a-foundation)
+    - [ファンデーション上のコンポーネントの構築とアダプターの提供](#build-a-component-on-top-of-that-foundation-providing-an-adapter)
+  - [よいコンポーネント作るには](#what-makes-a-good-component)
+    - [完全にテストされたコード](#fully-tested-code)
+    - [徹底的な文書化と厳密にバージョン管理されたアダプターインターフェース](#thoroughly-documented-and-strictly-versioned-adapter-interface)
+    - [アクセシビリティ](#accessibility)
+    - [RTL への意識](#rtl-awareness)
+    - [テーマのサポート](#support-for-theming)
+  - [ベストプラクティス](#general-best-practices)
+    - [ユーザーの期待していることを実行する](#do-what-the-user-expects)
+    - [アダプターインターフェースは単純かつ直感的なものにする](#design-adapter-interfaces-to-be-simple-and-intuitive)
+    - [ファンデーションコード内でホストオブジェクトを参照しない](#do-not-reference-host-objects-within-foundation-code)
+    - [デストラクターですべての参照を削除する](#clean-up-all-references-on-destruction)
+  - [MDC Web のコンポーネントの作成](#authoring-components-for-mdc-web)
+    - [ファイル構成](#file-structure)
+    - [ライセンスの記載](#license-stanzas)
+    - [Scss](#scss)
+      - [再利用可能な変数とミキシンをメインの scss から分離する](#separate-reusable-variables-and-mixins-from-main-scss)
+      - [BEM の様式にしたがう](#follow-the-bem-pattern)
+      - [テーマの設定には mdc-theme を使う](#use-mdc-theme-for-theming)
+      - [RTL のサポートには mdc-rtl を使う](#use-mdc-rtl-for-rtl-support)
+    - [Javascript](#javascript)
+      - [すべてのコンポーネントに静的メソッド attachTo(root) を定義する](#define-a-static-attachtoroot-method-for-every-component)
+      - [すべてのファンデーションにゲッタ defaultAdapter を定義する](#define-a-defaultadapter-getter-for-every-foundation)
+      - [外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する](#define-all-exported-css-classes-strings-and-numbers-as-foundation-constants)
+      - [コンポーネントとファンデーションは mdc-base のクラスを継承して作成する](#extend-components-and-foundations-from-mdc-base-classes)
+      - [パッケージをビルドインフラおよび material-components-web パッケージに登録しなくてはいけない](#packages-must-be-registered-with-our-build-infrastructure-and-with-material-components-web-pkg)
+      - [TypeScript との互換性](#typescript-compatibility)
+    - [テスト](#testing)
+      - [ファンデーションのアダプターを検証する](#verify-foundations-adapters)
+      - [ヘルパーメソッドを使う](#use-helper-methods)
+      - [DOM フィクスチャーに bel を使う](#use-bel-for-dom-fixture)
+      - [あらゆるテストの後は常に DOM をきれいにする](#always-clean-up-the-dom-after-every-test)
+      - [testdouble を通じてアダプターの検証をする](#verify-adapters-via-testdouble)
 
 ## <a name="who-this-document-is-for"></a>誰のためのドキュメントか
 
@@ -79,7 +80,7 @@ path: /docs/authoring-components/
 </div>
 ```
 
-```js
+```ts
 class RedblueTogglePrototype {
   get toggled() {
     return this.root.getAttribute('aria-pressed') === 'true';
@@ -145,7 +146,7 @@ redblue-toggle ではホスト環境とのやりに関するすべてのイン�
 
 ホスト環境とのやりとりが明らかになったので、アダプターインターフェースをこのコンポーネントに構築していきます。
 
-```js
+```ts
 class RedblueTogglePrototype {
   get toggled() {
     return SOMEHOW_GET_ATTRIBUTE('aria-pressed') === 'true';
@@ -162,11 +163,11 @@ class RedblueTogglePrototype {
   }
 
   initialize() {
-    SOMEHOW_REGISTER_INTERACTION_HANDLER('click', this.clickHandler_);
+    this.root.addEventListener('click', this.clickHandler_);
   }
 
   destroy() {
-    SOMEHOW_UNREGISTER_INTERACTION_HANDLER('click', this.clickHandler_);
+    this.root.removeEventListener('click', this.clickHandler_);
   }
 
   toggle(isToggled = undefined) {
@@ -197,48 +198,42 @@ class RedblueTogglePrototype {
 | SOMEHOW_ADD_CLASS(className: string) | addClass(className: string) |
 | SOMEHOW_REMOVE_CLASS(className: string) | removeClass(className: string) |
 | SOMEHOW_UPDATE_TOGGLE_COLOR_TEXT_CONTENT(textContent: string) | setToggleColorTextContent(textContent: string) |
-| SOMEHOW_REGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | registerInteractionHandler(type: string, handler: EventListener) |
-| SOMEHOW_DEREGISTER_INTERACTION_HANDLER(type: string, handler: EventListener) | deregisterInteractionHandler(type: string, handler: EventListener) |
 
-> 注意: 私たちはコードにおいて、イベントリスナーを追加/削除をおこなうのアダプターメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` という用語を使うことを使うことを慣習としています。私たちがそのような用語を使うのは大半のコンポーネントはやりとりに対してのみ関心を持っているというように感じているからです。しかし、これらのメソッドを `{add,remove}EventListener` やそれ以外の好きな名前をつけても構いません。
+> 注意: 私たちは、イベントリスナーを追加/削除をおこなうのアダプターメソッドとして `registerInteractionHandler` と `deregisterInteractionHandler` を使うことをもはや推奨していません。イベント処理はフレームワークによって大きく異なるので（例えば、[React Synthetic Events](https://reactjs.org/docs/events.html)）、コンポーネント層でイベントを管理することを推奨します。
 
 ### <a name="refactor-your-existing-code-into-a-foundation"></a>既存のコードをファンデーションに再構築
 
 アダプター API を定義しましたが、このコードをファンデーションクラスに書き直すことができます。慣習として、なにもしない各関数をもつアダプターを返す静的な `defaultAdapter` ゲッタを定義します。このメソッドは私たちがアダプターの形式を確認するのに役立ち、メソッドの実装を忘れた際にアダプターがエラーを返すことを防ぎ、将来リントツールがアダプターの形式が適切であること強制するため使うことができます（使うべきです）。その例を示しますが、これは `MDCFoundation` クラスの使用例でもあります。このクラスはすべてのファンデーションクラスの基底クラスです。
 
-```js
+```ts
 class RedblueToggleFoundation extends MDCFoundation {
   static get defaultAdapter() {
     return {
-      getAttr: (/* attr: string */) => /* string */ '',
-      setAttr: (/* attr: string, value: string */) => {},
-      addClass: (/* className: string */) => {},
-      removeClass: (/* className: string */) => {},
-      setToggleColorTextContent: (/* textContent: string */) => {},
-      registerInteractionHandler: (/* type: string, handler: EventListener */) => {},
-      deregisterInteractionHandler: (/* type: string, handler: EventListener */) => {}
+      getAttr: (attr: string) => '',
+      setAttr: (attr: string, value: string) => undefined,
+      addClass: (className: string) => undefined,
+      removeClass: (className: string) => undefined,
+      setToggleColorTextContent: (textContent: string) => undefined,
+      registerInteractionHandler: (type: string, handler: EventListener) => undefined,
+      deregisterInteractionHandler: (type: string, handler: EventListener) => undefined,
     };
   }
 
+  private toggled_ = false;
+
   constructor(adapter) {
-    super(Object.assign(RedblueToggleFoundation.defaultAdapter, adapter));
-    this.toggled_ = false;
-    this.clickHandler_ = () => this.toggle();
+    super({...RedblueToggleFoundation.defaultAdapter, ...adapter});
   }
 
-  init() {
-    this.adapter_.registerInteractionHandler('click', this.clickHandler_);
-  }
-
-  destroy() {
-    this.adapter_.deregisterInteractionHandler('click', this.clickHandler_);
+  handleClick() {
+    this.toggle_();
   }
 
   isToggled() {
     return this.adapter_.getAttr('aria-pressed') === 'true';
   }
 
-  toggle(isToggled = undefined) {
+  private toggle_(isToggled = undefined) {
     const wasToggledExplicitlySet = isToggled === Boolean(isToggled);
     this.toggled_ = wasToggledExplicitlySet ? isToggled : !this.toggled_;
 
@@ -268,8 +263,16 @@ class RedblueToggleFoundation extends MDCFoundation {
 
 このコンポーネントは素のコンポーネントなので、素の DOM API をならって作ることになります。素の DOM API はこれらの機能を実装することになるセッタやゲッタにとって好都合です（`checked`, `disabled` などを考えてみてください）。ここで実装するメソッドは簡単に再利用可能なのでアダプターは極めて簡単なものになります。
 
-```js
+```ts
 class RedblueToggle extends MDCComponent {
+  initialize() {
+    this.listen('click', this.foundation_.handleClick);
+  }
+
+  destroy() {
+    this.unlisten('click', this.foundation_.handleClick);
+  }
+
   get toggled() {
     return this.foundation_.isToggled();
   }
@@ -287,8 +290,6 @@ class RedblueToggle extends MDCComponent {
       setToggleColorTextContent: textContent => {
         this.root_.querySelector('.redblue-toggle__color').textContent = textContent;
       },
-      registerInteractionHandler: (type, handler) => this.root_.addEventListener(type, handler),
-      deregisterInteractionHandler: (type, handler) => this.root_.removeEventListener(type, handler)
     });
   }
 }
@@ -354,7 +355,7 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 ファンデーションに可能な限り多くのフレームワークと互換性を持たせるために、ファンデーション内でホストオブジェクトを直接参照することを避けてください。ホストオブジェクトには `window`、 `document`、 `console` などを含みます。<em>ファンデーション内では ECMAScript 仕様で定義されたグローバルオブジェクトのみを参照するようにします。</em>
 
-`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプターを介してホストオブジェクトを使用することです。しかし、ホストオブジェクト自身の名目型よりもむしろホストオブジェクトの代理となる [構造型](https://github.com/google/closure-compiler/wiki/Structural-Interfaces-in-Closure-Compiler) を返すようなアダプター API を設計すべきです。例えば、タイプが `"checkbox"` の `HTMLInputElement` を使う代わりに `checked`、 `indeterminate`、 `disabled` という真偽値プロパティを持つオブジェクトを使ってください。
+`requestAnimationFrame` はこのルールの例外ですが、私たちは将来リファクタリングするでしょう。加えて、ファンデーション内でホストオブジェクトを使用することの回避策はアダプターを介してホストオブジェクトを使用することです。
 
 ### <a name="clean-up-all-references-on-destruction"></a>デストラクターですべての参照を削除する
 
@@ -376,10 +377,14 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 ```
 packages
   ├── mdc-component
-      ├── README.md # コンポーネントの README
-      ├── constants.js # コンポーネントの CSSクラス/文字列/数値 の定数
-      ├── foundation.js # コンポーネントのファンデーションクラス
-      ├── index.js # 素のコンポーネントクラスを含み、ファンデーションのエクスポートの記載されたファイル
+      ├── README.md # 使い方の説明と API ドキュメント
+      ├── adapter.ts # フレームワークラッパと素のコンポーネントにより実装されたアダプターインターフェース
+      ├── foundation.ts # ラッパライブラリと素のコンポーネントにより使用されるフレームワークにとらわれないビジネスロジック
+      ├── component.ts # フレームワークを使用しないときのための素のコンポーネントとアダプターの実装
+      ├── constants.ts # パッケージ内のファイルにより利用される定数値（例えば、cssClasses、strings、numbers）
+      ├── index.ts # パッケージ内の他のファイル（adapter、foundation、component、util など）を export したもの
+      ├── types.ts # （オプション）素のコンポーネントとは関係のないパブリックで公開されている型とインターフェースが含まれる
+      ├── util.ts # （オプション）フィレー無ワークにとらわれないヘルパー関数（例えば特徴検出）
       ├── mdc-component.scss # コンポーネントの CSS の主要なソースファイル
       └── package.json # コンポーネントのパッケージファイル
 test/unit
@@ -566,7 +571,7 @@ class MDCNewComponentFoundation extends MDCFoundation {
   }
 
   constructor(adapter) {
-    super(Object.assign(MDCNewComponentFoundation.defaultAdapter, adapter));
+    super(...MDCNewComponentFoundation.defaultAdapter, ...adapter});
   }
 }
 ```
@@ -578,10 +583,10 @@ class MDCNewComponentFoundation extends MDCFoundation {
 - コンポーネントのファンデーションから参照されるすべての CSS クラスは `cssClasses` 静的ゲッタを通じて参照しなくてはいけない。
 - ファンデーションクラスのコンテキスト外から使用されるすべての文字列（CSS セレクタ、カスタムイベント名、潜在的にローカライズ可能な文字列など）は `strings` 静的ゲッタを通じて参照しなくてはいけない。
 - ファンデーションが影響を与えるセマンティックなすべての数値（タイムアウトの長さ、アニメーションの継続時間など）は `numbers` 静的ゲッタを通じて参照しなくてはいけない。
-- これらの定数は `constants.js` ファイルに定義し、ファンデーションを通じてアクセスできるようにしなくてはならない。
+- これらの定数は `constants.ts` ファイルに定義し、ファンデーションを通じてアクセスできるようにしなくてはならない。
 
-```js
-// constants.js
+```ts
+// constants.ts
 
 export const cssClasses = {
   ROOT: 'mdc-new-component',
@@ -598,7 +603,7 @@ export const numbers = {
   DEFAULT_THROTTLE_DELAY_MS: 300,
 };
 
-// foundation.js
+// foundation.ts
 
 import {cssClasses, strings, numbers} from './constants';
 
@@ -634,13 +639,10 @@ class MDCNewComponentFoundation extends MDCFoundation {
 - コンポーネントの登録が `webpack.config.js` 上に `js-components` と `css` のモジュールに対して存在していることを確認すること。
 - `material-components-web` の依存関係にそのコンポーネントが追加されていることを確認すること。コンポーネントが JavaScript を含んでいるなら、`material-components-web` 内でそのコンポーネントの名前空間がエクスポートされ、`mdc-auto-init` に登録されていることを確認すること。最後に `material-components-web` の `package.json` にコンポーネントを追加することを忘れないこと。
 - レポジトリのルートにあるトップレベル `package.json` の `config.validate-commit-msg.scope.allowed` にパッケージの正確な **コミットサブジェクト** が追加されていることを確認すること。コミットサブジェクトとは <em>コンポーネント名から `mdc-`/`@material/` を除いたもの</em> をいう。例えば `mdc-icon-button` であれば `icon-button` である。
-- トップレベル `package.json` の `closureWhitelist` にパッケージ名が追加されていることを確認すること。
 
-#### <a name="closure-compatibility"></a>クロージャーの互換性
+#### <a name="typescript-compatibility"></a>TypeScript との互換性
 
-> 注意: 現在存在するコンポーネントはクロージャーについて互換性を持たせようとしている段階にあります。
-
-すべてのコアな MDC Web コンポーネントは高度なコンパイルメカニズムを使用している Google Closure Compiler と完全な互換性がなくてはなりません。私たちは [クロージャーコンパイラードキュメント](./closure-compiler.md) で、慣習、例、そしてやってはならない共通のクロージャーパターンについて、完全な説明を提供しています。
+すべてのコア MDC Web コンポーネントは strict-mode [TypeScript](https://www.typescriptlang.org/) と完全な互換性がなくてはなりません。TypeScript 互換に必要な要件のリストや詳細な説明、慣習、例、やってはいけない一般的な TypeScript のパターンについては [Coding Best Practices](./code/best_practices.md) に記載しています。
 
 ### <a name="testing"></a>テスト
 

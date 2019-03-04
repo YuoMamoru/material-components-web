@@ -234,12 +234,11 @@ const autoprefixer = require('autoprefixer');
 - [babel-core](https://www.npmjs.com/package/babel-core)
 - [babel-loader](https://www.npmjs.com/package/babel-loader): babel を使って JavaScript ファイルをコンパイルする
 - [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015): ES2015 をコンパイルするための調整をする
-- [babel-plugin-transform-object-assign](http://npmjs.org/package/babel-plugin-transform-object-assign) IE 11 をサポートするため
 
 以下のコマンドを実行するとこれらのすべてがインストールできます。
 
 ```
-npm install --save-dev babel-core@6 babel-loader@7 babel-preset-es2015 babel-plugin-transform-object-assign
+npm install --save-dev babel-core@6 babel-loader@7 babel-preset-es2015
 ```
 
 webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。`</body>` タグで閉じる前に以下の script タグを `index.html` に追加してください。
@@ -273,7 +272,6 @@ console.log('hello world');
      loader: 'babel-loader',
      query: {
        presets: ['es2015'],
-       plugins: ['transform-object-assign']
      },
    }
    ```
@@ -321,7 +319,6 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015'],
-          plugins: ['transform-object-assign']
         },
       }
     ],

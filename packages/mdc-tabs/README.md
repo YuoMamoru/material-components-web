@@ -271,7 +271,7 @@ dots.addEventListener('click', function (evt) {
 
 #### コードへのインクルード
 
-##### ES2015
+##### ES モジュール
 
 ```javascript
 import {MDCTab, MDCTabFoundation} from '@material/tabs';
@@ -346,7 +346,7 @@ const tabBar = new MDCTabBar(document.querySelector('#my-mdc-tab-bar'));
 
 #### コードへのインクルード
 
-##### ES2015
+##### ES モジュール構文
 
 ```javascript
 import {MDCTab, MDCTabFoundation} from '@material/tabs';
