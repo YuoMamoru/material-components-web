@@ -17,9 +17,9 @@ path: /catalog/top-app-bar/
   </a>
 </div>-->
 
-MDC Top App Bar acts as a container for items such as application title, navigation icon, and action items.
+MDC Top App Bar はアプリケーションタイトル、ナビゲーションアイコンや操作アイテムといったアイテムのコンテナとして振舞います。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
@@ -30,15 +30,15 @@ MDC Top App Bar acts as a container for items such as application title, navigat
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/top-app-bar
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <header class="mdc-top-app-bar">
@@ -51,9 +51,9 @@ npm install @material/top-app-bar
 </header>
 ```
 
-#### Menu Icons
+#### メニューアイコン
 
-We recommend using [Material Icons](https://material.io/tools/icons/) from Google Fonts:
+Google フォントから [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
 ```html
 <head>
@@ -61,31 +61,31 @@ We recommend using [Material Icons](https://material.io/tools/icons/) from Googl
 </head>
 ```
 
-However, you can also use SVG, [Font Awesome](https://fontawesome.com/), or any other icon library you wish.
+しかし、SVG や [Font Awesome](https://fontawesome.com/) 、その他の使用したいアイコンライブラリを使うこともできます。
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/top-app-bar/mdc-top-app-bar";
 ```
 
-### JavaScript Instantiation
+### JavaScript のインストール
 
 ```js
 import {MDCTopAppBar} from '@material/top-app-bar/index';
 
-// Instantiation
+// インスタンス化
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
 const topAppBar = new MDCTopAppBar(topAppBarElement);
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法の詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## Variants
+## 様々な使用法
 
-### Top App Bar With Action Items
+### 操作アイテムを伴う Top App Bar
 
-Top app bars can contain action items which are placed on the side opposite the navigation icon.
+トップアプリバーはナビゲーションアイコンの反対側に配置した操作アイテムを入れることができます。
 
 ```html
 <header class="mdc-top-app-bar">
@@ -103,9 +103,9 @@ Top app bars can contain action items which are placed on the side opposite the 
 </header>
 ```
 
-### Short
+### 短い Top App Bar
 
-Short top app bars are top app bars that can collapse to the navigation icon side when scrolled.
+短いトップアプリバーはスクロール時にナビゲーションアイコン側に折りたたむことができるトップアプリバーです。
 
 ```html
 <header class="mdc-top-app-bar mdc-top-app-bar--short">
@@ -121,11 +121,11 @@ Short top app bars are top app bars that can collapse to the navigation icon sid
 </header>
 ```
 
-> Short top app bars should be used with no more than 1 action item.
+> 短いトップアプリバーは1つ以下の操作アイテムと共に使う必要があります。
 
-### Short - Always Closed
+### 常に折りたたまれている短い Top App Bar
 
-Short top app bars can be configured to always appear collapsed by applying the `mdc-top-app-bar--short-collapsed` before instantiating the component :
+コンポーネントをインスタンス化する前に `mdc-top-app-bar--short-collapsed` を適用すると常に折りたたまれて表示されるように設定することができます。
 
 ```html
 <header class="mdc-top-app-bar mdc-top-app-bar--short mdc-top-app-bar--short-collapsed">
@@ -133,9 +133,10 @@ Short top app bars can be configured to always appear collapsed by applying the 
 </header>
 ```
 
-### Fixed
+### 固定された Top App Bar
 
 Fixed top app bars stay at the top of the page and elevate above the content when scrolled.
+固定されたトップアプリバーはスクロール時にページの上部にとどまり、コンテンツの上に表示されます。
 
 ```html
 <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
@@ -143,9 +144,9 @@ Fixed top app bars stay at the top of the page and elevate above the content whe
 </header>
 ```
 
-### Prominent
+### 目立つ Top App Bar
 
-The prominent top app bar is taller.
+目立つトップアプリバーはより高さのあるものです。
 
 ```html
 <header class="mdc-top-app-bar mdc-top-app-bar--prominent">
@@ -153,9 +154,9 @@ The prominent top app bar is taller.
 </header>
 ```
 
-### Dense
+### 高密度の Top App Bar
 
-The dense top app bar is shorter.
+高密度トップアプリバーはより高さのないものです。
 
 ```html
 <header class="mdc-top-app-bar mdc-top-app-bar--dense">
@@ -163,68 +164,68 @@ The dense top app bar is shorter.
 </header>
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-Class | Description
+クラス | 説明
 --- | ---
-`mdc-top-app-bar` | Mandatory.
-`mdc-top-app-bar--fixed` | Class used to style the top app bar as a fixed top app bar.
-`mdc-top-app-bar--fixed-adjust` | Class used to style the content below the standard and fixed top app bar to prevent the top app bar from covering it.
-`mdc-top-app-bar--prominent` | Class used to style the top app bar as a prominent top app bar.
-`mdc-top-app-bar--prominent-fixed-adjust` | Class used to style the content below the prominent top app bar to prevent the top app bar from covering it.
-`mdc-top-app-bar--dense` | Class used to style the top app bar as a dense top app bar.
-`mdc-top-app-bar--dense-fixed-adjust` | Class used to style the content below the dense top app bar to prevent the top app bar from covering it.
-`mdc-top-app-bar--dense-prominent-fixed-adjust` | Class used to style the content below the top app bar when styled as both prominent and dense, to prevent the top app bar from covering it.
-`mdc-top-app-bar--short` | Class used to style the top app bar as a short top app bar.
-`mdc-top-app-bar--short-collapsed` | Class used to indicate the short top app bar is collapsed.
-`mdc-top-app-bar--short-fixed-adjust` | Class used to style the content below the short top app bar to prevent the top app bar from covering it.
+`mdc-top-app-bar` | 必須。
+`mdc-top-app-bar--fixed` | 固定されたトップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
+`mdc-top-app-bar--fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために標準のトップアップバーおよび固定されたトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
+`mdc-top-app-bar--prominent` | 目立つトップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
+`mdc-top-app-bar--prominent-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために目立つトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
+`mdc-top-app-bar--dense` | 高密度トップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
+`mdc-top-app-bar--dense-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために高密度トップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
+`mdc-top-app-bar--dense-prominent-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために、目立つと高密度の両方を指定したトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
+`mdc-top-app-bar--short` | 短いトップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
+`mdc-top-app-bar--short-collapsed` | 短いトップアプリバーが折りたたまれていることを表すのに使われるクラス。
+`mdc-top-app-bar--short-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために短いトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-top-app-bar-ink-color($color)` | Sets the ink color of the top app bar.
-`mdc-top-app-bar-icon-ink-color($color)` | Sets the ink color of the top app bar icons.
-`mdc-top-app-bar-fill-color($color)` | Sets the fill color of the top app bar.
-`mdc-top-app-bar-fill-color-accessible($color)` | Sets the fill color of the top app bar and automatically sets a high-contrast ink color.
-`mdc-top-app-bar-short-shape-radius($radius, $rtl-reflexive)` | Sets the rounded shape to short top app bar variant (when it is collapsed) with given radius size. Set `$rtl-reflexive` to true to flip radius values in RTL context, defaults to true.
+`mdc-top-app-bar-ink-color($color)` |　トップアプリバーのインク色を設定する。
+`mdc-top-app-bar-icon-ink-color($color)` | トップアプリバーのアイコンのインク色を設定する。
+`mdc-top-app-bar-fill-color($color)` | トップアプリバーの塗りの色を設定する。
+`mdc-top-app-bar-fill-color-accessible($color)` | トップアプリバーの塗りの色を設定し、自動的にハイコントラストなインク色を設定する。
+`mdc-top-app-bar-short-shape-radius($radius, $rtl-reflexive)` | 短いトップアプリバーの（折りたたまれているときの）角の丸みを指定した半径のサイズに設定する。RTL コンテキスト内で、半径の値をひっくり返すには `$rtl-reflexive` を true に設定する。デフォルトは true。
 
-## `MDCTopAppBar` Properties and Methods
+## `MDCTopAppBar` プロパティとメソッド
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`setScrollTarget(target: element) => void` | Sets scroll target to different DOM node (default is window).
+`setScrollTarget(target: element) => void` | 異なる DOM ノード（デフォルトは window）にスクロールの対象を設定する。
 
-### Events
+### イベント
 
-Event Name | Event Data Structure | Description
+イベント名 | イベントデータの構造 | 説明
 --- | --- | ---
-`MDCTopAppBar:nav` | None | Emits when the navigation icon is clicked.
+`MDCTopAppBar:nav` | None | ナビゲーションアイコンがクリックされたときに発生する。
 
-## Usage within Web Frameworks
+## Web フレームワーク内での使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a Top App Bar for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のトップアプリバーを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCTopAppBarAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`hasClass(className: string) => boolean` | Checks if the root element of the component has the given className.
-`addClass(className: string) => void` | Adds a class to the root element of the component.
-`removeClass(className: string) => void` | Removes a class from the root element of the component.
-`registerNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | Registers an event listener on the native navigation icon element for a given event.
-`deregisterNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | Deregisters an event listener on the native navigation icon element for a given event.
-`notifyNavigationIconClicked() => void` | Emits a custom event `MDCTopAppBar:nav` when the navigation icon is clicked.
-`registerScrollHandler(handler) => void` | Registers a handler to be called when user scrolls. Our default implementation adds the handler as a listener to the window's `scroll` event.
-`deregisterScrollHandler(handler) => void` | Unregisters a handler to be called when user scrolls. Our default implementation removes the handler as a listener to the window's `scroll` event.
-`getViewportScrollY() => number` | Gets the number of pixels that the content of body is scrolled from the top of the page.
-`getTotalActionItems() => number` | Gets the number of action items in the top app bar.
+`hasClass(className: string) => boolean` | コンポーネントのルート要素が与えられたクラス名を持つかどうかをチェックする。
+`addClass(className: string) => void` | コンポーネントのルート要素にクラスを追加する。
+`removeClass(className: string) => void` | コンポーネントのルート要素からクラスを削除する。
+`registerNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素に与えられたイベントのイベントリスナーを登録する。
+`deregisterNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素から与えられたイベントのイベントリスナーの登録を解除する。
+`notifyNavigationIconClicked() => void` | ナビゲーションアイコンがクリックされたときにカスタムイベント `MDCTopAppBar:nav` を発生させる。
+`registerScrollHandler(handler) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーを登録する。デフォルトの実装では window の `scroll` イベントにリスナーとしてハンドラーを追加する。
+`deregisterScrollHandler(handler) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーの登録を解除する。デフォルトの実装では window の `scroll` イベントにリスナーとして登録されたハンドラーを削除する。
+`getViewportScrollY() => number` | ページトップから body のコンテンツがスクロールしたピクセル数を取得する。
+`getTotalActionItems() => number` | トップアプリバー上の操作アイテムの数を取得する。
 
-### Foundations: `MDCTopAppBarBaseFoundation`, `MDCTopAppBarFoundation`, `MDCFixedTopAppBarFoundation` and `MDCShortTopAppBarFoundation`
+### ファンデーション: `MDCTopAppBarBaseFoundation`、`MDCTopAppBarFoundation`、`MDCFixedTopAppBarFoundation` 及び `MDCShortTopAppBarFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`initScrollHandler(handler: function) => void` | Registers a scroll handler on a specific target element.
-`destroyScrollHandler(handler: function) => void` | Deregisters the current scroll handler set by the foundation.
+`initScrollHandler(handler: function) => void` | 指定したターゲット要素にスクロールハンドラーを登録する。
+`destroyScrollHandler(handler: function) => void` | ファンデーションにより設定された現在のスクロールハンドラの登録を解除する。
