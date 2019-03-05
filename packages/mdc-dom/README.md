@@ -8,29 +8,29 @@ path: /catalog/dom/
 
 # DOM
 
-MDC DOM provides commonly-used utilities for inspecting, traversing, and manipulating the DOM.
+MDC DOM は DOM の検査、解析、操作のための一般的に使用されるユーティリティを提供します。
 
-Most of the time, you shouldn't need to depend on `mdc-dom` directly. It is useful however if you'd like to write custom components that follow MDC Web's pattern and elegantly integrate with the MDC Web ecosystem.
+多くの場合、`mdc-dom` を直接的に依存する必要はないでしょう。しかし、MDC Web のパターンにしたがい、MDC Web のエコシステムとエレガントに統合されたカスタムコンポーネントを作る際には、これは便利です。
 
-## Installation
+## インストール
 
 ```
 npm install @material/dom
 ```
 
-## Basic Usage
+## 基本的な使用法
 
 ```js
 import * as ponyfill from '@material/dom/ponyfill';
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法の詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## Ponyfill Functions
+## Ponyfill 関数
 
-The `ponyfill` module provides the following functions:
+`ponyfill` モジュールは以下の関数を提供しています。
 
-Function Signature | Description
+関数 | 説明
 --- | ---
-`closest(element: Element, selector: string) => ?Element` | Returns the ancestor of the given element matching the given selector (which may be the element itself if it matches), or `null` if no matching ancestor is found.
-`matches(element: Element, selector: string) => boolean` | Returns true if the given element matches the given CSS selector.
+`closest(element: Element, selector: string) => ?Element` | 与えられたセレクターにマッチする与えられた要素の祖先（与えられた要素がマッチするならそれ自身）を返す。
+`matches(element: Element, selector: string) => boolean` | 与えられた要素が与えられた CSS セレクタにマッチするなら true を返す。
