@@ -218,7 +218,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 
 ## Web フレームワーク内での使用
 
-React や Angular といった JavaScript フレームワークを使用しているなら、フレームワークのためのメニューを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) の説明に沿ってみてください。
+React や Angular といった JavaScript フレームワークを使っているなら、そのフレームワーク用のメニューを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> か <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCMenuAdapter`
 
