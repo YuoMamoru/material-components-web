@@ -15,47 +15,46 @@ path: /catalog/buttons/icon-buttons/
   </a>
 </div>-->
 
-Icon buttons allow users to take actions, and make choices, with a single tap.
+アイコンボタンは一回のタップでユーザに操作を実行させたり選択させたりすることができます。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-buttons#toggle-button">Material Design guidelines: Toggle buttons</a>
+    <a href="https://material.io/go/design-buttons#toggle-button">マテリアルデザインガイドライン: 切り替えボタン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/icon-button
 ```
 
-## Usage
+## 使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <button class="mdc-icon-button material-icons">favorite</button>
 ```
 
-> Note: The MDC Icon Button can be used with `<button>` and `<a>` tags.
+> 注意: MDC Icon Button では `<button>` タグと `<a>` タグを使うことができます。
 
-> Note: IE11 will not center the icon properly if there is a newline or space after the material icon text.
+> 注意: IE11 ではアイコンのテキストの後に改行かスペースがあるとアイコンを正しく中央揃えにしません。
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/icon-button/mdc-icon-button";
 ```
 
-### JavaScript Instantiation
+### JavaScript のインストール
 
-The icon button will work without JavaScript, but you can enhance it to have a ripple effect by instantiating `MDCRipple` on the root element.
-See [MDC Ripple](../mdc-ripple) for details.
+アイコンボタンは JavaScript なしでも動作しますが、ルート要素に `MDCRipple` をインスタンス化することによりリップル効果を持つように拡張できます。詳細は [MDC Ripple](../mdc-ripple) を参照してください。
 
 ```js
 import {MDCRipple} from '@material/ripple';
@@ -64,16 +63,13 @@ const iconButtonRipple = new MDCRipple(document.querySelector('.mdc-icon-button'
 iconButtonRipple.unbounded = true;
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法の詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## Variants
+## 様々な使用法
 
-### Icon Button Toggle
+### 切り替えアイコンボタン
 
-The icon button can be used to toggle between an on and off icon. To style an icon button as an icon button toggle, add
-both icons as child elements and place the `mdc-icon-button__icon--on` class on the icon that represents the on element.
-If the button should be initialized in the "on" state, then add the `mdc-icon-button--on` class to the parent `button`.
-Then instantiate an `MDCIconButtonToggle` on the root element.
+アイコンボタンはオンとオフのアイコンを切り替えるために使用することができます。切り替えアイコンボタンとしてアイコンボタンを表示するには、オンオフ両方のアイコンを子要素として追加し、オン要素を表すアイコンに `mdc-icon-button__icon--on` クラスを設定します。「オン」の状態で初期化するなら親要素である `button` に `mdc-icon-button--on` を追加します。そしてルート要素に `MDCIconButtonToggle` をインスタンス化します。
 
 ```html
 <button id="add-to-favorites"
@@ -90,9 +86,9 @@ Then instantiate an `MDCIconButtonToggle` on the root element.
 var toggleButton = new mdc.iconButton.MDCIconButtonToggle(document.getElementById('add-to-favorites'));
 ```
 
-#### Icon Button Toggle with SVG
+#### SVG を使った切り替えアイコンボタン
 
-The icon button toggle can be used with SVGs.
+アイコン切り替えボタンでは SVG を使うことができます。
 
 ```html
 <button id="star-this-item"
@@ -109,9 +105,9 @@ The icon button toggle can be used with SVGs.
 </button>
 ```
 
-#### Icon Button Toggle with an Image
+#### 画像を使った切り替えアイコンボタン
 
-The icon button toggle can be used with `img` tags.
+アイコン切り替えボタンでは `img` タグを使うことができます。
 
 ```html
 <button id="star-this-item"
@@ -124,9 +120,9 @@ The icon button toggle can be used with `img` tags.
 </button>
 ```
 
-### Icons
+### アイコン
 
-We recommend using [Material Icons](https://material.io/tools/icons/) from Google Fonts:
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
 ```html
 <head>
@@ -134,64 +130,63 @@ We recommend using [Material Icons](https://material.io/tools/icons/) from Googl
 </head>
 ```
 
-However, you can also use SVG, [Font Awesome](https://fontawesome.com/), or any other icon library you wish.
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
 
-### Disabled
+### 無効の状態
 
-To disable an icon, add the `disabled` attribute directly to the `<button>` element. Icon buttons that use the `<a>` tag
-cannot be disabled. Disabled icon buttons cannot be interacted with and have no visual interaction effect.
+アイコンを無効にするには `<button>` 要素に直接 `disabled` 属性を追加します。`<a>` タグを使ったアイコンボタンは無効にはできません。無効になったボタンは利用できなくなり、視覚的にも利用できるようなエフェクトがなくなります。
 
 ```html
 <button class="mdc-icon-button material-icons" disabled>favorite</button>
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-icon-button` | Mandatory.
-`mdc-icon-button--on` | This class is applied to the root element and is used to indicate if the icon button toggle is in the "on" state.
-`mdc-icon-button__icon` | This class is applied to each icon element for the icon button toggle.
-`mdc-icon-button__icon--on` | This class is applied to a icon element and is used to indicate the toggle button icon that is represents the "on" icon.
+`mdc-icon-button` | 必須。
+`mdc-icon-button--on` | このクラスはルート要素に設定し、切り替えアイコンボタンを「オン」の状態であるかどうかを示すために使われる。
+`mdc-icon-button__icon` | このクラスはアイコン切り替えボタンの各アイコン要素に設定する。
+`mdc-icon-button__icon--on` | このクラスはアイコン要素に設定し、「オン」の状態を表す切り替えボタンのアイコンであることを示すために使われる。
 
-### Sass Mixins
+### Sass ミキシン
 
-To customize an icon button's color and properties, you can use the following mixins.
+アイコンボタンの色やプロパティをカスタマイズするために、以下のミキシンを使うことができます。
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-icon-button-size($width, $height, $padding)` | Sets the width, height, font-size and padding for the icon and ripple. `$height` is optional and defaults to `$width`. `$padding` is optional and defaults to `max($width, $height)/2`. `font-size` is set to `max($width, $height)`.
-`mdc-icon-button-ink-color($color)` | Sets the font color and the ripple color to the provided color value.
+`mdc-icon-button-size($width, $height, $padding)` | アイコンとリップルの幅、高さ、フォントサイズ、そしてパディングを設定する。`$height` はオプションで、デフォルトでは  `$width` の値が使われる。`$padding` もオプションで、デフォルトでは `max($width, $height)/2` になる。`font-size` には `max($width, $height)` が設定される。
+`mdc-icon-button-ink-color($color)` | フォント色とリップルの色を指定した色に設定する。
 
-## `MDCIconButtonToggle` Properties and Methods
+## `MDCIconButtonToggle` プロパティとメソッド
 
-Property | Value Type | Description
+プロパティ | 値の型 | 説明
 --- | --- | ---
-`on` | Boolean | Sets the toggle state to the provided `isOn` value.
+`on` | Boolean | 切り替え状態を指定した `isOn` の値に設定する。
 
-### Events
+### イベント
 
-Event Name | Event Data Structure | Description
+イベント | イベントのデータ構造 | 説明
 --- | --- | ---
-`MDCIconButtonToggle:change` | `{"detail": {"isOn": boolean}}` | Emits when the icon is toggled.
+`MDCIconButtonToggle:change` | `{"detail": {"isOn": boolean}}` | アイコンが切り換えられた時に発生する。
 
-## Usage within Web Frameworks
+## Web フレームワーク内での使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create an Icon Button Toggle for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用の切り替えアイコンボタンを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCIconButtonToggleAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the root element.
-`removeClass(className: string) => void` | Removes a class from the root element.
-`setAttr(name: string, value: string) => void` | Sets the attribute `name` to `value` on the root element.
-`notifyChange(evtData: {isOn: boolean}) => void` | Broadcasts a change notification, passing along the `evtData` to the environment's event handling system. In our vanilla implementation, Custom Events are used for this.
+`addClass(className: string) => void` | ルート要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`setAttr(name: string, value: string) => void` | ルート要素の属性 `name` に `value` を設定する。
+`notifyChange(evtData: {isOn: boolean}) => void` | 変更通知を行い、`evtData` を環境のイベントハンドリングシステムに渡す。素の実装ではカスタムイベントはこれを利用している。
 
-### Foundation: `MDCIconButtonToggleFoundation`
+### ファンデーション: `MDCIconButtonToggleFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`handleClick()` | Event handler triggered on the click event. It will toggle the icon from on/off and update aria attributes.
+`handleClick()` | クリックイベントにおけるイベントハンドラの引き金になる。オン/オフのアイコンを切り替えたり、領域の属性を更新したりする。
