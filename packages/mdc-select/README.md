@@ -390,7 +390,7 @@ Mixin | Description
 
 ### イベント
 
-イベント名 | データ | 説明
+イベント | データ | 説明
 --- | --- | ---
 `MDCSelect:change` | `{value: string, index: number}` | 要素が選択されたことを示すのに使用します。このイベントには項目の値とインデックスも含まれています。
 

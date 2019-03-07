@@ -53,7 +53,7 @@ npm install @material/top-app-bar
 
 #### メニューアイコン
 
-Google フォントから [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
 ```html
 <head>
@@ -61,7 +61,7 @@ Google フォントから [Material Icons](https://material.io/tools/icons/) を
 </head>
 ```
 
-しかし、SVG や [Font Awesome](https://fontawesome.com/) 、その他の使用したいアイコンライブラリを使うこともできます。
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
 
 ### スタイル
 
@@ -200,7 +200,7 @@ Fixed top app bars stay at the top of the page and elevate above the content whe
 
 ### イベント
 
-イベント名 | イベントデータの構造 | 説明
+イベント | イベントデータの構造 | 説明
 --- | --- | ---
 `MDCTopAppBar:nav` | None | ナビゲーションアイコンがクリックされたときに発生する。
 

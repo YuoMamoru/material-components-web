@@ -182,7 +182,7 @@ CSS クラス | 説明
 
 ### イベント
 
-イベント名 | `event.detail` | 説明
+イベント | `event.detail` | 説明
 --- | --- | ---
 `MDCSnackbar:opening` | `{}` | スナックバーが開くアニメーションを開始していることを示す。
 `MDCSnackbar:opened` | `{}` | スナックバーが開くアニメーションを終えたことを示す。
