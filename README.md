@@ -12,7 +12,7 @@ MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプ�
 
 Material Components for the web は [Material Design Lite](https://getmdl.io/) の後継です。[マテリアルデザインガイドライン](https://material.io/design) を実装することに加えて、より柔軟なテーマのカスタマイズ、これは色彩だけでなくタイポグラフィや形状、状態などまでも提供しています。様々な [主要 Web フレームワーク](docs/framework-wrappers.md) に適応できるように [設計](docs/code/architecture.md) もされています。 
 
-> 注意: Material Components Web はセマンティックバージョニングに基づいてまだバージョン 0.x としています。これは破壊的な変更が定期的に起こることを前提としていることを意味しています。月に1回の破壊的な変更を含むマイナーリリースとバグ修正を含む中間パッチリリースを含む2週間のリリーススケジュールに私たちは通常したがっています。
+> 注意: Material Components Web は月ごとに重大な変更をリリースすることにしていますが、[semver](https://semver.org/) にしたがっているのでリリースを取り込む際にコントロールすることができます。通常、月1回の重大な変更を含むメジャーリリスとバグ修正を含む中間リリースの2週間ごとのリリーススケジュールにしたがっています。
 
 ## 主要なリンク
 
@@ -38,7 +38,7 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 <!-- Render textfield component -->
 <div class="mdc-text-field">
   <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-floating-label" for="my-text-field">Hint text</label>
+  <label class="mdc-floating-label" for="my-text-field">Label</label>
   <div class="mdc-line-ripple"></div>
 </div>
 
@@ -69,7 +69,7 @@ text field コンポーネントの使用例です。さらなるオプション
 ```html
 <div class="mdc-text-field">
   <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-floating-label" for="my-text-field">Hint text</label>
+  <label class="mdc-floating-label" for="my-text-field">Label</label>
   <div class="mdc-line-ripple"></div>
 </div>
 ```
@@ -93,7 +93,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 これで一つだけある `.mdc-text-field` 要素上に text field が初期化されました。
 
-> すべてのサンプルについては stackblitz の [quick start demo](https://stackblitz.com/edit/mdc-web-quick-start-demo) を参照してください。
+> すべてのサンプルについては glitch の [quick start demo](https://glitch.com/~mdc-web-quick-start) を参照してください。
 
 ## 助けが必要ですか？
 

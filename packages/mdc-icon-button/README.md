@@ -182,6 +182,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 --- | ---
 `addClass(className: string) => void` | ルート要素にクラスを追加する。
 `removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`hasClass(className: string) => boolean` | ルート要素が与えられた CSS クラス名を持っているかどうかを調べる。
 `setAttr(name: string, value: string) => void` | ルート要素の属性 `name` に `value` を設定する。
 `notifyChange(evtData: {isOn: boolean}) => void` | 変更通知を行い、`evtData` を環境のイベントハンドリングシステムに渡す。素の実装ではカスタムイベントはこれを利用している。
 

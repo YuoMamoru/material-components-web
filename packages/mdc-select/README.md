@@ -377,16 +377,17 @@ Mixin | Description
 
 `MDCSelect` コンポーネント API は `HTMLSelectElement` の機能のサブセットをもとに作られています。
 
-| プロパティ | 型 | 説明 |
-| --- | --- | --- |
-| `value` | `string` | 現在選択されているオプションの `value`/`data-value`。 |
-| `selectedIndex` | `number` | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。 |
-| `disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。 |
-| `valid` | `boolean` | コンポーネントが有効な状態かどうか。これを設定すると、コンポーネントのスタイルが更新されるが、ネイティブな有効状態には影響しない。 |
-| `required` | `boolean` | コンポーネントが必須かどうか。これおw設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。 |
-| `leadingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替。 |
-| `leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替。 |
-| `helperTextContent` | `string` (書込専用)| 設定時のファンデーションの `setHelperTextContent` メソッドの代替。 |
+プロパティ | 型 | 説明
+--- | --- | ---
+`value` | `string` | 現在選択されているオプションの `value`/`data-value`。
+`selectedIndex` | `number` | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。
+`disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。
+`valid` | `boolean` | コンポーネントが有効な状態かどうか。これを設定すると、コンポーネントのスタイルが更新されるが、ネイティブな有効状態には影響しない。
+`required` | `boolean` | コンポーネントが必須かどうか。これおw設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。
+`leadingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替。
+`leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替。
+`helperTextContent` | `string` (書込専用)| 設定時のファンデーションの `setHelperTextContent` メソッドの代替。
+`ripple` | `MDCRipple` | アウトラインされたセレクトにアタッチされた Ripple インスタンス。アウトラインされたセレクトでなければ `null`。
 
 ### イベント
 
