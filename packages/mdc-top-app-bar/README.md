@@ -95,9 +95,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Download" alt="Download">file_download</a>
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Print this page" alt="Print this page">print</a>
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Download">file_download</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Print this page">print</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">bookmark</a>
     </section>
   </div>
 </header>
@@ -115,7 +115,7 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">bookmark</a>
     </section>
   </div>
 </header>
