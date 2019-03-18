@@ -110,6 +110,39 @@ CSS クラス | 説明
 `on-secondary` | セカンダリカラーの背景の上に使用されるテキスト/アイコンの色
 `on-surface` | サーフェイスカラーの背景の上に使用されるテキスト/アイコンの色
 
+#### CSS カスタムプロパティを利用した `mdc-theme-prop`
+
+> **注意** Sass マップの `$style` 引数はカラーミキシンでの使用に *限って* 用意されたものです。
+
+`mdc-theme-prop` ミキシンは `$style` 引数用の Sass マップも使えます。このマップは以下のフィードを含めなくてはなりません。
+
+フィールド | 説明
+--- | ---
+`varname` | CSS カスタムプロパティの名前
+`fallback` | CSS カスタムプロパティの代替値
+
+例えば、以下の Sass は
+
+```
+.foo {
+  @include mdc-theme-prop(color, (
+    varname: --foo-color,
+    fallback: red,
+  ));
+}
+```
+
+次の CSS を生成します。
+
+```
+.foo {
+  color: red;
+  color: var(--foo-color, red);
+}
+```
+
+上記の CSS 出力は、CSS カスタムプロパティを革新的な拡張として使用するとともに、すべてのサポートしているブラウザ（IE11 を含め）で `fallback` フィールドの値を提供します。IE11 のように CSS カスタムプロパティをサポートしないブラウザでは `color: red;` を適用し、 `color: var(--foo-color, red);` は無視されます。この引数タイプのやり方は既存のテーマプロパティ以外にカスタムカラーアプリケーションが必要なクライアントのために用意しています。
+
 #### `mdc-theme-luminance($color)`
 
 与えられた色の輝度値（0～1）を計算します。
