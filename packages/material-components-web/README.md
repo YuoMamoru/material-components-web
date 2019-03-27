@@ -26,9 +26,11 @@ import { checkbox } from 'material-components-web';
 const checkbox = new checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'));
 ```
 
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+
 > 注意: switch は JS の予約語なので、代わりに `switchControl` という名前になっています。
 
-> 注意: ビルドされた CSS ファイルと UMD JS バンドルはポストアルファパッケージの一部として利用できます。
+> 注意: ビルドされた CSS ファイルと UMD JS バンドルはパッケージの一部として利用できます。
 
 ### コンポーネントの自動初期化
 

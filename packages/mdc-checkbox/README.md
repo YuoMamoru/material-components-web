@@ -142,10 +142,10 @@ CSS 変数を完全にサポートしているブラウザでは、MDC Checkbox 
 
 プロパティ | 型 | 説明
 --- | --- | ---
-`checked` | Boolean | チェックボックスのチェック状態を設定/取得する
-`indeterminate` | Boolean | チェックボックスの未確定状態を設定/取得する
-`disabled` | Boolean | チェックボックスの無効状態を設定/取得する
-`value` | String | チェックボックスの値を設定/取得する
+`checked` | `boolean` | チェックボックスのチェック状態を設定/取得する
+`indeterminate` | `boolean` | チェックボックスの未確定状態を設定/取得する
+`disabled` | `boolean` | チェックボックスの無効状態を設定/取得する
+`value` | `string` | チェックボックスの値を設定/取得する
 
 ## Web フレームワークでの使用
 
@@ -153,17 +153,18 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 ### `MDCCheckboxAdapter`
 
-| メソッド | 説明 |
-| --- | --- |
-| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
-| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
-| `getNativeControl() => HTMLInputElement?` | 利用できる状態であればネイティブなチェックボックスコントロールを返す。コントロールが利用できない状態であれば、直ちにそれに依存するメソッドは終了する。 |
-| `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。この処理はアニメーションを正しく再起動させるために必要。これが不要であることが明らかであれば、この処理を何もしないようにすることもできる。 |
-| `isAttachedToDOM() => boolean` | コンポーネントが正しく DOM にアタッチされていれば true を返し、そうでなければ false を返す。 |
-| `isIndeterminate() => boolean` | コンポーネントが未確定状態のとき true を返す。 |
-| `isChecked() => boolean` | コンポーネントがチェックされていれば true を返す。 |
-| `hasNativeControl() => boolean` | コンポーネント内に input があれば true を返す。 |
-| `setNativeControlDisabled(disabled: boolean) => void` | input を利用不可にする。 |
+メソッド | 説明
+--- | ---
+`addClass(className: string) => void` | ルート要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。この処理はアニメーションを正しく再起動させるために必要。これが不要であることが明らかであれば、この処理を何もしないようにすることもできる。
+`isAttachedToDOM() => boolean` | コンポーネントが正しく DOM にアタッチされていれば true を返し、そうでなければ false を返す。
+`isIndeterminate() => boolean` | コンポーネントが未確定状態のとき true を返す。
+`isChecked() => boolean` | コンポーネントがチェックされていれば true を返す。
+`hasNativeControl() => boolean` | コンポーネント内に input があれば true を返す。
+`setNativeControlDisabled(disabled: boolean) => void` | input を利用不可にする。
+`setNativeControlAttr(attr: string, value: string) => void` | ネイティブな input 要素の HTML 属性を与えられた値に設定する。
+`removeNativeControlAttr(attr: string) => void` | ネイティブな input 要素から属性を削除する。
 
 ### `MDCCheckboxFoundation`
 

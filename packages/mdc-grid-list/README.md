@@ -209,6 +209,7 @@ npm install @material/grid-list
     background-image: url(my-image.jpg);
   }
 </style>
+
 <div class="mdc-grid-list">
   <ul class="mdc-grid-list__tiles">
     <li class="mdc-grid-tile">
@@ -225,25 +226,27 @@ npm install @material/grid-list
 
 ただし、この方法はマークアップの意味が薄れるので、私たちはデフォルトではこの方法を使いません。
 
-
 ### RTL のサポート
 
 `mdc-grid-list` は自動的に RTL 対応がなされており、その要素もしくはその祖先の要素に `dir="rtl"` があれば要素は配置しなおされます。
-
 
 ### テーマ
 
 `mdc-grid-list` はテーマをサポートしています。`mdc-grid-tile__primary` は自身の背景色にテーマのバックグランドカラーを使います。`mdc-grid-tile__secondary` は自身の背景色にテーマのプライマリカラーを使い、自身のテキストの色にはテーマの `on-primary` を使います。
 
-### ファンデーションクラスの使用
+### `MDCGridListFoundation`
 
-最小限の労力で独自の MDCGridList コンポーネントを構築できるように外部のフレームワークやライブラリが利用できる `MDCGridListFoundation` クラスが MDCGridList には付属しています。すべてのファンデーションクラスと同様に、アダプターオブジェクトを提供しなくてはなりません。グリッドリストのアダプターは以下の関数を提供しなくてはなりません。
+メソッド | 説明
+--- | ---
+`alignCenter() => void` | 親コンテナ内で水平方向の中央揃えにする。
 
-| メソッド | 説明 |
-| --- | --- |
-| `getOffsetWidth() => number` | ルート要素 `mdc-grid-list` の offsetWidth を取得する。 |
-| `getNumberOfTiles() => number` | グリッドリストに含まれる mdc-grid-tile 要素の数を取得する。 |
-| `getOffsetWidthForTileAtIndex(index: number) => number` | 指定した index にある `mdc-grid-tile` の offsetWidth を取得する。 |
-| `setStyleForTilesElement(property: string, value: number) => void` | `mdc-grid-list__tiles` スタイルプロパティに指定した値を設定する。 |
-| `registerResizeHandler(handler: EventListener) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。 |
-| `deregisterResizeHandler(handler: EventListener) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。 |
+### `MDCGridListAdapter`
+
+メソッド | 説明
+--- | ---
+`getOffsetWidth() => number` | ルート要素 `mdc-grid-list` の offsetWidth を取得する。
+`getNumberOfTiles() => number` | グリッドリストに含まれる mdc-grid-tile 要素の数を取得する。
+`getOffsetWidthForTileAtIndex(index: number) => number` | 指定した index にある `mdc-grid-tile` の offsetWidth を取得する。
+`setStyleForTilesElement(property: string, value: number) => void` | `mdc-grid-list__tiles` スタイルプロパティに指定した値を設定する。
+`registerResizeHandler(handler: EventListener) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーを登録する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーに追加している。
+`deregisterResizeHandler(handler: EventListener) => void` | 外観（もしくはビューポート）をリサイズしたときに呼ばれるイベントハンドラーの登録を解除する。デフォルトの実装では handler をウィンドウの `resize()` イベントのリスナーから削除している。

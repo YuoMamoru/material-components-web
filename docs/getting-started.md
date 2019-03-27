@@ -12,8 +12,18 @@ path: /docs/getting-started/
 最小限の構成で Material Components for the web を試すには、unpkg からコンパイル済みのオールインワン CSS と JS モジュールをロードします。
 
 ```html
-https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css
-https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js
+<head>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+</head>
+```
+
+We also recommend using [Material Icons](https://material.io/tools/icons/) from Google Fonts. (Some of our examples implicitly use Material Icons.)
+
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
 ```
 
 そして MDC のマークアップを入れていきます。

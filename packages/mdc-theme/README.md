@@ -48,13 +48,29 @@ https://www.w3.org/TR/WCAG20
 
 色の体系ではよく設計されたアプリにおける道のりの80%しか得られません。必然的に「枠の外」には動作しないコンポーネントがでてきます。視認性とデザインの問題を解決するためには、`mdc-button-filled-accessible` のような Sass ミキシンを使うとよいでしょう。詳細は各コンポーネントのドキュメントを参照してください。
 
+### <a name="text-styles"></a>テキストスタイル
+
+カラーシステムで使われるテキストスタイル（以下、`<TEXT_STYLE>` と呼びます）には次のものがあります。
+
+テキストスタイル | 説明
+--- | ---
+`primary` | 最も多くのテキストで使われる（例： `text-primary-on-light`）
+`secondary` | 視覚階層上、下位にあるテキストに使われる（例： `text-secondary-on-light`）
+`hint` | テキスト欄やラベルなどのヒントテキストに使われる（例： `text-hint-on-light`）
+`disabled` | 利用できないコンポーネントやコンテンツのテキストに使われる（例： `text-disabled-on-light`）
+`icon` | アイコンで使われる（例： `text-icon-on-light`）
+
+以下は `primary` テキストスタイルの使用例です。
+
+  * CSS カスタムプロパティ: `--mdc-theme-text-primary-on-light`
+  * クラス名: `mdc-theme--text-primary-on-light`
+  * Sass のプロパティ名: `text-primary-on-light`
+
 ### Sass を使わないカスタマイズ
 
 マテリアルデザインの色のカスタマイズ機能の中の非常に限定されたものですが、Sass を使わない方法を提供しています。CSS カスタムプロパティを設定する方法と CSS クラスを設定する方ホです。
 
 #### CSS カスタムプロパティ
-
-> **`<TEXT_STYLE>` に関する注釈**: `<TEXT_STYLE>` は上でリストにあげたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。
 
 CSS カスタムプロパティ | 説明
 --- | ---
@@ -65,12 +81,10 @@ CSS カスタムプロパティ | 説明
 `--mdc-theme-on-primary` | プライマリカラーの背景の上にあるテキストの色
 `--mdc-theme-on-secondary` | セカンダリカラーの背景の上にあるテキストの色
 `--mdc-theme-on-surface` | サーフェイスカラーの背景の上にあるテキストの色
-`--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色
-`--mdc-theme-text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE のテキストの色
+`--mdc-theme-text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE のテキストの色。[テキストスタイルの選択](#text-styles) 参照。
+`--mdc-theme-text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE のテキストの色。[テキストスタイルの選択](#text-styles) 参照。
 
 #### CSS クラス
-
-> **`<TEXT_STYLE>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。
 
 CSS クラス | 説明
 --- | ---
@@ -83,8 +97,8 @@ CSS クラス | 説明
 `mdc-theme--on-surface` | サーフェイスカラーの背景の上に適切なテキスト色を設定する
 `mdc-theme--primary-bg` | 背景色としてテーマのプライマリカラーを設定する
 `mdc-theme--secondary-bg` | 背景色としてテーマのセカンダリカラーを設定する
-`mdc-theme--text-<TEXT_STYLE>-on-light` | 明るい背景の上に、TEXT_STYLE に適切なテキスト色を設定する
-`mdc-theme--text-<TEXT_STYLE>-on-dark` | 暗い背景の上に、TEXT_STYLE に適切なテキスト色を設定する
+`mdc-theme--text-<TEXT_STYLE>-on-light` | 明るい背景の上に、TEXT_STYLE に適切なテキスト色を設定する。[テキストスタイルの選択](#text-styles) 参照。
+`mdc-theme--text-<TEXT_STYLE>-on-dark` | 暗い背景の上に、TEXT_STYLE に適切なテキスト色を設定する。[テキストスタイルの選択](#text-styles) 参照。
 
 ### Sass ミキシンと変数と関数
 
@@ -96,19 +110,50 @@ CSS クラス | 説明
 
 `mdc-theme-prop` ミキシンでは以下のプロパティを `$style` 引数として使用することができます。これらの代わりに色リテラル（例: `rgba(0, 0, 0, .75)`）を使うこともできます。
 
-> **`<TEXT_STYLE>` に関する注釈**: `<TEXT_STYLE>` は上でリストに挙げたテキストのスタイルを小文字にしたものを表しています（例: `hint`）。
-
 プロパティ名 | 説明
 --- | ---
 `primary` | テーマのプライマリカラー
 `secondary` | テーマのセカンダリカラー
 `background` | テーマのバックグランドカラー
 `surface` | テーマのサーフェイスカラー
-`text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE
-`text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE
+`text-<TEXT_STYLE>-on-light` | 明るい色の背景上にある TEXT_STYLE。[テキストスタイルの選択](#text-styles) 参照。
+`text-<TEXT_STYLE>-on-dark` | 暗い色の背景上にある TEXT_STYLE。[テキストスタイルの選択](#text-styles) 参照。
 `on-primary` | プライマリカラーの背景の上に使用されるテキスト/アイコンの色
 `on-secondary` | セカンダリカラーの背景の上に使用されるテキスト/アイコンの色
 `on-surface` | サーフェイスカラーの背景の上に使用されるテキスト/アイコンの色
+
+#### CSS カスタムプロパティを利用した `mdc-theme-prop`
+
+> **注意** Sass マップの `$style` 引数はカラーミキシンでの使用に *限って* 用意されたものです。
+
+`mdc-theme-prop` ミキシンは `$style` 引数用の Sass マップも使えます。このマップは以下のフィードを含めなくてはなりません。
+
+フィールド | 説明
+--- | ---
+`varname` | CSS カスタムプロパティの名前
+`fallback` | CSS カスタムプロパティの代替値
+
+例えば、以下の Sass は
+
+```
+.foo {
+  @include mdc-theme-prop(color, (
+    varname: --foo-color,
+    fallback: red,
+  ));
+}
+```
+
+次の CSS を生成します。
+
+```
+.foo {
+  color: red;
+  color: var(--foo-color, red);
+}
+```
+
+上記の CSS 出力は、CSS カスタムプロパティを革新的な拡張として使用するとともに、すべてのサポートしているブラウザ（IE11 を含め）で `fallback` フィールドの値を提供します。IE11 のように CSS カスタムプロパティをサポートしないブラウザでは `color: red;` を適用し、 `color: var(--foo-color, red);` は無視されます。この引数タイプのやり方は既存のテーマプロパティ以外にカスタムカラーアプリケーションが必要なクライアントのために用意しています。
 
 #### `mdc-theme-luminance($color)`
 

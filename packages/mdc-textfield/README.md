@@ -315,20 +315,21 @@ Mixin | Description
 
 プロパティ | 型 | 説明
 --- | --- | ---
-`value` | string | ファンデーションの `getValue`/`setValue` メソッドの代替
-`disable` | boolean | ファンデーションの `isDisabled`/`setDisabled` メソッドの代替
-`useNativeValidation` | boolean (書込専用) | ファンデーションの `setUseNativeValidation` メソッドの代替
-`valid` | boolean | ファンデーションの `isValid`/`setValid` の代替
-`helperTextContent` (書込専用) | string | ファンデーションの `setHelperTextContent` の設定時のおける代替
+`value` | `string` | ファンデーションの `getValue`/`setValue` メソッドの代替
+`disable` | `boolean` | ファンデーションの `isDisabled`/`setDisabled` メソッドの代替
+`useNativeValidation` | `boolean` (書込専用) | ファンデーションの `setUseNativeValidation` メソッドの代替
+`valid` | `boolean` | ファンデーションの `isValid`/`setValid` の代替
+`helperTextContent` | `string` (書込専用) | ファンデーションの `setHelperTextContent` の設定時のおける代替
 `ripple` | `MDCRipple` (書込専用) | `MDCTextField` が初期化したルート要素のための `MDCRipple` インスタンス。これはデフォルトのテキスト欄にのみ適用され、それ以外のタイプでは `null` が設定される
-`leadingIconAriaLabel` | string (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替
-`trailingIconAriaLabel` | string (書込専用) | ファンデーションの `setTrailingIconAriaLabel` メソッドの代替
-`leadingIconContent` | string (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替
-`trailingIconContent` | string (書込専用) | ファンデーションの `setTrailingIconContent` メソッドの代替
+`leadingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替
+`trailingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setTrailingIconAriaLabel` メソッドの代替
+`leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替
+`trailingIconContent` | `string` (書込専用) | ファンデーションの `setTrailingIconContent` メソッドの代替
 
 上に挙げたものに加えて、以下のプロパティが同名の `input` 要素のプロパティの代替として用意されている。
 
 * `required`
+* `pattern`
 * `minLength`
 * `maxLength`
 * `min`
@@ -343,7 +344,6 @@ Mixin | Description
 ## Web フレームワークでの使用
 
 React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のテキスト欄を作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
-
 
 ### `MDCTextFieldAdapter`
 
@@ -360,9 +360,16 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `deregisterValidationAttributeChangeHandler(!MutationObserver) => void` | 検証属性の変更のオブザーバーとの接続を input 要素から削除する。
 `getNativeInput() => NativeInputType \| null` | ネイティブな input 要素の代わりになる類似した API を持つオブジェクトを返す。[types.ts](types.ts) 参照。
 `isFocused() => boolean` | 入力欄にフォーカスがあるかどうかを返す。
-`hasOutline() => boolean` | アウトライン要素があるかどうかを返す。
-`notchOutline(labelWidth: number) => void` | ノッチを開くためにノッチ付きアウトラインのパスを更新し、ラベル要素に合わせてノッチを更新する。
-`closeOutline() => void` | ノッチ付きアウトラン要素上のノッチを閉じる。
+`shakeLabel(shouldShake: boolean) => void` | 入力された値が無効であることを示すためにラベルを震わせる。
+`floatLabel(shouldFloat: boolean) => void` | ラベルを上に移動させる。
+`hasLabel() => boolean` | テキスト欄がラベルを持っているかどうかを調べる。
+`getLabelWidth() => number` | ラベル要素の幅をピクセルで返す。
+`activateLineRipple() => void` | テキスト欄のラインリップルサブ要素を有効にする。
+`deactivateLineRipple() => void` | テキスト欄のラインリップルサブ要素を無効にする。
+`setLineRippleTransformOrigin(normalizedX: number) => void` | テキスト欄のラインリップル要素（あれば）の CSS の `transform-origin` 属性を与えられた値に設定する。
+`hasOutline() => boolean` | テキスト欄にアウトラインサブ要素があるかどうかを調べる。
+`notchOutline(labelWidth: number) => void` | テキスト欄のノッチ付きアウトラインサブ要素の幅を設定する。
+`closeOutline() => void` | テキスト欄のノッチ付きアウトランサブ要素を閉じる。
 
 #### `MDCTextFieldAdapter.getNativeInput()`
 
@@ -373,6 +380,11 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `propertyName` に与えられた CSS プロパティ値を計算して返します。素の実装は `getComputedStyle(...).getPropertyValue(propertyName)` を通じて処理がなされます。
 
 ### `MDCTextFieldFoundation`
+
+プロパティ | 値の型 | 説明
+--- | --- | ---
+`shouldFloat` | `boolean` (読取専用) | ラベルが上に移動すべきかどうかを調べる。
+`shouldShake` | `boolean` (読取専用) | ラベルが震わせるべきかどうかを調べる。
 
 メソッド | 説明
 --- | ---
@@ -394,5 +406,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setTrailingIconAriaLabel(label: string) => void` | 末尾のアイコンの領域ラベルを設定する。
 `setTrailingIconContent(content: string) => void` | 末尾のアイコンのテキストコンテンツを設定する。
 `notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
+`setTransformOrigin(evt: TouchEvent \| MouseEvent) => void` | ラインリップルのアニメーションがユーザがクリックされた位置から始まるように、ラインリップルの transform origin を設定する。
+`autoCompleteFocus() => void` | 入力値がプログラム的に変更された（つまり、ユーザの操作なしで）ときにテキスト欄のフォーカス状態をアクティブにする。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルパーテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクターの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。

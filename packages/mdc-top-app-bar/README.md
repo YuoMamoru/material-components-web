@@ -95,9 +95,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Download" alt="Download">file_download</a>
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Print this page" alt="Print this page">print</a>
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Download">file_download</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Print this page">print</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">bookmark</a>
     </section>
   </div>
 </header>
@@ -115,7 +115,7 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">bookmark</a>
     </section>
   </div>
 </header>
@@ -177,7 +177,7 @@ Fixed top app bars stay at the top of the page and elevate above the content whe
 `mdc-top-app-bar--prominent-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために目立つトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
 `mdc-top-app-bar--dense` | 高密度トップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
 `mdc-top-app-bar--dense-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために高密度トップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
-`mdc-top-app-bar--dense-prominent-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために、目立つと高密度の両方を指定したトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
+`mdc-top-app-bar--dense-prominent-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために、高密度と目立つの両方を指定したトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
 `mdc-top-app-bar--short` | 短いトップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
 `mdc-top-app-bar--short-collapsed` | 短いトップアプリバーが折りたたまれていることを表すのに使われるクラス。
 `mdc-top-app-bar--short-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために短いトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
@@ -186,7 +186,7 @@ Fixed top app bars stay at the top of the page and elevate above the content whe
 
 ミキシン | 説明
 --- | ---
-`mdc-top-app-bar-ink-color($color)` |　トップアプリバーのインク色を設定する。
+`mdc-top-app-bar-ink-color($color)` | トップアプリバーのインク色を設定する。
 `mdc-top-app-bar-icon-ink-color($color)` | トップアプリバーのアイコンのインク色を設定する。
 `mdc-top-app-bar-fill-color($color)` | トップアプリバーの塗りの色を設定する。
 `mdc-top-app-bar-fill-color-accessible($color)` | トップアプリバーの塗りの色を設定し、自動的にハイコントラストなインク色を設定する。
@@ -212,20 +212,36 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 メソッド | 説明
 --- | ---
-`hasClass(className: string) => boolean` | コンポーネントのルート要素が与えられたクラス名を持つかどうかをチェックする。
 `addClass(className: string) => void` | コンポーネントのルート要素にクラスを追加する。
 `removeClass(className: string) => void` | コンポーネントのルート要素からクラスを削除する。
-`registerNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素に与えられたイベントのイベントリスナーを登録する。
-`deregisterNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素から与えられたイベントのイベントリスナーの登録を解除する。
-`notifyNavigationIconClicked() => void` | ナビゲーションアイコンがクリックされたときにカスタムイベント `MDCTopAppBar:nav` を発生させる。
-`registerScrollHandler(handler) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーを登録する。デフォルトの実装では window の `scroll` イベントにリスナーとしてハンドラーを追加する。
-`deregisterScrollHandler(handler) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーの登録を解除する。デフォルトの実装では window の `scroll` イベントにリスナーとして登録されたハンドラーを削除する。
+`hasClass(className: string) => boolean` | コンポーネントのルート要素が与えられたクラス名を持つかどうかをチェックする。
+`setStyle(property: string, value: string) => void` | ルート要素の指定した CSS プロパティに与えられた値を設定する。
+`getTopAppBarHeight() => number` | トップアプリバーの高さをピクセルで取得する。
 `getViewportScrollY() => number` | ページトップから body のコンテンツがスクロールしたピクセル数を取得する。
 `getTotalActionItems() => number` | トップアプリバー上の操作アイテムの数を取得する。
+`notifyNavigationIconClicked() => void` | ナビゲーションアイコンがクリックされたときにカスタムイベント `MDCTopAppBar:nav` を発生させる。
+`registerNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素に与えられたイベントのイベントリスナーを登録する。
+`deregisterNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素から与えられたイベントのイベントリスナーの登録を解除する。
+`registerScrollHandler(handler: EventListener) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーを登録する。デフォルトの実装では window の `scroll` イベントにリスナーとしてハンドラーを追加する。
+`deregisterScrollHandler(handler: EventListener) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーの登録を解除する。デフォルトの実装では window の `scroll` イベントにリスナーとして登録されたハンドラーを削除する。
+`registerResizeHandler(handler: EventListener) => void` | 画面（もしくはそのビューポート）がリサイズされた際に呼び出すハンドラーを登録する。デフォルトの実装では window の `resize` イベントにリスナーとしてハンドラーを追加する。
+`deregisterResizeHandler(handler: EventListener) => void` | 画面（もしくはそのビューポート）がリサイズされた際に呼び出すハンドラーの登録を解除する。デフォルトの実装では window の `resize` イベントにリスナーとして登録されたハンドラーを削除する。
 
-### ファンデーション: `MDCTopAppBarBaseFoundation`、`MDCTopAppBarFoundation`、`MDCFixedTopAppBarFoundation` 及び `MDCShortTopAppBarFoundation`
+### ファンデーション
+
+#### `MDCTopAppBarBaseFoundation`、`MDCTopAppBarFoundation`、`MDCFixedTopAppBarFoundation` および `MDCShortTopAppBarFoundation`
+
+すべてのファンデーションは以下のメソッドを提供します。
 
 メソッド | 説明
 --- | ---
-`initScrollHandler(handler: function) => void` | 指定したターゲット要素にスクロールハンドラーを登録する。
-`destroyScrollHandler(handler: function) => void` | ファンデーションにより設定された現在のスクロールハンドラの登録を解除する。
+`initScrollHandler(handler: EventListener) => void` | 指定したターゲット要素にスクロールハンドラーを登録する。
+`destroyScrollHandler(handler: EventListener) => void` | ファンデーションにより設定された現在のスクロールハンドラの登録を解除する。
+
+#### `MDCShortTopAppBarFoundation`
+
+上で挙げたメソッドに加えて、短いトップアプリバーでは以下のパブリックプロパティが提供されています。
+
+プロパティ | 値の型 | 説明
+--- | --- | ---
+`isCollapsed` | `boolean` (読取専用) | 短いトップアプリバーが折りたたまれた状態かどうかを示す。

@@ -34,7 +34,7 @@ This will pull the latest tags and `master` commits into your local repository.
 Run the following script to automatically cherry-pick new bugfixes on top of the last release:
 
 ```
-node scripts/cherry-pick-patch-commits
+node scripts/cherry-pick-commits --patch
 ```
 
 > Note: After running the script, you are in a detached HEAD state. You can create a temporary local branch if desired,
@@ -50,7 +50,7 @@ Read the output carefully:
 
 If you find you need to remove commits that should not have been cherry-picked, perform the following steps:
 
-1. Find the base tag that the cherry-pick script identified and used (find the "Checking out v0.x.y" line in the output)
+1. Find the base tag that the cherry-pick script identified and used (find the "Checking out vX.Y.Z" line in the output)
 1. Run `git rebase -i <base tag>` - this will open the sequence of cherry-picked commits in an editor (probably vim)
 1. Find and delete lines for commits that should not have been included (in vim, type `dd` on the line in question)
 1. Save and exit (`:x` in vim)
