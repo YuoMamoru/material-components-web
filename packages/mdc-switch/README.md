@@ -66,7 +66,7 @@ import {MDCSwitch} from '@material/switch';
 const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 ```
 
-> JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## 様々な使用法
 
