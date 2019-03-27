@@ -73,7 +73,7 @@ const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
 formField.input = radio;
 ```
 
-> JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## 様々な使用法
 

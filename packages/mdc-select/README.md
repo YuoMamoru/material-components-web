@@ -80,7 +80,7 @@ select.listen('MDCSelect:change', () => {
 });
 ```
 
-JavaScript をインポートする方法についてのより多くの情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## <a name="variants"></a>様々な使用法
 

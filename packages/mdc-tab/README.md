@@ -59,7 +59,7 @@ import {MDCTab} from '@material/tab';
 const tab = new MDCTab(document.querySelector('.mdc-tab'));
 ```
 
-> JavaScript をインポートするより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## 様々な使用法
 
