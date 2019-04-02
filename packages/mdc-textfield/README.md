@@ -265,7 +265,7 @@ CSS クラス | 説明
 
 ### Sass ミキシン
 
-テキスト欄の任意の部分の色をカスタマイズするには以下のミキシンを使用します。フォーカスのないテキスト欄を選択するには `.foo-text-field:not(.mdc-text-field--focused)`、フォーカスのあるテキスト欄を選択するには `.foo-text-field.mdc-text-field--focused` のような CSS セレクタ内にこれらのミキシンを適用することを推奨しています。テキスト欄を無効にするには `.foo-text-field.mdc-text-field--invalid` のような CSS セレクタ内にこれらのミキシンを適用します。
+テキスト欄の任意の部分の色をカスタマイズするには以下のミキシンを使用します。フォーカスのないテキスト欄を選択するには `.foo-text-field:not(.mdc-text-field--focused)`、フォーカスのあるテキスト欄を選択するには `.foo-text-field.mdc-text-field--focused` のような CSS セレクター内にこれらのミキシンを適用することを推奨しています。テキスト欄を無効にするには `.foo-text-field.mdc-text-field--invalid` のような CSS セレクター内にこれらのミキシンを適用します。
 
 > <em>注意</em>: `mdc-line-ripple-color` ミキシンは非フォーカスクラス（`foo-text-field:not(.mdc-text-field--focused)`）から適用する必要があります。
 
@@ -313,7 +313,7 @@ Mixin | Description
 
 ## `MDCTextField` プロパティとメソッド
 
-プロパティ | 型 | 説明
+プロパティ | 値の型 | 説明
 --- | --- | ---
 `value` | `string` | ファンデーションの `getValue`/`setValue` メソッドの代替
 `disable` | `boolean` | ファンデーションの `isDisabled`/`setDisabled` メソッドの代替
@@ -406,7 +406,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setTrailingIconAriaLabel(label: string) => void` | 末尾のアイコンの領域ラベルを設定する。
 `setTrailingIconContent(content: string) => void` | 末尾のアイコンのテキストコンテンツを設定する。
 `notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
-`setTransformOrigin(evt: TouchEvent \| MouseEvent) => void` | ラインリップルのアニメーションがユーザがクリックされた位置から始まるように、ラインリップルの transform origin を設定する。
-`autoCompleteFocus() => void` | 入力値がプログラム的に変更された（つまり、ユーザの操作なしで）ときにテキスト欄のフォーカス状態をアクティブにする。
+`setTransformOrigin(evt: TouchEvent \| MouseEvent) => void` | ラインリップルのアニメーションがユーザーがクリックされた位置から始まるように、ラインリップルの transform origin を設定する。
+`autoCompleteFocus() => void` | 入力値がプログラム的に変更された（つまり、ユーザーの操作なしで）ときにテキスト欄のフォーカス状態をアクティブにする。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルパーテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクターの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。

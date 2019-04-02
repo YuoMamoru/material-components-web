@@ -18,7 +18,7 @@ MDC Web はそれぞれの動的なコンポーネントの JavaScript をファ
 
 ### TypeScript
 
-MDC Web のコンポーネントは開発者の作業速度を上げ、エラーを減らすために [TypeScript](https://www.typescriptlang.org/) で書かれています。npm リリースには UMD JavaScript バンドル、ES5 を含む ES モジュール、そして TypeScript ユーザのための `.d.ts` 型定義ファイルが含まれています。より詳しい情報は [Importing JS](../importing-js.md) を参照してください。
+MDC Web のコンポーネントは開発者の作業速度を上げ、エラーを減らすために [TypeScript](https://www.typescriptlang.org/) で書かれています。npm リリースには UMD JavaScript バンドル、ES5 を含む ES モジュール、そして TypeScript ユーザーのための `.d.ts` 型定義ファイルが含まれています。より詳しい情報は [Importing JS](../importing-js.md) を参照してください。
 
 ### ファンデーション
 

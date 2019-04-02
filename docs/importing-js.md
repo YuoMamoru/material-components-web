@@ -60,7 +60,7 @@ const MDCFoo = mdc.foo.MDCFoo;
 const MDCFooFoundation = mdc.foo.MDCFooFoundation;
 ```
 
-## CSS セレクタクエリによるコンポーネントのインスタンス化
+## CSS セレクタークエリによるコンポーネントのインスタンス化
 
 MDC Web のドキュメントの多く例ではページ内の単一の要素のコンポーネントインスタンスを生成する方法が説明されています。
 
