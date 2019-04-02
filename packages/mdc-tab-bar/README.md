@@ -9,29 +9,28 @@ path: /catalog/tabs/tab-bar/
 
 # Tab Bar
 
-Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
-The Tab Bar contains the Tab Scroller and Tab components.
+タブを使うと関連した同じ階層のコンテンツのグループ間を移動できるようになります。Tab Bar には Tab Scroller と Tab コンポーネントが含まれています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-tabs">Material Design guidelines: Tabs</a>
+    <a href="https://material.io/go/design-tabs">マテリアルデザインガイドライン: タブ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/tabs">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/tabs">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/tab-bar
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-tab-bar" role="tablist">
@@ -54,7 +53,7 @@ npm install @material/tab-bar
 </div>
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/tab-bar/mdc-tab-bar";
@@ -63,7 +62,7 @@ npm install @material/tab-bar
 @import "@material/tab/mdc-tab";
 ```
 
-### JavaScript Instantiation
+### JavaScript のインスタンス化
 
 ```js
 import {MDCTabBar} from '@material/tab-bar';
@@ -71,16 +70,15 @@ import {MDCTabBar} from '@material/tab-bar';
 const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## Variants
+## 様々な使用法
 
-MDC Tab Bar does not have any variants; however, its subcomponents do. See the [Tab Scroller](../mdc-tab-scroller),
-[Tab](../mdc-tab), and [Tab Indicator](../mdc-tab-indicator) documentation for more information.
+MDC Tab Bar にはバリエーションはありませんが、サブコンポーネントにはあります。より詳細な情報は [Tab Scroller](../mdc-tab-scroller) や [Tab](../mdc-tab)、[Tab Indicator](../mdc-tab-indicator) を参照してください。
 
-### Tab Icons
+### タブアイコン
 
-We recommend using [Material Icons](https://material.io/tools/icons/) from Google Fonts:
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
 ```html
 <head>
@@ -88,72 +86,72 @@ We recommend using [Material Icons](https://material.io/tools/icons/) from Googl
 </head>
 ```
 
-However, you can also use SVG, [Font Awesome](https://fontawesome.com/), or any other icon library you wish.
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-tab-bar` | Mandatory.
+`mdc-tab-bar` | 必須。
 
-### Sass Mixins
+### Sass ミキシン
 
-To customize the width of the tab bar, use the following mixin.
+タブバーの幅を変更するには、以下のミキシンを使います。
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-tab-bar-width($width)` | Customizes the width of the tab bar.
+`mdc-tab-bar-width($width)` | タブバーの幅を変更する。
 
-## `MDCTabBar` Properties and Methods
+## `MDCTabBar` プロパティとメソッド
 
-Property | Value Type | Description
+プロパティ | 値の型 | 説明
 --- | --- | ---
-`focusOnActivate` | `boolean` (write-only) | Sets whether tabs focus themselves when activated. Defaults to `true`.
-`useAutomaticActivation` | `boolean` (write-only) | Sets how tabs activate in response to keyboard interaction. Automatic (`true`) activates as soon as a tab is focused with arrow keys; manual (`false`) activates only when the user presses space/enter. The default is automatic (`true`).
+`focusOnActivate` | `boolean` (書込専用) | 有効になった際にタブにフォーカスを合わせるかどうかを設定する。デフォルトは `true`。
+`useAutomaticActivation` | `boolean` (書込専用) | キーボード操作に対してタブがどのように有効になるかを設定する。自動 (`true`) では方向キーでフォーカスされたらすぐに有効になり、手動 (`false`) ではユーザーがスペースキーかエンターキーを押したときにだけ有効になる。デフォルトは自動 (`true`)。
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`activateTab(index: number) => void` | Activates the tab at the given index.
-`scrollIntoView(index: number) => void` | Scrolls the tab at the given index into view.
+`activateTab(index: number) => void` | 与えられたインデックスのタブを有効にする。
+`scrollIntoView(index: number) => void` | 与えられたインデックスのタブが見える位置にスクロールする。
 
-Event Name | Event Data Structure | Description
+イベント | イベントデータの構造 | Description
 --- | --- | ---
-`MDCTabBar:activated` | `{"detail": {"index": number}}` | Emitted when a Tab is activated with the index of the activated Tab. Listen for this to update content when a Tab becomes active.
+`MDCTabBar:activated` | `{"detail": {"index": number}}` | アクティブなタブのインデックスの位置が有効になった際に発生する。タブが有効になったときにコンテンツを更新するために使用する。
 
-## Usage within Web Frameworks
+## Web フレームワーク内での使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a Tab Bar for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のタブバーを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCTabBarAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`scrollTo(scrollX: number) => void` | Scrolls the Tab Scroller to the given position.
-`incrementScroll(scrollXIncrement: number) => void` | Increments the Tab Scroller by the given value.
-`getScrollPosition() => number` | Returns the scroll position of the Tab Scroller.
-`getScrollContentWidth() => number` | Returns the width of the Tab Scroller's scroll content element.
-`getOffsetWidth() => number` | Returns the offsetWidth of the root element.
-`isRTL() => boolean` | Returns if the text direction is RTL.
-`setActiveTab(index: number) => void` | Sets the tab at the given index to be activated.
-`activateTabAtIndex(index: number, clientRect: ClientRect) => void` | Activates the Tab at the given index with the given clientRect.
-`deactivateTabAtIndex(index) => void` | Deactivates the Tab at the given index.
-`focusTabAtIndex(index: number) => void` | Focuses the Tab at the given index.
-`getTabIndicatorClientRectAtIndex(index: number) => ClientRect` | Returns the client rect of the Tab at the given index.
-`getTabDimensionsAtIndex(index) => MDCTabDimensions` | Returns the dimensions of the Tab at the given index.
-`getTabListLength() => number` | Returns the number of child Tab components.
-`getPreviousActiveTabIndex() => number` | Returns the index of the previously active Tab.
-`getFocusedTabIndex() => number` | Returns the index of the focused Tab.
-`getIndexOfTabById(id: string) => number` | Returns the index of the given Tab ID.
-`notifyTabActivated(index: number) => void` | Emits the `MDCTabBar:activated` event.
+`scrollTo(scrollX: number) => void` | 与えられた位置にタブスクローラーをスクロールする。
+`incrementScroll(scrollXIncrement: number) => void` | タブスクローラーを与えられた値だけ増やす。
+`getScrollPosition() => number` | タブスクローラーのスクロール位置を返す。
+`getScrollContentWidth() => number` | タブスクローラーのスクロールコンテンツ要素の幅を返す。
+`getOffsetWidth() => number` | ルート要素の offsetWidth を返す。
+`isRTL() => boolean` | テキストの方向が RTL であるかどうかを返す。
+`setActiveTab(index: number) => void` | 与えられたインデックスのタブを有効にする。
+`activateTabAtIndex(index: number, clientRect: ClientRect) => void` | 与えられた clientRect 内にある与えられたインデックスのタブを有効にする。
+`deactivateTabAtIndex(index) => void` | 与えられたインデックスのタブを有効でないようにする。
+`focusTabAtIndex(index: number) => void` | 与えられたインデックスのタブにフォーカスを移動する。
+`getTabIndicatorClientRectAtIndex(index: number) => ClientRect` | 与えられたインデックスのタブの clientRect を返す。
+`getTabDimensionsAtIndex(index) => MDCTabDimensions` | 与えられたインデックスのタブの大きさを返す。
+`getTabListLength() => number` | タブコンポーネントの子の数を返す。
+`getPreviousActiveTabIndex() => number` | 有効なタブの一つ前のタブのインデックスを返す。
+`getFocusedTabIndex() => number` | フォーカスされたタブのインデックスを返す。
+`getIndexOfTabById(id: string) => number` | 与えられたタブ ID のインデックスを返す。
+`notifyTabActivated(index: number) => void` | `MDCTabBar:activated` イベントを発生させる。
 
 ### `MDCTabBarFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`activateTab(index: number) => void` | Activates the tab at the given index.
-`setUseAutomaticActivation(useAutomaticActivation: boolean) => void` | Sets how tabs activate in response to keyboard interaction. Automatic (`true`) activates as soon as a tab is focused with arrow keys; manual (`false`) activates only when the user presses space/enter.
-`handleKeyDown(evt: Event) => void` | Handles the logic for the `"keydown"` event.
-`handleTabInteraction(evt: Event) => void` | Handles the logic for the `"MDCTab:interacted"` event.
-`scrollIntoView(index: number) => void` | Scrolls the Tab at the given index into view.
+`activateTab(index: number) => void` | 与えられたインデックスのタブを有効にする。
+`setUseAutomaticActivation(useAutomaticActivation: boolean) => void` | キーボード操作に対してタブがどのように有効になるかを設定する。自動 (`true`) では方向キーでフォーカスされたらすぐに有効になり、手動 (`false`) ではユーザーがスペースキーかエンターキーを押したときにだけ有効になる。
+`handleKeyDown(evt: Event) => void` | `"keydown"` イベントの動作をハンドリングする。
+`handleTabInteraction(evt: Event) => void` | `"MDCTab:interacted"` イベントの動作をハンドリングする。
+`scrollIntoView(index: number) => void` | 与えられたインデックスのタブが見える位置にスクロールする。
