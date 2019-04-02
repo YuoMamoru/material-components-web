@@ -234,7 +234,7 @@ dots.addEventListener('click', function (evt) {
 
 ### Sass ミキシン
 
-タブ部分のインクの色をカスタマイズするために以下のミキシンが使用できます。アクティブでないタブを選ぶには `.foo-tab:not(.mdc-tab--active)`、ホバー状態のセレクタには `foo-tab:hover`、アクティブなセレクタには `.foo-tab.mdc-tab--active` といった CSS セレクタを使用してこれらのミキシンを適用することを推奨します。
+タブ部分のインクの色をカスタマイズするために以下のミキシンが使用できます。アクティブでないタブを選ぶには `.foo-tab:not(.mdc-tab--active)`、ホバー状態のセレクターには `foo-tab:hover`、アクティブなセレクターには `.foo-tab.mdc-tab--active` といった CSS セレクターを使用してこれらのミキシンを適用することを推奨します。
 
 #### `mdc-tab-ink-color`
 

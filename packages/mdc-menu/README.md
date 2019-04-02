@@ -195,7 +195,7 @@ CSS クラス | 説明
 
 JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-プロパティ | 型 | 説明
+プロパティ | 値の型 | 説明
 --- | --- | ---
 `open` | Boolean | メニュー表面の `open` プロパティの代替。
 `items` | Array<Element> | 全 `.mdc-list-item` 要素の問い合わせ用のリストの代替。

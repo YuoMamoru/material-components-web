@@ -516,7 +516,7 @@ THE SOFTWARE.
 }
 ```
 
-ときより、 `.some-context .mdc-block {/* ... */}` のようにセレクタを修飾する必要がでてきます。Stylelint はこれに対して警告を出すでしょうが、以下の内容を追加することにより、無効にできます。
+ときより、 `.some-context .mdc-block {/* ... */}` のようにセレクターを修飾する必要がでてきます。Stylelint はこれに対して警告を出すでしょうが、以下の内容を追加することにより、無効にできます。
 
 ```scss
 // stylelint-disable plugin/selector-bem-pattern
@@ -581,7 +581,7 @@ class MDCNewComponentFoundation extends MDCFoundation {
 #### <a name="define-all-exported-css-classes-strings-and-numbers-as-foundation-constants"></a>外部参照されるすべての CSS クラス、文字列、数値をファンデーションの定数として定義する
 
 - コンポーネントのファンデーションから参照されるすべての CSS クラスは `cssClasses` 静的ゲッタを通じて参照しなくてはいけない。
-- ファンデーションクラスのコンテキスト外から使用されるすべての文字列（CSS セレクタ、カスタムイベント名、潜在的にローカライズ可能な文字列など）は `strings` 静的ゲッタを通じて参照しなくてはいけない。
+- ファンデーションクラスのコンテキスト外から使用されるすべての文字列（CSS セレクター、カスタムイベント名、潜在的にローカライズ可能な文字列など）は `strings` 静的ゲッタを通じて参照しなくてはいけない。
 - ファンデーションが影響を与えるセマンティックなすべての数値（タイムアウトの長さ、アニメーションの継続時間など）は `numbers` 静的ゲッタを通じて参照しなくてはいけない。
 - これらの定数は `constants.ts` ファイルに定義し、ファンデーションを通じてアクセスできるようにしなくてはならない。
 

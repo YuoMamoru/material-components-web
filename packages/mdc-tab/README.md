@@ -144,7 +144,7 @@ CSS クラス | 説明
 プロパティ | 値の型 | 説明
 --- | --- | ---
 `id` | `string` | ルートのタブ要素の `id` 属性の値。
-`active` | `boolean` （読取専用） | タブのアクティブな状態の取得する。
+`active` | `boolean` (読取専用) | タブのアクティブな状態の取得する。
 `focusOnActivate` | `boolean` (書込専用) | 有効にする際にタブが自身にフォーカスするかどうかを設定する。デフォルトは `true`。
 
 メソッド | 説明
@@ -155,7 +155,7 @@ CSS クラス | 説明
 `computeIndicatorClientRect() => ClientRect` | インジケーターの境界のクライアントレクトを返す。
 `computeDimensions() => MDCTabDimensions` | タブの寸法を返す。
 
-イベント | イベントのデータ構造 | 説明
+イベント | イベントデータの構造 | 説明
 --- | --- | ---
 `MDCTab:interacted` | `{"detail": {"tabId": string}}` | アクティブであるかにかかわらず、タブが操作されたときに発生する。どのタブをアクティブにするかを知るために親コンポーネントが使用する。
 

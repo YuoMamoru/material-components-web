@@ -163,6 +163,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 ### `MDCSwitchFoundation` イベントハンドラー
 スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラーを追加する必要があります。この例としては、[`MDCSwitch`](component.ts) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
 
-| イベント | 要素セレクタ | ファンデーションハンドラー |
+| イベント | 要素セレクター | ファンデーションハンドラー |
 | --- | --- | --- |
 | `change` | `.mdc-switch__native-control` | `handleChange()` |

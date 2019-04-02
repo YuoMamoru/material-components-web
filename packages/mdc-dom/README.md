@@ -33,4 +33,4 @@ import * as ponyfill from '@material/dom/ponyfill';
 関数 | 説明
 --- | ---
 `closest(element: Element, selector: string) => ?Element` | 与えられたセレクターにマッチする与えられた要素の祖先（与えられた要素がマッチするならそれ自身）を返す。
-`matches(element: Element, selector: string) => boolean` | 与えられた要素が与えられた CSS セレクタにマッチするなら true を返す。
+`matches(element: Element, selector: string) => boolean` | 与えられた要素が与えられた CSS セレクターにマッチするなら true を返す。
