@@ -138,7 +138,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `activateTabAtIndex(index: number, clientRect: ClientRect) => void` | 与えられた clientRect 内にある与えられたインデックスのタブを有効にする。
 `deactivateTabAtIndex(index) => void` | 与えられたインデックスのタブを有効でないようにする。
 `focusTabAtIndex(index: number) => void` | 与えられたインデックスのタブにフォーカスを移動する。
-`getTabIndicatorClientRectAtIndex(index: number) => ClientRect` | 与えられたインデックスのタブの clientRect を返す。
+`getTabIndicatorClientRectAtIndex(index: number) => ClientRect` | 与えられたインデックスのタブの ClientRect を返す。
 `getTabDimensionsAtIndex(index) => MDCTabDimensions` | 与えられたインデックスのタブの大きさを返す。
 `getTabListLength() => number` | タブコンポーネントの子の数を返す。
 `getPreviousActiveTabIndex() => number` | 有効なタブの一つ前のタブのインデックスを返す。
