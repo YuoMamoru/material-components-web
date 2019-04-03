@@ -9,28 +9,28 @@ path: /catalog/tabs/indicator/
 
 # Tab Indicator
 
-A Tab Indicator is a visual guide that shows which Tab is active.
+タブインジケーターはどのタブがアクティブであるかを示す視覚上のガイドです。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-tabs#anatomy">Material Design guidelines: Anatomy of Tabs</a>
+    <a href="https://material.io/go/design-tabs#anatomy">マテリアルデザインガイドライン: タブの構造</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/tabs">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/tabs">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/tab-indicator
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <span class="mdc-tab-indicator">
@@ -38,13 +38,13 @@ npm install @material/tab-indicator
 </span>
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/tab-indicator/mdc-tab-indicator";
 ```
 
-### JavaScript Instantiation
+### JavaScript のインスタンス化
 
 ```js
 import {MDCTabIndicator} from '@material/tab-indicator';
@@ -52,29 +52,29 @@ import {MDCTabIndicator} from '@material/tab-indicator';
 const tabIndicator = new MDCTabIndicator(document.querySelector('.mdc-tab-indicator'));
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## Variants
+## 様々な使用法
 
-### Active Indicator
+### アクティブインジケーター
 
-Add the `mdc-tab-indicator--active` class to the `mdc-tab-indicator` element to make the Tab Indicator active.
+タブインジケーターをアクティブにするには `mdc-tab-indicator` 要素に `mdc-tab-indicator--active` クラスを追加します。
 
-### Indicator Types and Transitions
+### インジケーターの種類と推移
 
-The Tab Indicator may be represented in one of two ways:
+タブインジケーターは2つの方法のいずれかで表すことができます。
 
-* Underline, indicated by the `mdc-tab-indicator__content--underline` class
-* Icon, indicated by the `mdc-tab-indicator__content--icon` class
+* 下線、`mdc-tab-indicator__content--underline` クラスによって表される
+* アイコン、`mdc-tab-indicator__content--icon` クラスによって表される
 
-> *NOTE*: One of these classes _must_ be applied to the Tab Indicator's content element.
+> <em>注意</em>: これらのクラスのうち1つはタブインジケーターコンテンツ要素に<em>適用しなくてはなりません</em>。
 
-The Tab Indicator may transition in one of two ways:
+タブインジケーターは2つの方法のいずれかで推移することができます。
 
-* Slide, the default behavior
-* Fade, indicated by the `mdc-tab-indicator--fade` class
+* スライド、デフォルトの動作
+* フェード、`mdc-tab-indicator--fade` クラスによって表される
 
-#### Sliding Underline Indicator
+#### スライドする下線インジケーター
 
 ```html
 <span class="mdc-tab-indicator">
@@ -82,9 +82,9 @@ The Tab Indicator may transition in one of two ways:
 </span>
 ```
 
-#### Icon Indicators
+#### アイコンインジケーター
 
-We recommend using [Material Icons](https://material.io/tools/icons/) from Google Fonts:
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
 ```html
 <head>
@@ -92,12 +92,11 @@ We recommend using [Material Icons](https://material.io/tools/icons/) from Googl
 </head>
 ```
 
-However, you can also use SVG, [Font Awesome](https://fontawesome.com/), or any other icon library you wish.
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
 
-Remember to include `aria-hidden="true"`, since the active indicator is already signified via the
-`aria-selected` attribute on the tab.
+タブ上では `aria-selected` 属性を通じてすでにアクティブインジケーターが示されているため、`aria-hidden="true"` を付けることを忘れないでください。
 
-##### Fading Icon Indicator
+##### フェードするアイコンインジケーター
 
 ```html
 <span class="mdc-tab-indicator mdc-tab-indicator--fade">
@@ -105,7 +104,7 @@ Remember to include `aria-hidden="true"`, since the active indicator is already 
 </span>
 ```
 
-##### Sliding Icon Indicator
+##### スライドするアイコンインジケーター
 
 ```html
 <span class="mdc-tab-indicator">
@@ -113,60 +112,60 @@ Remember to include `aria-hidden="true"`, since the active indicator is already 
 </span>
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-tab-indicator` | Mandatory. Contains the tab indicator content.
-`mdc-tab-indicator__content` | Mandatory. Denotes the tab indicator content.
-`mdc-tab-indicator--active` | Optional. Visually activates the indicator.
-`mdc-tab-indicator--fade` | Optional. Sets up the tab indicator to fade in on activation and fade out on deactivation.
-`mdc-tab-indicator__content--underline` | Optional. Denotes an underline tab indicator.
-`mdc-tab-indicator__content--icon` | Optional. Denotes an icon tab indicator.
+`mdc-tab-indicator` | 必須。タブインジケーターコンテンツに付ける。
+`mdc-tab-indicator__content` | 必須。タブインジケーターコンテンツであることを示す。
+`mdc-tab-indicator--active` | オプション。インジケーターを視覚上アクティブにする。
+`mdc-tab-indicator--fade` | オプション。タブインジケーターをアクティブにするときにはフェードイン、アクティブでなくするときはフェードアウトするように設定する。
+`mdc-tab-indicator__content--underline` | オプション。下線タブインジケーターであることを示す。
+`mdc-tab-indicator__content--icon` | オプション。アイコンタブインジケーターであることを示す。
 
-> *NOTE*: Exactly one of the `--underline` or `--icon` content modifier classes should be present.
+> *注意*: `--underline` か `--icon` のいずれか一方のコンテンツ修飾クラスがなくてはなりません。
 
-### Sass Mixins
+### Sass ミキシン
 
-To customize the tab indicator, use the following mixins.
+タブインジケーターを変更するには、以下のミキシンを使います。
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-tab-indicator-surface` | Mandatory. Must be applied to the parent element of the `mdc-tab-indicator`.
-`mdc-tab-indicator-underline-color($color)` | Customizes the color of the underline.
-`mdc-tab-indicator-icon-color($color)` | Customizes the color of the icon subelement.
-`mdc-tab-indicator-underline-height($height)` | Customizes the height of the underline.
-`mdc-tab-indicator-icon-height($height)` | Customizes the height of the icon subelement.
-`mdc-tab-indicator-underline-top-corner-radius($radius)` | Customizes the top left and top right border radius of the underline child element.
+`mdc-tab-indicator-surface` | 必須。`mdc-tab-indicator` の親要素に適用しなくてはならない。
+`mdc-tab-indicator-underline-color($color)` | 下線の色を変更する。
+`mdc-tab-indicator-icon-color($color)` | アイコンサブ要素の色を変更する。
+`mdc-tab-indicator-underline-height($height)` | 下線の高さを変更する。
+`mdc-tab-indicator-icon-height($height)` | アイコンサブ要素の高さを変更する。
+`mdc-tab-indicator-underline-top-corner-radius($radius)` | 下線子要素の左上と右上の角丸の半径を変更する。
 
-## `MDCTabIndicator` Methods
+## `MDCTabIndicator` メソッド
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`activate(previousIndicatorClientRect?: ClientRect) => void` | Activates the tab indicator.
-`deactivate() => void` | Deactivates the tab indicator.
-`computeContentClientRect() => ClientRect` | Returns the content element bounding client rect.
+`activate(previousIndicatorClientRect?: ClientRect) => void` | タブインジケーターをアクティブにする。
+`deactivate() => void` | タブインジケーターをアクティブでなくする。
+`computeContentClientRect() => ClientRect` | コンテンツ要素の ClientRect を返す。
 
-## Usage within Web Frameworks
+## Web フレームワーク内での使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a Tab Indicator for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のタブインジケーターを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCTabIndicatorAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the root element.
-`removeClass(className: string) => void` | Removes a class from the root element.
-`setContentStyleProperty(property: string, value: string) => void` | Sets the style property of the content element.
-`computeContentClientRect() => ClientRect` | Returns the content element's bounding client rect.
+`addClass(className: string) => void` | ルート要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`setContentStyleProperty(property: string, value: string) => void` | コンテンツ要素のスタイルプロパティを設定する。
+`computeContentClientRect() => ClientRect` | コンテンツ要素の ClientRect を返す。
 
 ### `MDCTabIndicatorFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`handleTransitionEnd(evt: Event) => void` | Handles the logic for the `"transitionend"` event on the root element.
-`activate(previousIndicatorClientRect?: ClientRect) => void` | Activates the tab indicator.
-`deactivate() => void` | Deactivates the tab indicator.
-`computeContentClientRect() => ClientRect` | Returns the content element's bounding client rect.
+`handleTransitionEnd(evt: Event) => void` | ルート要素の `"transitionend"` イベントのための処理をハンドリングする。
+`activate(previousIndicatorClientRect?: ClientRect) => void` | タブインジケーターをアクティブにする。
+`deactivate() => void` | タブインジケーターをアクティブでなくする。
+`computeContentClientRect() => ClientRect` | コンテンツ要素の ClientRect を返す。
