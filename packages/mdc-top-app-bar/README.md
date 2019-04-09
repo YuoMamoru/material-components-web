@@ -72,7 +72,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ### JavaScript のインストール
 
 ```js
-import {MDCTopAppBar} from '@material/top-app-bar/index';
+import {MDCTopAppBar} from '@material/top-app-bar';
 
 // インスタンス化
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
