@@ -16,27 +16,26 @@ path: /catalog/linear-progress/
   </a>
 </div>-->
 
-The MDC Linear Progress component is a spec-aligned linear progress indicator component adhering to the
-[Material Design progress & activity requirements](https://material.io/go/design-progress-indicators).
+MDC Linear Progress コンポーネントは [マテリアルデザインプログレスと動作の要件](https://material.io/go/design-progress-indicators) に準拠したリニアプログレスインジケーターです。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-progress-indicators">Guidelines</a>
+    <a href="https://material.io/go/design-progress-indicators">ガイドライン</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/linear-progress-indicator">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/linear-progress-indicator">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/linear-progress
 ```
 
-## Usage
+## 使用法
 
 ```html
 <div role="progressbar" class="mdc-linear-progress">
@@ -51,60 +50,58 @@ npm install @material/linear-progress
 </div>
 ```
 
-### CSS Modifiers
+### CSS 修飾子
 
-The provided modifiers are:
+提供される修飾子は以下の通りです。
 
-| Class                 | Description                                             |
+| クラス                | 説明                                                    |
 | --------------------- | ------------------------------------------------------- |
-| `mdc-linear-progress--indeterminate`   | Puts the linear progress indicator in an indeterminate state. |
-| `mdc-linear-progress--reversed`  | Reverses the direction of the linear progress indicator.   |
-| `mdc-linear-progress--closed`  | Hides the linear progress indicator. |
+| `mdc-linear-progress--indeterminate`   | リニアプログレスインジケーターを不定状態にする。 |
+| `mdc-linear-progress--reversed`  | リニアプログレスインジケーターの向きを反転する。 |
+| `mdc-linear-progress--closed`  | リニアプログラスインジケーターを隠す。 |
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-linear-progress-bar-color($color)` | Sets the color of the progress bar
-`mdc-linear-progress-buffer-color($color)` | Sets the color of the buffer bar and dots
+`mdc-linear-progress-bar-color($color)` | プログレスバーの色を設定する。
+`mdc-linear-progress-buffer-color($color)` | バッファーバーとドットの色を設定する。
 
-### Using the Foundation Class
+### ファンデーションクラスの使用
 
-MDC Linear Progress ships with an `MDCLinearProgressFoundation` class that external frameworks and libraries can
-use to integrate the component. As with all foundation classes, an adapter object must be provided.
-The adapter for linear progress must provide the following functions, with correct signatures:
+MDC リニアプログレスは外部フレームワークや外部ライブラリとコンポーネントを統合するために使用可能な `MDCLinearProgressFoundation` を同梱しています。すべてのファンデーションクラスと同様に、アダプタオブジェクトを指定しなくてはなりません。リニアプログレスのアダプタは適切なシグネチャで以下の関数を提供します。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `addClass(className: string) => void` | Adds a class to the root element. |
-| `removeClass(className: string) => void` | Removes a class from the root element. |
-| `hasClass(className: string) => boolean` | Returns boolean indicating whether the root element has a given class. |
-| `getPrimaryBar() => Element` | Returns the primary bar element. |
-| `getBuffer() => Element` | Returns the buffer element. |
-| `setStyle(el: Element, styleProperty: string, value: string) => void` | Sets the inline style on the given element. |
+| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
+| `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを持っているかどうかを表す真偽値を返す。 |
+| `getPrimaryBar() => Element` | 中心となるバー要素を返す。 |
+| `getBuffer() => Element` | バッファー要素を返す。 |
+| `setStyle(el: Element, styleProperty: string, value: string) => void` | 与えられた要素のインラインスタイルを設定する。 |
 
 ### MDCLinearProgressFoundation API
 
-MDC Linear Progress Foundation exposes the following methods:
+MDC リニアプログレスファンデーションは以下のメソッドを公開しています。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `setDeterminate(value: boolean) => void` | Toggles the component between the determinate and indeterminate state. |
-| `setProgress(value: number) => void` | Sets the progress bar to this value. Value should be between [0, 1]. |
-| `setBuffer(value: number) => void` | Sets the buffer bar to this value. Value should be between [0, 1]. |
-| `setReverse(value: boolean) => void` | Reverses the direction of the linear progress indicator. |
-| `open() => void` | Puts the component in the open state. |
-| `close() => void` | Puts the component in the closed state. |
+| `setDeterminate(value: boolean) => void` | コンポーネントを確定状態と不定状態を切り替える。 |
+| `setProgress(value: number) => void` | ブログレスバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
+| `setBuffer(value: number) => void` | バッファーバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
+| `setReverse(value: boolean) => void` | リニアプログレスのインジケーターの方向を反転させる。 |
+| `open() => void` | コンポーネントを開いた状態にする。 |
+| `close() => void` | コンポーネントを閉じた状態にする。 |
 
 ### MDCLinearProgress API
 
-MDC Linear Progress exposes the following methods:
+MDC リニアプログレスは以下のメソッドを公開しています。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `set determinate(value: boolean) => void` | Toggles the component between the determinate and indeterminate state. |
-| `set progress(value: number) => void` | Sets the progress bar to this value. Value should be between [0, 1]. |
-| `set buffer(value: number) => void` | Sets the buffer bar to this value. Value should be between [0, 1]. |
-| `set reverse(value: boolean) => void` | Reverses the direction of the linear progress indicator. |
-| `open() => void` | Puts the component in the open state. |
-| `close() => void` | Puts the component in the closed state. |
+| `set determinate(value: boolean) => void` | コンポーネントを確定状態と不定状態を切り替える。 |
+| `set progress(value: number) => void` | ブログレスバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
+| `set buffer(value: number) => void` | バッファーバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
+| `set reverse(value: boolean) => void` | リニアプログレスのインジケーターの方向を反転させる。 |
+| `open() => void` | コンポーネントを開いた状態にする。 |
+| `close() => void` | コンポーネントを閉じた状態にする。 |
