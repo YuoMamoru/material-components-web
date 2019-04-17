@@ -53,7 +53,7 @@ npm install @material/grid-list
 
 - タイルの間隔は 4px
 - 1x1 のアスペクト比
-- アイコンのない 1 行のタイトルフッタ
+- アイコンのない 1 行のタイトルフッター
 
 あとは `<img class="mdc-grid-tile__primary-content" src="..."/>` の `src` にロードしたいコンテンツを置くだけです。ただし、タイルに指定したアスペクト比と同じアスペクト比の画像を置かないと、画像はゆがんでしまします。[img の場所で div を使う](#using-a-div-in-place-of-an-img) の節ではこのような場合の解決方法を提供しています。
 
@@ -123,9 +123,9 @@ npm install @material/grid-list
 </div>
 ```
 
-### タイトルヘッダ
+### タイトルヘッダー
 
-グリッドリストはタイトルヘッダをサポートしています。`mdc-grid-list--header-caption` 修飾クラスを追加するだけでタイトルフッタをタイトルヘッダに変えることができます。
+グリッドリストはタイトルヘッダーをサポートしています。`mdc-grid-list--header-caption` 修飾クラスを追加するだけでタイトルフッターをタイトルヘッダーに変えることができます。
 
 ```html
 <div class="mdc-grid-list mdc-grid-list--header-caption">
