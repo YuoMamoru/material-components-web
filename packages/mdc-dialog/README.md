@@ -16,28 +16,28 @@ path: /catalog/dialogs/
   </a>
 </div>-->
 
-Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
+ダイアログはユーザーにタスクに関する通知をし、重要な情報を含めたり、決定を求めたり、複数のタスクに関わらせることができます。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-dialogs">Material Design guidelines: Dialogs</a>
+    <a href="https://material.io/go/design-dialogs">マテリアルデザインガイドライン: ダイアログ</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/dialog">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/dialog">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/dialog
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-dialog"
@@ -47,7 +47,7 @@ npm install @material/dialog
      aria-describedby="my-dialog-content">
   <div class="mdc-dialog__container">
     <div class="mdc-dialog__surface">
-      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
      -->Dialog Title<!--
    --></h2>
@@ -68,32 +68,28 @@ npm install @material/dialog
 </div>
 ```
 
-> *NOTE*: Titles cannot contain leading whitespace due to how `mdc-typography-baseline-top()` works.
+> *注意*: `mdc-typography-baseline-top()` の動作により、タイトルの先頭に空白を入れることはできません。
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/dialog/mdc-dialog";
 ```
 
-> *NOTE*: Styles for any components you intend to include within dialogs (e.g. List, Checkboxes, etc.) must also be
-> imported.
+> *注意*: ダイアログに含め用と思っている任意のコンポーネント（例: リスト、チェックボックス等）のスタイルもインポートしなくてはなりません。
 
-### JavaScript Instantiation
+### JavaScript のインスタンス化
 
 ```js
 import {MDCDialog} from '@material/dialog';
 const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-MDC Dialog makes no assumptions about what will be added to the `mdc-dialog__content` element. Any List, Checkboxes,
-etc. must also be instantiated. If your dialog contains any layout-sensitive components, you should wait until
-`MDCDialog:opened` is emitted to instantiate them (or call `layout` on them) so that the dialog's transition finishes
-first.
+MDC Dialog は `mdc-dialog__content` 要素に追加されるものについての仮定はありません。任意のリストやチェックボックスなどがインスタンス化されなくてはなりません。ダイアログがレイアウトに依存するコンポーネントを含んでいるときは、ダイアログの移動をまず完了させるために `MDCDialog:opened` が発行されるまでコンポーネントのインスタンス化（これらの `layout` の呼び出し）を待たなくてはなりません。
 
-For example, to instantiate an MDC List inside of a Simple or Confirmation Dialog:
+例えば、簡易ダイアログもしくは確認ダイアログの MDC List をインスタンス化するには次のようにします。
 
 ```js
 import {MDCList} from '@material/list';
@@ -104,14 +100,13 @@ dialog.listen('MDCDialog:opened', () => {
 });
 ```
 
-> *NOTE*: Mispositioned or incorrectly-sized elements (e.g. ripples, floating labels, notched outlines) are a strong
-> indication that child components are being instantiated before the dialog has finished opening.
+> *注意*: 要素の配置の誤りやサイズの間違い（例えばリップルやフローティングラベル、ノッチ付きアウトライン）はダイアログの表示が完了する前に子コンポーネントがインスタンス化されていることを示唆しています。
 
-## Variants
+## 様々な使用法
 
-### Simple Dialog
+### 簡易ダイアログ
 
-The Simple Dialog contains a list of potential actions. It does not contain buttons.
+簡易ダイアログは可能性のあるアクションのリストを含んでいます。ボタンを含んではいません。
 
 ```html
 <div class="mdc-dialog"
@@ -121,7 +116,7 @@ The Simple Dialog contains a list of potential actions. It does not contain butt
      aria-describedby="my-dialog-content">
   <div class="mdc-dialog__container">
     <div class="mdc-dialog__surface">
-      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
      -->Choose a Ringtone<!--
    --></h2>
@@ -142,12 +137,11 @@ The Simple Dialog contains a list of potential actions. It does not contain butt
 </div>
 ```
 
-> Note the inclusion of the `mdc-list--avatar-list` class, which aligns with the Simple Dialog spec.
+> `mdc-list--avatar-list` クラスを含めていることに注意してください。これは簡易ダイアログ仕様に沿ったものです。
 
-### Confirmation Dialog
+### 確認ダイアログ
 
-The Confirmation Dialog contains a list of choices, and buttons to confirm or cancel. Choices are accompanied by
-radio buttons (indicating single selection) or checkboxes (indicating multiple selection).
+確認ダイアログは選択肢のリストと確認やキャンセルのためのボタンを含んでいます。選択肢にはラジオボタン（単一選択）かチェックボックス（複数選択）を伴います。
 
 ```html
 <div class="mdc-dialog"
@@ -157,7 +151,7 @@ radio buttons (indicating single selection) or checkboxes (indicating multiple s
      aria-describedby="my-dialog-content">
   <div class="mdc-dialog__container">
     <div class="mdc-dialog__surface">
-      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
      -->Choose a Ringtone<!--
    --></h2>
@@ -198,61 +192,44 @@ radio buttons (indicating single selection) or checkboxes (indicating multiple s
 </div>
 ```
 
-> *NOTE*: In the example above, the Cancel button intentionally has the `close` action to align with the behavior of
-> clicking the scrim or pressing the Escape key, allowing all interactions involving dismissal without taking an action
-> to be detected the same way.
+> *注意*: 上の例では、スクリム（訳注: ダイアログの背後に表示される半透明の背景のこと）をクリックしたときやエスケープキーを押されたときの動作と連携する `close` アクションをキャンセルボタンに意図的に持たせています。キャンセルボタンでは検出された動作によらず、同じ方法で対話を処理することを許容しています。
 
-### Additional Information
+### 追加の情報
 
-#### Dialog Actions
+#### ダイアログアクション
 
-All dialog variants support the concept of dialog actions. Any element within a dialog may include the
-`data-mdc-dialog-action` attribute to indicate that interacting with it should close the dialog with the specified action.
-This action is then reflected via `event.detail.action` in the `MDCDialog:closing` and `MDCDialog:closed` events.
+すべてのダイアログのバリエーションはダイアログアクションの概念をサポートしています。ダイアログ内の任意の要素に `data-mdc-dialog-action` 属性を含めることができ、それと対話することにより指定したアクションでダイアログが閉じるべきであることを表しています。このアクションは `MDCDialog:closing` イベントと `MDCDialog:closed` イベント内で `event.detail.action` を通じて反映されます。
 
-Additionally, two interactions have defined actions by default:
+加えて、二つの操作がアクションとして最初から定義されています。
 
-* Clicking on the scrim
-* Pressing the Escape key within the dialog
+* スクリム上をクリック
+* ダイアログ内でのエスケープキーの押下
 
-Both of these map to the `close` action by default. This can be accessed and customized via the component's
-`scrimClickAction` and `escapeKeyAction` properties, respectively.
+これら両方ともデフォルトで `close` アクションに対応しています。これはそれぞれコンポーネントの `scrimClickAction` プロパティと `escapeKeyAction` プロパティを通じてアクセスや変更が可能になっています。
 
-Setting either of these properties to an empty string will result in that interaction being disabled (i.e. the dialog
-will no longer close in response to the interaction). Exercise caution when doing this - it should always be possible
-for a user to dismiss the dialog.
+これらのプロパティにからの文字列を設定すれば操作は無効になります（つまり、ダイアログがその操作によって閉じなくなります）。これを行うときは注意が必要です - ユーザーはいつでもダイアログを閉じることができるようにするべきです。
 
-Any action buttons within the dialog which equate strictly to a dismissal with no further action should also use the
-`close` action; this will make it easy to handle all such interactions consistently, while separately handling other
-actions.
+ダイアログ内にあるさらなる動作を伴わずに閉じるアクションと厳密に同じ動きをするすべてのアクションボタンも `close` アクションを使うべきです。これによって、個別にハンドリングされているほかのアクションと共にすべてのアクションを一貫して処理することが容易になります。
 
-#### Action Button Arrangement
+#### アクションボタンの配置
 
-As indicated in the [Dialog design article](https://material.io/design/components/dialogs.html#anatomy), buttons within
-the `mdc-dialog__actions` element are arranged horizontally by default, with the confirming action _last_.
+[Dialog design article](https://material.io/design/components/dialogs.html#anatomy) に示されている通り、`mdc-dialog__actions` 要素内のボタンはデフォルトで水平方向に配置され、確認アクションが <em>最後に</em> 配置されます。
 
-In cases where the button text is too long for all buttons to fit on a single line, the buttons are stacked vertically,
-with the confirming action _first_.
+すべてのボタンを1行に収めるのにボタンの文字が長すぎるときには、ボタンを垂直方向に重ね、確認アクションを <em>最初に</em> 配置します。
 
-MDC Dialog detects and handles this automatically by default, reversing the buttons when applying the stacked layout.
-This automatic behavior can be disabled by setting `autoStackButtons` to `false` on the component instance:
+MDC Dialog はデフォルトでこれを自動で検知して処理し、重ねるレイアウトにするときはボタンを逆順にします。この自動的な動作はコンポーネントのインスタンスの `autoStackButtons` を `false` にすることにより無効にすることができます。
 
 ```js
 dialog.autoStackButtons = false;
 ```
 
-This will also be disabled if the `mdc-dialog--stacked` modifier class is applied manually to the root element before the
-component is instantiated, but note that dialog action button labels are recommended to be short enough to fit on a
-single line if possible.
+コンポーネントがインスタンス化される前に手動でルート要素に `mdc-dialog--stacked` 修飾クラスが適用されているときにもこれは無効になりますが、ダイアログアクションボタンのラベルは1行に収まるように可能な限り短くすることをお勧めします。
 
-#### Default Action Button
+#### デフォルトアクションボタン
 
-MDC Dialog supports indicating that one of its action buttons represents the default action, triggered by pressing the
-Enter key. This can be used e.g. for single-choice Confirmation Dialogs to accelerate the process of making a selection,
-avoiding the need to tab through to the appropriate button to confirm the choice.
+ダイアログのアクションボタンの一つがデフォルトアクションを表し、エンターキーを押したことがトリガーになることを MDC Dialog はサポートしています。これは例えば単一選択確認ダイアログに使用することができ、選択肢を確認するために適切なボタンに移動するまでダブボタンを押さずに選択を素早く行えるようになります。
 
-To indicate that a button represents the default action, add the `mdc-dialog__button--default` modifier class.
-For example:
+デフォルトアクションボタンであることを示すには、`mdc-dialog__button--default` 修飾クラスを追加します。例えば次のようにします。
 
 ```html
 ...
@@ -267,27 +244,21 @@ For example:
 ...
 ```
 
-#### Actions and Selections
+#### アクションと選択
 
-Dialogs which require making a choice via selection controls should initially disable any button which performs an
-action if no choice is selected by default. MDC Dialog does not include built-in logic for this, since it aims to remain
-as unopinionated as possible regarding dialog contents, aside from relaying information on which action is taken.
+選択コントロールを通じて選択することが必要なダイアログは、デフォルトで選択肢が選択されていないのであれば最初はアクションを実行するボタンを無効にする必要があります。MDC Dialog はこのロジックをビルドインで含んでいません。これは取られたアクションに関する情報を中継することは別として、可能な限りダイアログの中身に依存しないでいることを目指しているためです。
 
-#### Accessibility
+#### アクセシビリティ
 
-##### Using `aria-hidden` as a fallback for `aria-modal`
+##### `aria-modal` の代替としての `aria-hidden` の使用 
 
-`aria-modal` is part of the ARIA 1.1 specification, and indicates to screen readers that they should confine themselves
-to a single element. MDC Dialog recommends adding `aria-modal="true"` to the root element of its DOM structure; however,
-not all user agents and screen readers properly honor this attribute.
+`aria-modal` は ARIA 1.1 仕様の一部であり、スクリーンリーダーに対して単一の要素にとどめること表しています（訳注: スクリーンリーダーは `aria-modal` で指定された領域しか読み上げの対象にしない、ということ）。MDC Dialog ではその DOM 構造のルート要素に `aria-modal="true"` を付加することを推奨していますが、すべてのユーザーエージェントとスクリーンリーダーがこの属性を正しく尊重するわけではありません。
 
-The fallback is to apply `aria-hidden="true"` to all static content behind the dialog, when the dialog is open. This will
-be easiest to achieve if all non-modal elements are under a single common ancestor under the body, so that `aria-hidden`
-can be applied to one element.
+代わりとして、ダイアログが開いているときは、ダイアログの背後にある静的コンテンツすべてに `aria-hidden="true"` を指定します。これは、非モーダル要素が body の下の一つの共通の祖先であるときに最も容易に実現でき、その一つの要素に `aria-hidden` を適用すればよいのです。
 
 ```js
 dialog.listen('MDCDialog:opened', function() {
-  // Assuming contentElement references a common parent element with the rest of the page's content
+  // contentElement がページのほかのコンテンツの共通の親要素を参照していると仮定
   contentElement.setAttribute('aria-hidden', 'true');
 });
 
@@ -296,164 +267,152 @@ dialog.listen('MDCDialog:closing', function() {
 });
 ```
 
-> Note: The example above intentionally listens to the **opened** (not opening) event and the **closing** (not closed)
-> event in order to avoid additional jumping between elements by screen readers due to one element becoming hidden
-> before others become visible.
+> 注意: 上の例では、ほかの要素が表示される前にある要素が非表示になることによってスクリーンリーダーが要素間を飛び回ることを避けるために、意図的に **opened**（opening ではなく）イベントと **closing**（closed ではなく）イベントで処理しています。
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-dialog` | Mandatory. The root DOM element containing the surface and the container.
-`mdc-dialog__scrim` | Mandatory. Semitransparent backdrop that displays behind a dialog.
-`mdc-dialog__container` | Mandatory. Wrapper element needed to ensure flexbox behavior in IE 11.
-`mdc-dialog__surface` | Mandatory. The bounding box for the dialog's content.
-`mdc-dialog__title` | Optional. Brief summary of the dialog's purpose.
-`mdc-dialog__content` | Optional. Primary content area. May contain a list, a form, or prose.
-`mdc-dialog__actions` | Optional. Footer area containing the dialog's action buttons.
-`mdc-dialog__button` | Optional. Individual action button. Typically paired with [`mdc-button`](../mdc-button).
-`mdc-dialog--open` | Optional. Indicates that the dialog is open and visible.
-`mdc-dialog--opening` | Optional. Applied automatically when the dialog is in the process of animating open.
-`mdc-dialog--closing` | Optional. Applied automatically when the dialog is in the process of animating closed.
-`mdc-dialog--scrollable` | Optional. Applied automatically when the dialog has overflowing content to warrant scrolling.
-`mdc-dialog--stacked` | Optional. Applied automatically when the dialog's action buttons can't fit on a single line and must be stacked.
+`mdc-dialog` | 必須。表示面とコンテナを含んでいるルート DOM 要素。
+`mdc-dialog__scrim` | 必須。ダイアログの背後に表示される半透明の背景。
+`mdc-dialog__container` | 必須。IE 11 でフレックスボックスの動作を保証するために必要なラッパー要素。
+`mdc-dialog__surface` | 必須。ダイアログのコンテンツのためにくくられた領域。
+`mdc-dialog__title` | オプション。ダイアログの目的の簡潔な概要。
+`mdc-dialog__content` | オプション。主たるコンテンツ領域。リストまたはフォーム、文章を含めることができる。
+`mdc-dialog__actions` | オプション。ダイアログのアクションボタンを含むフッター領域。
+`mdc-dialog__button` | オプション。個々のアクションボタン。通常は [`mdc-button`](../mdc-button) とペアで使う。
+`mdc-dialog--open` | オプション。ダイアログが開いおり表示されていることを示す。
+`mdc-dialog--opening` | オプション。ダイアログが開くアニメーションの過程で自動的に適用される。
+`mdc-dialog--closing` | オプション。ダイアログが閉じるアニメーションの過程で自動的に適用される。
+`mdc-dialog--scrollable` | オプション。ダイアログのコンテンツがオーバーフローしていてスクロールが必要な際に自動的に適用される。
+`mdc-dialog--stacked` | オプション。ダイアログのアクションボタンが1行に収まらず、重ねなくてはならないときに自動的に適用される。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-dialog-container-fill-color($color)` | Sets the fill color of the dialog.
-`mdc-dialog-scrim-color($color, $opacity)` | Sets the color of the scrim behind the dialog.
-`mdc-dialog-title-ink-color($color, $opacity)` | Sets the color of the dialog's title text.
-`mdc-dialog-content-ink-color($color, $opacity)` | Sets the color of the dialog's content text.
-`mdc-dialog-scroll-divider-color($color, $opacity)` | Sets the color of the dividers which display around scrollable content.
-`mdc-dialog-shape-radius($radius, $rtl-reflexive)` | Sets the rounded shape to dialog surface with given radius size. Set `$rtl-reflexive` to true to flip radius values in RTL context, defaults to false.
-`mdc-dialog-min-width($min-width)` | Sets the minimum width of the dialog (defaults to 280px).
-`mdc-dialog-max-width($max-width, $margin)` | Sets the maximum width of the dialog (defaults to 560px max width and 16px margins).
-`mdc-dialog-max-height($max-height, $margin)` | Sets the maximum height of the dialog (defaults to no max height and 16px margins).
+`mdc-dialog-container-fill-color($color)` | ダイアログの塗りの色を設定する。
+`mdc-dialog-scrim-color($color, $opacity)` | ダイアログ背景のスクリムの色を設定する。
+`mdc-dialog-title-ink-color($color, $opacity)` | ダイアログのタイトルテキストの色を設定する。
+`mdc-dialog-content-ink-color($color, $opacity)` | ダイアログのコンテンツテキストの色を設定する。
+`mdc-dialog-scroll-divider-color($color, $opacity)` | スクロールするコンテンツの周囲に表示される境界の色を設定する。
+`mdc-dialog-shape-radius($radius, $rtl-reflexive)` | ダイアログ面の角を与えられた半径の大きさに丸める。RTL コンテンツにおいて半径の値を反転するには `$rtl-reflexive` を true に設定する。デフォルトは false。
+`mdc-dialog-min-width($min-width)` | ダイアログの最小幅を設定する（デフォルトは 280px）。
+`mdc-dialog-max-width($max-width, $margin)` | ダイアログの最大幅を設定する（デフォルトは最大幅 280px、マージン 16px）。
+`mdc-dialog-max-height($max-height, $margin)` | ダイアログの最大の高さを設定する（デフォルトは最大の高さ制限なし、マージン 16px）。
 
-> *NOTE*: The `max-width` and `max-height` mixins only apply their maximum when the viewport is large enough to accommodate the specified value when accounting for the specified margin on either side. When the viewport is smaller, the dialog is sized such that the given margin is retained around the edges.
+> *注意*: `max-width` ミキシンと `max-height` ミキシンは幅、高さのそれぞれがマージンを考慮したうえでビューポートが指定された値を収めるのに十分な大きさがあるときに適用されます。ビューポートが小さいときには、ダイアログはマージンが端の周囲に保たれるような大きさになります。
 
-## `MDCDialog` Properties and Methods
+## `MDCDialog` プロパティとメソッド
 
-Property | Value Type | Description
+プロパティ | 値の型 | 説明
 --- | --- | ---
-`isOpen` | `boolean` (read-only) | Proxies to the foundation's `isOpen` method.
-`escapeKeyAction` | `string` | Proxies to the foundation's `getEscapeKeyAction` and `setEscapeKeyAction` methods.
-`scrimClickAction` | `string` | Proxies to the foundation's `getScrimClickAction` and `setScrimClickAction` methods.
-`autoStackButtons` | `boolean` | Proxies to the foundation's `getAutoStackButtons` and `setAutoStackButtons` methods.
+`isOpen` | `boolean` (読取専用) | ファンデーションの `isOpen` メソッドの代替。
+`escapeKeyAction` | `string` | ファンデーションの `getEscapeKeyAction` メソッドと `setEscapeKeyAction` メソッドの代替。
+`scrimClickAction` | `string` | ファンデーションの `getScrimClickAction` メソッドと `setScrimClickAction` メソッドの代替。
+`autoStackButtons` | `boolean` | ファンデーションの `getAutoStackButtons` メソッドと `setAutoStackButtons` メソッドの代替。
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`layout() => void` | Recalculates layout and automatically adds/removes modifier classes like `--scrollable`.
-`open() => void` | Opens the dialog.
-`close(action: string?) => void` | Closes the dialog, optionally with the specified action indicating why it was closed.
+`layout() => void` | レイアウトを再計算して自動的に `--scrollable` といった修飾クラスを追加/削除する。
+`open() => void` | ダイアログを開く。
+`close(action: string?) => void` | ダイアログを閉じる。オプションで閉じられた理由を示す指定されたアクションを伴う。
 
-### Events
+### イベント
 
-Event Name | `event.detail` | Description
+イベント | `event.detail` | 説明
 --- | --- | ---
-`MDCDialog:opening` | `{}` | Indicates when the dialog begins its opening animation.
-`MDCDialog:opened` | `{}` | Indicates when the dialog finishes its opening animation.
-`MDCDialog:closing` | `{action: string?}` | Indicates when the dialog begins its closing animation. `action` represents the action which closed the dialog.
-`MDCDialog:closed` | `{action: string?}` | Indicates when the dialog finishes its closing animation. `action` represents the action which closed the dialog.
+`MDCDialog:opening` | `{}` | ダイアログが開くアニメーションの開始時点を表す。
+`MDCDialog:opened` | `{}` | ダイアログが開くアニメーションの終了時点を表す。
+`MDCDialog:closing` | `{action: string?}` | ダイアログが閉じるアニメーションの開始時点を表す。`action` はダイアログを閉じたアクションを示す。
+`MDCDialog:closed` | `{action: string?}` | ダイアログが閉じるアニメーションの終了時点を表す。`action` はダイアログを閉じたアクションを示す。
 
-## Usage within Web Frameworks
+## Web フレームワークでの使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a Dialog for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のダイアログを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCDialogAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the root element.
-`removeClass(className: string) => void` | Removes a class from the root element.
-`hasClass(className: string) => boolean` | Returns whether the given class exists on the root element.
-`addBodyClass(className: string) => void` | Adds a class to the `<body>`.
-`removeBodyClass(className: string) => void` | Removes a class from the `<body>`.
-`eventTargetMatches(target: EventTarget \| null, selector: string) => void` | Returns `true` if the target element matches the given CSS selector, otherwise `false`.
-`trapFocus() => void` | Sets up the DOM such that keyboard navigation is restricted to focusable elements within the dialog surface (see [Handling Focus Trapping](#handling-focus-trapping) below for more details).
-`releaseFocus() => void` | Removes any effects of focus trapping on the dialog surface (see [Handling Focus Trapping](#handling-focus-trapping) below for more details).
-`isContentScrollable() => boolean` | Returns `true` if `mdc-dialog__content` can be scrolled by the user, otherwise `false`.
-`areButtonsStacked() => boolean` | Returns `true` if `mdc-dialog__action` buttons (`mdc-dialog__button`) are stacked vertically, otherwise `false` if they are side-by-side.
-`getActionFromEvent(event: Event) => string \| null` | Retrieves the value of the `data-mdc-dialog-action` attribute from the given event's target, or an ancestor of the target.
-`clickDefaultButton() => void` | Invokes `click()` on the `mdc-dialog__button--default` element, if one exists in the dialog.
-`reverseButtons() => void` | Reverses the order of action buttons in the `mdc-dialog__actions` element. Used when switching between stacked and unstacked button layouts.
-`notifyOpening() => void` | Broadcasts an event denoting that the dialog has just started to open.
-`notifyOpened() => void` | Broadcasts an event denoting that the dialog has finished opening.
-`notifyClosing(action: string) {}` | Broadcasts an event denoting that the dialog has just started closing. If a non-empty `action` is passed, the event's `detail` object should include its value in the `action` property.
-`notifyClosed(action: string) {}` | Broadcasts an event denoting that the dialog has finished closing. If a non-empty `action` is passed, the event's `detail` object should include its value in the `action` property.
+`addClass(className: string) => void` | ルート要素にクラスを追加する。
+`removeClass(className: string) => void` | ルート要素からクラスを削除する。
+`hasClass(className: string) => boolean` | ルート要素が与えられた CSS クラスがあるかどうかを返す。
+`addBodyClass(className: string) => void` | `<body>` にクラスを追加する。
+`removeBodyClass(className: string) => void` | `<body>` からクラスを削除する。
+`eventTargetMatches(target: EventTarget \| null, selector: string) => void` | 与えられた CSS セレクターがターゲットの要素に符合していたら `true` を返し、そうでないなら `false` を返す。
+`trapFocus() => void` | キーボード操作がダイアログ内のフォーカス可能な要素に制限されるように DOM を設定する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。
+`releaseFocus() => void` | ダイアログのフォーカスとラッピング効果を削除する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。
+`isContentScrollable() => boolean` | `mdc-dialog__content` がユーザーによってスクロール可能であれば `true` を返し、そうでないなら `false` を返す。
+`areButtonsStacked() => boolean` | `mdc-dialog__action` ボタン（`mdc-dialog__button`）が鉛直方向に重ねられていれば `true` を返し、そうでなく並べられていれば `false` を返す。
+`getActionFromEvent(event: Event) => string \| null` | 与えられたイベントターゲット、もしくはターゲットの祖先から `data-mdc-dialog-action` 属性の値を取得する。
+`clickDefaultButton() => void` | ダイアログ内に `mdc-dialog__button--default` 要素があれば、その `click()` を呼び出す。
+`reverseButtons() => void` | `mdc-dialog__actions` 要素内のアクションボタンの順番を逆順にする。スタックとアンスタックのボタン配置を切り替える際に使う。
+`notifyOpening() => void` | ダイアログがちょうど開き始めることを示すイベントを発生させる。
+`notifyOpened() => void` | ダイアログが開き終わることを示すイベントを発生させる。 
+`notifyClosing(action: string) {}` | ダイアログがちょうど閉じ始めることを示すイベントを発生させる。空でない `action` が渡されると、イベントの `detail` オブジェクトは `action` プロパティにその値が設定される。
+`notifyClosed(action: string) {}` | ダイアログが閉じ終わることを示すイベントを発生させる。空でない `action` が渡されると、イベントの `detail` オブジェクトは `action` プロパティにその値が設定される。
 
 ### `MDCDialogFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`open()` | Opens the dialog.
-`close(action: string)` | Closes the dialog, optionally with the specified action indicating why it was closed.
-`isOpen() => boolean` | Returns whether the dialog is open.
-`layout()` | Recalculates layout and automatically adds/removes modifier classes e.g. `--scrollable`.
-`getEscapeKeyAction() => string` | Returns the action reflected when the Escape key is pressed.
-`setEscapeKeyAction(action: string)` | Sets the action reflected when the Escape key is pressed. Setting to `''` disables closing the dialog via Escape key.
-`getScrimClickAction() => string` | Returns the action reflected when the scrim is clicked.
-`setScrimClickAction(action: string)` | Sets the action reflected when the scrim is clicked. Setting to `''` disables closing the dialog via scrim click.
-`getAutoStackButtons() => boolean` | Returns whether stacked/unstacked action button layout is automatically handled during layout logic.
-`setAutoStackButtons(autoStack: boolean) => void` | Sets whether stacked/unstacked action button layout is automatically handled during layout logic.
-`handleInteraction(event: Event)` | Handles `click` and `keydown` events on or within the dialog's root element
-`handleDocumentKeydown(event: Event)` | Handles `keydown` events on or within the document while the dialog is open
+`open()` | ダイアログを開く。
+`close(action: string)` | ダイアログを閉じる。オプションで閉じられた理由を示す指定されたアクションを伴う。
+`isOpen() => boolean` | ダイアログが開いているかどうかを返す。
+`layout()` | レイアウトを再計算して自動的に `--scrollable` といった修飾クラスを追加/削除する。
+`getEscapeKeyAction() => string` | エスケープキーが押されたときに使われるアクションを返す。
+`setEscapeKeyAction(action: string)` | エスケープキーが押されたときに使われるアクションを設定する。`''` を設定するとエスケープキーによってダイアログが閉じなくなる。
+`getScrimClickAction() => string` | スクリムがクリックされたときに使われるアクションを返す。
+`setScrimClickAction(action: string)` | スクリムがクリックされたときに使われるアクションを設定する。`''` を設定するとスクリムのクリックによってダイアログが閉じなくなる。
+`getAutoStackButtons() => boolean` | レイアウト処理によってアクションボタンが重なる/重ならないレイアウトに自動的にするかどうかを返す。
+`setAutoStackButtons(autoStack: boolean) => void` | レイアウト処理によってアクションボタンが重なる/重ならないレイアウトに自動的にするかどうかを設定する。
+`handleInteraction(event: Event)` | ダイアログのルート要素上、もしくは要素内の `click` イベントと `keydown` イベントをハンドリングする。
+`handleDocumentKeydown(event: Event)` | ダイアログが開いている間、ドキュメント上、もしくはドキュメント内の `keydown` イベントをハンドリングする。
 
-#### Event Handlers
+#### イベントハンドラー
 
-When wrapping the Dialog foundation, the following events must be bound to the indicated foundation methods:
+ダイアログのファンデーションをラップする際には、以下のイベントを対応するファンデーションメソッドにバインドしなくてはいけません。
 
-Event | Target | Foundation Handler | Register | Deregister
+イベント | ターゲット | ファンデーションハンドラー | 登録 | 登録解除
 --- | --- | --- | --- | ---
-`click` | `.mdc-dialog` (root) | `handleInteraction` | During initialization | During destruction
-`keydown` | `document` | `handleDocumentKeydown` | On `MDCDialog:opening` | On `MDCDialog:closing`
-`resize` | `window` | `layout` | On `MDCDialog:opening` | On `MDCDialog:closing`
-`orientationchange` | `window` | `layout` | On `MDCDialog:opening` | On `MDCDialog:closing`
+`click` | `.mdc-dialog` (ルート) | `handleInteraction` | 初期化の際に | 破棄する際に
+`keydown` | `document` | `handleDocumentKeydown` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
+`resize` | `window` | `layout` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
+`orientationchange` | `window` | `layout` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
 
-### The Util API
+### ユーティリティ API
 
-External frameworks and libraries can use the following utility methods from the `util` module when implementing their own component.
+外部フレームワークとライブラリは独自のコンポーネントを実装する際に `util` モジュールから以下のユーティリティメソッドを利用することができます。
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`createFocusTrapInstance(surfaceEl: Element, focusTrapFactory: function(): !FocusTrap, initialFocusEl: ?Element) => !FocusTrap` | Creates a properly configured [focus-trap][] instance.
-`isScrollable(el: Element \| null) => boolean` | Determines if the given element is scrollable.
-`areTopsMisaligned(els: Element[]) => boolean` | Determines if two or more of the given elements have different `offsetTop` values.
+`createFocusTrapInstance(surfaceEl: Element, focusTrapFactory: function(): !FocusTrap, initialFocusEl: ?Element) => !FocusTrap` | 適切に設定された [focus-trap][] インスタンスを生成する。
+`isScrollable(el: Element \| null) => boolean` | 与えられた要素がスクロール可能かどうかを判定する。
+`areTopsMisaligned(els: Element[]) => boolean` | 与えられた要素の中で2つ以上が異なる `offsetTop` 値を持つかどうかを判定する。
 
-### Handling Focus Trapping
+### <a name="handling-focus-trapping"></a>フォーカストラッピング処理
 
-In order for dialogs to be fully accessible, they must conform to the guidelines outlined in:
+ダイアログの完全なアクセシビリティのために、ダイアログは以下のガイドライン概要に準拠しなくてはなりません。
 
 * https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 * https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html
 * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_dialog_role
 
-The main implication of these guidelines is that the only focusable elements are those contained within a dialog
-surface.
+これらのガイドラインの主たる背景はダイアログ内に少なくとも一つはフォーカスできる要素が含まれているということです。
 
-Trapping focus correctly for a modal dialog requires a complex set of events and interaction
-patterns that we feel is best not duplicated within the logic of this component. Furthermore,
-frameworks and libraries may have their own ways of trapping focus that framework authors may want
-to make use of. For this reason, we have two methods on the adapter that should be used to handle
-focus trapping:
+モーダルダイアログで正しくフォーカスを処理するにはイベントの組み合わせが必要で、コンポーネントのロジック内で私たちが感じる対話パターンが重複していないことが最善です。さらに、フレームワークやライブラリはその作者が使用したいと思うフォーカス処理の独自の方法をもっているかもしれません。そのため、アダプタではフォーカストラッピングを処理するのに利用できる2つの方法を用意しました。
 
-* `trapFocus()` is called when the dialog is open and should set up focus trapping adhering
-  to the ARIA practices in the link above.
-* `releaseFocus()` is called when the dialog is closed and should tear down any focus
-  trapping set up when the dialog was open.
+* `trapFocus()` はダイアログが開かれた際に呼び出され、上のリンク内の ARIA プラクティスに従ったフォーカストラッピングを設定する必要があります。
+* `releaseFocus()` はダイアログが閉じる際に呼び出され、ダイアログが開かれたときに設定したフォーカストラッピングを破棄する必要があります。
 
-The `MDCDialog` component uses the [focus-trap][] package to handle this.
-**You can use `util.createFocusTrapInstance()` (see below) to easily create
-a focus trapping solution for your component code.**
+`MDCDialog` コンポーネントはこの処理に [focus-trap][] パッケージを使っています。**コンポーネントのコードで容易にフォーカストラッピングソリューションを作成するために `util.createFocusTrapInstance()`（以下を参照）を使うことができます。**
 
 [focus-trap]: https://github.com/davidtheclark/focus-trap
 
-> NOTE: iOS platform doesn't seem to register currently focused element via `document.activeElement` which causes releasing
-> focus to last focused element fail.
+> 注意: iOS プラットフォームは `document.activeElement` を通じて現在フォーカスされている要素を登録できないようで、そのため最後にフォーカスされた要素のフォーカスの開放は失敗します。
 
 #### `createFocusTrapInstance()`
 
@@ -462,19 +421,13 @@ const {activate, deactivate} =
   util.createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl);
 ```
 
-Given a dialog surface element an optional `focusTrap` factory function, and an optional initial element to focus,
-such that:
+ダイアログ面の要素とオプションで `focusTrap` のファクトリ関数、オプションで最初にフォーカスする要素を渡します。すると、
 
-* The focus is trapped within the `surfaceEl`
-* The `initialFocusEl` receives focus when the focus trap is activated
-    - If omitted, defaults to the first focusable element in `surfaceEl`
-* Closing the dialog in any way (including pressing Escape or clicking outside the dialog) deactivates focus trapping
-* Focus is returned to the previously focused element before the focus trap was activated
+* フォーカスを `surfaceEl` 内に制限する。
+* focus trap がアクティブになったときに `initialFocusEl` がフォーカスを受け取る。`initialFocusEl` を省略した際にはデフォルトで `surfaceEl` 内の最初のフォーカス可能な要素が使われる。
+* 何らかの方法（エスケープキーの押下やダイアログ外のクリックを含む）でダイアログが閉じるとフォーカストラッピングを無効にする。
+* focus trap がアクティブになる前にフォーカスされていた要素にフォーカスを戻す。
 
-This focus trap instance can be used to implement the `trapFocus` and `releaseFocus` adapter methods by calling
-`instance.activate()` and `instance.deactivate()` respectively within those methods.
+この focus trap インスタンスでは `trapFocus` と `releaseFocus` 内で `instance.activate()` と `instance.deactivate()` をそれぞれ呼び出すことによって、それらのアダプタメソッドの実装を使うことができます。
 
-The `focusTrapFactory` can be used to override the `focus-trap` function used to create the focus trap. Its API is the
-same as focus-trap's [createFocusTrap](https://github.com/davidtheclark/focus-trap#focustrap--createfocustrapelement-createoptions)
-(which is what it defaults to). You can pass in a custom function for mocking out the actual function within tests,
-or to modify the arguments passed to the function before it's called.
+`focusTrapFactory` は focus trap の生成に使用する `focus-trap` 関数を上書きするために使用できます。この API は focus-trap の [createFocusTrap](https://github.com/davidtheclark/focus-trap#focustrap--createfocustrapelement-createoptions)（デフォルトの動作）と同様です。テストで実際の関数のモックとなる関数を渡すことができ、呼び出される前に関数に渡す引数を変更することもできます。
