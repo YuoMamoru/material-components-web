@@ -42,8 +42,8 @@ npm install @material/menu
 ### HTML 構造
 
 ```html
-<div class="mdc-menu mdc-menu-surface" tabindex="-1">
-  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+<div class="mdc-menu mdc-menu-surface">
+  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
     <li class="mdc-list-item" role="menuitem">
       <span class="mdc-list-item__text">A Menu Item</span>
     </li>
@@ -80,8 +80,8 @@ menu.open = true;
 メニューにはグループ内の要素の選択状態を表すことの可能なリスト項目のグループを含めることができます。
 
 ```html
-<div class="mdc-menu mdc-menu-surface" tabindex="-1" id="demo-menu">
-  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+<div class="mdc-menu mdc-menu-surface" id="demo-menu">
+  <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
     <li>
       <ul class="mdc-menu__selection-group">
         <li class="mdc-list-item" role="menuitem">
@@ -199,9 +199,16 @@ CSS クラス | 説明
 
   * <kbd>Enter</kbd> および <kbd>Space</kbd>、<kbd>Down Arrow</kbd> はメニューを開き、最初のメニュー項目にフォーカスを合わせます。
   * <kbd>Up Arrow</kbd> はメニューを開き、最後のメニュー項目にフォーカスを移します。
-  * クリックもしくはタッチされたときはメニューのルート要素にフォーカスが設定されます。メニュが開き、ルート要素がフォーカスされると、メニューはキーボードの操作を処理します。
+  * クリックもしくはタッチされたときはリストのルート要素（`role="menu"` が設定されているところ）にフォーカスが設定されます。MDC リストはフォーカスされるとキーボードの操作を処理します。
 
-メニューが開く度にフォーカスされるメニュー項目のインデックスを設定するには、`setDefaultFocusItemIndex` メソッドを使用します。メニューのルート要素にフォーカスするには `numbers.FOCUS_ROOT_INDEX` をメソッドに渡します。
+メニューが開かれたときに常にデフォルトのフォーカス状態を設定するには `setDefaultFocusState` を使います。
+
+フォーカス状態 | 説明
+--- | ---
+`DefaultFocusState.FIRST_ITEM` | 最初のメニュー項目にフォーカスする。メニューボタンが <kbd>Enter</kbd>、<kbd>Space</kbd>、<kbd>Down Arrow</kbd> を受け取ったときに設定される。
+`DefaultFocusState.LAST_ITEM` | 最後のメニュー項目にフォーカスする。 メニューボタンが <kbd>Up arrow</kbd> を受け取ったときに設定される。
+`DefaultFocusState.LIST_ROOT` | リストのルート要素にフォーカスする。 メニューボタンがクリックもしくはタッチされたときに設定される。
+`DefaultFocusState.NONE` | フォーカスを変更しない。メニューが開いているときにフォーカスを取得したくないなら設定する。（例えばオートコンプリートのドロップダウンメニュー）
 
 ## `MDCMenu` のプロパティとメソッド
 
@@ -225,7 +232,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `setAnchorElement(element: Element) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
 `getOptionByIndex(index: number) => Element \| null` | `index` に指定したところにあるリスト項目を返す。
 `getDefaultFoundation() => MDCMenuFoundation` | ファンデーションを返す。
-`setDefaultFocusItemIndex(index: number) => void` | メニューが開く度にフォーカスされるメニュー項目のインデックスを設定する。メニューを開いた際に、特定のリスト項目ではなく、ルート要素がフォーカスを受けるようにする（これがデフォルトの動作）には `numbers.FOCUS_ROOT_INDEX` を渡す。
+`setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
 
 > プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
 
@@ -249,8 +256,7 @@ React や Angular といった JavaScript フレームワークを使ってい�
 `notifySelected(index: number) => void` | `index` に指定したところにある要素に対して `MDCMenu:selected` イベントを発行する。
 `getMenuItemCount() => number` | メニュー項目の数を返す。
 `focusItemAtIndex(index: number)` | 与えられたインデックスのメニュー項目にフォーカスする。
-`isRootFocused() => boolean` | ルート要素にフォーカスがあれば true を返す。
-`focusRoot() => void` | メニューのルート要素にフォーカスする。
+`focusListRoot() => void` | リストのルート要素にフォーカスする。
 
 ### `MDCMenuFoundation`
 
@@ -259,7 +265,7 @@ React や Angular といった JavaScript フレームワークを使ってい�
 `handleKeydown(evt: Event) => void` | メニュー内の `keydown` イベントのイベントハンドラー。
 `handleItemAction(listItem: Element) => void` | リストのアクションイベントのイベントハンドラー。
 `handleMenuSurfaceOpened() => void` | メニュー表面を開くイベントのイベントハンドラー。
-`setDefaultFocusItemIndex(index: number) => void` | メニューが開く度にフォーカスされるメニュー項目のインデックスを設定する。メニューを開いた際に、特定のリスト項目ではなく、ルート要素がフォーカスを受けるようにする（これがデフォルトの動作）には `numbers.FOCUS_ROOT_INDEX` を渡す。
+`setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
 
 ### イベント
 
