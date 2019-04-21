@@ -32,7 +32,7 @@ MDC Web をフレームワークに統合する最も簡単な方法は素の MD
 3. ラッパーコンポーネントを **初期化** し（インスタンス化し、DOM にアタッチするなど）、<em>MDC Web コンポーネントをルート要素を使ってインスタンス化し、`mdcComponent` プロパティに設定する</em>。
 4. ラッパーコンポーネントを **破棄** する（解放し、DOM からデタッチするなど）際には、MDC Web コンポーネントをクリーンアップするために `mdcComponent.destroy()` を呼ぶ。
 
-この一般的なアプローチはほぼすべての基本的なユーズケースでうまくいくでしょう。このアプローチの例として、angular v1 コンポーネント内に MDC Web のテキストフィールドをラップする方法を示した [この plunker](https://plnkr.co/edit/b4v160c186ErrPG5vNza?p=preview) を確認してみてください。ここには属性ディレクティブ内で MDC Web のボタン（リップルのエフェクトも付けて）をラップする方法も示されています。
+この一般的なアプローチはほぼすべての基本的なユーズケースでうまくいくでしょう。このアプローチの例として、angular v1 コンポーネント内に MDC Web のテキストフィールドをラップする方法を示した [この plunker](https://plnkr.co/edit/qZl2frDGBT6Ro7jEMbjP?p=preview) を確認してみてください。ここには属性ディレクティブ内で MDC Web のボタン（リップルのエフェクトも付けて）をラップする方法も示されています。
 
 この手法では [カスタムエレメント](https://developers.google.com/web/fundamentals/getting-started/primers/customelements) も機能することに注意してください。初期化に `connectedCallback` を、破棄には `disconnectedCallback` を使います。
 
