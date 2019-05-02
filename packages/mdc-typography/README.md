@@ -137,7 +137,7 @@ $mdc-typography-styles-button: (
 
 例: グローパルな `font-family` プロパティを上書きする
 ```scss
-$mdc-typography-font-family: "Arial, Helvetica, sans-serif";
+$mdc-typography-font-family: unquote("Arial, Helvetica, sans-serif");
 
 ...
 @import ...
