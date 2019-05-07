@@ -139,6 +139,7 @@ CSS クラス | 説明
 `mdc-tab-active-states-color($color)`  | アクティブなタブの状態の色を変更する。
 `mdc-tab-parent-positioning` | `MDCTab.computeDimensions()` がすべてのブラウザで同じ値になるように MDCTab の親要素の位置を設定する。
 `mdc-tab-fixed-width($width)` | タブの幅を固定にする。タブが与えられた幅より小さくなることがなくなる。
+`mdc-tab-horizontal-padding($padding)` | タブの水平方向のパディングを設定する。
 
 ## `MDCTab` プロパティとメソッド
 
