@@ -21,11 +21,10 @@
  * THE SOFTWARE.
  */
 
-import * as util from './util';
+window.mdc.testFixture.fontsLoaded.then(() => {
+  [].forEach.call(document.querySelectorAll('.mdc-top-app-bar'), (el) => {
+    mdc.topAppBar.MDCTopAppBar.attachTo(el);
+  });
 
-export {util};
-export * from './adapter';
-export * from './component';
-export * from './constants';
-export * from './dismissible/foundation';
-export * from './modal/foundation';
+  window.mdc.testFixture.notifyDomReady();
+});

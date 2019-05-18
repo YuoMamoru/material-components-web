@@ -55,6 +55,16 @@ npm install @material/auto-init
 document.querySelector('.mdc-text-field').MDCTextField.disabled = true;
 ```
 
+#### 後続の `mdc.autoInit()` の呼び出し
+
+最初の `mdc.autoInit()` の後に DOM に新しい要素を追加しようとするなら、そのあとに `mdc.autoInit()` を呼び出すことができます。これにより、既に存在するコンポーネントが再び初期化されることはありません。これは mdc-auto-init が `data-mdc-auto-init-state="initialized"` 属性を追加することによるもので、この属性によってこんっぽーねんとが既に初期化されているかどうかをトラッキングしています。`mdc.autoInit()` を呼んだ後にはコンポーネントは次のようになっています。
+
+```html
+<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" data-mdc-auto-init-state="initialized">
+  ...
+</div>
+```
+
 ### 単独モジュールとしての使用
 
 #### コンポーネントの登録
