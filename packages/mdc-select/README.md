@@ -344,6 +344,7 @@ HTML フォーム内で拡張セレクトを使うなら、ルートの `mdc-sel
 | `mdc-select__menu` | 拡張セレクトを使う際は必須。このクラスは `mdc-select` 要素内の `mdc-menu` 要素に設定しなくてはならない。 |
 | `mdc-select__dropdown-icon` | 必須。`mdc-select` 要素内の `i` 要素に設定しなくてはならない。ドロップダウンの三角印 svg とアニメーションに使われる。 |
 | `mdc-select__icon` | オプション。`mdc-select` 要素内の `i` もしくは `svg` 要素に設定しなくてはならない。先頭アイコンに使われる。 |
+| `mdc-select--activated` | オプション。セレクトのアクティブ状態のスタイル。このクラスはメニューが開かれた際に自動的に追加される。 |
 | `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に `disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
 | `mdc-select--outlined` | オプション。アウトラインされたセレクトのようなセレクトのスタイル。 |
 | `mdc-select__native-control` | ネイティブセレクトでは必須。ネイティブな `<select>` 要素。 |
@@ -434,6 +435,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `handleFocus() => void` | `select` 要素の focus イベントを処理する。 |
 | `handleBlur() => void` | `select` 要素の blur イベントを処理する。 |
 | `handleClick(normalizedX: number) => void` | ラインリップルの中心を normalizedX に設定する。 |
+| `handleMenuOpened() => void` | メニューもしくはメニュー表面の opened イベントを処理する。 |
+| `handleMenuClosed() => void` | メニューもしくはメニュー表面の closed イベントを処理する。 |
 | `handleChange() => void` | `select` 要素の値の変更を処理する。`change` イベントとコンポーネント API を通じて要求されたプログラム上での変更の両方でこれを呼び出す必要がある。 |
 | `handleKeydown(event: KeyboardEvent) => void` | `mdc-select__selected-text` 要素がフォーカスを持っており、ユーザーが `Enter` または `Space` キーを押した際にメニュー（拡張セレクト）が開くことをハンドリングする。 |
 | `setSelectedIndex(index: number) => void` | `mdc-select__selected-text` 要素を設定しメニューを閉じる（拡張セレクトのみ）ことをハンドリングする。必要であればラベルを浮かせ、輪郭をへこませる。 |
