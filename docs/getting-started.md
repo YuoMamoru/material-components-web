@@ -88,10 +88,8 @@ npm i @material/button @material/ripple
 次のコマンドでこれらすべてをインストールできます。
 
 ```
-npm install --save-dev webpack@3 webpack-dev-server@2 css-loader sass-loader node-sass extract-loader file-loader
+npm install --save-dev webpack webpack-cli webpack-dev-server css-loader sass-loader node-sass extract-loader file-loader
 ```
-
-> 注意: 私たちは Webpack 3 を使うことを推奨します。なぜなら、Webpack 4 がまだ調査中だからです。また、webpack-dev-server 2 の使用を推奨します。このバージョンが Webpack 3 上で動作しているからです。
 
 webpack が Sass をどのようにバンドルかを確認するには index.html が必要です。この HTML ファイルには CSS を含める必要があります。この CSS は sass-loader によって生成され、sass-loader が Sass から CSS にコンパイルします。CSS は .css ファイルから extract-loader によって抽出されます。単純な “Hello World” の `index.html` を作成してください。
 
@@ -159,7 +157,7 @@ npm start
 Sass から CSS にコンパイルするように webpack を設定したので、マテリアルデザインボタン用の Sass ファイルを入れてみましょう。まず、Node の依存関係をインストールします。
 
 ```
-npm install --save-dev @material/button
+npm install @material/button
 ```
 
 `@material/button` の Sass ファイルをインポートするように `app.scss` に記述する必要があります。ボタンをカスタマイズするために Sass ミキシンを使うことができます。以下のコードで “Hello World” の `app.scss` を置き換えてください。
@@ -241,14 +239,14 @@ const autoprefixer = require('autoprefixer');
 
 [babel](https://babeljs.io) を通して、ES2015 JavaScript を標準 JavaScript に変換するように webpack を設定する必要があります。以下の依存関係すべてが必要です。
 
-- [babel-core](https://www.npmjs.com/package/babel-core)
+- [@babel/core](https://www.npmjs.com/package/@babel/core)
 - [babel-loader](https://www.npmjs.com/package/babel-loader): babel を使って JavaScript ファイルをコンパイルする
-- [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015): ES2015 をコンパイルするための調整をする
+- [@babel/preset-env](https://www.npmjs.com/package/@babel/preset-env): ES2015 をコンパイルするための調整をする
 
 以下のコマンドを実行するとこれらのすべてがインストールできます。
 
 ```
-npm install --save-dev babel-core@6 babel-loader@7 babel-preset-es2015
+npm install --save-dev @babel/core babel-loader @babel/preset-env
 ```
 
 webpack が JavaScript をどのようにバンドルかを確認するには JavaScript を含むように `index.html` を変更する必要があります。JavaScript ファイルは babel-loader によって生成され、babel-loader が ES2015 ファイルを JavaScript にコンパイルします。`</body>` タグで閉じる前に以下の script タグを `index.html` に追加してください。
@@ -281,7 +279,7 @@ console.log('hello world');
      test: /\.js$/,
      loader: 'babel-loader',
      query: {
-       presets: ['es2015'],
+       presets: ['@babel/preset-env'],
      },
    }
    ```
@@ -311,10 +309,11 @@ module.exports = {
           },
           {loader: 'extract-loader'},
           {loader: 'css-loader'},
-          {loader: 'postcss-loader',
+          {
+            loader: 'postcss-loader',
             options: {
-              plugins: () => [autoprefixer()],
-            },
+              plugins: () => [autoprefixer()]
+            }
           },
           {
             loader: 'sass-loader',
@@ -328,7 +327,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015'],
+          presets: ['@babel/preset-env'],
         },
       }
     ],
@@ -343,7 +342,7 @@ module.exports = {
 ES2015 から JavaScript にコンパイルするように webpack を設定したので、マテリアルデザインリップル用の ES2015 ファイルを入れてみましょう。まず、Node の依存関係をインストールします。
 
 ```
-npm install --save-dev @material/ripple
+npm install @material/ripple
 ```
 
 `@material/ripple` の ES2015 ファイルをインポートするように `app.js` に記述する必要があります。DOM 要素を使って MDCRipple を初期化することができます。以下のコードで “hello world” の `app.js` を置き換えてください。
@@ -367,7 +366,7 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 
 ```json
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack",
     "start": "webpack-dev-server"
   }
 ```
