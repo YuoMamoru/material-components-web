@@ -370,7 +370,7 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 ### <a name="file-structure"></a>ファイルの構成
 
-コンポーネントのすべてのソースファイルは `packages/` の下に置きます。すべてのテストファイルは `test/unit` の下に置き、`packages/` ディレクトリの構成を反映させます。各コンポーネントのデモは `demos/` の下に配置します。
+コンポーネントのすべてのソースファイルは `packages/` の下に置きます。すべてのテストファイルは `test/unit` の下に置き、`packages/` ディレクトリの構成を反映させます。パッケージのスクリーンショットテストは `test/screenshot/spec` の下にあります。
 
 典型的なコンポーネントの構成は以下の通りです。
 
@@ -391,8 +391,13 @@ test/unit
   ├── mdc-component
       ├── foundation.test.js # コンポーネントのファンデーションのユニットテスト
       ├── mdc-component.test.js # コンポーネントのユニットテスト
-demos
-  ├── component.html
+test/screenshot
+  ├── spec
+      ├── mdc-component
+          ├── classes
+              ├── baseline.html # 正常ケースでのコンポーネントの使用。そのほかの変種は ./classes の下に置く。
+          ├── mixins
+              ├── ink-color.html # カスタマイズのための sass ミキシンを使用したコンポーネント。
 ```
 
 **私たちがプルリクエストを受け入れる前にすべてのコンポーネントにはこれらのファイルが <em>なくてはいけません</em>。**

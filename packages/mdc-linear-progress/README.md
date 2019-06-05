@@ -35,8 +35,9 @@ MDC Linear Progress コンポーネントは [マテリアルデザインプロ�
 npm install @material/linear-progress
 ```
 
-## 使用法
+## 基本的な使用法
 
+### HTML 構造
 ```html
 <div role="progressbar" class="mdc-linear-progress">
   <div class="mdc-linear-progress__buffering-dots"></div>
@@ -49,6 +50,21 @@ npm install @material/linear-progress
   </div>
 </div>
 ```
+
+### スタイル
+```scss
+@import "@material/linear-progress/mdc-linear-progress";
+```
+
+### JavaScript のインスタンス化
+
+```js
+import { MDCLinearProgress } from '@material/linear-progress';
+
+const linearProgress = new MDCLinearProgress(document.querySelector('.mdc-linear-progress'));
+```
+
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ### CSS 修飾子
 
