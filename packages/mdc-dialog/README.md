@@ -229,7 +229,7 @@ dialog.autoStackButtons = false;
 
 ダイアログのアクションボタンの一つがデフォルトアクションを表し、エンターキーを押したことがトリガーになることを MDC Dialog はサポートしています。これは例えば単一選択確認ダイアログに使用することができ、選択肢を確認するために適切なボタンに移動するまでダブボタンを押さずに選択を素早く行えるようになります。
 
-デフォルトアクションボタンであることを示すには、`mdc-dialog__button--default` 修飾クラスを追加します。例えば次のようにします。
+デフォルトアクションボタンであることを示すには、`data-mdc-dialog-button-default` データ属性を追加します。例えば次のようにします。
 
 ```html
 ...
@@ -237,7 +237,7 @@ dialog.autoStackButtons = false;
   <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
     <span class="mdc-button__label">Cancel</span>
   </button>
-  <button type="button" class="mdc-button mdc-dialog__button mdc-dialog__button--default" data-mdc-dialog-action="accept">
+  <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" data-mdc-dialog-button-default>
     <span class="mdc-button__label">OK</span>
   </button>
 </footer>
@@ -305,6 +305,12 @@ CSS クラス | 説明
 
 > *注意*: `max-width` ミキシンと `max-height` ミキシンは幅、高さのそれぞれがマージンを考慮したうえでビューポートが指定された値を収めるのに十分な大きさがあるときに適用されます。ビューポートが小さいときには、ダイアログはマージンが端の周囲に保たれるような大きさになります。
 
+## その他のカスタマイズ
+データ属性 | 説明
+--- | ---
+`data-mdc-dialog-button-default` | オプション。ボタンがデフォルトアクションボタン（上記デフォルトアクションボタンを参照）であることを示す。
+`data-mdc-dialog-initial-focus` | オプション。要素がダイアログが開いた後に初期フォーカスを持っていることを示す。
+
 ## `MDCDialog` プロパティとメソッド
 
 プロパティ | 値の型 | 説明
@@ -342,13 +348,14 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `hasClass(className: string) => boolean` | ルート要素が与えられた CSS クラスがあるかどうかを返す。
 `addBodyClass(className: string) => void` | `<body>` にクラスを追加する。
 `removeBodyClass(className: string) => void` | `<body>` からクラスを削除する。
-`eventTargetMatches(target: EventTarget \| null, selector: string) => void` | 与えられた CSS セレクターがターゲットの要素に符合していたら `true` を返し、そうでないなら `false` を返す。
-`trapFocus() => void` | キーボード操作がダイアログ内のフォーカス可能な要素に制限されるように DOM を設定する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。
+`eventTargetMatches(target: EventTarget | null, selector: string) => void` | 与えられた CSS セレクターがターゲットの要素に符合していたら `true` を返し、そうでないなら `false` を返す。
+`trapFocus(initialFocusEl: HTMLElement|null) => void` | キーボード操作がダイアログ内のフォーカス可能な要素に制限されるように DOM を設定する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。設定されていればフォーカスが `initialFocusEl` に移る。
 `releaseFocus() => void` | ダイアログのフォーカスとラッピング効果を削除する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。
+`getInitialFocusEl() => HTMLElement|null` | ダイアログが開いた後にフォーカスを与えるために `data-mdc-dialog-initial-focus` 要素を返す。
 `isContentScrollable() => boolean` | `mdc-dialog__content` がユーザーによってスクロール可能であれば `true` を返し、そうでないなら `false` を返す。
 `areButtonsStacked() => boolean` | `mdc-dialog__action` ボタン（`mdc-dialog__button`）が鉛直方向に重ねられていれば `true` を返し、そうでなく並べられていれば `false` を返す。
 `getActionFromEvent(event: Event) => string \| null` | 与えられたイベントターゲット、もしくはターゲットの祖先から `data-mdc-dialog-action` 属性の値を取得する。
-`clickDefaultButton() => void` | ダイアログ内に `mdc-dialog__button--default` 要素があれば、その `click()` を呼び出す。
+`clickDefaultButton() => void` | ダイアログ内に `data-mdc-dialog-button-default` 要素があれば、その `click()` を呼び出す。
 `reverseButtons() => void` | `mdc-dialog__actions` 要素内のアクションボタンの順番を逆順にする。スタックとアンスタックのボタン配置を切り替える際に使う。
 `notifyOpening() => void` | ダイアログがちょうど開き始めることを示すイベントを発生させる。
 `notifyOpened() => void` | ダイアログが開き終わることを示すイベントを発生させる。 
@@ -369,8 +376,9 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setScrimClickAction(action: string)` | スクリムがクリックされたときに使われるアクションを設定する。`''` を設定するとスクリムのクリックによってダイアログが閉じなくなる。
 `getAutoStackButtons() => boolean` | レイアウト処理によってアクションボタンが重なる/重ならないレイアウトに自動的にするかどうかを返す。
 `setAutoStackButtons(autoStack: boolean) => void` | レイアウト処理によってアクションボタンが重なる/重ならないレイアウトに自動的にするかどうかを設定する。
-`handleInteraction(event: Event)` | ダイアログのルート要素上、もしくは要素内の `click` イベントと `keydown` イベントをハンドリングする。
-`handleDocumentKeydown(event: Event)` | ダイアログが開いている間、ドキュメント上、もしくはドキュメント内の `keydown` イベントをハンドリングする。
+`handleClick(event: MouseEvent)` | ダイアログのルート要素上、もしくは要素内の `click` イベントをハンドリングする。
+`handleKeydown(event: KeyboardEvent)` | ダイアログのルート要素上、もしくは要素内の `keydown` イベントをハンドリングする。
+`handleDocumentKeydown(event: Event)` | ダイアログが開いている間、ドキュメント上もしくはドキュメント内の `keydown`イベントをハンドリングする。
 
 #### イベントハンドラー
 
@@ -378,7 +386,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 イベント | ターゲット | ファンデーションハンドラー | 登録 | 登録解除
 --- | --- | --- | --- | ---
-`click` | `.mdc-dialog` (ルート) | `handleInteraction` | 初期化の際に | 破棄する際に
+`click` | `.mdc-dialog` (ルート) | `handleClick` | 初期化の際に | 破棄する際に
+`keydown` | `.mdc-dialog` (ルート) | `handleKeydown` | 初期化の際に | 破棄する際に
 `keydown` | `document` | `handleDocumentKeydown` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
 `resize` | `window` | `layout` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
 `orientationchange` | `window` | `layout` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
