@@ -34,3 +34,13 @@ import * as ponyfill from '@material/dom/ponyfill';
 --- | ---
 `closest(element: Element, selector: string) => ?Element` | 与えられたセレクターにマッチする与えられた要素の祖先（与えられた要素がマッチするならそれ自身）を返す。
 `matches(element: Element, selector: string) => boolean` | 与えられた要素が与えられた CSS セレクターにマッチするなら true を返す。
+
+### イベント関数
+
+外部のフレームワークとライブラリは以下のイベントユーティリティメソッドを使うことが可能です。
+
+メソッド | 説明
+--- | ---
+`util.applyPassive(globalObj = window, forceRefresh = false) => object` | 現在のブラウザがパッシブイベントリスナーをサポートしているか確認する
+
+> <em>注意</em>: 関数 `util.applyPassive` は結果をキャッシュします。`forceRefresh` は強制的に再計算させますが、主にテストのために使い、通常の使用においては必要ないはずです。
