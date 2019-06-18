@@ -36,7 +36,7 @@ npm install @material/select
 
 ## 基本的な使用法
 
-この節のドキュメントはネイティブな `<select>` 要素を使う MDC Select の使い方を説明します。MDC Menu を使った MDC Select の使い方の情報は次の [様々な使用法](#variants) を参照してください。
+この節のドキュメントはネイティブな `<select>` 要素を使う MDC Select の使い方を説明します。MDC Menu を使った MDC Select の使い方の情報は次の [バリエーション](#variants) を参照してください。
 
 ### HTML構造
 
@@ -82,7 +82,7 @@ select.listen('MDCSelect:change', () => {
 
 JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## <a name="variants"></a>様々な使用法
+## <a name="variants"></a>バリエーション
 
 ### 拡張セレクト
 

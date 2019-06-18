@@ -90,7 +90,7 @@ const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
 
 > <em>注意</em>: カードに [アイコン切り替えボタン](../mdc-icon-button#icon-button-toggle) があるなら、`MDCRipple` ではなく `MDCIconButtonToggle` をインスタンス化します。
 
-## 様々な使用法
+## バリエーション
 
 ### 縁ありのカード
 

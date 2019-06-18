@@ -72,7 +72,7 @@ const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
 
 > JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## 様々な使用法
+## バリエーション
 
 MDC Tab Bar にはバリエーションはありませんが、サブコンポーネントにはあります。より詳細な情報は [Tab Scroller](../mdc-tab-scroller) や [Tab](../mdc-tab)、[Tab Indicator](../mdc-tab-indicator) を参照してください。
 

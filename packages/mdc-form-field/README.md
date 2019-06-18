@@ -58,7 +58,7 @@ formField.input = checkbox;
 
 > See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
 
-## 様々な使用法
+## バリエーション
 
 ### ラベルの位置
 

@@ -65,7 +65,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 > JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## 様々な使用法
+## バリエーション
 
 ### 囲まれたボタン
 
