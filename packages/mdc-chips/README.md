@@ -41,9 +41,9 @@ npm install @material/chips
 
 ```html
 <div class="mdc-chip-set">
-  <div class="mdc-chip" tabindex="0">
-    <div class="mdc-chip__text">Chip content</div>
-  </div>
+  <button class="mdc-chip">
+    <span class="mdc-chip__text">Chip content</span>
+  </button>
   ...
 </div>
 ```
@@ -83,10 +83,10 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 #### 先頭アイコン
 
 ```html
-<div class="mdc-chip">
+<button class="mdc-chip">
   <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">event</i>
-  <div class="mdc-chip__text">Add to calendar</div>
-</div>
+  <span class="mdc-chip__text">Add to calendar</span>
+</button>
 ```
 
 #### 末尾アイコン
@@ -94,10 +94,10 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 末尾アイコンはチップを集合から削除する機能が備えられています。末尾アイコンを追加するなら、キーボードやスクリーンリーダーからアクセスできるように `tabindex="0"` と `role="button"` も設定します。末尾アイコンは [入力チップ](#input-chips) にのみ追加できます。
 
 ```html
-<div class="mdc-chip">
-  <div class="mdc-chip__text">Jane Smith</div>
+<button class="mdc-chip">
+  <span class="mdc-chip__text">Jane Smith</span>
   <i class="material-icons mdc-chip__icon mdc-chip__icon--trailing" tabindex="0" role="button">cancel</i>
-</div>
+</button>
 ```
 
 ### 選択チップ
@@ -116,15 +116,15 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```html
 <div class="mdc-chip-set mdc-chip-set--filter">
-  <div class="mdc-chip">
-    <div class="mdc-chip__checkmark" >
+  <button class="mdc-chip">
+    <span class="mdc-chip__checkmark" >
       <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
         <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
               d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       </svg>
-    </div>
-    <div class="mdc-chip__text">Filterable content</div>
-  </div>
+    </span>
+    <span class="mdc-chip__text">Filterable content</span>
+  </button>
   ...
 </div>
 ```
@@ -133,16 +133,16 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```html
 <div class="mdc-chip-set mdc-chip-set--filter">
-  <div class="mdc-chip">
+  <button class="mdc-chip">
     <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">face</i>
-    <div class="mdc-chip__checkmark" >
+    <span class="mdc-chip__checkmark" >
       <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
         <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
               d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       </svg>
-    </div>
-    <div class="mdc-chip__text">Filterable content</div>
-  </div>
+    </span>
+    <span class="mdc-chip__text">Filterable content</span>
+  </button>
   ...
 </div>
 ```
@@ -193,24 +193,24 @@ chipSet.listen('MDCChip:removal', function(event) {
 選択済のフィルターチップや選択チップを表示するには、ルートチップ要素にクラス `mdc-chip--selected` を追加します。
 
 ```html
-<div class="mdc-chip mdc-chip--selected">
-  <div class="mdc-chip__text">Add to calendar</div>
-</div>
+<button class="mdc-chip mdc-chip--selected">
+  <span class="mdc-chip__text">Add to calendar</span>
+</button>
 ```
 
 先頭アイコンのある選択済フィルターチップでは、`mdc-chip__icon--leading` 要素にクラス `mdc-chip__icon--leading-hidden` も追加します。これによって先頭アイコンはチェック印に置き換えられます。
 
 ```html
-<div class="mdc-chip mdc-chip--selected">
+<button class="mdc-chip mdc-chip--selected">
   <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">face</i>
-  <div class="mdc-chip__checkmark">
+  <span class="mdc-chip__checkmark">
     <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
       <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
             d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
     </svg>
-  </div>
-  <div class="mdc-chip__text">Filterable content</div>
-</div>
+  </span>
+  <span class="mdc-chip__text">Filterable content</span>
+</button>
 ```
 
 ## スタイルのカスタマイズ
@@ -256,8 +256,8 @@ CSS クラス | 説明
 `mdc-chip-trailing-icon-color($color, $opacity, $hover-opacity, $focus-opacity)` | チップの末尾アイコンの色を設定する。オプションで通常時/ホバー時/フォーカス時の不透明度も設定できる。
 `mdc-chip-leading-icon-size($size)` | チップの先頭アイコンの大きさを設定する。
 `mdc-chip-trailing-icon-size($size)` | チップの末尾アイコンの大きさを設定する。
-`mdc-chip-leading-icon-margin($top, $right, $bottom, $left)` | チップの先頭アイコンのマージンを設定する。
-`mdc-chip-trailing-icon-margin($top, $right, $bottom, $left)` | チップの末尾アイコンのマージンを設定する。
+`mdc-chip-leading-icon-margin($left-margin, $right-margin)` | チップの先頭アイコンのマージンを設定する。
+`mdc-chip-trailing-icon-margin($left-margin, $right-margin)` | チップの末尾アイコンのマージンを設定する。
 `mdc-chip-elevation-transition()` | チップに MDC 持ち上がりトランジッションを追加する。チップにボックスシャドウトランジッションが必要な際には `mdc-elevation-transition-value()` を使ってトランジッションを直接指定する代わりにこれを使ってください。
 
 > <em>注意</em>: `mdc-chip-set-spacing` ではチップとチップが含まれている集合の端との間隔の大きさも設定されます。
@@ -336,6 +336,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `hasLeadingIcon() => boolean` | チップに先頭アイコンがあるかどうかを返す
 `getRootBoundingClientRect() => ClientRect` | ルート要素に結びついている client rect を返す
 `getCheckmarkBoundingClientRect() => ClientRect \| null` | チェック印要素に結びついている client rect を返し、チェック印要素がないなら null を返す
+`setAttr(attr: string, value: string) => void` | ルート要素の属性の値を設定する
 
 > \*<em>注意</em>: `notifyInteraction` と `notifyTrailingIconInteraction` は対象となるチップの ID を伝たえる必要があり、親の `mdc-chip-set` 要素から識別できる必要があります（例えば、DOM イベントバブルを通じて）。
 

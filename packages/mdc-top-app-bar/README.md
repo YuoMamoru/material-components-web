@@ -44,12 +44,14 @@ npm install @material/top-app-bar
 <header class="mdc-top-app-bar">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
   </div>
 </header>
 ```
+
+> 注意: [操作アイテムを伴う Top App Bar](#top-app-bar-with-action-items) セクションの `mdc-icon-button` に関する注意事項を参照してください。
 
 #### メニューアイコン
 
@@ -67,6 +69,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```scss
 @import "@material/top-app-bar/mdc-top-app-bar";
+@import "@material/icon-button/mdc-icon-button";
 ```
 
 ### JavaScript のインストール
@@ -83,21 +86,21 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 
 ## バリエーション
 
-### 操作アイテムを伴う Top App Bar
+### <a name="top-app-bar-with-action-items"></a>操作アイテムを伴う Top App Bar
 
-トップアプリバーはナビゲーションアイコンの反対側に配置した操作アイテムを入れることができます。
+トップアプリバーはナビゲーションアイコンの反対側に配置した操作アイテムを入れることができます。適切なスタイルを適応するには `mdc-top-app-bar__navigation-icon` 要素と `mdc-top-app-bar__action-item` 要素の両方に `mdc-icon-button` クラスをつけなくてはなりません。アイコンの詳細なドキュメントについては、[mdc-icon-button ドキュメント](../mdc-icon-button/README.md) を参照してください。
 
 ```html
 <header class="mdc-top-app-bar">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Download">file_download</a>
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Print this page">print</a>
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">bookmark</a>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Download">file_download</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Print this page">print</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">bookmark</button>
     </section>
   </div>
 </header>
@@ -111,11 +114,11 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 <header class="mdc-top-app-bar mdc-top-app-bar--short">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
       <span class="mdc-top-app-bar__title">Title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Bookmark this page">bookmark</a>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">bookmark</button>
     </section>
   </div>
 </header>
@@ -220,12 +223,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `getViewportScrollY() => number` | ページトップから body のコンテンツがスクロールしたピクセル数を取得する。
 `getTotalActionItems() => number` | トップアプリバー上の操作アイテムの数を取得する。
 `notifyNavigationIconClicked() => void` | ナビゲーションアイコンがクリックされたときにカスタムイベント `MDCTopAppBar:nav` を発生させる。
-`registerNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素に与えられたイベントのイベントリスナーを登録する。
-`deregisterNavigationIconInteractionHandler(evtType: string, handler: EventListener) => void` | ネイティブナビゲーションアイコン要素から与えられたイベントのイベントリスナーの登録を解除する。
-`registerScrollHandler(handler: EventListener) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーを登録する。デフォルトの実装では window の `scroll` イベントにリスナーとしてハンドラーを追加する。
-`deregisterScrollHandler(handler: EventListener) => void` | ユーザーがスクロールさせた際に呼び出すハンドラーの登録を解除する。デフォルトの実装では window の `scroll` イベントにリスナーとして登録されたハンドラーを削除する。
-`registerResizeHandler(handler: EventListener) => void` | 画面（もしくはそのビューポート）がリサイズされた際に呼び出すハンドラーを登録する。デフォルトの実装では window の `resize` イベントにリスナーとしてハンドラーを追加する。
-`deregisterResizeHandler(handler: EventListener) => void` | 画面（もしくはそのビューポート）がリサイズされた際に呼び出すハンドラーの登録を解除する。デフォルトの実装では window の `resize` イベントにリスナーとして登録されたハンドラーを削除する。
 
 ### ファンデーション
 
@@ -235,8 +232,9 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 メソッド | 説明
 --- | ---
-`initScrollHandler(handler: EventListener) => void` | 指定したターゲット要素にスクロールハンドラーを登録する。
-`destroyScrollHandler(handler: EventListener) => void` | ファンデーションにより設定された現在のスクロールハンドラの登録を解除する。
+`handleTargetScroll() => void` | 指定したスクロールターゲット（デフォルトは `window`）の `scroll` イベントをハンドリングする。
+`handleWindowResize() => void` | ウィンドウの `resize` イベントをハンドリングする。
+`handleNavigationClick() => void` | ナビゲーションアイコンの `click` イベントをハンドリングする。
 
 #### `MDCShortTopAppBarFoundation`
 

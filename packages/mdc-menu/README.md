@@ -227,6 +227,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `setAnchorMargin(Partial<MDCMenuDistance>) => void` | メニュー表面の `setAnchorMargin(Partial<MDCMenuDistance>)` メソッドの代替。
 `setAbsolutePosition(x: number, y: number) => void` | メニュー表面の `setAbsolutePosition(x: number, y: number)` メソッドの代替。
 `setFixedPosition(isFixed: boolean) => void` | メニュー表面の `setFixedPosition(isFixed: boolean)` メソッドの代替。
+`setSelectedIndex(index: number) => void` | 指定したインデックスのリスト項目を選択状態に設定する。
 `hoistMenuToBody() => void` | メニュー表面の `hoistMenuToBody()` メソッドの代替。
 `setIsHoisted(isHoisted: boolean) => void` | メニュー表面の `setIsHoisted(isHoisted: boolean)` メソッドの代替。
 `setAnchorElement(element: Element) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
@@ -249,14 +250,14 @@ React や Angular といった JavaScript フレームワークを使ってい�
 `addAttributeToElementAtIndex(index: number, attr: string, value: string) => void` | `index` に指定したところにある要素に値 `value` を持つ `attr` 属性を追加する。
 `removeAttributeFromElementAtIndex(index: number, attr: string) => void` | `index` に指定したところにある要素から `attr` 属性を削除する。
 `elementContainsClass(element: Element, className: string) => boolean` | `element` が `className` のクラスを含んでいれば true を返す。
-`closeSurface() => void` | メニューを閉じる。
+`closeSurface(skipRestoreFocus?: boolean) => void` | メニューを閉じる。`skipRestoreFocus` が true なら、以前フォーカスされていた要素に対するフォーカスの復元をスキップする。
 `getElementIndex(element: Element) => number` | `element` の `index` の値を返す。
-`getParentElement(element: Element) => Element \| null` | 与えられた `element` の `.parentElement` 要素を返す。
-`getSelectedElementIndex(element: Element) => number` | `mdc-menu-item--selected` クラスを含んでいる `element` で与えられる選択肢グループ内の要素の `index` の値を返す。
 `notifySelected(index: number) => void` | `index` に指定したところにある要素に対して `MDCMenu:selected` イベントを発行する。
 `getMenuItemCount() => number` | メニュー項目の数を返す。
 `focusItemAtIndex(index: number)` | 与えられたインデックスのメニュー項目にフォーカスする。
 `focusListRoot() => void` | リストのルート要素にフォーカスする。
+`getSelectedSiblingOfItemAtIndex(index: number) => number` | 与えられた `index` の兄弟要素である同じグループ内にある選択されたリスト項目のインデックスを返す。
+`isSelectableItemAtIndex(index: number) => boolean` | 指定したインデックスのメニュー項目が `.mdc-menu__selection-group` 要素を含んでいれば true を返す。
 
 ### `MDCMenuFoundation`
 
@@ -266,6 +267,7 @@ React や Angular といった JavaScript フレームワークを使ってい�
 `handleItemAction(listItem: Element) => void` | リストのアクションイベントのイベントハンドラー。
 `handleMenuSurfaceOpened() => void` | メニュー表面を開くイベントのイベントハンドラー。
 `setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
+`setSelectedIndex(index: number) => void` | 与えられた `index` のメニュー項目を選択する。
 
 ### イベント
 
