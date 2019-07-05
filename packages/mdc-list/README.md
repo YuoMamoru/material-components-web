@@ -16,27 +16,27 @@ path: /catalog/lists/
   </a>
 </div>-->
 
-Lists are continuous, vertical indexes of text or images.
+リストはテキストまたはイメージの連続した垂直方向に並んだ表示項目です。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/design/components/lists.html">Material Design guidelines: Lists</a>
+    <a href="https://material.io/design/components/lists.html">マテリアルデザインガイドライン: リスト</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/list">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/list">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 ```
 npm install @material/list
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <ul class="mdc-list">
@@ -52,7 +52,7 @@ npm install @material/list
 </ul>
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/list/mdc-list";
@@ -60,7 +60,7 @@ npm install @material/list
 
 ### JavaScript
 
-MDC List includes an optional JavaScript component which can be used for keyboard interaction and accessibility.
+MDC List はキーボードによる対話や操作を使用できるようにするオプションの JavaScript コンポーネントが含まれています。
 
 ```js
 import {MDCList} from '@material/list';
@@ -68,10 +68,9 @@ import {MDCList} from '@material/list';
 const list = new MDCList(document.querySelector('.mdc-list'));
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-Note that the JS component does _not_ automatically instantiate ripples on list items. If you wish to include the
-fully-upgraded ripple effect on list items, you must instantiate `MDCRipple` on each item:
+JS コンポーネントは自動的にリスト項目のリップルをインスタンス化する<em>わけではない</em>ことに注意してください。リスト項目上に完全にアップグレードされたリップル効果を含めたい場合、各項目に対して `MDCRipple` をインスタンス化しなくてはなりません。
 
 ```js
 import {MDCRipple} from '@material/ripple';
@@ -79,13 +78,12 @@ import {MDCRipple} from '@material/ripple';
 const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
 ```
 
-## Variants
+## バリエーション
 
-### Two-Line List
+### 2行リスト
 
-You can use the `mdc-list--two-line` combined with some extra markup around the text to style a list
-in the double line list style as defined by
-[the spec](https://material.io/design/components/lists.html#specs) (see "Double line").
+`mdc-list--two-line` をテキストの周囲のいくつかの追加マークアップと組み合わせて使うことにより、[仕様](https://material.io/design/components/lists.html#specs)（"Double line" 参照）に定義された2行で表示されるリストをスタイルすることができます。
+（訳注: 原文は "Double line" となっていため、そのまま表記したが、現在の仕様では "Two-line list" となっている。）
 
 ```html
 <ul class="mdc-list mdc-list--two-line">
@@ -110,11 +108,11 @@ in the double line list style as defined by
 </ul>
 ```
 
-> NOTE: Make sure there are no white-space characters before primary and secondary text content.
+> 注意: 主たるもの（primary）と副次的なもの（secondary）のテキストコンテンツの前にスペースを入れないようにしてください。
 
-### List Groups
+### リストグループ
 
-Multiple related lists can be grouped together using the `mdc-list-group` class on a containing element.
+複数の関連するリストで含まれる要素に `mdc-list-group` クラスと一緒に使うことにより、グループ化することができます。
 
 ```html
 <div class="mdc-list-group">
@@ -145,9 +143,9 @@ Multiple related lists can be grouped together using the `mdc-list-group` class 
 </div>
 ```
 
-### List Dividers
+### <a name="list-dividers"></a>リストの区切線
 
-MDC List contains an `mdc-list-divider` class which can be used as full-width or inset subdivisions either within lists themselves, or standalone between related groups of content.
+フル幅で、またはリスト自身を細分化したり、コンテンツの関連するグループ間を独立させたりすることができる `mdc-list-divider` クラスを MDC List は含んでいます。
 
 ```html
 <ul class="mdc-list">
@@ -167,9 +165,9 @@ MDC List contains an `mdc-list-divider` class which can be used as full-width or
 </ul>
 ```
 
-> NOTE: the role="separator" attribute on the list divider. It is important to include this so that assistive technology can be made aware that this is a presentational element and is not meant to be included as an item in a list. Note that separator is indeed a valid role for li elements.
+> 注意: リスト区切線上の role="separator" 属性に注目してください。この要素が表現上の要素でありリスト内の要素に含まれるという意味ではないことを支援技術が認識するために、これは重要です。この区切線は li 要素にとって非常に有効な役目であることに注意してください。
 
-OR
+または
 
 ```html
 <ul class="mdc-list">
@@ -191,10 +189,9 @@ OR
 </ul>
 ```
 
-### Single Selection List
+### 単一選択リスト
 
-MDC List can handle selecting/deselecting list elements based on click or keyboard action. When enabled, the `space` and `enter` keys (or `click` event) will trigger an
-single list item to become selected and any other previous selected element to become deselected.
+MDC List はクリックまたはキーボード操作に基づきリスト項目の選択/非選択を処理することができます。有効にすると、 `space` キーと `enter` キー（または `click` イベント）が一つのリスト項目を選択され、ほかの選択されていた要素が非選択になります。
 
 ```html
 <ul id="my-list" class="mdc-list" role="listbox">
@@ -215,11 +212,9 @@ const list = new MDCList(document.getElementById('my-list'));
 list.singleSelection = true;
 ```
 
-#### Pre-selected list item
+#### 選択済リスト項目
 
-When rendering the list with a pre-selected list item, the list item that needs to be selected should contain
-the `mdc-list-item--selected` or `mdc-list-item--activated` class before creating the list. Please see
-[Accessibility](#Accessibility) section for appropriate aria attributes.
+選択済リスト項目を描画する際には、リストが生成される前に選択済にする必要のあるリスト項目に `mdc-list-item--selected` クラスか `mdc-list-item--activated` クラスを含めなくてはなりません。適切な aria 属性については[アクセシビリティ](#Accessibility) セクションを参照してください。
 
 ```html
 <ul id="my-list" class="mdc-list" role="listbox">
@@ -240,9 +235,9 @@ const list = new MDCList(document.getElementById('my-list'));
 list.singleSelection = true;
 ```
 
-### List with radio group
+### ラジオグループを伴うリスト
 
-When rendering list radio group with pre-selected radio button the selected list item should contain `aria-checked` set to `true` and the native radio input element contains `checked` attribute, all other list items should have `aria-checked` set to `false`. The list root contains `role="radiogroup"` whereas each list item within radio group contains `role="radio"`.
+選択済ラジオボタンを伴うラジオグループを描画するには、選択されたリスト項目は `aria-checked` を `true` に設定し、ネイティブな radio input 要素には `checked` 属性を含めます。その他のすべてのリスト項目は `aria-checked` を `false` に設定しなくてはなりません。リストのルートには `role="radiogroup"` を含め、ラジオボタンを内包するそれぞれのリスト項目には `role="radio"` を含めます。
 
 ```html
 <ul class="mdc-list" role="radiogroup">
@@ -298,9 +293,9 @@ When rendering list radio group with pre-selected radio button the selected list
 </ul>
 ```
 
-### List with checkbox items
+### チェックボックス項目を伴うリスト
 
-When rendering list with checkbox items all pre-selected list items should contain `aria-checked` set to `true` and the native checkbox input element should contain `checked` attribute, all other list items should have `aria-checked` set to `false`. Each list item in checkbox list contains `role="checkbox"` attribute and the list root should contain `role="group"` and `aria-label` attributes.
+チェックボックス項目を伴うリストを描画するには、すべての選択済リスト項目は `aria-checked` を `true` に設定し、ネイティブな checkbox input 要素には `checked` 属性を含めます。その他のすべてのリスト項目は `aria-checked` を `false` に設定しなくてはなりません。チェックボックスリスト内のすべてのリスト項目には `role="checkbox"` 属性を含め、リストのルートは `role="group"` 属性と `aria-label` 属性を含めなくてはなりません。
 
 ```html
 <ul class="mdc-list" role="group" aria-label="List with checkbox items">
@@ -365,127 +360,111 @@ When rendering list with checkbox items all pre-selected list items should conta
 </ul>
 ```
 
-The `selectedIndex` (that proxies foundation's `setSelectedState()`) accepts list of indexes in array format for list with checkbox items to set the selection state. It overwrites the current state with new selected state.
+`selectedIndex`（ファンデーションの `setSelectedState()` の代替）は選択状態を設定されたチェックボックス要素をもっているリストの配列形式のインデックスのリストを受け付けます。これは現在の選択状態を新たな選択状態で上書きします。
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-list` | Mandatory, for the list element.
-`mdc-list--non-interactive` | Optional, disables interactivity affordances.
-`mdc-list--dense` | Optional, styles the density of the list, making it appear more compact.
-`mdc-list--avatar-list` | Optional, configures the leading tiles of each row to display images instead of icons. This will make the graphics of the list items larger.
-`mdc-list--two-line` | Optional, modifier to style list with two lines (primary and secondary lines).
-`mdc-list-item` | Mandatory, for the list item element.
-`mdc-list-item__text` |	Mandatory. Wrapper for list item text content (displayed as middle column of the list item).
-`mdc-list-item__primary-text` | Optional, primary text for the list item. Should be the child of `mdc-list-item__text`.
-`mdc-list-item__secondary-text` | Optional, secondary text for the list item. Displayed below the primary text. Should be the child of `mdc-list-item__text`.
-`mdc-list-item--disabled` | Optional, styles the row in the disabled state.
-`mdc-list-item--selected` | Optional, styles the row in the selected* state.
-`mdc-list-item--activated` | Optional, styles the row in the activated* state.
-`mdc-list-item__graphic` | Optional, the first tile in the row (in LTR languages, the first column of the list item). Typically an icon or image.
-`mdc-list-item__meta`	| Optional, the last tile in the row (in LTR languages, the last column of the list item). Typically small text, icon. or image.
-`mdc-list-group` | Optional, wrapper around two or more mdc-list elements to be grouped together.
-`mdc-list-group__subheader` |	Optional, heading text displayed above each list in a group.
-`mdc-list-divider` | Optional, for list divider element.
-`mdc-list-divider--padded` | Optional, leaves gaps on each side of divider to match padding of `list-item__meta`.
-`mdc-list-divider--inset` | Optional, increases the leading margin of the divider so that it does not intersect the avatar column.
+`mdc-list` | リスト要素で必須。
+`mdc-list--non-interactive` | オプション。対話型アフォーダンスを無効にする。
+`mdc-list--dense` | オプション。リストを密集型にスタイルし、よりコンパクトにする。
+`mdc-list--avatar-list` | オプション。各行にアイコンの代わりの画像を表示するための先頭タイルを設定する。リスト項目の画像をより大きくする。
+`mdc-list--two-line` | オプション。2行（主たる行と副次的な行）を伴うリストにスタイルを変更する。
+`mdc-list-item` | リスト項目で必須。
+`mdc-list-item__text` |	必須。リスト項目テキストコンテンツのラッパー（リスト項目の中央に表示させる）。
+`mdc-list-item__primary-text` | オプション。リスト項目の主たるテキスト。`mdc-list-item__text` の子要素にする必要がある。
+`mdc-list-item__secondary-text` | オプション。リスト項目の副次的テキスト。`mdc-list-item__text` の子要素にする必要がある。
+`mdc-list-item--disabled` | オプション。行を利用不可の状態にスタイルする。
+`mdc-list-item--selected` | オプション。行を選択状態* にスタイルする。
+`mdc-list-item--activated` | オプション。行を活性化状態* にスタイルする。
+`mdc-list-item__graphic` | オプション。行の最初の領域（LTR 言語においてはリスト項目の最初の列）。一般的にはアイコンかイメージ。
+`mdc-list-item__meta`	| オプション。行の最後の領域（LTR 減とに置いてはリスト項目の最後の列）。一般的には小さなテキスト、アイコンまたはイメージ。
+`mdc-list-group` | オプション。一緒にグループ化する2つ以上の mdc-list 要素をラップする。
+`mdc-list-group__subheader` |	オプション。グループの各リストの上に表示するヘッダーテキスト。
+`mdc-list-divider` | オプション。リストの区切線要素。
+`mdc-list-divider--padded` | オプション。`list-item__meta` のパディングと一致するように区切線の両脇の空白を残す。
+`mdc-list-divider--inset` | オプション。アバター列と交差しないように区切線の先頭マージンを増やす。
 
-> NOTE: The `mdc-list-divider` class can be used between list items *OR* between two lists (see respective examples under [List Dividers](#list-dividers)).
+> 注意: `mdc-list-divider` クラスはアイテム間、*もしくは*、2つのリスト間で使用できる（それぞれの例は [リスト区切線](#list-dividers) 以下を参照）。
 
-> NOTE: In Material Design, the selected and activated states apply in different, mutually-exclusive situations:
-> * *Selected* state should be applied on the `.mdc-list-item` when it is likely to frequently change due to user choice. E.g., selecting one or more photos to share in Google Photos.
-> * *Activated* state is more permanent than selected state, and will **NOT** change soon relative to the lifetime of the page. Common examples are navigation components such as the list within a navigation drawer.
+> 注意: マテリアルデザインでは、選択状態と活性化状態は異なった廃板的な状況で適用されます。
+> * *選択状態* は `.mdc-list-item` ではユーザの選択によって頻繁に変更されうるときに適用します。例えば、Google Photos で一つ以上の写真をシェアするために選択するときです。
+> * *活性化状態* は選択状態と比べ、より永続的であり、ページの存続時間に対してすぐに変更されることは **ありません**。一般的な例としてはナビゲーションドロワー内のリストのようなナビゲーションコンポーネントがあります。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-list-item-primary-text-ink-color($color)` | Sets the ink color of the primary text of the list item.
-`mdc-list-item-secondary-text-ink-color($color)` | Sets the ink color of the secondary text of the list item.
-`mdc-list-item-graphic-fill-color($color)` | Sets background ink color of the graphic element within list item.
-`mdc-list-item-graphic-ink-color($color)` | Sets ink color of the graphic element within list item.
-`mdc-list-item-meta-ink-color($color)` | Sets ink color of the meta element within list item.
-`mdc-list-item-shape-radius($radius, $rtl-reflexive)` | Sets the rounded shape to list item with given radius size. Set `$rtl-reflexive` to true to flip radius values in RTL context, defaults to false.
-`mdc-list-divider-color($color)` | Sets divider ink color.
-`mdc-list-group-subheader-ink-color($color)` | Sets ink color of subheader text within list group.
+`mdc-list-item-primary-text-ink-color($color)` | リスト項目のプライマリテキストのインク色を設定する。
+`mdc-list-item-secondary-text-ink-color($color)` |  リスト項目のセカンダリテキストのインク色を設定する。
+`mdc-list-item-graphic-fill-color($color)` | リスト項目内のグラフィック要素の背景インク色を設定する。
+`mdc-list-item-graphic-ink-color($color)` | リスト項目内のグラフィック要素のインク色を設定する。
+`mdc-list-item-meta-ink-color($color)` | リスト項目内のメタ要素のインク色を設定する。
+`mdc-list-item-shape-radius($radius, $rtl-reflexive)` | リスト項目の角の丸みを与えられた繁栄の大きさに設定する。RTL コンテンツ内で半径を反転させるには `$rtl-reflexive` が true に設定する。デフォルトは false。
+`mdc-list-divider-color($color)` | 区切線のインク色を設定する。
+`mdc-list-group-subheader-ink-color($color)` | リストグループ内のサブヘッダのインク色を設定する。
 
-### Accessibility
+### <a name="Accessibility"></a>アクセシビリティ
 
-The MDCList JavaScript component implements the WAI-ARIA best practices for
-[Listbox](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox). This includes overriding the default tab behavior
-within the list component.
+MDCList JavaScript コンポーネントは [Listbox](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox) のための WAI-ARIA ベストプラクティスを実装しています。これにはリストコンポーネント内のデフォルトのタブの動作を上書きすることが含まれています。
 
-The `tabindex` should be set to `0` for first list item element or selected list item element, remaining list item elements should not have `tabindex` set.
+最初のリスト項目要素や選択されたリスト項目要素では `tabindex` に `0` を設定しなくてはならず、残りのリスト項目要素には `tabindex` を設定してはいけません。
 
-Use `role="listbox"` only for single selection list, without this role the `ul` element is implicitely `role="list"`.
-Do not use `aria-orientation` attribute for standard list (i.e., `role="list"`), use component's `vertical` property to set the orientation
-to vertical.
+単一選択リストでは `role="listbox"` のみを使用し、このロールがないと `ul` 要素は暗黙のうちに `role="list"` となります。標準的なリスト（つまり、 `role="list"`）では `aria-orientation` 属性は使わす、コンポーネントの `vertical` プロパティを使って垂直方向に設定してください。
 
-Single selection list supports `aria-selected` and `aria-current` attributes. List automatically detects the presence of these attributes
-and sets it to next selected list item based on which ARIA attribute you use (i.e., `aria-selected` or `aria-current`). Please see WAI-ARIA [aria-current](https://www.w3.org/TR/wai-aria-1.1/#aria-current) article for recommended usage and available attribute values.
+単一選択リストは `aria-selected` 属性と `aria-current` 属性をサポートします。リストは自動的にこれらの属性の存在を認識し、使用した ARIA 属性（つまり、`aria-selected` か `aria-current`）に基づいて次の選択されたリスト項目を設定します。推奨される使用法と利用可能な属性値については WAI-ARIA [aria-current](https://www.w3.org/TR/wai-aria-1.1/#aria-current) の記事を参照してください。
 
-As the user navigates through the list, any `button` and `a` elements within the list will receive `tabindex="-1"` when
-the list item is not focused. When the list item receives focus, the aforementioned elements will receive
-`tabIndex="0"`. This allows for the user to tab through list item elements and then tab to the first element after the
-list. The `Arrow`, `Home`, and `End` keys should be used for navigating internal list elements. If
-`singleSelection=true`, the list will allow the user to use the `Space` or `Enter` keys to select or deselect a list
-item. The MDCList will perform the following actions for each key press. Since list interaction will toggle a radio
-button or checkbox within the list item, the list will not toggle `tabindex` for those elements.
+ユーザーがリストを通じて操作する際に、リスト項目がフォーカスされていないならリスト内のどの `button` 要素や `a` 要素も `tabindex="-1"` とします。リスト項目がフォーカスされているなら。前述の要素は `tabIndex="0"` とします。これにより、ユーザーはリスト項目要素をタブにより移動し、さらにリストの後にある最初の要素にタブで移動できます。リスト要素内の操作は `Arrow` キー、`Home` キー そして `End` キーを使うべきです。`singleSelection=true` となっているなら、ユーザがリスト項目を選択もしくは非選択とするのに `Space` キーか `Enter` キーを使えるようにリストが設定されます。MDCList はそれそれキーが押されるたびに以下のアクションをおこします。リストの操作ではリスト項目内のラジオボタンやチェックボックスを切り替えるので、リストはそれらの要素の `tabindex` を切り替えることはありません。
 
-Disabled list item will be included in the keyboard navigation. Please see [Focusability of disabled controls](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls) section in ARIA practices article.
+無効なリスト項目はキーボード操作に含まれています。ARIA での慣習の記事の [Focusability of disabled controls](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls) セクションを参照してください。
 
-Key | Action
+キー | 操作
 --- | ---
-`ArrowUp` | When the list is in a vertical orientation, it will cause the previous list item to receive focus.
-`ArrowDown` | When the list is in a vertical orientation, it will cause the next list item to receive focus.
-`ArrowLeft` | When the list is in a horizontal orientation (default), it will cause the previous list item to receive focus.
-`ArrowRight` | When the list is in a horizontal orientation (default), it will cause the next list item to receive focus.
-`Home` | Will cause the first list item in the list to receive focus.
-`End` | Will cause the last list item in the list to receive focus.
-`Space` | Will cause the currently focused list item to become selected/deselected if `singleSelection=true`.
-`Enter` | Will cause the currently focused list item to become selected/deselected if `singleSelection=true`.
+`ArrowUp` | リストが垂直方向のとき、フォーカスされている項目の前のリスト項目に移動する。
+`ArrowDown` | リストが垂直方向のとき、フォーカスされている項目の次のリスト項目に移動する。
+`ArrowLeft` | リストが水平方向（デフォルト）のとき、フォーカスされている項目の前のリスト項目に移動する。
+`ArrowRight` | リストが水平方向（デフォルト）のとき、フォーカスされている項目の次のリスト項目に移動する。
+`Home` | フォーカスされているリストの最初のリスト項目に移動する。
+`End` | フォーカスされているリストの最後のリスト項目に移動する。
+`Space` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
+`Enter` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
 
 
-## `MDCList` Properties and Methods
+## `MDCList` プロパティとメソッド
 
-Property | Value Type | Description
+プロパティ | 値の型 | 説明
 --- | --- | ---
-`vertical` | `boolean` (write-only) | Proxies to the foundation's `setVerticalOrientation()` method.
-`listElements` | `Array<Element>` (read-only) | Returns all list item elements including disabled list items.
-`wrapFocus` | `boolean` (write-only) | Proxies to the foundation's `setWrapFocus()` method.
-`singleSelection` | `boolean` (write-only) | Proxies to the foundation's `setSingleSelection()` method.
-`selectedIndex` | `boolean` | Proxies to the foundation's `getSelectedIndex()` and `setSelectedIndex()` methods.
+`vertical` | `boolean` (書込専用) | ファンデーションの `setVerticalOrientation()` メソッドの代替。
+`listElements` | `Array<Element>` (読込専用) | 無効なリスト項目を含めたすべてのリスト項目を返す。
+`wrapFocus` | `boolean` (書込専用) | ファンデーションの `setWrapFocus()` メソッドの代替。
+`singleSelection` | `boolean` (書込専用) | ファンデーションの `setSingleSelection()` メソッドの代替。
+`selectedIndex` | `boolean` | ファンデーションの `getSelectedIndex()` メソッドと `setSelectedIndex()` メソッドの代替。
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`layout() => void` | Recalculates layout and orientation.
-`initializeListType() => void` | Initialize `selectedIndex` value based on pre-selected checkbox list items, single selection or radio.
+`layout() => void` | レイアウトの方向を再計算する。
+`initializeListType() => void` | 選択済みチェックボックス、単一選択、またはラジオボタンに基づいて `selectedIndex` の値を初期化する。
 
-### Events
+### イベント
 
-Event Name | `event.detail` | Description
+イベント | `event.detail` | 説明
 --- | --- | ---
-`MDCList:action` | `{index: number}` | Indicates that a list item with the specified index has been activated.
+`MDCList:action` | `{index: number}` | 指定された院でkk数のリスト項目が有効になったことを示す。
 
-## Usage within Web Frameworks
+## Web フレームワークでの使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a List for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のリストを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
-### Considerations for Advanced Approach
+### 高度な方法での検討事項
 
-The `MDCListFoundation` expects the HTML to be setup a certain way before being used. This setup is a part of the `layout()` and `singleSelection()` functions within the `index.js`.
+`MDCListFoundation` は使用する前に一定の方法で HTML がセットアップされることを期待しています。このセットアップは `index.js` 内の `layout()` 関数と `singleSelection()` 関数の一部となっています。
 
-#### Setup in `layout()`
+#### `layout()` のステップイン
 
-The default component requires that every list item receives a `tabindex` value so that it can receive focus
-(`li` elements cannot receive focus at all without a `tabindex` value). Any element not already containing a
-`tabindex` attribute will receive `tabindex=-1`. The first list item should have `tabindex="0"` so that the
-user can find the first element using the `tab` key, but subsequent `tab` keys strokes will cause focus to
-skip over the entire list. If the list items contain sub-elements that are focusable (`button` and `a` elements),
-these should also receive `tabIndex="-1"`.
+デフォルトのコンポーネントではフォーカスを受け取れるようにするため、すべてのリスト要素が `tabindex` の値を受け取ることを求めています（`li` 要素は `tabindex` の値がないときフォーカスを全く受けることができません）。`tabindex` 属性を含んでいないすべての属性は `tabindex=-1` となります。最初のリスト項目には `tab` を使って最初の要素を探せるようにするために `tabindex="0"` とすべきですが、そうすると次の `tab` キーの押下でリスト全体にフォーカスが来ます。リスト項目にフォーカスを受け取れる子要素（`button` 要素と `a` 要素）が含まれているなら、これらは `tabIndex="-1"` とすべきです。
 
 ```html
 <ul id="my-list" class="mdc-list">
@@ -502,13 +481,9 @@ these should also receive `tabIndex="-1"`.
 </ul>
 ```
 
-#### Setup in `singleSelection()`
+#### `singleSelection()` のステップイン
 
-When implementing a component that will use the single selection variant, the HTML should be modified to include
-the `mdc-list-item--selected` or `mdc-list-item--activated` class name,
-and the `tabindex` of the selected element should be `0`. The first list item should have the `tabindex` updated
-to `-1`. The foundation method `setSelectedIndex()` should be called with the initially selected element immediately
-after the foundation is instantiated. Please see [Accessibility](#Accessibility) section for appropriate aria attributes.
+単一選択型を使用しているコンポーネントを実装するとき、HTML は `mdc-list-item--selected` クラスか `mdc-list-item--activated` クラスを含むように変更し、選択された要素の `tabindex` は `0` にしなくてはなりません。最初のリスト項目は `tabindex` を `-1` にします。ファンデーションがインスタンス化された後、ファンデーションメソッド `setSelectedIndex()` は初期化時に選択状態の要素を伴って直ちに呼び出されます。適切な aria 属性については [アクセシビリティ](#Accessibility) のセクションを参照してください。
 
 ```html
 <ul id="my-list" class="mdc-list">
@@ -527,40 +502,40 @@ after the foundation is instantiated. Please see [Accessibility](#Accessibility)
 
 ### `MDCListAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`getListItemCount() => Number` | Returns the total number of list items (elements with `mdc-list-item` class) that are direct children of the `root_` element.
-`getFocusedElementIndex() => Number` | Returns the `index` value of the currently focused element.
-`getListItemIndex(ele: Element) => Number` | Returns the `index` value of the provided `ele` element.
-`getAttributeForElementIndex(index: number, attribute: string) => string | null` | Returns the attribute value of list item at given `index`.
-`setAttributeForElementIndex(index: Number, attr: String, value: String) => void` | Sets the `attr` attribute to `value` for the list item at `index`.
-`addClassForElementIndex(index: Number, className: String) => void` | Adds the `className` class to the list item at `index`.
-`removeClassForElementIndex(index: Number, className: String) => void` | Removes the `className` class to the list item at `index`.
-`focusItemAtIndex(index: Number) => void` | Focuses the list item at the `index` value specified.
-`setTabIndexForListItemChildren(index: Number, value: Number) => void` | Sets the `tabindex` attribute to `value` for each child button or anchor element in the list item at the `index` specified.
-`hasRadioAtIndex(index: number) => boolean` | Returns true if radio button is present at given list item index.
-`hasCheckboxAtIndex(index: number) => boolean` | Returns true if checkbox is present at given list item index.
-`isCheckboxCheckedAtIndex(index: number) => boolean` | Returns true if checkbox inside a list item is checked.
-`setCheckedCheckboxOrRadioAtIndex(index: number, isChecked: boolean) => void` | Sets the checked status of checkbox or radio at given list item index.
-`notifyAction(index: number) => void` | Notifies user action on list item including keyboard and mouse actions.
-`isFocusInsideList() => boolean` | Returns true if the current focused element is inside list root.
-`isRootFocused() => boolean` | Returns true if root element is focused.
+`getListItemCount() => Number` | `root_` 要素の直接の子要素となっているリスト項目（`mdc-list-item` クラスを伴う要素）の総数を返す。
+`getFocusedElementIndex() => Number` | 現在フォーカスされている要素の `index` の値を返す。
+`getListItemIndex(ele: Element) => Number` | 与えられた `ele` 要素の `index` の値を返す。
+`getAttributeForElementIndex(index: number, attribute: string) => string | null` | 与えられた `index` の位置のリスト項目の属性値を返す。
+`setAttributeForElementIndex(index: Number, attr: String, value: String) => void` | `index` の位置のリスト項目の `attr` 属性を `value` にする。
+`addClassForElementIndex(index: Number, className: String) => void` | `index` の位置のリスト項目に `className` クラスを追加する。
+`removeClassForElementIndex(index: Number, className: String) => void` | `index` の位置のリスト項目から `className` クラスを削除する。
+`focusItemAtIndex(index: Number) => void` | 指定した`index` の位置のリスト項目をフォーカスする。
+`setTabIndexForListItemChildren(index: Number, value: Number) => void` | 指定した`index` の位置のリスト項目にあるボタンとアンカーの子要素の `tabindex` 属性を `value` にする。
+`hasRadioAtIndex(index: number) => boolean` | 与えられたインデックスのリスト項目にラジオボタンがあれば true を返す。
+`hasCheckboxAtIndex(index: number) => boolean` | 与えられたインデックスのリスト項目にチェックボックスがあれば true を返す。
+`isCheckboxCheckedAtIndex(index: number) => boolean` | リスト項目内のチェックボックスがチェックされていれば true を返す。
+`setCheckedCheckboxOrRadioAtIndex(index: number, isChecked: boolean) => void` | 与えられたインデックスのリスト項目にあるチェックボックスかラジオボタンのチェック状態を設定する。
+`notifyAction(index: number) => void` | リスト項目上のキーボード操作やマウス操作を含むユーザー操作を通知する。
+`isFocusInsideList() => boolean` | 現在フォーカスされている要素がリストのリートの内部にあれば true を返す。
+`isRootFocused() => boolean` | ルート要素がフォーカスされていれば true を返す。
 
 ### `MDCListFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`setWrapFocus(value: Boolean) => void` | Sets the list to allow the up arrow on the first element to focus the last element of the list and vice versa.
-`setVerticalOrientation(value: Boolean) => void` | Sets the list to an orientation causing the keys used for navigation to change. `true` results in the Up/Down arrow keys being used. `false` results in the Left/Right arrow keys being used.
-`setSingleSelection(value: Boolean) => void` | Sets the list to be a selection list. Enables the `enter` and `space` keys for selecting/deselecting a list item.
-`getSelectedIndex() => MDCListIndex` | Gets the current selection state by returning selected index or list of indexes for checkbox based list. See [types.ts](./types.ts) for `MDCListIndex` type definition.
-`setSelectedIndex(index: MDCListIndex) => void` | Sets the selection state to given index or list of indexes if it is checkbox based list. See [types.ts](./types.ts) for `MDCListIndex` type definition.
-`setUseActivatedClass(useActivated: boolean) => void` | Sets the selection logic to apply/remove the `mdc-list-item--activated` class.
-`handleFocusIn(evt: Event) => void` | Handles the changing of `tabindex` to `0` for all button and anchor elements when a list item receives focus.
-`handleFocusOut(evt: Event) => void` | Handles the changing of `tabindex` to `-1` for all button and anchor elements when a list item loses focus.
-`handleKeydown(evt: Event) => void` | Handles determining if a focus action should occur when a key event is triggered.
-`handleClick(evt: Event) => void` | Handles toggling the selected/deselected state for a list item when clicked. This method is only used by the single selection list.
-`focusNextElement(index: number) => number` | Handles focusing the next element using the current `index`. Returns focused element index.
-`focusPrevElement(index: number) => number` | Handles focusing the previous element using the current `index`. Returns focused element index.
-`focusFirstElement() => number` | Handles focusing the first element in a list. Returns focused element index.
-`focusLastElement() => number` | Handles focusing the last element in a list. Returns focused element index.
+`setWrapFocus(value: Boolean) => void` | リストの最後の要素にフォーカスするための最初の要素上で上矢印を許可するように設定する。逆も同様。
+`setVerticalOrientation(value: Boolean) => void` | リストの方向を設定し、操作に利用するキーを変更する。`true` では上下の矢印キーを使用する。`false` では左右の矢印キーを使用する。
+`setSingleSelection(value: Boolean) => void` | リストを選択リストにする。リスト項目の選択/非選択を設定するのに `enter` キーと `space` キーを使えるようにする。
+`getSelectedIndex() => MDCListIndex` | 選択されたインデックスもしくはリストに基づくチェックボックスによるインデックスのリストを返すことにより、現在の選択状態を取得する。`MDCListIndex` 型定義については [types.ts](./types.ts) を参照のこと。
+`setSelectedIndex(index: MDCListIndex) => void` | 選択されたインデックスもしくはリストに基づくチェックボックスによるインデックスのリストを与えることにより、選択状態を設定する。`MDCListIndex` 型定義については [types.ts](./types.ts) を参照のこと。
+`setUseActivatedClass(useActivated: boolean) => void` | `mdc-list-item--activated` クラスを適用/削除するための選択ロジックを設定する。
+`handleFocusIn(evt: Event) => void` | リスト項目がフォーカスを受けた際、すべてのボタン要素とアンカー要素のために `tabindex` の `0` への変更を処理する。
+`handleFocusOut(evt: Event) => void` | リスト項目がフォーカスを失った際、すべてのボタン要素とアンカー要素のために `tabindex` の `-1` への変更を処理する。
+`handleKeydown(evt: Event) => void` | キーイベントがトリガーになった際、フォーカス操作を起こすべきかどうかの決定を処理する。
+`handleClick(evt: Event) => void` | リスト項目がクリックされた際、リスト項目の選択/非選択の状態の切り替えを処理する。このメソッドは単一選択リストでのみ使用される。
+`focusNextElement(index: number) => number` | 現在の `index` を利用して次の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
+`focusPrevElement(index: number) => number` | 現在の `index` を利用して前の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
+`focusFirstElement() => number` | リストの最初の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
+`focusLastElement() => number` | リストの最後の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
