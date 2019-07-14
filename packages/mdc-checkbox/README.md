@@ -122,7 +122,7 @@ MDC Checkbox は「マーク」の状態（例えばチェックされている�
 --- | ---
 `mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | チェックボックスの枠線と塗りの色の設定とアニメーションのための CSS クラスを生成する
 `mdc-checkbox-ink-color($color)` | チェックと未確定のアイコンのインクの色を設定する
-`mdc-checkbox-focus-indicator-color($color)` | フォーカス時のインジケーターの色を設定する
+`mdc-checkbox-focus-indicator-color($color)` | チェックボックスが選択されたとき、または未確定状態のときのフォーカスインジケーター（リップル）の色を設定する
 `mdc-checkbox-touch-dimension($touch-dimension)` | チェックボックスのタッチ寸法を設定する
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
