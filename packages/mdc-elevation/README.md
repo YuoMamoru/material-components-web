@@ -16,85 +16,84 @@ path: /catalog/elevation/
   </a>
 </div>-->
 
-Shadows provide important visual cues about objects’ depth and directional movement. They are the only visual cue indicating the amount of separation between surfaces. An object’s elevation determines the appearance of its shadow. The elevation values are mapped out in a "z-space" and range from `0` to `24`.
+影はオブジェクトの深さや奥行方向の動きを知る重要な視覚的な手がかりを与えます。それらは表面の離れている量を表す唯一の視覚的手がかりなのです。オブジェクトのエレベーションはそれらの影の見た目で決まります。エレベーションの値は「z-space」で表現され、 `0` から `24` までの範囲です。
 
-> **A note about "z-space"**: Within the spec, elevation is normally referred to as having a `dp` value. In other words, how many "pixels" above the base material is a piece of material elevated. On a computer, this is normally represented by a 3-d coordinate system. We like `z-space` (or just "z" for short) because it aligns with the technical definition of, and nomenclature for, a 3-d coordinate system. Therefore, we feel it makes more sense than `dp`. However, when we refer to `z-space` (or `z`), that can be used interchangeably with the spec's `dp`.
+> **「z-space」に関する注意**: 仕様では、エレベーションは通常 `dp` 値により表現されます。言い換えると、基本となるマテリアルから何「ピクセル」上にあるかということです。コンピュータ上では、通常 3D 座標系で表されます。私たちは `z-space`（もしくは短く単に「z」）というのが好きです。なぜなら、それは 3D 座標系の技術的定義や命名法に沿っているからです。したがって、私たちは「dp」よりそれがセンスがあると感じています。しかし、私たちが「z-space」（または「z」）を参照する際に、仕様にある「dp」と入れ替えて使うことができます。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-elevation">Material Design guidelines: Shadows & elevation</a>
+    <a href="https://material.io/go/design-elevation">マテリアルデザインガイドライン: 影とエレベーション</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/elevation">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/elevation">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/elevation
 ```
 
-## Basic Usage
+## 基本的な使用法
 
 ### HTML
 
-Elevation is often already included within the baseline styles of other components (e.g. raised buttons, elevated cards).
+エレベーションはしばしば別のコンポーネント（例えば、浮き上がりボタンや浮き上がりカード）の基本スタイルに既に含まれています。
 
-However, you can also apply elevation to specific components using `mdc-elevation--z<N>` classes:
+しかし、指定したコンポーネントで `mdc-elevation--z<N>` クラスを使うことによりエレベーションを適用することもできます。
 
 ```html
   <div class="mdc-elevation--z1">
-    <!-- ... content ... -->
+    <!-- ... コンテンツ ... -->
   </div>
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/elevation/mdc-elevation";
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-Some components have a set elevation. For example, a raised MDC Button has elevation 2.
+いくつかのコンポーネントはエレベーションが設定されています。例えば、浮き上がり MDC ボタンは エレベーション 2 です。
 
-If you want to set the elevation of an element, which is not a Material Design component, you
-can apply the following CSS classes.
+マテリアルデザインコンポーネント以外の要素にエレベーションを設定したいなら、以下の CSS クラスを適用できます。
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-elevation--z<N>` | Sets the elevation to the (N)dp, where 1 <= N <= 24
-`mdc-elevation-transition` | Applies the correct css rules to transition an element between elevations
+`mdc-elevation--z<N>` | (N)dp のエレベーションを設定する。N は 1 <= N <= 24 の範囲。
+`mdc-elevation-transition` | エレベーション間の要素のトランジッションをするにあたり適切な CSS ルールを適用する。
 
-### Sass Mixins, Variables, and Functions
+### Sass ミキシン、変数と関数
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-elevation($z-value, $color, $opacity-boost)` | Sets the elevation to the z-space for that given elevation, and optionally sets the color and/or boosts the opacity of the shadow
+`mdc-elevation($z-value, $color, $opacity-boost)` | エレベーションを与えるためにエレベーションを z-space に設定し、オプションで影の色の設定や不透明度を高める。
 
-Function | Description
+関数 | 説明
 --- | ---
-`mdc-elevation-transition-value($duration, $easing)` | Returns a value for the `transition` property to transition an element between elevations
+`mdc-elevation-transition-value($duration, $easing)` | エレベーション間の要素のトランジッションの際の `transision` プロパティの値を返す。
 
-Variable | Description
+変数 | 説明
 --- | ---
-`$mdc-elevation-property` | Default property for elevation transitions
-`$mdc-elevation-transition-duration` | Default duration value for elevation transitions
-`$mdc-elevation-transition-timing-function` | Default easing value for elevation transitions
+`$mdc-elevation-property` | エレベーショントランジッションのデフォルトプロパティ
+`$mdc-elevation-transition-duration` | エレベーショントランジッションのデフォルトの duration 値
+`$mdc-elevation-transition-timing-function` | エレベーショントランジッションのデフォルトの easing 値
 
-If you need more configurability over your transitions, use the `mdc-elevation-transition-value` function in conjunction with the exported sass variables.
+よりトランジッションに関して設定が必要なら、エクスポートした sass 変数とともに `mdc-elevation-transition-value` 関数を使用します。
 
 ```scss
 .my-component-with-custom-transitions {
 
   transition:
     mdc-elevation-transition-value(),
-    /* Configure opacity to use same duration and easing values as elevation */
+    /* エレベーションと同じ duration と easing 値を使って不透明度を設定する */
     opacity $mdc-elevation-transition-duration $mdc-elevation-transition-timing-function;
   opacity: .7;
   will-change: $mdc-elevation-property, opacity;
