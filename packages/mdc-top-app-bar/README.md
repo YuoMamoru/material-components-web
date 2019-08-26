@@ -238,7 +238,12 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 #### `MDCShortTopAppBarFoundation`
 
-上で挙げたメソッドに加えて、短いトップアプリバーでは以下のパブリックプロパティが提供されています。
+上で挙げたメソッドに加えて、短いトップアプリバーでは以下のパブリックなメソッドとプロパティが提供されています。
+
+メソッド | 説明
+--- | ---
+`setAlwaysCollapsed(value: boolean) => void` | `value` が `true` のとき、短いトップアプリバーは常に折りたたまれる。
+`getAlwaysCollapsed() => boolean` | 短いトップアプリバーが「常に折りたたまれた」状態であるかどうかを取得する。
 
 プロパティ | 値の型 | 説明
 --- | --- | ---
