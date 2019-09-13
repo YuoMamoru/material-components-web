@@ -447,6 +447,7 @@ MDCList JavaScript コンポーネントは [Listbox](https://www.w3.org/TR/wai-
 --- | ---
 `layout() => void` | レイアウトの方向を再計算する。
 `initializeListType() => void` | 選択済みチェックボックス、単一選択、またはラジオボタンに基づいて `selectedIndex` の値を初期化する。
+`setEnabled(itemIndex: number, isEnabled: boolean) => void` | `itemIndex` のリスト項目を希望する `isEnabled` の状態に更新する。 
 
 ### イベント
 
@@ -539,3 +540,4 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `focusPrevElement(index: number) => number` | 現在の `index` を利用して前の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
 `focusFirstElement() => number` | リストの最初の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
 `focusLastElement() => number` | リストの最後の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
+`setEnabled(itemIndex: number, isEnabled: Boolean) => void` | リスト項目の無効状態を更新する。

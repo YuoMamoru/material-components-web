@@ -17,7 +17,7 @@ Material Components for the web は様々な主要 Web フレームワークに�
     - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc) ([foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
     - [Angular MDC](https://github.com/trimox/angular-mdc-web)
     - [Blox Material](https://blox.src.zone/material): Angular 統合ライブラリ.
-    - [Vue MDC Adapter](https://github.com/stasson/vue-mdc-adapter): Vue.js と MDC Web の統合 ([foundation/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
+    - [Vue MDC Adapter](https://github.com/pgbross/vue-material-adapter): Vue.js と MDC Web の統合 ([foundation/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
     - [Material Components Vue](https://github.com/matsp/material-components-vue): Vue.js と MDC Web の統合 ([vanilla components](./integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
     - [BalmUI](https://material.balmjs.com/): Vue.js 用の次世代マテリアル UI
     - [Ember Material Components](https://github.com/onehilltech/ember-cli-mdc): Ember と MDC Web の統合  ([vanilla components](./integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)

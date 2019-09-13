@@ -177,7 +177,9 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
 {
   loader: 'sass-loader',
   options: {
-    includePaths: ['./node_modules']
+    sassOptions: {
+      includePaths: ['./node_modules']
+    }
   }
 }
 ```
@@ -216,7 +218,9 @@ const autoprefixer = require('autoprefixer');
 {
   loader: 'sass-loader',
   options: {
-    includePaths: ['./node_modules']
+    sassOptions: {
+      includePaths: ['./node_modules']
+    }
   }
 },
 ```
@@ -318,7 +322,9 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              includePaths: ['./node_modules'],
+              sassOptions: {
+                includePaths: ['./node_modules'],
+              }
             },
           }
         ],

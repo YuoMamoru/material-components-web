@@ -234,6 +234,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `getOptionByIndex(index: number) => Element \| null` | `index` に指定したところにあるリスト項目を返す。
 `getDefaultFoundation() => MDCMenuFoundation` | ファンデーションを返す。
 `setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
+`setEnabled(index: number, isEnabled: boolean) => void` | 与えられた `index` のメニュー項目の無効かどうかの状態を `isEnabled` に設定する。
 
 > プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
 
@@ -268,6 +269,7 @@ React や Angular といった JavaScript フレームワークを使ってい�
 `handleMenuSurfaceOpened() => void` | メニュー表面を開くイベントのイベントハンドラー。
 `setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
 `setSelectedIndex(index: number) => void` | 与えられた `index` のメニュー項目を選択する。
+`setEnabled(index: number, isEnabled: boolean) => void` | 与えられた `index` のメニュー項目の無効かどうかの状態を設定する。
 
 ### イベント
 
