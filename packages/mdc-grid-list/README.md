@@ -197,7 +197,7 @@ npm install @material/grid-list
 </div>
 ```
 
-前の節で指摘したとおり、タイルに指定したアスペクト比と同じアスペクト比の画像でない場合、画像はゆがんでしまします。[img の場所で div を使う](#using-a-div-in-place-of-an-img) の節ではこのような場合の解決方法を提供しています。
+前の節で指摘した通り、タイルに指定したアスペクト比と同じアスペクト比の画像でない場合、画像はゆがんでしまします。[img の場所で div を使う](#using-a-div-in-place-of-an-img) の節ではこのような場合の解決方法を提供しています。
 
 ### <a name="using-a-div-in-place-of-an-img"></a>img の場所で div を使う
 
