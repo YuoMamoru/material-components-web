@@ -16,31 +16,30 @@ path: /catalog/image-lists/
   </a>
 </div>-->
 
-MDC Image List provides a RTL-aware Material Design image list component. An Image List consists of several items,
-each containing an image and optionally supporting content (i.e. a text label).
+MDC Image List は RTL 対応のマテリアルデザインイメージリストコンポーネントを提供します。イメージリストはいくつかの項目からできており、それぞれイメージとオプションとなるサポートコンテンツ（例えばテキストラベル）を含んでいます。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-image-list">Material Design guidelines: Image list</a>
+    <a href="https://material.io/go/design-image-list">マテリアルデザインガイドライン: イメージリスト</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/image-list">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/image-list">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/image-list
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
-The HTML structure for a Standard Image List is as follows:
+標準的なイメージリストの HTML 構造は次の通りです。
 
 ```html
 <ul class="mdc-image-list my-image-list">
@@ -56,14 +55,13 @@ The HTML structure for a Standard Image List is as follows:
 </ul>
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/image-list/mdc-image-list";
 ```
 
-The HTML structure above would be combined with an invocation of the `mdc-image-list-standard-columns` mixin,
-to establish how many columns should be displayed per line:
+上記の HTML 構造を `mdc-image-list-standard-columns` ミキシンの呼び出しと組み合わせて、1行に何列表示するかを設定できます。
 
 ```scss
 .my-image-list {
@@ -71,16 +69,13 @@ to establish how many columns should be displayed per line:
 }
 ```
 
-Images in a Standard Image list are constrained to 1:1 aspect ratio by default; this can be overridden using the
-`mdc-image-list-aspect` mixin documented below.
+標準的なイメージリスト内の画像はデフォルトで 1:1 のアスペクト比が適用されます。これは以下の記述の通り、`mdc-image-list-aspect` ミキシンを使うことにより上書きできます。
 
-## Variants
+## バリエーション
 
-### Masonry Image List
+### 石積イメージリスト
 
-The Masonry Image List variant presents images vertically arranged into several columns, using
-[CSS Columns](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Columns). In this layout, images may be any
-combination of aspect ratios.
+石積イメージリストは、[CSS Columns](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Columns) を使って、いくつかの列内で垂直方向に整列した画像を提供します。このレイアウトではアスペクト比の任意の組み合わせが可能です。
 
 ```html
 <ul class="mdc-image-list mdc-image-list--masonry my-masonry-image-list">
@@ -94,11 +89,9 @@ combination of aspect ratios.
 </ul>
 ```
 
-> **Note:** Masonry Image List items _do not_ include the `mdc-image-list__image-aspect-container` element, since
-images in the list are not expected to be locked to a common aspect ratio.
+> **注意:** 石積イメージリストの項目は `mdc-image-list__image-aspect-container` 要素を含んで <em>いません</em>。これはリスト内の画像が共通のアスペクト比で固定されていることを想定していないからです。
 
-This would be combined with an invocation of the `mdc-image-list-masonry-columns` mixin, to establish how many columns
-should be displayed:
+`mdc-image-list-masonry-columns` ミキシンの呼び出しと組み合わせて、何列表示するのか設定することができます。
 
 ```scss
 .my-masonry-image-list {
@@ -106,41 +99,37 @@ should be displayed:
 }
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-image-list` | Mandatory. Indicates the root Image List element.
-`mdc-image-list--masonry` | Optional. Indicates that this Image List should use the Masonry variant.
-`mdc-image-list--with-text-protection` | Optional. Indicates that supporting content should be positioned in a scrim overlaying each image (instead of positioned separately under each image).
-`mdc-image-list__item` | Mandatory. Indicates each item in an Image List.
-`mdc-image-list__image-aspect-container` | Optional. Parent of each item's image element, responsible for constraining aspect ratio. This element may be omitted entirely if images are already sized to the correct aspect ratio.
-`mdc-image-list__image` | Mandatory. Indicates the image element in each item.
-`mdc-image-list__supporting` | Optional. Indicates the area within each item containing the supporting text label, if the Image List contains text labels.
-`mdc-image-list__label` | Optional. Indicates the text label in each item, if the Image List contains text labels.
+`mdc-image-list` | 必須。イメージリストのルート要素であることを示す。
+`mdc-image-list--masonry` | オプション。イメージリストが石積型であることを示す。
+`mdc-image-list--with-text-protection` | オプション。サポートコンテンツが各イメージを覆うように配置される（各画像の下に分けて配置されるのではなく）ことを示す。
+`mdc-image-list__item` | 必須。イメージリスト内の各項目であることを示す。
+`mdc-image-list__image-aspect-container` | オプション。各項目の画像要素の親のアスペクト比を担当する。画像が既に適切なアスペクト比になっているならこの要素は完全に省略できる。
+`mdc-image-list__image` | 必須。各項目の画像を表す。
+`mdc-image-list__supporting` | オプション。イメージリストがテキストラベルを含んでいるとき、サポートテキストラベルを含んだ各項目の内の領域であることを示す。
+`mdc-image-list__label` | オプション。イメージリストがテキストラベルを含んでいるとき、各項目のテキストラベルであることを示す。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-image-list-aspect($width-height-ratio)` | Styles the aspect container elements within an Image List to conform to the given ratio, where 1 is 1:1, greater than 1 is wider, and less than 1 is taller.
-`mdc-image-list-shape-radius($radius, $rtl-reflexive)` | Sets the rounded shape to image list item with given radius size. Set `$rtl-reflexive` to true to flip radius values in RTL context, defaults to false.
-`mdc-image-list-standard-columns($column-count, $gutter-size)` | Styles a Standard Image List to display the given number of columns. `$gutter-size` is optional and overrides the default amount of space between items.
-`mdc-image-list-masonry-columns($column-count, $gutter-size)` | Styles a Masonry Image List to display the given number of columns. `$gutter-size` is optional and overrides the default amount of space between items.
+`mdc-image-list-aspect($width-height-ratio)` | イメージリスト内のコンテナ要素のアスペクト比を与えられた比率に設定する。1であれば 1:1 にし、1よりも大きくすれば横長に、1より小さくすれば縦長になる。
+`mdc-image-list-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさにイメージリストの項目の角の丸めを設定する。`$rtl-reflexive` を true にすれば RTL コンテキスト内で反映の値が反転する。デフォルトは false。
+`mdc-image-list-standard-columns($column-count, $gutter-size)` | 標準的なイメージリストを与えられた列数で表示するよう設定する。`$gutter-size` はオプションで、項目間のスペースのデフォルトの大きさを上書きする。
+`mdc-image-list-masonry-columns($column-count, $gutter-size)` | 石積イメージリストを与えられた列数で表示するよう設定する。`$gutter-size` はオプションで、項目間のスペースのデフォルトの大きさを上書きする。
 
-> **Note:** Only one of the `mdc-image-list-...-columns` mixins should be used for any given Image List.
-> Use the mixin appropriate to the variant being used.
+> **注意:** `mdc-image-list-...-columns` ミキシンは一つだけをイメージリストで指定できます。使用するバリエーションに応じたミキシンを使ってください。
 
-### Additional Information
+### 追加の情報
 
-#### Constraining width
+#### 幅の制限
 
-The `mdc-image-list-...-columns` mixins will grow and shrink items based on the Image List's overall width. Depending on
-placement, this could be directly related to the viewport width, and images could become exceedingly large compared to
-their actual rendered size. This can be restricted by using any of `min-width`, `width`, or `max-width` on the Image
-List:
+`mdc-image-list-...-columns` ミキシンはイメージリスト全体の幅に応じて広げたり縮小させたりします。配置によっては、ビューポートの幅に直接関連し、画像が実際に表示される大きさと比べて非常に大きくすることができます。これはイメージリスト上で `min-width`、`width` や `max-width` のいずれかを使うことで制限できます。
 
 ```scss
 .my-image-list {
@@ -149,13 +138,11 @@ List:
 }
 ```
 
-> **Note:** Remember that any specified width will apply to the _entire_ list, so be sure to account for the gutters
-as well.
+> **注意:** 指定した幅はリスト <em>全体</em> に適用されることに注意し、余白も考慮してください。
 
-#### Changing number of columns across breakpoints
+#### ブレークポイント間での列数の変更
 
-Presenting a different number of columns for different viewport sizes is straightforward, since the only thing that
-needs to be changed are styles:
+列数を変更するのに必要なのはスタイルだけなので、異なるビューポートの大きさで異なる列数を指定するのは容易です。
 
 ```scss
 .my-image-list {
@@ -169,14 +156,10 @@ needs to be changed are styles:
 }
 ```
 
-#### Using div in place of img to enforce aspect ratio
+#### アスペクト比を強制するために img の替わりに div を使用
 
-> **Note:** This advice is not applicable to Masonry Image List, where images do not share a common aspect ratio.
+> **注意:** このアドバイスはイメージが共通のアスペクト比を共有しない石積イメージリストには適用されません。
 
-Images in an Image List typically use the `img` element. However, if your assets don't have the same aspect ratio as
-specified for list items, they will become distorted. In these cases, you can use a `div` element in place of `img`,
-and set the `background-image` of each.
+イメージリスト内の画像は一般的に `img` 要素が使用されます。しかし、素材がリスト項目に指定する同じアスペクトでない場合、表示が崩れてしまいます。このようなときには `img` 要素の代わりに `div` 要素を使うことができ、各要素の `background-image` に画像を指定します。
 
-> **Note:** Ensuring your images are appropriately-sized prior to serving them to browsers is the most efficient and
-ideal approach to using MDC Image List. The `div` alternative is provided as a convenience. If you use this alternative,
-make sure to also include the `mdc-image-list__image-aspect-container` element around each item's image.
+> **注意:** 画像をブラウザに配信する前に適切な大きさにすることは、MDC Image List を使う上で最も効率的で理想的な手法です。利便性のために `div` による代替が提供されています。この代替手法を使用するなら、各項目の画像の周りに `mdc-image-list__image-aspect-container` 要素も含めるようにしてください。
