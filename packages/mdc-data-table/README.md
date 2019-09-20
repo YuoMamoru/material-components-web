@@ -9,52 +9,50 @@ path: /catalog/data-tables/
 
 # Data Table
 
-Data tables display information in a grid-like format of rows and columns. They organize information in a way that's
-easy to scan, so that users can look for patterns and insights.
+データテーブルはグリッド風の行と列の形式で情報を表示します。ユーザーがパターンや洞察を見つけやすいように、スキャンしやすい方法で情報を整理します。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-data-tables">Material Design guidelines: Data tables</a>
+    <a href="https://material.io/go/design-data-tables">マテリアルデザインガイドライン: データテーブル</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/data-table">Demo</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/data-table">デモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/data-table
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @import "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
 @import "@material/data-table/mdc-data-table";
 ```
 
-> *NOTE*: Styles for any components you intend to include within data-table (e.g. Checkboxes, Buttons etc.) must be
-> imported.
+> *注意*: データテーブルに含めるつもりのコンポーネント（例えばチェックボックスやボタン等）のスタイルもインポートしなくてはなりません。
 
-### JavaScript Instantiation
+### JavaScript のインスタンス化
 
 ```js
 import {MDCDataTable} from '@material/data-table';
 const dataTable = new MDCDataTable(document.querySelector('.mdc-data-table'));
 ```
 
-> See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
+> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-> Instantiating `MDCDataTable` component is only required to add interactions for example, row selection.
+> `MDCDataTable` コンポーネントのインスタンス化は双方向の操作、例えば行選択、を追加したいときのみ必要です。
 
-MDC Data Table component auto instantiates `MDCCheckbox` for header row checkbox and all row checkboxes. Make sure to set required class names to instantiate checkbox component. We suggest to use `layout` API when rows are added or removed from data table to register new checkbox components.
+MDC Data Table コンポーネントはヘッダー行のチェックボックスとすべてのチェックボックスの `MDCCheckbox` を自動的にインスタンス化します。チェックボックスコンポーネントをインスタンス化するのに必要なクラス名を設定してください。行を追加したりデータテーブルから行を削除するときには新しいチェックボックスコンポーネントを登録するために `layout` API を使うことをお勧めします。
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <div class="mdc-data-table">
@@ -90,9 +88,9 @@ MDC Data Table component auto instantiates `MDCCheckbox` for header row checkbox
   </table>
 </div>
 ```
-## Variants
+## バリエーション
 
-### Data table with row selection
+### 行選択を伴うデータテーブル
 
 ```html
 <div class="mdc-data-table">
@@ -200,113 +198,113 @@ MDC Data Table component auto instantiates `MDCCheckbox` for header row checkbox
 </div>
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-data-table` | Mandatory. The root DOM element containing `table` and other supporting elements.
-`mdc-data-table__table` | Mandatory. Table element. Added to `table` HTML tag.
-`mdc-data-table__header-row` | Mandatory. Table header row element. Added to `thead > tr` HTML tag.
-`mdc-data-table__header-cell` | Mandatory. Table header cell element. Added to `thead > th > td` HTML tag.
-`mdc-data-table__header-cell--checkbox` | Optional. Table header cell element that contains `mdc-checkbox`. Added to `thead> th > td:first-child` HTML tag.
-`mdc-data-table__header-cell--numeric` | Optional. Table header cell element that maps to numeric cells. Added to `thead > th > td` HTML tag.
-`mdc-data-table__content` | Mandatory. Table body element. Added to `tbody` HTML tag.
-`mdc-data-table__row` | Mandatory. Table row element. Added to `tbody > tr` HTML tag.
-`mdc-data-table__cell` | Mandatory. Table cell element. Added to `tbody > tr > td` HTML tag.
-`mdc-data-table__cell--numeric` | Optional. Table cell element that contains numeric data. Added to `tbody > tr > td` HTML tag.
-`mdc-data-table__cell--checkbox` | Optional. Table cell element that contains `mdc-checkbox`. Added to `thead> th > td:first-child` HTML tag.
-`mdc-data-table__header-row-checkbox` | Optional. Checkbox element rendered inside table header row element. Add this class name to `mdc-checkbox` element to override styles required for data-table.
-`mdc-data-table__row-checkbox` | Optional. Checkbox element rendered inside table row element. Add this class name to `mdc-checkbox` element to override styles required for data-table.
-`mdc-data-table__row--selected` | Optional. Modifier class added to `mdc-data-table__row` when table row is selected.
+`mdc-data-table` | 必須。`table` とその他の補助的な要素を含んだルート DOM 要素。
+`mdc-data-table__table` | 必須。テーブル要素。`table` HTML タグに追加する。
+`mdc-data-table__header-row` | 必須。テーブルヘッダー行要素。`thead > tr` HTML タグに追加する。
+`mdc-data-table__header-cell` | 必須。テーブルヘッダーセル要素。`thead > th > td` HTML タグに追加する。
+`mdc-data-table__header-cell--checkbox` | オプション。`mdc-checkbox` を含むテーブルヘッダーセル要素。`thead> th > td:first-child` HTML タグに追加する。
+`mdc-data-table__header-cell--numeric` | オプション。数値セルに対応するテーブルヘッダーセル要素。`thead > th > td` HTML タグに追加する。
+`mdc-data-table__content` | 必須。テーブルボディ要素。`tbody` HTML タグに追加する。
+`mdc-data-table__row` | 必須。テーブル行要素。`tbody > tr` HTML タグに追加する。
+`mdc-data-table__cell` | 必須。テーブルセル要素。`tbody > tr > td` HTML タグに追加する。
+`mdc-data-table__cell--numeric` | オプション。数値データを含むテーブルセル要素。`tbody > tr > td` HTML タグに追加する。
+`mdc-data-table__cell--checkbox` | オプション。`mdc-checkbox` を含むテーブルセル要素。`tbody > th > td:first-child` HTML タグに追加する。（訳注: 原文は `thead> th > td:first-child` となっているが、`tbody > th > td:first-child` の誤り）
+`mdc-data-table__header-row-checkbox` | オプション。テーブルヘッダー行要素に描画されるチェックボックス要素。データテーブルに必須なスタイルに上書きするためにこのクラス名を `mdc-checkbox` 要素に追加する。
+`mdc-data-table__row-checkbox` | オプション。テーブル行要素に描画されるチェックボックス要素。データテーブルに必須なスタイルに上書きするためにこのクラス名を `mdc-checkbox` 要素に追加する。
+`mdc-data-table__row--selected` | オプション。テーブル行が選択されたときに `mdc-data-table__row` に追加する修飾クラス。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`mdc-data-table-fill-color($color)` | Sets the background color of data-table surface.
-`mdc-data-table-row-fill-color($color)` | Sets the background color of table row container.
-`mdc-data-table-header-row-fill-color($color)` | Sets the background color of table header row container.
-`mdc-data-table-selected-row-fill-color($color)` | Sets the background color of selected row container.
-`mdc-data-table-checked-icon-color($color)` | Sets the checked icon color.
-`mdc-data-table-divider-color($color)` | Sets the table rows divider color.
-`mdc-data-table-divider-size($size)` | Sets the table rows divider size.
-`mdc-data-table-row-hover-fill-color($color)` | Sets the background color of table row on hover.
-`mdc-data-table-header-row-text-color($color)` | Sets the header row text color.
-`mdc-data-table-row-text-color($color)` | Sets the row text color.
-`mdc-data-table-shape-radius($radius)` | Sets the rounded shape with given radius size. `$radius` can be single radius or list radius values up to 4 list size.
-`mdc-data-table-stroke-size($size)` | Sets the border size of data-table.
-`mdc-data-table-stroke-color($color)` | Sets the border color of data-table.
-`mdc-data-table-header-row-height($height)` | Sets the header row height.
-`mdc-data-table-row-height($height)` | Sets row height.
-`mdc-data-table-cell-padding($leading-padding, $trailing-padding)` | Sets leading & trailing padding for all cells.
-`mdc-data-table-column-widths($width-list)` | Sets the custom widths for each table column.
+`mdc-data-table-fill-color($color)` | データテーブル面の背景色を設定する。
+`mdc-data-table-row-fill-color($color)` | テーブル行のコンテナの背景色を設定する。
+`mdc-data-table-header-row-fill-color($color)` | テーブルヘッダー行のコンテナの背景色を設定する。
+`mdc-data-table-selected-row-fill-color($color)` | 選択行のコンテナの背景色を設定する。
+`mdc-data-table-checked-icon-color($color)` | チェック時のアイコン色を設定する。
+`mdc-data-table-divider-color($color)` | テーブル行の境界の色を設定する。
+`mdc-data-table-divider-size($size)` | テーブル行の境界の大きさを設定する。
+`mdc-data-table-row-hover-fill-color($color)` | テーブル行のホバー時の背景色を設定する。
+`mdc-data-table-header-row-text-color($color)` | ヘッダー行の文字色を設定する。
+`mdc-data-table-row-text-color($color)` | 行の文字色を設定する。
+`mdc-data-table-shape-radius($radius)` | 与えられた半径の大きさに角の丸めの大きさを設定する。`$radius` は一つの半径、もしくは最大4つの値のリスト使う。
+`mdc-data-table-stroke-size($size)` | データテーブルの境界の大きさを設定する。
+`mdc-data-table-stroke-color($color)` | データテーブルの境界色を設定する。
+`mdc-data-table-header-row-height($height)` | ヘッダー行の高さを設定する。
+`mdc-data-table-row-height($height)` | 行の高さを設定する。
+`mdc-data-table-cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
+`mdc-data-table-column-widths($width-list)` | テーブル各行の幅を個別に設定する。
 
-## Accessibility
+## アクセシビリティ
 
-Please refer [WAI-ARIA Authoring Practices for table](https://www.w3.org/TR/wai-aria-practices-1.1/#table) for ARIA recommended role, states & properties required for table element.
+テーブル要素に必要な ARIA 推奨のロール、状態、プロパティについては [テーブルについての WAI-ARIA オーサリングプラクティス](https://www.w3.org/TR/wai-aria-practices-1.1/#table) を参照してください。
 
-## Events
+## イベント
 
-Please use MDCDataTable's constants file to access these event constants.
+イベント定数にアクセスするには MDCDataTable の定数ファイルを使ってください。
 
 ```ts
 const {events} from '@material/data-table/constants';
-// `events.ROW_SELECTION_CHANGED` to access event constant.
+// `events.ROW_SELECTION_CHANGED` イベント定数にアクセスに必要
 ```
 
-Event constant | Event name | Description
+イベント定数 | イベント名 | 説明
 -- | -- | --
-`ROW_SELECTION_CHANGED` | `MDCDataTable:changed` | Event emitted when row checkbox is checked or unchecked.
-`SELECTED_ALL` | `MDCDataTable:selectedAll` | Event emitted when header row checkbox is checked.
-`UNSELECTED_ALL` | `MDCDataTable:unselectedAll` | Event emitted when header row checkbox is unchecked.
+`ROW_SELECTION_CHANGED` | `MDCDataTable:changed` | 行のチェックボックスがチェックされた、もしくはチェックが外されたときに発生するイベント。
+`SELECTED_ALL` | `MDCDataTable:selectedAll` | ヘッダー行のチェックボックスがチェックされたときに発生するイベント。
+`UNSELECTED_ALL` | `MDCDataTable:unselectedAll` | ヘッダー行のチェックボックスのチェックが外されたときに発生するイベント。
 
-## `MDCDataTable` Properties and Methods
+## `MDCDataTable` プロパティとメソッド
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`layout() => void` | Registers new row checkboxes, header row checkbox and updates the state of header row checkbox. Use this when rows are added / removed from data table.
-`getRows() => HTMLElement[]` | Returns array of row elements.
-`getSelectedRowIds() => Array<string \| null>` | Returns array of selected row ids.
-`setSelectedRowIds(rowIds: string[])` | Sets selected row ids. Overwrites previously selected rows.
+`layout() => void` | 新たな行とヘッダー行のチェックボックスを登録し、ヘッダー行のチェックボックスの状態を更新する。行をデータテーブルから登録/削除した際にはこれを使用する。
+`getRows() => HTMLElement[]` | 行要素の配列を返す。
+`getSelectedRowIds() => Array<string \| null>` | 選択されている行の id の配列を返す。
+`setSelectedRowIds(rowIds: string[])` | 選択された行の id を設定する。直前の選択状態を上書きする。
 
-## Usage within Web Frameworks
+## Web フレームワークでの使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a Data Table for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のデータテーブルを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCDataTableAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClassAtRowIndex(rowIndex: number, cssClasses: string) => void` | Adds a class name to row element at given row index excluding header row.
-`getRowCount() => number` | Returns row count excluding header row.
-`getRowElements() => HTMLElement[]` | Returns array of row elements excluding header row.
-`getRowIdAtIndex(rowIndex: number) => string \| null` | Returns row id of row element at given row index based on `data-row-id` attribute on row element `tr`.
-`getRowIndexByChildElement(el: Element) => number` | Returns index of row element that contains give child element.
-`getSelectedRowCount() => number` | Returns selected row count.
-`isCheckboxAtRowIndexChecked(rowIndex: number) => boolean;` | Returns True if row checkbox at given row index is checked.
-`isHeaderRowCheckboxChecked() => boolean` | Returns true if header row checkbox is checked.
-`isRowsSelectable() => boolean` | Returns true if table rows are selectable.
-`notifyRowSelectionChanged(data: MDCDataTableRowSelectionChangedEventDetail) => void` | Notifies when row selection is changed.
-`notifySelectedAll() => void` | Notifies when header row is checked.
-`notifyUnselectedAll() => void` | Notifies when header row is unchecked.
-`registerHeaderRowCheckbox() => Promise<void> \| void` | Initializes header row checkbox. Destroys previous header row checkbox instance if any. Can return Promise only if registering checkbox is asynchronous.
-`registerRowCheckboxes() => Promise<void> \| void` | Initializes all row checkboxes. Destroys all previous row checkbox instances if any. This is usually called when row checkboxes are added or removed from table. Can return Promise only if registering checkbox is asynchronous.
-`removeClassAtRowIndex(rowIndex: number, cssClasses: string) => void` | Removes class name from row element at give row index.
-`setAttributeAtRowIndex(rowIndex: number, attr: string, value: string) => void` | Sets attribute to row element at given row index.
-`setHeaderRowCheckboxChecked(checked: boolean) => void` | Sets header row checkbox checked or unchecked.
-`setHeaderRowCheckboxIndeterminate(indeterminate: boolean) => void` | Sets header row checkbox to indeterminate.
-`setRowCheckboxCheckedAtIndex(rowIndex: number, checked: boolean) => void` | Sets row checkbox to checked or unchecked at given row index.
+`addClassAtRowIndex(rowIndex: number, cssClasses: string) => void` | ヘッダー行を除いて、与えられた行のインデックスにある行要素にクラス名を追加する。
+`getRowCount() => number` | ヘッダー行を除いた行数を返す。
+`getRowElements() => HTMLElement[]` | ヘッダー行を除いた行要素の配列を返す。
+`getRowIdAtIndex(rowIndex: number) => string \| null` | 与えられた行インデックスの行要素 `tr` 上の `data-row-id` 属性に基づく行要素の id を返す。
+`getRowIndexByChildElement(el: Element) => number` | 与えられた子要素を含んでいる行要素のインデックスを返す。
+`getSelectedRowCount() => number` | 選択されている行数を返す。
+`isCheckboxAtRowIndexChecked(rowIndex: number) => boolean;` | 与えられた行インデックスの行のチェックボックスがチェックされていれば true を返す。
+`isHeaderRowCheckboxChecked() => boolean` | ヘッダー行のチェックボックスがチェックされていれば true を返す。
+`isRowsSelectable() => boolean` | テーブル行が選択可能であれば true を返す。
+`notifyRowSelectionChanged(data: MDCDataTableRowSelectionChangedEventDetail) => void` | 行の選択状態が変更されたことを通知する。
+`notifySelectedAll() => void` | ヘッダー行がチェックされたことを通知する。
+`notifyUnselectedAll() => void` | ヘッダー行のチェックが外されたことを通知する。
+`registerHeaderRowCheckbox() => Promise<void> \| void` | ヘッダー行のチェックボックスを初期化する。直前の状態でヘッダー行のチェックボックスのインスタンスが存在するなら破棄する。登録されているチェックボックスが非同期の場合にのみ Promise を返すことができる。
+`registerRowCheckboxes() => Promise<void> \| void` | すべての行のチェックボックスを初期化する。直前の状態で行のチェックボックスのインスタンスが存在するなら破棄する。これは通常、テーブルにチェックボックスが追加または削除されたときに呼ばれる。登録されているチェックボックスが非同期の場合にのみ Promise を返すことができる。
+`removeClassAtRowIndex(rowIndex: number, cssClasses: string) => void` | 与えられた行インデックスの行要素からクラス名を削除する。
+`setAttributeAtRowIndex(rowIndex: number, attr: string, value: string) => void` | 与えられた行インデックスの行要素の属性を設定する。
+`setHeaderRowCheckboxChecked(checked: boolean) => void` | ヘッダー行のチェックボックスをチェックまたはチェックの解除をする。
+`setHeaderRowCheckboxIndeterminate(indeterminate: boolean) => void` | ヘッダー行のチェックボックスを未定状態にする。
+`setRowCheckboxCheckedAtIndex(rowIndex: number, checked: boolean) => void` | 与えられた行インデックスの行のチェックボックスをチェックまたはチェックの解除をする。
 
 ### `MDCDataTableFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`layout() => void` | Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table. Use this if registering checkbox is synchronous.
-`layoutAsync() => Promise<void> \| void` | Re-initializes header row checkbox and row checkboxes when selectable rows are added or removed from table. Use this only if `registerRowCheckboxes` and `registerHeaderRowCheckboxe` are asynchronous.
-`getRows() => HTMLElement[]` | Returns array of row elements.
-`setSelectedRowIds(rowIds: string[]) => void` | Sets selected row ids. Overwrites previously selected rows.
-`getSelectedRowIds() => Array<string \| null>` | Returns array of selected row ids.
-`handleHeaderRowCheckboxChange() => void` | Handles header row checkbox change event.
-`handleRowCheckboxChange(event: Event) => void` | Handles change event originated from row checkboxes.
+`layout() => void` | 選択可能な行がテーブルに追加/削除された際にヘッダー行のチェックボックスと行のチェックボックスを再初期化する。チェックボックスの登録が同期しているときに使用する。
+`layoutAsync() => Promise<void> \| void` | 選択可能な行がテーブルに追加/削除された際にヘッダー行のチェックボックスと行のチェックボックスを再初期化する。`registerRowCheckboxes` と `registerHeaderRowCheckbox` が同期しているときのみ使用する。
+`getRows() => HTMLElement[]` | 行要素の配列を返す。
+`setSelectedRowIds(rowIds: string[]) => void` | 選択された行の id を設定する。直前の選択状態を上書きする。
+`getSelectedRowIds() => Array<string \| null>` | 選択されている行の id の配列を返す。
+`handleHeaderRowCheckboxChange() => void` | ヘッダー行のチェックボックスの変更イベントをハンドリングする。
+`handleRowCheckboxChange(event: Event) => void` | 行チェックボックスから発生した変更イベントをハンドリングする。
