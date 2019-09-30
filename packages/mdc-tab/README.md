@@ -116,12 +116,12 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 CSS クラス | 説明
 --- | ---
 `mdc-tab` | 必須。
-`mdc-tab__content` | 必須。タブのテキストラベルであることを示す。
+`mdc-tab__content` | 必須。タブのアイコン、テキストラベル、タブインジケーターのコンテナ。
 `mdc-tab__ripple` | 必須。タブのリップル面であることを示す。
 `mdc-tab--active` | オプション。タブがアクティブであることを示す。
 `mdc-tab--stacked` | オプション。タブのアイコントラベルが水平方向でなく垂直方向に表示されていることを示す。
 `mdc-tab--min-width` | オプション。タブがテキストを折り返すことなくできるだけサイズが縮小されることを示す。
-`mdc-tab__text-label` | オプション。タブ内のアイコンであることを示す。
+`mdc-tab__text-label` | オプション。タブのテキストラベルであることを示す。
 `mdc-tab__icon` | オプション。タブの先頭のアイコンであることを示す。
 
 ### Sass ミキシン
