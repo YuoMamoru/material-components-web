@@ -53,7 +53,7 @@ require(['path/to/mdc-foo'], mdcFoo => {
 });
 ```
 
-### グローバル変数の使用
+### グローバル変数 / CDN
 
 ```js
 const MDCFoo = mdc.foo.MDCFoo;
