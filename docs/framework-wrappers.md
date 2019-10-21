@@ -22,5 +22,6 @@ Material Components for the web は様々な主要 Web フレームワークに�
     - [BalmUI](https://material.balmjs.com/): Vue.js 用の次世代マテリアル UI
     - [Ember Material Components](https://github.com/onehilltech/ember-cli-mdc): Ember と MDC Web の統合  ([vanilla components](./integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
     - [MatBlazor](https://github.com/SamProf/MatBlazor): Blazor のためのマテリアルデザインコンポーネント
+    - [Svelte Material UI](https://github.com/hperrin/svelte-material-ui): Svelte 3 Material UI コンポーネントのライブラリ
 
   - まだまだ増えます！ [基準](integrating-into-frameworks.md) をみたしているならあなたのライブラリをこのリストに加えるよう、遠慮なくプルリクエストを送ってください。
