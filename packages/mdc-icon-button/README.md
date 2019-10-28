@@ -85,7 +85,6 @@ iconButtonRipple.unbounded = true;
 ```js
 import {MDCIconButtonToggle} from '@material/icon-button';
 const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-button'));
-iconToggle.unbounded = true;
 ```
 
 #### SVG を使った切り替えアイコンボタン
