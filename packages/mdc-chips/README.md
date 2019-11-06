@@ -380,7 +380,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 ### アダプター: `MDCChipAdapter` と `MDCChipSetAdapter`
 
-これらのアダプタ API の素の実装は [`chip/component.ts`](chip/component.ts) and [`chip-set/component.ts`](chip-set/component.ts) を参照してください。
+これらのアダプター API の素の実装は [`chip/component.ts`](chip/component.ts) and [`chip-set/component.ts`](chip-set/component.ts) を参照してください。
 
 #### `MDCChipAdapter`
 

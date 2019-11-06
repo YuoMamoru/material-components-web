@@ -112,7 +112,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 #### `util` 関数
 
-MDC Tab Scroller はアダプタメソッドの実行を補助する関数を持つ `util` モジュールを提供しています。
+MDC Tab Scroller はアダプターメソッドの実行を補助する関数を持つ `util` モジュールを提供しています。
 
 関数 | 説明
 --- | ---

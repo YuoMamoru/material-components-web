@@ -154,7 +154,7 @@ MDC Checkbox は「マーク」の状態（例えばチェックされている�
 `mdc-checkbox-disabled-ink-color($color)` | 無効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
 `mdc-checkbox-focus-indicator-color($color)` | チェックボックスが選択されたとき、または未確定状態のときのフォーカスインジケーター（リップル）の色を設定する
 `mdc-checkbox-ripple-size($ripple-size)` | チェックボックスのリップルの大きさを設定する
-`mdc-checkbox-density($density-scale)` | チェックボックスの密度スケールを設定する。サポートしている密度スケールは `-3` と `-2`、`-1`、`0`（デフォルト）
+`mdc-checkbox-density($density-scale)` | チェックボックスの密度スケールを設定する。サポートしている密度スケールは `-3`、`-2`、`-1` そして `0`（デフォルト）
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
