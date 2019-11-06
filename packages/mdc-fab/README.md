@@ -53,6 +53,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```html
 <button class="mdc-fab" aria-label="Favorite">
+  <div class="mdc-fab__ripple"></div>
   <span class="mdc-fab__icon material-icons">favorite</span>
 </button>
 ```
@@ -85,6 +86,7 @@ const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
 
 ```html
 <button class="mdc-fab mdc-fab--extended">
+  <div class="mdc-fab__ripple"></div>
   <span class="material-icons mdc-fab__icon">add</span>
   <span class="mdc-fab__label">Create</span>
 </button>
@@ -100,6 +102,7 @@ CSS クラス | 説明
 --- | ---
 `mdc-fab` | 必須。ボタン要素用
 `mdc-fab__icon` | 必須。アイコン要素用
+`mdc-fab__ripple` | 必須。リップルスタイルで表示される要素用。
 `mdc-fab__label` | オプション。テキストラベルで使われる。拡張 FAB にのみ適用される。
 `mdc-fab--mini` | オプション。FAB を小さいサイズにする
 `mdc-fab--extended` | オプション。FAB をテキストラベルが収まる大きさにする。

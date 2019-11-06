@@ -140,6 +140,8 @@ CSS クラス | 説明
 `mdc-tab-parent-positioning` | `MDCTab.computeDimensions()` がすべてのブラウザで同じ値になるように MDCTab の親要素の位置を設定する。
 `mdc-tab-fixed-width($width)` | タブの幅を固定にする。タブが与えられた幅より小さくなることがなくなる。
 `mdc-tab-horizontal-padding($padding)` | タブの水平方向のパディングを設定する。
+`mdc-tab-height($height)` | タブバーのカスタムの高さを設定する。
+`mdc-tab-text-transform($transform)` | タブの `text-transform` プロパティを設定する。
 
 ## `MDCTab` プロパティとメソッド
 

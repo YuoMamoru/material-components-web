@@ -103,6 +103,10 @@ CSS クラス | 説明
 ミキシン | 説明
 --- | ---
 `mdc-tab-bar-width($width)` | タブバーの幅を変更する。
+`mdc-tab-bar-density($density-scale)` | デフォルト型のタブバーの密度スケールを設定する。スタック型のタブバーでは `mdc-tab-bar-stacked-density` ミキシンを使う。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`mdc-tab-bar-stacked-density($density-scale)` | スタック型のタブバーの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`mdc-tab-bar-tab-scroller-transition($duration-ms, $timing-function)` | タブのスクロールアニメーションのために CSS トランジッションを設定する。このミキシンは `mdc-tab-scroller-transition` ミキシンの代替。
+
 
 ## `MDCTabBar` プロパティとメソッド
 

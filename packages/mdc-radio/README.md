@@ -48,6 +48,7 @@ npm install @material/radio
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
+    <div class="mdc-radio__ripple"></div>
   </div>
   <label for="radio-1">Radio 1</label>
 </div>
@@ -89,10 +90,32 @@ formField.input = radio;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
+    <div class="mdc-radio__ripple"></div>
   </div>
   <label for="radio-1">Radio 1</label>
 </div>
 ```
+
+## 追加情報
+
+### アクセシビリティ
+
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。この要件を満たすために以下のようにラジオボタンに `mdc-radio--touch` クラスを追加してください。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <div class="mdc-radio mdc-radio--touch">
+    <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" checked>
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <div class="mdc-radio__ripple"></div>
+  </div>
+</div>
+```
+
+隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
 
 ## スタイルのカスタマイズ
 
@@ -102,10 +125,16 @@ MDC Checkbox はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カ
 
 ミキシン | 説明
 --- | ---
-`mdc-radio-unchecked-stroke-color($color)` | チェックされていないラジオボタンの枠線の色を設定する。
-`mdc-radio-checked-stroke-color($color)` | チェックされているラジオボタンの枠線の色を設定する。
-`mdc-radio-ink-color($color)` | ラジオボタンのインクの色を設定する。
+`mdc-radio-unchecked-stroke-color($color)` | チェックされていない有効なラジオボタンの枠線の色を設定する。
+`mdc-radio-checked-stroke-color($color)` | チェックされている有効なラジオボタンの枠線の色を設定する。
+`mdc-radio-ink-color($color)` | 有効なラジオボタンのインクの色を設定する。
+`mdc-radio-disabled-unchecked-stroke-color($color)` | チェックされていない無効なラジオボタンの枠線の色を設定する。
+`mdc-radio-disabled-checked-stroke-color($color)` | チェックされている無効なラジオボタンの枠線の色を設定する。
+`mdc-radio-disabled-ink-color($color)` | 無効なラジオボタンのインクの色を設定する。
 `mdc-radio-focus-indicator-color($color)` | フォーカス時のインジケーターの色を設定する。
+`mdc-radio-touch-target($size, $ripple-size)` | ラジオボタンタッチ対象の大きさをリップルサイズより大きく設定する。パラメータ `$ripple-size` はカスタムリップルサイズのときは必須で、デフォルトは `$mdc-radio-ripple-size`。
+`mdc-radio-ripple-size($size)` | ラジオボタンのカスタムリップルサイズを設定する。
+`mdc-radio-density($density-scale)` | ラジオボタンの密度スケールを設定する。サポートしている密度スケールは `-3`、`-2`、`-1` そして `0`（デフォルト）。
 
 #### 注意: Edge と CSS カスタムプロパティ
 

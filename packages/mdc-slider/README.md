@@ -223,9 +223,7 @@ const {MDCSlider} = mdc.slider;
 | `setThumbContainerStyleProperty(propertyName: string, value: string) => void` | つまみのコンテナ要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
 | `setTrackStyleProperty(propertyName: string, value: string) => void` | トラック要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
 | `setMarkerValue(value: number) => void` | 非連続スライダーのつまみが動かす際にピンの値にマーカーの値を設定する。 |
-| `appendTrackMarkers(numMarkers: number) => void` | トラックのコンテナにトラックマーカー要素を追加する。 |
-| `removeTrackMarkers() => void` | トラックコンテナに既存のマーカー要素を動かす。 |
-| `setLastTrackMarkersStyleProperty(propertyName: string, value: string) => void` | トラックマーカーの最後の要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
+| `setTrackMarkers(step: number, max: number, min: number) => void` | トラックのコンテナにトラックマーカー背景スタイルを追加する。 |
 | `isRTL() => boolean` | スライダーが RTL コンテキスト内にあるなら true を返し、そうでなければ False を返す。 |
 
 #### MDCSliderFoundation API

@@ -41,6 +41,7 @@ npm install @material/button
 
 ```html
 <button class="mdc-button">
+  <div class="mdc-button__ripple"></div>
   <span class="mdc-button__label">Button</span>
 </button>
 ```
@@ -91,6 +92,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```html
 <button class="mdc-button">
+  <div class="mdc-button__ripple"></div>
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
   <span class="mdc-button__label">Button</span>
 </button>
@@ -100,6 +102,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button">
+  <div class="mdc-button__ripple"></div>
   <svg class="mdc-button__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="...">
   ...
   </svg>
@@ -113,6 +116,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button">
+  <div class="mdc-button__ripple"></div>
   <span class="mdc-button__label">Button</span>
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
 </button>
@@ -126,9 +130,28 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button" disabled>
+  <div class="mdc-button__ripple"></div>
   <span class="mdc-button__label">Button</span>
 </button>
 ```
+
+## 追加情報
+
+### アクセシビリティ
+
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。この要件を満たすためにボタンに以下のものを追加してください。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <button class="mdc-button mdc-button--touch">
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__label">My Accessible Button</span>
+    <div class="mdc-button__touch"></div>
+  </button>
+</div>
+```
+
+隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
 
 ## スタイルのカスタマイズ
 
@@ -137,10 +160,10 @@ SVG アイコンを使うことも可能です。
 CSS クラス | 説明
 --- | ---
 `mdc-button` | 必須。デフォルトでは画面の表面と同一平面上にあるテキストボタン。
+`mdc-button__ripple` | 必須。リップルスタイルで表示される要素であることを示す。
 `mdc-button--raised` | オプション。画面の表面から浮き上がったボタンにする。
 `mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにする。
 `mdc-button--outlined` | オプション。画面の表面と同一平面上にあり、枠付きボタンにする。
-`mdc-button--dense` | オプション。ボタンのテキストとボタン自体を縮める。
 `mdc-button__label` | 推奨\*。ボタンのテキストラベルを含む要素であることを示す。
 `mdc-button__icon` | オプション。ボタンのアイコンを含む要素であることを示す。
 
@@ -164,13 +187,15 @@ MDC Button はデフォルトで [MDC Theme](../mdc-theme) の `primary` カラ�
 
 ミキシン | 説明
 --- | ---
-`mdc-button-container-fill-color($color)` | 与えた色にコンテナの塗りの色を設定する
-`mdc-button-icon-color($color)` | 与えられた色にアイコンの色を設定する
-`mdc-button-ink-color($color)` | 与えた色にインクの色を設定し、`mdc-button-icon-color` を使わないときはアイコンの色も与えられた色にする
-`mdc-button-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボタンを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-button-horizontal-padding($padding)` | 与えた大きさに水平方向のパディングを設定する
-`mdc-button-outline-color($color)` | 与えた色に境界の色を設定する
-`mdc-button-outline-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須
+`mdc-button-container-fill-color($color)` | 与えた色にコンテナの塗りの色を設定する。
+`mdc-button-icon-color($color)` | 与えられた色にアイコンの色を設定する。
+`mdc-button-ink-color($color)` | 与えた色にインクの色を設定し、`mdc-button-icon-color` を使わないときはアイコンの色も与えられた色にする。
+`mdc-button-density($density-scale)` | ボタンの密度スケールを設定する。サポートしている密度スケール値は (`-3`, `-2`, `-1`, `0`)。
+`mdc-button-height($height)` | ボタンのカスタムの高さを設定する。
+`mdc-button-shape-radius($radius, $density-scale, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボタンを設定する。`$density-scale` は `$radius` 値がパーセント単位のときのみ必須で、デフォルトは `$mdc-button-density-default-scale`。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`mdc-button-horizontal-padding($padding)` | 与えた大きさに水平方向のパディングを設定する。
+`mdc-button-outline-color($color)` | 与えた色に境界の色を設定する。
+`mdc-button-outline-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須。
 
 #### 注意: Edge と CSS カスタムプロパティ
 

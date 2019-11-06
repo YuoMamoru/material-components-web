@@ -286,6 +286,8 @@ CSS クラス | 説明
 `mdc-text-field-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてテキスト欄下部の線の色を設定する。
 `mdc-text-field-hover-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてホバー時のテキスト欄下部の線の色を設定する。
 `mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのラインリップルの色を設定する。
+`mdc-text-field-density($density-scale)` | デフォルト型のテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`mdc-text-field-height($height)` | デフォルト型のテキスト欄の高さを設定する。
 
 #### アウトラインされたテキスト欄のためのミキシン
 
@@ -295,6 +297,10 @@ CSS クラス | 説明
 `mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
 `mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
 `mdc-text-field-outline-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にアウトラインされたテキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`mdc-text-field-outlined-density($density-scale)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`mdc-text-field-outlined-height($height)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の高さを設定する。
+`mdc-text-field-outlined-with-leading-icon-density($density-scale)` | 先頭アイコン付きのアウトラインテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`mdc-text-field-outlined-with-leading-icon-height($height)` | 先頭アイコン付きのアウトラインテキスト欄の高さを設定する。
 
 #### テキストエリアのためのミキシン
 

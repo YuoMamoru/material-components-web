@@ -89,20 +89,20 @@ const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(list
 <ul class="mdc-list mdc-list--two-line">
   <li class="mdc-list-item" tabindex="0">
     <span class="mdc-list-item__text">
-      <span class="mdc-list-item__primary-text">First-line text</span>
-      <span class="mdc-list-item__secondary-text">Second-line text</span>
+      <span class="mdc-list-item__primary-text">Two-line item</span>
+      <span class="mdc-list-item__secondary-text">Secondary text</span>
     </span>
   </li>
   <li class="mdc-list-item">
     <span class="mdc-list-item__text">
-      <span class="mdc-list-item__primary-text">First-line text</span>
-      <span class="mdc-list-item__secondary-text">Second-line text</span>
+      <span class="mdc-list-item__primary-text">Two-line item</span>
+      <span class="mdc-list-item__secondary-text">Secondary text</span>
     </span>
   </li>
   <li class="mdc-list-item">
     <span class="mdc-list-item__text">
-      <span class="mdc-list-item__primary-text">First-line text</span>
-      <span class="mdc-list-item__secondary-text">Second-line text</span>
+      <span class="mdc-list-item__primary-text">Two-line item</span>
+      <span class="mdc-list-item__secondary-text">Secondary text</span>
     </span>
   </li>
 </ul>
@@ -403,9 +403,13 @@ CSS クラス | 説明
 `mdc-list-item-graphic-fill-color($color)` | リスト項目内のグラフィック要素の背景インク色を設定する。
 `mdc-list-item-graphic-ink-color($color)` | リスト項目内のグラフィック要素のインク色を設定する。
 `mdc-list-item-meta-ink-color($color)` | リスト項目内のメタ要素のインク色を設定する。
-`mdc-list-item-shape-radius($radius, $rtl-reflexive)` | リスト項目の角の丸みを与えられた繁栄の大きさに設定する。RTL コンテンツ内で半径を反転させるには `$rtl-reflexive` が true に設定する。デフォルトは false。
+`mdc-list-single-line-shape-radius($radius, $rtl-reflexive, $density-scale)` | リスト項目の角の丸みを与えられた繁栄の大きさに設定する。RTL コンテンツ内で半径を反転させるには `$rtl-reflexive` が true に設定する。デフォルトは false。`$density-scale` はカスタム密度が適用されたときのみ設定し、デフォルトは `$mdc-list-single-line-density-scale`。
 `mdc-list-divider-color($color)` | 区切線のインク色を設定する。
 `mdc-list-group-subheader-ink-color($color)` | リストグループ内のサブヘッダーのインク色を設定する。
+`mdc-list-item-disabled-text-color($color`) | リスト項目が無効なときのテキストの色を設定する。
+`mdc-list-item-disabled-text-opacity($opacity`) | リスト項目が無効なときのテキストの不透明度を設定する。
+`mdc-list-single-line-density($density-scale)` | 1行型リストの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`mdc-list-single-line-height($height)` | 1行型リストの高さを設定する。
 
 ### <a name="Accessibility"></a>アクセシビリティ
 
@@ -521,6 +525,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `notifyAction(index: number) => void` | リスト項目上のキーボード操作やマウス操作を含むユーザー操作を通知する。
 `isFocusInsideList() => boolean` | 現在フォーカスされている要素がリストのリートの内部にあれば true を返す。
 `isRootFocused() => boolean` | ルート要素がフォーカスされていれば true を返す。
+`listItemAtIndexHasClass(index: number, className: string) => boolean` | `index` の位置のリスト項目がクラス `className` を持っているなら true を返す。
 
 ### `MDCListFoundation`
 

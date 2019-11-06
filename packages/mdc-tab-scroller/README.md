@@ -71,12 +71,19 @@ CSS クラス | 説明
 
 > _注意_: コンテンツがタブスクローラーやタブバーの幅に合わなかったり超える場合（つまり、最も一般的には `mdc-tab--min-width` がそれぞれのタブに使用されたとき）に限って、`align` 修飾クラスは適用できます。
 
+### Sass ミキシン
+
+ミキシン | 説明
+--- | ---
+`mdc-tab-scroller-transition($duration-ms, $timing-function)` | スクロールアニメーションのデュレーションと、オプションで、タイミング関数を設定する。
+
 ## `MDCTabScroller` メソッド
 
 メソッド | 説明
 --- | ---
 `scrollTo(scrollX: number) => void` | scrollX の値にスクロールする。
-`incrementScroll(scrollX: number) => void` | 現在のスクロール値を scrollX の値だけ増やす。
+`incrementScroll(scrollX: number) => void` | 現在のスクロール値をアニメーションを使用して scrollX の値だけ増やす。
+`incrementScrollImmediate(scrollX: number) => void` | 現在のスクロール値をアニメーションを使わずに scrollX の値だけ増やす。
 `getScrollPosition() => number` | 現在の見た目のスクロール位置を返す。
 `getScrollContentWidth() => number` | スクロールコンテンツ要素の幅を返す。
 

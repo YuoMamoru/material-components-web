@@ -55,6 +55,7 @@ npm install @material/checkbox
       </svg>
       <div class="mdc-checkbox__mixedmark"></div>
     </div>
+    <div class="mdc-checkbox__ripple"></div>
   </div>
   <label for="checkbox-1">Checkbox 1</label>
 </div>
@@ -106,9 +107,38 @@ formField.input = checkbox;
     </svg>
     <div class="mdc-checkbox__mixedmark"></div>
   </div>
+  <div class="mdc-checkbox__ripple"></div>
 </div>
 <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">This is my disabled checkbox</label>
 ```
+
+## 追加情報
+
+### アクセシビリティ
+
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。この要件を満たすために以下のようにチェックボックスに `mdc-checkbox--touch` クラスを追加してください。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <div class="mdc-checkbox mdc-checkbox--touch">
+    <input type="checkbox"
+           class="mdc-checkbox__native-control"
+           id="checkbox-1"/>
+    <div class="mdc-checkbox__background">
+      <svg class="mdc-checkbox__checkmark"
+           viewBox="0 0 24 24">
+        <path class="mdc-checkbox__checkmark-path"
+              fill="none"
+              d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+      </svg>
+      <div class="mdc-checkbox__mixedmark"></div>
+    </div>
+    <div class="mdc-checkbox__ripple"></div>
+  </div>
+</div>
+```
+
+隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
 
 ## スタイルのカスタマイズ
 
@@ -116,24 +146,17 @@ MDC Checkbox は「マーク」の状態（例えばチェックされている�
 
 ### Sass ミキシン
 
-以下のミキシンが <em>有効な</em> チェックボックスでは提供されています。<em>無効な</em>チェックボックスではカスタマイズできません。
-
 ミキシン | 説明
 --- | ---
-`mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | チェックボックスの枠線と塗りの色の設定とアニメーションのための CSS クラスを生成する
-`mdc-checkbox-ink-color($color)` | チェックと未確定のアイコンのインクの色を設定する
+`mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | 有効なチェックボックスのマークされているものとマークされていなものの両方について枠線と塗りの色を設定する。ミキシンが @keyframes を生成しないようにするには $generate-keyframes を false にする
+`mdc-checkbox-disabled-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color)` | 無効なチェックボックスのマークされているものとマークされていなものの両方について枠線と塗りの色を設定する。
+`mdc-checkbox-ink-color($color)` | 有効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
+`mdc-checkbox-disabled-ink-color($color)` | 無効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
 `mdc-checkbox-focus-indicator-color($color)` | チェックボックスが選択されたとき、または未確定状態のときのフォーカスインジケーター（リップル）の色を設定する
-`mdc-checkbox-touch-dimension($touch-dimension)` | チェックボックスのタッチ寸法を設定する
+`mdc-checkbox-ripple-size($ripple-size)` | チェックボックスのリップルの大きさを設定する
+`mdc-checkbox-density($density-scale)` | チェックボックスの密度スケールを設定する。サポートしている密度スケールは `-3` と `-2`、`-1`、`0`（デフォルト）
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
-
-#### `mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)`
-
-枠線と塗りの色はマークされているときとマークされていないときの双方で個別に設定できます。
-
-すべてのパラメーターはオプションで、指定されていないものにはデフォルト値が使われます。
-
-CSS だけのチェックボックスを使うときは、ミキシンが `@keyframes` と JavaScript コンポーネントが使う CSS クラスを生成しないようにするため、 `$generate-keyframes` に `false` を設定してください。
 
 ### 注意: Edge と CSS 変数
 

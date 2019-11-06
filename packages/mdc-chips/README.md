@@ -39,11 +39,22 @@ npm install @material/chips
 
 ### HTML 構造
 
+>**Note**: Due to IE11 and Edge's lack of support for the `:focus-within` selector, keyboard navigation of the chip set will not be visually obvious.
+
 ```html
-<div class="mdc-chip-set">
-  <button class="mdc-chip">
-    <span class="mdc-chip__text">Chip content</span>
-  </button>
+<div class="mdc-chip-set" role="grid">
+  <div class="mdc-chip" role="row">
+    <div class="mdc-chip__ripple"></div>
+    <span role="gridcell">
+      <span role="button" tabindex="0" class="mdc-chip__text">Chip One</span>
+    </span>
+  </div>
+  <div class="mdc-chip" role="row">
+    <div class="mdc-chip__ripple"></div>
+    <span role="gridcell">
+      <span role="button" tabindex="-1" class="mdc-chip__text">Chip Two</span>
+    </span>
+  </div>
   ...
 </div>
 ```
@@ -83,10 +94,13 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 #### 先頭アイコン
 
 ```html
-<button class="mdc-chip">
+<div class="mdc-chip" role="row">
+  <div class="mdc-chip__ripple"></div>
   <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">event</i>
-  <span class="mdc-chip__text">Add to calendar</span>
-</button>
+  <span role="gridcell">
+    <span role="button" tabindex="0" class="mdc-chip__text">Add to calendar</span>
+  </span>
+</div>
 ```
 
 #### 末尾アイコン
@@ -94,10 +108,15 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 末尾アイコンはチップを集合から削除する機能が備えられています。末尾アイコンを追加するなら、キーボードやスクリーンリーダーからアクセスできるように `tabindex="0"` と `role="button"` も設定します。末尾アイコンは [入力チップ](#input-chips) にのみ追加できます。
 
 ```html
-<button class="mdc-chip">
-  <span class="mdc-chip__text">Jane Smith</span>
-  <i class="material-icons mdc-chip__icon mdc-chip__icon--trailing" tabindex="0" role="button">cancel</i>
-</button>
+<div class="mdc-chip" role="row">
+  <div class="mdc-chip__ripple"></div>
+  <span role="gridcell">
+    <span role="button" tabindex="0" class="mdc-chip__text">Jane Smith</span>
+  </span>
+  <span role="gridcell">
+    <i class="material-icons mdc-chip__icon mdc-chip__icon--trailing" tabindex="-1" role="button">cancel</i>
+  </span>
+</div>
 ```
 
 ### 選択チップ
@@ -105,7 +124,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 選択チップは選択肢の集合から一つ選択させるためのチップのバリエーションです。選択チップとしてチップの集合を定義するには、チップセットの要素にクラス `mdc-chip-set--choice` を追加します。
 
 ```html
-<div class="mdc-chip-set mdc-chip-set--choice">
+<div class="mdc-chip-set mdc-chip-set--choice" role="grid">
   ...
 </div>
 ```
@@ -115,15 +134,18 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 フィルターチップは選択肢の集合から複数の選択をさせるためのチップのバリエーションです。フィルターチップとしてチップの集合を定義するには、チップセットの要素にクラス `mdc-chip-set--filter` を追加します。フィルターチップが選択されると、先頭アイコンとしてチェック印が表示されます。チップに既に先頭アイコンがあるなら、そのアイコンはチェック印に置き換えられます。そのため、フィルターチップはほかのチップと HTML 構造が異なっています。
 
 ```html
-<div class="mdc-chip-set mdc-chip-set--filter">
-  <button class="mdc-chip">
+<div class="mdc-chip-set mdc-chip-set--filter" role="grid">
+  <div class="mdc-chip" role="row">
+    <div class="mdc-chip__ripple"></div>
     <span class="mdc-chip__checkmark" >
       <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
         <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
               d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       </svg>
     </span>
-    <span class="mdc-chip__text">Filterable content</span>
+    <span role="gridcell">
+      <span role="checkbox" tabindex="0" aria-checked="false" class="mdc-chip__text">Filterable content</span>
+    </span>
   </button>
   ...
 </div>
@@ -132,8 +154,9 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 フィルターチップに先頭アイコンを使うのであれば、`mdc-chip__checkmark` 要素の <em>前に</em>  `mdc-chip__icon--leading` 要素を配置します。
 
 ```html
-<div class="mdc-chip-set mdc-chip-set--filter">
-  <button class="mdc-chip">
+<div class="mdc-chip-set mdc-chip-set--filter" role="grid">
+  <div class="mdc-chip" role="row">
+    <div class="mdc-chip__ripple"></div>
     <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">face</i>
     <span class="mdc-chip__checkmark" >
       <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
@@ -141,8 +164,10 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
               d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       </svg>
     </span>
-    <span class="mdc-chip__text">Filterable content</span>
-  </button>
+    <span role="gridcell">
+      <span role="checkbox" tabindex="0" aria-checked="false" class="mdc-chip__text">Filterable content</span>
+    </span>
+  </div>
   ...
 </div>
 ```
@@ -152,7 +177,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 入力チップはテキストをチップにすることによりユーザーが入力できるようにしたチップのバリエーションです。入力チップとしてチップの集合を定義するには、チップセットの要素にクラス `mdc-chip-set--input` を追加します。
 
 ```html
-<div class="mdc-chip-set mdc-chip-set--input">
+<div class="mdc-chip-set mdc-chip-set--input" role="grid">
   ...
 </div>
 ```
@@ -193,25 +218,55 @@ chipSet.listen('MDCChip:removal', function(event) {
 選択済のフィルターチップや選択チップを表示するには、ルートチップ要素にクラス `mdc-chip--selected` を追加します。
 
 ```html
-<button class="mdc-chip mdc-chip--selected">
-  <span class="mdc-chip__text">Add to calendar</span>
-</button>
+<div class="mdc-chip-set mdc-chip-set--choice" role="grid">
+  <div class="mdc-chip mdc-chip--selected" role="row">
+    <div class="mdc-chip__ripple"></div>
+    <span role="gridcell">
+      <span role="radio" tabindex="0" aria-checked="true" class="mdc-chip__text">Add to calendar</span>
+    </span>
+  </div>
+</div>
 ```
 
 先頭アイコンのある選択済フィルターチップでは、`mdc-chip__icon--leading` 要素にクラス `mdc-chip__icon--leading-hidden` も追加します。これによって先頭アイコンはチェック印に置き換えられます。
 
 ```html
-<button class="mdc-chip mdc-chip--selected">
-  <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">face</i>
-  <span class="mdc-chip__checkmark">
-    <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
-      <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
-            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-    </svg>
-  </span>
-  <span class="mdc-chip__text">Filterable content</span>
-</button>
+<div class="mdc-chip-set mdc-chip-set--filter" role="grid">
+  <div class="mdc-chip mdc-chip--selected" role="row">
+    <div class="mdc-chip__ripple"></div>
+    <i class="material-icons mdc-chip__icon mdc-chip__icon--leading mdc-chip__icon--leading-hidden">face</i>
+    <span class="mdc-chip__checkmark">
+      <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
+        <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
+              d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+      </svg>
+    </span>
+    <span role="gridcell">
+      <span role="checkbox" tabindex="0" aria-checked="true" class="mdc-chip__text">Filterable content</span>
+    </span>
+  </div>
+</div>
 ```
+
+## 追加情報
+
+### アクセシビリティ
+
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。この要件を満たすためにチップに以下のものを追加してください。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <button class="mdc-chip mdc-chip--touch">
+    <div class="mdc-chip__ripple"></div>
+    <span role="gridcell">
+      <span role="button" tabindex="0" class="mdc-chip__text">Chip One</span>
+    </span>
+    <div class="mdc-chip__touch"></div>
+  </button>
+</div>
+```
+
+隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
 
 ## スタイルのカスタマイズ
 
@@ -224,6 +279,7 @@ CSS クラス | 説明
 `mdc-chip-set--choice` | オプション。集合内のチップが選択チップであることを表す。選択チップは選択肢の集合から一つ選択できるようにする。
 `mdc-chip-set--filter` | オプション。集合内のチップがフィルターチップであることを表す。フィルターチップは選択肢の集合から複数の選択できるようにする。
 `mdc-chip` | 必須。
+`mdc-chip__ripple` | 必須。リップルスタイルで表示される要素であることを示す。
 `mdc-chip--selected` | オプション。チップが選択されていることを表す。
 `mdc-chip__text` | 必須。チップのテキストコンテンツを表す。
 `mdc-chip__icon` | オプション。チップ内のアイコンを表す。Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨。
@@ -233,6 +289,9 @@ CSS クラス | 説明
 `mdc-chip__checkmark` | オプション。フィルターチップのチェック印を表す。
 `mdc-chip__checkmark-svg` | `mdc-chip__checkmark` を使用する場合は必須。フィルターチップの SVG 要素を表す。
 `mdc-chip__checkmark-path` | `mdc-chip__checkmark` を使用する場合は必須。フィルターチップの SVG パスを表す。
+`mdc-chip__action--primary` | 必須。`mdc-chip__text` 要素に配置する。
+`mdc-chip__action--trailing` | オプション。キーボード操作を通じたアクセスをさせたいときに `mdc-chip__icon--trailing` に配置する。
+`mdc-chip--deletable` | オプション。削除キーもしくはバックスペースキーでチップが削除できることを示す。
 
 > <em>注意</em>: `mdc-chip__icon` クラスを持つすべての要素には `mdc-chip__icon--leading` クラスか `mdc-chip__icon--trailing` クラスがある必要があります。
 
@@ -259,6 +318,7 @@ CSS クラス | 説明
 `mdc-chip-leading-icon-margin($left-margin, $right-margin)` | チップの先頭アイコンのマージンを設定する。
 `mdc-chip-trailing-icon-margin($left-margin, $right-margin)` | チップの末尾アイコンのマージンを設定する。
 `mdc-chip-elevation-transition()` | チップに MDC 持ち上がりトランジッションを追加する。チップにボックスシャドウトランジッションが必要な際には `mdc-elevation-transition-value()` を使ってトランジッションを直接指定する代わりにこれを使ってください。
+`mdc-chip-density($density-scale)` | チップの密度スケールを設定する。サポートしている密度スケールは `-2`、`-1` そして `0`（デフォルト）
 
 > <em>注意</em>: `mdc-chip-set-spacing` ではチップとチップが含まれている集合の端との間隔の大きさも設定されます。
 
@@ -275,6 +335,10 @@ MDC Chips パッケージには2つの JavaScript クラスが同梱されてい
 メソッド | 説明
 --- | ---
 `beginExit() => void` | ファンデーションの `beginExit` メソッドの代替
+`focusPrimaryAction() => void` | ファンデーションの `focusPrimaryAction` メソッドの代替
+`focusTrailingAction() => void` | ファンデーションの `focusTrailingAction` メソッドの代替
+`removeFocus() => void` | ファンデーションの `removeFocus` メソッドの代替
+`setSelectedFromChipSet(selected: boolean) => void` | ファンデーションの `setSelectedFromChipset` メソッドの代替（チップセットからのみ呼び出される）
 
 プロパティ | 値の型 | 説明
 --- | --- | ---
@@ -295,6 +359,7 @@ MDC Chips パッケージには2つの JavaScript クラスが同梱されてい
 `MDCChip:selection` | `{chipId: string, selected: boolean}` | チップが選択状態に変わった（選択チップ/フィルターチップで）ことを示す
 `MDCChip:removal` | `{chipId: string, root: Element}` | チップが DOM から削除される準備ができたことを示す
 `MDCChip:trailingIconInteraction` | `{chipId: string}` | チップの末尾アイコンが対話（クリック/タップもしくはエンターキーを通じて）したことを示す
+`MDCChip:navigation` | `{chipId: string, key: string, source: FocusSource}` | チップ上でナビケーションイベントが発生したことを示す
 
 > <em>注意</em>: `MDCChip` のすべてが DOM を通じてイベントバブルを生じます。
 
@@ -328,7 +393,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `removeClassFromLeadingIcon(className: string) => void` | 先頭アイコン要素からクラスを削除する
 `eventTargetHasClass(target: EventTarget, className: string) => boolean` | 対象が className を持っていれば true を返し、そうでないなら false を返す
 `notifyInteraction() => void` | チップがチップセットと対話したことをチップセットに通知する\*
-`notifySelection(selected) => void` | チップが選択された、もしくは選択が解除されたことをチップセットに通知する\*\*
+`notifySelection(selected: boolean, chipSetShouldIgnore: boolean) => void` | チップが選択された、もしくは選択が解除されたことをチップセットに通知する\*\*。`chipSetShouldIgnore` が `true` のとき、チップセットはイベントを処理しない。
 `notifyTrailingIconInteraction() => void` | チップの末尾アイコンがチップセットと対話したことをチップセットに通知する\*
 `notifyRemoval() => void` | チップが削除されることをチップセットに通知する\*\*\*
 `getComputedStyleValue(propertyName: string) => string` | ルート要素の与えられたスタイルプロパティの計算されたプロパティ値を返す
@@ -336,7 +401,12 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `hasLeadingIcon() => boolean` | チップに先頭アイコンがあるかどうかを返す
 `getRootBoundingClientRect() => ClientRect` | ルート要素に結びついている client rect を返す
 `getCheckmarkBoundingClientRect() => ClientRect \| null` | チェック印要素に結びついている client rect を返し、チェック印要素がないなら null を返す
-`setAttr(attr: string, value: string) => void` | ルート要素の属性の値を設定する
+`notifyNavigation(key: string, source: EventSource) => void` | ナビゲーションイベントが発生したことをチップセットに通知する
+`setPrimaryActionAttr(attr: string, value: string) => void` | プライマリアクション要素の属性を与えられた値に設定する
+`focusPrimaryAction() => void` | プライマリアクション要素にフォーカスを与える
+`hasTrailingAction() => boolean` | チップが末尾アクション要素を持っていれば `true` を返す
+`setTrailingActionAttr(attr: string, value: string) => void` | 末尾アクション要素があれば属性を与えられた値に設定する
+`focusTrailingAction() => void` | 存在すれば末尾アクション要素にフォーカスを与える
 
 > \*<em>注意</em>: `notifyInteraction` と `notifyTrailingIconInteraction` は対象となるチップの ID を伝たえる必要があり、親の `mdc-chip-set` 要素から識別できる必要があります（例えば、DOM イベントバブルを通じて）。
 
@@ -349,8 +419,14 @@ React や Angular のような JavaScript フレームワークを使ってい�
 メソッド | 説明
 --- | ---
 `hasClass(className: string) => boolean` | チップセットが与えられたクラスを含んでいるかどうかを返す
-`removeChip(chipId: string) => void` | チップセットから与えられた id を持つチップを削除する
-`setSelected(chipId: string, selected: boolean) => void` | 与えられた id を持つチップの選択状態を設定する
+`removeChipAtIndex(index: number) => void` | チップセットから与えられた `index` のチップを削除する
+`selectChipAtIndex(index: string, selected: boolean, shouldNotifyClients: boolean) => void` | 与えられた `index` のチップに対して `MDCChip#setSelectedFromChipSet(selected)` を呼び出す。`shouldNotifyClients` を `true` にして呼ばれたときは選択イベントが発生する。発生した選択イベントは `MDCChipSetFoundation` によって無視される
+`getIndexOfChipById(id: string) => number` | `id` に合致したチップのインデックス、もしくは、-1 を返す
+`focusChipPrimaryActionAtIndex(index: number) => void` | 与えられた `index` のチップに対して `MDCChip#focusPrimaryAction()` を呼び出す
+`focusChipTrailingActionAtIndex(index: number) => void` | 与えられた `index` のチップに対して `MDCChip#focusTrailingAction()` を呼び出す
+`isRTL() => boolean` | テキストの方向が RTL なら `true` を返す
+`getChipListCount() => number` | チップセット内のチップの数を返す
+`removeFocusFromChipAtIndex(index: number) => void` | 与えられた `index` のチップに対して `MDCChip#removeFocus()` を呼び出す
 
 ### ファンデーション: `MDCChipFoundation` と `MDCChipSetFoundation`
 
@@ -360,6 +436,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 --- | ---
 `isSelected() => boolean` | チップが選択されていれば true を返す
 `setSelected(selected: boolean) => void` | チップの選択状態を設定する
+`setSelectedFromChipSet(selected: boolean, shouldNotifyClients: boolean) => void` | チップの（チップセットから呼ばれた）選択状態を `selected` パラメータで更新する。`shouldNotifyClients` を `true` にして呼ばれたときは選択イベントが発生する。発生した選択イベントは `MDCChipSetFoundation` によって無視される
 `getShouldRemoveOnTrailingIconClick() => boolean` | 末尾アイコンのクリックがチップの終了/削除のトリガーとなっているかどうかを返す
 `setShouldRemoveOnTrailingIconClick(shouldRemove: boolean) => void` | 末尾アイコンのクリックをチップの終了/削除のトリガーとするかどうかを設定する
 `getDimensions() => ClientRect` | チップの大きさを返す。チップにリップルを提供するのに使用される。
@@ -367,6 +444,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `handleInteraction(evt: Event) => void` | ルート要素の対話イベントをハンドリングする
 `handleTransitionEnd(evt: Event) => void` | ルート要素のトランジッション終了イベントをハンドリングする
 `handleTrailingIconInteraction(evt: Event) => void` | 末尾アイコンの対話イベントをハンドリングする
+`handleKeydown(evt: Event) => void` | ルート要素のキーダウンイベントをハンドリングする
+`removeFocus() => void` | チップからフォーカスを削除する
 
 #### `MDCChipFoundation` イベントハンドラー
 
@@ -377,6 +456,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `click`, `keydown` | `.mdc-chip` (ルート) | `handleInteraction()`
 `click`, `keydown` | `.mdc-chip__icon--trailing` (あれば) | `handleTrailingIconInteraction()`
 `transitionend` | `.mdc-chip` (ルート) | `handleTransitionEnd()`
+`keydown` | `.mdc-chip` (ルート) | `handleKeydown()`
 
 #### `MDCChipSetFoundation`
 
@@ -385,6 +465,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `getSelectedChipIds() => ReadonlyArray<string>` | すべての選択されたチップの ID の配列を返す
 `select(chipId: string) => void` | 与えられた id を持つチップを選択する
 `handleChipInteraction(chipId: string) => void` | ルート要素のカスタム `MDCChip:interaction` イベントをハンドリングする
+`handleChipSelection(chipId: string, selected: boolean, chipSetShouldIgnore: boolean) => void` | ルート要素のカスタム `MDCChip:selection` イベントをハンドリングする。`chipSetShouldIgnore` が true なら、チップセットはイベントを処理しない
 `handleChipSelection(chipId: string, selected: boolean) => void` | ルート要素のカスタム `MDCChip:selection` イベントをハンドリングする
 `handleChipRemoval(chipId: string) => void` | ルート要素のカスタム `MDCChip:removal` イベントをハンドリングする
 
@@ -397,3 +478,4 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `MDCChip:interaction` | `.mdc-chip-set` (ルート) | `handleChipInteraction`
 `MDCChip:selection` | `.mdc-chip-set` (ルート) | `handleChipSelection`
 `MDCChip:removal` | `.mdc-chip-set` (ルート) | `handleChipRemoval`
+`MDCChip:navigation` | `.mdc-chip-set` (ルート) | `handleChipNavigation`

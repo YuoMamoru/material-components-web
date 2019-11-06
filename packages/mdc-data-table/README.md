@@ -236,10 +236,11 @@ CSS クラス | 説明
 `mdc-data-table-shape-radius($radius)` | 与えられた半径の大きさに角の丸めの大きさを設定する。`$radius` は一つの半径、もしくは最大4つの値のリスト使う。
 `mdc-data-table-stroke-size($size)` | データテーブルの境界の大きさを設定する。
 `mdc-data-table-stroke-color($color)` | データテーブルの境界色を設定する。
-`mdc-data-table-header-row-height($height)` | ヘッダー行の高さを設定する。
-`mdc-data-table-row-height($height)` | 行の高さを設定する。
+`mdc-data-table-header-cell-height($height)` | テーブルヘッダーセルの高さを設定する。
+`mdc-data-table-cell-height($height)` | テーブルセルの高さを設定する。
 `mdc-data-table-cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
 `mdc-data-table-column-widths($width-list)` | テーブル各行の幅を個別に設定する。
+`mdc-data-table-density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
 
 ## アクセシビリティ
 

@@ -166,7 +166,6 @@ The menu can use absolutely positioned when being displayed.
 
 ```js
 // ...
-menu.hoistMenuToBody(); // メニューがすでに body に配置されている場合は不要。
 menu.setAbsolutePosition(100, 100);
 ```
 
@@ -228,7 +227,6 @@ JavaScript をインポートする方法についてのより詳細な情報は
 `setAbsolutePosition(x: number, y: number) => void` | メニュー表面の `setAbsolutePosition(x: number, y: number)` メソッドの代替。
 `setFixedPosition(isFixed: boolean) => void` | メニュー表面の `setFixedPosition(isFixed: boolean)` メソッドの代替。
 `setSelectedIndex(index: number) => void` | 指定したインデックスのリスト項目を選択状態に設定する。
-`hoistMenuToBody() => void` | メニュー表面の `hoistMenuToBody()` メソッドの代替。
 `setIsHoisted(isHoisted: boolean) => void` | メニュー表面の `setIsHoisted(isHoisted: boolean)` メソッドの代替。
 `setAnchorElement(element: Element) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
 `getOptionByIndex(index: number) => Element \| null` | `index` に指定したところにあるリスト項目を返す。
