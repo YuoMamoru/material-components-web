@@ -144,6 +144,23 @@ CSS カスタムプロパティを完全にサポートしているブラウザ�
 
 ### 追加情報
 
+#### アクセシビリティ
+
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。FAB はデフォルトで 48 x 48 px で、ミニ FAB は 40 x 40 px です。ミニ FAB ではこの要件を満たすために以下のものを追加します。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <button class="mdc-fab mdc-fab--mini mdc-fab--touch">
+    <div class="mdc-fab__ripple"></div>
+    <span class="material-icons mdc-fab__icon">add</span>
+    <span class="mdc-fab__label">Create</span>
+    <div class="mdc-fab__touch"></div>
+  </button>
+</div>
+```
+
+隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
+
 #### 配置
 
 必要に応じてアプリケーションのデザイン内に MDC FAB を配置しなくてはいけません。

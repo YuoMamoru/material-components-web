@@ -511,7 +511,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 --- | ---
 `getListItemCount() => Number` | `root_` 要素の直接の子要素となっているリスト項目（`mdc-list-item` クラスを伴う要素）の総数を返す。
 `getFocusedElementIndex() => Number` | 現在フォーカスされている要素の `index` の値を返す。
-`getListItemIndex(ele: Element) => Number` | 与えられた `ele` 要素の `index` の値を返す。
 `getAttributeForElementIndex(index: number, attribute: string) => string | null` | 与えられた `index` の位置のリスト項目の属性値を返す。
 `setAttributeForElementIndex(index: Number, attr: String, value: String) => void` | `index` の位置のリスト項目の `attr` 属性を `value` にする。
 `addClassForElementIndex(index: Number, className: String) => void` | `index` の位置のリスト項目に `className` クラスを追加する。
