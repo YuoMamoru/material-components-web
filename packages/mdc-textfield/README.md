@@ -273,49 +273,55 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-ink-color($color)` | テキスト欄に入力されたテキストの色を設定する。
-`mdc-text-field-label-color($color)` | ラベルのテキスト色を設定する。
+`mdc-text-field-ink-color($color)` | 有効なテキスト欄に入力されたテキストの色を設定する。
+`mdc-text-field-disabled-ink-color($color)` | 無効なテキスト欄に入力されたテキストの色を設定する。
+`mdc-text-field-label-color($color)` | 有効なテキスト欄のラベルのテキスト色を設定する。
+`mdc-text-field-disabled-label-color($color)` | 無効なテキスト欄のラベルのテキスト色を設定する。
 `mdc-text-field-caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
 
-#### 塗りつぶされたテキスト欄のためのミキシン
+#### 塗りつぶされたテキスト欄とテキストエリアのためのミキシン
+
+Mixin | Description
+--- | ---
+`mdc-text-field-fill-color($color)` | 有効である場合のテキスト欄もしくはテキストエリアの背景色を設定する。
+`mdc-text-field-disabled-fill-color($color)` | 無効である場合のテキスト欄もしくはテキストエリアの背景色を設定する。
+
+#### 塗りつぶされたテキスト欄のみのためのミキシン
 
 ミキシン | 説明
 --- | ---
 `mdc-text-field-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型テキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-text-field-fill-color($color)` | テキスト欄の背景色を設定する。
-`mdc-text-field-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてテキスト欄下部の線の色を設定する。
-`mdc-text-field-hover-bottom-line-color($color)` | アウトラインされたものとテキストエリアを除いてホバー時のテキスト欄下部の線の色を設定する。
+`mdc-text-field-bottom-line-color($color)` | テキスト欄下部の線の色を設定する。
+`mdc-text-field-hover-bottom-line-color($color)` | ホバー時のテキスト欄下部の線の色を設定する。
+`mdc-text-field-disabled-bottom-line-color($color)` | 無効なテキスト欄下部の千の色を設定する。
 `mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのラインリップルの色を設定する。
 `mdc-text-field-density($density-scale)` | デフォルト型のテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `mdc-text-field-height($height)` | デフォルト型のテキスト欄の高さを設定する。
 
-#### アウトラインされたテキスト欄のためのミキシン
+#### アウトラインされたテキスト欄とテキストエリアのためのミキシン
+
+Mixin | Description
+--- | ---
+`mdc-text-field-focused-outline-color($color)` | テキスト欄かテキストエリアがフォーカスされているときのアウトラインされた境界線の色を設定する。
+`mdc-text-field-hover-outline-color($color)` | テキスト欄かテキストエリアがホバーされているときのアウトラインされた境界線の色を設定する。
+`mdc-text-field-disabled-outline-color($color)` | テキスト欄かテキストエリアが無効なときのアウトラインされた境界線の色を設定する。
+`mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄もしくはテキストエリアの境界線の色を設定する。
+
+#### アウトラインされたテキスト欄のみのためのミキシン
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-focused-outline-color($color)` | アウトラインされたテキスト欄がフォーカスされているときの境界線の色を設定する。
-`mdc-text-field-hover-outline-color($color)` | アウトラインされたテキスト欄の境界線のホバー時の色を設定する。
-`mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄の境界線の色を設定する。
 `mdc-text-field-outline-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にアウトラインされたテキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-text-field-outlined-density($density-scale)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `mdc-text-field-outlined-height($height)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の高さを設定する。
 `mdc-text-field-outlined-with-leading-icon-density($density-scale)` | 先頭アイコン付きのアウトラインテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `mdc-text-field-outlined-with-leading-icon-height($height)` | 先頭アイコン付きのアウトラインテキスト欄の高さを設定する。
 
-#### テキストエリアのためのミキシン
+#### テキストエリアのみのためのミキシン
 
 ミキシン | 説明
 --- | ---
 `mdc-text-field-textarea-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にテキストエリアを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-text-field-textarea-fill-color($color)` | textarea の背景色を設定する。
-`mdc-text-field-textarea-stroke-color($color)` | textarea の境界線の色を設定する。
-
-
-#### フル幅のテキスト欄のためのミキシン
-
-Mixin | Description
---- | ---
-`mdc-text-field-fullwidth-bottom-line-color($color)` | フル幅のテキスト欄のボトムラインの色を設定する。
 
 ## `MDCTextField` プロパティとメソッド
 
