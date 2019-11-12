@@ -10,8 +10,8 @@ path: /docs/framework-wrappers/
 
 Material Components for the web は様々な主要 Web フレームワークに適応できるように設計されています。次のラッパーライブラリが利用可能です。
 
-  - [Material Components for React](https://github.com/material-components/material-components-web-react): React と MDC Web の統合 ([foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)
   - [Material Web Components](https://github.com/material-components/material-components-web-components): Web Components と MDC Web の統合 ([vanilla components](./integrating-into-frameworks.md#the-simple-approach-wrapping-mdc-web-vanilla-components) を使用)
+  - [Material Components for React](https://github.com/material-components/material-components-web-react): React と MDC Web の統合 ([foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)。*このプロジェクトはもはや積極的に開発されていないことに注意してください。*
   - 追加されたサードパーティ製の統合
     - [Preact Material Components](https://github.com/prateekbh/preact-material-components)
     - [RMWC: React Material Web Components](https://github.com/jamesmfriedman/rmwc) ([foundations/adapters](./integrating-into-frameworks.md#the-advanced-approach-using-foundations-and-adapters) を使用)

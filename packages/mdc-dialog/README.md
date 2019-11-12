@@ -40,13 +40,13 @@ npm install @material/dialog
 ### HTML 構造
 
 ```html
-<div class="mdc-dialog"
-     role="alertdialog"
-     aria-modal="true"
-     aria-labelledby="my-dialog-title"
-     aria-describedby="my-dialog-content">
+<div class="mdc-dialog">
   <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface">
+    <div class="mdc-dialog__surface"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="my-dialog-title"
+      aria-describedby="my-dialog-content">
       <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
      -->Dialog Title<!--
@@ -109,13 +109,13 @@ dialog.listen('MDCDialog:opened', () => {
 簡易ダイアログは可能性のあるアクションのリストを含んでいます。ボタンを含んではいません。
 
 ```html
-<div class="mdc-dialog"
-     role="alertdialog"
-     aria-modal="true"
-     aria-labelledby="my-dialog-title"
-     aria-describedby="my-dialog-content">
+<div class="mdc-dialog">
   <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface">
+    <div class="mdc-dialog__surface"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="my-dialog-title"
+      aria-describedby="my-dialog-content">
       <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
      -->Choose a Ringtone<!--
@@ -144,13 +144,13 @@ dialog.listen('MDCDialog:opened', () => {
 確認ダイアログは選択肢のリストと確認やキャンセルのためのボタンを含んでいます。選択肢にはラジオボタン（単一選択）かチェックボックス（複数選択）を伴います。
 
 ```html
-<div class="mdc-dialog"
-     role="alertdialog"
-     aria-modal="true"
-     aria-labelledby="my-dialog-title"
-     aria-describedby="my-dialog-content">
+<div class="mdc-dialog">
   <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface">
+    <div class="mdc-dialog__surface"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="my-dialog-title"
+      aria-describedby="my-dialog-content">
       <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
      -->Choose a Ringtone<!--
