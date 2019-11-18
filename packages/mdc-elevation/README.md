@@ -51,6 +51,21 @@ npm install @material/elevation
   </div>
 ```
 
+#### エレベーションオーバーレイ
+
+エレベーションオーバーレイは積み上げられたコンテンツ内でコンポーネントコンテナの*上に*、リップルの*下に*表示されます。これを実現するために、`.mdc-elevation-overlay` 要素は DOM コンテンツの `.mdc-<component>__ripple` 要素の前に表示する必要があります。タッチターゲットを伴うボタンのマークアップ例を以下に示します。
+
+```html
+<button class="mdc-button mdc-button--raised">
+  <div class="mdc-elevation-overlay"></div>
+  <div class="mdc-button__ripple"></div>
+  <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
+  <span class="mdc-button__label">Font Icon</span>
+</button>
+```
+
+これによりリップル部分はオーバーレイの*上に*描画されます。
+
 ### スタイル
 
 ```scss
@@ -74,17 +89,27 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-elevation($z-value, $color, $opacity-boost)` | エレベーションを与えるためにエレベーションを z-space に設定し、オプションで影の色の設定や不透明度を高める。
+`mdc-elevation($z-value, $color, $opacity-boost)` | エレベーションを与えるためにエレベーションを z-space に設定し、オプションで影の色の設定や不透明度を高める
+`mdc-elevation-overlay-common` | ユニバーサルエレベーションオーバレイスタイルを設定するためにアプリケーションごとに1回呼び出される
+`mdc-elevation-shadow($box-shadow)` | 最も近い親セレクターの `box-shadow` を設定する
+`mdc-elevation-overlay-surface-position` | オーバーレイを中央に適切に配置できるように、オーバーレイの表層要素の位置を設定する
+`mdc-elevation-overlay-size($width, $height: $width)` | エレベーションオーバーレイの幅と高さを設定する
+`mdc-elevation-overlay-fill-color($color)` | エレベーションオーバーレイの色を設定する
+`mdc-elevation-overlay-opacity($opacity)` | エレベーションオーバーレイの不透明度を設定する
+
 
 関数 | 説明
 --- | ---
-`mdc-elevation-transition-value($duration, $easing)` | エレベーション間の要素のトランジッションの際の `transision` プロパティの値を返す。
+`mdc-elevation-transition-value($duration, $easing)` | エレベーション間の要素のトランジッションの際の `transision` プロパティの値を返す
+`mdc-elevation-overlay-transition-value($duration, $easing)` | エレベーション間のエレベーションオーバーレイの遷移のための `transition` プロパティの値を返す
 
 変数 | 説明
 --- | ---
 `$mdc-elevation-property` | エレベーショントランジッションのデフォルトプロパティ
 `$mdc-elevation-transition-duration` | エレベーショントランジッションのデフォルトの duration 値
 `$mdc-elevation-transition-timing-function` | エレベーショントランジッションのデフォルトの easing 値
+`$mdc-elevation-overlay-color` | エレベーションオーバーレイのデフォルトの色
+`$mdc-elevation-overlay-property` | エレベーションオーバーレイトランジッションのデフォルトプロパティ
 
 よりトランジッションに関して設定が必要なら、エクスポートした sass 変数とともに `mdc-elevation-transition-value` 関数を使用します。
 

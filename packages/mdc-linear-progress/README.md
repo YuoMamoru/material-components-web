@@ -38,8 +38,9 @@ npm install @material/linear-progress
 ## 基本的な使用法
 
 ### HTML 構造
+
 ```html
-<div role="progressbar" class="mdc-linear-progress">
+<div role="progressbar" class="mdc-linear-progress" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
   <div class="mdc-linear-progress__buffering-dots"></div>
   <div class="mdc-linear-progress__buffer"></div>
   <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
@@ -50,6 +51,19 @@ npm install @material/linear-progress
   </div>
 </div>
 ```
+
+### アクセシビリティ
+
+プログレスバーは [WAI-ARIA プログレスバー仕様](https://www.w3.org/TR/wai-aria/#progressbar) に準拠しています。プログレスバーのサポートしている ARIA ぞくせいは以下の通りです。
+
+| 属性 | 説明 |
+| --------- | ----------- |
+| `aria-label` | どのようにプログレスバーをユーザーに通知すべきかを示すラベル。 |
+| `aria-valuemin` | プログレスバーの最小数値で、常に `0`。 |
+| `aria-valuemax` | プログレスバーの最大数値で、常に `1`。 |
+| `aria-valuenow` | 主たるプログレスバーの進行状況を示す `aria-valuemin` と `aria-valuemax` の間の数値。この属性は不定なプログレスバーでは削除される。 |
+
+`aria-label` と `aria-valuemin`、`aria-valuemax` は静的な値で、HTML で指定する必要があることに注意してください。`aria-valuenow` は、対象のプログレスバーで進行値が更新された際に、ファンデーションによって動的に更新されます。
 
 ### スタイル
 ```scss
@@ -90,11 +104,13 @@ MDC リニアプログレスは外部フレームワークや外部ライブラ�
 | メソッド | 説明 |
 | --- | --- |
 | `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
+| `removeAttribute(attributeName: string) => void` | ルート要素から指定された属性を削除する。 |
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 | `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを持っているかどうかを表す真偽値を返す。 |
 | `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。これは、アニメーションを正しく再起動するために必要。 |
 | `getPrimaryBar() => Element` | 中心となるバー要素を返す。 |
 | `getBuffer() => Element` | バッファー要素を返す。 |
+| `setAttribute(attributeName: string, value: string) => void` | ルート要素に指定した属性を設定する。 |
 | `setStyle(el: Element, styleProperty: string, value: string) => void` | 与えられた要素のインラインスタイルを設定する。 |
 
 ### MDCLinearProgressFoundation API
