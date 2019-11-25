@@ -158,10 +158,6 @@ MDC Checkbox は「マーク」の状態（例えばチェックされている�
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 
-### 注意: Edge と CSS 変数
-
-CSS 変数を完全にサポートしているブラウザでは、MDC Checkbox はテーマプロパティが使用されているすべてのところで CSS 変数を参照します。しかし、Edge の CSS 変数サポートのバグのため、Edge では `.mdc-checkbox__background::before` の `background-color` に CSS 変数が利用されません。もし、プライマリカラー（訳注: 原文で primary color となっているがセカンダリカラーの誤り）の CSS 変数を変更したいのであれば Edge のためにスタイルを手動で上書きする必要がある、ということをこれは意味しています。
-
 ## `MDCCheckbox` プロパティとメソッド
 
 プロパティ | 型 | 説明

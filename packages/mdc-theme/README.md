@@ -104,7 +104,7 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-theme-prop($property, $style, $important, $edgeOptOut)` | テーマカラーもしくは CSS プロパティ形式のカスタムカラーを、必要であれば `!important` を付けて適用する。`$edgeOptOut` が `true` でテーマカラーが渡されたときは、バグのある CSS 変数のサポートの問題を回避するため Edge においてスタイルを除外し、 `@supports` 句でスタイルをラップする。
+`mdc-theme-prop($property, $style, $important)` | テーマカラーもしくは CSS プロパティ形式のカスタムカラーを、必要であれば `!important` を付けて適用する。
 
 #### `mdc-theme-prop` のプロパティ
 

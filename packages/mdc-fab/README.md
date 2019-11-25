@@ -135,12 +135,7 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 `mdc-fab-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に通常 FAB とミニ FAB に限ってを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `mdc-fab-extended-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に拡張 FAB を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 
-
 FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
-
-### 注意: Edge と CSS 変数
-
-CSS カスタムプロパティを完全にサポートしているブラウザでは、引数として [MDC Theme](../mdc-theme) プロパティ（例えば `primary`）を与えても上記のミキシンは動作します。しかし、Edge は CSS カスタムプロパティを完全にサポートしていません。`mdc-fab-container-color` ミキシンを使うときは、Edge をサポートするためには実際の色を指定する必要があります。
 
 ### 追加情報
 

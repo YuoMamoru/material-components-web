@@ -200,7 +200,3 @@ MDC Button はデフォルトで [MDC Theme](../mdc-theme) の `primary` カラ�
 `mdc-button-outline-color($color)` | 有効なボタンにおいて与えた色に境界の色を設定する。
 `mdc-button-disabled-outline-color($color)` | 無効なボタンにおいて与えた色に境界の色を設定する。
 `mdc-button-outline-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `mdc-button-horizontal-padding` に固有の値が設定されている場合に限り必須。
-
-#### 注意: Edge と CSS カスタムプロパティ
-
-CSS カスタムプロパティを完全にサポートしているブラウザでは、引数として [MDC Theme](../mdc-theme) プロパティ（例えば `primary`）を与えても上記のミキシンは動作します。しかし、Edge は CSS カスタムプロパティを完全にサポートしていません。`mdc-button-container-fill-color` ミキシンを使うときは、Edge をサポートするためには実際の色を指定する必要があります。
