@@ -288,8 +288,6 @@ console.log('hello world');
    }
    ```
 
-```
-
 最終的に `webpack.config.js` ファイルはこのようになります。
 
 ```js
