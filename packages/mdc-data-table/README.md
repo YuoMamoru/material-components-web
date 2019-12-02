@@ -257,7 +257,7 @@ const {events} from '@material/data-table/constants';
 
 イベント定数 | イベント名 | 説明
 -- | -- | --
-`ROW_SELECTION_CHANGED` | `MDCDataTable:changed` | 行のチェックボックスがチェックされた、もしくはチェックが外されたときに発生するイベント。
+`ROW_SELECTION_CHANGED` | `MDCDataTable:rowSelectionChanged` | 行のチェックボックスがチェックされた、もしくはチェックが外されたときに発生するイベント。
 `SELECTED_ALL` | `MDCDataTable:selectedAll` | ヘッダー行のチェックボックスがチェックされたときに発生するイベント。
 `UNSELECTED_ALL` | `MDCDataTable:unselectedAll` | ヘッダー行のチェックボックスのチェックが外されたときに発生するイベント。
 
