@@ -441,9 +441,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setShouldRemoveOnTrailingIconClick(shouldRemove: boolean) => void` | 末尾アイコンのクリックをチップの終了/削除のトリガーとするかどうかを設定する
 `getDimensions() => ClientRect` | チップの大きさを返す。チップにリップルを提供するのに使用される。
 `beginExit() => void` | チップの削除に先駆けて終了アニメーションを開始する
-`handleClick(evt: Event) => void` | ルート要素のクリックイベントをハンドリングする
-`handleKeydown(evt: Event) => void` | ルート要素のキーダウンイベントをハンドリングする
+`handleInteraction(evt: Event) => void` | ルート要素の対話イベントをハンドリングする
 `handleTransitionEnd(evt: Event) => void` | ルート要素のトランジッション終了イベントをハンドリングする
+`handleTrailingIconInteraction(evt: Event) => void` | 末尾アイコン要素の対話イベントをハンドリングする
+`handleKeydown(evt: Event) => void` | ルート要素のキーダウンイベントをハンドリングする
 `removeFocus() => void` | チップからフォーカスを削除する
 
 #### `MDCChipFoundation` イベントハンドラー
@@ -452,9 +453,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 イベント | 要素セレクター | ファンデーションハンドラー
 --- | --- | ---
-`click` | `.mdc-chip` (ルート) | `handleClick()`
-`keydown` | `.mdc-chip` (ルート) | `handleKeydown()`
+`click`, `keydown` | `.mdc-chip` (ルート) | `handleInteraction()`
+`click`, `keydown` | `.mdc-chip__icon--trailing` (存在すれば) | `handleTrailingIconInteraction()`
 `transitionend` | `.mdc-chip` (ルート) | `handleTransitionEnd()`
+`keydown` | `.mdc-chip` (ルート) | `handleKeydown()`
 
 #### `MDCChipSetFoundation`
 

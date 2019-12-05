@@ -444,7 +444,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `getSelectedIndex() => number` | 現在選択されているメニュー項目のインデックスを返す。 |
 | `setSelectedIndex(index: number) => void` | `mdc-select__selected-text` 要素を設定しメニューを閉じることをハンドリングする。必要であればラベルを浮かせ、輪郭をへこませる。 |
 | `getValue() => string` | アダプターを介して値の取得をハンドリングする。 |
-| `setValue(value: string) => void` | 選択したインデックスを、与えられた値を持つメニュー項目のインデックスに設定する。 |
+| `setValue() => string` | 選択したインデックスを、与えられた値を持つメニュー項目のインデックスに設定する。 |
 | `setValid(isValid: boolean) => void` | アダプターを介して有効状態を設定する。 |
 | `isValid() => boolean` | アダプターの `checkValidity` API を介して有効状態を取得する。 |
 | `setRequired(isRequired: boolean) => void` | アダプターを介して必須状態を設定する。 |

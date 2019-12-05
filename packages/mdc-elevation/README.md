@@ -93,7 +93,7 @@ CSS クラス | 説明
 `mdc-elevation-overlay-common` | ユニバーサルエレベーションオーバレイスタイルを設定するためにアプリケーションごとに1回呼び出される
 `mdc-elevation-shadow($box-shadow)` | 最も近い親セレクターの `box-shadow` を設定する
 `mdc-elevation-overlay-surface-position` | オーバーレイを中央に適切に配置できるように、オーバーレイの表層要素の位置を設定する
-`mdc-elevation-overlay-size($width, $height: $width)` | エレベーションオーバーレイの幅と高さを設定する
+`mdc-elevation-overlay-dimensions($width, $height: $width, $has-content-sizing: true)` | エレベーションオーバーレイの寸法を設定する
 `mdc-elevation-overlay-fill-color($color)` | エレベーションオーバーレイの色を設定する
 `mdc-elevation-overlay-opacity($opacity)` | エレベーションオーバーレイの不透明度を設定する
 
