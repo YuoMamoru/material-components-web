@@ -274,7 +274,9 @@ CSS クラス | 説明
 ミキシン | 説明
 --- | ---
 `mdc-text-field-ink-color($color)` | 有効なテキスト欄に入力されたテキストの色を設定する。
+`mdc-text-field-placeholder-color($color)` | 有効なテキスト欄のプレースホルダーの色を設定する。
 `mdc-text-field-disabled-ink-color($color)` | 無効なテキスト欄に入力されたテキストの色を設定する。
+`mdc-text-field-disabled-placeholder-color($color)` | 無効なテキスト欄のプレースホルダーの色を設定する。
 `mdc-text-field-label-color($color)` | 有効なテキスト欄のラベルのテキスト色を設定する。
 `mdc-text-field-disabled-label-color($color)` | 無効なテキスト欄のラベルのテキスト色を設定する。
 `mdc-text-field-caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
