@@ -34,6 +34,7 @@ import * as ponyfill from '@material/dom/ponyfill';
 --- | ---
 `closest(element: Element, selector: string) => ?Element` | 与えられたセレクターにマッチする与えられた要素の祖先（与えられた要素がマッチするならそれ自身）を返す。
 `matches(element: Element, selector: string) => boolean` | 与えられた要素が与えられた CSS セレクターにマッチするなら true を返す。
+`estimateScrollWidth(element: Element) => number`  | 表示されている場合は実際の視覚上の幅を返し、親要素が `display: none;` によって非表示となっている場合は推測して返す。
 
 ### イベント関数
 

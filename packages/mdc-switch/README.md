@@ -43,7 +43,7 @@ npm install @material/switch
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__thumb-underlay">
     <div class="mdc-switch__thumb"></div>
-    <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
+    <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="false">
   </div>
 </div>
 <label for="basic-switch">off/on</label>
@@ -78,7 +78,7 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__thumb-underlay">
     <div class="mdc-switch__thumb"></div>
-    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" disabled>
+    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="false" disabled>
   </div>
 </div>
 <label for="another-basic-switch">off/on</label>
@@ -94,7 +94,7 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
   <div class="mdc-switch__track"></div>
   <div class="mdc-switch__thumb-underlay">
     <div class="mdc-switch__thumb"></div>
-    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" checked>
+    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="true" checked>
   </div>
 </div>
 <label for="another-basic-switch">off/on</label>
@@ -151,6 +151,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 | `setNativeControlChecked(checked: boolean)` | ネイティブコントロールのチェック状態を設定する。 |
 | `setNativeControlDisabled(disabled: boolean)` | ネイティブコントロールの利用不可の状態を設定する。 |
+| `setNativeControlAttr(attr: string, value: string)` | ネイティブコントロールの HTML 属性を与えられた値に設定する。 |
 
 ### `MDCSwitchFoundation`
 

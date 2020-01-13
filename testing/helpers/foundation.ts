@@ -22,7 +22,46 @@
  */
 
 import {MDCFoundation} from '../../packages/mdc-base/foundation';
-import {FoundationConstructor} from './setup';
+
+type MDCFoundationStatics = typeof MDCFoundation;
+
+// `extends MDCFoundationStatics` to include MDCFoundation statics in type
+// definition.
+export interface FoundationConstructor<F extends MDCFoundation> extends
+    MDCFoundationStatics {
+  new(...args: any[]): F;
+}
+
+/**
+ * Creates a mockFoundation object with spy functions for each of the
+ * foundation class' methods.
+ */
+export function createMockFoundation<F extends MDCFoundation>(
+    FoundationClass: FoundationConstructor<F>) {
+  const mockFoundationMethods =
+      Object.getOwnPropertyNames(FoundationClass.prototype)
+          .concat(Object.getOwnPropertyNames(MDCFoundation.prototype));
+  const mockFoundation =
+      jasmine.createSpyObj(FoundationClass.name, mockFoundationMethods);
+  return mockFoundation;
+}
+
+/**
+ * Creates a mockAdapter object with spy functions for each of the
+ * adapter class' methods.
+ */
+export function createMockAdapter<F extends MDCFoundation>(
+    FoundationClass: FoundationConstructor<F>) {
+  const mockAdapterMethods = {};
+  Object.keys(FoundationClass.defaultAdapter).forEach((methodName) => {
+    const value = (FoundationClass.defaultAdapter as any)[methodName];
+    (mockAdapterMethods as any)[methodName] =
+        typeof value === 'function' ? value() : value;
+  });
+  const mockAdapter =
+      jasmine.createSpyObj(FoundationClass.name, mockAdapterMethods);
+  return mockAdapter;
+}
 
 /**
  * Sanity tests to ensure the following:
@@ -56,6 +95,26 @@ export function verifyDefaultAdapter<F extends MDCFoundation>(
       defaultAdapter[method]();
     }).not.toThrow();
   });
+}
+
+/**
+ * Returns an object that intercepts calls to an adapter method used to register
+ * event handlers, and adds it to that object where the key is the event name
+ * and the value is the function being used. This is the preferred way of
+ * testing interaction handlers.
+ *
+ * Note that `handlerCaptureMethodName` _must_ have a signature of `(string,
+ * EventListener) => any` in order to be effective.
+ */
+export function captureHandlers(
+    adapter: {[key: string]: any}, handlerCaptureMethodName: string) {
+  const handlers: {[key: string]: any} = {};
+  adapter[handlerCaptureMethodName]
+      .withArgs(jasmine.any(String), jasmine.any(Function))
+      .and.callFake((type: string, handler: Function) => {
+        handlers[type] = handler;
+      });
+  return handlers;
 }
 
 function getUnequalArrayMessage(

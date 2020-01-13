@@ -382,7 +382,8 @@
   @include mdc-text-field-label-ink-color_($mdc-text-field-disabled-label-color);
   @include mdc-text-field-helper-text-color_($mdc-text-field-disabled-helper-text-color);
   @include mdc-text-field-character-counter-color_($mdc-text-field-disabled-helper-text-color);
-  @include mdc-text-field-icon-color_($mdc-text-field-disabled-icon);
+  @include mdc-text-field-leading-icon-color_($mdc-text-field-disabled-icon);
+  @include mdc-text-field-trailing-icon-color_($mdc-text-field-disabled-icon);
   @include mdc-text-field-fill-color_($mdc-text-field-disabled-background);
 
   border-bottom: none;
@@ -400,16 +401,7 @@
   @include mdc-text-field-label-color($mdc-text-field-error);
   @include mdc-text-field-helper-text-validation-color($mdc-text-field-error);
   @include mdc-text-field-caret-color($mdc-text-field-error);
-
-  &.mdc-text-field--with-trailing-icon {
-    &:not(.mdc-text-field--with-leading-icon) {
-      @include mdc-text-field-icon-color($mdc-text-field-error);
-    }
-
-    &.mdc-text-field--with-leading-icon {
-      @include mdc-text-field-icon-color($mdc-text-field-error, /* styleSecondIcon */ true);
-    }
-  }
+  @include mdc-text-field-trailing-icon-color($mdc-text-field-error);
 
   + .mdc-text-field-helper-line .mdc-text-field-helper-text--validation-msg {
     opacity: 1;
@@ -630,12 +622,11 @@
 // Icons
 
 @mixin mdc-text-field-with-leading-icon_ {
-  @include mdc-text-field-icon-horizontal-position_(
-    left,
-    $mdc-text-field-icon-position,
-    $mdc-text-field-icon-padding,
-    $mdc-text-field-input-padding
-  );
+  @include mdc-text-field-leading-icon-horizontal-position_($mdc-text-field-icon-position);
+
+  .mdc-text-field__input {
+    @include mdc-rtl-reflexive-property(padding, $mdc-text-field-icon-padding, $mdc-text-field-input-padding);
+  }
 
   .mdc-floating-label {
     @include mdc-rtl-reflexive-position(left, $mdc-text-field-icon-padding);
@@ -643,12 +634,11 @@
 }
 
 @mixin mdc-text-field-dense-with-leading-icon_ {
-  @include mdc-text-field-icon-horizontal-position_(
-    left,
-    $mdc-text-field-dense-icon-position,
-    $mdc-text-field-dense-icon-padding,
-    $mdc-text-field-input-padding
-  );
+  @include mdc-text-field-leading-icon-horizontal-position_($mdc-text-field-dense-icon-position);
+
+  .mdc-text-field__input {
+    @include mdc-rtl-reflexive-property(padding, $mdc-text-field-dense-icon-padding, $mdc-text-field-input-padding);
+  }
 
   .mdc-floating-label {
     @include mdc-rtl-reflexive-position(left, $mdc-text-field-dense-icon-padding);
@@ -656,12 +646,7 @@
 }
 
 @mixin mdc-text-field-outlined-with-leading-icon_ {
-  @include mdc-text-field-icon-horizontal-position_(
-    left,
-    $mdc-text-field-icon-position,
-    $mdc-text-field-icon-padding,
-    $mdc-text-field-input-padding
-  );
+  @include mdc-text-field-leading-icon-horizontal-position_($mdc-text-field-icon-position);
   @include mdc-notched-outline-floating-label-float-position-absolute($mdc-text-field-outlined-label-position-y, 32px);
   @include mdc-floating-label-shake-animation(text-field-outlined-leading-icon);
 
@@ -692,49 +677,48 @@
 }
 
 @mixin mdc-text-field-with-trailing-icon_ {
-  @include mdc-text-field-icon-horizontal-position_(
-    right,
-    $mdc-text-field-trailing-icon-position,
-    $mdc-text-field-icon-padding,
-    $mdc-text-field-input-padding
-  );
+  @include mdc-text-field-trailing-icon-horizontal-position_($mdc-text-field-trailing-icon-position);
+
+  .mdc-text-field__input {
+    @include mdc-rtl-reflexive-property(padding, $mdc-text-field-input-padding, $mdc-text-field-icon-padding);
+  }
 
   // Outlined uses 16px for text alignment when using a trailing icon.
   &.mdc-text-field--outlined {
-    @include mdc-text-field-icon-horizontal-position_(
-      right,
-      $mdc-text-field-icon-position,
-      $mdc-text-field-icon-padding,
-      $mdc-text-field-input-padding
-    );
+    @include mdc-text-field-trailing-icon-horizontal-position_($mdc-text-field-icon-position);
   }
 }
 
 @mixin mdc-text-field-dense-with-trailing-icon_ {
-  @include mdc-text-field-icon-horizontal-position_(
-    right,
-    $mdc-text-field-dense-icon-position,
-    $mdc-text-field-dense-icon-padding,
-    $mdc-text-field-input-padding
-  );
+  @include mdc-text-field-trailing-icon-horizontal-position_($mdc-text-field-dense-icon-position);
+
+  .mdc-text-field__input {
+    @include mdc-rtl-reflexive-property(padding, $mdc-text-field-input-padding, $mdc-text-field-dense-icon-padding);
+  }
 }
 
 @mixin mdc-text-field-with-both-icons_ {
   @include mdc-text-field-icon-horizontal-position-two-icons_(
     $mdc-text-field-icon-position,
-    $mdc-text-field-icon-padding,
-    $mdc-text-field-trailing-icon-position,
-    $mdc-text-field-icon-padding
+    $mdc-text-field-trailing-icon-position
   );
+
+  .mdc-text-field__input {
+    padding-right: $mdc-text-field-icon-padding;
+    padding-left: $mdc-text-field-icon-padding;
+  }
 }
 
 @mixin mdc-text-field-dense-with-both-icons_ {
   @include mdc-text-field-icon-horizontal-position-two-icons_(
     $mdc-text-field-dense-icon-position,
-    $mdc-text-field-dense-icon-padding,
-    $mdc-text-field-dense-icon-position,
-    $mdc-text-field-dense-icon-padding
+    $mdc-text-field-dense-icon-position
   );
+
+  .mdc-text-field__input {
+    padding-right: $mdc-text-field-dense-icon-padding;
+    padding-left: $mdc-text-field-dense-icon-padding;
+  }
 }
 
 // Full Width
@@ -802,7 +786,7 @@
     align-self: auto;
     box-sizing: border-box;
     height: auto;
-    margin: $padding-inset/2 1px 1px 0;
+    margin: $padding-inset / 2 1px 1px 0;
     padding: 0 $padding-inset $padding-inset;
     border: none;
     line-height: 1.75rem; // 28sp
@@ -826,6 +810,20 @@
 
   &.mdc-text-field--focused {
     @include mdc-text-field-outlined-focused_;
+  }
+}
+
+// End aligned
+@mixin mdc-text-field-end-aligned_ {
+  .mdc-text-field__input {
+    // IE11 does not support text-align: end
+    /* @noflip */
+    text-align: right;
+
+    @include mdc-rtl {
+      /* @noflip */
+      text-align: left;
+    }
   }
 }
 

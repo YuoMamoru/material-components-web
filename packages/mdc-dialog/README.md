@@ -347,10 +347,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `hasClass(className: string) => boolean` | ルート要素が与えられた CSS クラスがあるかどうかを返す。
 `addBodyClass(className: string) => void` | `<body>` にクラスを追加する。
 `removeBodyClass(className: string) => void` | `<body>` からクラスを削除する。
-`eventTargetMatches(target: EventTarget | null, selector: string) => void` | 与えられた CSS セレクターがターゲットの要素に符合していたら `true` を返し、そうでないなら `false` を返す。
-`trapFocus(initialFocusEl: HTMLElement|null) => void` | キーボード操作がダイアログ内のフォーカス可能な要素に制限されるように DOM を設定する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。設定されていればフォーカスが `initialFocusEl` に移る。
+`eventTargetMatches(target: EventTarget \| null, selector: string) => void` | 与えられた CSS セレクターがターゲットの要素に符合していたら `true` を返し、そうでないなら `false` を返す。
+`trapFocus(initialFocusEl: HTMLElement \| null) => void` | キーボード操作がダイアログ内のフォーカス可能な要素に制限されるように DOM を設定する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。設定されていればフォーカスが `initialFocusEl` に移る。
 `releaseFocus() => void` | ダイアログのフォーカスとラッピング効果を削除する（詳細は以下の [フォーカストラッピング処理](#handling-focus-trapping) 参照）。
-`getInitialFocusEl() => HTMLElement|null` | ダイアログが開いた後にフォーカスを与えるために `data-mdc-dialog-initial-focus` 要素を返す。
+`getInitialFocusEl() => HTMLElement \| null` | ダイアログが開いた後にフォーカスを与えるために `data-mdc-dialog-initial-focus` 要素を返す。
 `isContentScrollable() => boolean` | `mdc-dialog__content` がユーザーによってスクロール可能であれば `true` を返し、そうでないなら `false` を返す。
 `areButtonsStacked() => boolean` | `mdc-dialog__action` ボタン（`mdc-dialog__button`）が鉛直方向に重ねられていれば `true` を返し、そうでなく並べられていれば `false` を返す。
 `getActionFromEvent(event: Event) => string \| null` | 与えられたイベントターゲット、もしくはターゲットの祖先から `data-mdc-dialog-action` 属性の値を取得する。

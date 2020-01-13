@@ -233,7 +233,8 @@ const autoprefixer = require('autoprefixer');
 ```html
 <body>
   <button class="foo-button mdc-button">
-    Button
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__label">Button</span>
   </button>
 </body>
 ```

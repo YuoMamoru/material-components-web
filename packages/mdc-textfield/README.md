@@ -257,6 +257,7 @@ CSS クラス | 説明
 `mdc-text-field--with-trailing-icon` | 末尾にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--focused` | フォーカスを持つテキスト欄として表示する。
 `mdc-text-field--no-label` | ラベルのないテキスト欄として表示する。
+`mdc-text-field--end-aligned` | テキスト欄を後ろ揃え（訳注：RTL でなければ右揃えのこと）で表示する。
 `mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
 
 #### 非推奨のお知らせ
