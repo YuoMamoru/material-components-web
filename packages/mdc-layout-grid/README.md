@@ -141,7 +141,7 @@ CSS クラス | 説明
 - `$margin`: グリッドのマージンの大きさ。
 - `$max-width`（オプション）: グリッドの幅の最大値。Point space stops being distributed by the columns at the grid.
 
-#### `mdc-layout-grid-inner($size, $margin, $max-width)`
+#### `mdc-layout-grid-inner($size, $margin, $gutter)`
 
 特定のデバイス上でのグリッドセルのラッパーのための CSS を生成します。このミキシンは 3 つのパラメーターを取ります。
 - `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。

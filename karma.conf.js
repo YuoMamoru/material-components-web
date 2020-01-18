@@ -36,6 +36,14 @@ const FILES_TO_USE = [
   'testing/**/*.ts',
 ];
 
+// Files to exclude in Jasmine tests.
+const EXCLUDE_FILES = [
+  'packages/**/*.scss.test.ts',
+  'testing/featuretargeting/**',
+  'testing/ts-node.register.js',
+  'scripts/**/*.ts',
+];
+
 const HEADLESS_LAUNCHERS = {
   'ChromeHeadlessNoSandbox': {
     base: 'ChromeHeadless',
@@ -56,6 +64,8 @@ const SAUCE_LAUNCHERS = {
   },
 };
 
+const PROGRESS = USE_SAUCE ? 'dots' : 'progress';
+
 const customLaunchers = Object.assign({}, USE_SAUCE ? SAUCE_LAUNCHERS : {}, HEADLESS_LAUNCHERS);
 const browsers = USE_SAUCE ? Object.keys(customLaunchers) : ['Chrome'];
 const istanbulInstrumenterLoader = {
@@ -66,11 +76,15 @@ const istanbulInstrumenterLoader = {
   exclude: [
     /node_modules/,
     /adapter.[jt]s$/,
+    /animation\/.*$/,
+    /auto-init\/.*$/,
+    /base\/.*$/,
     /checkbox\/.*$/,
     /chips\/.*$/,
     /constants.[jt]s$/,
     /data-table\/.*$/,
     /floating-label\/.*$/,
+    /form-field\/.*$/,
     /icon-button\/.*$/,
     /line-ripple\/.*$/,
     /list\/.*$/,
@@ -78,6 +92,8 @@ const istanbulInstrumenterLoader = {
     /menu-surface\/.*$/,
     /notched-outline\/.*$/,
     /radio\/.*$/,
+    /slider\/.*$/,
+    /snackbar\/.*$/,
     /switch\/.*$/,
     /tab-bar\/.*$/,
     /tab-scroller\/.*$/,
@@ -100,7 +116,7 @@ const mochaConfig = {
   preprocessors: {
     'test/unit/index.js': ['webpack', 'sourcemap'],
   },
-  reporters: ['progress', 'coverage-istanbul'],
+  reporters: [PROGRESS, 'coverage-istanbul'],
 
   coverageIstanbulReporter: {
     'dir': 'coverage',
@@ -139,8 +155,10 @@ const mochaConfig = {
 const jasmineConfig = {
   basePath: '',
   files: FILES_TO_USE,
+  exclude: EXCLUDE_FILES,
   frameworks: ['jasmine', 'karma-typescript'],
   karmaTypescriptConfig: {
+    exclude: EXCLUDE_FILES,
     coverageOptions: {
       threshold: {
         global: {
@@ -153,10 +171,14 @@ const jasmineConfig = {
             'adapter.ts',
             'constants.ts',
             'testing/**/*.ts',
+            'packages/!(mdc-animation)/**/*',
+            'packages/!(mdc-auto-init)/**/*',
+            'packages/!(mdc-base)/**/*',
             'packages/!(mdc-checkbox)/**/*',
             'packages/!(mdc-chips)/**/*',
             'packages/!(mdc-data-table)/**/*',
             'packages/!(mdc-floating-label)/**/*',
+            'packages/!(mdc-form-field)/**/*',
             'packages/!(mdc-icon-button)/**/*',
             'packages/!(mdc-line-ripple)/**/*',
             'packages/!(mdc-list)/**/*',
@@ -164,6 +186,8 @@ const jasmineConfig = {
             'packages/!(mdc-menu-surface)/**/*',
             'packages/!(mdc-notched-outline)/**/*',
             'packages/!(mdc-radio)/**/*',
+            'packages/!(mdc-slider)/**/*',
+            'packages/!(mdc-snackbar)/**/*',
             'packages/!(mdc-switch)/**/*',
             'packages/!(mdc-tab-bar)/**/*',
             'packages/!(mdc-tab-scroller)/**/*',
@@ -174,9 +198,6 @@ const jasmineConfig = {
         },
       },
     },
-    exclude: [
-      'scripts/**/*.ts',
-    ],
     reports: {
       html: 'coverage',
       lcovonly: 'coverage',
@@ -191,7 +212,7 @@ const jasmineConfig = {
     obj[file] = 'karma-typescript';
     return obj;
   }, {}),
-  reporters: ['progress', 'karma-typescript'],
+  reporters: [PROGRESS, 'karma-typescript'],
 };
 
 module.exports = function(config) {
