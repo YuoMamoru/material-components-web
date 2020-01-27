@@ -36,11 +36,11 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 
 <!-- Render textfield component -->
-<div class="mdc-text-field">
-  <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-floating-label" for="my-text-field">Label</label>
+<label class="mdc-text-field">
+  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
+  <span class="mdc-floating-label" id="my-label">Label</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 
 <!-- Required MDC Web JavaScript library -->
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -67,11 +67,11 @@ npm install @material/textfield
 text field コンポーネントの使用例です。さらなるオプションに関しては [MDC Textfield](packages/mdc-textfield) コンポーネントのページを参照してください。
 
 ```html
-<div class="mdc-text-field">
-  <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-floating-label" for="my-text-field">Label</label>
+<label class="mdc-text-field">
+  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
+  <span class="mdc-floating-label" id="my-label">Label</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 #### CSS

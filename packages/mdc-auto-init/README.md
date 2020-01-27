@@ -23,11 +23,11 @@ npm install @material/auto-init
 [material-components-web](../material-components-web) パッケージの一部として mdc-auto-init を使うのであれば、単にコンポーネントが必要な DOM に書くだけです。ルート要素の `data-mdc-auto-init` 属性にコンポーネントの JavaScript クラス名（例: `MDCTextField`）を設定します。そしてマークアップを書いたら、`mdc.autoInit()` を呼び出す script タグを単に追加するだけです。正しく動作させるにはすべてのスクリプトが読み込まれた後に `mdc.autoInit()` を呼びしてください。
 
 ```html
-<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-  <input class="mdc-text-field__input" type="text" id="input">
-  <label for="input" class="mdc-floating-label">Input Label</label>
+<label class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="label">
+  <span id="label" class="mdc-floating-label">Input Label</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 
 <!-- ページの最後に -->
 <script type="text/javascript">
@@ -42,11 +42,11 @@ npm install @material/auto-init
 コンポーネントが要素にアタッチされるときに `data-mdc-auto-init` の値と同じ名称を持つ要素のプロパティにインスタンスが設定されます。例えば次コードがあったとします。
 
 ```html
-<div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-  <input class="mdc-text-field__input" type="text" id="input">
-  <label for="input" class="mdc-floating-label">Input Label</label>
+<label class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="label">
+  <span id="label" class="mdc-floating-label">Input Label</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 `mdc.autoInit()` を呼ぶと、要素の `MDCTextField` プロパティを通じてコンポーネントのインスタンスアクセスできます。
@@ -60,9 +60,9 @@ document.querySelector('.mdc-text-field').MDCTextField.disabled = true;
 最初の `mdc.autoInit()` の後に DOM に新しい要素を追加しようとするなら、そのあとに `mdc.autoInit()` を呼び出すことができます。これにより、既に存在するコンポーネントが再び初期化されることはありません。これは mdc-auto-init が `data-mdc-auto-init-state="initialized"` 属性を追加することによるもので、この属性によってこんっぽーねんとが既に初期化されているかどうかをトラッキングしています。`mdc.autoInit()` を呼んだ後にはコンポーネントは次のようになっています。
 
 ```html
-<div class="mdc-text-field" data-mdc-auto-init="MDCTextField" data-mdc-auto-init-state="initialized">
+<label class="mdc-text-field" data-mdc-auto-init="MDCTextField" data-mdc-auto-init-state="initialized">
   ...
-</div>
+</label>
 ```
 
 ### 単独モジュールとしての使用
@@ -90,9 +90,9 @@ mdcAutoInit.register('My amazing text field!!!', MDCTextField);
 ```
 
 ```html
-<div class="mdc-text-field" data-mdc-auto-init="My amazing text field!!!">
+<label class="mdc-text-field" data-mdc-auto-init="My amazing text field!!!">
   <!-- ... -->
-</div>
+</label>
 <script>window.mdc.autoInit();</script>
 ```
 

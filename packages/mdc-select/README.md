@@ -144,7 +144,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <div class="mdc-notched-outline">
       <div class="mdc-notched-outline__leading"></div>
       <div class="mdc-notched-outline__notch">
-        <label id="outlined-select-label" class="mdc-floating-label">Pick a Food Group</label>
+        <span id="outlined-select-label" class="mdc-floating-label">Pick a Food Group</span>
       </div>
       <div class="mdc-notched-outline__trailing"></div>
     </div>

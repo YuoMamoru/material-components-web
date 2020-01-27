@@ -36,7 +36,7 @@ import * as ponyfill from '@material/dom/ponyfill';
 `matches(element: Element, selector: string) => boolean` | 与えられた要素が与えられた CSS セレクターにマッチするなら true を返す。
 `estimateScrollWidth(element: Element) => number`  | 表示されている場合は実際の視覚上の幅を返し、親要素が `display: none;` によって非表示となっている場合は推測して返す。
 
-### イベント関数
+## イベント関数
 
 外部のフレームワークとライブラリは以下のイベントユーティリティメソッドを使うことが可能です。
 
@@ -45,3 +45,12 @@ import * as ponyfill from '@material/dom/ponyfill';
 `util.applyPassive(globalObj = window, forceRefresh = false) => object` | 現在のブラウザがパッシブイベントリスナーをサポートしているか確認する
 
 > <em>注意</em>: 関数 `util.applyPassive` は結果をキャッシュします。`forceRefresh` は強制的に再計算させますが、主にテストのために使い、通常の使用においては必要ないはずです。
+
+## フォーカストラップ
+
+`FocusTrap` ユーティリティは与えられた要素内にフォーカスをとどめます。これはダイアログやモーダルドロワーのような MDC 内部コンポーネントからの仕様を目的としています。
+
+メソッド | 説明
+--- | ---
+`trapFocus() => void` | フォーカスをルート要素内にとどめます。`initialFocusEl` が設定されているとそこにもフォーカスし、そうでなければ子要素の最初のフォーカス可能な要素にフォーカスします。
+`releaseFocus() => void` | ルート要素からフォーカスを開放します。また、以前にフォーカスしていた要素にフォーカスを戻します。

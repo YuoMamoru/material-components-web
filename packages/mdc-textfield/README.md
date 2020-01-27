@@ -32,11 +32,11 @@ npm install @material/textfield
 ### HTML 構造
 
 ```html
-<div class="mdc-text-field">
-  <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-floating-label" for="my-text-field">Hint text</label>
+<label class="mdc-text-field">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+  <span class="mdc-floating-label" id="my-label-id">Hint text</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 > 注意: 詳細については、[MDC Line Ripple](../mdc-line-ripple/README.md) と [MDC Floating Label](../mdc-floating-label/README.md) を参照してください。
@@ -64,12 +64,12 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 フル幅のテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
 
 ```html
-<div class="mdc-text-field mdc-text-field--fullwidth">
+<label class="mdc-text-field mdc-text-field--fullwidth">
   <input class="mdc-text-field__input"
          type="text"
          placeholder="Full-Width Text Field"
          aria-label="Full-Width Text Field">
-</div>
+</label>
 ```
 
 > <em>注意</em>: `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。
@@ -79,31 +79,31 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ### 複数行テキスト欄
 
 ```html
-<div class="mdc-text-field mdc-text-field--textarea">
-  <textarea id="textarea" class="mdc-text-field__input" rows="8" cols="40"></textarea>
+<label class="mdc-text-field mdc-text-field--textarea">
+  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40"></textarea>
   <div class="mdc-notched-outline">
     <div class="mdc-notched-outline__leading"></div>
     <div class="mdc-notched-outline__notch">
-      <label for="textarea" class="mdc-floating-label">Textarea Label</label>
+      <label class="mdc-floating-label" id="my-label-id">Textarea Label</label>
     </div>
     <div class="mdc-notched-outline__trailing"></div>
   </div>
-</div>
+</label>
 ```
 
 ### アウトライン
 
 ```html
-<div class="mdc-text-field mdc-text-field--outlined">
-  <input type="text" id="tf-outlined" class="mdc-text-field__input">
+<label class="mdc-text-field mdc-text-field--outlined">
+  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
   <div class="mdc-notched-outline">
     <div class="mdc-notched-outline__leading"></div>
     <div class="mdc-notched-outline__notch">
-      <label for="tf-outlined" class="mdc-floating-label">Your Name</label>
+      <span class="mdc-floating-label" id="my-label-id">Your Name</span>
     </div>
     <div class="mdc-notched-outline__trailing"></div>
   </div>
-</div>
+</label>
 ```
 
 ノッチ付きアウトラインサブコンポーネントの使用についてのより詳しい情報は [ここ](../mdc-notched-outline/) を参照してください。
@@ -115,11 +115,11 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 テキスト欄を無効にするには、`<input>` 要素に `disabled` 属性を追加し、`mdc-text-field` 要素に `mdc-text-field--disabled` クラスを追加します。
 
 ```html
-<div class="mdc-text-field mdc-text-field--disabled">
-  <input type="text" id="disabled-text-field" class="mdc-text-field__input" disabled>
-  <label class="mdc-floating-label" for="disabled-text-field">Disabled text field</label>
+<label class="mdc-text-field mdc-text-field--disabled">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" disabled>
+  <span class="mdc-floating-label" id="my-label-id">Disabled text field</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 ### ラベルなしテキスト欄
@@ -129,34 +129,34 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 #### フル幅
 
 ```html
-<div class="mdc-text-field mdc-text-field--no-label">
-  <input type="text" class="mdc-text-field__input" placeholder="Placeholder text" aria-label="Label">
+<label class="mdc-text-field mdc-text-field--no-label">
+  <input class="mdc-text-field__input" type="text" placeholder="Placeholder text" aria-label="Label">
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 #### アウトライン
 
 ```html
-<div class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label">
-  <input type="text" class="mdc-text-field__input" aria-label="Label">
+<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label">
+  <input class="mdc-text-field__input" type="text" aria-label="Label">
   <div class="mdc-notched-outline">
     <div class="mdc-notched-outline__leading"></div>
     <div class="mdc-notched-outline__trailing"></div>
   </div>
-</div>
+</label>
 ```
 
 #### 複数行
 
 ```html
-<div class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
+<label class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
   <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
   <div class="mdc-notched-outline">
     <div class="mdc-notched-outline__leading"></div>
     <div class="mdc-notched-outline__trailing"></div>
   </div>
-</div>
+</label>
 ```
 
 ### ヘルプテキスト付きテキスト欄
@@ -164,13 +164,16 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ヘルプテキストは補足の情報や検証のメッセージをユーザーに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
 
 ```html
-<div class="mdc-text-field">
-  <input type="text" id="my-text-field" class="mdc-text-field__input">
-  <label class="mdc-floating-label" for="my-text-field">My Label</label>
+<label class="mdc-text-field">
+  <input class="mdc-text-field__input" type="text"
+         aria-labelledby="my-label-id"
+         aria-controls="my-helper-id"
+         aria-describedby="my-helper-id">
+  <span class="mdc-floating-label" id="my-label-id">My Label</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 <div class="mdc-text-field-helper-line">
-  <div class="mdc-text-field-helper-text">helper text</div>
+  <div class="mdc-text-field-helper-text" id="my-helper-id" aria-hidden="true">helper text</div>
 </div>
 ```
 
@@ -179,11 +182,11 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 文字数に制限がある場合、文字数カウンターが使われます。これは文字数制限の上限と入力された文字数の比率を表示するものです。文字数カウンターは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。文字数カウンターの使用に関するより多くの情報は [ここ](character-counter/) を参照してください。
 
 ```html
-<div class="mdc-text-field">
-  <input type="text" id="my-text-field" class="mdc-text-field__input" maxlength="10">
-  <label class="mdc-floating-label" for="my-text-field">My Label</label>
+<label class="mdc-text-field">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" maxlength="10">
+  <span class="mdc-floating-label" id="my-label-id">My Label</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 <div class="mdc-text-field-helper-line">
   <div class="mdc-text-field-character-counter">0 / 10</div>
 </div>
@@ -194,17 +197,17 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 複数行テキスト欄 (textarea) での文字数カウンターでは、テキスト欄のコンポーネント内にカウンターを表示するため、レイアウト構造が少々異なります。
 
 ```html
-<div class="mdc-text-field mdc-text-field--textarea">
+<label class="mdc-text-field mdc-text-field--textarea">
   <div class="mdc-text-field-character-counter">0 / 140</div>
-  <textarea id="textarea" class="mdc-text-field__input" rows="8" cols="40" maxlength="140"></textarea>
+  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40" maxlength="140"></textarea>
   <div class="mdc-notched-outline">
     <div class="mdc-notched-outline__leading"></div>
     <div class="mdc-notched-outline__notch">
-      <label for="textarea" class="mdc-floating-label">Textarea Label</label>
+      <span class="mdc-floating-label" id="my-label-id">Textarea Label</span>
     </div>
     <div class="mdc-notched-outline__trailing"></div>
   </div>
-</div>
+</label>
 ```
 
 ヘルプテキストと文字数カウンターは独立して共存できるテキスト欄のオプションサブコンポーネントです。適切なレイアウトのために `.mdc-text-field` 要素と `.mdc-text-field-helper-line` 要素は同じ幅にすることを推奨します。
@@ -218,11 +221,11 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 `MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。
 
 ```html
-<div class="mdc-text-field">
-  <input type="password" id="pw" class="mdc-text-field__input" required minlength=8>
-  <label for="pw" class="mdc-floating-label">Password</label>
+<label class="mdc-text-field">
+  <input class="mdc-text-field__input" type="password" aria-labelledby="my-label-id" required minlength="8">
+  <span class="mdc-floating-label" id="my-label-id">Password</span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 `MDCTextFieldFoundation` は required 属性が設定されていると自動的にラベルにアスタリスクを追加します。
@@ -232,13 +235,13 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
-<div class="mdc-text-field">
-  <input type="text" id="pre-filled" class="mdc-text-field__input" value="Pre-filled value">
-  <label class="mdc-floating-label mdc-floating-label--float-above" for="pre-filled">
+<label class="mdc-text-field">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="Pre-filled value">
+  <span class="mdc-floating-label mdc-floating-label--float-above" id="my-label-id">
     Label in correct place
-  </label>
+  </span>
   <div class="mdc-line-ripple"></div>
-</div>
+</label>
 ```
 
 ## スタイルのカスタマイズ
