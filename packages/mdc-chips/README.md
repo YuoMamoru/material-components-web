@@ -357,7 +357,7 @@ MDC Chips パッケージには2つの JavaScript クラスが同梱されてい
 --- | --- | ---
 `MDCChip:interaction` | `{chipId: string}` | チップが対話（クリック/タップもしくはエンターキーを通じて）したことを示す
 `MDCChip:selection` | `{chipId: string, selected: boolean}` | チップが選択状態に変わった（選択チップ/フィルターチップで）ことを示す
-`MDCChip:removal` | `{chipId: string, root: Element}` | チップが DOM から削除される準備ができたことを示す
+`MDCChip:removal` | `{chipId: string, removedAnnouncement: string|null}` | チップが DOM から削除される準備ができたことを示す
 `MDCChip:trailingIconInteraction` | `{chipId: string}` | チップの末尾アイコンが対話（クリック/タップもしくはエンターキーを通じて）したことを示す
 `MDCChip:navigation` | `{chipId: string, key: string, source: FocusSource}` | チップ上でナビケーションイベントが発生したことを示す
 
@@ -407,6 +407,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `hasTrailingAction() => boolean` | チップが末尾アクション要素を持っていれば `true` を返す
 `setTrailingActionAttr(attr: string, value: string) => void` | 末尾アクション要素があれば属性を与えられた値に設定する
 `focusTrailingAction() => void` | 存在すれば末尾アクション要素にフォーカスを与える
+`getAttribute(attr: string) => string|null` | 存在すれば促成の文字列の値を返し、そうでないなら `null` を返す
 
 > \*<em>注意</em>: `notifyInteraction` と `notifyTrailingIconInteraction` は対象となるチップの ID を伝たえる必要があり、親の `mdc-chip-set` 要素から識別できる必要があります（例えば、DOM イベントバブルを通じて）。
 
@@ -427,6 +428,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `isRTL() => boolean` | テキストの方向が RTL なら `true` を返す
 `getChipListCount() => number` | チップセット内のチップの数を返す
 `removeFocusFromChipAtIndex(index: number) => void` | 与えられた `index` のチップに対して `MDCChip#removeFocus()` を呼び出す
+`announceMessage(message: string) => void` | [`aria-live` リージョン](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) を通じてメッセージを通知する
 
 ### ファンデーション: `MDCChipFoundation` と `MDCChipSetFoundation`
 
@@ -464,10 +466,10 @@ React や Angular のような JavaScript フレームワークを使ってい�
 --- | ---
 `getSelectedChipIds() => ReadonlyArray<string>` | すべての選択されたチップの ID の配列を返す
 `select(chipId: string) => void` | 与えられた id を持つチップを選択する
-`handleChipInteraction(chipId: string) => void` | ルート要素のカスタム `MDCChip:interaction` イベントをハンドリングする
-`handleChipSelection(chipId: string, selected: boolean, chipSetShouldIgnore: boolean) => void` | ルート要素のカスタム `MDCChip:selection` イベントをハンドリングする。`chipSetShouldIgnore` が true なら、チップセットはイベントを処理しない
-`handleChipSelection(chipId: string, selected: boolean) => void` | ルート要素のカスタム `MDCChip:selection` イベントをハンドリングする
-`handleChipRemoval(chipId: string) => void` | ルート要素のカスタム `MDCChip:removal` イベントをハンドリングする
+`handleChipInteraction(detail: MDCChipInteractionEventDetail) => void` | ルート要素のカスタム `MDCChip:interaction` イベントをハンドリングする
+`handleChipSelection(detail: MDCChipSelectionEventDetail) => void` | ルート要素のカスタム `MDCChip:selection` イベントをハンドリングする。`chipSetShouldIgnore` が true なら、チップセットはイベントを処理しない
+`handleChipRemoval(detail: MDCChipRemovalEventDetail) => void` | ルート要素のカスタム `MDCChip:removal` イベントをハンドリングする
+`handleChipNavigation(detail: MDCChipNavigationEventDetail) => void` | ルート要素のカスタム `MDCChip:navigation` イベントをハンドリングする
 
 #### `MDCChipSetFoundation` イベントハンドラー
 

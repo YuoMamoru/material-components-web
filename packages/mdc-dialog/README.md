@@ -56,9 +56,11 @@ npm install @material/dialog
       </div>
       <footer class="mdc-dialog__actions">
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+          <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">No</span>
         </button>
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">Yes</span>
         </button>
       </footer>
@@ -180,9 +182,11 @@ dialog.listen('MDCDialog:opened', () => {
       </div>
       <footer class="mdc-dialog__actions">
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+          <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">Cancel</span>
         </button>
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">
+          <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">OK</span>
         </button>
       </footer>
@@ -234,9 +238,11 @@ dialog.autoStackButtons = false;
 ...
 <footer class="mdc-dialog__actions">
   <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+    <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">Cancel</span>
   </button>
   <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept" data-mdc-dialog-button-default>
+    <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">OK</span>
   </button>
 </footer>

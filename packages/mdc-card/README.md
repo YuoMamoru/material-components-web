@@ -144,9 +144,11 @@ MDC Card は様々なユースケースで使用できますが、いくつか�
 ```html
 <div class="mdc-card__actions">
   <button class="mdc-button mdc-card__action mdc-card__action--button">
+    <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">Action 1</span>
   </button>
   <button class="mdc-button mdc-card__action mdc-card__action--button">
+    <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">Action 2</span>
   </button>
 </div>
@@ -176,8 +178,9 @@ MDC Card は様々なユースケースで使用できますが、いくつか�
 ```html
 <div class="mdc-card__actions mdc-card__actions--full-bleed">
   <a class="mdc-button mdc-card__action mdc-card__action--button" href="#">
+    <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">All Business Headlines</span>
-    <i class="material-icons" aria-hidden="true">arrow_forward</i>
+    <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_forward</i>
   </a>
 </div>
 ```
@@ -188,9 +191,11 @@ MDC Card は様々なユースケースで使用できますが、いくつか�
 <div class="mdc-card__actions">
   <div class="mdc-card__action-buttons">
     <button class="mdc-button mdc-card__action mdc-card__action--button">
+      <div class="mdc-button__ripple"></div>
       <span class="mdc-button__label">Read</span>
     </button>
     <button class="mdc-button mdc-card__action mdc-card__action--button">
+      <div class="mdc-button__ripple"></div>
       <span class="mdc-button__label">Bookmark</span>
     </button>
   </div>
@@ -228,9 +233,11 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
   <div class="mdc-card__actions">
     <div class="mdc-card__action-buttons">
       <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label">Action 1</span>
       </button>
       <button class="mdc-button mdc-card__action mdc-card__action--button">
+        <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label">Action 2</span>
       </button>
     </div>

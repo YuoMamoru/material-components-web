@@ -42,9 +42,7 @@ import * as ponyfill from '@material/dom/ponyfill';
 
 メソッド | 説明
 --- | ---
-`util.applyPassive(globalObj = window, forceRefresh = false) => object` | 現在のブラウザがパッシブイベントリスナーをサポートしているか確認する
-
-> <em>注意</em>: 関数 `util.applyPassive` は結果をキャッシュします。`forceRefresh` は強制的に再計算させますが、主にテストのために使い、通常の使用においては必要ないはずです。
+`util.applyPassive(globalObj = window) => object` | 現在のブラウザがパッシブイベントリスナーをサポートしているか確認する
 
 ## フォーカストラップ
 
@@ -54,3 +52,12 @@ import * as ponyfill from '@material/dom/ponyfill';
 --- | ---
 `trapFocus() => void` | フォーカスをルート要素内にとどめます。`initialFocusEl` が設定されているとそこにもフォーカスし、そうでなければ子要素の最初のフォーカス可能な要素にフォーカスします。
 `releaseFocus() => void` | ルート要素からフォーカスを開放します。また、以前にフォーカスしていた要素にフォーカスを戻します。
+
+## アナウンス
+
+`announce` ユーティリティファイルには `aria-live` リージョンを通じてメッセージを通知するための単一のヘルパーメソッドが含まれます。これは MDC 内部コンポーネントからの使用を目的としています。
+
+メソッド | 説明
+--- | ---
+`announce(message: string, priority?: AnnouncerPriority) => void` | 与えられた優先度（デフォルトは polite）で `aria-live` リージョンを通じてメッセージを通知する
+<!-- TODO(b/148462294): Remove once only exported members are required in docs `say()` --> <!-- | --> <!-- DO NOT USE -->

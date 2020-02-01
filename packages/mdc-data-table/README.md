@@ -101,7 +101,7 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           <div class="mdc-checkbox mdc-data-table__header-row-checkbox mdc-checkbox--selected">
             <input type="checkbox" class="mdc-checkbox__native-control" aria-label="Checkbox for header row selection"/>
             <div class="mdc-checkbox__background">
-              <svg class="mdc-checkbox__checkmark" viewbox="0 0 24 24">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                 <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
@@ -122,7 +122,7 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           <div class="mdc-checkbox mdc-data-table__row-checkbox">
             <input type="checkbox" class="mdc-checkbox__native-control" aria-labelledby="u0"/>
             <div class="mdc-checkbox__background">
-              <svg class="mdc-checkbox__checkmark" viewbox="0 0 24 24">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                 <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
@@ -141,7 +141,7 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           <div class="mdc-checkbox mdc-data-table__row-checkbox mdc-checkbox--selected">
             <input type="checkbox" class="mdc-checkbox__native-control" checked aria-labelledby="u1"/>
             <div class="mdc-checkbox__background">
-              <svg class="mdc-checkbox__checkmark" viewbox="0 0 24 24">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                 <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
@@ -160,7 +160,7 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           <div class="mdc-checkbox mdc-data-table__row-checkbox mdc-checkbox--selected">
             <input type="checkbox" class="mdc-checkbox__native-control" checked aria-labelledby="u2"/>
             <div class="mdc-checkbox__background">
-              <svg class="mdc-checkbox__checkmark" viewbox="0 0 24 24">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                 <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
@@ -179,7 +179,7 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           <div class="mdc-checkbox mdc-data-table__row-checkbox">
             <input type="checkbox" class="mdc-checkbox__native-control" aria-labelledby="u3"/>
             <div class="mdc-checkbox__background">
-              <svg class="mdc-checkbox__checkmark" viewbox="0 0 24 24">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                 <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
               </svg>
               <div class="mdc-checkbox__mixedmark"></div>
@@ -207,9 +207,9 @@ CSS クラス | 説明
 `mdc-data-table` | 必須。`table` とその他の補助的な要素を含んだルート DOM 要素。
 `mdc-data-table__table` | 必須。テーブル要素。`table` HTML タグに追加する。
 `mdc-data-table__header-row` | 必須。テーブルヘッダー行要素。`thead > tr` HTML タグに追加する。
-`mdc-data-table__header-cell` | 必須。テーブルヘッダーセル要素。`thead > th > td` HTML タグに追加する。
-`mdc-data-table__header-cell--checkbox` | オプション。`mdc-checkbox` を含むテーブルヘッダーセル要素。`thead> th > td:first-child` HTML タグに追加する。
-`mdc-data-table__header-cell--numeric` | オプション。数値セルに対応するテーブルヘッダーセル要素。`thead > th > td` HTML タグに追加する。
+`mdc-data-table__header-cell` | 必須。テーブルヘッダーセル要素。`thead > tr > th` HTML タグに追加する。
+`mdc-data-table__header-cell--checkbox` | オプション。`mdc-checkbox` を含むテーブルヘッダーセル要素。`thead> tr > th` HTML タグに追加する。
+`mdc-data-table__header-cell--numeric` | オプション。数値セルに対応するテーブルヘッダーセル要素。`thead > tr > th` HTML タグに追加する。
 `mdc-data-table__content` | 必須。テーブルボディ要素。`tbody` HTML タグに追加する。
 `mdc-data-table__row` | 必須。テーブル行要素。`tbody > tr` HTML タグに追加する。
 `mdc-data-table__cell` | 必須。テーブルセル要素。`tbody > tr > td` HTML タグに追加する。

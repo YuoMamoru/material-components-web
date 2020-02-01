@@ -64,6 +64,7 @@ describe('MDCChipFoundation', () => {
       'isRTL',
       'setPrimaryActionAttr',
       'setTrailingActionAttr',
+      'getAttribute',
     ]);
   });
 
@@ -241,6 +242,22 @@ describe('MDCChipFoundation', () => {
        expect(mockAdapter.notifyRemoval).toHaveBeenCalled();
      });
 
+  it('#handleTransitionEnd notifies removal of chip with removal announcement if present',
+     () => {
+       const {foundation, mockAdapter} = setupTest();
+       const mockEvt = {
+         type: 'transitionend',
+         target: {},
+         propertyName: 'width',
+       };
+       mockAdapter.eventTargetHasClass.and.returnValue(true);
+       mockAdapter.getAttribute.and.returnValue('Removed foo');
+
+       foundation.handleTransitionEnd(mockEvt);
+
+       expect(mockAdapter.notifyRemoval).toHaveBeenCalledWith('Removed foo');
+     });
+
   it('#handleTransitionEnd animates width if chip is exiting on chip opacity transition end',
      () => {
        const {foundation, mockAdapter} = setupTest();
@@ -379,6 +396,7 @@ describe('MDCChipFoundation', () => {
        const mockEvt = {
          type: 'click',
          stopPropagation: jasmine.createSpy('stopPropagation'),
+         preventDefault: jasmine.createSpy('preventDefault'),
          key: '',
        };
 
@@ -386,6 +404,7 @@ describe('MDCChipFoundation', () => {
        expect(mockAdapter.notifyTrailingIconInteraction)
            .toHaveBeenCalledTimes(1);
        expect(mockEvt.stopPropagation).toHaveBeenCalledTimes(1);
+       expect(mockEvt.preventDefault).toHaveBeenCalledTimes(1);
 
        mockEvt.type = 'keydown';
        mockEvt.key = ' ';
@@ -393,6 +412,7 @@ describe('MDCChipFoundation', () => {
        expect(mockAdapter.notifyTrailingIconInteraction)
            .toHaveBeenCalledTimes(2);
        expect(mockEvt.stopPropagation).toHaveBeenCalledTimes(2);
+       expect(mockEvt.preventDefault).toHaveBeenCalledTimes(2);
 
        mockEvt.type = 'keydown';
        mockEvt.key = 'Enter';
@@ -400,6 +420,7 @@ describe('MDCChipFoundation', () => {
        expect(mockAdapter.notifyTrailingIconInteraction)
            .toHaveBeenCalledTimes(3);
        expect(mockEvt.stopPropagation).toHaveBeenCalledTimes(3);
+       expect(mockEvt.preventDefault).toHaveBeenCalledTimes(3);
      });
 
   it(`#handleTrailingIconInteraction adds ${
@@ -409,6 +430,7 @@ describe('MDCChipFoundation', () => {
        const mockEvt = {
          type: 'click',
          stopPropagation: jasmine.createSpy('stopPropagation'),
+         preventDefault: jasmine.createSpy('preventDefault'),
        };
 
        foundation.handleTrailingIconInteraction(mockEvt);
@@ -416,6 +438,7 @@ describe('MDCChipFoundation', () => {
        expect(foundation.getShouldRemoveOnTrailingIconClick()).toBe(true);
        expect(mockAdapter.addClass).toHaveBeenCalledWith(cssClasses.CHIP_EXIT);
        expect(mockEvt.stopPropagation).toHaveBeenCalled();
+       expect(mockEvt.preventDefault).toHaveBeenCalled();
      });
 
   it(`#handleTrailingIconInteraction does not add ${
@@ -426,6 +449,7 @@ describe('MDCChipFoundation', () => {
        const mockEvt = {
          type: 'click',
          stopPropagation: jasmine.createSpy('stopPropagation'),
+         preventDefault: jasmine.createSpy('preventDefault'),
        };
 
        foundation.setShouldRemoveOnTrailingIconClick(false);
@@ -435,6 +459,7 @@ describe('MDCChipFoundation', () => {
        expect(mockAdapter.addClass)
            .not.toHaveBeenCalledWith(cssClasses.CHIP_EXIT);
        expect(mockEvt.stopPropagation).toHaveBeenCalled();
+       expect(mockEvt.preventDefault).toHaveBeenCalled();
      });
 
   it('#handleKeydown emits custom event with appropriate keys', () => {
