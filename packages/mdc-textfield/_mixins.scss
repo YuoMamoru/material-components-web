@@ -55,9 +55,9 @@
   // postcss-bem-linter: define text-field
   .mdc-text-field {
     // Text Field intentionally omits press ripple, so each state needs to be specified individually.
-    @include ripple-mixins.states-base-color(variables.$ink-color, $query: $query);
-    @include ripple-mixins.states-hover-opacity(ripple-functions.states-opacity(variables.$ink-color, hover), $query: $query);
-    @include ripple-mixins.states-focus-opacity(ripple-functions.states-opacity(variables.$ink-color, focus), $query: $query);
+    @include ripple-mixins.states-base-color(variables.$ink-color, $query: $query, $ripple-target: variables.$ripple-target);
+    @include ripple-mixins.states-hover-opacity(ripple-functions.states-opacity(variables.$ink-color, hover), $query: $query, $ripple-target: variables.$ripple-target);
+    @include ripple-mixins.states-focus-opacity(ripple-functions.states-opacity(variables.$ink-color, focus), $query: $query, $ripple-target: variables.$ripple-target);
 
     // Height
     @include height(variables.$height, $query: $query);
@@ -95,16 +95,13 @@
   .mdc-text-field__input {
     // Exclude setting line-height to keep caret (text cursor) same height as the input text in iOS browser.
     @include typography-mixins.typography(subtitle1, $exclude-props: (line-height), $query: $query);
+    @include input-padding_($query: $query);
 
     @include feature-targeting-mixins.targets($feat-structure) {
       align-self: flex-end;
       box-sizing: border-box;
       width: 100%;
       height: 100%;
-      padding:
-        variables.$input-padding-top
-        variables.$input-padding
-        variables.$input-padding-bottom + variables.$input-border-bottom;
       border: none;
       border-radius: 0;
       background: none;
@@ -162,10 +159,7 @@
 
     // Vertically center aligns the text input placeholder and value for only filled variant.
     .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) & {
-      @include feature-targeting-mixins.targets($feat-structure) {
-        padding-top: 16px;
-        padding-bottom: 16px + variables.$input-border-bottom;
-      }
+      @include input-no-label-padding_($query: $query);
     }
   }
 
@@ -379,8 +373,12 @@
   @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   .mdc-text-field {
-    @include ripple-mixins.surface($query: $query);
-    @include ripple-mixins.radius-bounded($query: $query);
+    @include ripple-mixins.surface($query: $query, $ripple-target: variables.$ripple-target);
+    @include ripple-mixins.radius-bounded($query: $query, $ripple-target: variables.$ripple-target);
+  }
+
+  #{variables.$ripple-target} {
+    @include ripple-mixins.target-common($query: $query);
   }
 }
 
@@ -389,15 +387,17 @@
 ///
 /// @param {Number | String} $density-scale - Density scale value for component. Supported density scale values `-4`,
 ///     `-3`, `-2`, `-1`, `0`. Default is `0`.
+/// @param {Number} $minimum-height-for-filled-label Sets the minimum height for
+///     filled textfields at which to allow floating labels.
 ///
-@mixin density($density-scale, $query: feature-targeting-functions.all()) {
+@mixin density($density-scale, $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label, $query: feature-targeting-functions.all()) {
   $height: density-functions.prop-value(
     $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
 
-  @include height($height, $query: $query);
+  @include height($height, $minimum-height-for-filled-label: $minimum-height-for-filled-label, $query: $query);
 }
 
 ///
@@ -436,28 +436,28 @@
 /// Sets height of default text field variant.
 ///
 /// @param {Number} $height
+/// @param {Number} $minimum-height-for-filled-label Sets the minimum height for
+///     filled textfields at which to allow floating labels.
 /// @access public
 ///
-@mixin height($height, $query: feature-targeting-functions.all()) {
+@mixin height($height, $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label, $query: feature-targeting-functions.all()) {
   $feat-structure: feature-targeting-functions.create-target($query, structure);
 
   @include feature-targeting-mixins.targets($feat-structure) {
     height: $height;
   }
 
-  // Target only dense text field.
-  @if $height <= 40px {
-    // Target only IE 11.
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      .mdc-text-field__input {
-        @include feature-targeting-mixins.targets($feat-structure) {
-          // Set line-height to the height of input element excluding padding & border.
-          line-height:
-            $height
-            - variables.$input-padding-top
-            - variables.$input-padding-bottom
-            - variables.$input-border-bottom;
+  @if $height < $minimum-height-for-filled-label {
+    // Filled text fields must be tall enough to display a label
+    &:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) {
+      @include feature-targeting-mixins.targets($feat-structure) {
+        .mdc-floating-label {
+          display: none;
         }
+      }
+
+      .mdc-text-field__input {
+        @include input-no-label-padding_($query: $query);
       }
     }
   }
@@ -741,6 +741,26 @@
 
 // Baseline
 
+@mixin input-padding_($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    padding:
+      variables.$input-padding-top
+      variables.$input-padding
+      variables.$input-padding-bottom + variables.$input-border-bottom;
+  }
+}
+
+@mixin input-no-label-padding_($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    padding-top: 0;
+    padding-bottom: variables.$input-border-bottom;
+  }
+}
+
 @mixin disabled_($query: feature-targeting-functions.all()) {
   $feat-structure: feature-targeting-functions.create-target($query, structure);
 
@@ -756,6 +776,12 @@
 
   @media screen and (-ms-high-contrast: active) {
     @include bottom-line-color_(GrayText, $query: $query);
+    @include placeholder-color_(GrayText, $query: $query);
+    @include label-ink-color_(GrayText, $query: $query);
+    @include helper-text-mixins.helper-text-color_(GrayText, $query: $query);
+    @include character-counter-mixins.character-counter-color_(GrayText, $query: $query);
+    @include icon-mixins.leading-icon-color_(GrayText, $query: $query);
+    @include icon-mixins.trailing-icon-color_(GrayText, $query: $query);
   }
 
   @include feature-targeting-mixins.targets($feat-structure) {
@@ -942,6 +968,10 @@
 @mixin outlined-disabled_($query: feature-targeting-functions.all()) {
   @include notched-outline-mixins.color(variables.$outlined-disabled-border, $query: $query);
   @include fill-color_(transparent, $query);
+
+  @media screen and (-ms-high-contrast: active) {
+    @include notched-outline-mixins.color(GrayText, $query: $query);
+  }
 }
 
 @mixin outlined-invalid_($query: feature-targeting-functions.all()) {
@@ -998,7 +1028,7 @@
   @include outline-shape-radius(small, $query: $query);
   @include notched-outline-mixins.floating-label-float-position-absolute(variables.$outlined-label-position-y, $query: $query);
   @include notched-outline-mixins.notch-offset(notched-outline-variables.$border-width, $query: $query);
-  @include ripple-mixins.states-base-color(transparent, $query: $query);
+  @include ripple-mixins.states-base-color(transparent, $query: $query, $ripple-target: variables.$ripple-target);
   @include fill-color(transparent, $query: $query);
 
   @include feature-targeting-mixins.targets($feat-structure) {
@@ -1006,9 +1036,9 @@
   }
 
   .mdc-text-field__input {
+    @include outlined-input-padding_($query: $query);
     @include feature-targeting-mixins.targets($feat-structure) {
       display: flex;
-      padding: 12px 16px 14px;
       border: none !important; // FF adds unwanted border in HC mode on windows.
       background-color: transparent;
       z-index: 1;
@@ -1023,6 +1053,15 @@
 
   &.mdc-text-field--focused {
     @include notched-outline-mixins.notch-offset(variables.$outlined-stroke-width, $query: $query);
+  }
+}
+
+@mixin outlined-input-padding_($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    padding-top: variables.$outlined-input-padding-top;
+    padding-bottom: variables.$outlined-input-padding-bottom;
   }
 }
 
@@ -1192,7 +1231,7 @@
   }
 
   &:not(.mdc-text-field--textarea) {
-    @include ripple-mixins.states-base-color(transparent, $query: $query);
+    @include ripple-mixins.states-base-color(transparent, $query: $query, $ripple-target: variables.$ripple-target);
     @include fill-color(transparent, $query: $query);
 
     @include feature-targeting-mixins.targets($feat-structure) {
@@ -1237,7 +1276,7 @@
   @include focused-outline-color(primary, $query: $query);
   @include floating-label-mixins.shake-animation(textarea, $query: $query);
   @include outline-shape-radius(small, $query: $query);
-  @include ripple-mixins.states-base-color(transparent, $query: $query);
+  @include ripple-mixins.states-base-color(transparent, $query: $query, $ripple-target: variables.$ripple-target);
   @include fill-color(transparent, $query: $query);
   @include notched-outline-mixins.floating-label-float-position(variables.$textarea-label-position-y, $query: $query);
   @include character-counter-mixins.character-counter-position(16px, 13px, $query: $query);

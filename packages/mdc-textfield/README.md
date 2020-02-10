@@ -33,6 +33,7 @@ npm install @material/textfield
 
 ```html
 <label class="mdc-text-field">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
   <span class="mdc-floating-label" id="my-label-id">Hint text</span>
   <div class="mdc-line-ripple"></div>
@@ -44,7 +45,7 @@ npm install @material/textfield
 ### スタイル
 
 ```scss
-@import "@material/textfield/mdc-text-field";
+@use "@material/textfield/mdc-text-field";
 ```
 
 ### JavaScript のインスタンス化
@@ -65,10 +66,12 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--fullwidth">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input"
          type="text"
          placeholder="Full-Width Text Field"
          aria-label="Full-Width Text Field">
+  <div class="mdc-line-ripple"></div>
 </label>
 ```
 
@@ -116,6 +119,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--disabled">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" disabled>
   <span class="mdc-floating-label" id="my-label-id">Disabled text field</span>
   <div class="mdc-line-ripple"></div>
@@ -130,6 +134,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--no-label">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="text" placeholder="Placeholder text" aria-label="Label">
   <div class="mdc-line-ripple"></div>
 </label>
@@ -165,6 +170,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="text"
          aria-labelledby="my-label-id"
          aria-controls="my-helper-id"
@@ -183,6 +189,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" maxlength="10">
   <span class="mdc-floating-label" id="my-label-id">My Label</span>
   <div class="mdc-line-ripple"></div>
@@ -222,6 +229,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="password" aria-labelledby="my-label-id" required minlength="8">
   <span class="mdc-floating-label" id="my-label-id">Password</span>
   <div class="mdc-line-ripple"></div>
@@ -236,6 +244,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field">
+  <div class="mdc-text-field__ripple"></div>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="Pre-filled value">
   <span class="mdc-floating-label mdc-floating-label--float-above" id="my-label-id">
     Label in correct place
@@ -277,57 +286,57 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-ink-color($color)` | 有効なテキスト欄に入力されたテキストの色を設定する。
-`mdc-text-field-placeholder-color($color)` | 有効なテキスト欄のプレースホルダーの色を設定する。
-`mdc-text-field-disabled-ink-color($color)` | 無効なテキスト欄に入力されたテキストの色を設定する。
-`mdc-text-field-disabled-placeholder-color($color)` | 無効なテキスト欄のプレースホルダーの色を設定する。
-`mdc-text-field-label-color($color)` | 有効なテキスト欄のラベルのテキスト色を設定する。
-`mdc-text-field-disabled-label-color($color)` | 無効なテキスト欄のラベルのテキスト色を設定する。
-`mdc-text-field-caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
+`ink-color($color)` | 有効なテキスト欄に入力されたテキストの色を設定する。
+`placeholder-color($color)` | 有効なテキスト欄のプレースホルダーの色を設定する。
+`disabled-ink-color($color)` | 無効なテキスト欄に入力されたテキストの色を設定する。
+`disabled-placeholder-color($color)` | 無効なテキスト欄のプレースホルダーの色を設定する。
+`label-color($color)` | 有効なテキスト欄のラベルのテキスト色を設定する。
+`disabled-label-color($color)` | 無効なテキスト欄のラベルのテキスト色を設定する。
+`caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
 
 #### 塗りつぶされたテキスト欄とテキストエリアのためのミキシン
 
 Mixin | Description
 --- | ---
-`mdc-text-field-fill-color($color)` | 有効である場合のテキスト欄もしくはテキストエリアの背景色を設定する。
-`mdc-text-field-disabled-fill-color($color)` | 無効である場合のテキスト欄もしくはテキストエリアの背景色を設定する。
+`fill-color($color)` | 有効である場合のテキスト欄もしくはテキストエリアの背景色を設定する。
+`disabled-fill-color($color)` | 無効である場合のテキスト欄もしくはテキストエリアの背景色を設定する。
 
 #### 塗りつぶされたテキスト欄のみのためのミキシン
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型テキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-text-field-bottom-line-color($color)` | テキスト欄下部の線の色を設定する。
-`mdc-text-field-hover-bottom-line-color($color)` | ホバー時のテキスト欄下部の線の色を設定する。
-`mdc-text-field-disabled-bottom-line-color($color)` | 無効なテキスト欄下部の千の色を設定する。
-`mdc-text-field-line-ripple-color($color)` | テキスト欄のデフォルトのラインリップルの色を設定する。
-`mdc-text-field-density($density-scale)` | デフォルト型のテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
-`mdc-text-field-height($height)` | デフォルト型のテキスト欄の高さを設定する。
+`shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型テキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`bottom-line-color($color)` | テキスト欄下部の線の色を設定する。
+`hover-bottom-line-color($color)` | ホバー時のテキスト欄下部の線の色を設定する。
+`disabled-bottom-line-color($color)` | 無効なテキスト欄下部の千の色を設定する。
+`line-ripple-color($color)` | テキスト欄のデフォルトのラインリップルの色を設定する。
+`density($density-scale)` | デフォルト型のテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`height($height)` | デフォルト型のテキスト欄の高さを設定する。
 
 #### アウトラインされたテキスト欄とテキストエリアのためのミキシン
 
 Mixin | Description
 --- | ---
-`mdc-text-field-focused-outline-color($color)` | テキスト欄かテキストエリアがフォーカスされているときのアウトラインされた境界線の色を設定する。
-`mdc-text-field-hover-outline-color($color)` | テキスト欄かテキストエリアがホバーされているときのアウトラインされた境界線の色を設定する。
-`mdc-text-field-disabled-outline-color($color)` | テキスト欄かテキストエリアが無効なときのアウトラインされた境界線の色を設定する。
-`mdc-text-field-outline-color($color)` | アウトラインされたテキスト欄もしくはテキストエリアの境界線の色を設定する。
+`focused-outline-color($color)` | テキスト欄かテキストエリアがフォーカスされているときのアウトラインされた境界線の色を設定する。
+`hover-outline-color($color)` | テキスト欄かテキストエリアがホバーされているときのアウトラインされた境界線の色を設定する。
+`disabled-outline-color($color)` | テキスト欄かテキストエリアが無効なときのアウトラインされた境界線の色を設定する。
+`outline-color($color)` | アウトラインされたテキスト欄もしくはテキストエリアの境界線の色を設定する。
 
 #### アウトラインされたテキスト欄のみのためのミキシン
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-outline-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にアウトラインされたテキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-text-field-outlined-density($density-scale)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
-`mdc-text-field-outlined-height($height)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の高さを設定する。
-`mdc-text-field-outlined-with-leading-icon-density($density-scale)` | 先頭アイコン付きのアウトラインテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
-`mdc-text-field-outlined-with-leading-icon-height($height)` | 先頭アイコン付きのアウトラインテキスト欄の高さを設定する。
+`outline-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にアウトラインされたテキスト欄を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`outlined-density($density-scale)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`outlined-height($height)` | アウトラインされたテキスト欄（先頭アイコン付きのアウトラインテキスト欄を除く）の高さを設定する。
+`outlined-with-leading-icon-density($density-scale)` | 先頭アイコン付きのアウトラインテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`outlined-with-leading-icon-height($height)` | 先頭アイコン付きのアウトラインテキスト欄の高さを設定する。
 
 #### テキストエリアのみのためのミキシン
 
 ミキシン | 説明
 --- | ---
-`mdc-text-field-textarea-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にテキストエリアを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`textarea-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にテキストエリアを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 
 ## `MDCTextField` プロパティとメソッド
 

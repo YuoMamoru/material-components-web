@@ -118,6 +118,7 @@ MDC Web のテーマはマテリアルデザインのテーマのように **プ
       </div>
     </div>
     <button class="mdc-fab" id="demo-absolute-fab" aria-label="Favorite">
+      <div class="mdc-fab__ripple"></div>
       <span class="mdc-fab__icon material-icons">favorite</span>
     </button>
   </body>
@@ -207,15 +208,15 @@ From here, we can see that we want to apply `mdc-theme--primary-bg` to the cards
 
 ### ステップ 3: Sass を使いテーマを変える
 
-あなたのすべてのアプリケーションでデフォルトで使用されている統一的なテーマカラーは Sass で設定できます。MDC Web のどのモジュールを読み込むより前に Sass ファイル内に3つの変数（`$mdc-theme-primary`、`$mdc-theme-secondary`、`$mdc-theme-background`）を定義することにより、簡単に設定できます。
+あなたのすべてのアプリケーションでデフォルトで使用されている統一的なテーマカラーは Sass で設定できます。MDC Web のどのモジュールを読み込むより前に Sass ファイル内に3つの変数（`$primary`、`$secondary`、`$background`）を定義することにより、簡単に設定できます。
 
 ```scss
-// メインとなる Sass ファイル
-$mdc-theme-primary: #9c27b0;
-$mdc-theme-secondary: #76ff03;
-$mdc-theme-background: #fff;
-
-@import "material-components-web/material-components-web";
+@use "@material/theme" with (
+  $primary: #9c27b0,
+  $secondary: #76ff03,
+  $background: #fff,
+);
+@use "material-components-web";
 ```
 
 これらの定義は `mdc-theme` モジュール内の初期値を上書きし、テーマを利用するすべてのコンポーネントはこれに依存します。テキストの色については `mdc-theme` 内で Sass 定義の一部として与えられたプライマリ/セカンダリ/バックグランドの各色から自動的に計算されます。とっても簡単でしょ！
@@ -352,11 +353,13 @@ MDC Web コンポーネントのどれが使われるかわからないので、
 
 大部分の MDC Web コンポーネントは、塗りの色、インクの色、線の太さ等のような見た目を変更するための Sass ミキシンを提供しています。これらのミキシンは各コンポーネントの README ファイル（例えば [Button readme](../packages/mdc-button/README.md#advanced-sass-mixins)）に記載があります。
 
-例えば、ボタンの塗りの色を変更し、見やすいインクの色を自動的に選ぶには、カスタム CSS クラス内で単純に `mdc-button-filled-accessible` ミキシンを呼べばよいのです。
+例えば、ボタンの塗りの色を変更し、見やすいインクの色を自動的に選ぶには、カスタム CSS クラス内で単純に `button.filled-accessible` ミキシンを呼べばよいのです。
 
 ```scss
+@use "@material/button";
+
 .accessible-button {
-  @include mdc-button-filled-accessible(blue);
+  @include button.filled-accessible(blue);
 }
 ```
 
@@ -364,7 +367,8 @@ MDC Web コンポーネントのどれが使われるかわからないので、
 
 ```html
 <button class="mdc-button accessible-button">
+  <div class="mdc-button__ripple"></div>
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
-  Button
+  <div class="mdc-button__label">Button</div>
 </button>
 ```

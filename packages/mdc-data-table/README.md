@@ -31,8 +31,8 @@ npm install @material/data-table
 ### スタイル
 
 ```scss
-@import "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
-@import "@material/data-table/mdc-data-table";
+@use "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
+@use "@material/data-table/mdc-data-table";
 ```
 
 > *注意*: データテーブルに含めるつもりのコンポーネント（例えばチェックボックスやボタン等）のスタイルもインポートしなくてはなりません。
@@ -223,24 +223,24 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-data-table-fill-color($color)` | データテーブル面の背景色を設定する。
-`mdc-data-table-row-fill-color($color)` | テーブル行のコンテナの背景色を設定する。
-`mdc-data-table-header-row-fill-color($color)` | テーブルヘッダー行のコンテナの背景色を設定する。
-`mdc-data-table-selected-row-fill-color($color)` | 選択行のコンテナの背景色を設定する。
-`mdc-data-table-checked-icon-color($color)` | チェック時のアイコン色を設定する。
-`mdc-data-table-divider-color($color)` | テーブル行の境界の色を設定する。
-`mdc-data-table-divider-size($size)` | テーブル行の境界の大きさを設定する。
-`mdc-data-table-row-hover-fill-color($color)` | テーブル行のホバー時の背景色を設定する。
-`mdc-data-table-header-row-text-color($color)` | ヘッダー行の文字色を設定する。
-`mdc-data-table-row-text-color($color)` | 行の文字色を設定する。
-`mdc-data-table-shape-radius($radius)` | 与えられた半径の大きさに角の丸めの大きさを設定する。`$radius` は一つの半径、もしくは最大4つの値のリスト使う。
-`mdc-data-table-stroke-size($size)` | データテーブルの境界の大きさを設定する。
-`mdc-data-table-stroke-color($color)` | データテーブルの境界色を設定する。
-`mdc-data-table-header-cell-height($height)` | テーブルヘッダーセルの高さを設定する。
-`mdc-data-table-cell-height($height)` | テーブルセルの高さを設定する。
-`mdc-data-table-cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
-`mdc-data-table-column-widths($width-list)` | テーブル各行の幅を個別に設定する。
-`mdc-data-table-density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
+`fill-color($color)` | データテーブル面の背景色を設定する。
+`row-fill-color($color)` | テーブル行のコンテナの背景色を設定する。
+`header-row-fill-color($color)` | テーブルヘッダー行のコンテナの背景色を設定する。
+`selected-row-fill-color($color)` | 選択行のコンテナの背景色を設定する。
+`checked-icon-color($color)` | チェック時のアイコン色を設定する。
+`divider-color($color)` | テーブル行の境界の色を設定する。
+`divider-size($size)` | テーブル行の境界の大きさを設定する。
+`row-hover-fill-color($color)` | テーブル行のホバー時の背景色を設定する。
+`header-row-text-color($color)` | ヘッダー行の文字色を設定する。
+`row-text-color($color)` | 行の文字色を設定する。
+`shape-radius($radius)` | 与えられた半径の大きさに角の丸めの大きさを設定する。`$radius` は一つの半径、もしくは最大4つの値のリスト使う。
+`stroke-size($size)` | データテーブルの境界の大きさを設定する。
+`stroke-color($color)` | データテーブルの境界色を設定する。
+`header-cell-height($height)` | テーブルヘッダーセルの高さを設定する。
+`cell-height($height)` | テーブルセルの高さを設定する。
+`cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
+`column-widths($width-list)` | テーブル各行の幅を個別に設定する。
+`density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
 
 ## アクセシビリティ
 

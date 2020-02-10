@@ -58,18 +58,20 @@ npm install @material/image-list
 ### スタイル
 
 ```scss
-@import "@material/image-list/mdc-image-list";
+@use "@material/image-list/mdc-image-list";
 ```
 
-上記の HTML 構造を `mdc-image-list-standard-columns` ミキシンの呼び出しと組み合わせて、1行に何列表示するかを設定できます。
+上記の HTML 構造を `standard-columns` ミキシンの呼び出しと組み合わせて、1行に何列表示するかを設定できます。
 
 ```scss
+@use "@material/image-list";
+
 .my-image-list {
-  @include mdc-image-list-standard-columns(5);
+  @include image-list.standard-columns(5);
 }
 ```
 
-標準的なイメージリスト内の画像はデフォルトで 1:1 のアスペクト比が適用されます。これは以下の記述の通り、`mdc-image-list-aspect` ミキシンを使うことにより上書きできます。
+標準的なイメージリスト内の画像はデフォルトで 1:1 のアスペクト比が適用されます。これは以下の記述の通り、`aspect` ミキシンを使うことにより上書きできます。
 
 ## バリエーション
 
@@ -95,7 +97,7 @@ npm install @material/image-list
 
 ```scss
 .my-masonry-image-list {
-  @include mdc-image-list-masonry-columns(5);
+  @include image-listmasonry-columns(5);
 }
 ```
 
@@ -118,22 +120,25 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-image-list-aspect($width-height-ratio)` | イメージリスト内のコンテナ要素のアスペクト比を与えられた比率に設定する。1であれば 1:1 にし、1よりも大きくすれば横長に、1より小さくすれば縦長になる。
-`mdc-image-list-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさにイメージリストの項目の角の丸めを設定する。`$rtl-reflexive` を true にすれば RTL コンテキスト内で反映の値が反転する。デフォルトは false。
-`mdc-image-list-standard-columns($column-count, $gutter-size)` | 標準的なイメージリストを与えられた列数で表示するよう設定する。`$gutter-size` はオプションで、項目間のスペースのデフォルトの大きさを上書きする。
-`mdc-image-list-masonry-columns($column-count, $gutter-size)` | 石積イメージリストを与えられた列数で表示するよう設定する。`$gutter-size` はオプションで、項目間のスペースのデフォルトの大きさを上書きする。
+`aspect($width-height-ratio)` | イメージリスト内のコンテナ要素のアスペクト比を与えられた比率に設定する。1であれば 1:1 にし、1よりも大きくすれば横長に、1より小さくすれば縦長になる。
+`shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさにイメージリストの項目の角の丸めを設定する。`$rtl-reflexive` を true にすれば RTL コンテキスト内で反映の値が反転する。デフォルトは false。
+`standard-columns($column-count, $gutter-size)` | 標準的なイメージリストを与えられた列数で表示するよう設定する。`$gutter-size` はオプションで、項目間のスペースのデフォルトの大きさを上書きする。
+`masonry-columns($column-count, $gutter-size)` | 石積イメージリストを与えられた列数で表示するよう設定する。`$gutter-size` はオプションで、項目間のスペースのデフォルトの大きさを上書きする。
 
-> **注意:** `mdc-image-list-...-columns` ミキシンは一つだけをイメージリストで指定できます。使用するバリエーションに応じたミキシンを使ってください。
+> **注意:** `*-columns` ミキシンは一つだけをイメージリストで指定できます。使用するバリエーションに応じたミキシンを使ってください。
 
 ### 追加の情報
 
 #### 幅の制限
 
-`mdc-image-list-...-columns` ミキシンはイメージリスト全体の幅に応じて広げたり縮小させたりします。配置によっては、ビューポートの幅に直接関連し、画像が実際に表示される大きさと比べて非常に大きくすることができます。これはイメージリスト上で `min-width`、`width` や `max-width` のいずれかを使うことで制限できます。
+`*-columns` ミキシンはイメージリスト全体の幅に応じて広げたり縮小させたりします。配置によっては、ビューポートの幅に直接関連し、画像が実際に表示される大きさと比べて非常に大きくすることができます。これはイメージリスト上で `min-width`、`width` や `max-width` のいずれかを使うことで制限できます。
 
 ```scss
+@use "@material/image-list";
+
 .my-image-list {
-  @include mdc-image-list-standard-columns(5);
+  @include image-list.standard-columns(5);
+
   max-width: 960px;
 }
 ```
@@ -146,12 +151,12 @@ CSS クラス | 説明
 
 ```scss
 .my-image-list {
-  @include mdc-image-list-standard-columns(5);
+  @include image-list.standard-columns(5);
 }
 
 @media (max-width: 599px) {
   .my-image-list {
-    @include mdc-image-list-standard-columns(3);
+    @include image-list.standard-columns(3);
   }
 }
 ```

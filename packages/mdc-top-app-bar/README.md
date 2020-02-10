@@ -68,8 +68,8 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ### スタイル
 
 ```scss
-@import "@material/top-app-bar/mdc-top-app-bar";
-@import "@material/icon-button/mdc-icon-button";
+@use "@material/top-app-bar/mdc-top-app-bar";
+@use "@material/icon-button/mdc-icon-button";
 ```
 
 ### JavaScript のインストール
@@ -189,11 +189,11 @@ Fixed top app bars stay at the top of the page and elevate above the content whe
 
 ミキシン | 説明
 --- | ---
-`mdc-top-app-bar-ink-color($color)` | トップアプリバーのインク色を設定する。
-`mdc-top-app-bar-icon-ink-color($color)` | トップアプリバーのアイコンのインク色を設定する。
-`mdc-top-app-bar-fill-color($color)` | トップアプリバーの塗りの色を設定する。
-`mdc-top-app-bar-fill-color-accessible($color)` | トップアプリバーの塗りの色を設定し、自動的にハイコントラストなインク色を設定する。
-`mdc-top-app-bar-short-shape-radius($radius, $rtl-reflexive)` | 短いトップアプリバーの（折りたたまれているときの）角の丸みを指定した半径のサイズに設定する。RTL コンテキスト内で、半径の値をひっくり返すには `$rtl-reflexive` を true に設定する。デフォルトは true。
+`ink-color($color)` | トップアプリバーのインク色を設定する。
+`icon-ink-color($color)` | トップアプリバーのアイコンのインク色を設定する。
+`fill-color($color)` | トップアプリバーの塗りの色を設定する。
+`fill-color-accessible($color)` | トップアプリバーの塗りの色を設定し、自動的にハイコントラストなインク色を設定する。
+`short-shape-radius($radius, $rtl-reflexive)` | 短いトップアプリバーの（折りたたまれているときの）角の丸みを指定した半径のサイズに設定する。RTL コンテキスト内で、半径の値をひっくり返すには `$rtl-reflexive` を true に設定する。デフォルトは true。
 
 ## `MDCTopAppBar` プロパティとメソッド
 

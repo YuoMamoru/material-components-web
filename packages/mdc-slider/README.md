@@ -253,15 +253,15 @@ const {MDCSlider} = mdc.slider;
 
 ミキシン | 説明
 --- | ---
-`mdc-slider-color-accessible($color)` | スライダーのすべての要素の色を設定し、値表示ピンのインク色を高いコントラストの識別しやすい色に自動的に設定する。
-`mdc-slider-highlight-color($color)` | スライダーのハイライトされた（別名「オン」）部分の色を設定する。
-`mdc-slider-rail-color($color, $opacity)` | レールの色（オプションで不透明度も）を設定する。
-`mdc-slider-rail-tick-mark-color($color)` | レール上の目盛の色を設定する。
-`mdc-slider-thumb-color($color)` | つまみ（つかむ部分）の色を設定する。
-`mdc-slider-focus-halo-color($color)` | フォーカス時の背景の光輪の色を設定する。
-`mdc-slider-value-pin-fill-color-accessible($color)` | 値表示ピンの塗りの色を設定し、インク色を高いコントラストの識別しやすい色に自動的に設定する。
-`mdc-slider-value-pin-fill-color($color)` | 値表示ピンの塗りの色を設定する。
-`mdc-slider-value-pin-ink-color($color)` | 値表示ピンのインク色を設定する。
+`color-accessible($color)` | スライダーのすべての要素の色を設定し、値表示ピンのインク色を高いコントラストの識別しやすい色に自動的に設定する。
+`highlight-color($color)` | スライダーのハイライトされた（別名「オン」）部分の色を設定する。
+`rail-color($color, $opacity)` | レールの色（オプションで不透明度も）を設定する。
+`rail-tick-mark-color($color)` | レール上の目盛の色を設定する。
+`thumb-color($color)` | つまみ（つかむ部分）の色を設定する。
+`focus-halo-color($color)` | フォーカス時の背景の光輪の色を設定する。
+`value-pin-fill-color-accessible($color)` | 値表示ピンの塗りの色を設定し、インク色を高いコントラストの識別しやすい色に自動的に設定する。
+`value-pin-fill-color($color)` | 値表示ピンの塗りの色を設定する。
+`value-pin-ink-color($color)` | 値表示ピンのインク色を設定する。
 
 #### 無効なスライダーつまみに対する適切な色の設定
 

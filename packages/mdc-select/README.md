@@ -75,10 +75,10 @@ npm install @material/select
 セレクトを使う際には Menu と List コンポーネントのスタイルをロードしておく必要もあり案す。
 
 ```scss
-@import "@material/list/mdc-list";
-@import "@material/menu-surface/mdc-menu-surface";
-@import "@material/menu/mdc-menu";
-@import "@material/select/mdc-select";
+@use "@material/list/mdc-list";
+@use "@material/menu-surface/mdc-menu-surface";
+@use "@material/menu/mdc-menu";
+@use "@material/select/mdc-select";
 
 .demo-width-class {
   width: 400px;
@@ -115,11 +115,11 @@ JavaScript をインポートする方法についてのより詳細な情報は
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
     <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
+      <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option"></li>
       <li class="mdc-list-item" data-value="grains" role="option">
         Bread, Cereal, Rice, and Pasta
       </li>
-      <li class="mdc-list-item mdc-list-item--disabled" data-value="vegetables" aria-selected="true" aria-disabled="true" role="option">
+      <li class="mdc-list-item mdc-list-item--disabled" data-value="vegetables" aria-disabled="true" role="option">
         Vegetables
       </li>
       <li class="mdc-list-item" data-value="fruit" role="option">
@@ -346,18 +346,18 @@ JavaScript をインポートする方法についてのより詳細な情報は
 
 ミキシン | 説明
 --- | ---
-`mdc-select-ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
-`mdc-select-container-fill-color($color)` | セレクトの背景色を設定する。
-`mdc-select-label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
-`mdc-select-focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
-`mdc-select-bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
-`mdc-select-focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
-`mdc-select-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型セレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-select-hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
-`mdc-select-outline-color($color)` | へこんだ輪郭の色を設定する。
-`mdc-select-outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-select-focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
-`mdc-select-hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
+`ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
+`container-fill-color($color)` | セレクトの背景色を設定する。
+`label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
+`focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
+`bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
+`focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
+`shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型セレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
+`outline-color($color)` | へこんだ輪郭の色を設定する。
+`outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
+`hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
 
 > _注意_: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 

@@ -48,7 +48,7 @@ npm install @material/tab
 ### スタイル
 
 ```scss
-@import "@material/tab/mdc-tab";
+@use "@material/tab/mdc-tab";
 ```
 
 ### JavaScript のインストール
@@ -130,18 +130,18 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-tab-text-label-color($color)` | タブのテキストラベルの色を変更する。
-`mdc-tab-icon-color($color)` | タブのアイコンの色を変更する。
-`mdc-tab-states-color($color)`| 基本状態の色を変更する。この色はホバー/フォーカス状態とリップルが起きた際に影響する。
-`mdc-tab-ink-color($color)` | 文字ラベル、アイコン及び基本状態の色を変更する。
-`mdc-tab-active-text-label-color($color)`  | アクティブなタブのテキストラベルの色を変更する。
-`mdc-tab-active-icon-color($color)`  | アクティブなタブのアイコンの色を変更する。
-`mdc-tab-active-states-color($color)`  | アクティブなタブの状態の色を変更する。
-`mdc-tab-parent-positioning` | `MDCTab.computeDimensions()` がすべてのブラウザで同じ値になるように MDCTab の親要素の位置を設定する。
-`mdc-tab-fixed-width($width)` | タブの幅を固定にする。タブが与えられた幅より小さくなることがなくなる。
-`mdc-tab-horizontal-padding($padding)` | タブの水平方向のパディングを設定する。
-`mdc-tab-height($height)` | タブバーのカスタムの高さを設定する。
-`mdc-tab-text-transform($transform)` | タブの `text-transform` プロパティを設定する。
+`text-label-color($color)` | タブのテキストラベルの色を変更する。
+`icon-color($color)` | タブのアイコンの色を変更する。
+`states-color($color)`| 基本状態の色を変更する。この色はホバー/フォーカス状態とリップルが起きた際に影響する。
+`ink-color($color)` | 文字ラベル、アイコン及び基本状態の色を変更する。
+`active-text-label-color($color)`  | アクティブなタブのテキストラベルの色を変更する。
+`active-icon-color($color)`  | アクティブなタブのアイコンの色を変更する。
+`active-states-color($color)`  | アクティブなタブの状態の色を変更する。
+`parent-positioning` | `MDCTab.computeDimensions()` がすべてのブラウザで同じ値になるように MDCTab の親要素の位置を設定する。
+`fixed-width($width)` | タブの幅を固定にする。タブが与えられた幅より小さくなることがなくなる。
+`horizontal-padding($padding)` | タブの水平方向のパディングを設定する。
+`height($height)` | タブバーのカスタムの高さを設定する。
+`text-transform($transform)` | タブの `text-transform` プロパティを設定する。
 
 ## `MDCTab` プロパティとメソッド
 

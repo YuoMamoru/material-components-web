@@ -67,7 +67,7 @@ npm install @material/linear-progress
 
 ### スタイル
 ```scss
-@import "@material/linear-progress/mdc-linear-progress";
+@use "@material/linear-progress/mdc-linear-progress";
 ```
 
 ### JavaScript のインスタンス化
@@ -94,8 +94,8 @@ const linearProgress = new MDCLinearProgress(document.querySelector('.mdc-linear
 
 ミキシン | 説明
 --- | ---
-`mdc-linear-progress-bar-color($color)` | プログレスバーの色を設定する。
-`mdc-linear-progress-buffer-color($color)` | バッファーバーとドットの色を設定する。
+`bar-color($color)` | プログレスバーの色を設定する。
+`buffer-color($color)` | バッファーバーとドットの色を設定する。
 
 ### ファンデーションクラスの使用
 

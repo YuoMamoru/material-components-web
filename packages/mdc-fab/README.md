@@ -65,7 +65,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ### スタイル
 
 ```scss
-@import "@material/fab/mdc-fab";
+@use "@material/fab/mdc-fab";
 ```
 
 ### JavaScript のインスタンス化
@@ -118,8 +118,8 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 
 ミキシン | 説明
 --- | ---
-`mdc-fab-accessible($container-color)` | FAB のコンテナの色を指定した色に変え、アクセシビリティ標準に沿うように FAB のインクとリップルの色を更新する。
-`mdc-fab-extended-fluid` | 拡張 FAB をスクリーン幅やレイアウトグリッドのようなコンテナに対してリキッドレイアウトにする。`@media` クエリの使用をサポートする幹審として公開されている。
+`accessible($container-color)` | FAB のコンテナの色を指定した色に変え、アクセシビリティ標準に沿うように FAB のインクとリップルの色を更新する。
+`extended-fluid` | 拡張 FAB をスクリーン幅やレイアウトグリッドのようなコンテナに対してリキッドレイアウトにする。`@media` クエリの使用をサポートする幹審として公開されている。
 
 #### 高度な Sass ミキシン
 
@@ -127,13 +127,13 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 
 ミキシン | 説明
 --- | ---
-`mdc-fab-container-color($color)` | 与えた色にコンテナの色を設定する
-`mdc-fab-icon-size($width, $height)` |  `width` と `height` を指定することにより、アイコンの `width`、`height` と `font-size` プロパティを設定する。`$height` はオプションで省略した際には `$width` の値が設定される。`font-size` は `$width` の値に応じて設定される。
-`mdc-fab-ink-color($color)` | 与えた色にインクの色を設定する
-`mdc-fab-extended-padding($icon-padding, $label-padding)` | アイコンの両側およびラベルと FAB の端の間のパディングを設定する。アイコンがないときは、`$label-padding` は両側に適用される。
-`mdc-fab-extended-label-padding($label-padding)` | 拡張 FAB のラベルの両側のパディングを設定する。アイコンのない拡張 FAB のスタイルを設定するする際に便利。
-`mdc-fab-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に通常 FAB とミニ FAB に限ってを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`mdc-fab-extended-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に拡張 FAB を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`container-color($color)` | 与えた色にコンテナの色を設定する
+`icon-size($width, $height)` |  `width` と `height` を指定することにより、アイコンの `width`、`height` と `font-size` プロパティを設定する。`$height` はオプションで省略した際には `$width` の値が設定される。`font-size` は `$width` の値に応じて設定される。
+`ink-color($color)` | 与えた色にインクの色を設定する
+`extended-padding($icon-padding, $label-padding)` | アイコンの両側およびラベルと FAB の端の間のパディングを設定する。アイコンがないときは、`$label-padding` は両側に適用される。
+`extended-label-padding($label-padding)` | 拡張 FAB のラベルの両側のパディングを設定する。アイコンのない拡張 FAB のスタイルを設定するする際に便利。
+`shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に通常 FAB とミニ FAB に限ってを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`extended-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に拡張 FAB を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 
 FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 

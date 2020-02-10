@@ -13,7 +13,7 @@ npm install material-components-web
 ### Sass のインクルード
 
 ```scss
-@import "material-components-web/material-components-web";
+@use "material-components-web/material-components-web";
 ```
 
 ### Javascript のインクルード

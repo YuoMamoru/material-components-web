@@ -62,7 +62,7 @@ npm install @material/chips
 ### スタイル
 
 ```scss
-@import "@material/chips/mdc-chips";
+@use "@material/chips/mdc-chips";
 ```
 
 ### JavaScript のインスタンス化
@@ -299,26 +299,26 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-chip-set-spacing($gap-size)` | 集合内の各チップの間隔の大きさを設定する。
-`mdc-chip-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさにチップ輪郭の丸みを設定する。RTL コンテキスト内で半径の値を設定するには `$rtl-reflexive` を true にする。デフォルトは false。
-`mdc-chip-fill-color-accessible($color)` | チップの背景の塗りの色を設定し、チップのインクとリップルの色はアクセシビリティ標準に対応したものにする。
-`mdc-chip-fill-color($color)` | チップの背景の塗りの色を設定する。
-`mdc-chip-ink-color($color)` | チップのテキストインクの色を設定し、それに合うようにリップルの色を設定する。
-`mdc-chip-selected-ink-color($color)` | <em>選択された</em> 状態のチップのテキストインクとリップルの色を設定する。
-`mdc-chip-outline($width, $style, $color)` | チップの輪郭のプロパティを設定する。
-`mdc-chip-outline-width($width, $horizontal-padding)` | チップの輪郭の太さを設定する。`mdc-chip-horizontal-padding` にもカスタム値が設定されているときに限り `$horizontal-padding` は必須。
-`mdc-chip-outline-style($style)` | チップの輪郭のスタイルを設定する。
-`mdc-chip-outline-color($color)` | チップの輪郭の色を設定する。
-`mdc-chip-height($height)` | チップの高さを設定する。
-`mdc-chip-horizontal-padding($padding)` | チップの水平パディングの値を設定する。
-`mdc-chip-leading-icon-color($color, $opacity)` | チップの先頭アイコンの色を設定する。オプションで不透明度も設定できる。
-`mdc-chip-trailing-icon-color($color, $opacity, $hover-opacity, $focus-opacity)` | チップの末尾アイコンの色を設定する。オプションで通常時/ホバー時/フォーカス時の不透明度も設定できる。
-`mdc-chip-leading-icon-size($size)` | チップの先頭アイコンの大きさを設定する。
-`mdc-chip-trailing-icon-size($size)` | チップの末尾アイコンの大きさを設定する。
-`mdc-chip-leading-icon-margin($left-margin, $right-margin)` | チップの先頭アイコンのマージンを設定する。
-`mdc-chip-trailing-icon-margin($left-margin, $right-margin)` | チップの末尾アイコンのマージンを設定する。
-`mdc-chip-elevation-transition()` | チップに MDC 持ち上がりトランジッションを追加する。チップにボックスシャドウトランジッションが必要な際には `mdc-elevation-transition-value()` を使ってトランジッションを直接指定する代わりにこれを使ってください。
-`mdc-chip-density($density-scale)` | チップの密度スケールを設定する。サポートしている密度スケールは `-2`、`-1` そして `0`（デフォルト）
+`set-spacing($gap-size)` | 集合内の各チップの間隔の大きさを設定する。
+`shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさにチップ輪郭の丸みを設定する。RTL コンテキスト内で半径の値を設定するには `$rtl-reflexive` を true にする。デフォルトは false。
+`fill-color-accessible($color)` | チップの背景の塗りの色を設定し、チップのインクとリップルの色はアクセシビリティ標準に対応したものにする。
+`fill-color($color)` | チップの背景の塗りの色を設定する。
+`ink-color($color)` | チップのテキストインクの色を設定し、それに合うようにリップルの色を設定する。
+`selected-ink-color($color)` | <em>選択された</em> 状態のチップのテキストインクとリップルの色を設定する。
+`outline($width, $style, $color)` | チップの輪郭のプロパティを設定する。
+`outline-width($width, $horizontal-padding)` | チップの輪郭の太さを設定する。`horizontal-padding` にもカスタム値が設定されているときに限り `$horizontal-padding` は必須。
+`outline-style($style)` | チップの輪郭のスタイルを設定する。
+`outline-color($color)` | チップの輪郭の色を設定する。
+`height($height)` | チップの高さを設定する。
+`horizontal-padding($padding)` | チップの水平パディングの値を設定する。
+`leading-icon-color($color, $opacity)` | チップの先頭アイコンの色を設定する。オプションで不透明度も設定できる。
+`trailing-icon-color($color, $opacity, $hover-opacity, $focus-opacity)` | チップの末尾アイコンの色を設定する。オプションで通常時/ホバー時/フォーカス時の不透明度も設定できる。
+`leading-icon-size($size)` | チップの先頭アイコンの大きさを設定する。
+`trailing-icon-size($size)` | チップの末尾アイコンの大きさを設定する。
+`leading-icon-margin($left-margin, $right-margin)` | チップの先頭アイコンのマージンを設定する。
+`trailing-icon-margin($left-margin, $right-margin)` | チップの末尾アイコンのマージンを設定する。
+`elevation-transition()` | チップに MDC 持ち上がりトランジッションを追加する。チップにボックスシャドウトランジッションが必要な際には `mdc-elevation-transition-value()` を使ってトランジッションを直接指定する代わりにこれを使ってください。
+`density($density-scale)` | チップの密度スケールを設定する。サポートしている密度スケールは `-2`、`-1` そして `0`（デフォルト）
 
 > <em>注意</em>: `mdc-chip-set-spacing` ではチップとチップが含まれている集合の端との間隔の大きさも設定されます。
 

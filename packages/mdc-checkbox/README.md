@@ -66,8 +66,8 @@ npm install @material/checkbox
 ### スタイル
 
 ```scss
-@import "@material/form-field/mdc-form-field";
-@import "@material/checkbox/mdc-checkbox";
+@use "@material/form-field/mdc-form-field";
+@use "@material/checkbox/mdc-checkbox";
 ```
 
 ### JavaScript のインスタンス化
@@ -148,13 +148,13 @@ MDC Checkbox は「マーク」の状態（例えばチェックされている�
 
 ミキシン | 説明
 --- | ---
-`mdc-checkbox-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | 有効なチェックボックスのマークされているものとマークされていなものの両方について枠線と塗りの色を設定する。ミキシンが @keyframes を生成しないようにするには $generate-keyframes を false にする
-`mdc-checkbox-disabled-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color)` | 無効なチェックボックスのマークされているものとマークされていなものの両方について枠線と塗りの色を設定する。
-`mdc-checkbox-ink-color($color)` | 有効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
-`mdc-checkbox-disabled-ink-color($color)` | 無効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
-`mdc-checkbox-focus-indicator-color($color)` | チェックボックスが選択されたとき、または未確定状態のときのフォーカスインジケーター（リップル）の色を設定する
-`mdc-checkbox-ripple-size($ripple-size)` | チェックボックスのリップルの大きさを設定する
-`mdc-checkbox-density($density-scale)` | チェックボックスの密度スケールを設定する。サポートしている密度スケールは `-3`、`-2`、`-1` そして `0`（デフォルト）
+`container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color, $generate-keyframes)` | 有効なチェックボックスのマークされているものとマークされていなものの両方について枠線と塗りの色を設定する。ミキシンが @keyframes を生成しないようにするには $generate-keyframes を false にする
+`disabled-container-colors($unmarked-stroke-color, $unmarked-fill-color, $marked-stroke-color, $marked-fill-color)` | 無効なチェックボックスのマークされているものとマークされていなものの両方について枠線と塗りの色を設定する。
+`ink-color($color)` | 有効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
+`disabled-ink-color($color)` | 無効なチェックボックスのチェックと未確定のアイコンのインクの色を設定する
+`focus-indicator-color($color)` | チェックボックスが選択されたとき、または未確定状態のときのフォーカスインジケーター（リップル）の色を設定する
+`ripple-size($ripple-size)` | チェックボックスのリップルの大きさを設定する
+`density($density-scale)` | チェックボックスの密度スケールを設定する。サポートしている密度スケールは `-3`、`-2`、`-1` そして `0`（デフォルト）
 
 Checkbox コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
 

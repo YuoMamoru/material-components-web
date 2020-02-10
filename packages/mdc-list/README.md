@@ -55,7 +55,7 @@ npm install @material/list
 ### スタイル
 
 ```scss
-@import "@material/list/mdc-list";
+@use "@material/list/mdc-list";
 ```
 
 ### JavaScript
@@ -398,18 +398,18 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-list-item-primary-text-ink-color($color)` | リスト項目のプライマリテキストのインク色を設定する。
-`mdc-list-item-secondary-text-ink-color($color)` |  リスト項目のセカンダリテキストのインク色を設定する。
-`mdc-list-item-graphic-fill-color($color)` | リスト項目内のグラフィック要素の背景インク色を設定する。
-`mdc-list-item-graphic-ink-color($color)` | リスト項目内のグラフィック要素のインク色を設定する。
-`mdc-list-item-meta-ink-color($color)` | リスト項目内のメタ要素のインク色を設定する。
-`mdc-list-single-line-shape-radius($radius, $rtl-reflexive, $density-scale)` | リスト項目の角の丸みを与えられた繁栄の大きさに設定する。RTL コンテンツ内で半径を反転させるには `$rtl-reflexive` が true に設定する。デフォルトは false。`$density-scale` はカスタム密度が適用されたときのみ設定し、デフォルトは `$mdc-list-single-line-density-scale`。
-`mdc-list-divider-color($color)` | 区切線のインク色を設定する。
-`mdc-list-group-subheader-ink-color($color)` | リストグループ内のサブヘッダーのインク色を設定する。
-`mdc-list-item-disabled-text-color($color`) | リスト項目が無効なときのテキストの色を設定する。
-`mdc-list-item-disabled-text-opacity($opacity`) | リスト項目が無効なときのテキストの不透明度を設定する。
-`mdc-list-single-line-density($density-scale)` | 1行型リストの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
-`mdc-list-single-line-height($height)` | 1行型リストの高さを設定する。
+`item-primary-text-ink-color($color)` | リスト項目のプライマリテキストのインク色を設定する。
+`item-secondary-text-ink-color($color)` |  リスト項目のセカンダリテキストのインク色を設定する。
+`item-graphic-fill-color($color)` | リスト項目内のグラフィック要素の背景インク色を設定する。
+`item-graphic-ink-color($color)` | リスト項目内のグラフィック要素のインク色を設定する。
+`item-meta-ink-color($color)` | リスト項目内のメタ要素のインク色を設定する。
+`single-line-shape-radius($radius, $rtl-reflexive, $density-scale)` | リスト項目の角の丸みを与えられた繁栄の大きさに設定する。RTL コンテンツ内で半径を反転させるには `$rtl-reflexive` が true に設定する。デフォルトは false。`$density-scale` はカスタム密度が適用されたときのみ設定し、デフォルトは `$mdc-list-single-line-density-scale`。
+`divider-color($color)` | 区切線のインク色を設定する。
+`group-subheader-ink-color($color)` | リストグループ内のサブヘッダーのインク色を設定する。
+`item-disabled-text-color($color`) | リスト項目が無効なときのテキストの色を設定する。
+`item-disabled-text-opacity($opacity`) | リスト項目が無効なときのテキストの不透明度を設定する。
+`single-line-density($density-scale)` | 1行型リストの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`single-line-height($height)` | 1行型リストの高さを設定する。
 
 ### <a name="Accessibility"></a>アクセシビリティ
 

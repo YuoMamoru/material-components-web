@@ -57,9 +57,9 @@ npm install @material/menu
 ### スタイル
 
 ```scss
-@import "@material/list/mdc-list";
-@import "@material/menu-surface/mdc-menu-surface";
-@import "@material/menu/mdc-menu";
+@use "@material/list/mdc-list";
+@use "@material/menu-surface/mdc-menu-surface";
+@use "@material/menu/mdc-menu";
 ```
 
 ### JavaScript のインスタンス化
@@ -186,7 +186,7 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-menu-width($width)` | メニューの `width` を設定するために使う。単位なし（例えば `4` or `5`）で使うときにはベースの幅（`56px`）をかけて `width` を計算する。単位あり（例えば `240px`、`15%` や `calc(200px + 10px)`）で使うときには与えられた値を厳密に利用して `width` を設定する。
+`width($width)` | メニューの `width` を設定するために使う。単位なし（例えば `4` or `5`）で使うときにはベースの幅（`56px`）をかけて `width` を計算する。単位あり（例えば `240px`、`15%` や `calc(200px + 10px)`）で使うときには与えられた値を厳密に利用して `width` を設定する。
 
 > 追加でスタイルをカスタマイズするオプションについては [メニュー表面](../mdc-menu-surface/README.md#sass-mixins) と [リスト](../mdc-list/README.md#sass-mixins) のドキュメントを参照してください。
 

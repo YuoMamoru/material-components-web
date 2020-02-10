@@ -13,8 +13,8 @@ path: /docs/getting-started/
 
 ```html
 <head>
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
 </head>
 ```
 
@@ -82,8 +82,8 @@ npm i @material/button @material/ripple
 以下の Node 依存関係がすべて必要です。:
 - [webpack](https://www.npmjs.com/package/webpack): Sass と JavaScript をバンドルする
 - [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server): 開発サーバー
-- [sass-loader](https://www.npmjs.com/package/sass-loader): Sass ファイルを読み込み CSS にコンパイルする
-- [node-sass](https://www.npmjs.com/package/node-sass): Node.js を Sass にバインドし、sass-loader と同等の依存関係を提供する
+- [sass-loader](https://www.npmjs.com/package/sass-loader): Sass ファイルを前処理するための Webpack ローダー
+- [sass](https://www.npmjs.com/package/sass): Sass コンパイラー
 - [css-loader](https://www.npmjs.com/package/css-loader): CSS の @import と url() のパスを解決する
 - [extract-loader](https://github.com/peerigon/extract-loader): `.css` ファイル内の CSS を抽出する
 - [file-loader](https://github.com/webpack-contrib/file-loader): `.css` ファイルを公開 URL として扱う
@@ -91,7 +91,7 @@ npm i @material/button @material/ripple
 次のコマンドでこれらすべてをインストールできます。
 
 ```
-npm install --save-dev webpack webpack-cli webpack-dev-server css-loader sass-loader node-sass extract-loader file-loader
+npm install --save-dev webpack webpack-cli webpack-dev-server css-loader sass-loader sass extract-loader file-loader
 ```
 
 webpack が Sass をどのようにバンドルかを確認するには index.html が必要です。この HTML ファイルには CSS を含める必要があります。この CSS は sass-loader によって生成され、sass-loader が Sass から CSS にコンパイルします。CSS は .css ファイルから extract-loader によって抽出されます。単純な “Hello World” の `index.html` を作成してください。
@@ -137,7 +137,13 @@ module.exports = [{
           },
           { loader: 'extract-loader' },
           { loader: 'css-loader' },
-          { loader: 'sass-loader' },
+          {
+            loader: 'sass-loader',
+            options: {
+              // Dart Sass を優先
+              implementation: require('sass'),
+            },
+          },
         ]
       }
     ]
@@ -166,11 +172,11 @@ npm install @material/button
 `@material/button` の Sass ファイルをインポートするように `app.scss` に記述する必要があります。ボタンをカスタマイズするために Sass ミキシンを使うことができます。以下のコードで “Hello World” の `app.scss` を置き換えてください。
 
 ```scss
-@import "@material/button/mdc-button";
+@use '@material/button/mdc-button';
+@use '@material/button';
 
 .foo-button {
-  @include mdc-button-ink-color(teal);
-  @include mdc-states(teal);
+  @include button.container-fill-color(darksalmon);
 }
 ```
 
@@ -180,9 +186,11 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
 {
   loader: 'sass-loader',
   options: {
+    // Dart Sass を優先
+    implementation: require('sass'),
     sassOptions: {
       includePaths: ['./node_modules']
-    }
+    },
   }
 }
 ```
@@ -223,7 +231,9 @@ const autoprefixer = require('autoprefixer');
   options: {
     sassOptions: {
       includePaths: ['./node_modules']
-    }
+    },
+    // Dart Sass を優先
+    implementation: require('sass'),
   }
 },
 ```
@@ -324,9 +334,11 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
+              // Dart Sass を優先
+              implementation: require('sass'),
               sassOptions: {
                 includePaths: ['./node_modules'],
-              }
+              },
             },
           }
         ],

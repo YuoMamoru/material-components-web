@@ -69,7 +69,7 @@ npm install @material/elevation
 ### スタイル
 
 ```scss
-@import "@material/elevation/mdc-elevation";
+@use "@material/elevation/mdc-elevation";
 ```
 
 ## スタイルのカスタマイズ
@@ -89,38 +89,40 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-elevation($z-value, $color, $opacity-boost)` | エレベーションを与えるためにエレベーションを z-space に設定し、オプションで影の色の設定や不透明度を高める
-`mdc-elevation-overlay-common` | ユニバーサルエレベーションオーバレイスタイルを設定するためにアプリケーションごとに1回呼び出される
-`mdc-elevation-shadow($box-shadow)` | 最も近い親セレクターの `box-shadow` を設定する
-`mdc-elevation-overlay-surface-position` | オーバーレイを中央に適切に配置できるように、オーバーレイの表層要素の位置を設定する
-`mdc-elevation-overlay-dimensions($width, $height: $width, $has-content-sizing: true)` | エレベーションオーバーレイの寸法を設定する
-`mdc-elevation-overlay-fill-color($color)` | エレベーションオーバーレイの色を設定する
-`mdc-elevation-overlay-opacity($opacity)` | エレベーションオーバーレイの不透明度を設定する
+`elevation($z-value, $color, $opacity-boost)` | エレベーションを与えるためにエレベーションを z-space に設定し、オプションで影の色の設定や不透明度を高める
+`overlay-common` | ユニバーサルエレベーションオーバレイスタイルを設定するためにアプリケーションごとに1回呼び出される
+`shadow($box-shadow)` | 最も近い親セレクターの `box-shadow` を設定する
+`overlay-surface-position` | オーバーレイを中央に適切に配置できるように、オーバーレイの表層要素の位置を設定する
+`overlay-dimensions($width, $height: $width, $has-content-sizing: true)` | エレベーションオーバーレイの寸法を設定する
+`overlay-fill-color($color)` | エレベーションオーバーレイの色を設定する
+`overlay-opacity($opacity)` | エレベーションオーバーレイの不透明度を設定する
 
 
 関数 | 説明
 --- | ---
-`mdc-elevation-transition-value($duration, $easing)` | エレベーション間の要素のトランジッションの際の `transision` プロパティの値を返す
-`mdc-elevation-overlay-transition-value($duration, $easing)` | エレベーション間のエレベーションオーバーレイの遷移のための `transition` プロパティの値を返す
+`transition-value($duration, $easing)` | エレベーション間の要素のトランジッションの際の `transision` プロパティの値を返す
+`overlay-transition-value($duration, $easing)` | エレベーション間のエレベーションオーバーレイの遷移のための `transition` プロパティの値を返す
 
 変数 | 説明
 --- | ---
-`$mdc-elevation-property` | エレベーショントランジッションのデフォルトプロパティ
-`$mdc-elevation-transition-duration` | エレベーショントランジッションのデフォルトの duration 値
-`$mdc-elevation-transition-timing-function` | エレベーショントランジッションのデフォルトの easing 値
-`$mdc-elevation-overlay-color` | エレベーションオーバーレイのデフォルトの色
-`$mdc-elevation-overlay-property` | エレベーションオーバーレイトランジッションのデフォルトプロパティ
+`$property` | エレベーショントランジッションのデフォルトプロパティ
+`$transition-duration` | エレベーショントランジッションのデフォルトの duration 値
+`$transition-timing-function` | エレベーショントランジッションのデフォルトの easing 値
+`$overlay-color` | エレベーションオーバーレイのデフォルトの色
+`$overlay-property` | エレベーションオーバーレイトランジッションのデフォルトプロパティ
 
-よりトランジッションに関して設定が必要なら、エクスポートした sass 変数とともに `mdc-elevation-transition-value` 関数を使用します。
+よりトランジッションに関して設定が必要なら、エクスポートした sass 変数とともに `transition-value` 関数を使用します。
 
 ```scss
+@use "@material/elevation";
+
 .my-component-with-custom-transitions {
 
   transition:
-    mdc-elevation-transition-value(),
+    elevation.transition-value(),
     /* エレベーションと同じ duration と easing 値を使って不透明度を設定する */
-    opacity $mdc-elevation-transition-duration $mdc-elevation-transition-timing-function;
+    opacity elevation.$transition-duration elevation.$transition-timing-function;
   opacity: .7;
-  will-change: $mdc-elevation-property, opacity;
+  will-change: elevation.$property, opacity;
 }
 ```

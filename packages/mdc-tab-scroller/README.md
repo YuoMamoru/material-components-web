@@ -43,7 +43,7 @@ npm install @material/tab-scroller
 ### スタイル
 
 ```scss
-@import "@material/tab-scroller/mdc-tab-scroller";
+@use "@material/tab-scroller/mdc-tab-scroller";
 ```
 
 ### JavaScript のインスタンス化
@@ -75,7 +75,7 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-tab-scroller-transition($duration-ms, $timing-function)` | スクロールアニメーションのデュレーションと、オプションで、タイミング関数を設定する。
+`transition($duration-ms, $timing-function)` | スクロールアニメーションのデュレーションと、オプションで、タイミング関数を設定する。
 
 ## `MDCTabScroller` メソッド
 

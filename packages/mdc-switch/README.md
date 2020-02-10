@@ -52,7 +52,7 @@ npm install @material/switch
 ### スタイル
 
 ```scss
-@import "@material/switch/mdc-switch";
+@use "@material/switch/mdc-switch";
 ```
 
 ### JavaScript のインストール
@@ -120,17 +120,17 @@ MDC Switch はデフォルトでチェックさえた状態（トグルが ON）
 
 ミキシン | 説明
 --- | ---
-`mdc-switch-toggled-on-color($color)` | スイッチがオンの時のトラック、つまみとリップルの色を設定する。
-`mdc-switch-toggled-off-color($color)` | スイッチがオフの時のトラック、つまみとリップルの色を設定する。
-`mdc-switch-toggled-on-track-color($color)` | スイッチがオンの時のトラックの色を設定する。
-`mdc-switch-toggled-off-track-color($color)` | スイッチがオフの時のトラックの色を設定する。
-`mdc-switch-toggled-on-thumb-color($color)` | スイッチがオンの時のつまみの色を設定する。
-`mdc-switch-toggled-off-thumb-color($color)` | スイッチがオフの時のつまみの色を設定する。
-`mdc-switch-toggled-on-ripple-color($color)` | スイッチがオンの時のつまみを囲むリップルの色を設定する。
-`mdc-switch-toggled-off-ripple-color($color)` | スイッチがオフの時のつまみを囲むリップルの色を設定する。
-`mdc-switch-ripple-size($ripple-size)` | スイッチのリップルサイズを設定する。
-`mdc-switch-density($density-scale)` | スイッチの密度スケールを設定する。サポートしている密度スケールは `-5`、`-4`、`-3`、`-2`、`-1` そして `0`（デフォルト）。
-`mdc-switch-ripple-states-opacity($opacity-map)` | `hover`、`focus`、`press` いずれかの状態のつまみを囲むリップルの不透明度を設定する。`opacity-map` にはこれらの状態をキーとして指定できる。マップに指定していない状態はデフォルトの不透明度が使われる。
+`toggled-on-color($color)` | スイッチがオンの時のトラック、つまみとリップルの色を設定する。
+`toggled-off-color($color)` | スイッチがオフの時のトラック、つまみとリップルの色を設定する。
+`toggled-on-track-color($color)` | スイッチがオンの時のトラックの色を設定する。
+`toggled-off-track-color($color)` | スイッチがオフの時のトラックの色を設定する。
+`toggled-on-thumb-color($color)` | スイッチがオンの時のつまみの色を設定する。
+`toggled-off-thumb-color($color)` | スイッチがオフの時のつまみの色を設定する。
+`toggled-on-ripple-color($color)` | スイッチがオンの時のつまみを囲むリップルの色を設定する。
+`toggled-off-ripple-color($color)` | スイッチがオフの時のつまみを囲むリップルの色を設定する。
+`ripple-size($ripple-size)` | スイッチのリップルサイズを設定する。
+`density($density-scale)` | スイッチの密度スケールを設定する。サポートしている密度スケールは `-5`、`-4`、`-3`、`-2`、`-1` そして `0`（デフォルト）。
+`ripple-states-opacity($opacity-map)` | `hover`、`focus`、`press` いずれかの状態のつまみを囲むリップルの不透明度を設定する。`opacity-map` にはこれらの状態をキーとして指定できる。マップに指定していない状態はデフォルトの不透明度が使われる。
 
 ## `MDCSwitch` プロパティとメソッド
 

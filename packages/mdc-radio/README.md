@@ -57,8 +57,8 @@ npm install @material/radio
 ### スタイル
 
 ```scss
-@import "@material/form-field/mdc-form-field";
-@import "@material/radio/mdc-radio";
+@use "@material/form-field/mdc-form-field";
+@use "@material/radio/mdc-radio";
 ```
 
 ### JavaScript のインスタンス化
@@ -125,16 +125,16 @@ MDC Checkbox はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カ
 
 ミキシン | 説明
 --- | ---
-`mdc-radio-unchecked-stroke-color($color)` | チェックされていない有効なラジオボタンの枠線の色を設定する。
-`mdc-radio-checked-stroke-color($color)` | チェックされている有効なラジオボタンの枠線の色を設定する。
-`mdc-radio-ink-color($color)` | 有効なラジオボタンのインクの色を設定する。
-`mdc-radio-disabled-unchecked-stroke-color($color)` | チェックされていない無効なラジオボタンの枠線の色を設定する。
-`mdc-radio-disabled-checked-stroke-color($color)` | チェックされている無効なラジオボタンの枠線の色を設定する。
-`mdc-radio-disabled-ink-color($color)` | 無効なラジオボタンのインクの色を設定する。
-`mdc-radio-focus-indicator-color($color)` | フォーカス時のインジケーターの色を設定する。
-`mdc-radio-touch-target($size, $ripple-size)` | ラジオボタンタッチ対象の大きさをリップルサイズより大きく設定する。パラメータ `$ripple-size` はカスタムリップルサイズのときは必須で、デフォルトは `$mdc-radio-ripple-size`。
-`mdc-radio-ripple-size($size)` | ラジオボタンのカスタムリップルサイズを設定する。
-`mdc-radio-density($density-scale)` | ラジオボタンの密度スケールを設定する。サポートしている密度スケールは `-3`、`-2`、`-1` そして `0`（デフォルト）。
+`unchecked-stroke-color($color)` | チェックされていない有効なラジオボタンの枠線の色を設定する。
+`checked-stroke-color($color)` | チェックされている有効なラジオボタンの枠線の色を設定する。
+`ink-color($color)` | 有効なラジオボタンのインクの色を設定する。
+`disabled-unchecked-stroke-color($color)` | チェックされていない無効なラジオボタンの枠線の色を設定する。
+`disabled-checked-stroke-color($color)` | チェックされている無効なラジオボタンの枠線の色を設定する。
+`disabled-ink-color($color)` | 無効なラジオボタンのインクの色を設定する。
+`focus-indicator-color($color)` | フォーカス時のインジケーターの色を設定する。
+`touch-target($size, $ripple-size)` | ラジオボタンタッチ対象の大きさをリップルサイズより大きく設定する。パラメータ `$ripple-size` はカスタムリップルサイズのときは必須で、デフォルトは `$ripple-size`。
+`ripple-size($size)` | ラジオボタンのカスタムリップルサイズを設定する。
+`density($density-scale)` | ラジオボタンの密度スケールを設定する。サポートしている密度スケールは `-3`、`-2`、`-1` そして `0`（デフォルト）。
 
 ## `MDCRadio` プロパティとメソッド
 

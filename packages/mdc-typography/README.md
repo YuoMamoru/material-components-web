@@ -62,7 +62,7 @@ Google フォントにある Roboto を使うことを推奨します。
 ### スタイル
 
 ```css
-@import "@material/typography/mdc-typography";
+@use "@material/typography/mdc-typography";
 ```
 
 ## スタイルのカスタマイズ
@@ -94,13 +94,13 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-typography-base` | フォントを Roboto に設定する。
+`base` | フォントを Roboto に設定する。
 `mdc-typography($style)` | フォントを Roboto にするなど、Typography の書式の一つを適用する。
-`mdc-typography-overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める。
-`mdc-typography-baseline-top($distance)` | テキスト要素の上からベースラインまでの高さを設定する。
-`mdc-typography-baseline-bottom($distance)` | テキストのベースラインから下までの間隔を設定する。子のミキシンはベースラインから次のテキスト要素までの間隔を設定したいときは、`mdc-typography-baseline-top` と組み合わせる必要がある。
+`overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める。
+`baseline-top($distance)` | テキスト要素の上からベースラインまでの高さを設定する。
+`baseline-bottom($distance)` | テキストのベースラインから下までの間隔を設定する。子のミキシンはベースラインから次のテキスト要素までの間隔を設定したいときは、`baseline-top` と組み合わせる必要がある。
 
-> **`mdc-typography-overflow-ellipsis` に関する注釈**: `mdc-typography-overflow-ellipsis` は要素が `display: block` であるか `display: inline-block` であるときにしか使ってはいけません。
+> **`overflow-ellipsis` に関する注釈**: `overflow-ellipsis` は要素が `display: block` であるか `display: inline-block` であるときにしか使ってはいけません。
 
 #### `$style` の値
 
@@ -132,7 +132,7 @@ $mdc-typography-styles-button: (
   text-transform: none,
 );
 
-@import "@material/button/mdc-button";
+@use "@material/button/mdc-button";
 ```
 
 例: グローパルな `font-family` プロパティを上書きする
@@ -140,7 +140,7 @@ $mdc-typography-styles-button: (
 $mdc-typography-font-family: unquote("Arial, Helvetica, sans-serif");
 
 ...
-@import ...
+@use ...
 ```
 
 例:  `headline1` の `font-family` プロパティと `headline2` の `font-family` と `font-size` を上書きする
@@ -154,5 +154,5 @@ $mdc-typography-styles-headline2: (
 );
 
 ...
-@import ...
+@use ...
 ```

@@ -32,12 +32,13 @@ npm install @material/theme
 MDC Web のコンポーネントをインポートする前にテーマカラーの変数を定義できます。
 
 ```scss
-$mdc-theme-primary: #fcb8ab;
-$mdc-theme-secondary: #feeae6;
-$mdc-theme-on-primary: #442b2d;
-$mdc-theme-on-secondary: #442b2d;
-
-@import "@material/button/mdc-button";
+@use "@material/theme" with (
+  $primary: #fcb8ab,
+  $secondary: #feeae6,
+  $on-primary: #442b2d,
+  $on-secondary: #442b2d,
+);
+@use "@material/button/mdc-button";
 ```
 
 on-primary や on-secondary などの値を決める際には、Web Content Accessibility Guidelines 2.0 にしたがうことを推奨します。これらの値は primary や secondary といった該当する値の上で視認性を確保する必要があります。
@@ -104,7 +105,7 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-theme-prop($property, $style, $important)` | テーマカラーもしくは CSS プロパティ形式のカスタムカラーを、必要であれば `!important` を付けて適用する。
+`prop($property, $style, $important)` | テーマカラーもしくは CSS プロパティ形式のカスタムカラーを、必要であれば `!important` を付けて適用する。
 
 #### `mdc-theme-prop` のプロパティ
 
@@ -135,9 +136,11 @@ CSS クラス | 説明
 
 例えば、以下の Sass は
 
-```
+```scss
+@use "@material/theme";
+
 .foo {
-  @include mdc-theme-prop(color, (
+  @include theme.prop(color, (
     varname: --foo-color,
     fallback: red,
   ));
@@ -160,7 +163,7 @@ CSS クラス | 説明
 与えられた色の輝度値（0～1）を計算します。
 
 ```scss
-@debug mdc-theme-luminance(#9c27b0); // 0.11654
+@debug theme.luminance(#9c27b0); // 0.11654
 ```
 
 #### `mdc-theme-contrast($back, $front)`
@@ -168,7 +171,7 @@ CSS クラス | 説明
 2つの色のコントラスト比を計算します。
 
 ```scss
-@debug mdc-theme-contrast(#9c27b0, #000); // 3.33071
+@debug theme.contrast(#9c27b0, #000); // 3.33071
 ```
 
 #### `mdc-theme-tone($color)`
@@ -178,8 +181,8 @@ CSS クラス | 説明
 入力された色が `"light"` もしくは `"dark"` と等しい文字列リテラルのときは、入力値をそのまま返します。
 
 ```scss
-@debug mdc-theme-tone(#9c27b0); // dark
-@debug mdc-theme-tone(light);   // light
+@debug theme.tone(#9c27b0); // dark
+@debug theme.tone(light);   // light
 ```
 
 #### `mdc-theme-contrast-tone($color)`
@@ -187,22 +190,22 @@ CSS クラス | 説明
 与えられた色の上にのせるテキストを明るくすべきか暗くすべきかを判定します。
 
 ```scss
-@debug mdc-theme-contrast-tone(#9c27b0); // light
+@debug theme.contrast-tone(#9c27b0); // light
 ```
 
 #### `mdc-theme-prop-value($style)`
 
-`$style` が色（色リテラルや `currentColor` 、もしくは CSS カスタムプロパティ）のときは入力値をそのまま返します。そうでないときは `$style` をテーマのプロパティ名とみなし、`$mdc-theme-property-values` から一致する値を返します。処理が失敗するときにはエラーがスローされます。
+`$style` が色（色リテラルや `currentColor` 、もしくは CSS カスタムプロパティ）のときは入力値をそのまま返します。そうでないときは `$style` をテーマのプロパティ名とみなし、`$property-values` から一致する値を返します。処理が失敗するときにはエラーがスローされます。
 
-これは主に `mdc-theme-prop` を直接利用できない状況（例: `box-shadow`）で役立ちます。
+これは主に `prop` を直接利用できない状況（例: `box-shadow`）で役立ちます。
 
-`mdc-theme-prop` ミキシンと違って、この関数は CSS カスタムプロパティをサポートして <em>いません</em>。テーマプロパティに指定された生の色だけを返します。
+`prop` ミキシンと違って、この関数は CSS カスタムプロパティをサポートして <em>いません</em>。テーマプロパティに指定された生の色だけを返します。
 
 > 注意: 循環インポートを避けるため、この関数は `_functions.scss` ではなく、`_variables.scss` で定義されています。
 
 ```scss
-@debug mdc-theme-prop-value(primary); // #3f51b5
-@debug mdc-theme-prop-value(blue);    // blue
+@debug theme.prop-value(primary); // #3f51b5
+@debug theme.prop-value(blue);    // blue
 ```
 
 #### `mdc-theme-accessible-ink-color($fill-color, $text-style: primary)`
@@ -211,14 +214,14 @@ CSS クラス | 説明
 
 引数:
 
-- `$fill-color`: `mdc-theme-prop-value` と同様な値をサポートしています。
-- `$text-style`: 以下のいずれかの値でなくてはなりません: `primary`, `secondary`, `hint`, `disabled`, `icon`（`$mdc-theme-text-colors` を参照）。
+- `$fill-color`: `theme.prop-value` と同様な値をサポートしています。
+- `$text-style`: 以下のいずれかの値でなくてはなりません: `primary`, `secondary`, `hint`, `disabled`, `icon`（`$text-colors` を参照）。
 
 > 注意: 循環インポートを避けるため、この関数は `_functions.scss` ではなく、`_variables.scss` で定義されています。
 
 ```scss
-@debug mdc-theme-accessible-ink-color(secondary); // rgba(0, 0, 0, .87) (text-primary-on-light)
-@debug mdc-theme-accessible-ink-color(blue);      // white              (text-primary-on-dark)
+@debug theme.accessible-ink-color(secondary); // rgba(0, 0, 0, .87) (text-primary-on-light)
+@debug theme.accessible-ink-color(blue);      // white              (text-primary-on-dark)
 ```
 #### `mdc-theme-text-emphasis($emphasis)`
 
@@ -229,6 +232,6 @@ CSS クラス | 説明
 - `$emphasis`: `high`, `medium` や `disabled` といった修飾子のタイプ。
 
 ```scss
-@debug mdc-theme-text-emphasis(high); // .87
-@debug mdc-theme-text-emphasis(disabled); // .38
+@debug theme.text-emphasis(high); // .87
+@debug theme.text-emphasis(disabled); // .38
 ```

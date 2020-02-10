@@ -651,20 +651,17 @@ class MDCNewComponentFoundation extends MDCFoundation {
 
 ### <a name="testing"></a>テスト
 
-MDC Web のコードのテストを書く際に以下のガイドラインにしたがってください。私たちはテストを [mocha](https://mochajs.org/) 上の [qunit UI](https://mochajs.org/#qunit) で書いており、[karma](https://karma-runner.github.io/1.0/index.html) で実行しています。アサーションには [chai assert API](http://chaijs.com/api/assert/) を使い、モックとスタブは [testdouble](https://github.com/testdouble/testdouble.js/) を使っています。
+MDC Web のコードのテストを書く際に以下のガイドラインにしたがってください。私たちはテストを [Jasmine](https://jasmine.github.io) テストフレームワークで書いており、[karma](https://karma-runner.github.io/1.0/index.html) で実行しています。
 
 #### <a name="verify-foundations-adapters"></a>ファンデーションのアダプターを検証する
 
-ファンデーションをテストする際、少なくともテストケースのうち一つは [foundation helpers](../test/unit/helpers/foundation.js) で定義している `verifyDefaultAdapter` メソッドを使うようにしてください。アダプターのインターフェースが予期せず変更されていないことを確認するためです。
+ファンデーションをテストする際、少なくともテストケースのうち一つは [foundation helpers](../testing/helpers/foundation.ts) で定義している `verifyDefaultAdapter` メソッドを使うようにしてください。アダプターのインターフェースが予期せず変更されていないことを確認するためです。
 
 #### <a name="use-helper-methods"></a>ヘルパーメソッドを使う
-ファンデーション起動テストやイベントによるアダプターメソッドの起動、`requestAnimationFrame` の処理といったことのために [test/unit/helpers](../test/unit/helpers) の中にヘルパーモジュールがあります。テストができる限り簡単にかけるようにコードを書く上でこれらを使うことをお勧めしています！
+ファンデーション起動テストやイベントによるアダプターメソッドの起動、`requestAnimationFrame` の処理といったことのために [testing/helpers](../testing/helpers) の中にヘルパーモジュールがあります。テストができる限り簡単にかけるようにコードを書く上でこれらを使うことをお勧めしています！
 
-#### <a name="use-bel-for-dom-fixture"></a>DOM フィクスチャーに bel を使う
-私たちはコンポーネントやアダプターのフィクスチャーを生成するために [bel](https://www.npmjs.com/package/bel) ライブラリを使っています。これが、HTML のメンテナンスに苦しんだり厄介な DOM API のコードを書いたりぜずにフィクスチャーを生成する簡単でうまくいく方法だということに気づきました。
+#### <a name="use-bel-for-dom-fixture"></a>DOM フィクスチャーに `getFixture` を使う
+コンポーネントやアダプターのテストのフィクスチャーを生成するために [#getFixture](../testing/dom/index.ts) ヘルパーを使います。
 
 #### <a name="always-clean-up-the-dom-after-every-test"></a>あらゆるテストの後は常に DOM をきれいにする
 これは重要なことです。<em>テストが終わる前に、DOM にアタッチしたすべての要素が削除されていることを確認してください。</em>。
-
-#### <a name="verify-adapters-via-testdouble"></a>testdouble を通じてアダプターの検証をする
-私たちは事実上のモックフレームワークとして [testdouble.js](https://github.com/testdouble/testdouble.js) を使っています。コンポーネント/ファンデーション/アダプター パターンの大きな利点はコンポーネントの機能性を極めて簡単にテストできるということです。アダプターとして testdouble のスタブを使い、ファンデーションの振る舞いを検証することをお勧めします（これは [ファンデーションのセットアップコード](../test/unit/helpers/setup.js#L21) がデフォルトやっていることだということに注意してください）。

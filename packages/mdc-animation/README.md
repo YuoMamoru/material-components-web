@@ -32,32 +32,32 @@ npm install @material/animation
 `animation` や `transition` CSS プロパティで使用できるタイミング関数を提供しています。
 
 ```scss
-@import "@material/animation/variables";
+@use "@material/animation";
 
 .my-element--animating {
-  animation: foo-keyframe 175ms $mdc-animation-standard-curve-timing-function;
+  animation: foo-keyframe 175ms animation.$standard-curve-timing-function;
 }
 ```
 
 変数 | 説明
 --- | ---
-`mdc-animation-deceleration-curve-timing-function` | 減速していくタイミング関数
-`mdc-animation-standard-curve-timing-function` | 素早く加速し、ゆっくり減速していくタイミング関数
-`mdc-animation-acceleration-curve-timing-function` | 加速していくタイミング関数
-`mdc-animation-sharp-curve-timing-function` | 素早く加速、減速をしていくタイミング関数
+`deceleration-curve-timing-function` | 減速していくタイミング関数
+`standard-curve-timing-function` | 素早く加速し、ゆっくり減速していくタイミング関数
+`acceleration-curve-timing-function` | 加速していくタイミング関数
+`sharp-curve-timing-function` | 素早く加速、減速をしていくタイミング関数
 
 以下の関数は `$name` と `$duration` を与えるトランジッションを生成します。`$delay`を指定することもできますが、初期値は 0 ミリ秒です。`$name` はキーフレームを参照することも `transition` で使っている CSS プロパティを参照することもできます。
 
 ```scss
-@import "@material/animation/functions";
+@use "@material/animation";
 
 .my-element {
-  transition: mdc-animation-exit-permanent(/* $name: */ opacity, /* $duration: */ 175ms, /* $delay: */ 150ms);
+  transition: animation.exit-permanent(/* $name: */ opacity, /* $duration: */ 175ms, /* $delay: */ 150ms);
   opacity: 0;
   will-change: opacity;
 
   &--animating {
-    transition: mdc-animation-enter(/* $name: */ opacity, /* $duration: */ 175ms);
+    transition: animation.enter(/* $name: */ opacity, /* $duration: */ 175ms);
     opacity: 1;
   }
 }
@@ -65,7 +65,7 @@ npm install @material/animation
 
 
 ```scss
-@import "@material/animation/functions";
+@use "@material/animation";
 
 @keyframes fade-in {
   from {
@@ -80,15 +80,15 @@ npm install @material/animation
 }
 
 .my-element {
-  animation: mdc-animation-enter(/* $name: */ fade-in, /* $duration: */ 350ms);
+  animation: animation.enter(/* $name: */ fade-in, /* $duration: */ 350ms);
 }
 ```
 
 関数 | 説明
 --- | ---
-`mdc-animation-enter($name, $duration, $delay)` | フレームに入るためのトランジッションを定義する
-`mdc-animation-exit-permanent($name, $duration, $delay)` | 恒久的にフレームに入るためのトランジッションを定義する
-`mdc-animation-exit-temporary($name, $duration, $delay)` | 一時的にフレームに入るためのトランジッションを定義する
+`enter($name, $duration, $delay)` | フレームに入るためのトランジッションを定義する
+`exit-permanent($name, $duration, $delay)` | 恒久的にフレームに入るためのトランジッションを定義する
+`exit-temporary($name, $duration, $delay)` | 一時的にフレームに入るためのトランジッションを定義する
 
 ### JavaScript
 

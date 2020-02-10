@@ -56,10 +56,10 @@ npm install @material/tab-bar
 ### スタイル
 
 ```scss
-@import "@material/tab-bar/mdc-tab-bar";
-@import "@material/tab-scroller/mdc-tab-scroller";
-@import "@material/tab-indicator/mdc-tab-indicator";
-@import "@material/tab/mdc-tab";
+@use "@material/tab-bar/mdc-tab-bar";
+@use "@material/tab-scroller/mdc-tab-scroller";
+@use "@material/tab-indicator/mdc-tab-indicator";
+@use "@material/tab/mdc-tab";
 ```
 
 ### JavaScript のインスタンス化
@@ -102,10 +102,10 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-tab-bar-width($width)` | タブバーの幅を変更する。
-`mdc-tab-bar-density($density-scale)` | デフォルト型のタブバーの密度スケールを設定する。スタック型のタブバーでは `mdc-tab-bar-stacked-density` ミキシンを使う。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
-`mdc-tab-bar-stacked-density($density-scale)` | スタック型のタブバーの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
-`mdc-tab-bar-tab-scroller-transition($duration-ms, $timing-function)` | タブのスクロールアニメーションのために CSS トランジッションを設定する。このミキシンは `mdc-tab-scroller-transition` ミキシンの代替。
+`width($width)` | タブバーの幅を変更する。
+`density($density-scale)` | デフォルト型のタブバーの密度スケールを設定する。スタック型のタブバーでは `stacked-density` ミキシンを使う。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`stacked-density($density-scale)` | スタック型のタブバーの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
+`tab-scroller-transition($duration-ms, $timing-function)` | タブのスクロールアニメーションのために CSS トランジッションを設定する。このミキシンは `mdc-tab-scroller-transition` ミキシンの代替。
 
 
 ## `MDCTabBar` プロパティとメソッド

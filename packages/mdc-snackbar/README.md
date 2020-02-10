@@ -60,7 +60,7 @@ npm install @material/snackbar
 ### スタイル
 
 ```scss
-@import "@material/snackbar/mdc-snackbar";
+@use "@material/snackbar/mdc-snackbar";
 ```
 
 ### JavaScript のインスタンス化
@@ -84,12 +84,14 @@ const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 </div>
 ```
 
-あるいは、Sass から `mdc-snackbar-layout-stacked` ミキシンを呼ぶこともできます。
+あるいは、Sass から `layout-stacked` ミキシンを呼ぶこともできます。
 
 ```scss
-@media (max-width: $mdc-snackbar-mobile-breakpoint) {
+@use "@material/snackbar";
+
+@media (max-width: snackbar.$mobile-breakpoint) {
   .my-snackbar {
-    @include mdc-snackbar-layout-stacked;
+    @include snackbar.layout-stacked;
   }
 }
 ```
@@ -106,24 +108,24 @@ const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 </div>
 ```
 
-あるいは、Sass から `mdc-snackbar-position-leading` ミキシンを呼ぶこともできます。
+あるいは、Sass から `position-leading` ミキシンを呼ぶこともできます。
 
 ```scss
-@media (min-width: $mdc-snackbar-mobile-breakpoint) {
+@media (min-width: snackbar.$mobile-breakpoint) {
   .my-snackbar {
-    @include mdc-snackbar-position-leading;
+    @include snackbar.position-leading;
   }
 }
 ```
 
 ### ワイド (タブレットとデスクトップのみ)
 
-大きな画面でスナックバーとビューポートの間のマージンを増やすには、メディアクエリ内で `mdc-snackbar-viewport-margin` ミキシンを呼びます。
+大きな画面でスナックバーとビューポートの間のマージンを増やすには、メディアクエリ内で `viewport-margin` ミキシンを呼びます。
 
 ```scss
-@media (min-width: $mdc-snackbar-mobile-breakpoint) {
+@media (min-width: snackbar.$mobile-breakpoint) {
   .my-snackbar {
-    @include mdc-snackbar-viewport-margin($mdc-snackbar-viewport-margin-wide);
+    @include snackbar.viewport-margin(snackbar.$viewport-margin-wide);
   }
 }
 ```
@@ -149,16 +151,16 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-snackbar-fill-color($color)` | スナックバーの塗りの色を設定する。
-`mdc-snackbar-label-ink-color($color)` | スナックバーのラベルテキストの色を設定する。
-`mdc-snackbar-shape-radius($radius, $rtl-reflexive)` | スナックバー表面の角の丸みを与えられた値に設定する。`$rtl-reflexive` に true を設定すると RTL コンテキストで半径の値を反転する。デフォルトは false。
-`mdc-snackbar-min-width($min-width, $mobile-breakpoint)` | タブレット/デスクトップデバイス上でスナックバーの `min-width` を設定する。モバイルでは幅は自動的に 100% が設定される。
-`mdc-snackbar-max-width($max-width)` | スナックバーの `max-width` を設定する。
-`mdc-snackbar-elevation($z-index)` | スナックバーの重なりの順序を設定する。
-`mdc-snackbar-viewport-margin($margin)` | スナックバーとビューポートの間の距離を設定する。
-`mdc-snackbar-z-index($z-index)` | スナックバーの `z-index` を設定する。
-`mdc-snackbar-position-leading()` | スナックバーを画面の中央ではなく、前方の端（LTR では左側、RTL では右側）に配置する。
-`mdc-snackbar-layout-stacked()` | 操作ボタン/アイコンをラベルの横ではなく下に配置する。
+`fill-color($color)` | スナックバーの塗りの色を設定する。
+`label-ink-color($color)` | スナックバーのラベルテキストの色を設定する。
+`shape-radius($radius, $rtl-reflexive)` | スナックバー表面の角の丸みを与えられた値に設定する。`$rtl-reflexive` に true を設定すると RTL コンテキストで半径の値を反転する。デフォルトは false。
+`min-width($min-width, $mobile-breakpoint)` | タブレット/デスクトップデバイス上でスナックバーの `min-width` を設定する。モバイルでは幅は自動的に 100% が設定される。
+`max-width($max-width)` | スナックバーの `max-width` を設定する。
+`elevation($z-index)` | スナックバーの重なりの順序を設定する。
+`viewport-margin($margin)` | スナックバーとビューポートの間の距離を設定する。
+`z-index($z-index)` | スナックバーの `z-index` を設定する。
+`position-leading()` | スナックバーを画面の中央ではなく、前方の端（LTR では左側、RTL では右側）に配置する。
+`layout-stacked()` | 操作ボタン/アイコンをラベルの横ではなく下に配置する。
 
 > **注意**: `mdc-snackbar__action` と `mdc-snackbar__dismiss` 要素は [`mdc-button`](../mdc-button) と [`mdc-icon-button`](../mdc-icon-button) ミキシンでさらにカスタマイズできます。
 

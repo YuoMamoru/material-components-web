@@ -75,7 +75,7 @@ npm install @material/dialog
 ### スタイル
 
 ```scss
-@import "@material/dialog/mdc-dialog";
+@use "@material/dialog/mdc-dialog";
 ```
 
 > *注意*: ダイアログに含め用と思っている任意のコンポーネント（例: リスト、チェックボックス等）のスタイルもインポートしなくてはなりません。
@@ -298,15 +298,15 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-dialog-container-fill-color($color)` | ダイアログの塗りの色を設定する。
-`mdc-dialog-scrim-color($color, $opacity)` | ダイアログ背景のスクリムの色を設定する。
-`mdc-dialog-title-ink-color($color, $opacity)` | ダイアログのタイトルテキストの色を設定する。
-`mdc-dialog-content-ink-color($color, $opacity)` | ダイアログのコンテンツテキストの色を設定する。
-`mdc-dialog-scroll-divider-color($color, $opacity)` | スクロールするコンテンツの周囲に表示される境界の色を設定する。
-`mdc-dialog-shape-radius($radius, $rtl-reflexive)` | ダイアログ面の角を与えられた半径の大きさに丸める。RTL コンテンツにおいて半径の値を反転するには `$rtl-reflexive` を true に設定する。デフォルトは false。
-`mdc-dialog-min-width($min-width)` | ダイアログの最小幅を設定する（デフォルトは 280px）。
-`mdc-dialog-max-width($max-width, $margin)` | ダイアログの最大幅を設定する（デフォルトは最大幅 280px、マージン 16px）。
-`mdc-dialog-max-height($max-height, $margin)` | ダイアログの最大の高さを設定する（デフォルトは最大の高さ制限なし、マージン 16px）。
+`container-fill-color($color)` | ダイアログの塗りの色を設定する。
+`scrim-color($color, $opacity)` | ダイアログ背景のスクリムの色を設定する。
+`title-ink-color($color, $opacity)` | ダイアログのタイトルテキストの色を設定する。
+`content-ink-color($color, $opacity)` | ダイアログのコンテンツテキストの色を設定する。
+`scroll-divider-color($color, $opacity)` | スクロールするコンテンツの周囲に表示される境界の色を設定する。
+`shape-radius($radius, $rtl-reflexive)` | ダイアログ面の角を与えられた半径の大きさに丸める。RTL コンテンツにおいて半径の値を反転するには `$rtl-reflexive` を true に設定する。デフォルトは false。
+`min-width($min-width)` | ダイアログの最小幅を設定する（デフォルトは 280px）。
+`max-width($max-width, $margin)` | ダイアログの最大幅を設定する（デフォルトは最大幅 280px、マージン 16px）。
+`max-height($max-height, $margin)` | ダイアログの最大の高さを設定する（デフォルトは最大の高さ制限なし、マージン 16px）。
 
 > *注意*: `max-width` ミキシンと `max-height` ミキシンは幅、高さのそれぞれがマージンを考慮したうえでビューポートが指定された値を収めるのに十分な大きさがあるときに適用されます。ビューポートが小さいときには、ダイアログはマージンが端の周囲に保たれるような大きさになります。
 

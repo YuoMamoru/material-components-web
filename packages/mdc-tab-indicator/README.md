@@ -41,7 +41,7 @@ npm install @material/tab-indicator
 ### スタイル
 
 ```scss
-@import "@material/tab-indicator/mdc-tab-indicator";
+@use "@material/tab-indicator/mdc-tab-indicator";
 ```
 
 ### JavaScript のインスタンス化
@@ -133,12 +133,12 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`mdc-tab-indicator-surface` | 必須。`mdc-tab-indicator` の親要素に適用しなくてはならない。
-`mdc-tab-indicator-underline-color($color)` | 下線の色を変更する。
-`mdc-tab-indicator-icon-color($color)` | アイコンサブ要素の色を変更する。
-`mdc-tab-indicator-underline-height($height)` | 下線の高さを変更する。
-`mdc-tab-indicator-icon-height($height)` | アイコンサブ要素の高さを変更する。
-`mdc-tab-indicator-underline-top-corner-radius($radius)` | 下線子要素の左上と右上の角丸の半径を変更する。
+`surface` | 必須。`mdc-tab-indicator` の親要素に適用しなくてはならない。
+`underline-color($color)` | 下線の色を変更する。
+`icon-color($color)` | アイコンサブ要素の色を変更する。
+`underline-height($height)` | 下線の高さを変更する。
+`icon-height($height)` | アイコンサブ要素の高さを変更する。
+`underline-top-corner-radius($radius)` | 下線子要素の左上と右上の角丸の半径を変更する。
 
 ## `MDCTabIndicator` メソッド
 
