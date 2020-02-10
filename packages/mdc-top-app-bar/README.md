@@ -138,7 +138,6 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 
 ### 固定された Top App Bar
 
-Fixed top app bars stay at the top of the page and elevate above the content when scrolled.
 固定されたトップアプリバーはスクロール時にページの上部にとどまり、コンテンツの上に表示されます。
 
 ```html
