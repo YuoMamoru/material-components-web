@@ -98,13 +98,3 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ## 助けが必要ですか？
 
 私たちは絶えずコンポーネントの改善を試みています。もし Github の Issues がニーズに合わないなら、[Discord Channel](https://discord.gg/material-components) に来てください。
-
-## 謝辞
-
-私たちが利用し、感謝しているサードパーティサービス:
-
-- CI にて [Travis CI](https://travis-ci.com/)
-- ユニットテストにて [Sauce Labs](https://saucelabs.com/)
-- [スクリーンショットテスト](test/screenshot/) にて [CrossBrowserTesting](https://crossbrowsertesting.com/)
-
-<a href="https://crossbrowsertesting.com/"><img src="test/screenshot/static/images/cbt-logo.png" alt="CrossBrowserTesting logo" width="180" /></a>

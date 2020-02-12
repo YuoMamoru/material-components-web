@@ -370,13 +370,17 @@ ECMAScript は設計上、動的かつ柔軟な言語です。動的で柔軟で
 
 ### <a name="file-structure"></a>ファイルの構成
 
-コンポーネントのすべてのソースファイルは `packages/` の下に置きます。すべてのテストファイルは `test/unit` の下に置き、`packages/` ディレクトリの構成を反映させます。パッケージのスクリーンショットテストは `test/screenshot/spec` の下にあります。
+- ソースファイル: `packages/` の下にあります。
+- テストファイル: `packages/<mdc-component>/test/` の下にあります。
 
 典型的なコンポーネントの構成は以下の通りです。
 
 ```
-packages
-  ├── mdc-component
+packages/
+  ├── mdc-component/
+      ├── test/
+          ├── foundation.test.ts # コンポーネントのファンデーションのための単体テスト
+          ├── mdc-component.test.ts # コンポーネントのための単体テスト
       ├── README.md # 使い方の説明と API ドキュメント
       ├── adapter.ts # フレームワークラッパと素のコンポーネントにより実装されたアダプターインターフェース
       ├── foundation.ts # ラッパライブラリと素のコンポーネントにより使用されるフレームワークにとらわれないビジネスロジック
@@ -387,17 +391,6 @@ packages
       ├── util.ts # （オプション）フィレー無ワークにとらわれないヘルパー関数（例えば特徴検出）
       ├── mdc-component.scss # コンポーネントの CSS の主要なソースファイル
       └── package.json # コンポーネントのパッケージファイル
-test/unit
-  ├── mdc-component
-      ├── foundation.test.js # コンポーネントのファンデーションのユニットテスト
-      ├── mdc-component.test.js # コンポーネントのユニットテスト
-test/screenshot
-  ├── spec
-      ├── mdc-component
-          ├── classes
-              ├── baseline.html # 正常ケースでのコンポーネントの使用。そのほかの変種は ./classes の下に置く。
-          ├── mixins
-              ├── ink-color.html # カスタマイズのための sass ミキシンを使用したコンポーネント。
 ```
 
 **私たちがプルリクエストを受け入れる前にすべてのコンポーネントにはこれらのファイルが <em>なくてはいけません</em>。**
