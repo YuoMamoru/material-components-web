@@ -1,12 +1,13 @@
 {
-  "version": "4.0.0",
+  "version": "5.0.0",
   "command": {
     "version": {
       "conventionalCommits": true
     },
     "publish": {
       "ignoreChanges": [
-        "*.md"
+        "*.md",
+        "*.increment2"
       ]
     }
   },
