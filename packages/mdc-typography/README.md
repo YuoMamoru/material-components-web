@@ -67,6 +67,26 @@ Google フォントにある Roboto を使うことを推奨します。
 
 ## スタイルのカスタマイズ
 
+### <a name="typography-styles"></a>タイポグラフィスタイル
+
+型システム内で使用されるタイポグラフィスタイル（以下、`<STYLE>` と呼びます）
+
+スケール | 説明
+--- | ---
+`headline1` | 画面上で最大のテキストで、短く重要なテキストもしくは数値のために用意されている
+`headline2` | 見出しのバリエーション 2
+`headline3` | 見出しのバリエーション 3
+`headline4` | 見出しのバリエーション 4
+`headline5` | 見出しのバリエーション 5
+`headline6` | 見出しのバリエーション 6
+`subtitle1` | 見出しよりも小さいもので、中程度に重要で長さが短いテキストのために用意されている
+`subtitle2` | サブタイトルのバリエーション 2
+`body1` | 長い表記に使用する
+`body2` | ボディのバリエーション 2
+`caption` | 画像に注釈をつけ、控えめに使用する
+`button` | 異なるタイプのボタンによる操作の呼び出し
+`overline` | 見出しを紹介するために、控えめに使用する
+
 ### CSS クラス
 
 いくつかのコンポーネントには書式セットがあります。例えば、浮き上がったように表示される MDC Card は Body 1 と Body 2、そして Headline というスタイルが使われています。
@@ -76,26 +96,30 @@ Google フォントにある Roboto を使うことを推奨します。
 CSS クラス | 説明
 --- | ---
 `mdc-typography` | フォントを Roboto に設定する。
-`mdc-typography--headline1` | フォントのプロパティを Headline 1 に設定する。
-`mdc-typography--headline2` | フォントのプロパティを Headline 2 に設定する。
-`mdc-typography--headline3` | フォントのプロパティを Headline 3 に設定する。
-`mdc-typography--headline4` | フォントのプロパティを Headline 4 に設定する。
-`mdc-typography--headline5` | フォントのプロパティを Headline 5 に設定する。
-`mdc-typography--headline6` | フォントのプロパティを Headline 6 に設定する。
-`mdc-typography--subtitle1` | フォントのプロパティを Subtitle 1 に設定する。
-`mdc-typography--subtitle2` | フォントのプロパティを Subtitle 2 に設定する。
-`mdc-typography--body1` | フォントのプロパティを Body 1 に設定する。
-`mdc-typography--body2` | フォントのプロパティを Body 2 に設定する。
-`mdc-typography--caption` | フォントのプロパティを Caption に設定する。
-`mdc-typography--button` | フォントのプロパティを Button に設定する。
-`mdc-typography--overline` | フォントのプロパティを Overline に設定する。
+`mdc-typography--<STYLE>` | フォントプロパティを STYLE として設定する。[タイポグラフィスタイルの節](#typography-styles) を参照。
 
-### Sass 変素とミキシン
+例えば、`headline1` スタイルにするには CSS クラスを `mdc-typography--headline1` にします。
 
-ミキシン | 説明
+### CSS カスタムプロパティ
+
+CSS カスタムプロパティ | 説明
+--- | ---
+`--mdc-typography-font-family` | 基本のフォントファミリ
+`--mdc-typography-<STYLE>-font-family` | STYLE のフォントファミリ。[タイポグラフィスタイルの節](#typography-styles) 参照
+`--mdc-typography-<STYLE>-font-size` | STYLE のフォントサイズ。[タイポグラフィスタイルの節](#typography-styles) 参照
+`--mdc-typography-<STYLE>-line-height` | STYLE の行の高さ。[タイポグラフィスタイルの節](#typography-styles) 参照
+`--mdc-typography-<STYLE>-font-weight` | STYLE のフォントの太さ。[タイポグラフィスタイルの節](#typography-styles) 参照
+`--mdc-typography-<STYLE>-letter-spacing` | STYLE のフォントの文字間隔。[タイポグラフィスタイルの節](#typography-styles) 参照
+`--mdc-typography-<STYLE>-text-decoration` | STYLE のテキスト装飾。[タイポグラフィスタイルの節](#typography-styles) 参照
+`--mdc-typography-<STYLE>-text-transform` | STYLE の文字変換。[タイポグラフィスタイルの節](#typography-styles) 参照
+
+### Sass 変数とミキシン
+
+Mixin | Description
 --- | ---
 `base` | フォントを Roboto に設定する。
 `mdc-typography($style)` | フォントを Roboto にするなど、Typography の書式の一つを適用する。
+`smooth-font` | タイポグラフィにアンチエイリアスを追加する。
 `overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める。
 `baseline-top($distance)` | テキスト要素の上からベースラインまでの高さを設定する。
 `baseline-bottom($distance)` | テキストのベースラインから下までの間隔を設定する。子のミキシンはベースラインから次のテキスト要素までの間隔を設定したいときは、`baseline-top` と組み合わせる必要がある。
@@ -122,9 +146,22 @@ CSS クラス | 説明
 
 #### スタイルの上書き
 
-コンポーネントをインポートする <em>前に</em> `$mdc-typography-styles-{style}` という名前のグローバル変数を設定することにより、すべてのスタイルを上書きできます。この変数には上書きしたい具体的スタイルのすべてを含んだマップを指定する必要があります。
+CSS カスタムプロパティか Sass グローバル変数を使うことにより、すべてのスタイルを上書きできます。
 
-例: `font-size` と `text-transform` プロパティを上書きする
+Sass グローバル変数を使う際には、コンポーネントをインポートする _前に_ `$mdc-typography-styles-{style}` という名前のグローバル変数を設定することにより、これらの変数を定義しなくてはなりません。変数には特定のスタイルで上書きするすべてのプロパティを含むマップを割り当てる必要があります。
+
+**例:** `font-size` と `text-transform` プロパティを上書きする
+
+CSS カスタムプロパティの場合:
+
+```css
+html {
+  --mdc-typography-button-font-size: 16px;
+  --mdc-typography-button-text-transform: 16px;
+}
+```
+
+Sass グローバル変数の場合:
 
 ```scss
 $mdc-typography-styles-button: (
@@ -135,7 +172,18 @@ $mdc-typography-styles-button: (
 @use "@material/button/mdc-button";
 ```
 
-例: グローパルな `font-family` プロパティを上書きする
+**例:** グローパルな `font-family` プロパティを上書きする
+
+CSS カスタムプロパティの場合:
+
+```css
+html {
+  --mdc-typography-font-family: Arial, Helvetica, sans-serif;
+}
+```
+
+Sass グローバル変数の場合:
+
 ```scss
 $mdc-typography-font-family: unquote("Arial, Helvetica, sans-serif");
 
@@ -143,7 +191,20 @@ $mdc-typography-font-family: unquote("Arial, Helvetica, sans-serif");
 @use ...
 ```
 
-例:  `headline1` の `font-family` プロパティと `headline2` の `font-family` と `font-size` を上書きする
+**例:** `headline1` の `font-family` プロパティと `headline2` の `font-family` と `font-size` を上書きする
+
+CSS カスタムプロパティの場合:
+
+```css
+html {
+  --mdc-typography-headline1-font-family: Arial, Helvetica, sans-serif;
+  --mdc-typography-headline2-font-family: Arial, Helvetica, sans-serif;
+  --mdc-typography-headline2-font-size: 3.25rem;
+}
+```
+
+Sass グローバル変数の場合:
+
 ```scss
 $mdc-typography-styles-headline1: (
   font-family: unquote("Arial, Helvetica, sans-serif")
