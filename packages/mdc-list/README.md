@@ -457,7 +457,7 @@ MDCList JavaScript コンポーネントは [Listbox](https://www.w3.org/TR/wai-
 
 イベント | `event.detail` | 説明
 --- | --- | ---
-`MDCList:action` | `{index: number}` | 指定された院でkk数のリスト項目が有効になったことを示す。
+`MDCList:action` | `{index: number}` | 指定されたインデックスのリスト項目が有効になったことを示す。
 
 ## Web フレームワークでの使用
 
