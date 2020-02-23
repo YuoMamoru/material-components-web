@@ -50,7 +50,7 @@ npm install @material/select
     <i class="mdc-select__dropdown-icon"></i>
     <div class="mdc-select__selected-text"></div>
     <span class="mdc-floating-label">Pick a Food Group</span>
-    <div class="mdc-line-ripple"></div>
+    <span class="mdc-line-ripple"></span>
   </div>
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
@@ -110,7 +110,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <i class="mdc-select__dropdown-icon"></i>
     <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text">Vegetables</div>
     <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
-    <div class="mdc-line-ripple"></div>
+    <span class="mdc-line-ripple"></span>
   </div>
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
@@ -141,13 +141,13 @@ JavaScript をインポートする方法についてのより詳細な情報は
   <div class="mdc-select__anchor">
     <i class="mdc-select__dropdown-icon"></i>
     <div id="demo-selected-text" class="mdc-select__selected-text" aria-labelledby="outlined-select-label"></div>
-    <div class="mdc-notched-outline">
-      <div class="mdc-notched-outline__leading"></div>
-      <div class="mdc-notched-outline__notch">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
         <span id="outlined-select-label" class="mdc-floating-label">Pick a Food Group</span>
-      </div>
-      <div class="mdc-notched-outline__trailing"></div>
-    </div>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
   </div>
 
   <!-- セレクトに残っているその他の要素 -->
@@ -167,7 +167,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <i class="mdc-select__dropdown-icon"></i>
     <div class="mdc-select__selected-text">Vegetables</div>
     <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
-    <div class="mdc-line-ripple"></div>
+    <span class="mdc-line-ripple"></span>
   </div>
 
   <div class="mdc-select__menu demo-width-class mdc-menu mdc-menu-surface">
@@ -205,7 +205,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <i class="mdc-select__dropdown-icon"></i>
     <div class="mdc-select__selected-text" aria-required="true"></div>
     <span class="mdc-floating-label">Pick a Food Group</span>
-    <div class="mdc-line-ripple"></div>
+    <span class="mdc-line-ripple"></span>
   </div>
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface">
@@ -226,7 +226,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <i class="mdc-select__dropdown-icon"></i>
     <div class="mdc-select__selected-text" aria-disabled="true"></div>
     <span class="mdc-floating-label">Pick a Food Group</span>
-    <div class="mdc-line-ripple"></div>
+    <span class="mdc-line-ripple"></span>
   </div>
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface">
@@ -283,7 +283,7 @@ JavaScript をインポートする方法についてのより詳細な情報は
   <div class="mdc-select__anchor demo-width-class">
     <i class="mdc-select__dropdown-icon"></i>
     <div class="mdc-select__selected-text"></div>
-    <div class="mdc-line-ripple"></div>
+    <span class="mdc-line-ripple"></span>
   </div>
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
@@ -310,10 +310,10 @@ JavaScript をインポートする方法についてのより詳細な情報は
   <div class="mdc-select__anchor demo-width-class">
     <i class="mdc-select__dropdown-icon"></i>
     <div class="mdc-select__selected-text"></div>
-    <div class="mdc-notched-outline">
-      <div class="mdc-notched-outline__leading"></div>
-      <div class="mdc-notched-outline__trailing"></div>
-    </div>
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
   </div>
 
   <!-- セレクトに残っているその他の要素 -->
