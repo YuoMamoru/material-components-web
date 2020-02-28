@@ -57,13 +57,19 @@ npm install @material/select
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
-        Bread, Cereal, Rice, and Pasta
+        <span class="mdc-list-item__text">
+          Bread, Cereal, Rice, and Pasta
+        </span>
       </li>
       <li class="mdc-list-item" data-value="vegetables">
-        Vegetables
+        <span class="mdc-list-item__text">
+          Vegetables
+        </span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        Fruit
+        <span class="mdc-list-item__text">
+          Fruit
+        </span>
       </li>
     </ul>
   </div>
@@ -117,13 +123,19 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option"></li>
       <li class="mdc-list-item" data-value="grains" role="option">
-        Bread, Cereal, Rice, and Pasta
+        <span class="mdc-list-item__text">
+          Bread, Cereal, Rice, and Pasta
+        </span>
       </li>
       <li class="mdc-list-item mdc-list-item--disabled" data-value="vegetables" aria-disabled="true" role="option">
-        Vegetables
+        <span class="mdc-list-item__text">
+          Vegetables
+        </span>
       </li>
       <li class="mdc-list-item" data-value="fruit" role="option">
-        Fruit
+        <span class="mdc-list-item__text">
+          Fruit
+        </span>
       </li>
     </ul>
   </div>
@@ -174,13 +186,19 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <ul class="mdc-list">
       <li class="mdc-list-item" data-value=""></li>
       <li class="mdc-list-item" data-value="grains">
-        Bread, Cereal, Rice, and Pasta
+        <span class="mdc-list-item__text">
+          Bread, Cereal, Rice, and Pasta
+        </span>
       </li>
       <li class="mdc-list-item mdc-list-item--selected" data-value="vegetables" aria-selected="true">
-        Vegetables
+        <span class="mdc-list-item__text">
+          Vegetables
+        </span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        Fruit
+        <span class="mdc-list-item__text">
+          Fruit
+        </span>
       </li>
     </ul>
   </div>
@@ -251,13 +269,19 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <ul class="mdc-list">
       <li class="mdc-list-item" data-value=""></li>
       <li class="mdc-list-item" data-value="grains">
-        Bread, Cereal, Rice, and Pasta
+        <span class="mdc-list-item__text">
+          Bread, Cereal, Rice, and Pasta
+        </span>
       </li>
       <li class="mdc-list-item mdc-list-item--selected mdc-list-item--disabled" data-value="vegetables">
-        Vegetables
+        <span class="mdc-list-item__text">
+          Vegetables
+        </span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        Fruit
+        <span class="mdc-list-item__text">
+          Fruit
+        </span>
       </li>
     </ul>
   </div>
@@ -290,13 +314,19 @@ JavaScript をインポートする方法についてのより詳細な情報は
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
-        Bread, Cereal, Rice, and Pasta
+        <span class="mdc-list-item__text">
+          Bread, Cereal, Rice, and Pasta
+        </span>
       </li>
       <li class="mdc-list-item" data-value="vegetables">
-        Vegetables
+        <span class="mdc-list-item__text">
+          Vegetables
+        </span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        Fruit
+        <span class="mdc-list-item__text">
+          Fruit
+        </span>
       </li>
     </ul>
   </div>
