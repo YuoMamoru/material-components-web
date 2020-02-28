@@ -146,9 +146,11 @@ Mixin | Description
 
 #### スタイルの上書き
 
-CSS カスタムプロパティか Sass グローバル変数を使うことにより、すべてのスタイルを上書きできます。
+CSS カスタムプロパティか Sass のモジュール変数/グローバル変数を使うことにより、すべてのスタイルを上書きできます。
 
-Sass グローバル変数を使う際には、コンポーネントをインポートする _前に_ `$mdc-typography-styles-{style}` という名前のグローバル変数を設定することにより、これらの変数を定義しなくてはなりません。変数には特定のスタイルで上書きするすべてのプロパティを含むマップを割り当てる必要があります。
+Sass **モジュール** 変数を使う際には、`$mdc-typography-styles-{style}` という名前を使うそのほかの `@use` ステートメントの _前に_ モジュールを設定しなくてはなりません。変数には特定のスタイルで上書きするすべてのプロパティを含むマップを割り当てる必要があります。
+
+Sass **グローバル** 変数を使う際には、コンポーネントをインポートする _前に_ `$mdc-typography-styles-{style}` という名前のグローバル変数を設定することにより、これらの変数を定義しなくてはなりません。
 
 **例:** `font-size` と `text-transform` プロパティを上書きする
 
@@ -161,6 +163,20 @@ html {
 }
 ```
 
+Sass モジュール変数の場合:
+
+```scss
+@use "@material/typography" with (
+  $styles-button: (
+    font-size: 16px,
+    text-transform: none,
+  )
+);
+
+@use "@material/button";
+@include button.core-styles;
+```
+
 Sass グローバル変数の場合:
 
 ```scss
@@ -169,7 +185,7 @@ $mdc-typography-styles-button: (
   text-transform: none,
 );
 
-@use "@material/button/mdc-button";
+@import "@material/button/mdc-button";
 ```
 
 **例:** グローパルな `font-family` プロパティを上書きする
@@ -182,13 +198,23 @@ html {
 }
 ```
 
+Sass モジュール変数の場合:
+
+```scss
+@use "@material/typography" with (
+  $font-family: unquote("Arial, Helvetica, sans-serif")
+);
+
+@use "@material/button";
+@include button.core-styles;
+```
+
 Sass グローバル変数の場合:
 
 ```scss
 $mdc-typography-font-family: unquote("Arial, Helvetica, sans-serif");
 
-...
-@use ...
+@import "@material/button/mdc-button";
 ```
 
 **例:** `headline1` の `font-family` プロパティと `headline2` の `font-family` と `font-size` を上書きする
@@ -203,6 +229,22 @@ html {
 }
 ```
 
+Sass モジュール変数の場合:
+
+```scss
+@use "@material/typography" with (
+  $styles-headline1: (
+    $font-family: unquote("Arial, Helvetica, sans-serif")
+  ),
+  $styles-headline2: (
+    $font-family: unquote("Arial, Helvetica, sans-serif"),
+    $font-size: 3.25rem
+  )
+);
+
+@use ...
+```
+
 Sass グローバル変数の場合:
 
 ```scss
@@ -214,6 +256,5 @@ $mdc-typography-styles-headline2: (
   font-size: 3.25rem
 );
 
-...
-@use ...
+@import ...
 ```
