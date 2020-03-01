@@ -118,11 +118,11 @@ CSS カスタムプロパティ | 説明
 Mixin | Description
 --- | ---
 `base` | フォントを Roboto に設定する。
-`mdc-typography($style)` | フォントを Roboto にするなど、Typography の書式の一つを適用する。
+`typography($style)` | フォントを Roboto にするなど、Typography の書式の一つを適用する。
 `smooth-font` | タイポグラフィにアンチエイリアスを追加する。
 `overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める。
-`baseline-top($distance)` | テキスト要素の上からベースラインまでの高さを設定する。
-`baseline-bottom($distance)` | テキストのベースラインから下までの間隔を設定する。子のミキシンはベースラインから次のテキスト要素までの間隔を設定したいときは、`baseline-top` と組み合わせる必要がある。
+`baseline($top, $bottom, $display)` | テキストコンテンツを整列させるベースラインを設定する。
+`text-baseline($top, $bottom, $display)` | フローテキストコンテンツのベースラインを設定する。
 
 > **`overflow-ellipsis` に関する注釈**: `overflow-ellipsis` は要素が `display: block` であるか `display: inline-block` であるときにしか使ってはいけません。
 
