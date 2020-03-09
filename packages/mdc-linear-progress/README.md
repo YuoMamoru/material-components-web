@@ -41,8 +41,10 @@ npm install @material/linear-progress
 
 ```html
 <div role="progressbar" class="mdc-linear-progress" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
-  <div class="mdc-linear-progress__buffering-dots"></div>
-  <div class="mdc-linear-progress__buffer"></div>
+  <div class="mdc-linear-progress__buffer">
+    <div class="mdc-linear-progress__buffer-bar"></div>
+    <div class="mdc-linear-progress__buffer-dots"></div>
+  </div>
   <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
     <span class="mdc-linear-progress__bar-inner"></span>
   </div>
@@ -108,10 +110,9 @@ MDC リニアプログレスは外部フレームワークや外部ライブラ�
 | `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
 | `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを持っているかどうかを表す真偽値を返す。 |
 | `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。これは、アニメーションを正しく再起動するために必要。 |
-| `getPrimaryBar() => Element` | 中心となるバー要素を返す。 |
-| `getBuffer() => Element` | バッファー要素を返す。 |
 | `setAttribute(attributeName: string, value: string) => void` | ルート要素に指定した属性を設定する。 |
-| `setStyle(el: Element, styleProperty: string, value: string) => void` | 与えられた要素のインラインスタイルを設定する。 |
+| `setBufferBarStyle(styleProperty: string, value: string) => void` | バッファバー上のインラインスタイルを設定する。 |
+| `setPrimaryBarStyle(styleProperty: string, value: string) => void` | プライマリバー上のインラインスタイルを設定する。 |
 
 ### MDCLinearProgressFoundation API
 

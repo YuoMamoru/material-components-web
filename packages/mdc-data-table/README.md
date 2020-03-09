@@ -198,6 +198,75 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
 </div>
 ```
 
+### ソートできる列を含むデータテーブル
+
+```html
+<div class="mdc-data-table">
+  <table class="mdc-data-table__table" aria-label="Dessert calories">
+    <thead>
+      <tr>
+        <th
+          class="mdc-data-table__header-cell mdc-data-table__header-cell--with-sort"
+          role="columnheader"
+          scope="col"
+        >
+          <div class="mdc-data-table__header-cell-wrapper">
+            <div class="mdc-data-table__header-cell-label">
+              Dessert
+            </div>
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_downward</button>
+          </div>
+        </th>
+        <th
+          class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort mdc-data-table__header-cell--sorted"
+          role="columnheader"
+          scope="col"
+          aria-sort="ascending"
+        >
+          <div class="mdc-data-table__header-cell-wrapper">
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_downward</button>
+            <div class="mdc-data-table__header-cell-label">
+              Carbs (g)
+            </div>
+          </div>
+        </th>
+        <th
+          class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort"
+          role="columnheader"
+          scope="col"
+        >
+          <div class="mdc-data-table__header-cell-wrapper">
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_downward</button>
+            <div class="mdc-data-table__header-cell-label">
+              Protein (g)
+            </div>
+          </div>
+        </th>
+        <th
+          class="mdc-data-table__header-cell"
+          role="columnheader"
+          scope="col"
+        >
+          Comments
+        </th>
+      </tr>
+    </thead>
+    <tbody class="mdc-data-table__content">
+      <tr class="mdc-data-table__row">
+        <td class="mdc-data-table__cell">Frozen yogurt</td>
+        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+          24
+        </td>
+        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+          4.0
+        </td>
+        <td class="mdc-data-table__cell">Super tasty</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
 ## スタイルのカスタマイズ
 
 ### CSS クラス
@@ -241,6 +310,8 @@ CSS クラス | 説明
 `cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
 `column-widths($width-list)` | テーブル各行の幅を個別に設定する。
 `density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
+`sort-icon-color($color)` | ソートされていないときのソートアイコンボタンの色を設定する（アイコンはヘッダーセルがフォーカスされた際に表示される）。
+`sort-icon-active-color($color)` | ソートが有効になっている（ソートされている）ときのソートアイコンボタンの色を設定する。
 
 ## アクセシビリティ
 
