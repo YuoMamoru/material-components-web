@@ -21,20 +21,18 @@
  * THE SOFTWARE.
  */
 
-/**
- * CSS class names used in component.
- */
-export const cssClasses = {
-  INDETERMINATE_CLASS: 'mdc-circular-progress--indeterminate',
-  CLOSED_CLASS: 'mdc-circular-progress--closed',
-};
+export enum InteractionTrigger {
+  UNSPECIFIED,  // Default type
+  CLICK,
+  BACKSPACE_KEY,
+  DELETE_KEY,
+  SPACEBAR_KEY,
+  ENTER_KEY,
+}
 
-/**
- * Attributes and selectors used in component.
- */
 export const strings = {
-  DETERMINATE_CIRCLE_SELECTOR: '.mdc-circular-progress__determinate-circle',
-  ARIA_VALUENOW: 'aria-valuenow',
-  RADIUS: 'r',
-  STROKE_DASHOFFSET: 'stroke-dashoffset',
+  ARIA_HIDDEN: 'aria-hidden',
+  INTERACTION_EVENT: 'MDCChipTrailingAction:interaction',
+  NAVIGATION_EVENT: 'MDCChipTrailingAction:navigation',
+  TAB_INDEX: 'tabindex',
 };

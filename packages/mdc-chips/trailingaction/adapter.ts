@@ -21,20 +21,23 @@
  * THE SOFTWARE.
  */
 
-/**
- * CSS class names used in component.
- */
-export const cssClasses = {
-  INDETERMINATE_CLASS: 'mdc-circular-progress--indeterminate',
-  CLOSED_CLASS: 'mdc-circular-progress--closed',
-};
+import {InteractionTrigger} from './constants';
 
 /**
- * Attributes and selectors used in component.
+ * Defines the shape of the adapter expected by the foundation.
+ * Implement this adapter for your framework of choice to delegate updates to
+ * the component in your framework of choice. See architecture documentation
+ * for more details.
+ * https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
  */
-export const strings = {
-  DETERMINATE_CIRCLE_SELECTOR: '.mdc-circular-progress__determinate-circle',
-  ARIA_VALUENOW: 'aria-valuenow',
-  RADIUS: 'r',
-  STROKE_DASHOFFSET: 'stroke-dashoffset',
-};
+export interface MDCChipTrailingActionAdapter {
+  focus(): void;
+
+  getAttribute(attr: string): string|null;
+
+  notifyInteraction(trigger: InteractionTrigger): void;
+
+  notifyNavigation(key: string): void;
+
+  setAttribute(attr: string, value: string): void;
+}

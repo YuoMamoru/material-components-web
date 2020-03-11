@@ -40,13 +40,12 @@ export class MDCCircularProgressFoundation extends
   static get defaultAdapter(): MDCCircularProgressAdapter {
     return {
       addClass: () => undefined,
-      forceLayout: () => undefined,
-      getDetermCircleAttribute: () => null,
+      getDeterminateCircleAttribute: () => null,
       hasClass: () => false,
       removeClass: () => undefined,
       removeAttribute: () => undefined,
       setAttribute: () => undefined,
-      setDetermCircleAttribute: () => undefined,
+      setDeterminateCircleAttribute: () => undefined,
     };
   }
 
@@ -70,13 +69,21 @@ export class MDCCircularProgressFoundation extends
           strings.ARIA_VALUENOW, this.progress_.toString());
     }
 
-    this.radius_ = Number(this.adapter_.getDetermCircleAttribute(strings.RADIUS));
+    this.radius_ =
+        Number(this.adapter_.getDeterminateCircleAttribute(strings.RADIUS));
   }
 
+  /**
+   * @return Returns whether the progress indicator is hidden.
+   */
   isClosed() {
     return this.isClosed_;
   }
 
+  /**
+   * Sets whether the progress indicator is in determinate mode.
+   * @param isDeterminate Whether the indicator should be determinate.
+   */
   setDeterminate(isDeterminate: boolean) {
     this.isDeterminate_ = isDeterminate;
 
@@ -89,24 +96,36 @@ export class MDCCircularProgressFoundation extends
     }
   }
 
+  /**
+   * Sets the current progress value. In indeterminate mode, this has no
+   * visual effect but will be reflected if the indicator is switched to
+   * determinate mode.
+   * @param value The current progress value, which must be between 0 and 1.
+   */
   setProgress(value: number) {
     this.progress_ = value;
     if (this.isDeterminate_) {
       const unfilledArcLength =
           (1 - this.progress_) * (2 * Math.PI * this.radius_);
 
-      this.adapter_.setDetermCircleAttribute(
+      this.adapter_.setDeterminateCircleAttribute(
           strings.STROKE_DASHOFFSET, `${unfilledArcLength}`);
       this.adapter_.setAttribute(
           strings.ARIA_VALUENOW, this.progress_.toString());
     }
   }
 
+  /**
+   * Shows the progress indicator.
+   */
   open() {
     this.isClosed_ = false;
     this.adapter_.removeClass(cssClasses.CLOSED_CLASS);
   }
 
+  /**
+   * Hides the progress indicator
+   */
   close() {
     this.isClosed_ = true;
     this.adapter_.addClass(cssClasses.CLOSED_CLASS);

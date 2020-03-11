@@ -368,6 +368,13 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setHeaderRowCheckboxChecked(checked: boolean) => void` | ヘッダー行のチェックボックスをチェックまたはチェックの解除をする。
 `setHeaderRowCheckboxIndeterminate(indeterminate: boolean) => void` | ヘッダー行のチェックボックスを未定状態にする。
 `setRowCheckboxCheckedAtIndex(rowIndex: number, checked: boolean) => void` | 与えられた行インデックスの行のチェックボックスをチェックまたはチェックの解除をする。
+`getHeaderCellCount(): number;` | ヘッダーセルの総数を返す。
+`getHeaderCellElements(): Element[];` | ヘッダーセル要素の配列を返す
+`getAttributeByHeaderCellIndex(columnIndex: number, attribute: string) => string` | 与えられたインデックスのヘッダーセルの属性値を返す。
+`setAttributeByHeaderCellIndex(columnIndex: number, attribute: string, value: string) => void` | インデックスのヘッダーセルの属性を設定する。
+`setClassNameByHeaderCellIndex(columnIndex: number, className: string) => void` | インデックスのヘッダーセルのクラス名を設定する。
+`removeClassNameByHeaderCellIndex(columnIndex: number, className: string) => void` | インデックスのヘッダーセルクラス名を削除する。
+`notifySortAction(data: SortActionEventDetail) => void` | 列がソートされた際に通知する。
 
 ### `MDCDataTableFoundation`
 
@@ -380,3 +387,5 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `getSelectedRowIds() => Array<string \| null>` | 選択されている行の id の配列を返す。
 `handleHeaderRowCheckboxChange() => void` | ヘッダー行のチェックボックスの変更イベントをハンドリングする。
 `handleRowCheckboxChange(event: Event) => void` | 行チェックボックスから発生した変更イベントをハンドリングする。
+`getHeaderCells() => Elements[]` | ヘッダーセル要素の配列を返す。
+`handleSortAction(eventData: SortActionEventData) => void` | ソート可能なヘッダーセル上のソートアクションをハンドリングする。

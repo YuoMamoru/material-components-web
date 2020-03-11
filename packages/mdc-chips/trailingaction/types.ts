@@ -21,20 +21,22 @@
  * THE SOFTWARE.
  */
 
-/**
- * CSS class names used in component.
- */
-export const cssClasses = {
-  INDETERMINATE_CLASS: 'mdc-circular-progress--indeterminate',
-  CLOSED_CLASS: 'mdc-circular-progress--closed',
-};
+import {InteractionTrigger} from './constants';
 
-/**
- * Attributes and selectors used in component.
- */
-export const strings = {
-  DETERMINATE_CIRCLE_SELECTOR: '.mdc-circular-progress__determinate-circle',
-  ARIA_VALUENOW: 'aria-valuenow',
-  RADIUS: 'r',
-  STROKE_DASHOFFSET: 'stroke-dashoffset',
-};
+export interface MDCChipTrailingActionInteractionEventDetail {
+  trigger: InteractionTrigger;
+}
+
+export interface MDCChipTrailingActionNavigationEventDetail {
+  key: string;
+}
+
+// Note: CustomEvent<T> is not supported by Closure Compiler.
+
+export interface MDCChipTrailingActionInteractionEvent extends Event {
+  readonly detail: MDCChipTrailingActionInteractionEventDetail;
+}
+
+export interface MDCChipTrailingActionNavigationEvent extends Event {
+  readonly detail: MDCChipTrailingActionNavigationEventDetail;
+}

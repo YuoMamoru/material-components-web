@@ -21,20 +21,8 @@
  * THE SOFTWARE.
  */
 
-/**
- * CSS class names used in component.
- */
-export const cssClasses = {
-  INDETERMINATE_CLASS: 'mdc-circular-progress--indeterminate',
-  CLOSED_CLASS: 'mdc-circular-progress--closed',
-};
-
-/**
- * Attributes and selectors used in component.
- */
-export const strings = {
-  DETERMINATE_CIRCLE_SELECTOR: '.mdc-circular-progress__determinate-circle',
-  ARIA_VALUENOW: 'aria-valuenow',
-  RADIUS: 'r',
-  STROKE_DASHOFFSET: 'stroke-dashoffset',
-};
+export * from './adapter';
+export * from './component';
+export * from './foundation';
+export * from './types';
+export {strings as trailingActionStrings} from './constants';
