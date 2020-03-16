@@ -253,6 +253,30 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </label>
 ```
 
+## ベースラインを揃える
+
+デフォルトで、テキスト欄はベースラインを基準にして他の要素と揃えられます。入力テキストのベースラインはテキスト欄の位置を決定するのに用いられ、バリエーションによって異なったものになります。強制的にベースラインの替わりにテキスト欄のコンテナに揃えるには、flexbox を使って整列させます。
+
+```html
+<div>
+  <label class="mdc-text-field mdc-text-field--outlined">
+    <input type="text" class="mdc-text-field__input" value="Baseline">
+    <span class="mdc-notched-outline__leading"></span>
+    <span class="mdc-notched-outline__trailing"></span>
+  </label>
+  <span>テキスト欄の値に揃えられたテキスト</span>
+</div>
+
+<div style="display: flex; flex-direction: row; align-items: flex-end;">
+  <label class="mdc-text-field mdc-text-field--outlined">
+    <input type="text" class="mdc-text-field__input" value="Baseline">
+    <span class="mdc-notched-outline__leading"></span>
+    <span class="mdc-notched-outline__trailing"></span>
+  </label>
+  <span>テキストフィールドのアウトラインの底辺に揃えられたテキスト</span>
+</div>
+```
+
 ## スタイルのカスタマイズ
 
 ### CSS クラス
