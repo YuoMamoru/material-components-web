@@ -8,70 +8,68 @@ path: /catalog/touchtarget/
 
 # Touch Target
 
-Touch targets are the parts of the screen that respond to user input. They extend beyond the visual bounds of an element.
-For example, a button may appear to be 48 x 36 px, but the padding surrounding it comprises the full 48 x 48 px touch target.
+Touch targets はユーザーの入力に応答する画面のパーツです。それらは要素の視覚的境界を超えて広がっています。例えば、ボタンは 48 x 36 px で表示されますが、周囲のパディングを含めると 48 x 48 px のタッチターゲットになります。
 
-Material Design spec states that touch targets should be at least 48 x 48 px.
-The MDC Web library provides mixins and guidance on adding an increased touch target for the following components:
+マテリアルデザイン仕様では、タッチターゲットは少なくとも 48 x 48 px にする必要があります。MDC Web ライブラリは以下のコンポーネントのタッチターゲットを広げるためのミキシンとガイダンスを提供しています。
 * Button
 * Chips
 * Checkbox
 * Radio
 * Mini FAB
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/design/usability/accessibility.html#layout-typography">Material Design guidelines: Touch Targets</a>
+    <a href="https://material.io/design/usability/accessibility.html#layout-typography">Material Design guidelines: タッチターゲット</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/touch-target
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
-For a given button component:
+ボタンコーンコンポーネントがあります。
 
 ```html
 <button class="mdc-button">
   <div class="mdc-button__ripple"></div>
-  <span class="mdc-button__label">My Inaccessible Button</span>
+  <span class="mdc-button__label">アクセスできないボタン</span>
 </button>
 ```
 
-You would add an increased touch target as follows:
+以下のようにしてタッチターゲットを広げます。
 
 ```html
 <div class="mdc-touch-target-wrapper">
   <button class="mdc-button mdc-button--touch">
     <div class="mdc-button__ripple"></div>
-    <span class="mdc-button__label">My Accessible Button</span>
+    <span class="mdc-button__label">アクセスできるボタン</span>
     <div class="mdc-button__touch"></div>
   </button>
 </div>
 ```
 
-Note that the outer `mdc-touch-target-wrapper` element is only necessary if you want to avoid potentially overlapping touch targets on adjacent elements (due to collapsing margins).
+隣り合う要素上でタッチターゲットが潜在的に重なることを避けたい場合にだけ、外側に `mdc-touch-target-wrapper` 要素が必要なことに注意してください（マージン縮小のため）。
 
-### Styles
+### スタイル
 
 ```css
 @use "@material/touch-target/mdc-touch-target";
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`wrapper` | Applied to the wrapper touch target element.
-`touch-target` | Applied to the inner touch target element.
-`margin` | Applied to the component root element. Adds margin to compensate for the increased touch target.
+`wrapper` | タッチターゲット要素のラッパーに適用する。
+`touch-target` | タッチターゲット要素の内側に適用する。
+`margin` | コンポーネントのルート要素に適用する。大きくなったタッチターゲットを補うためにマージンを追加する。
