@@ -8,35 +8,34 @@ path: /catalog/progress-indicator/
 -->
 
 # Progress Indicators
-The MDC Progress Indicator component exposes common foundation and component interfaces for a progress indicator. Components that implement these interfaces include [linear progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-linear-progress) and [circular progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-circular-progress).
-[Material Design progress & activity requirements](https://material.io/go/design-progress-indicators).
+MDC Progress Indicator コンポーネントはプログレスインジケーターに共通する基盤とコンポーネントインターフェースを提供します。これらのインターフェースを実装するコンポーネントには [linear progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-linear-progress) と [circular progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-circular-progress) が含まれています。[マテリアルデザインプログレスと動作要件](https://material.io/go/design-progress-indicators).
 
-## Installation
+## インストール
 
 ```
 npm install @material/progress-indicator
 ```
 
-## Basic Usage
+## 基本的な使用法
 
 ### MDCProgressIndicatorFoundation API
 
-MDC Progress Indicator Foundation exposes the following methods:
+MDC Progress Indicator ファンデーションは以下のメソッドを提供します。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `setDeterminate(value: boolean) => void` | Toggles the component between the determinate and indeterminate state. |
-| `setProgress(value: number) => void` | Sets the progress to this value. Value should be between [0, 1]. |
-| `open() => void` | Puts the component in the open state. |
-| `close() => void` | Puts the component in the closed state. |
+| `setDeterminate(value: boolean) => void` | コンポーネントに対して確定状態と未確定状態とを切り替える。 |
+| `setProgress(value: number) => void` | プログレスに値を設定する。値は [0, 1] の範囲で指定する。 |
+| `open() => void` | コンポーネントを開いた状態にする。 |
+| `close() => void` | コンポーネントを閉じた状態にする。 |
 
 ### MDCProgressIndicator Component API
 
-MDC Progress Indicator exposes the following API:
+MDC Progress Indicator は以下のメソッドを提供します。
 
-| Method Signature | Description |
+| メソッド | 説明 |
 | --- | --- |
-| `determinate: boolean` | Whether the indicator is in the determinate or indeterminate state. |
-| `progress: number` | The current progress. Value should be between [0, 1]. |
-| `open() => void` | Puts the component in the open state. |
-| `close() => void` | Puts the component in the closed state. |
+| `determinate: boolean` | インジケーターが確定状態か未確定状態か。 |
+| `progress: number` | 現在の進行状況。値は [0, 1] の間。 |
+| `open() => void` | コンポーネントを開いた状態にする。 |
+| `close() => void` | コンポーネントを閉じた状態にする。 |
