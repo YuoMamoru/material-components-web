@@ -8,68 +8,68 @@ path: /catalog/shape/
 
 # Shape
 
-Shapes direct attention, identify components, communicate state, and express brand.
+シェイプは注意をひきつけ、コンポーネントを識別し、状態を伝え、ブランドを表現するものです。
 
-> Currently shape system for web only supports rounded corners.
+> 現在、Web のシェイプシステムは角の丸めだけをサポートしています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-shape">Material Design guidelines: Shape</a>
+    <a href="https://material.io/go/design-shape">Material Design guidelines: シェイプ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/shape
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### Styles
+### スタイル
 
 ```scss
 @use "@material/shape";
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### Sass Variables
+### Sass 変数
 
-Components are categorized as small, medium and large in shape system. Overriding below sass variables applies shape (rounded) to respective categories. For example, overriding `$medium-radius` variable would apply shape to all components that belong to medium category.
+シェイプシステムではコンポーネントは小さいもの、中程度のもの、大きいものに分類されます。以下の sass 変数を上書きすることにより、（角の丸い）シェイプはそれぞれの分類に適用されます。例えば、`$medium-radius` 変数を上書きすると中程度の分類に属するすべてのコンポーネントに対して適用されます。
 
-Variable | Description
+変数 | 説明
 --- | ---
-`$small-component-radius` | Rounded shape radius size for small components. Default value `4px`.
-`$medium-component-radius` | Rounded shape radius size for medium components. Default value `4px`.
-`$large-component-radius` | Rounded shape radius size for large components. Default value `0`.
+`$small-component-radius` | 小さいコンポーネントの角の丸めの大きさ。デフォルトは `4px`。
+`$medium-component-radius` | 中程度のコンポーネントの角の丸めの大きさ。デフォルトは `4px`。
+`$large-component-radius` | 大きいコンポーネントの角の丸めの大きさ。デフォルトは `0`。
 
-Please refer [Material Design guidelines: Shape](https://material.io/go/design-shape) to learn about how components are categorized.
+コンポーネントの分類方法について学ぶには [Material Design guidelines: シェイプ](https://material.io/go/design-shape) を参照してください。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`radius($radius, $rtl-reflexive)` | Shape API used by all other components to apply radius to appropriate corners. `$radius` can be single value or list of up to 4 radius corner values. Set `$rtl-reflexive` to true to flip the radius in RTL case, `false` by default.
+`radius($radius, $rtl-reflexive)` | 適当な角を丸めの半径を適用するためにその他のすべてのコンポーネントが使用するシェープ API。`$radius` には単一の値、もしくは、四隅の角の丸めの半径を指定する。`$rtl-reflexive` を true に設定すると RTL のときに反転される。デフォルトは `false`。
 
-> Use `resolve-percentage-radius` sass function to resolve percentage unit value to absolute radius value.
+> パーセント単位の値を絶対的な半径の大きさにするには `resolve-percentage-radius` sass 関数を使ってください。
 
-### Sass Functions
+### Sass 関数
 
-Function | Description
+関数 | 説明
 --- | ---
-`flip-radius($radius)` | Flips the radius values in RTL context. `$radius` is list of 2-4 corner values.
-`resolve-percentage-radius($component-height, $radius)` | Calculates the absolute radius value based on its component height. Use this for fixed height components only.
-`mask-radius($radius, $masked-corners)` | Accepts radius number or list of 2-4 radius values and returns 4 value list with masked corners as mentioned in `$masked-corners`.
-`prop-value($radius)` | Returns `$radius` value of shape category - `large`, `medium` or `small`. Otherwise, it returns the `$radius` itself if valid. `$radius` can be a single value or list of up to 4.
+`flip-radius($radius)` | RTL コンテンツ内で半径の値を反転します。`$radius` は 2-4 の角の値のリスト。
+`resolve-percentage-radius($component-height, $radius)` | コンポーネントの高さをもとに半径の絶対的な値を計算する。高さが固定されたコンポーネントでのみ使用する。
+`mask-radius($radius, $masked-corners)` | 半径の値、もしくは、半径の 2-4 の値のリストを指定し、`$masked-corners` に指定にしたがい、マスクされた 4 つの値のリストを返す。
+`prop-value($radius)` | シェイプ分類 - `large`、`medium` または `small` - の`$radius` の値を返す。もしくは、有効であれば `$radius` 自身を返す。`$radius` は単一の値、もしくは最大 4 津の値のリスト。
 
-### Additional Information
+### 追加の情報
 
-#### Shapes for fixed height components
+#### 高さが固定されたコンポーネントのためのシェイプ
 
-Styles for applying shape to a fixed height component such as button looks like this:
+ボタンのような高さが固定されたコンポーネントにシェイプを適用するためのスタイルは次のようにします。
 
 ```scss
 @use "@material/button";
@@ -77,31 +77,31 @@ Styles for applying shape to a fixed height component such as button looks like 
 @include shape.radius(shape.resolve-percentage-radius(button.$height, $radius));
 ```
 
-Where, `button.$height` is the height of standard button and `$radius` is the size of shape. `resolve-percentage-radius` function is used to resolve percentage unit value to absolute `$radius` value based on component height.
+ここで、`button.$height` は標準的なボタンの高さ、`$radius` はシェイプのサイズです。`resolve-percentage-radius` 関数はコンポーネントの高さに基づきパーセント単位の値を絶対的な `$radius` の値にsるために使われます。
 
-#### Shapes for dynamic height components
+#### 動的な高さのコンポーネントのためのシェイプ
 
-Styles for applying shapes to dynamic height component such as card looks like this:
+カードのような動的な高さのコンポーネントにシェイプを適用するためのスタイルは次のようにします。
 
 ```scss
 @include shape.radius($radius);
 ```
 
-Where, `$radius` is absolute value only.
+ここで、`$radius` は絶対的な値しか許されません。
 
-#### Shapes for components on specific corners
+#### 特殊な角をもつコンポーネントのためのシェイプ
 
-Styles for applying shapes for specific corners such as drawer looks like this:
+ドロワーのような特殊な角をもつシェイプを適用するためのスタイルは次のようにします。
 
 ```scss
 @include shape.radius(0 $radius $radius 0, $rtl-reflexive: true);
 ```
 
-Where, only top-right & bottom-right corners are customizable and it automatically flips radius values based on RTL context when `$rtl-reflexive` is set to true.
+ここで、右上と右下の角だけがカスタマイズでき、`$rtl-reflexive` を true に設定すれば自動的に RTL コンテンツに基づき、半径の値が反転されます。
 
-#### Component theming
+#### コンポーネントのテーマ
 
-The styles for applying custom shape to button component instance looks like this:
+カスタムシェイプをボタンコンポーネントインスタンスに適用するにためのスタイルは次のようにします。
 
 ```scss
 @use "@material/button";
@@ -111,6 +111,6 @@ The styles for applying custom shape to button component instance looks like thi
 }
 ```
 
-In this example, the above styles applies 50% (pill) shape to button. It can also be absolute value (e.g., `8px`);
+この例では、上のスタイルはボタンに 50%（円形）シェイプを適用します。また、絶対的な値（例： `8px`）を指定することもできます。
 
-> You would indirectly use the Shape API through respective component's mixin which takes care of applying radius to applicable corners for all its variants.
+> シェイプ API はそれぞれのコンポーネントのすべてのバリエーションの角に丸みを適用することのできるミキシンを介して暗黙に使用されます。
