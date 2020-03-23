@@ -137,6 +137,7 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     } else if (this.adapter_.hasLabel() && this.shouldFloat) {
       this.notchOutline(true);
       this.adapter_.floatLabel(true);
+      this.styleFloating_(true);
     }
 
     this.adapter_.registerInputInteractionHandler('focus', this.inputFocusHandler_);
@@ -203,9 +204,7 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     }
 
     if (openNotch) {
-      const isDense = this.adapter_.hasClass(cssClasses.DENSE);
-      const labelScale = isDense ? numbers.DENSE_LABEL_SCALE : numbers.LABEL_SCALE;
-      const labelWidth = this.adapter_.getLabelWidth() * labelScale;
+      const labelWidth = this.adapter_.getLabelWidth() * numbers.LABEL_SCALE;
       this.adapter_.notchOutline(labelWidth);
     } else {
       this.adapter_.closeOutline();
@@ -222,6 +221,7 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     if (this.adapter_.hasLabel()) {
       this.notchOutline(this.shouldFloat);
       this.adapter_.floatLabel(this.shouldFloat);
+      this.styleFloating_(this.shouldFloat);
       this.adapter_.shakeLabel(this.shouldShake);
     }
     if (this.helperText_) {
@@ -271,6 +271,7 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     if (this.adapter_.hasLabel()) {
       this.notchOutline(this.shouldFloat);
       this.adapter_.floatLabel(this.shouldFloat);
+      this.styleFloating_(this.shouldFloat);
       this.adapter_.shakeLabel(this.shouldShake);
     }
     if (!this.shouldFloat) {
@@ -296,6 +297,7 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
     if (this.adapter_.hasLabel()) {
       this.notchOutline(this.shouldFloat);
       this.adapter_.floatLabel(this.shouldFloat);
+      this.styleFloating_(this.shouldFloat);
       this.adapter_.shakeLabel(this.shouldShake);
     }
   }
@@ -462,6 +464,18 @@ export class MDCTextFieldFoundation extends MDCFoundation<MDCTextFieldAdapter> {
 
     if (this.trailingIcon_) {
       this.trailingIcon_.setDisabled(isDisabled);
+    }
+  }
+
+  /**
+   * Styles the component based on the label floating state.
+   */
+  private styleFloating_(isFloating: boolean): void {
+    const {LABEL_FLOATING} = MDCTextFieldFoundation.cssClasses;
+    if (isFloating) {
+      this.adapter_.addClass(LABEL_FLOATING);
+    } else {
+      this.adapter_.removeClass(LABEL_FLOATING);
     }
   }
 

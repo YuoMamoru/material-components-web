@@ -32,12 +32,12 @@ const strings = {
 };
 
 const cssClasses = {
-  DENSE: 'mdc-text-field--dense',
   DISABLED: 'mdc-text-field--disabled',
   FOCUSED: 'mdc-text-field--focused',
   FULLWIDTH: 'mdc-text-field--fullwidth',
   HELPER_LINE: 'mdc-text-field-helper-line',
   INVALID: 'mdc-text-field--invalid',
+  LABEL_FLOATING: 'mdc-text-field--label-floating',
   NO_LABEL: 'mdc-text-field--no-label',
   OUTLINED: 'mdc-text-field--outlined',
   ROOT: 'mdc-text-field',
@@ -47,7 +47,6 @@ const cssClasses = {
 };
 
 const numbers = {
-  DENSE_LABEL_SCALE: 0.923,
   LABEL_SCALE: 0.75,
 };
 

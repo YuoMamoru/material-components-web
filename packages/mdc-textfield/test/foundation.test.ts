@@ -175,10 +175,14 @@ describe('MDCTextFieldFoundation', () => {
         setupValueTest({value: '', hasLabel: true});
     // Initial empty value should not float label.
     expect(mockAdapter.floatLabel).not.toHaveBeenCalledWith(false);
+    expect(mockAdapter.addClass)
+        .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
     nativeInput.value = value;
     foundation.setValue(value);
     expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('#setValue with empty value styles the label', () => {
@@ -186,10 +190,14 @@ describe('MDCTextFieldFoundation', () => {
         setupValueTest({value: 'old value', hasLabel: true});
     // Initial value should float the label.
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
     nativeInput.value = '';
     foundation.setValue('');
     expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(false);
+    expect(mockAdapter.removeClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('#setValue valid and invalid input', () => {
@@ -201,6 +209,8 @@ describe('MDCTextFieldFoundation', () => {
     expect(helperText.setValidity).toHaveBeenCalledWith(false);
     expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(true);
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
 
     nativeInput.validity.valid = true;
     foundation.setValue('valid');
@@ -208,6 +218,8 @@ describe('MDCTextFieldFoundation', () => {
     expect(helperText.setValidity).toHaveBeenCalledWith(true);
     expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('#setValue with invalid status and empty value does not shake the label',
@@ -220,6 +232,8 @@ describe('MDCTextFieldFoundation', () => {
        expect(helperText.setValidity).toHaveBeenCalledWith(false);
        expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
        expect(mockAdapter.floatLabel).toHaveBeenCalledWith(false);
+       expect(mockAdapter.removeClass)
+           .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('#setValue does not affect focused state', () => {
@@ -510,6 +524,8 @@ describe('MDCTextFieldFoundation', () => {
     });
     foundation.init();
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('#init does not call floatLabel if there is no label and the input contains a value',
@@ -525,6 +541,8 @@ describe('MDCTextFieldFoundation', () => {
        foundation.init();
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(jasmine.anything());
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('#init does not float label if the input does not contain a value', () => {
@@ -540,6 +558,8 @@ describe('MDCTextFieldFoundation', () => {
     expect(mockAdapter.floatLabel)
         .not.toHaveBeenCalledWith(
             /* value */ '', /* isFocused */ false, /* isBadInput */ false);
+    expect(mockAdapter.addClass)
+        .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('#setHelperTextContent sets the content of the helper text element',
@@ -602,23 +622,10 @@ describe('MDCTextFieldFoundation', () => {
     mockAdapter.getLabelWidth.and.returnValue(LABEL_WIDTH);
     mockAdapter.hasLabel.and.returnValue(true);
     mockAdapter.hasOutline.and.returnValue(true);
-    mockAdapter.hasClass.withArgs(cssClasses.DENSE).and.returnValue(false);
 
     foundation.notchOutline(true);
     expect(mockAdapter.notchOutline)
         .toHaveBeenCalledWith(LABEL_WIDTH * numbers.LABEL_SCALE);
-  });
-
-  it('#notchOutline updates width of the outline element when dense', () => {
-    const {foundation, mockAdapter} = setupTest();
-    mockAdapter.getLabelWidth.and.returnValue(LABEL_WIDTH);
-    mockAdapter.hasLabel.and.returnValue(true);
-    mockAdapter.hasOutline.and.returnValue(true);
-    mockAdapter.hasClass.withArgs(cssClasses.DENSE).and.returnValue(true);
-
-    foundation.notchOutline(true);
-    expect(mockAdapter.notchOutline)
-        .toHaveBeenCalledWith(LABEL_WIDTH * numbers.DENSE_LABEL_SCALE);
   });
 
   const setupBareBonesTest = () => {
@@ -672,11 +679,15 @@ describe('MDCTextFieldFoundation', () => {
        foundation.init();
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(jasmine.anything());
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
        if (input !== undefined) {
          input();
        }
        expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
        expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+       expect(mockAdapter.addClass)
+           .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('on input doesnot styles label if input event occurs without any other events but hasLabel is false',
@@ -698,6 +709,8 @@ describe('MDCTextFieldFoundation', () => {
            .not.toHaveBeenCalledWith(jasmine.anything());
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(jasmine.anything());
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('on input does nothing if input event preceded by keydown event', () => {
@@ -732,6 +745,8 @@ describe('MDCTextFieldFoundation', () => {
     }
     expect(mockAdapter.shakeLabel).not.toHaveBeenCalled();
     expect(mockAdapter.floatLabel).not.toHaveBeenCalled();
+    expect(mockAdapter.addClass)
+        .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('on focus adds mdc-text-field--focused class', () => {
@@ -781,6 +796,8 @@ describe('MDCTextFieldFoundation', () => {
         });
     foundation.init();
     expect(mockAdapter.floatLabel).not.toHaveBeenCalledWith(jasmine.anything());
+    expect(mockAdapter.addClass)
+        .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
     if (focus !== undefined) {
       focus();
     }
@@ -802,6 +819,8 @@ describe('MDCTextFieldFoundation', () => {
       focus();
     }
     expect(mockAdapter.floatLabel).not.toHaveBeenCalledWith(jasmine.anything());
+    expect(mockAdapter.addClass)
+        .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
     expect(mockAdapter.shakeLabel).not.toHaveBeenCalledWith(jasmine.anything());
   });
 
@@ -862,11 +881,15 @@ describe('MDCTextFieldFoundation', () => {
        mockAdapter.hasLabel.and.returnValue(true);
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(jasmine.anything());
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
        if (blur !== undefined) {
          blur();
        }
        expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
        expect(mockAdapter.floatLabel).toHaveBeenCalledWith(false);
+       expect(mockAdapter.removeClass)
+           .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('does not style label on blur when no input value present and validity checks pass and hasLabel is false',
@@ -874,6 +897,8 @@ describe('MDCTextFieldFoundation', () => {
        const {blur, mockAdapter} = setupBlurTest();
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(/* value */ '', /* isFocused */ false);
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
        if (blur !== undefined) {
          blur();
        }
@@ -881,18 +906,24 @@ describe('MDCTextFieldFoundation', () => {
            .not.toHaveBeenCalledWith(jasmine.anything());
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(jasmine.anything());
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('on blur styles label if input has a value', () => {
     const {blur, nativeInput, mockAdapter} = setupBlurTest();
     mockAdapter.hasLabel.and.returnValue(true);
     expect(mockAdapter.floatLabel).not.toHaveBeenCalledWith(jasmine.anything());
+    expect(mockAdapter.addClass)
+        .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
     nativeInput.value = 'non-empty value';
     if (blur !== undefined) {
       blur();
     }
     expect(mockAdapter.shakeLabel).toHaveBeenCalledWith(false);
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('does not style label on blur if input has a value and hasLabel is false',
@@ -900,6 +931,8 @@ describe('MDCTextFieldFoundation', () => {
        const {blur, nativeInput, mockAdapter} = setupBlurTest();
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(/* value */ '', /* isFocused */ false);
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
        nativeInput.value = 'non-empty value';
        if (blur !== undefined) {
          blur();
@@ -908,6 +941,8 @@ describe('MDCTextFieldFoundation', () => {
            .not.toHaveBeenCalledWith(jasmine.anything());
        expect(mockAdapter.floatLabel)
            .not.toHaveBeenCalledWith(jasmine.anything());
+       expect(mockAdapter.addClass)
+           .not.toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
      });
 
   it('on blur removes mdc-text-field--invalid if useNativeValidation is true and' +
@@ -1142,6 +1177,8 @@ describe('MDCTextFieldFoundation', () => {
     const {mockAdapter} = setupValueTest(
         {value: '', optIsValid: false, optIsBadInput: true, hasLabel: true});
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('label floats when type is date even if value is empty', () => {
@@ -1158,6 +1195,8 @@ describe('MDCTextFieldFoundation', () => {
     mockAdapter.getNativeInput.and.returnValue(nativeInput);
     foundation.init();
     expect(mockAdapter.floatLabel).toHaveBeenCalledWith(true);
+    expect(mockAdapter.addClass)
+        .toHaveBeenCalledWith(cssClasses.LABEL_FLOATING);
   });
 
   it('#handleInput activates focus state', () => {

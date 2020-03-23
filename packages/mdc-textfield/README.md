@@ -240,10 +240,10 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### 入力済みのテキスト欄
 
-値をすでに持っている JS を利用するテキスト欄を扱うときには、`mdc-floating-label--float-above` 修飾クラスをもつ `mdc-floating-label` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
+値をすでに持っている JS を利用するテキスト欄を扱うときには、 `mdc-floating-label--float-above` 修飾クラスを持つ `mdc-floating-label` を付けるとともに、`mdc-text-field--label-floating` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--label-floating">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="Pre-filled value">
   <span class="mdc-floating-label mdc-floating-label--float-above" id="my-label-id">
@@ -288,17 +288,12 @@ CSS クラス | 説明
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
 `mdc-text-field--disabled` | 無効なテキスト欄として表示する。
-`mdc-text-field--dense` | 高密度のテキスト欄として表示する。\*
 `mdc-text-field--with-leading-icon` | 先頭にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--with-trailing-icon` | 末尾にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--focused` | フォーカスを持つテキスト欄として表示する。
 `mdc-text-field--no-label` | ラベルのないテキスト欄として表示する。
 `mdc-text-field--end-aligned` | テキスト欄を後ろ揃え（訳注：RTL でなければ右揃えのこと）で表示する。
 `mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
-
-#### 非推奨のお知らせ
-
-\* テキスト欄の `--dense` のタイプは将来のリリースで削除されます。詳細は [github issue](https://github.com/material-components/material-components-web/issues/4142) を参照してください。
 
 ### Sass ミキシン
 
