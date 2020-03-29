@@ -427,10 +427,10 @@ MDCList JavaScript コンポーネントは [Listbox](https://www.w3.org/TR/wai-
 
 キー | 操作
 --- | ---
-`ArrowUp` | リストが垂直方向のとき、フォーカスされている項目の前のリスト項目に移動する。
-`ArrowDown` | リストが垂直方向のとき、フォーカスされている項目の次のリスト項目に移動する。
-`ArrowLeft` | リストが水平方向（デフォルト）のとき、フォーカスされている項目の前のリスト項目に移動する。
-`ArrowRight` | リストが水平方向（デフォルト）のとき、フォーカスされている項目の次のリスト項目に移動する。
+`ArrowUp` | リストが垂直方向（デフォルト）のとき、フォーカスされている項目の前のリスト項目に移動する。
+`ArrowDown` | リストが垂直方向（デフォルト）のとき、フォーカスされている項目の次のリスト項目に移動する。
+`ArrowLeft` | リストが水平方向のとき、フォーカスされている項目の前のリスト項目に移動する。
+`ArrowRight` | リストが水平方向のとき、フォーカスされている項目の次のリスト項目に移動する。
 `Home` | フォーカスされているリストの最初のリスト項目に移動する。
 `End` | フォーカスされているリストの最後のリスト項目に移動する。
 `Space` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
@@ -445,7 +445,7 @@ MDCList JavaScript コンポーネントは [Listbox](https://www.w3.org/TR/wai-
 `listElements` | `Array<Element>` (読込専用) | 無効なリスト項目を含めたすべてのリスト項目を返す。
 `wrapFocus` | `boolean` (書込専用) | ファンデーションの `setWrapFocus()` メソッドの代替。
 `singleSelection` | `boolean` (書込専用) | ファンデーションの `setSingleSelection()` メソッドの代替。
-`selectedIndex` | `boolean` | ファンデーションの `getSelectedIndex()` メソッドと `setSelectedIndex()` メソッドの代替。
+`selectedIndex` | `MDCListIndex` | ファンデーションの `getSelectedIndex()` メソッドと `setSelectedIndex()` メソッドの代替。
 
 メソッド | 説明
 --- | ---
