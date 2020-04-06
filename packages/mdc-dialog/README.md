@@ -7,7 +7,7 @@ iconId: dialog
 path: /catalog/dialogs/
 -->
 
-# Dialog
+# Dialogs
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
@@ -18,67 +18,36 @@ path: /catalog/dialogs/
 
 ダイアログはユーザーにタスクに関する通知をし、重要な情報を含めたり、決定を求めたり、複数のタスクに関わらせることができます。
 
-## デザインと API ドキュメント
+ダイアログには4つのタイプ場あります。
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-dialogs">マテリアルデザインガイドライン: ダイアログ</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/dialog">デモ</a>
-  </li>
-</ul>
+1. [警告](#alert-dialog)
+1. [シンプル](#simple-dialog)
+1. [確認](#confirmation-dialog)
+1. [全画面](#full-screen-dialog)
 
-## インストール
+## ダイアログを使う
+
+ダイアログは重要な情報の提供や決定を求めるためにアプリケーションコンテンツの前面に表示される一種のモーダルウィンドウです。ダイアログは表示される際にすべてのアプリケーションの機能を使用できないようにし、確認、却下もしくは必要な操作がなされるまで画面に残ります。
+
+ダイアログは意図的にアプリケーションを中断するため、使用は控えるべきです。
+
+追加のガイダンスは、[マテリアルガイドライン](https://material.io/go/design-dialogs) を参照してください。
+
+### インストール
 
 ```
 npm install @material/dialog
 ```
 
-## 基本的な使用法
-
-### HTML 構造
-
-```html
-<div class="mdc-dialog">
-  <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface"
-      role="alertdialog"
-      aria-modal="true"
-      aria-labelledby="my-dialog-title"
-      aria-describedby="my-dialog-content">
-      <!-- mdc-typography-baseline-top() の動作により、タイトルの先頭に空白を入れることはできない -->
-      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
-     -->Dialog Title<!--
-   --></h2>
-      <div class="mdc-dialog__content" id="my-dialog-content">
-        Dialog body text goes here.
-      </div>
-      <footer class="mdc-dialog__actions">
-        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
-          <div class="mdc-button__ripple"></div>
-          <span class="mdc-button__label">No</span>
-        </button>
-        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
-          <div class="mdc-button__ripple"></div>
-          <span class="mdc-button__label">Yes</span>
-        </button>
-      </footer>
-    </div>
-  </div>
-  <div class="mdc-dialog__scrim"></div>
-</div>
-```
-
-> *注意*: `mdc-typography-baseline-top()` の動作により、タイトルの先頭に空白を入れることはできません。
-
 ### スタイル
 
 ```scss
-@use "@material/dialog/mdc-dialog";
+@use "@material/dialog";
+
+@include dialog.core-styles;
 ```
 
-> *注意*: ダイアログに含め用と思っている任意のコンポーネント（例: リスト、チェックボックス等）のスタイルもインポートしなくてはなりません。
+**注意: ダイアログに含め用と思っている任意のコンポーネント（例: リスト、チェックボックス等）のスタイルもインポートしなくてはなりません。**
 
 ### JavaScript のインスタンス化
 
@@ -87,7 +56,7 @@ import {MDCDialog} from '@material/dialog';
 const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+**注意: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。**
 
 MDC Dialog は `mdc-dialog__content` 要素に追加されるものについての仮定はありません。任意のリストやチェックボックスなどがインスタンス化されなくてはなりません。ダイアログがレイアウトに依存するコンポーネントを含んでいるときは、ダイアログの移動をまず完了させるために `MDCDialog:opened` が発行されるまでコンポーネントのインスタンス化（これらの `layout` の呼び出し）を待たなくてはなりません。
 
@@ -102,13 +71,74 @@ dialog.listen('MDCDialog:opened', () => {
 });
 ```
 
-> *注意*: 要素の配置の誤りやサイズの間違い（例えばリップルやフローティングラベル、ノッチ付きアウトライン）はダイアログの表示が完了する前に子コンポーネントがインスタンス化されていることを示唆しています。
+**注意: 要素の配置の誤りやサイズの間違い（例えばリップルやフローティングラベル、ノッチ付きアウトライン）はダイアログの表示が完了する前に子コンポーネントがインスタンス化されていることを示唆しています。**
 
-## バリエーション
+### ダイアログを操作しやすくする
 
-### 簡易ダイアログ
+##### `aria-modal` の代替として `aria-hidden` を使う
 
-簡易ダイアログは可能性のあるアクションのリストを含んでいます。ボタンを含んではいません。
+`aria-modal` は ARIA 1.1 仕様の一部であり、スクリーンリーダーに対して単一の要素にとどめること表しています（訳注: スクリーンリーダーは `aria-modal` で指定された領域しか読み上げの対象にしない、ということ）。その DOM 構造のルート要素に `aria-modal="true"` を付加することを推奨します。
+
+しかしながら、すべてのユーザーエージェントとスクリーンリーダーがこの属性を正しく解釈するわけではありません。
+
+代わりとして、ダイアログが開いているときは、ダイアログの下にある静的コンテンツすべてに `aria-hidden` を `aria-hidden="true"` として使います。これは、非モーダル要素が body の下の一つの共通の祖先であるときに最も容易に実現でき、その一つの要素に `aria-hidden` を適用すればよいのです。
+
+```js
+dialog.listen('MDCDialog:opened', function() {
+  // contentElement がページのほかのコンテンツの共通の親要素を参照していると仮定
+  contentElement.setAttribute('aria-hidden', 'true');
+});
+dialog.listen('MDCDialog:closing', function() {
+  contentElement.removeAttribute('aria-hidden');
+});
+```
+
+**注意: 上の例では、ほかの要素が表示される前にある要素が非表示になることによってスクリーンリーダーが要素間を飛び回ることを避けるために、意図的に opened（opening ではなく）イベントと closing（closed ではなく）イベントで処理しています。**
+
+## <a name="alert-dialog"></a>警告ダイアログ
+
+警告ダイアログは緊急の情報、詳細、または操作により、ユーザーを中断させます。
+
+<img src="images/alert-dialog.png" alt="Alert dialog: discard" width=250px>
+
+### 警告ダイアログの例
+
+```html
+<div class="mdc-dialog">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="my-dialog-title"
+      aria-describedby="my-dialog-content">
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Discard draft?
+      </div>
+      <div class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">Cancel</span>
+        </button>
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="discard">
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">Discard</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+```
+
+## <a name="simple-dialog"></a>シンプルダイアログ
+
+シンプルダイアログは選ぶとすぐに反応する項目を表示します。これらはテキストボタンはありません。
+
+シンプルダイアログは中断を招くので、使用は控えるべきです。代わりとして、ドロップダウンメニューはモーダルではなく、中断の少ない方法で選択肢を適用できます。
+
+<img src="images/simple-dialog.png" alt="Simple dialog: selection" width=250px>
+
+### シンプルダイアログの例
 
 ```html
 <div class="mdc-dialog">
@@ -139,11 +169,17 @@ dialog.listen('MDCDialog:opened', () => {
 </div>
 ```
 
-> `mdc-list--avatar-list` クラスを含めていることに注意してください。これは簡易ダイアログ仕様に沿ったものです。
+**Note: Note the inclusion of the `mdc-list--avatar-list` class, which aligns with the Simple Dialog spec.**
 
-### 確認ダイアログ
+## <a name="confirmation-dialog"></a>確認ダイアログ
 
-確認ダイアログは選択肢のリストと確認やキャンセルのためのボタンを含んでいます。選択肢にはラジオボタン（単一選択）かチェックボックス（複数選択）を伴います。
+確認ダイアログは確定前にユーザーが最終的な確認を行えるようにするため、必要に応じて選択の変更の機会を与えます。
+
+ユーザーが選択を確認すると、それが実行されます。そうでないとき、ユーザーはダイアログを閉じることができます。例えば、ユーザーは複数の着信音を聞くことができますが、「OK」をタックした時にのみ、最終的な選択がなされます。
+
+<img src="images/confirmation-dialog.png" alt="Confirmation dialog: selection confirmation" width=250px>
+
+### 確認ダイアログの例
 
 ```html
 <div class="mdc-dialog">
@@ -180,7 +216,7 @@ dialog.listen('MDCDialog:opened', () => {
           <!-- ... -->
         </ul>
       </div>
-      <footer class="mdc-dialog__actions">
+      <div class="mdc-dialog__actions">
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
           <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">Cancel</span>
@@ -189,18 +225,26 @@ dialog.listen('MDCDialog:opened', () => {
           <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">OK</span>
         </button>
-      </footer>
+      </div>
     </div>
   </div>
   <div class="mdc-dialog__scrim"></div>
 </div>
 ```
 
-> *注意*: 上の例では、スクリム（訳注: ダイアログの背後に表示される半透明の背景のこと）をクリックしたときやエスケープキーを押されたときの動作と連携する `close` アクションをキャンセルボタンに意図的に持たせています。キャンセルボタンでは検出された動作によらず、同じ方法で対話を処理することを許容しています。
+**注意: 上の例では、スクリム（訳注: ダイアログの背後に表示される半透明の背景のこと）をクリックしたときやエスケープキーを押されたときの動作と連携する `close` アクションをキャンセルボタンに意図的に持たせています。キャンセルボタンでは検出された動作によらず、同じ方法で対話を処理することを許容しています。**
 
-### 追加情報
+## <a name="full-screen-dialog"></a>全画面ダイアログ
 
-#### ダイアログアクション
+全画面ダイアログは、イベントタイトル、日付、場所や時間をカレンダーに入力するといった一連のタスクをグループ化します。スクリーンを占有するため、全画面ダイアログは他のダイアログの上にかぶせられる唯一のダイアログです。
+
+MDC Web はまだ全画面ダイアログをサポートしていません。
+
+<img src="images/full-screen-dialog.png" alt="Full-screen dialog: event" width=250px>
+
+## 追加情報
+
+### ダイアログアクション
 
 すべてのダイアログのバリエーションはダイアログアクションの概念をサポートしています。ダイアログ内の任意の要素に `data-mdc-dialog-action` 属性を含めることができ、それと対話することにより指定したアクションでダイアログが閉じるべきであることを表しています。このアクションは `MDCDialog:closing` イベントと `MDCDialog:closed` イベント内で `event.detail.action` を通じて反映されます。
 
@@ -215,7 +259,7 @@ dialog.listen('MDCDialog:opened', () => {
 
 ダイアログ内にあるさらなる動作を伴わずに閉じるアクションと厳密に同じ動きをするすべてのアクションボタンも `close` アクションを使うべきです。これによって、個別にハンドリングされているほかのアクションと共にすべてのアクションを一貫して処理することが容易になります。
 
-#### アクションボタンの配置
+### アクションボタンの配置
 
 [Dialog design article](https://material.io/design/components/dialogs.html#anatomy) に示されている通り、`mdc-dialog__actions` 要素内のボタンはデフォルトで水平方向に配置され、確認アクションが <em>最後に</em> 配置されます。
 
@@ -229,14 +273,14 @@ dialog.autoStackButtons = false;
 
 コンポーネントがインスタンス化される前に手動でルート要素に `mdc-dialog--stacked` 修飾クラスが適用されているときにもこれは無効になりますが、ダイアログアクションボタンのラベルは1行に収まるように可能な限り短くすることをお勧めします。
 
-#### デフォルトアクションボタン
+### デフォルトアクションボタン
 
 ダイアログのアクションボタンの一つがデフォルトアクションを表し、エンターキーを押したことがトリガーになることを MDC Dialog はサポートしています。これは例えば単一選択確認ダイアログに使用することができ、選択肢を確認するために適切なボタンに移動するまでダブボタンを押さずに選択を素早く行えるようになります。
 
 デフォルトアクションボタンであることを示すには、`data-mdc-dialog-button-default` データ属性を追加します。例えば次のようにします。
 ```html
 ...
-<footer class="mdc-dialog__actions">
+<div class="mdc-dialog__actions">
   <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
     <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">Cancel</span>
@@ -245,34 +289,13 @@ dialog.autoStackButtons = false;
     <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">OK</span>
   </button>
-</footer>
+</div>
 ...
 ```
 
-#### アクションと選択
+### アクションと選択
 
 選択コントロールを通じて選択することが必要なダイアログは、デフォルトで選択肢が選択されていないのであれば最初はアクションを実行するボタンを無効にする必要があります。MDC Dialog はこのロジックをビルドインで含んでいません。これは取られたアクションに関する情報を中継することは別として、可能な限りダイアログの中身に依存しないでいることを目指しているためです。
-
-#### アクセシビリティ
-
-##### `aria-modal` の代替としての `aria-hidden` の使用 
-
-`aria-modal` は ARIA 1.1 仕様の一部であり、スクリーンリーダーに対して単一の要素にとどめること表しています（訳注: スクリーンリーダーは `aria-modal` で指定された領域しか読み上げの対象にしない、ということ）。MDC Dialog ではその DOM 構造のルート要素に `aria-modal="true"` を付加することを推奨していますが、すべてのユーザーエージェントとスクリーンリーダーがこの属性を正しく尊重するわけではありません。
-
-代わりとして、ダイアログが開いているときは、ダイアログの背後にある静的コンテンツすべてに `aria-hidden="true"` を指定します。これは、非モーダル要素が body の下の一つの共通の祖先であるときに最も容易に実現でき、その一つの要素に `aria-hidden` を適用すればよいのです。
-
-```js
-dialog.listen('MDCDialog:opened', function() {
-  // contentElement がページのほかのコンテンツの共通の親要素を参照していると仮定
-  contentElement.setAttribute('aria-hidden', 'true');
-});
-
-dialog.listen('MDCDialog:closing', function() {
-  contentElement.removeAttribute('aria-hidden');
-});
-```
-
-> 注意: 上の例では、ほかの要素が表示される前にある要素が非表示になることによってスクリーンリーダーが要素間を飛び回ることを避けるために、意図的に **opened**（opening ではなく）イベントと **closing**（closed ではなく）イベントで処理しています。
 
 ## スタイルのカスタマイズ
 
@@ -308,7 +331,7 @@ CSS クラス | 説明
 `max-width($max-width, $margin)` | ダイアログの最大幅を設定する（デフォルトは最大幅 280px、マージン 16px）。
 `max-height($max-height, $margin)` | ダイアログの最大の高さを設定する（デフォルトは最大の高さ制限なし、マージン 16px）。
 
-> *注意*: `max-width` ミキシンと `max-height` ミキシンは幅、高さのそれぞれがマージンを考慮したうえでビューポートが指定された値を収めるのに十分な大きさがあるときに適用されます。ビューポートが小さいときには、ダイアログはマージンが端の周囲に保たれるような大きさになります。
+**注意: `max-width` ミキシンと `max-height` ミキシンは幅、高さのそれぞれがマージンを考慮したうえでビューポートが指定された値を収めるのに十分な大きさがあるときに適用されます。ビューポートが小さいときには、ダイアログはマージンが端の周囲に保たれるような大きさになります。**
 
 ## その他のカスタマイズ
 データ属性 | 説明
@@ -397,7 +420,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `resize` | `window` | `layout` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
 `orientationchange` | `window` | `layout` | `MDCDialog:opening` 上で | `MDCDialog:closing` 上で
 
-### ユーティリティ API
+### `util` API
 
 外部フレームワークとライブラリは独自のコンポーネントを実装する際に `util` モジュールから以下のユーティリティメソッドを利用することができます。
 
@@ -426,7 +449,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 
 [focus-trap]: https://github.com/davidtheclark/focus-trap
 
-> 注意: iOS プラットフォームは `document.activeElement` を通じて現在フォーカスされている要素を登録できないようで、そのため最後にフォーカスされた要素のフォーカスの開放は失敗します。
+**注意: iOS プラットフォームは `document.activeElement` を通じて現在フォーカスされている要素を登録できないようで、そのため最後にフォーカスされた要素のフォーカスの開放は失敗します。**
 
 #### `createFocusTrapInstance()`
 

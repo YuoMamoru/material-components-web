@@ -2,27 +2,29 @@
 title: "Data Tables"
 layout: detail
 section: components
-excerpt: "Material Design-styled tables."
+excerpt: "Data tables display information in a grid-like format of rows and columns."
 iconId: data_table
 path: /catalog/data-tables/
 -->
 
-# Data Table
+# Data tables
+
+[Data tables](https://material.io/components/data-tables/#) は列と行を通じてデータの集合を表示します。
+
+![5つの行（1つのヘッダ行と4つの行、1つのチェックボックス列）を持つデータテーブル](images/data-table-hero.png)
+
+## データテーブルを使う
 
 データテーブルはグリッド風の行と列の形式で情報を表示します。ユーザーがパターンや洞察を見つけやすいように、スキャンしやすい方法で情報を整理します。
 
-## デザインと API ドキュメント
+データテーブルには以下のものを含められます。
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-data-tables">マテリアルデザインガイドライン: データテーブル</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/data-table">デモ</a>
-  </li>
-</ul>
+* 双方向コンポーネント（チップやボタン、メニューなど）
+* 双方向でない要素（バッジなど）
+* データの問い合わせと操作を行うツール
 
-## インストール
+
+### インストール
 
 ```
 npm install @material/data-table
@@ -37,12 +39,16 @@ npm install @material/linear-progress
 ### スタイル
 
 ```scss
-@use "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
-@use "@material/linear-progress/mdc-linear-progress"; // Required only if data table has progress state.
-@use "@material/data-table/mdc-data-table";
+@use "@material/checkbox"; // Required only for data table with row selection.
+@use "@material/linear-progress"; // Required only if data table has progress state.
+@use "@material/data-table";
+
+@include checkbox.core-styles;
+@include linear-progress.core-styles;
+@include data-table.core-styles;
 ```
 
-> *注意*: データテーブルに含めるつもりのコンポーネント（例えばチェックボックスやボタン等）のスタイルもインポートしなくてはなりません。
+**注意: データテーブルに含めるつもりのコンポーネント（例えばチェックボックスやボタン等）のスタイルもロードしなくてはなりません。**
 
 ### JavaScript のインスタンス化
 
@@ -51,15 +57,17 @@ import {MDCDataTable} from '@material/data-table';
 const dataTable = new MDCDataTable(document.querySelector('.mdc-data-table'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 > `MDCDataTable` コンポーネントのインスタンス化は双方向の操作、例えば行選択、を追加したいときのみ必要です。
 
 MDC Data Table コンポーネントはヘッダー行のチェックボックスとすべてのチェックボックスの `MDCCheckbox` を自動的にインスタンス化します。チェックボックスコンポーネントをインスタンス化するのに必要なクラス名を設定してください。行を追加したりデータテーブルから行を削除するときには新しいチェックボックスコンポーネントを登録するために `layout` API を使うことをお勧めします。
 
-## 基本的な使用法
+### データテーブルを操作しやすくする
 
-### HTML 構造
+テーブル要素に必要な ARIA 推奨のロール、状態、プロパティについては [テーブルについての WAI-ARIA オーサリングプラクティス](https://www.w3.org/TR/wai-aria-practices-1.1/#table) を参照してください。
+
+## データテーブル
 
 ```html
 <div class="mdc-data-table">
@@ -95,7 +103,8 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
   </table>
 </div>
 ```
-## バリエーション
+
+## その他のバリエーション
 
 ### 行選択を伴うデータテーブル
 
@@ -374,10 +383,6 @@ CSS クラス | 説明
 `density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
 `sort-icon-color($color)` | ソートされていないときのソートアイコンボタンの色を設定する（アイコンはヘッダーセルがフォーカスされた際に表示される）。
 `sort-icon-active-color($color)` | ソートが有効になっている（ソートされている）ときのソートアイコンボタンの色を設定する。
-
-## アクセシビリティ
-
-テーブル要素に必要な ARIA 推奨のロール、状態、プロパティについては [テーブルについての WAI-ARIA オーサリングプラクティス](https://www.w3.org/TR/wai-aria-practices-1.1/#table) を参照してください。
 
 ## イベント
 

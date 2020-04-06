@@ -7,7 +7,7 @@ iconId: toolbar
 path: /catalog/top-app-bar/
 -->
 
-# Top App Bar
+# Top app bar
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
@@ -17,62 +17,37 @@ path: /catalog/top-app-bar/
   </a>
 </div>-->
 
-MDC Top App Bar はアプリケーションタイトル、ナビゲーションアイコンや操作アイテムといったアイテムのコンテナとして振舞います。
+top app bar は現在の画面に関連するコンテンツと操作を提供します。これはブランディング、画面タイトル、ナビベーションや操作に使用されます。
 
-## デザインと API ドキュメント
+トップアプリバーには2つのタイプがあります。
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-app-bar-top">Material Design guidelines: Top app bar</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/top-app-bar">Demo</a>
-  </li>
-</ul>
+1. [通常のトップアプリバー](#regular-top-app-bar)
+1. [文脈依存操作バー](#contextual-action-bar)
 
-## インストール
+通常のトップアプリバーは文脈依存操作バーに変換することが可能です。
+
+![通常のトップアプリバー（紫背景で白のテキストとアイコン）](images/regular-app-bar.png)
+![文脈依存操作バー（黒背景で白のテキストとアイコン）](images/contextual-app-bar.png)
+
+## トップアプリバーを使う
+
+### インストール
 
 ```
 npm install @material/top-app-bar
 ```
 
-## 基本的な使用法
-
-### HTML 構造
-
-```html
-<header class="mdc-top-app-bar">
-  <div class="mdc-top-app-bar__row">
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-      <span class="mdc-top-app-bar__title">Title</span>
-    </section>
-  </div>
-</header>
-```
-
-> 注意: [操作アイテムを伴う Top App Bar](#top-app-bar-with-action-items) セクションの `mdc-icon-button` に関する注意事項を参照してください。
-
-#### メニューアイコン
-
-Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
-
-```html
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-```
-
-また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
-
 ### スタイル
 
 ```scss
-@use "@material/top-app-bar/mdc-top-app-bar";
-@use "@material/icon-button/mdc-icon-button";
+@use "@material/top-app-bar";
+@use "@material/icon-button";
+
+@include top-app-bar.core-styles;
+@include icon-button.core-styles;
 ```
 
-### JavaScript のインストール
+### JavaScript のインスタンス化
 
 ```js
 import {MDCTopAppBar} from '@material/top-app-bar';
@@ -82,31 +57,71 @@ const topAppBarElement = document.querySelector('.mdc-top-app-bar');
 const topAppBar = new MDCTopAppBar(topAppBarElement);
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+**注意: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。**
 
-## バリエーション
+## <a name="regular-top-app-bar"></a>通常のトップアプリバー
 
-### <a name="top-app-bar-with-action-items"></a>操作アイテムを伴う Top App Bar
+トップアプリバーは現在の画面に関連するコンテンツと操作を提供します。これはブランディング、画面タイトル、ナビベーションや操作に使用されます。
 
-トップアプリバーはナビゲーションアイコンの反対側に配置した操作アイテムを入れることができます。適切なスタイルを適応するには `mdc-top-app-bar__navigation-icon` 要素と `mdc-top-app-bar__action-item` 要素の両方に `mdc-icon-button` クラスをつけなくてはなりません。アイコンの詳細なドキュメントについては、[mdc-icon-button ドキュメント](../mdc-icon-button/README.md) を参照してください。
+### 通常のトップアプリバーの例
 
 ```html
 <header class="mdc-top-app-bar">
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-      <span class="mdc-top-app-bar__title">Title</span>
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
+      <span class="mdc-top-app-bar__title">Page title</span>
     </section>
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Download">file_download</button>
-      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Print this page">print</button>
-      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">bookmark</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Favorite">favorite</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Options">more_vert</button>
     </section>
   </div>
 </header>
 ```
 
-### 短い Top App Bar
+#### メニューアイコン
+
+トップアプリバーはナビゲーションアイコンの反対側に配置した操作アイテムを入れることができます。適切なスタイルを適応するには `mdc-top-app-bar__navigation-icon` 要素と `mdc-top-app-bar__action-item` 要素の両方に `mdc-icon-button` クラスをつけなくてはなりません。
+
+アイコンの詳細なドキュメントについては、[mdc-icon-button ドキュメント](../mdc-icon-button/README.md) を参照してください。
+
+## <a name="contextual-action-bar"></a>文脈依存操作バー
+
+トップアプリバーを文脈依存操作バーに変換して、選択された項目に文脈依存の操作を適用することができます。例えば、ギャラリーからユーザが写真選択した際に、トップアプリバーを選択された写真に関連する操作をもつ文脈依存操作バーに変えられます。
+
+トップアプリバーを文脈依存操作バーに変換する際には、以下の変更が起きます。
+
+* バーの色が変わる
+* ナビゲーションアイコンが閉じるアイコンに置き換わる
+* トップアプリバーのタイトルテキストが文脈依存操作バーのテキストに変わる
+* トップアプリバーの操作が文脈依存操作バーの操作に置き換わる
+* 閉じると、文脈依存操作バーがトップアプリバーに戻る
+
+### 文脈依存操作バーの例
+
+次の例は、文脈依存のタイトル、閉じるアイコン、2つの文脈依存操作アイコン、そしてオーバーフローメニューを持つ文脈依存操作バーを表示します。
+
+```html
+<header class="mdc-top-app-bar">
+  <div class="mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Close">close</button>
+      <span class="mdc-top-app-bar__title">Contextual title</span>
+    </section>
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Share">share</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Delete">delete</button>
+      <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Open menu">more_vert</button>
+    </section>
+  </div>
+</header>
+```
+
+## その他のバリエーション
+
+### 短いもの
 
 短いトップアプリバーはスクロール時にナビゲーションアイコン側に折りたたむことができるトップアプリバーです。
 
@@ -124,9 +139,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 </header>
 ```
 
-> 短いトップアプリバーは1つ以下の操作アイテムと共に使う必要があります。
+**注意: 短いトップアプリバーは1つ以下の操作アイテムと共に使う必要があります。**
 
-### 常に折りたたまれている短い Top App Bar
+### 短いもの - 常にたたまれている
 
 コンポーネントをインスタンス化する前に `mdc-top-app-bar--short-collapsed` を適用すると常に折りたたまれて表示されるように設定することができます。
 
@@ -136,7 +151,7 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 </header>
 ```
 
-### 固定された Top App Bar
+### 固定されたもの
 
 固定されたトップアプリバーはスクロール時にページの上部にとどまり、コンテンツの上に表示されます。
 
@@ -146,7 +161,7 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 </header>
 ```
 
-### 目立つ Top App Bar
+### 目立つもの
 
 目立つトップアプリバーはより高さのあるものです。
 
@@ -156,7 +171,7 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 </header>
 ```
 
-### 高密度の Top App Bar
+### 高密度
 
 高密度トップアプリバーはより高さのないものです。
 

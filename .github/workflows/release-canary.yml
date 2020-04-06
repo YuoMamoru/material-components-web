@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
-        uses: actions/checkout@v1.0.0
-      - name: Checkout master branch
-        # GITHUB_REF:11 gets `refs/heads/master` => `master`.
-        # See https://github.com/actions/checkout/issues/6
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Fetch all tags
         run: |
-          git checkout "${GITHUB_REF:11}"
-          git pull
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - name: Setup node
         uses: actions/setup-node@v1
         with:

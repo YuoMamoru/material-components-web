@@ -1,12 +1,13 @@
 <!--docs:
-title: "Icon Buttons"
+title: "Icon buttons"
 layout: detail
 section: components
+excerpt: "Web icon buttons"
 iconId: button
 path: /catalog/buttons/icon-buttons/
 -->
 
-# Icon Buttons
+# Icon buttons
 
 <!--<div class="article__asset">
   <a class="article__asset-link"
@@ -15,44 +16,27 @@ path: /catalog/buttons/icon-buttons/
   </a>
 </div>-->
 
-アイコンボタンは一回のタップでユーザーに操作を実行させたり選択させたりすることができます。
+[Icon buttons](https://material.io/components/buttons/) は一回のタップでユーザーに操作を実行させたり選択させたりすることができます。
 
-## デザインと API ドキュメント
+**注意**: アイコンとテキストの両方のあるボタンについては、`mdc-button` コンポーネントを使ってください。さらなる情報は `mdc-button` [ドキュメント](../mdc-button) を参照してください。
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-buttons#toggle-button">マテリアルデザインガイドライン: 切り替えボタン</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">デモ</a>
-  </li>
-</ul>
+## アイコンボタンを使う
 
-## インストール
+### インストール
 
 ```
 npm install @material/icon-button
 ```
 
-## 使用法
-
-### HTML 構造
-
-```html
-<button class="mdc-icon-button material-icons">favorite</button>
-```
-
-> 注意: MDC Icon Button では `<button>` タグと `<a>` タグを使うことができます。
-
-> 注意: IE11 ではアイコンのテキストの後に改行かスペースがあるとアイコンを正しく中央揃えにしません。
-
 ### スタイル
 
 ```scss
-@use "@material/icon-button/mdc-icon-button";
+@use "@material/icon-button";
+
+@include icon-button.core-styles;
 ```
 
-### JavaScript のインストール
+### JavaScript のインスタンス化
 
 アイコンボタンは JavaScript なしでも動作しますが、ルート要素に `MDCRipple` をインスタンス化することによりリップル効果を持つように拡張できます。詳細は [MDC Ripple](../mdc-ripple) を参照してください。
 
@@ -63,13 +47,35 @@ const iconButtonRipple = new MDCRipple(document.querySelector('.mdc-icon-button'
 iconButtonRipple.unbounded = true;
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+**注意**: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## バリエーション
+### アイコン
 
-### 切り替えアイコンボタン
+Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
-アイコンボタンはオンとオフのアイコンを切り替えるために使用することができます。切り替えアイコンボタンとしてアイコンボタンを表示するには、オンオフ両方のアイコンを子要素として追加し、オン要素を表すアイコンに `mdc-icon-button__icon--on` クラスを設定します。「オン」の状態で初期化するなら親要素である `button` に `mdc-icon-button--on` を追加します。そしてルート要素に `MDCIconButtonToggle` をインスタンス化します。
+```html
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+```
+
+また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
+
+## アイコンボタン
+
+```html
+<button class="mdc-icon-button material-icons">favorite</button>
+```
+
+**注意**: MDC Icon Button では `<button>` タグと `<a>` タグの両方を使うことができます。
+
+**注意**: IE11 ではアイコンのテキストの後に改行かスペースがあるとアイコンを正しく中央揃えにしません。
+
+## トグルアイコンボタン
+
+アイコンボタンはオンとオフのアイコンを切り替えるために使用することができます。
+
+トグルアイコンボタンとしてアイコンボタンを表示するには、オンオフ両方のアイコンを子要素として追加し、オン要素を表すアイコンに `mdc-icon-button__icon--on` クラスを設定します。「オン」の状態で初期化するなら親要素である `button` に `mdc-icon-button--on` を追加します。そしてルート要素に `MDCIconButtonToggle` をインスタンス化します。
 
 ```html
 <button id="add-to-favorites"
@@ -81,14 +87,16 @@ iconButtonRipple.unbounded = true;
 </button>
 ```
 
+Then, instantiate an `MDCIconButtonToggle` on the root element.
+
 ```js
 import {MDCIconButtonToggle} from '@material/icon-button';
 const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-button'));
 ```
 
-#### SVG を使った切り替えアイコンボタン
+#### SVG を使ったトグルアイコンボタン
 
-アイコン切り替えボタンでは SVG を使うことができます。
+トグルアイコンボタンでは SVG を使うことができます。
 
 ```html
 <button id="star-this-item"
@@ -104,7 +112,7 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
 </button>
 ```
 
-#### 画像を使った切り替えアイコンボタン
+#### 画像を使ったトグルアイコンボタン
 
 アイコン切り替えボタンでは `img` タグを使うことができます。
 
@@ -118,27 +126,7 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
 </button>
 ```
 
-### アイコン
-
-Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
-
-```html
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-```
-
-また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
-
-### 無効の状態
-
-アイコンを無効にするには `<button>` 要素に直接 `disabled` 属性を追加します。`<a>` タグを使ったアイコンボタンは無効にはできません。無効になったボタンは利用できなくなり、視覚的にも利用できるようなエフェクトがなくなります。
-
-```html
-<button class="mdc-icon-button material-icons" disabled>favorite</button>
-```
-
-## スタイルのカスタマイズ
+## API
 
 ### CSS クラス
 
@@ -173,10 +161,6 @@ CSS クラス | 説明
 --- | --- | ---
 `MDCIconButtonToggle:change` | `{"detail": {"isOn": boolean}}` | アイコンが切り換えられた時に発生する。
 
-## Web フレームワーク内での使用
-
-React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用の切り替えアイコンボタンを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
-
 ### `MDCIconButtonToggleAdapter`
 
 メソッド | 説明
@@ -187,7 +171,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setAttr(name: string, value: string) => void` | ルート要素の属性 `name` に `value` を設定する。
 `notifyChange(evtData: {isOn: boolean}) => void` | 変更通知を行い、`evtData` を環境のイベントハンドリングシステムに渡す。素の実装ではカスタムイベントはこれを利用している。
 
-### ファンデーション: `MDCIconButtonToggleFoundation`
+### `MDCIconButtonToggleFoundation`
 
 メソッド | 説明
 --- | ---

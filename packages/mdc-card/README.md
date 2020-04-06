@@ -16,41 +16,26 @@ path: /catalog/cards/
   </a>
 </div>-->
 
-カードは単一の課題に対してのコンテンツとアクションを含んでいます。
+[Cards](https://material.io/components/cards/) は単一の課題に対してのコンテンツとアクションを含んでいます。
 
-## デザインと API ドキュメント
+追加の情報は [API](#api) を参照してください。
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-cards">マテリアルデザインガイドライン: カード</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/card">デモ</a>
-  </li>
-</ul>
+![サブタイトルと2つのアクション（紫の Action 1 と Action 2）のある浮き上がったカード](images/card-elevated.png)
 
-## インストール
+## カードを使う
+
+### インストール
 
 ```
 npm install @material/card
 ```
 
-## 基本的な使用法
-
-### HTML 構造
-
-```html
-<div class="mdc-card">
-  <!-- ... コンテンツ ... -->
-</div>
-```
-
-> <em>注意</em>: MDC Card は様々なユースケースに対応できるよう設計されています。カード内の特定のタイプのヘルパーの情報については [Card Contents](#card-contents) の節を参照してください。
-
 ### スタイル
 
 ```css
-@use "@material/card/mdc-card";
+@use "@material/card";
+
+@include card.core-styles;
 ```
 
 汎用性とカードの幅いっぱいの画像などに対応するために、MDC Card はルート要素にパディングがありません。カードに自由な形式のテキストコンテンツを追加する際には、パディングを `16px` に設定する必要があります。
@@ -61,7 +46,7 @@ npm install @material/card
 }
 ```
 
-> <em>注意</em>: コンテンツ領域用の MDC Card の適宜済みクラス（例えば `mdc-card__actions`）は独自のパディングを設定します。
+**注意: コンテンツ領域用の MDC Card の適宜済みクラス（例えば `mdc-card__actions`）は独自のパディングを設定します。**
 
 デフォルトでは、カードは利用できる場所いっぱいに水平方向に拡張され、垂直方向はコンテンツが収まる高さになります。
 カードの幅と高さを一貫性のあるものにしたいのなら、スタイルを設定する必要があります。
@@ -88,13 +73,27 @@ const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
 });
 ```
 
-> <em>注意</em>: カードに [アイコン切り替えボタン](../mdc-icon-button#icon-button-toggle) があるなら、`MDCRipple` ではなく `MDCIconButtonToggle` をインスタンス化します。
+**注意: カードに [アイコントグルボタン](../mdc-icon-button#icon-button-toggle) があるなら、`MDCRipple` ではなく `MDCIconButtonToggle` をインスタンス化します。**
 
-## バリエーション
+## カード
 
-### 縁ありのカード
+### カードの例
 
-デフォルトでは、カードは縁はなく、浮き上がっている表示がなされます。`mdc-card--outlined` 修飾クラスを加えると浮き上がっていない縁ありのカードが表示されます。
+```html
+<div class="mdc-card">
+  <!-- ... コンテンツ ... -->
+</div>
+```
+
+**注意: MDC Card は様々な使用例に対応するよう、設計されています。カード内のコンテンツの特定のタイプについてのヘルパーの情報は [カードのコンテンツ](#card-contents) の節を参照してください。**
+
+## その他のバリエーション
+
+### 枠付きカード
+
+![サブタイトルと2つのアクション（紫の Action 1 と Action 2）のある枠付きカード](images/card-outlined.png)
+
+デフォルトでは、カードは枠がなく、浮き上がっています。`mdc-card--outlined` 修飾クラスを追加することにより、浮き上がらずに枠のあるカードを表示できます。
 
 ```html
 <div class="mdc-card mdc-card--outlined">
@@ -104,7 +103,7 @@ const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
 
 ### <a name="card-contents"></a>カードのコンテンツ
 
-MDC Card は様々なユースケースで使用できますが、いくつか一般的なスタイルも含んでいます。
+MDC Card は様々な使用例で使用できますが、いくつか一般的なスタイルも含んでいます。
 
 #### 主要な操作領域
 
@@ -119,7 +118,7 @@ MDC Card は様々なユースケースで使用できますが、いくつか�
 </div>
 ```
 
-> <em>注意</em>: `mdc-card__primary-action` の内部にほかの操作可能な要素を追加しないようにすることをお勧めします。これはリップルや一度適用した状態を入れ子になった要素が重複して持ってしまことを避けるためです。
+**注意: `mdc-card__primary-action` の内部にほかの操作可能な要素を追加しないようにすることをお勧めします。これはリップルや一度適用した状態を入れ子になった要素が重複して持ってしまことを避けるためです。**
 
 #### リッチメディア領域
 
@@ -249,7 +248,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 </div>
 ```
 
-## スタイルのカスタマイズ
+## API
 
 ### <a name="css-classes"></a>CSS クラス
 

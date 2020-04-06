@@ -2,7 +2,7 @@
 title: "Lists"
 layout: detail
 section: components
-excerpt: "Lists present multiple line items vertically as a single continuous element."
+excerpt: "Lists are continuous, vertical indexes of text or images."
 iconId: list
 path: /catalog/lists/
 -->
@@ -16,27 +16,81 @@ path: /catalog/lists/
   </a>
 </div>-->
 
-リストはテキストまたはイメージの連続した垂直方向に並んだ表示項目です。
+[Lists](https://material.io/components/lists/) はテキストまたはイメージの連続した垂直方向に並んだ表示項目です。
 
-## デザインと API ドキュメント
+リストには3つのタイプがあります。
+1. [1行リスト](#single-line-list)
+1. [2行リスト](#two-line-list)
+1. [3行リスト](#three-line-list)
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/design/components/lists.html">マテリアルデザインガイドライン: リスト</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/list">デモ</a>
-  </li>
-</ul>
+![3つのリストタイプの混合イメージ](images/lists-types.png)
 
-## インストール
+## リストを使う
+
+### インストール
+
 ```
 npm install @material/list
 ```
 
-## 基本的な使用法
+### スタイル
 
-### HTML 構造
+```scss
+@use "@material/list";
+
+@include list.core-styles;
+```
+
+### JavaScript
+
+MDC List はキーボードによる対話や操作を使用できるようにするオプションの JavaScript コンポーネントが含まれています。
+
+```js
+import {MDCList} from '@material/list';
+
+const list = new MDCList(document.querySelector('.mdc-list'));
+```
+
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+
+JS コンポーネントは自動的にリスト項目のリップルをインスタンス化する<em>わけではない</em>ことに注意してください。リスト項目上に完全にアップグレードされたリップル効果を含めたい場合、各項目に対して `MDCRipple` をインスタンス化しなくてはなりません。
+
+```js
+import {MDCRipple} from '@material/ripple';
+
+const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
+```
+
+### リストを操作しやすくする
+
+MDCList JavaScript コンポーネントは [listbox](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox) のための WAI-ARIA ベストプラクティスを実装しています。これにはリストコンポーネント内のデフォルトのタブの動作を上書きすることが含まれています。
+
+最初のリスト項目要素や選択されたリスト項目要素では `tabindex` に `0` を設定しなくてはならず、残りのリスト項目要素には `tabindex` を設定してはいけません。
+
+単一選択リストでは `role="listbox"` のみを使用し、このロールがないと `ul` 要素は暗黙のうちに `role="list"` となります。標準的なリスト（つまり、 `role="list"`）では `aria-orientation` 属性は使わす、コンポーネントの `vertical` プロパティを使って垂直方向に設定してください。
+
+単一選択リストは `aria-selected` 属性と `aria-current` 属性をサポートします。リストは自動的にこれらの属性の存在を認識し、使用した ARIA 属性（つまり、`aria-selected` か `aria-current`）に基づいて次の選択されたリスト項目を設定します。推奨される使用法と利用可能な属性値については WAI-ARIA [aria-current](https://www.w3.org/TR/wai-aria-1.1/#aria-current) の記事を参照してください。
+
+ユーザーがリストを通じて操作する際に、リスト項目がフォーカスされていないならリスト内のどの `button` 要素や `a` 要素も `tabindex="-1"` とします。リスト項目がフォーカスされているなら。前述の要素は `tabIndex="0"` とします。これにより、ユーザーはリスト項目要素をタブにより移動し、さらにリストの後にある最初の要素にタブで移動できます。リスト要素内の操作は `Arrow` キー、`Home` キー そして `End` キーを使うべきです。`singleSelection=true` となっているなら、ユーザーがリスト項目を選択もしくは非選択とするのに `Space` キーか `Enter` キーを使えるようにリストが設定されます。MDCList はそれそれキーが押されるたびに以下のアクションをおこします。リストの操作ではリスト項目内のラジオボタンやチェックボックスを切り替えるので、リストはそれらの要素の `tabindex` を切り替えることはありません。
+
+無効なリスト項目はキーボード操作に含まれています。ARIA での慣習の記事の [Focusability of disabled controls](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls) セクションを参照してください。
+
+キー | 操作
+--- | ---
+`ArrowUp` | リストが垂直方向（デフォルト）のとき、フォーカスされている項目の前のリスト項目に移動する。
+`ArrowDown` | リストが垂直方向（デフォルト）のとき、フォーカスされている項目の次のリスト項目に移動する。
+`ArrowLeft` | リストが水平方向のとき、フォーカスされている項目の前のリスト項目に移動する。
+`ArrowRight` | リストが水平方向のとき、フォーカスされている項目の次のリスト項目に移動する。
+`Home` | フォーカスされているリストの最初のリスト項目に移動する。
+`End` | フォーカスされているリストの最後のリスト項目に移動する。
+`Space` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
+`Enter` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
+
+## <a name="single-line-list"></a>1行リスト
+
+1行リストは最大で1行のテキストを含みます。
+
+### 1行リストの例
 
 ```html
 <ul class="mdc-list">
@@ -52,38 +106,13 @@ npm install @material/list
 </ul>
 ```
 
-### スタイル
+## <a name="two-line-list"></a>2行リスト
 
-```scss
-@use "@material/list/mdc-list";
-```
+2行リストは最大で2行のテキストを含みます。
 
-### JavaScript
+### 2行リストの例
 
-MDC List はキーボードによる対話や操作を使用できるようにするオプションの JavaScript コンポーネントが含まれています。
-
-```js
-import {MDCList} from '@material/list';
-
-const list = new MDCList(document.querySelector('.mdc-list'));
-```
-
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
-
-JS コンポーネントは自動的にリスト項目のリップルをインスタンス化する<em>わけではない</em>ことに注意してください。リスト項目上に完全にアップグレードされたリップル効果を含めたい場合、各項目に対して `MDCRipple` をインスタンス化しなくてはなりません。
-
-```js
-import {MDCRipple} from '@material/ripple';
-
-const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(listItemEl));
-```
-
-## バリエーション
-
-### 2行リスト
-
-`mdc-list--two-line` をテキストの周囲のいくつかの追加マークアップと組み合わせて使うことにより、[仕様](https://material.io/design/components/lists.html#specs)（"Double line" 参照）に定義された2行で表示されるリストをスタイルすることができます。
-（訳注: 原文は "Double line" となっていため、そのまま表記したが、現在の仕様では "Two-line list" となっている。）
+2行リストを設定するには、テキストの周りにいくつかの追加のマークアップと共に `mdc-list--two-line` を組わせて使います。
 
 ```html
 <ul class="mdc-list mdc-list--two-line">
@@ -108,7 +137,15 @@ const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(list
 </ul>
 ```
 
-> 注意: 主たるもの（primary）と副次的なもの（secondary）のテキストコンテンツの前にスペースを入れないようにしてください。
+**注意: 主たるもの（primary）と副次的なもの（secondary）のテキストコンテンツの前にスペースを入れないようにしてください。**
+
+### <a name="three-line-list"></a>3行リスト
+
+3行リストは最大で3行のテキストを含みます。
+
+MDC Web は今のところ3行リストをサポートしていません。
+
+## その他のバリエーション
 
 ### リストグループ
 
@@ -165,7 +202,7 @@ const listItemRipples = list.listElements.map((listItemEl) => new MDCRipple(list
 </ul>
 ```
 
-> 注意: リスト区切線上の role="separator" 属性に注目してください。この要素が表現上の要素でありリスト内の要素に含まれるという意味ではないことを支援技術が認識するために、これは重要です。この区切線は li 要素にとって非常に有効な役目であることに注意してください。
+**注意: リスト区切線上の role="separator" 属性に注目してください。この要素が表現上の要素でありリスト内の要素に含まれるという意味ではないことを支援技術が認識するために、これは重要です。この区切線は li 要素にとって非常に有効な役目であることに注意してください。**
 
 または
 
@@ -388,11 +425,11 @@ CSS クラス | 説明
 `mdc-list-divider--padded` | オプション。`list-item__meta` のパディングと一致するように区切線の両脇の空白を残す。
 `mdc-list-divider--inset` | オプション。アバター列と交差しないように区切線の先頭マージンを増やす。
 
-> 注意: `mdc-list-divider` クラスはアイテム間、*もしくは*、2つのリスト間で使用できる（それぞれの例は [リスト区切線](#list-dividers) 以下を参照）。
+**注意: `mdc-list-divider` クラスはアイテム間、*もしくは*、2つのリスト間で使用できる（それぞれの例は [リスト区切線](#list-dividers) 以下を参照）。**
 
-> 注意: マテリアルデザインでは、選択状態と活性化状態は異なった廃板的な状況で適用されます。
-> * *選択状態* は `.mdc-list-item` ではユーザーの選択によって頻繁に変更されうるときに適用します。例えば、Google Photos で一つ以上の写真をシェアするために選択するときです。
-> * *活性化状態* は選択状態と比べ、より永続的であり、ページの存続時間に対してすぐに変更されることは **ありません**。一般的な例としてはナビゲーションドロワー内のリストのようなナビゲーションコンポーネントがあります。
+**注意: マテリアルデザインでは、選択状態と活性化状態は異なった廃板的な状況で適用されます。**
+* *選択状態* は `.mdc-list-item` ではユーザーの選択によって頻繁に変更されうるときに適用します。例えば、Google Photos で一つ以上の写真をシェアするために選択するときです。
+* *活性化状態* は選択状態と比べ、より永続的であり、ページの存続時間に対してすぐに変更されることは **ありません**。一般的な例としてはナビゲーションドロワー内のリストのようなナビゲーションコンポーネントがあります。
 
 ### Sass ミキシン
 
@@ -410,32 +447,6 @@ CSS クラス | 説明
 `item-disabled-text-opacity($opacity`) | リスト項目が無効なときのテキストの不透明度を設定する。
 `single-line-density($density-scale)` | 1行型リストの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `single-line-height($height)` | 1行型リストの高さを設定する。
-
-### <a name="Accessibility"></a>アクセシビリティ
-
-MDCList JavaScript コンポーネントは [Listbox](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox) のための WAI-ARIA ベストプラクティスを実装しています。これにはリストコンポーネント内のデフォルトのタブの動作を上書きすることが含まれています。
-
-最初のリスト項目要素や選択されたリスト項目要素では `tabindex` に `0` を設定しなくてはならず、残りのリスト項目要素には `tabindex` を設定してはいけません。
-
-単一選択リストでは `role="listbox"` のみを使用し、このロールがないと `ul` 要素は暗黙のうちに `role="list"` となります。標準的なリスト（つまり、 `role="list"`）では `aria-orientation` 属性は使わす、コンポーネントの `vertical` プロパティを使って垂直方向に設定してください。
-
-単一選択リストは `aria-selected` 属性と `aria-current` 属性をサポートします。リストは自動的にこれらの属性の存在を認識し、使用した ARIA 属性（つまり、`aria-selected` か `aria-current`）に基づいて次の選択されたリスト項目を設定します。推奨される使用法と利用可能な属性値については WAI-ARIA [aria-current](https://www.w3.org/TR/wai-aria-1.1/#aria-current) の記事を参照してください。
-
-ユーザーがリストを通じて操作する際に、リスト項目がフォーカスされていないならリスト内のどの `button` 要素や `a` 要素も `tabindex="-1"` とします。リスト項目がフォーカスされているなら。前述の要素は `tabIndex="0"` とします。これにより、ユーザーはリスト項目要素をタブにより移動し、さらにリストの後にある最初の要素にタブで移動できます。リスト要素内の操作は `Arrow` キー、`Home` キー そして `End` キーを使うべきです。`singleSelection=true` となっているなら、ユーザーがリスト項目を選択もしくは非選択とするのに `Space` キーか `Enter` キーを使えるようにリストが設定されます。MDCList はそれそれキーが押されるたびに以下のアクションをおこします。リストの操作ではリスト項目内のラジオボタンやチェックボックスを切り替えるので、リストはそれらの要素の `tabindex` を切り替えることはありません。
-
-無効なリスト項目はキーボード操作に含まれています。ARIA での慣習の記事の [Focusability of disabled controls](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_disabled_controls) セクションを参照してください。
-
-キー | 操作
---- | ---
-`ArrowUp` | リストが垂直方向（デフォルト）のとき、フォーカスされている項目の前のリスト項目に移動する。
-`ArrowDown` | リストが垂直方向（デフォルト）のとき、フォーカスされている項目の次のリスト項目に移動する。
-`ArrowLeft` | リストが水平方向のとき、フォーカスされている項目の前のリスト項目に移動する。
-`ArrowRight` | リストが水平方向のとき、フォーカスされている項目の次のリスト項目に移動する。
-`Home` | フォーカスされているリストの最初のリスト項目に移動する。
-`End` | フォーカスされているリストの最後のリスト項目に移動する。
-`Space` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
-`Enter` | `singleSelection=true` であるなら、現在フォーカスされているリスト項目を選択/非選択にする。
-
 
 ## `MDCList` プロパティとメソッド
 

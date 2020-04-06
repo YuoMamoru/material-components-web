@@ -142,6 +142,9 @@ module.exports = [{
             options: {
               // Dart Sass を優先
               implementation: require('sass'),
+
+              // See https://github.com/webpack-contrib/sass-loader/issues/804
+              webpackImporter: false,
             },
           },
         ]
@@ -188,6 +191,9 @@ MDC Web を使うには `@material` のインポートを解釈できるよう�
   options: {
     // Dart Sass を優先
     implementation: require('sass'),
+
+    // See https://github.com/webpack-contrib/sass-loader/issues/804
+    webpackImporter: false,
     sassOptions: {
       includePaths: ['./node_modules']
     },
@@ -234,6 +240,9 @@ const autoprefixer = require('autoprefixer');
     },
     // Dart Sass を優先
     implementation: require('sass'),
+
+    // See https://github.com/webpack-contrib/sass-loader/issues/804
+    webpackImporter: false,
   }
 },
 ```
@@ -336,6 +345,9 @@ module.exports = {
             options: {
               // Dart Sass を優先
               implementation: require('sass'),
+
+              // See https://github.com/webpack-contrib/sass-loader/issues/804
+              webpackImporter: false,
               sassOptions: {
                 includePaths: ['./node_modules'],
               },

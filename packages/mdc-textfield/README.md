@@ -1,51 +1,41 @@
 <!--docs:
-title: "Text Field"
+title: "Text field"
 layout: detail
 section: components
+excerpt: "MDC Web text field"
 iconId: text_field
 path: /catalog/input-controls/text-field/
 -->
 
-# Text Field
+# Text field
 
-Text Field はユーザーのテキストの入力、編集、選択に対応しています。
+[Text fields](https://material.io/components/text-fields) はユーザーにテキストの入力と編集をさせます。
 
-## デザインと API ドキュメント
+さらなる情報は [API](#api) ドキュメントを参照してください。
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-text-fields">マテリアルデザインガイドライン: テキスト欄</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/text-field">デモ</a>
-  </li>
-</ul>
+テキスト欄クラスには以下のタイプが含まれています。
 
-## インストール
+* [塗られたテキスト](#filled-text)
+* [枠付きテキスト](#outlined-text)
+
+<img src="images/text-field-generic.png" alt="Text field examples of both filled and outlined types, and each type showing both inactive and focused states.">
+
+## テキスト欄を使う
+
+テキスト欄は UI 内でユーザーのテキスト入力をサポートします。一般的にはフォームやダイアログの中にでてきます。
+
+### インストール
 
 ```
 npm install @material/textfield
 ```
 
-## 基本的な使用法
-
-### HTML 構造
-
-```html
-<label class="mdc-text-field">
-  <span class="mdc-text-field__ripple"></span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-  <span class="mdc-floating-label" id="my-label-id">Hint text</span>
-  <span class="mdc-line-ripple"></span>
-</label>
-```
-
-> 注意: 詳細については、[MDC Line Ripple](../mdc-line-ripple/README.md) と [MDC Floating Label](../mdc-floating-label/README.md) を参照してください。
-
 ### スタイル
 
 ```scss
-@use "@material/textfield/mdc-text-field";
+@use "@material/textfield";
+
+@include textfield.core-styles;
 ```
 
 ### JavaScript のインスタンス化
@@ -56,45 +46,28 @@ import {MDCTextField} from '@material/textfield';
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+**注意: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。**
 
-## バリエーション
+## <a name="filled-text"></a>塗られたテキスト欄
 
-### フル幅のテキスト欄
+[塗られたテキスト欄](https://material.io/components/text-fields/#filled-text-field) は枠付きテキスト欄より強調されており、そのほかのコンテンツやコンポーネントに囲まれても目立ちます。
 
-フル幅のテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
+### 塗られたテキスト欄の例
 
 ```html
-<label class="mdc-text-field mdc-text-field--fullwidth">
+<label class="mdc-text-field">
   <span class="mdc-text-field__ripple"></span>
-  <input class="mdc-text-field__input"
-         type="text"
-         placeholder="Full-Width Text Field"
-         aria-label="Full-Width Text Field">
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+  <span class="mdc-floating-label" id="my-label-id">Hint text</span>
   <span class="mdc-line-ripple"></span>
 </label>
 ```
 
-> <em>注意</em>: `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。
+## <a name="outlined-text"></a>枠付きテキスト欄
 
-> <em>注意</em>: `mdc-text-field--fullwidth` の内部で `mdc-floating-label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。
+[枠付きテキスト欄](https://material.io/components/text-fields/#outlined-text-field) は塗られたテキスト欄より強調されません。多くのテキスト欄が一緒に配置されるフォームのようなところで使えば、強調を抑えてレイアウトを簡素化するにに役立ちます。
 
-### 複数行テキスト欄
-
-```html
-<label class="mdc-text-field mdc-text-field--textarea">
-  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40"></textarea>
-  <span class="mdc-notched-outline">
-    <span class="mdc-notched-outline__leading"></span>
-    <span class="mdc-notched-outline__notch">
-      <label class="mdc-floating-label" id="my-label-id">Textarea Label</label>
-    </span>
-    <span class="mdc-notched-outline__trailing"></span>
-  </span>
-</label>
-```
-
-### アウトライン
+### 枠付きテキスト欄の例
 
 ```html
 <label class="mdc-text-field mdc-text-field--outlined">
@@ -109,20 +82,40 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </label>
 ```
 
-ノッチ付きアウトラインサブコンポーネントの使用についてのより詳しい情報は [ここ](../mdc-notched-outline/) を参照してください。
+ノッチのある枠付きサブコンポーネントの使用についてのさらなる情報は [ここ](../mdc-notched-outline/) を参照してください。
 
-> <em>注意</em>: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-line-ripple` を使わないでください。ラインリップルはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。
+**注意: <em>`mdc-text-field--outlined` を使うときは</em>、`mdc-text-field` の内部で `mdc-line-ripple` を使わないでください。ラインリップルはアウトラインの付いたテキスト欄の DOM 構造の一部として入れてはいけません。**
 
-### 無効の状態
+## その他のバリエーション
 
-テキスト欄を無効にするには、`<input>` 要素に `disabled` 属性を追加し、`mdc-text-field` 要素に `mdc-text-field--disabled` クラスを追加します。
+### 幅いっぱい
+
+幅いっぱいのテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
 
 ```html
-<label class="mdc-text-field mdc-text-field--disabled">
+<label class="mdc-text-field mdc-text-field--fullwidth">
   <span class="mdc-text-field__ripple"></span>
-  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" disabled>
-  <span class="mdc-floating-label" id="my-label-id">Disabled text field</span>
+  <input class="mdc-text-field__input"
+         type="text"
+         placeholder="Full-Width Text Field"
+         aria-label="Full-Width Text Field">
   <span class="mdc-line-ripple"></span>
+</label>
+```
+
+**注意: `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。**
+
+**注意: `mdc-text-field--fullwidth` の内部で `mdc-floating-label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。**
+
+### テキストエリア
+
+```html
+<label class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
+  <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  <span class="mdc-notched-outline">
+    <span class="mdc-notched-outline__leading"></span>
+    <span class="mdc-notched-outline__trailing"></span>
+  </span>
 </label>
 ```
 
@@ -130,7 +123,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 テキスト欄の横に別の明確な文言表示がすでにあるなら、テキスト欄にラベルは必要ではありません。そのような場合、クラス名 `mdc-text-field--no-label` を追加し、ラベル要素を構成から削除してください。
 
-#### フル幅
+#### 幅いっぱい
 
 ```html
 <label class="mdc-text-field mdc-text-field--no-label">
@@ -140,7 +133,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </label>
 ```
 
-#### アウトライン
+#### 枠付き
 
 ```html
 <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label">
@@ -161,6 +154,19 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
     <span class="mdc-notched-outline__leading"></span>
     <span class="mdc-notched-outline__trailing"></span>
   </span>
+</label>
+```
+
+### 無効なテキスト欄
+
+テキスト欄を無効にするには、`<input>` 要素に `disabled` 属性を追加し、`mdc-text-field` 要素に `mdc-text-field--disabled` クラスを追加します。
+
+```html
+<label class="mdc-text-field mdc-text-field--disabled">
+  <span class="mdc-text-field__ripple"></span>
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" disabled>
+  <span class="mdc-floating-label" id="my-label-id">Disabled text field</span>
+  <span class="mdc-line-ripple"></span>
 </label>
 ```
 
@@ -199,7 +205,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </div>
 ```
 
-### 文字数カウンター付き複数行テキスト欄 (Textarea)
+### 文字数カウンター付き複数行テキスト欄 (textarea)
 
 複数行テキスト欄 (textarea) での文字数カウンターでは、テキスト欄のコンポーネント内にカウンターを表示するため、レイアウト構造が少々異なります。
 
@@ -222,6 +228,8 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ### 先頭と末尾のアイコン
 
 双方向ターゲットとしてだけでなく視覚インジケーターとして MDC Text Fields のデフォルトのもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
+
+## その他の機能
 
 ### HTML5 バリデーション
 
@@ -253,7 +261,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </label>
 ```
 
-## ベースラインを揃える
+### ベースラインを揃える
 
 デフォルトで、テキスト欄はベースラインを基準にして他の要素と揃えられます。入力テキストのベースラインはテキスト欄の位置を決定するのに用いられ、バリエーションによって異なったものになります。強制的にベースラインの替わりにテキスト欄のコンテナに揃えるには、flexbox を使って整列させます。
 
@@ -277,7 +285,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 </div>
 ```
 
-## スタイルのカスタマイズ
+## API
 
 ### CSS クラス
 
@@ -288,12 +296,17 @@ CSS クラス | 説明
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
 `mdc-text-field--disabled` | 無効なテキスト欄として表示する。
+`mdc-text-field--dense` | 高密度テキスト欄としてテキスト欄を表示する。\*
 `mdc-text-field--with-leading-icon` | 先頭にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--with-trailing-icon` | 末尾にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--focused` | フォーカスを持つテキスト欄として表示する。
 `mdc-text-field--no-label` | ラベルのないテキスト欄として表示する。
 `mdc-text-field--end-aligned` | テキスト欄を後ろ揃え（訳注：RTL でなければ右揃えのこと）で表示する。
 `mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
+
+#### 廃止のお知らせ
+
+\*テキスト欄の `--dense` バリエーションは将来のリリースで削除されます。詳細は [github issue](https://github.com/material-components/material-components-web/issues/4142) を参照してください。
 
 ### Sass ミキシン
 
@@ -332,7 +345,7 @@ Mixin | Description
 `density($density-scale)` | デフォルト型のテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `height($height)` | デフォルト型のテキスト欄の高さを設定する。
 
-#### アウトラインされたテキスト欄とテキストエリアのためのミキシン
+#### 枠付きテキスト欄とテキストエリアのためのミキシン
 
 Mixin | Description
 --- | ---
@@ -341,7 +354,7 @@ Mixin | Description
 `disabled-outline-color($color)` | テキスト欄かテキストエリアが無効なときのアウトラインされた境界線の色を設定する。
 `outline-color($color)` | アウトラインされたテキスト欄もしくはテキストエリアの境界線の色を設定する。
 
-#### アウトラインされたテキスト欄のみのためのミキシン
+#### 枠付きテキスト欄のみのためのミキシン
 
 ミキシン | 説明
 --- | ---
