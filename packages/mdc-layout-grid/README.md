@@ -139,7 +139,7 @@ CSS クラス | 説明
 
 - `$size`: 対象とするプラットフォーム。`desktop`、`tablet`、`phone`のいずれか。
 - `$margin`: グリッドのマージンの大きさ。
-- `$max-width`（オプション）: グリッドの幅の最大値。Point space stops being distributed by the columns at the grid.
+- `$max-width`（オプション）: グリッドの幅の最大値。
 
 #### `mdc-layout-grid-inner($size, $margin, $gutter)`
 
