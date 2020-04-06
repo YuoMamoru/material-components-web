@@ -54,7 +54,7 @@ import {MDCTabScroller} from '@material/tab-scroller';
 const tabScroller = new MDCTabScroller(document.querySelector('.mdc-tab-scroller'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## スタイルのカスタマイズ
 

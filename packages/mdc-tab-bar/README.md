@@ -70,7 +70,7 @@ import {MDCTabBar} from '@material/tab-bar';
 const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## バリエーション
 

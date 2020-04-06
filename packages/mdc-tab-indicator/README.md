@@ -52,7 +52,7 @@ import {MDCTabIndicator} from '@material/tab-indicator';
 const tabIndicator = new MDCTabIndicator(document.querySelector('.mdc-tab-indicator'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## バリエーション
 

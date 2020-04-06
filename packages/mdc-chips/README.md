@@ -77,7 +77,7 @@ const chipSetEl = document.querySelector('.mdc-chip-set');
 const chipSet = new MDCChipSet(chipSetEl);
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## バリエーション
 

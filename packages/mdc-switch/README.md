@@ -55,7 +55,7 @@ npm install @material/switch
 @use "@material/switch/mdc-switch";
 ```
 
-### JavaScript のインストール
+### JavaScript のインスタンス化
 
 スイッチを機能させるは JavaScript が必須で、そのため HTML 上で MDCSwitch をインスタンス化することが必要です。
 
@@ -65,7 +65,7 @@ import {MDCSwitch} from '@material/switch';
 const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## バリエーション
 

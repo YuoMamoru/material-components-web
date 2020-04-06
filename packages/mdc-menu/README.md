@@ -71,7 +71,7 @@ const menu = new MDCMenu(document.querySelector('.mdc-menu'));
 menu.open = true;
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ## バリエーション
 
@@ -211,7 +211,7 @@ CSS クラス | 説明
 
 ## `MDCMenu` のプロパティとメソッド
 
-JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 プロパティ | 値の型 | 説明
 --- | --- | ---

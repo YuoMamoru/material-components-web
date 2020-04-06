@@ -80,7 +80,7 @@ import { MDCLinearProgress } from '@material/linear-progress';
 const linearProgress = new MDCLinearProgress(document.querySelector('.mdc-linear-progress'));
 ```
 
-> JavaScript をインポートする方法についてのより詳細な情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 ### CSS 修飾子
 
