@@ -225,6 +225,23 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ヘルプテキストと文字数カウンターは独立して共存できるテキスト欄のオプションサブコンポーネントです。適切なレイアウトのために `.mdc-text-field` 要素と `.mdc-text-field-helper-line` 要素は同じ幅にすることを推奨します。
 
+### プレフィックスとサフィックスのテキストあるテキスト欄
+
+通貨記号のプレフィックスや大きさの単位記号のサフィックスのようなプレフィックスやサフィックステキストをテキスト欄の内容に追加することができます。プレフィックス、サフィックス、もしくはその両方をテキスト欄のデフォルト、またはアウトライン変数内に追加できます。
+
+```html
+<label class="mdc-text-field">
+  <span class="mdc-text-field__ripple"></span>
+  <span class="mdc-text-field__affix mdc-text-field__affix--prefix">$</span>
+  <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+  <span class="mdc-text-field__affix mdc-text-field__affix--suffix">.00</span>
+  <span class="mdc-floating-label" id="my-label-id">Currency Value</span>
+  <span class="mdc-line-ripple"></span>
+</label>
+```
+
+**注意: `mdc-text-field--textarea` 内では `mdc-text-field--affix` を使用できません。**
+
 ### 先頭と末尾のアイコン
 
 双方向ターゲットとしてだけでなく視覚インジケーターとして MDC Text Fields のデフォルトのもしくはアウトライン内部に先頭と末尾のアイコンを追加することができます。アイコンを使う上でのより詳細な情報は [ここ](icon/) を参照してください。
@@ -296,17 +313,13 @@ CSS クラス | 説明
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
 `mdc-text-field--disabled` | 無効なテキスト欄として表示する。
-`mdc-text-field--dense` | 高密度テキスト欄としてテキスト欄を表示する。\*
 `mdc-text-field--with-leading-icon` | 先頭にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--with-trailing-icon` | 末尾にアイコンのあるテキスト欄として表示する。
 `mdc-text-field--focused` | フォーカスを持つテキスト欄として表示する。
 `mdc-text-field--no-label` | ラベルのないテキスト欄として表示する。
 `mdc-text-field--end-aligned` | テキスト欄を後ろ揃え（訳注：RTL でなければ右揃えのこと）で表示する。
+`mdc-text-field--label-floating` | 上に移動したラベルと入力済みもしくはフォーカスされた値を伴うテキスト欄として表示する。
 `mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
-
-#### 廃止のお知らせ
-
-\*テキスト欄の `--dense` バリエーションは将来のリリースで削除されます。詳細は [github issue](https://github.com/material-components/material-components-web/issues/4142) を参照してください。
 
 ### Sass ミキシン
 
@@ -325,6 +338,10 @@ CSS クラス | 説明
 `label-color($color)` | 有効なテキスト欄のラベルのテキスト色を設定する。
 `disabled-label-color($color)` | 無効なテキスト欄のラベルのテキスト色を設定する。
 `caret-color($color)` | テキスト欄のカーソルキャレットの色を設定する。
+`prefix-color($color)` | 有効なテイスト欄のプレフィックステキストの色を設定する。
+`disabled-prefix-color($color)` | 無効なテイスト欄のプレフィックステキストの色を設定する。
+`suffix-color($color)` | 有効なテイスト欄のサフィックステキストの色を設定する。
+`disabled-suffix-color($color)` | 無効なテイスト欄のサフィックステキストの色を設定する。
 
 #### 塗りつぶされたテキスト欄とテキストエリアのためのミキシン
 
@@ -384,6 +401,8 @@ Mixin | Description
 `trailingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setTrailingIconAriaLabel` メソッドの代替
 `leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替
 `trailingIconContent` | `string` (書込専用) | ファンデーションの `setTrailingIconContent` メソッドの代替
+`prefixText` | `string` | プレフィックスのテキストコンテンツが存在するなら、その値を取得もしくは設定する
+`suffixText` | `string` | サフィックスのテキストコンテンツが存在するなら、その値を取得もしくは設定する
 
 上に挙げたものに加えて、以下のプロパティが同名の `input` 要素のプロパティの代替として用意されている。
 

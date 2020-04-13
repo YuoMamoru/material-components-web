@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Google Inc.
+ * Copyright 2020 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,12 @@
  * THE SOFTWARE.
  */
 
-import * as events from './events';
-import * as focusTrap from './focus-trap';
-import * as keyboard from './keyboard';
-import * as ponyfill from './ponyfill';
+import 'jasmine';
 
-export {events, focusTrap, keyboard, ponyfill};
+import * as path from 'path';
+import {expectStylesWithNoFeaturesToBeEmpty} from '../../../testing/featuretargeting';
+
+describe('mdc-select.scss', () => {
+  expectStylesWithNoFeaturesToBeEmpty(
+      path.join(__dirname, 'feature-targeting-any.test.css'));
+});

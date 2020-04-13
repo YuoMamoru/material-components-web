@@ -61,3 +61,11 @@ import * as ponyfill from '@material/dom/ponyfill';
 --- | ---
 `announce(message: string, priority?: AnnouncerPriority) => void` | 与えられた優先度（デフォルトは polite）で `aria-live` リージョンを通じてメッセージを通知する
 <!-- TODO(b/148462294): Remove once only exported members are required in docs `say()` --> <!-- | --> <!-- DO NOT USE -->
+
+## キーボード
+
+`keyboard` ユーティリティはブラウザ間での `KeyboardEvent` キーの標準化のためのヘルパーメソッドを提供します。これは MDC 内部コンポーネントからの使用を目的としています。
+
+メソッド | 説明
+`normalizeKey(evt: KeyboardEvent) => string` | ブラウザ間で標準とできるように `KeyboardEvent` の `keyCode` プロパティから派生した標準化文字列を返す。
+`isNavigationEvent(evt: KeyboardEvent) => boolean` | イベントがナビゲーションイベント（Page Up, Page Down, Home, End, Left, Up, Right, Down）のとき、`true` を返す。
