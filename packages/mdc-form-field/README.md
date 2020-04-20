@@ -76,6 +76,22 @@ formField.input = checkbox;
 </div>
 ```
 
+### 折り返しの制御
+
+ラベルのテキストが1行で表示するには長すぎる場合、デフォルトではテキストは折り返します。`mdc-form-field--nowrap` クラスを追加することにより、強制的に1行で表示させ、はみ出すテキストを省略させることができます。
+
+```html
+<div class="mdc-form-field mdc-form-field--nowrap">
+  <div class="mdc-checkbox">
+    <input type="checkbox" id="my-checkbox" class="mdc-checkbox__native-control"/>
+    <div class="mdc-checkbox__background">
+      ...
+    </div>
+  </div>
+  <label for="my-checkbox">This some really really really long text</label>
+</div>
+```
+
 ## <a name="mdcformfield-properties-and-methods"></a>`MDCFormField` プロパティとメソッド
 
 プロパティ | 値の型 | 説明

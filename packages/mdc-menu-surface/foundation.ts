@@ -171,54 +171,62 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
   open() {
     this.adapter_.saveFocus();
 
-    if (!this.isQuickOpen_) {
-      this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
-    }
-
-    this.animationRequestId_ = requestAnimationFrame(() => {
+    if (this.isQuickOpen_) {
+      this.isOpen_ = true;
       this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
       this.dimensions_ = this.adapter_.getInnerDimensions();
       this.autoPosition_();
-      if (this.isQuickOpen_) {
-        this.adapter_.notifyOpen();
-      } else {
+      this.adapter_.notifyOpen();
+    } else {
+
+      this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
+      this.animationRequestId_ = requestAnimationFrame(() => {
+        this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
+        this.dimensions_ = this.adapter_.getInnerDimensions();
+        this.autoPosition_();
         this.openAnimationEndTimerId_ = setTimeout(() => {
           this.openAnimationEndTimerId_ = 0;
           this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_OPEN);
           this.adapter_.notifyOpen();
         }, numbers.TRANSITION_OPEN_DURATION);
-      }
-    });
+      });
 
-    this.isOpen_ = true;
+      this.isOpen_ = true;
+    }
   }
 
   /**
    * Closes the menu surface.
    */
   close(skipRestoreFocus = false) {
-    if (!this.isQuickOpen_) {
-      this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
-    }
+    if (this.isQuickOpen_) {
+      this.isOpen_ = false;
+      if (!skipRestoreFocus) {
+        this.maybeRestoreFocus_();
+      }
 
-    requestAnimationFrame(() => {
       this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
       this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.IS_OPEN_BELOW);
-      if (this.isQuickOpen_) {
-        this.adapter_.notifyClose();
-      } else {
+      this.adapter_.notifyClose();
+
+    } else {
+      this.adapter_.addClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
+      requestAnimationFrame(() => {
+        this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.OPEN);
+        this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.IS_OPEN_BELOW);
         this.closeAnimationEndTimerId_ = setTimeout(() => {
           this.closeAnimationEndTimerId_ = 0;
           this.adapter_.removeClass(MDCMenuSurfaceFoundation.cssClasses.ANIMATING_CLOSED);
           this.adapter_.notifyClose();
         }, numbers.TRANSITION_CLOSE_DURATION);
-      }
-    });
+      });
 
-    this.isOpen_ = false;
-    if (!skipRestoreFocus) {
-      this.maybeRestoreFocus_();
+      this.isOpen_ = false;
+      if (!skipRestoreFocus) {
+        this.maybeRestoreFocus_();
+      }
     }
+
   }
 
   /** Handle clicks and close if not within menu-surface element. */
@@ -324,12 +332,13 @@ export class MDCMenuSurfaceFoundation extends MDCFoundation<MDCMenuSurfaceAdapte
     let corner = Corner.TOP_LEFT;
 
     const {viewportDistance, anchorSize, surfaceSize} = this.measurements_;
+    const {MARGIN_TO_EDGE} = MDCMenuSurfaceFoundation.numbers;
 
     const isBottomAligned = this.hasBit_(this.anchorCorner_, CornerBit.BOTTOM);
-    const availableTop = isBottomAligned ? viewportDistance.top + anchorSize.height + this.anchorMargin_.bottom
-        : viewportDistance.top + this.anchorMargin_.top;
-    const availableBottom = isBottomAligned ? viewportDistance.bottom - this.anchorMargin_.bottom
-        : viewportDistance.bottom + anchorSize.height - this.anchorMargin_.top;
+    const availableTop = isBottomAligned ? viewportDistance.top - MARGIN_TO_EDGE + anchorSize.height + this.anchorMargin_.bottom
+        : viewportDistance.top - MARGIN_TO_EDGE + this.anchorMargin_.top;
+    const availableBottom = isBottomAligned ? viewportDistance.bottom - MARGIN_TO_EDGE - this.anchorMargin_.bottom
+        : viewportDistance.bottom - MARGIN_TO_EDGE + anchorSize.height - this.anchorMargin_.top;
 
     const topOverflow = surfaceSize.height - availableTop;
     const bottomOverflow = surfaceSize.height - availableBottom;

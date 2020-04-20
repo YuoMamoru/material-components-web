@@ -126,6 +126,21 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
 </button>
 ```
 
+### トグルされる aria label を伴うトグルアイコンボタン
+
+一部のデザインではアイコンボタンの状態に応じて aria label を変更する必要があります。この場合、`data-aria-label-on`（オンの状態の aria label）属性と `aria-data-label-off`（オフの状態の aria label）属性を指定し、`aria-pressed` 属性を省きます。
+
+```html
+<button id="add-to-favorites"
+   class="mdc-icon-button"
+   aria-label="Add to favorites"
+   data-aria-label-on="Remove from favorites"
+   data-aria-label-off="Add to favorites">
+   <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
+   <i class="material-icons mdc-icon-button__icon">favorite_border</i>
+</button>
+```
+
 ## API
 
 ### CSS クラス

@@ -112,6 +112,30 @@ formField.input = checkbox;
 <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label">This is my disabled checkbox</label>
 ```
 
+### 未確定
+
+初期描画、もしくは CSS だけの際には input 要素に `data-indeterminate="true"` が必要であることに注意してください。JavaScript コンポーネントを使用するチェックボックスでは実行時に `indeterminate` プロパティを設定できます。
+
+```html
+<div class="mdc-checkbox">
+  <input type="checkbox"
+         id="basic-indeterminate-checkbox"
+         class="mdc-checkbox__native-control"
+         data-indeterminate="true"/>
+  <div class="mdc-checkbox__background">
+    <svg class="mdc-checkbox__checkmark"
+         viewBox="0 0 24 24">
+      <path class="mdc-checkbox__checkmark-path"
+            fill="none"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+    </svg>
+    <div class="mdc-checkbox__mixedmark"></div>
+  </div>
+  <div class="mdc-checkbox__ripple"></div>
+</div>
+<label for="basic-indeterminate-checkbox" id="basic-indeterminate-checkbox-label">This is my indeterminate checkbox</label>
+```
+
 ## 追加情報
 
 ### アクセシビリティ

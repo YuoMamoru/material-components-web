@@ -55,7 +55,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ### 塗られたテキスト欄の例
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
   <span class="mdc-floating-label" id="my-label-id">Hint text</span>
@@ -93,7 +93,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 幅いっぱいのテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
 
 ```html
-<label class="mdc-text-field mdc-text-field--fullwidth">
+<label class="mdc-text-field mdc-text-field--filled mdc-text-field--fullwidth">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input"
          type="text"
@@ -126,7 +126,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 #### 幅いっぱい
 
 ```html
-<label class="mdc-text-field mdc-text-field--no-label">
+<label class="mdc-text-field mdc-text-field--filled mdc-text-field--no-label">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text" placeholder="Placeholder text" aria-label="Label">
   <span class="mdc-line-ripple"></span>
@@ -162,7 +162,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 テキスト欄を無効にするには、`<input>` 要素に `disabled` 属性を追加し、`mdc-text-field` 要素に `mdc-text-field--disabled` クラスを追加します。
 
 ```html
-<label class="mdc-text-field mdc-text-field--disabled">
+<label class="mdc-text-field mdc-text-field--filled mdc-text-field--disabled">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" disabled>
   <span class="mdc-floating-label" id="my-label-id">Disabled text field</span>
@@ -175,7 +175,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ヘルプテキストは補足の情報や検証のメッセージをユーザーに対して提供します。デフォルトではテキスト欄がフォーカスされたときに表示され、フォーカスを失たときに非表示になりますが、常に表示させておくこともできます。ヘルプテキストは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。ヘルプテキストを使う上でのより詳細な情報は [ここ](helper-text/) を参照してください。
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text"
          aria-labelledby="my-label-id"
@@ -194,7 +194,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 文字数に制限がある場合、文字数カウンターが使われます。これは文字数制限の上限と入力された文字数の比率を表示するものです。文字数カウンターは `.mdc-text-field` の直接の兄弟要素である `.mdc-text-field-helper-line` 要素の中に書く必要があります。文字数カウンターの使用に関するより多くの情報は [ここ](character-counter/) を参照してください。
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" maxlength="10">
   <span class="mdc-floating-label" id="my-label-id">My Label</span>
@@ -230,7 +230,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 通貨記号のプレフィックスや大きさの単位記号のサフィックスのようなプレフィックスやサフィックステキストをテキスト欄の内容に追加することができます。プレフィックス、サフィックス、もしくはその両方をテキスト欄のデフォルト、またはアウトライン変数内に追加できます。
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
   <span class="mdc-text-field__ripple"></span>
   <span class="mdc-text-field__affix mdc-text-field__affix--prefix">$</span>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
@@ -253,7 +253,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 `MDCTextFieldFoundation` は HTML5 フォームバリデーション API の提供する `:invalid` と `:required` 属性を使用した入力の妥当性検証の機能を持っています。
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="password" aria-labelledby="my-label-id" required minlength="8">
   <span class="mdc-floating-label" id="my-label-id">Password</span>
@@ -268,7 +268,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 値をすでに持っている JS を利用するテキスト欄を扱うときには、 `mdc-floating-label--float-above` 修飾クラスを持つ `mdc-floating-label` を付けるとともに、`mdc-text-field--label-floating` 修飾クラスをもつ `mdc-text-field` を記述してください。そうすればラベルはテキスト欄のところから離れ、Flash Of Un-styled Content (**FOUC**) を防ぐことができます。（訳注: [Flash Of Un-styled Content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) はスタイルの設定が完全でない状態でレンダリングされてしまうこと。クラスが正しく設定されていないと値のあるテキスト欄の上にラベルが重なった状態で表示されてしまうので、その状態を避けるために、クラスを設定する必要がある、ということを言っている。）
 
 ```html
-<label class="mdc-text-field mdc-text-field--label-floating">
+<label class="mdc-text-field mdc-text-field--filled mdc-text-field--label-floating">
   <span class="mdc-text-field__ripple"></span>
   <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id" value="Pre-filled value">
   <span class="mdc-floating-label mdc-floating-label--float-above" id="my-label-id">
@@ -309,6 +309,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 CSS クラス | 説明
 --- | ---
 `mdc-text-field` | 必須。
+`mdc-text-field--filled` | テキスト欄を塗られたテキスト欄として表示する。
 `mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
 `mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
@@ -319,6 +320,7 @@ CSS クラス | 説明
 `mdc-text-field--no-label` | ラベルのないテキスト欄として表示する。
 `mdc-text-field--end-aligned` | テキスト欄を後ろ揃え（訳注：RTL でなければ右揃えのこと）で表示する。
 `mdc-text-field--label-floating` | 上に移動したラベルと入力済みもしくはフォーカスされた値を伴うテキスト欄として表示する。
+`mdc-text-field--ltr-text` | 方向が RTL のときにテキスト欄の要素（入力、プレフィックス、サフィックス）を LTR として表示する。分数表記に LTR を使う RTL 言語で役立つ。
 `mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
 
 ### Sass ミキシン
@@ -342,6 +344,7 @@ CSS クラス | 説明
 `disabled-prefix-color($color)` | 無効なテイスト欄のプレフィックステキストの色を設定する。
 `suffix-color($color)` | 有効なテイスト欄のサフィックステキストの色を設定する。
 `disabled-suffix-color($color)` | 無効なテイスト欄のサフィックステキストの色を設定する。
+`floating-label-float-transition($duration-ms, $timing-function)` | ラベルの移動の際のデュレーションとオプションでタイミング関数を設定する。
 
 #### 塗りつぶされたテキスト欄とテキストエリアのためのミキシン
 

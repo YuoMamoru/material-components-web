@@ -9,13 +9,6 @@ path: /catalog/lists/
 
 # Lists
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/list">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/lists.png" width="365" alt="Lists screenshot">
-  </a>
-</div>-->
-
 [Lists](https://material.io/components/lists/) はテキストまたはイメージの連続した垂直方向に並んだ表示項目です。
 
 リストには3つのタイプがあります。

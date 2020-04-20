@@ -9,14 +9,6 @@ path: /catalog/top-app-bar/
 
 # Top app bar
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/top-app-bar">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/top-app-bar.png"
-         width="494" alt="Top App Bar screenshot">
-  </a>
-</div>-->
-
 top app bar は現在の画面に関連するコンテンツと操作を提供します。これはブランディング、画面タイトル、ナビベーションや操作に使用されます。
 
 トップアプリバーには2つのタイプがあります。
@@ -40,10 +32,9 @@ npm install @material/top-app-bar
 ### スタイル
 
 ```scss
-@use "@material/top-app-bar";
 @use "@material/icon-button";
+@use "@material/top-app-bar/mdc-top-app-bar";
 
-@include top-app-bar.core-styles;
 @include icon-button.core-styles;
 ```
 

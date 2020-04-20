@@ -121,6 +121,14 @@ const wideTopLeft: AnchorDimension = {
   left: 20,
   right: 170
 };
+const closeToBottom: AnchorDimension = {
+  height: 20,
+  width: 40,
+  top: 800,
+  bottom: 820,
+  left: 480,
+  right: 520
+};
 
 /**
  * Initializes viewport, anchor and menu surface dimensions. Viewport is
@@ -268,8 +276,6 @@ describe('MDCMenuSurfaceFoundation', () => {
       ({foundation, mockAdapter}) => {
         foundation.setQuickOpen(true);
         foundation.open();
-        jasmine.clock().tick(1);  // Run to frame.
-        jasmine.clock().tick(1);  // Run to frame.
         expect(mockAdapter.notifyOpen).toHaveBeenCalled();
       });
 
@@ -799,6 +805,18 @@ describe('MDCMenuSurfaceFoundation', () => {
       });
 
   testFoundation(
+      '#open from close to bottom of viewport, menu should autoposition to open upwards',
+      ({foundation, mockAdapter}) => {
+        initAnchorLayout(mockAdapter, closeToBottom);
+        foundation.open();
+        jasmine.clock().tick(1);  // Run to frame.
+        expect(mockAdapter.setTransformOrigin)
+            .toHaveBeenCalledWith('left bottom');
+        expect(mockAdapter.setPosition)
+            .toHaveBeenCalledWith({left: 0, bottom: -0});
+      });
+
+  testFoundation(
       '#open adds the open-below class to the menu surface, from small anchor in top of viewport',
       ({foundation, mockAdapter}) => {
         initAnchorLayout(mockAdapter, smallTopLeft);
@@ -877,8 +895,6 @@ describe('MDCMenuSurfaceFoundation', () => {
       ({foundation, mockAdapter}) => {
         foundation.setQuickOpen(true);
         foundation.close();
-        jasmine.clock().tick(1);  // Run to frame.
-        jasmine.clock().tick(1);  // Run to frame.
         expect(mockAdapter.notifyClose).toHaveBeenCalled();
       });
 
@@ -888,7 +904,6 @@ describe('MDCMenuSurfaceFoundation', () => {
         mockAdapter.isFocused.and.returnValue(true);
         foundation.setQuickOpen(true);
         foundation.close();
-        jasmine.clock().tick(1);  // Run to frame.
         expect(mockAdapter.restoreFocus).toHaveBeenCalled();
       });
 
@@ -900,7 +915,6 @@ describe('MDCMenuSurfaceFoundation', () => {
             .and.returnValue(true);
         foundation.setQuickOpen(true);
         foundation.close();
-        jasmine.clock().tick(1);  // Run to frame.
         expect(mockAdapter.restoreFocus).toHaveBeenCalled();
       });
 
@@ -912,7 +926,6 @@ describe('MDCMenuSurfaceFoundation', () => {
             .and.returnValue(false);
         foundation.setQuickOpen(true);
         foundation.close();
-        jasmine.clock().tick(1);  // Run to frame.
         expect(mockAdapter.restoreFocus).not.toHaveBeenCalled();
       });
 

@@ -9,13 +9,6 @@ path: /catalog/elevation/
 
 # Elevation
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/elevation">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/elevation.png" width="247" alt="Elevation screenshot">
-  </a>
-</div>-->
-
 影はオブジェクトの深さや奥行方向の動きを知る重要な視覚的な手がかりを与えます。それらは表面の離れている量を表す唯一の視覚的手がかりなのです。オブジェクトのエレベーションはそれらの影の見た目で決まります。エレベーションの値は「z-space」で表現され、 `0` から `24` までの範囲です。
 
 > **「z-space」に関する注意**: 仕様では、エレベーションは通常 `dp` 値により表現されます。言い換えると、基本となるマテリアルから何「ピクセル」上にあるかということです。コンピュータ上では、通常 3D 座標系で表されます。私たちは `z-space`（もしくは短く単に「z」）というのが好きです。なぜなら、それは 3D 座標系の技術的定義や命名法に沿っているからです。したがって、私たちは「dp」よりそれがセンスがあると感じています。しかし、私たちが「z-space」（または「z」）を参照する際に、仕様にある「dp」と入れ替えて使うことができます。
