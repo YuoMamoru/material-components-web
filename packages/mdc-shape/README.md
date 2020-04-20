@@ -65,7 +65,7 @@ npm install @material/shape
 `mask-radius($radius, $masked-corners)` | 半径の値、もしくは、半径の 2-4 の値のリストを指定し、`$masked-corners` に指定にしたがい、マスクされた 4 つの値のリストを返す。
 `prop-value($radius)` | シェイプ分類 - `large`、`medium` または `small` - の`$radius` の値を返す。もしくは、有効であれば `$radius` 自身を返す。`$radius` は単一の値、もしくは最大 4 津の値のリスト。
 
-### 追加の情報
+### 追加情報
 
 #### 高さが固定されたコンポーネントのためのシェイプ
 
