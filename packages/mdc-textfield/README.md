@@ -110,7 +110,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ### テキストエリア
 
 ```html
-<label class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
+<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
   <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
@@ -118,6 +118,8 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
   </span>
 </label>
 ```
+
+**注意: textarea では `mdc-text-field--outlined` タイプのみが現在サポートされています。**
 
 ### ラベルなしテキスト欄
 
@@ -148,7 +150,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 #### 複数行
 
 ```html
-<label class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label">
+<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
   <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
@@ -228,7 +230,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 あるいは、文字数カウンターを textarea のコンテナな上部に入れることにより、文字数カウンターを textarea の内部に配置することができます。
 
 ```html
-<label class="mdc-text-field mdc-text-field--textarea">
+<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
   <div class="mdc-text-field-character-counter">0 / 140</div>
   <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40" maxlength="140"></textarea>
   <span class="mdc-notched-outline">

@@ -40,13 +40,13 @@ npm install @material/select
 
 > _注意_: `data-value` 属性は各項目に <em>必ず</em> 存在しなくてはなりません。
 
-セレクトでは、`mdc-select__anchor` 要素の `width` を設定するのはもちろん、`mdc-select__menu` 要素の幅を合うように設定する必要があります。これは別のクラス（例えば以下の HTML と CSS の例の `demo-width-class`）を使うのが最適です。
+セレクトでは、`mdc-select` 要素の `width` を設定する必要があります。これは別のクラス（例えば以下の HTML と CSS の例の `demo-width-class`）を使うのが最適です。
 
 ### HTML
 
 ```html
-<div class="mdc-select">
-  <div class="mdc-select__anchor demo-width-class">
+<div class="mdc-select demo-width-class">
+  <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
@@ -54,7 +54,7 @@ npm install @material/select
     <span class="mdc-line-ripple"></span>
   </div>
 
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
@@ -76,6 +76,8 @@ npm install @material/select
   </div>
 </div>
 ```
+
+> _注意_: メニューの幅はデフォルトではセレクトの幅と同じになります。メニューを自然な幅にするにはメニュー表面から `mdc-menu-surface--fullwidth` を削除します。
 
 ### スタイル
 
@@ -173,6 +175,12 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 </div>
 ```
 
+### 幅いっぱいのセレクト
+
+The Select Fullwidth variant takes up the entirety of the width of its parent container. To use this variant, place the
+`mdc-select--fullwidth` modifier class on the root element.
+セレクトの幅いっぱいのタイプは親コンテナの幅全体を占めます。このタイプを使うにはルート要素に `mdc-select--fullwidth` 修飾クラスを付けます。
+
 ### 追加情報
 
 #### 選択済みの選択肢を持つセレクト
@@ -180,8 +188,8 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 事前に選択された値を持つセレクトコンポーネントを表示するには、選択している項目に `mdc-list-item--selected` クラスを使います。セレクトは選択された要素から `mdc-select__selected-text` 要素にテキストをコピーすることも必要です。
 
 ```html
-<div class="mdc-select">
-  <div class="mdc-select__anchor demo-width-class">
+<div class="mdc-select demo-width-class">
+  <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text" value="Vegetables">
     <i class="mdc-select__dropdown-icon"></i>
@@ -312,15 +320,15 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 #### 幅いっぱい
 
 ```html
-<div class="mdc-select mdc-select--no-label">
-  <div class="mdc-select__anchor demo-width-class">
+<div class="mdc-select mdc-select--no-label demo-width-class">
+  <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
     <span class="mdc-line-ripple"></span>
   </div>
 
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
@@ -346,8 +354,8 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 #### アウトラインされたもの
 
 ```html
-<div class="mdc-select mdc-select--outlined mdc-select--no-label">
-  <div class="mdc-select__anchor demo-width-class">
+<div class="mdc-select mdc-select--outlined mdc-select--no-label demo-width-class">
+  <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
@@ -358,7 +366,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   </div>
 
   <!-- セレクトに残っているその他の要素 -->
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">...</div>
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">...</div>
 </div>
 ```
 
@@ -377,6 +385,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 | `mdc-select--activated` | オプション。セレクトのアクティブ状態のスタイル。このクラスはメニューが開かれた際に自動的に追加される。 |
 | `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に `disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
 | `mdc-select--outlined` | オプション。セレクトをアウトラインされたセレクトとしてスタイルを設定する。 |
+| `mdc-select--fullwidth` | オプション。セレクトを幅いっぱいのセレクトとしてスタイルを設定する。 |
 | `mdc-select--with-leading-icon` | セレクトを先頭アイコンのあるセレクトとしてスタイルを設定する。 |
 | `mdc-select--no-label` | セレクトをラベルのないセレクトとしてスタイルを設定する。 |
 > _注意_: セレクト内に含まれる [MDCMenu](./../mdc-menu) や [MDCList](./../mdc-list) コンポーネントをさらにカスタマイズするには、それぞれのドキュメントを参照してください。
