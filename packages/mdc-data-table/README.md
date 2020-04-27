@@ -30,21 +30,13 @@ path: /catalog/data-tables/
 npm install @material/data-table
 ```
 
-データテーブルに進捗状況があるときは、別途リニアプログレスをインストールします。
-
-```
-npm install @material/linear-progress
-```
-
 ### スタイル
 
 ```scss
 @use "@material/checkbox"; // Required only for data table with row selection.
-@use "@material/linear-progress"; // Required only if data table has progress state.
 @use "@material/data-table";
 
 @include checkbox.core-styles;
-@include linear-progress.core-styles;
 @include data-table.core-styles;
 ```
 
@@ -214,127 +206,6 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
 </div>
 ```
 
-### ソートできる列を含むデータテーブル
-
-```html
-<div class="mdc-data-table">
-  <table class="mdc-data-table__table" aria-label="Dessert calories">
-    <thead>
-      <tr>
-        <th
-          class="mdc-data-table__header-cell mdc-data-table__header-cell--with-sort"
-          role="columnheader"
-          scope="col"
-        >
-          <div class="mdc-data-table__header-cell-wrapper">
-            <div class="mdc-data-table__header-cell-label">
-              Dessert
-            </div>
-            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
-          </div>
-        </th>
-        <th
-          class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort mdc-data-table__header-cell--sorted"
-          role="columnheader"
-          scope="col"
-          aria-sort="ascending"
-        >
-          <div class="mdc-data-table__header-cell-wrapper">
-            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
-            <div class="mdc-data-table__header-cell-label">
-              Carbs (g)
-            </div>
-          </div>
-        </th>
-        <th
-          class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort"
-          role="columnheader"
-          scope="col"
-        >
-          <div class="mdc-data-table__header-cell-wrapper">
-            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
-            <div class="mdc-data-table__header-cell-label">
-              Protein (g)
-            </div>
-          </div>
-        </th>
-        <th
-          class="mdc-data-table__header-cell"
-          role="columnheader"
-          scope="col"
-        >
-          Comments
-        </th>
-      </tr>
-    </thead>
-    <tbody class="mdc-data-table__content">
-      <tr class="mdc-data-table__row">
-        <td class="mdc-data-table__cell">Frozen yogurt</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-          24
-        </td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-          4.0
-        </td>
-        <td class="mdc-data-table__cell">Super tasty</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-```
-
-### 進捗状況のあるデータテーブル
-
-```html
-<div class="mdc-data-table mdc-data-table--in-progress">
-  <table class="mdc-data-table__table" aria-label="Dessert calories">
-    <thead>
-      <tr class="mdc-data-table__header-row">
-        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Dessert</th>
-        <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Carbs (g)</th>
-        <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Protein (g)</th>
-        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Comments</th>
-      </tr>
-    </thead>
-    <tbody class="mdc-data-table__content" aria-busy="true">
-      <tr class="mdc-data-table__row">
-        <td class="mdc-data-table__cell">Frozen yogurt</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.0</td>
-        <td class="mdc-data-table__cell">Super tasty</td>
-      </tr>
-      <tr class="mdc-data-table__row">
-        <td class="mdc-data-table__cell">Ice cream sandwich</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.33333333333</td>
-        <td class="mdc-data-table__cell">I like ice cream more</td>
-      </tr>
-      <tr class="mdc-data-table__row">
-        <td class="mdc-data-table__cell">Eclair</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
-        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">6.0</td>
-        <td class="mdc-data-table__cell">New filing flavor</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="mdc-data-table__progress-indicator">
-    <div class="mdc-data-table__scrim"></div>
-    <div class="mdc-linear-progress mdc-linear-progress--indeterminate" role="progressbar" aria-label="Data is being loaded...">
-      <div class="mdc-linear-progress__buffer">
-        <div class="mdc-linear-progress__buffer-bar"></div>
-        <div class="mdc-linear-progress__buffer-dots"></div>
-      </div>
-      <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-        <span class="mdc-linear-progress__bar-inner"></span>
-      </div>
-      <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-        <span class="mdc-linear-progress__bar-inner"></span>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
 ## スタイルのカスタマイズ
 
 ### CSS クラス
@@ -355,9 +226,6 @@ CSS クラス | 説明
 `mdc-data-table__header-row-checkbox` | オプション。テーブルヘッダー行要素に描画されるチェックボックス要素。データテーブルに必須なスタイルに上書きするためにこのクラス名を `mdc-checkbox` 要素に追加する。
 `mdc-data-table__row-checkbox` | オプション。テーブル行要素に描画されるチェックボックス要素。データテーブルに必須なスタイルに上書きするためにこのクラス名を `mdc-checkbox` 要素に追加する。
 `mdc-data-table__row--selected` | オプション。テーブル行が選択されたときに `mdc-data-table__row` に追加する修飾クラス。
-`mdc-data-table--in-progress` | オプション。テーブルが進行中（読込中）のときにルート要素（`mdc-data-table`）に追加する修飾クラス。
-`mdc-data-table__progress-indicator` | オプション。テーブルが進行中（読込中）のときにテーブルコンテンツ（`tbody`）をブロックして表示するプログレスインジケーター。
-`mdc-data-table__scrim` | オプション。テーブルが進行中（読込中）のときにテーブルコンテンツの上でプログレスインジケーターの下に表示する背景。
 
 ### Sass ミキシン
 
@@ -381,8 +249,6 @@ CSS クラス | 説明
 `cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
 `column-widths($width-list)` | テーブル各行の幅を個別に設定する。
 `density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
-`sort-icon-color($color)` | ソートされていないときのソートアイコンボタンの色を設定する（アイコンはヘッダーセルがフォーカスされた際に表示される）。
-`sort-icon-active-color($color)` | ソートが有効になっている（ソートされている）ときのソートアイコンボタンの色を設定する。
 
 ## イベント
 
@@ -443,7 +309,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setAttributeByHeaderCellIndex(columnIndex: number, attribute: string, value: string) => void` | インデックスのヘッダーセルの属性を設定する。
 `setClassNameByHeaderCellIndex(columnIndex: number, className: string) => void` | インデックスのヘッダーセルのクラス名を設定する。
 `removeClassNameByHeaderCellIndex(columnIndex: number, className: string) => void` | インデックスのヘッダーセルクラス名を削除する。
-`notifySortAction(data: SortActionEventDetail) => void` | 列がソートされた際に通知する。
 
 ### `MDCDataTableFoundation`
 
@@ -457,6 +322,3 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `handleHeaderRowCheckboxChange() => void` | ヘッダー行のチェックボックスの変更イベントをハンドリングする。
 `handleRowCheckboxChange(event: Event) => void` | 行チェックボックスから発生した変更イベントをハンドリングする。
 `getHeaderCells() => Elements[]` | ヘッダーセル要素の配列を返す。
-`handleSortAction(eventData: SortActionEventData) => void` | ソート可能なヘッダーセル上のソートアクションをハンドリングする。
-`showProgress() => void` | データテーブルが読込中のときにプログレスインジケーターを表示する。
-`removeProgress() => void` | データテーブルの読み込みが完了したときにブルグレスインジケータを隠す。

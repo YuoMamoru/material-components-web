@@ -47,8 +47,9 @@ npm install @material/select
 ```html
 <div class="mdc-select">
   <div class="mdc-select__anchor demo-width-class">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text"></div>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -112,9 +113,13 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 ```html
 <div class="mdc-select">
-  <div class="mdc-select__anchor">
+  <div class="mdc-select__anchor"
+       role="button"
+       aria-haspopup="listbox"
+       aria-labelledby="demo-label demo-selected-text">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly id="demo-selected-text" class="mdc-select__selected-text" value="Vegetables">
     <i class="mdc-select__dropdown-icon"></i>
-    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text">Vegetables</div>
     <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -150,9 +155,10 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 ```html
 <div class="mdc-select mdc-select--outlined">
-  <div class="mdc-select__anchor">
+  <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly id="demo-selected-text" class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
-    <div id="demo-selected-text" class="mdc-select__selected-text" aria-labelledby="outlined-select-label"></div>
     <span class="mdc-notched-outline">
       <span class="mdc-notched-outline__leading"></span>
       <span class="mdc-notched-outline__notch">
@@ -176,8 +182,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 ```html
 <div class="mdc-select">
   <div class="mdc-select__anchor demo-width-class">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly class="mdc-select__selected-text" value="Vegetables">
     <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text">Vegetables</div>
     <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -215,13 +222,14 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 #### 必須のセレクト
 
-必須で検証が有効なセレクトをスタイルするには、`mdc-select--required` クラスを `mdc-select` 要素に追加し、`mdc-select__selected-text` 要素の `aria-required` 属性を `"true"` にします。
+必須で検証が有効なセレクトをスタイルするには、`mdc-select--required` クラスを `mdc-select` 要素に追加し、`mdc-select__anchor` 要素の `aria-required` 属性を `"true"` にします。
 
 ```html
 <div class="mdc-select mdc-select--required">
-  <div class="mdc-select__anchor">
+  <span class="mdc-select__ripple"></span>
+  <div class="mdc-select__anchor" aria-required="true">
+    <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text" aria-required="true"></div>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -240,9 +248,10 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 ```html
 <div class="mdc-select mdc-select--disabled">
-  <div class="mdc-select__anchor">
+  <div class="mdc-select__anchor" aria-disabled="true">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text" aria-disabled="true"></div>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -305,8 +314,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 ```html
 <div class="mdc-select mdc-select--no-label">
   <div class="mdc-select__anchor demo-width-class">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text"></div>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -338,8 +348,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 ```html
 <div class="mdc-select mdc-select--outlined mdc-select--no-label">
   <div class="mdc-select__anchor demo-width-class">
+    <span class="mdc-select__ripple"></span>
+    <input type="text" disabled readonly class="mdc-select__selected-text">
     <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text"></div>
     <span class="mdc-notched-outline">
       <span class="mdc-notched-outline__leading"></span>
       <span class="mdc-notched-outline__trailing"></span>
@@ -381,13 +392,14 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
 `focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
 `bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
+`hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 `focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
 `shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型セレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 `outline-color($color)` | へこんだ輪郭の色を設定する。
 `outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
 `hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
+`height($height)` | 塗られたタイプのセレクトの高さを設定する。
 
 > _注意_: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 
@@ -437,9 +449,9 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `setRippleCenter(normalizedX: number) => void` | ラインリップルの中心を与えた normalizedX の値に設定する。 |
 | `notifyChange(value: string) => void` | 要素が選択された際に `MDCSelect:change` イベントを発生させる。 |
 | `setSelectedText(text: string) => void` | selectedText 要素のテキストコンテンツを与えられた文字列に設定する。 |
-| `isSelectedTextFocused() => boolean` | 選択されたテキスト要素がフォーカスされているかどうかを返す。 |
-| `getSelectedTextAttr(attr: string) => string` | 選択されたテキスト要素の与えられた属性を取得する。 |
-| `setSelectedTextAttr(attr: string, value: string) => void` | 選択されたテキスト要素の与えられた属性を設定する。 |
+| `isSelectAnchorFocused() => boolean` | 選択されたアンカー要素がフォーカスされているかどうかを返す。 |
+| `getSelectAnchorAttr(attr: string) => string` | 選択されたアンカー要素の与えられた属性を取得する。 |
+| `setSelectAnchorAttr(attr: string, value: string) => void` | 選択されたアンカー要素の与えられた属性を設定する。 |
 | `openMenu() => void` | セレクトのメニュー要素を開く。 |
 | `closeMenu() => void` | セレクトのメニュー要素を閉じる。 |
 | `getAnchorElement() => Element` | セレクトのアンカー要素を返す。 |

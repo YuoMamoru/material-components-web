@@ -92,7 +92,7 @@ dialog.listen('MDCDialog:closing', function() {
 
 警告ダイアログは緊急の情報、詳細、または操作により、ユーザーを中断させます。
 
-<img src="images/alert-dialog.png" alt="Alert dialog: discard" width=250px>
+<img src="images/alert-dialog.png" alt="Alert dialog: discard" width="250px">
 
 ### 警告ダイアログの例
 
@@ -129,7 +129,7 @@ dialog.listen('MDCDialog:closing', function() {
 
 シンプルダイアログは中断を招くので、使用は控えるべきです。代わりとして、ドロップダウンメニューはモーダルではなく、中断の少ない方法で選択肢を適用できます。
 
-<img src="images/simple-dialog.png" alt="Simple dialog: selection" width=250px>
+<img src="images/simple-dialog.png" alt="Simple dialog: selection" width="250px">
 
 ### シンプルダイアログの例
 
@@ -170,7 +170,7 @@ dialog.listen('MDCDialog:closing', function() {
 
 ユーザーが選択を確認すると、それが実行されます。そうでないとき、ユーザーはダイアログを閉じることができます。例えば、ユーザーは複数の着信音を聞くことができますが、「OK」をタックした時にのみ、最終的な選択がなされます。
 
-<img src="images/confirmation-dialog.png" alt="Confirmation dialog: selection confirmation" width=250px>
+<img src="images/confirmation-dialog.png" alt="Confirmation dialog: selection confirmation" width="250px">
 
 ### 確認ダイアログの例
 
@@ -233,7 +233,7 @@ dialog.listen('MDCDialog:closing', function() {
 
 MDC Web はまだ全画面ダイアログをサポートしていません。
 
-<img src="images/full-screen-dialog.png" alt="Full-screen dialog: event" width=250px>
+<img src="images/full-screen-dialog.png" alt="Full-screen dialog: event" width="250px">
 
 ## 追加情報
 

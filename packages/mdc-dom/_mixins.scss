@@ -1,5 +1,4 @@
-//
-// Copyright 2018 Google Inc.
+// Copyright 2020 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -18,12 +17,28 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-//
+
+@use "@material/feature-targeting/functions" as feature-targeting-functions;
+@use "@material/feature-targeting/mixins" as feature-targeting-mixins;
 
 ///
-/// Y-axis position of label when it is afloat.
-/// 100% of the length of label and additional 6% for scaledown.
+/// Emits necessary layout styles to set a transparent border around an element
+/// without interfering with the rest of its component layout. The border is
+/// only visible in high-contrast mode. The target element should be a child of
+/// a relatively positioned top-level element (i.e. a ::before pseudo-element).
 ///
-$position-y: 106% !default;
-$transition-duration: 150ms !default;
-$float-scale: .75 !default;
+@mixin transparent-border($query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include feature-targeting-mixins.targets($feat-structure) {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    content: "";
+  }
+}

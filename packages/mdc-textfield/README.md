@@ -207,7 +207,25 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### 文字数カウンター付き複数行テキスト欄 (textarea)
 
-複数行テキスト欄 (textarea) での文字数カウンターでは、テキスト欄のコンポーネント内にカウンターを表示するため、レイアウト構造が少々異なります。
+文字数カウンターはヘルパー行に含めることにより、textarea に付属させることができます。この場合、カウンターは textarea の下、ヘルパーテキストに隣接して表示されます。
+
+```html
+<label class="mdc-text-field mdc-text-field--textarea">
+  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8"
+    cols="40" maxlength="140"></textarea>
+  <span class="mdc-notched-outline">
+    <span class="mdc-notched-outline__leading"></span>
+    <span class="mdc-notched-outline__notch">
+      <span class="mdc-floating-label" id="my-label-id">Textarea Label</span>
+    </span>
+    <span class="mdc-notched-outline__trailing"></span>
+  </span>
+</label>
+<div class="mdc-text-field-helper-line">
+  <div class="mdc-text-field-character-counter">0 / 140</div>
+</div>
+```
+あるいは、文字数カウンターを textarea のコンテナな上部に入れることにより、文字数カウンターを textarea の内部に配置することができます。
 
 ```html
 <label class="mdc-text-field mdc-text-field--textarea">

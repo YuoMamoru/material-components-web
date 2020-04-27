@@ -67,5 +67,15 @@ import * as ponyfill from '@material/dom/ponyfill';
 `keyboard` ユーティリティはブラウザ間での `KeyboardEvent` キーの標準化のためのヘルパーメソッドを提供します。これは MDC 内部コンポーネントからの使用を目的としています。
 
 メソッド | 説明
+--- | ---
 `normalizeKey(evt: KeyboardEvent) => string` | ブラウザ間で標準とできるように `KeyboardEvent` の `keyCode` プロパティから派生した標準化文字列を返す。
 `isNavigationEvent(evt: KeyboardEvent) => boolean` | イベントがナビゲーションイベント（Page Up, Page Down, Home, End, Left, Up, Right, Down）のとき、`true` を返す。
+
+## ミキシン
+
+ハイコントラストモードのユーザ向けに DOM 要素の UX を改善する助けとなる一つのミキシンをこのモジュールは提供しています。
+
+
+ミキシン | 説明
+--- | ---
+`transparent-border` | その他のコンポーネントのレイアウトを妨げることなく、要素の周りに透明な境界線を設定するために必要なレイアウトスタイルを生成する。境界線はハイコントラストモードでのみ表示される。対象の要素は相対的に配置されたトップ要素（すなわち、::before 疑似要素）の子要素である必要がある。
