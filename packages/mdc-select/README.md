@@ -49,7 +49,10 @@ npm install @material/select
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -121,7 +124,10 @@ JavaScript をインポートする方法についてのさらなる情報は [J
        aria-labelledby="demo-label demo-selected-text">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly id="demo-selected-text" class="mdc-select__selected-text" value="Vegetables">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -160,7 +166,10 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly id="demo-selected-text" class="mdc-select__selected-text">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-notched-outline">
       <span class="mdc-notched-outline__leading"></span>
       <span class="mdc-notched-outline__notch">
@@ -192,7 +201,10 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text" value="Vegetables">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -237,7 +249,10 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
   <span class="mdc-select__ripple"></span>
   <div class="mdc-select__anchor" aria-required="true">
     <input type="text" disabled readonly class="mdc-select__selected-text">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -259,7 +274,10 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
   <div class="mdc-select__anchor" aria-disabled="true">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -324,7 +342,10 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -358,7 +379,10 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <input type="text" disabled readonly class="mdc-select__selected-text">
-    <i class="mdc-select__dropdown-icon"></i>
+    <span class="mdc-select__dropdown-icon">
+      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
+      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+    </span>
     <span class="mdc-notched-outline">
       <span class="mdc-notched-outline__leading"></span>
       <span class="mdc-notched-outline__trailing"></span>
@@ -427,6 +451,11 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替。
 `helperTextContent` | `string` (書込専用)| 設定時のファンデーションの `setHelperTextContent` メソッドの代替。
 `ripple` | `MDCRipple` | アウトラインされたセレクトにアタッチされた Ripple インスタンス。アウトラインされたセレクトでなければ `null`。
+
+メソッド | 説明
+--- | ---
+`layout() => void` | へこんだアウトラインがへこんでいるかどうかとラベルが上に動いているかどうかを再計算する。ファンデーションの `layout()` メソッドの代替。
+`layoutOptions() => void` | ファンデーションの状態と選択肢のリストを同期する。ファンデーションの `layoutOptions()` メソッドの代替。メニューの選択項目が動的に更新されるときは常に呼び出される。
 
 ### イベント
 
@@ -501,7 +530,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `setRequired(isRequired: boolean) => void` | アダプターを介して必須状態を設定する。 |
 | `getRequired() => boolean` | アダプターを介して必須状態を取得する。 |
 | `init() => void` | ファンデーションを初期化する。 |
-| `layout() => void` | へこんだアウトラインがへこんでいるかどうかの決定をハンドリングする。 |
+| `layout() => void` | へこんだアウトラインがへこんでいるかどうかとラベルが上に動いているかどうかを再計算する。 |
+| `layoutOptions() => void` | ファンデーションの状態と選択肢のリストを同期する。メニューの選択項目が動的に更新されるときは常に呼び出される。 |
 | `setLeadingIconAriaLabel(label: string) => void` | 先頭アイコンの aria ラベルを設定する。 |
 | `setLeadingIconContent(content: string) => void` | 先頭アイコンのテキストコンテンツを設定する。 |
 | `setHelperTextContent(content: string) => void` | ヘルパーテキストのコンテンツを設定する。 |

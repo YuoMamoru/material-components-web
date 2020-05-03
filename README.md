@@ -3,9 +3,9 @@
 
 # Material Components for the web
 
-Material Components for the web (MDC Web) は開発者が [マテリアルデザイン](https://www.material.io) を実践する際の手助けになります。エンジニアのコアチームと Google の UX デザイナーによって開発され、このコンポーネントは美しくかつ機能的な Web プロジェクトを構築するための確かな開発ワークフローを可能にします。
+Material Components for the web は開発者が [マテリアルデザイン](https://www.material.io) を実践する際の手助けになります。エンジニアのコアチームと Google の UX デザイナーによって開発され、このコンポーネントは美しくかつ機能的な Web プロジェクトを構築するための確かな開発ワークフローを可能にします。
 
-MDC Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
+Material Web は単純な静的ウェブサイト、JavaScript を多用したアプリケーションやクライアント・サーバーのハイブリッドなレンダリングシステムまで、利用状況の広範にあたってシームレスに連携できるよう努めています。端的に言うと、あなたが他のフレームワークに既に多くの投資しているかどうかにかかわらず、あなたのサイトに Material Components を組み込むことは手間なくイディオム風にでき、容易です。
 
 Material Components for the web は [Material Design Lite](https://getmdl.io/) の後継です。[マテリアルデザインガイドライン](https://material.io/design) を実装することに加えて、より柔軟なテーマのカスタマイズ、これは色彩だけでなくタイポグラフィや形状、状態などまでも提供しています。様々な [主要 Web フレームワーク](docs/framework-wrappers.md) に適応できるように [設計](docs/code/architecture.md) もされています。 
 
@@ -15,8 +15,8 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 
 - [入門ガイド](docs/getting-started.md)
 - [デモ](https://material-components.github.io/material-components-web-catalog)
-- [ほかのフレームワーク上での MDC Web](docs/framework-wrappers.md)
-- [MDC Web の利用例](docs/examples.md)
+- [ほかのフレームワーク上での Material](docs/framework-wrappers.md)
+- [Material Web の利用例](docs/examples.md)
 - [Contributing](CONTRIBUTING.md)
 - [マテリアルデザインガイドライン](https://material.io/design) (external site)
 - [ブラウザポート](docs/supported-browsers.md)
@@ -29,7 +29,7 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 ### CDN を通じての利用
 
 ```html
-<!-- Required styles for MDC Web -->
+<!-- Required styles for Material Web -->
 <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 
 <!-- Render textfield component -->
@@ -39,7 +39,7 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
   <div class="mdc-line-ripple"></div>
 </label>
 
-<!-- Required MDC Web JavaScript library -->
+<!-- Required Material Web JavaScript library -->
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <!-- Instantiate single textfield component rendered in the document -->
 <script>
@@ -61,7 +61,7 @@ npm install @material/textfield
 
 #### HTML
 
-text field コンポーネントの使用例です。さらなるオプションに関しては [MDC Textfield](packages/mdc-textfield) コンポーネントのページを参照してください。
+text field コンポーネントの使用例です。さらなるオプションに関しては [Textfield](packages/mdc-textfield) コンポーネントのページを参照してください。
 
 ```html
 <label class="mdc-text-field">
