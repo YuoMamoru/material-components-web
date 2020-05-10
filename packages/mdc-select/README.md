@@ -48,10 +48,25 @@ npm install @material/select
 <div class="mdc-select demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly class="mdc-select__selected-text">
+    <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
@@ -123,10 +138,25 @@ JavaScript をインポートする方法についてのさらなる情報は [J
        aria-haspopup="listbox"
        aria-labelledby="demo-label demo-selected-text">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly id="demo-selected-text" class="mdc-select__selected-text" value="Vegetables">
+    <span id="demo-selected-text" class="mdc-select__selected-text">Vegetables</span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
@@ -165,10 +195,25 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 <div class="mdc-select mdc-select--outlined">
   <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly id="demo-selected-text" class="mdc-select__selected-text">
+    <span id="demo-selected-text" class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-notched-outline">
       <span class="mdc-notched-outline__leading"></span>
@@ -200,10 +245,25 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 <div class="mdc-select demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly class="mdc-select__selected-text" value="Vegetables">
+    <span class="mdc-select__selected-text">Vegetables</span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
@@ -248,10 +308,25 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 <div class="mdc-select mdc-select--required">
   <span class="mdc-select__ripple"></span>
   <div class="mdc-select__anchor" aria-required="true">
-    <input type="text" disabled readonly class="mdc-select__selected-text">
+    <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
@@ -273,10 +348,25 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 <div class="mdc-select mdc-select--disabled">
   <div class="mdc-select__anchor" aria-disabled="true">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly class="mdc-select__selected-text">
+    <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
@@ -341,10 +431,25 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 <div class="mdc-select mdc-select--no-label demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly class="mdc-select__selected-text">
+    <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-line-ripple"></span>
   </div>
@@ -378,10 +483,25 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 <div class="mdc-select mdc-select--outlined mdc-select--no-label demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
-    <input type="text" disabled readonly class="mdc-select__selected-text">
+    <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
-      <i class="material-icons mdc-select__dropdown-icon-inactive">arrow_drop_down</i>
-      <i class="material-icons mdc-select__dropdown-icon-active">arrow_drop_up</i>
+      <svg
+          width="10px"
+          height="5px"
+          viewBox="7 10 10 5">
+        <polygon
+            class="mdc-select__dropdown-icon-inactive"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 10 12 15 17 10">
+        </polygon>
+        <polygon
+            class="mdc-select__dropdown-icon-active"
+            stroke="none"
+            fill-rule="evenodd"
+            points="7 15 12 10 17 15">
+        </polygon>
+      </svg>
     </span>
     <span class="mdc-notched-outline">
       <span class="mdc-notched-outline__leading"></span>
@@ -422,17 +542,25 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 --- | ---
 `ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
 `container-fill-color($color)` | セレクトの背景色を設定する。
+`disabled-container-fill-color($color)` | 無効なときのセレクトの背景色を設定する。
+`dropdown-icon-color($color)` | セレクトのドロップダウンアイコンの色を設定する。
+`focused-dropdown-icon-color($color)` | フォーカス時のセレクトのドロップダウンアイコンの色を設定する。
+`disabled-dropdown-icon-color($color)` | 無効なときのセレクトのドロップダウンアイコンの色を設定する。
 `label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
 `focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
+`disabled-label-color($color)` | 無効なときのセレクトのラベルの色を設定する。
 `bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 `focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
+`disabled-bottom-line-color($color)` | セレクトが無効なときのセレクトの下線の色を設定する。
 `shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型セレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `outline-color($color)` | へこんだ輪郭の色を設定する。
-`outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
 `hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
+`disabled-outline-color($color)` | セレクトが無効なときのへこんだ輪郭の色を設定する。
+`outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `height($height)` | 塗られたタイプのセレクトの高さを設定する。
+`min-width($min-width)` | セレクトとそのメニューの最小幅を設定する。
 
 > _注意_: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 

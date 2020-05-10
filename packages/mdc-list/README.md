@@ -399,7 +399,6 @@ list.singleSelection = true;
 CSS クラス | 説明
 --- | ---
 `mdc-list` | リスト要素で必須。
-`mdc-list--non-interactive` | オプション。対話型アフォーダンスを無効にする。
 `mdc-list--dense` | オプション。リストを密集型にスタイルし、よりコンパクトにする。
 `mdc-list--avatar-list` | オプション。各行にアイコンの代わりの画像を表示するための先頭タイルを設定する。リスト項目の画像をより大きくする。
 `mdc-list--two-line` | オプション。2行（主たる行と副次的な行）を伴うリストにスタイルを変更する。
@@ -436,8 +435,9 @@ CSS クラス | 説明
 `single-line-shape-radius($radius, $rtl-reflexive, $density-scale)` | リスト項目の角の丸みを与えられた繁栄の大きさに設定する。RTL コンテンツ内で半径を反転させるには `$rtl-reflexive` が true に設定する。デフォルトは false。`$density-scale` はカスタム密度が適用されたときのみ設定し、デフォルトは `$mdc-list-single-line-density-scale`。
 `divider-color($color)` | 区切線のインク色を設定する。
 `group-subheader-ink-color($color)` | リストグループ内のサブヘッダーのインク色を設定する。
-`item-disabled-text-color($color`) | リスト項目が無効なときのテキストの色を設定する。
-`item-disabled-text-opacity($opacity`) | リスト項目が無効なときのテキストの不透明度を設定する。
+`item-selected-text-color($color)` | リスト項目が選択されている/アクティブになっているときのテキストの色を設定する。
+`item-disabled-text-color($color)` | リスト項目が無効なときのテキストの色を設定する。
+`item-disabled-text-opacity($opacity)` | リスト項目が無効なときのテキストの不透明度を設定する。
 `single-line-density($density-scale)` | 1行型リストの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `single-line-height($height)` | 1行型リストの高さを設定する。
 

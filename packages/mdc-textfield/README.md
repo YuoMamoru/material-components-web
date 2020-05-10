@@ -227,12 +227,12 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
   <div class="mdc-text-field-character-counter">0 / 140</div>
 </div>
 ```
-あるいは、文字数カウンターを textarea のコンテナな上部に入れることにより、文字数カウンターを textarea の内部に配置することができます。
+あるいは、文字数カウンターを textarea の下入れ、`mdc-text-field--with-internal-counter` 修飾クラスをテキスト欄に負荷することにより、文字数カウンターを textarea の内部に配置することができます。
 
 ```html
-<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
-  <div class="mdc-text-field-character-counter">0 / 140</div>
+<label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--with-internal-counter">
   <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40" maxlength="140"></textarea>
+  <span class="mdc-text-field-character-counter">0 / 140</span>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
     <span class="mdc-notched-outline__notch">
@@ -341,6 +341,7 @@ CSS クラス | 説明
 `mdc-text-field--end-aligned` | テキスト欄を後ろ揃え（訳注：RTL でなければ右揃えのこと）で表示する。
 `mdc-text-field--label-floating` | 上に移動したラベルと入力済みもしくはフォーカスされた値を伴うテキスト欄として表示する。
 `mdc-text-field--ltr-text` | 方向が RTL のときにテキスト欄の要素（入力、プレフィックス、サフィックス）を LTR として表示する。分数表記に LTR を使う RTL 言語で役立つ。
+`mdc-text-field--with-internal-counter` | 文字数カウンターを伴うテキストエリアとしてテキストエリアを表示する。
 `mdc-text-field-helper-line` | ヘルプテキストと文字数カウンタ要素のコンテナのスタイル。
 
 ### Sass ミキシン

@@ -71,6 +71,7 @@
   @include group-subheader-ink-color(text-primary-on-background, $query);
   @include item-disabled-text-opacity(variables.$text-disabled-opacity, $query);
   @include item-disabled-text-color(variables.$text-disabled-color, $query);
+  @include item-selected-text-color(variables.$text-selected-color, $query);
 
   .mdc-list--dense {
     @include feature-targeting-mixins.targets($feat-structure) {
@@ -84,14 +85,6 @@
     @include feature-targeting-mixins.targets($feat-structure) {
       @include item-base_;
     }
-  }
-
-  // "Selected" is ephemeral and likely to change soon. E.g., selecting one or more photos to share in Google Photos.
-  // "Activated" is more permanent. E.g., the currently highlighted navigation destination in a drawer.
-  .mdc-list-item--selected,
-  .mdc-list-item--activated {
-    @include item-primary-text-ink-color(primary, $query);
-    @include item-graphic-ink-color(primary, $query);
   }
 
   .mdc-list-item__graphic {
@@ -229,8 +222,8 @@
     }
   }
 
-  // Only change mouse cursor for interactive list items which are not disabled.
-  :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item {
+  // Only change mouse cursor for list items which are not disabled.
+  :not(.mdc-list-item--disabled).mdc-list-item {
     @include feature-targeting-mixins.targets($feat-structure) {
       cursor: pointer;
     }
@@ -309,18 +302,28 @@
   @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   // List items should support states by default, but it should be possible to opt out.
-  // Direct child combinator is necessary for non-interactive modifier on parent to not
-  // match this selector.
-  :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item {
+  :not(.mdc-list-item--disabled).mdc-list-item {
     @include item-interactive-ripple_($query);
   }
 
   // Set styles only for focus state on disabled list item.
-  :not(.mdc-list--non-interactive) > .mdc-list-item--disabled {
+  .mdc-list-item--disabled {
     @include ripple-mixins.surface($query: $query);
     @include ripple-mixins.radius-bounded($query: $query);
     @include ripple-mixins.states-base-color(theme-variables.prop-value(on-surface), $query: $query);
     @include ripple-mixins.states-focus-opacity(ripple-functions.states-opacity(primary, focus), $query: $query);
+  }
+}
+
+/// Sets the text color of the list item in selected or activated state.
+/// @param {color} $color - The desired text color.
+@mixin item-selected-text-color($color, $query: feature-targeting-functions.all()) {
+  // "Selected" is ephemeral and likely to change soon. E.g., selecting one or more photos to share in Google Photos.
+  // "Activated" is more permanent. E.g., the currently highlighted navigation destination in a drawer.
+  .mdc-list-item--selected,
+  .mdc-list-item--activated {
+    @include item-primary-text-ink-color($color, $query: $query);
+    @include item-graphic-ink-color($color, $query: $query);
   }
 }
 

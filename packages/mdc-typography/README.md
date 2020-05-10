@@ -122,6 +122,7 @@ Mixin | Description
 `smooth-font` | タイポグラフィにアンチエイリアスを追加する。
 `overflow-ellipsis` | 省略記号を付けてはみ出しているテキストを1行に切り詰める。
 `baseline($top, $bottom, $display)` | テキストコンテンツを整列させるベースラインを設定する。
+`zero-width-prefix` | コンテナのテキストに非表示、ゼロ幅のプレフィックスを追加する。デフォルトではテキストが空のときにコンテナの下に配置される代わりに、これによりベースラインがテキストの場所に常に来ることが保証されます。`baseline` ミキシンが既に適用されている場合は個のミキシンを使わないこと。
 `text-baseline($top, $bottom, $display)` | フローテキストコンテンツのベースラインを設定する。
 
 > **`overflow-ellipsis` に関する注釈**: `overflow-ellipsis` は要素が `display: block` であるか `display: inline-block` であるときにしか使ってはいけません。
