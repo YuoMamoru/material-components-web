@@ -111,7 +111,9 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
-  <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  <span class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  </span>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
     <span class="mdc-notched-outline__trailing"></span>
@@ -120,6 +122,8 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ```
 
 **注意: textarea では `mdc-text-field--outlined` タイプのみが現在サポートされています。**
+
+**注意: `mdc-text-field__resizer` 要素はサイズ変更のできないテキストエリアでは省略できます。**
 
 ### ラベルなしテキスト欄
 
@@ -151,7 +155,9 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
-  <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  <span class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  </span>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
     <span class="mdc-notched-outline__trailing"></span>
@@ -213,8 +219,10 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--textarea">
-  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8"
-    cols="40" maxlength="140"></textarea>
+  <span class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" 
+      cols="40" maxlength="140"></textarea>
+  </span>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
     <span class="mdc-notched-outline__notch">
@@ -231,8 +239,10 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ```html
 <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--with-internal-counter">
-  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40" maxlength="140"></textarea>
-  <span class="mdc-text-field-character-counter">0 / 140</span>
+  <span class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" aria-labelledby="my-label-id" rows="8" cols="40" maxlength="140"></textarea>
+    <span class="mdc-text-field-character-counter">0 / 140</span>
+  </span>
   <span class="mdc-notched-outline">
     <span class="mdc-notched-outline__leading"></span>
     <span class="mdc-notched-outline__notch">
@@ -410,6 +420,8 @@ Mixin | Description
 ミキシン | 説明
 --- | ---
 `textarea-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にテキストエリアを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`outlined-textarea-density($density-scale)` | アウトラインされたテキスト欄の密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。
+`textarea-min-rows($rows)` | テキストエリアのサイズを変更する際の最小の行数を設定する。
 
 ## `MDCTextField` プロパティとメソッド
 

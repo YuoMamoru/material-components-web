@@ -194,7 +194,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 ```html
 <div class="mdc-select mdc-select--outlined">
   <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
-    <span class="mdc-select__ripple"></span>
     <span id="demo-selected-text" class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -482,7 +481,6 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 ```html
 <div class="mdc-select mdc-select--outlined mdc-select--no-label demo-width-class">
   <div class="mdc-select__anchor">
-    <span class="mdc-select__ripple"></span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -544,10 +542,14 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `container-fill-color($color)` | セレクトの背景色を設定する。
 `disabled-container-fill-color($color)` | 無効なときのセレクトの背景色を設定する。
 `dropdown-icon-color($color)` | セレクトのドロップダウンアイコンの色を設定する。
+`hover-dropdown-icon-color($color)` | ホバー時のセレクトのドロップダウンアイコンの色を設定する。
 `focused-dropdown-icon-color($color)` | フォーカス時のセレクトのドロップダウンアイコンの色を設定する。
 `disabled-dropdown-icon-color($color)` | 無効なときのセレクトのドロップダウンアイコンの色を設定する。
 `label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
+`hover-label-color($color)` | ホバー時のセレクトのラベルの色を設定する。
 `focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
+`label-floating-color($color)` | ラベルが浮いているが、セレクトにフォーカスの必要がないときのセレクトのラベルの色を設定する。
+`hover-label-floating-color($color)` | ホバー時でラベルが浮いているときのセレクトの色を設定する。
 `disabled-label-color($color)` | 無効なときのセレクトのラベルの色を設定する。
 `bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
 `hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
@@ -559,8 +561,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
 `disabled-outline-color($color)` | セレクトが無効なときのへこんだ輪郭の色を設定する。
 `outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`density($density-scale)` | デフォルトタイプのセレクト（アウトラインされていないもの）の密度スケールを設定する。
+`outlined-density($density-scale)` | アウトラインされたセレクト（先頭アイコンのあるアウトラインされたセレクトを除く）の密度スケールを設定する。
+`outlined-with-leading-icon-density($density-scale)` | 先頭アイコンのあるアウトラインされたセレクトの密度スケールを設定する。
 `height($height)` | 塗られたタイプのセレクトの高さを設定する。
-`min-width($min-width)` | セレクトとそのメニューの最小幅を設定する。
+`outlined-height($height)` | アウトラインされたセレクト（先頭アイコンのあるアウトラインされたセレクトを除く）の高さを設定する。
+`outlined-with-leading-icon-height($height)` | 先頭アイコンのあるアウトラインされたセレクトの高さを設定する。
+`min-width($min-width)` | セレクトの最小幅を設定する。
 
 > _注意_: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 

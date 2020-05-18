@@ -318,6 +318,7 @@ CSS クラス | 説明
 `scrim-color($color, $opacity)` | ダイアログ背景のスクリムの色を設定する。
 `title-ink-color($color, $opacity)` | ダイアログのタイトルテキストの色を設定する。
 `content-ink-color($color, $opacity)` | ダイアログのコンテンツテキストの色を設定する。
+`content-padding($padding-top, $padding-right, $padding-bottom, $padding-left)` | ダイアログのコンテンツのパディングを設定する。
 `scroll-divider-color($color, $opacity)` | スクロールするコンテンツの周囲に表示される境界の色を設定する。
 `shape-radius($radius, $rtl-reflexive)` | ダイアログ面の角を与えられた半径の大きさに丸める。RTL コンテンツにおいて半径の値を反転するには `$rtl-reflexive` を true に設定する。デフォルトは false。
 `min-width($min-width)` | ダイアログの最小幅を設定する（デフォルトは 280px）。
