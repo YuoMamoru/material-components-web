@@ -220,6 +220,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `items` | Array<Element> | 全 `.mdc-list-item` 要素の問い合わせ用のリストの代替。
 `quickOpen` | Boolean | メニュー表面の `quickOpen` プロパティの代替。
 `wrapFocus` | Boolean | リストの `wrapFocus` プロパティの代替。
+`hasTypeahead` | Boolean | リストの `hasTypeahead` プロパティの代替。
 
 メソッド | 説明
 --- | ---
@@ -234,6 +235,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `getDefaultFoundation() => MDCMenuFoundation` | ファンデーションを返す。
 `setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
 `setEnabled(index: number, isEnabled: boolean) => void` | 与えられた `index` のメニュー項目の無効かどうかの状態を `isEnabled` に設定する。
+`layout() => void` | リストの `layout` メソッドの代替。
 
 > プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
 

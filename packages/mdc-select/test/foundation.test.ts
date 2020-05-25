@@ -67,7 +67,6 @@ describe('MDCSelectFoundation', () => {
       'setMenuAnchorCorner',
       'setMenuWrapFocus',
       'setAttributeAtIndex',
-      'removeAttributeAtIndex',
       'focusMenuItemAtIndex',
       'getMenuItemCount',
       'getMenuItemValues',
@@ -704,8 +703,8 @@ describe('MDCSelectFoundation', () => {
     foundation.setSelectedIndex(0);
     expect(mockAdapter.removeClassAtIndex)
         .toHaveBeenCalledWith(1, cssClasses.SELECTED_ITEM_CLASS);
-    expect(mockAdapter.removeAttributeAtIndex)
-        .toHaveBeenCalledWith(1, strings.ARIA_SELECTED_ATTR);
+    expect(mockAdapter.setAttributeAtIndex)
+        .toHaveBeenCalledWith(1, strings.ARIA_SELECTED_ATTR, 'false');
     expect(mockAdapter.addClassAtIndex)
         .toHaveBeenCalledWith(0, cssClasses.SELECTED_ITEM_CLASS);
     expect(mockAdapter.setAttributeAtIndex)
@@ -714,8 +713,8 @@ describe('MDCSelectFoundation', () => {
     foundation.setSelectedIndex(-1);
     expect(mockAdapter.removeClassAtIndex)
         .toHaveBeenCalledWith(0, cssClasses.SELECTED_ITEM_CLASS);
-    expect(mockAdapter.removeAttributeAtIndex)
-        .toHaveBeenCalledWith(0, strings.ARIA_SELECTED_ATTR);
+    expect(mockAdapter.setAttributeAtIndex)
+        .toHaveBeenCalledWith(0, strings.ARIA_SELECTED_ATTR, 'false');
 
     expect(mockAdapter.notifyChange).toHaveBeenCalledTimes(3);
   });
@@ -748,16 +747,19 @@ describe('MDCSelectFoundation', () => {
     expect(mockAdapter.addClass).toHaveBeenCalledWith(cssClasses.INVALID);
   });
 
-  it('#isValid returns false if no index is selected', () => {
-    const {foundation, mockAdapter} = setupTest();
-    mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
-    mockAdapter.hasClass.withArgs(cssClasses.DISABLED).and.returnValue(false);
-    (foundation as any).selectedIndex = -1;
+  it('#isValid returns false if using default validity check and no index is selected',
+     () => {
+       const {foundation, mockAdapter} = setupTest();
+       mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
+       mockAdapter.hasClass.withArgs(cssClasses.DISABLED)
+           .and.returnValue(false);
+       (foundation as any).selectedIndex = -1;
 
-    expect(foundation.isValid()).toBe(false);
-  });
+       expect(foundation.isValid()).toBe(false);
+     });
 
-  it('#isValid returns false if first index is selected and has an empty value',
+  it('#isValid returns false if using default validity check and first index ' +
+         'with empty value is selected',
      () => {
        const {foundation, mockAdapter} = setupTest();
        mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
@@ -771,16 +773,63 @@ describe('MDCSelectFoundation', () => {
        expect(foundation.isValid()).toBe(false);
      });
 
-  it('#isValid returns true if index is selected and has value', () => {
-    const {foundation, mockAdapter} = setupTest();
-    mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
-    mockAdapter.hasClass.withArgs(cssClasses.DISABLED).and.returnValue(false);
-    mockAdapter.getMenuItemAttr.withArgs(jasmine.anything(), strings.VALUE_ATTR)
-        .and.returnValue('foo');
-    (foundation as any).selectedIndex = 0;
+  it('#isValid returns true if using default validity check and an index is selected that has value',
+     () => {
+       const {foundation, mockAdapter} = setupTest();
+       mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
+       mockAdapter.hasClass.withArgs(cssClasses.DISABLED)
+           .and.returnValue(false);
+       mockAdapter.getMenuItemAttr
+           .withArgs(jasmine.anything(), strings.VALUE_ATTR)
+           .and.returnValue('foo');
+       (foundation as any).selectedIndex = 0;
 
-    expect(foundation.isValid()).toBe(true);
+       expect(foundation.isValid()).toBe(true);
+     });
+
+  it('#isValid returns false if using custom false validity', () => {
+    const {foundation, mockAdapter} = setupTest();
+    mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(false);
+    mockAdapter.hasClass.withArgs(cssClasses.DISABLED).and.returnValue(false);
+
+    foundation.setUseDefaultValidation(false);
+    foundation.setValid(false);
+    (foundation as any).selectedIndex = 2;
+
+    expect(foundation.isValid()).toBe(false);
   });
+
+  it('#isValid returns true if using custom true validity with unset index',
+     () => {
+       const {foundation, mockAdapter} = setupTest();
+       mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
+       mockAdapter.hasClass.withArgs(cssClasses.DISABLED)
+           .and.returnValue(false);
+
+       foundation.setUseDefaultValidation(false);
+       foundation.setValid(true);
+       (foundation as any).selectedIndex = -1;
+
+       expect(foundation.isValid()).toBe(true);
+     });
+
+  it('#isValid returns true if using custom true validity with first option ' +
+         'selected that has empty value',
+     () => {
+       const {foundation, mockAdapter} = setupTest();
+       mockAdapter.hasClass.withArgs(cssClasses.REQUIRED).and.returnValue(true);
+       mockAdapter.hasClass.withArgs(cssClasses.DISABLED)
+           .and.returnValue(false);
+
+       foundation.setUseDefaultValidation(false);
+       foundation.setValid(true);
+       mockAdapter.getMenuItemAttr
+           .withArgs(jasmine.anything(), strings.VALUE_ATTR)
+           .and.returnValue('');
+       (foundation as any).selectedIndex = 0;
+
+       expect(foundation.isValid()).toBe(true);
+     });
 
   it('#setRequired adds/removes ${cssClasses.REQUIRED} class name', () => {
     const {foundation, mockAdapter} = setupTest();

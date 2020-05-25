@@ -68,6 +68,7 @@ class FakeMenu {
   setAnchorCorner: jasmine.Spy = jasmine.createSpy('.setAnchorCorner');
   listen: jasmine.Spy = jasmine.createSpy('.listen');
   unlisten: jasmine.Spy = jasmine.createSpy('.listen');
+  layout: jasmine.Spy = jasmine.createSpy('.layout');
 
   open: boolean = false;
   wrapFocus: boolean = false;
@@ -85,9 +86,28 @@ function getFixture() {
   return createFixture(`
     <div class="mdc-select mdc-select--with-leading-icon">
       <div class="mdc-select__anchor">
+        <span class="mdc-select__ripple"></span>
         <i class="mdc-select__icon material-icons">code</i>
-        <div class="mdc-select__selected-text"></div>
-        <i class="mdc-select__dropdown-icon"></i>
+        <span class="mdc-select__selected-text"></span>
+        <span class="mdc-select__dropdown-icon">
+          <svg
+              width="10px"
+              height="5px"
+              viewBox="7 10 10 5">
+            <polygon
+                class="mdc-select__dropdown-icon-inactive"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 10 12 15 17 10">
+            </polygon>
+            <polygon
+                class="mdc-select__dropdown-icon-active"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 15 12 10 17 15">
+            </polygon>
+          </svg>
+        </span>
         <span class="mdc-floating-label">Pick a Food Group</span>
         <span class="mdc-line-ripple"></span>
       </div>
@@ -96,10 +116,10 @@ function getFixture() {
         <ul class="mdc-list">
           <li class="mdc-list-item" data-value=""></li>
           <li class="mdc-list-item" data-value="orange">
-            Orange
+            <span class="mdc-list-item__text">Orange</span>
           </li>
           <li class="mdc-list-item" data-value="apple">
-            Apple
+            <span class="mdc-list-item__text">Apple</span>
           </li>
         </ul>
       </div>
@@ -112,8 +132,26 @@ function getOutlineFixture() {
     <div class="mdc-select mdc-select--outlined mdc-select--with-leading-icon">
       <div class="mdc-select__anchor">
         <i class="mdc-select__icon material-icons">code</i>
-        <div class="mdc-select__selected-text"></div>
-        <i class="mdc-select__dropdown-icon"></i>
+        <span class="mdc-select__selected-text"></span>
+        <span class="mdc-select__dropdown-icon">
+          <svg
+              width="10px"
+              height="5px"
+              viewBox="7 10 10 5">
+            <polygon
+                class="mdc-select__dropdown-icon-inactive"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 10 12 15 17 10">
+            </polygon>
+            <polygon
+                class="mdc-select__dropdown-icon-active"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 15 12 10 17 15">
+            </polygon>
+          </svg>
+        </span>
         <span class="mdc-notched-outline">
           <span class="mdc-notched-outline__leading"></span>
           <span class="mdc-notched-outline__notch">
@@ -127,10 +165,10 @@ function getOutlineFixture() {
         <ul class="mdc-list">
           <li class="mdc-list-item" data-value=""></li>
           <li class="mdc-list-item" data-value="orange">
-            Orange
+            <span class="mdc-list-item__text">Orange</span>
           </li>
           <li class="mdc-list-item" data-value="apple">
-            Apple
+            <span class="mdc-list-item__text">Apple</span>
           </li>
         </ul>
       </div>
@@ -331,6 +369,18 @@ describe('MDCSelect', () => {
     expect(mockFoundation.layoutOptions).toHaveBeenCalled();
   });
 
+  it('#set useDefaultValidation forwards to foundation', () => {
+    const hasMockFoundation = true;
+    const hasMockMenu = false;
+    const hasOutline = false;
+    const hasLabel = true;
+    const {component, mockFoundation} =
+        setupTest(hasOutline, hasLabel, hasMockFoundation, hasMockMenu);
+
+    component.useDefaultValidation = false;
+    expect(mockFoundation.setUseDefaultValidation).toHaveBeenCalled();
+  });
+
   it('#get valid forwards to foundation', () => {
     const hasMockFoundation = true;
     const hasMockMenu = false;
@@ -432,8 +482,29 @@ describe('MDCSelect', () => {
        const fixture = createFixture(`
         <div class="mdc-select">
           <div class="mdc-select__anchor">
-            <div class="mdc-select__selected-text"></div>
-            <label class="mdc-floating-label">Pick a Food Group</label>
+            <span class="mdc-select__ripple"></span>
+            <i class="mdc-select__icon material-icons">code</i>
+            <span class="mdc-select__selected-text"></span>
+            <span class="mdc-select__dropdown-icon">
+              <svg
+                  width="10px"
+                  height="5px"
+                  viewBox="7 10 10 5">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-floating-label">Pick a Food Group</span>
             <span class="mdc-line-ripple"></span>
           </div>
 
@@ -441,10 +512,10 @@ describe('MDCSelect', () => {
             <ul class="mdc-list">
               <li class="mdc-list-item" data-value=""></li>
               <li class="mdc-list-item mdc-list-item--selected" data-value="orange">
-                Orange
+                <span class="mdc-list-tem__text">Orange</span>
               </li>
               <li class="mdc-list-item" data-value="apple">
-                Apple
+                <span class="mdc-list-tem__text">Apple</span>
               </li>
             </ul>
           </div>
@@ -459,8 +530,29 @@ describe('MDCSelect', () => {
        const fixture = createFixture(`
         <div class="mdc-select">
           <div class="mdc-select__anchor">
-            <div class="mdc-select__selected-text"></div>
-            <label class="mdc-floating-label">Pick a Food Group</label>
+            <span class="mdc-select__ripple"></span>
+            <i class="mdc-select__icon material-icons">code</i>
+            <span class="mdc-select__selected-text"></span>
+            <span class="mdc-select__dropdown-icon">
+              <svg
+                  width="10px"
+                  height="5px"
+                  viewBox="7 10 10 5">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-floating-label">Pick a Food Group</span>
             <span class="mdc-line-ripple"></span>
           </div>
 
@@ -486,8 +578,29 @@ describe('MDCSelect', () => {
        const fixture = createFixture(`
     <div class="mdc-select mdc-select--disabled">
       <div class="mdc-select__anchor">
-        <div class="mdc-select__selected-text"></div>
-        <label class="mdc-floating-label">Pick a Food Group</label>
+        <span class="mdc-select__ripple"></span>
+        <i class="mdc-select__icon material-icons">code</i>
+        <span class="mdc-select__selected-text"></span>
+        <span class="mdc-select__dropdown-icon">
+          <svg
+              width="10px"
+              height="5px"
+              viewBox="7 10 10 5">
+            <polygon
+                class="mdc-select__dropdown-icon-inactive"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 10 12 15 17 10">
+            </polygon>
+            <polygon
+                class="mdc-select__dropdown-icon-active"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 15 12 10 17 15">
+            </polygon>
+          </svg>
+        </span>
+        <span class="mdc-floating-label">Pick a Food Group</span>
         <span class="mdc-line-ripple"></span>
       </div>
 
@@ -495,10 +608,10 @@ describe('MDCSelect', () => {
         <ul class="mdc-list">
           <li class="mdc-list-item mdc-list-item--selected" data-value=""></li>
           <li class="mdc-list-item" data-value="orange">
-            Orange
+            <span class="mdc-list-item__text">Orange</span>
           </li>
           <li class="mdc-list-item" data-value="apple">
-            Apple
+            <span class="mdc-list-item__text">Apple</span>
           </li>
         </ul>
       </div>
@@ -618,7 +731,28 @@ describe('MDCSelect', () => {
     const fixture = createFixture(`
     <div class="mdc-select">
       <div class="mdc-select__anchor">
-        <div class="mdc-select__selected-text"></div>
+        <span class="mdc-select__ripple"></span>
+        <i class="mdc-select__icon material-icons">code</i>
+        <span class="mdc-select__selected-text"></span>
+        <span class="mdc-select__dropdown-icon">
+          <svg
+              width="10px"
+              height="5px"
+              viewBox="7 10 10 5">
+            <polygon
+                class="mdc-select__dropdown-icon-inactive"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 10 12 15 17 10">
+            </polygon>
+            <polygon
+                class="mdc-select__dropdown-icon-active"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 15 12 10 17 15">
+            </polygon>
+          </svg>
+        </span>
         <span class="mdc-line-ripple"></span>
       </div>
 
@@ -626,10 +760,10 @@ describe('MDCSelect', () => {
         <ul class="mdc-list">
           <li class="mdc-list-item mdc-list-item--selected" data-value=""></li>
           <li class="mdc-list-item" data-value="orange">
-            Orange
+            <span class="mdc-list-item__text">Orange</span>
           </li>
           <li class="mdc-list-item" data-value="apple">
-            Apple
+            <span class="mdc-list-item__text">Apple</span>
           </li>
         </ul>
       </div>
@@ -648,18 +782,39 @@ describe('MDCSelect', () => {
        const fixture = createFixture(`
     <div class="mdc-select">
       <div class="mdc-select__anchor">
-        <div class="mdc-select__selected-text"></div>
-        <label class="mdc-floating-label">Pick a Food Group</label>
+        <span class="mdc-select__ripple"></span>
+        <i class="mdc-select__icon material-icons">code</i>
+        <span class="mdc-select__selected-text"></span>
+        <span class="mdc-select__dropdown-icon">
+          <svg
+              width="10px"
+              height="5px"
+              viewBox="7 10 10 5">
+            <polygon
+                class="mdc-select__dropdown-icon-inactive"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 10 12 15 17 10">
+            </polygon>
+            <polygon
+                class="mdc-select__dropdown-icon-active"
+                stroke="none"
+                fill-rule="evenodd"
+                points="7 15 12 10 17 15">
+            </polygon>
+          </svg>
+        </span>
+        <span class="mdc-floating-label">Pick a Food Group</span>
       </div>
 
       <div class="mdc-select__menu mdc-menu mdc-menu-surface">
         <ul class="mdc-list">
           <li class="mdc-list-item mdc-list-item--selected" data-value=""></li>
           <li class="mdc-list-item" data-value="orange">
-            Orange
+            <span class="mdc-list-item__text">Orange</span>
           </li>
           <li class="mdc-list-item" data-value="apple">
-            Apple
+            <span class="mdc-list-item__text">Apple</span>
           </li>
         </ul>
       </div>

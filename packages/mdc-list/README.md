@@ -448,6 +448,7 @@ CSS クラス | 説明
 `vertical` | `boolean` (書込専用) | ファンデーションの `setVerticalOrientation()` メソッドの代替。
 `listElements` | `Array<Element>` (読込専用) | 無効なリスト項目を含めたすべてのリスト項目を返す。
 `wrapFocus` | `boolean` (書込専用) | ファンデーションの `setWrapFocus()` メソッドの代替。
+`hasTypeahead` | `boolean` (書込専用) | ファンデーションの `setHasTypeahead()` メソッドの代替。
 `singleSelection` | `boolean` (書込専用) | ファンデーションの `setSingleSelection()` メソッドの代替。
 `selectedIndex` | `MDCListIndex` | ファンデーションの `getSelectedIndex()` メソッドと `setSelectedIndex()` メソッドの代替。
 
@@ -529,6 +530,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `isFocusInsideList() => boolean` | 現在フォーカスされている要素がリストのリートの内部にあれば true を返す。
 `isRootFocused() => boolean` | ルート要素がフォーカスされていれば true を返す。
 `listItemAtIndexHasClass(index: number, className: string) => boolean` | `index` の位置のリスト項目がクラス `className` を持っているなら true を返す。
+`getPrimaryTextAtIndex(index: number)` | インデックスのリスト項目のプライマリテキストコンテンツを返す。
 
 ### `MDCListFoundation`
 
@@ -549,3 +551,5 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `focusFirstElement() => number` | リストの最初の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
 `focusLastElement() => number` | リストの最後の要素へのフォーカスを処理する。フォーカスされた要素のインデックスを返す。
 `setEnabled(itemIndex: number, isEnabled: Boolean) => void` | リスト項目の無効状態を更新する。
+`setHasTypeahead(hasTypeahead: Boolean) => void` | リスト上でタイプアヘッドが有効かどうかを設定する。
+`isTypeaheadInProgress() => Boolean` | タイプアヘッドがユーザーの指定したプレフィックスと現在マッチしているかどうかを返す。

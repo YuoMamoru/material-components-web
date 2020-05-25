@@ -76,19 +76,13 @@ npm install @material/select
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
-        <span class="mdc-list-item__text">
-          Bread, Cereal, Rice, and Pasta
-        </span>
+        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item" data-value="vegetables">
-        <span class="mdc-list-item__text">
-          Vegetables
-        </span>
+        <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        <span class="mdc-list-item__text">
-          Fruit
-        </span>
+        <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
   </div>
@@ -166,19 +160,13 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option"></li>
       <li class="mdc-list-item" data-value="grains" role="option">
-        <span class="mdc-list-item__text">
-          Bread, Cereal, Rice, and Pasta
-        </span>
+        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item mdc-list-item--disabled" data-value="vegetables" aria-disabled="true" role="option">
-        <span class="mdc-list-item__text">
-          Vegetables
-        </span>
+        <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit" role="option">
-        <span class="mdc-list-item__text">
-          Fruit
-        </span>
+        <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
   </div>
@@ -272,19 +260,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
     <ul class="mdc-list">
       <li class="mdc-list-item" data-value=""></li>
       <li class="mdc-list-item" data-value="grains">
-        <span class="mdc-list-item__text">
-          Bread, Cereal, Rice, and Pasta
-        </span>
+        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item mdc-list-item--selected" data-value="vegetables" aria-selected="true">
-        <span class="mdc-list-item__text">
-          Vegetables
-        </span>
+        <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        <span class="mdc-list-item__text">
-          Fruit
-        </span>
+        <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
   </div>
@@ -393,19 +375,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
     <ul class="mdc-list">
       <li class="mdc-list-item" data-value=""></li>
       <li class="mdc-list-item" data-value="grains">
-        <span class="mdc-list-item__text">
-          Bread, Cereal, Rice, and Pasta
-        </span>
+        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item mdc-list-item--selected mdc-list-item--disabled" data-value="vegetables">
-        <span class="mdc-list-item__text">
-          Vegetables
-        </span>
+        <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        <span class="mdc-list-item__text">
-          Fruit
-        </span>
+        <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
   </div>
@@ -457,19 +433,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
     <ul class="mdc-list">
       <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
       <li class="mdc-list-item" data-value="grains">
-        <span class="mdc-list-item__text">
-          Bread, Cereal, Rice, and Pasta
-        </span>
+        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item" data-value="vegetables">
-        <span class="mdc-list-item__text">
-          Vegetables
-        </span>
+        <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
-        <span class="mdc-list-item__text">
-          Fruit
-        </span>
+        <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
   </div>
@@ -580,6 +550,7 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `value` | `string` | 現在選択されているオプションの `value`/`data-value`。
 `selectedIndex` | `number` | 現在選択されている選択肢のインデックス。選択肢が選ばれていないときは -1 が設定される。このプロパティを変更するとセレクト要素が更新される。
 `disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。
+`useDefaultValidation` | `boolean` | 必須のセレクトが空でないというデフォルトの検証スキームを利用するかどうか。カスタム検証の際には false を指定する。
 `valid` | `boolean` | コンポーネントが有効な状態かどうか。これを設定すると、コンポーネントのスタイルが更新されるが、ネイティブな有効状態には影響しない。
 `required` | `boolean` | コンポーネントが必須かどうか。これおw設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。
 `leadingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替。
@@ -632,7 +603,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `setMenuAnchorCorner(anchorCorner: Corner) => void` | メニューのアンカーの角を設定する。 |
 | `setMenuWrapFocus(wrapFocus: boolean) => void` | メニューがフォーカスをラップするかどうかを設定する。 |
 | `setAttributeAtIndex(index: number, attributeName: string, attributeValue: string) => void` | 与えられたインデックスのメニュー項目の属性を設定する。 |
-| `removeAttributeAtIndex(index: number, attributeName: string) => void` | 与えられたインデックスのメニュー項目の属性を削除する。 |
 | `focusMenuItemAtIndex(index: number) => void` | 与えられたインデックスのメニュー項目にフォーカスをあてる。 |
 | `getMenuItemValues() => string[]` | 各メニュー項目の VALUE_ATTR 属性を表す配列を返す。 |
 | `getMenuItemCount() => number` | メニュー項目の数を返す。 |
@@ -660,7 +630,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `setSelectedIndex(index: number) => void` | `mdc-select__selected-text` 要素を設定しメニューを閉じることをハンドリングする。必要であればラベルを浮かせ、輪郭をへこませる。 |
 | `getValue() => string` | アダプターを介して値の取得をハンドリングする。 |
 | `setValue() => string` | 選択したインデックスを、与えられた値を持つメニュー項目のインデックスに設定する。 |
-| `setValid(isValid: boolean) => void` | アダプターを介して有効状態を設定する。 |
+| `setUseDefaultValidation(useDefaultValidation: boolean) => void` | 必須のセレクトが空でないというデフォルトの検証スキームの有効または無効にする。カスタム検証の際には false を設定する。 |
+| `setValid(isValid: boolean) => void` | アダプターを介して検証状態を設定する。必須のセレクトが空の際に有効でないとするデフォルトの検証スキームは `setUseDefaultValidation(false)` が呼び出されるまで利用され続けることに注意すること。 |
 | `isValid() => boolean` | アダプターの `checkValidity` API を介して有効状態を取得する。 |
 | `setRequired(isRequired: boolean) => void` | アダプターを介して必須状態を設定する。 |
 | `getRequired() => boolean` | アダプターを介して必須状態を取得する。 |

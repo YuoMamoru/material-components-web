@@ -61,9 +61,9 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
   }
 
   initialSyncWithDOM() {
-    this.menuSurface_ = this.menuSurfaceFactory_(this.root_);
+    this.menuSurface_ = this.menuSurfaceFactory_(this.root);
 
-    const list = this.root_.querySelector(strings.LIST_SELECTOR);
+    const list = this.root.querySelector(strings.LIST_SELECTOR);
     if (list) {
       this.list_ = this.listFactory_(list);
       this.list_.wrapFocus = true;
@@ -71,9 +71,11 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
       this.list_ = null;
     }
 
-    this.handleKeydown_ = (evt) => this.foundation_.handleKeydown(evt);
-    this.handleItemAction_ = (evt) => this.foundation_.handleItemAction(this.items[evt.detail.index]);
-    this.handleMenuSurfaceOpened_ = () => this.foundation_.handleMenuSurfaceOpened();
+    this.handleKeydown_ = (evt) => this.foundation.handleKeydown(evt);
+    this.handleItemAction_ = (evt) =>
+        this.foundation.handleItemAction(this.items[evt.detail.index]);
+    this.handleMenuSurfaceOpened_ = () =>
+        this.foundation.handleMenuSurfaceOpened();
 
     this.menuSurface_.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
     this.listen('keydown', this.handleKeydown_);
@@ -115,6 +117,26 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
   }
 
   /**
+   * Sets whether the menu has typeahead functionality.
+   * @param value Whether typeahead is enabled.
+   */
+  set hasTypeahead(value: boolean) {
+    if (this.list_) {
+      this.list_.hasTypeahead = value;
+    }
+  }
+
+  /**
+   * Layout the underlying list element in the case of any dynamic updates
+   * to its structure.
+   */
+  layout() {
+    if (this.list_) {
+      this.list_.layout();
+    }
+  }
+
+  /**
    * Return the items within the menu. Note that this only contains the set of elements within
    * the items container that are proper list items, and not supplemental / presentational DOM
    * elements.
@@ -134,7 +156,7 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
    * @param focusState Default focus state.
    */
   setDefaultFocusState(focusState: DefaultFocusState) {
-    this.foundation_.setDefaultFocusState(focusState);
+    this.foundation.setDefaultFocusState(focusState);
   }
 
   /**
@@ -153,7 +175,7 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
    * @param index Index of list item within menu.
    */
   setSelectedIndex(index: number) {
-    this.foundation_.setSelectedIndex(index);
+    this.foundation.setSelectedIndex(index);
   }
 
   /**
@@ -162,7 +184,7 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
    * @param isEnabled The desired enabled state of the menu item.
    */
   setEnabled(index: number, isEnabled: boolean): void {
-    this.foundation_.setEnabled(index, isEnabled);
+    this.foundation.setEnabled(index, isEnabled);
   }
 
   /**
@@ -218,17 +240,23 @@ export class MDCMenu extends MDCComponent<MDCMenuFoundation> {
         const list = this.items;
         list[index].removeAttribute(attr);
       },
-      elementContainsClass: (element, className) => element.classList.contains(className),
-      closeSurface: (skipRestoreFocus: boolean) => this.menuSurface_.close(skipRestoreFocus),
+      elementContainsClass: (element, className) =>
+          element.classList.contains(className),
+      closeSurface: (skipRestoreFocus: boolean) =>
+          this.menuSurface_.close(skipRestoreFocus),
       getElementIndex: (element) => this.items.indexOf(element),
-      notifySelected: (evtData) => this.emit<MDCMenuItemComponentEventDetail>(strings.SELECTED_EVENT, {
-        index: evtData.index,
-        item: this.items[evtData.index],
-      }),
+      notifySelected: (evtData) =>
+          this.emit<MDCMenuItemComponentEventDetail>(strings.SELECTED_EVENT, {
+            index: evtData.index,
+            item: this.items[evtData.index],
+          }),
       getMenuItemCount: () => this.items.length,
       focusItemAtIndex: (index) => (this.items[index] as HTMLElement).focus(),
-      focusListRoot: () => (this.root_.querySelector(strings.LIST_SELECTOR) as HTMLElement).focus(),
-      isSelectableItemAtIndex: (index) => !!closest(this.items[index], `.${cssClasses.MENU_SELECTION_GROUP}`),
+      focusListRoot: () =>
+          (this.root.querySelector(strings.LIST_SELECTOR) as HTMLElement)
+              .focus(),
+      isSelectableItemAtIndex: (index) =>
+          !!closest(this.items[index], `.${cssClasses.MENU_SELECTION_GROUP}`),
       getSelectedSiblingOfItemAtIndex: (index) => {
         const selectionGroupEl = closest(this.items[index], `.${cssClasses.MENU_SELECTION_GROUP}`) as HTMLElement;
         const selectedItemEl = selectionGroupEl.querySelector(`.${cssClasses.MENU_SELECTED_LIST_ITEM}`);

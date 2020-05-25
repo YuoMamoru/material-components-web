@@ -33,6 +33,9 @@ npm install @material/textfield
 ### スタイル
 
 ```scss
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
 @use "@material/textfield";
 
 @include textfield.core-styles;
@@ -109,6 +112,20 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ### テキストエリア
 
+#### 幅いっぱい
+
+```html
+<label class="mdc-text-field mdc-text-field--filled mdc-text-field--textarea mdc-text-field--no-label">
+  <span class="mdc-text-field__ripple"></span>
+  <span class="mdc-text-field__resizer">
+    <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+  </span>
+  <span class="mdc-line-ripple"></span>
+</label>
+```
+
+#### 枠付き
+
 ```html
 <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
   <span class="mdc-text-field__resizer">
@@ -120,8 +137,6 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
   </span>
 </label>
 ```
-
-**注意: textarea では `mdc-text-field--outlined` タイプのみが現在サポートされています。**
 
 **注意: `mdc-text-field__resizer` 要素はサイズ変更のできないテキストエリアでは省略できます。**
 
