@@ -11,7 +11,7 @@ path: /catalog/data-tables/
 
 [Data tables](https://material.io/components/data-tables/#) は列と行を通じてデータの集合を表示します。
 
-![5つの行（1つのヘッダ行と4つの行、1つのチェックボックス列）を持つデータテーブル](images/data-table-hero.png)
+![5つの行（1つのヘッダー行と4つの行、1つのチェックボックス列）を持つデータテーブル](images/data-table-hero.png)
 
 ## データテーブルを使う
 
