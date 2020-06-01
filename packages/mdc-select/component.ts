@@ -45,9 +45,6 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> {
     return new MDCSelect(root);
   }
 
-  // Root container for select (anchor) element and menu.
-  protected root_!: HTMLElement; // assigned in MDCComponent constructor
-
   private ripple!: MDCRipple|null;
 
   private menu!: MDCMenu;  // assigned in menuSetup()
@@ -328,7 +325,7 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> {
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
     // tslint:disable:object-literal-sort-keys Methods should be in the same order as the adapter interface.
     const adapter: MDCRippleAdapter = {
-      ...MDCRipple.createAdapter({root_: this.selectAnchor}),
+      ...MDCRipple.createAdapter({root: this.selectAnchor}),
       registerInteractionHandler: (evtType, handler) => {
         this.selectAnchor.addEventListener(evtType, handler);
       },
@@ -355,6 +352,9 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> {
           this.selectAnchor.getAttribute(attr),
       setSelectAnchorAttr: (attr: string, value: string) => {
         this.selectAnchor.setAttribute(attr, value);
+      },
+      removeSelectAnchorAttr: (attr: string) => {
+        this.selectAnchor.removeAttribute(attr);
       },
       openMenu: () => {
         this.menu.open = true;

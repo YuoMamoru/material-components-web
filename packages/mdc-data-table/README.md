@@ -34,10 +34,13 @@ npm install @material/data-table
 
 ```scss
 @use "@material/checkbox"; // Required only for data table with row selection.
+@use "@material/icon-button"; // Required only for data table with column sorting.
 @use "@material/data-table";
 
 @include checkbox.core-styles;
+@include icon-button.core-styles;
 @include data-table.core-styles;
+@include data-table.theme-baseline;
 ```
 
 **注意: データテーブルに含めるつもりのコンポーネント（例えばチェックボックスやボタン等）のスタイルもロードしなくてはなりません。**
@@ -60,6 +63,12 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
 テーブル要素に必要な ARIA 推奨のロール、状態、プロパティについては [テーブルについての WAI-ARIA オーサリングプラクティス](https://www.w3.org/TR/wai-aria-practices-1.1/#table) を参照してください。
 
 ## データテーブル
+
+データテーブルは現在、以下の機能をサポートします。
+
+### 標準のデータテーブル
+
+行選択やソートなどのインタラクティブな要素のないデータテーブルにするには以下のものを使います。
 
 ```html
 <div class="mdc-data-table">
@@ -98,9 +107,11 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
 </div>
 ```
 
-## その他のバリエーション
-
 ### 行選択を伴うデータテーブル
+
+行選択の機能はユーザーが行のチェックボックスを通じてテーブルの行を選択できるようにするものです。ユーザーはヘッダー行のチェックボックスを使うことにより、すべての行を選択もしくは非選択にすることができます。それに加え、各行のチェックボックスが手動で選択されたかプログラムで選択されたかによらず、その選択状態に基づいてヘッダー行のチェックボックスは自動的に更新されます。
+
+#### HTML 構造
 
 ```html
 <div class="mdc-data-table">
@@ -215,6 +226,119 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
 </div>
 ```
 
+#### JavaScript API
+
+- データテーブルに新たな行チェックボックスが追加もしくは削除されたときには `layout()` を使用する。
+- プログラムから行の選択状態を取得/設定するには以下の API を使用する。
+  - `getSelectedRowIds()`
+  - `setSelectedRowIds(string[])`
+
+#### イベント
+
+行選択の機能からは以下のイベントが生成されます。
+
+イベント定数 | イベント名 | detail | 詳細
+-- | -- | -- | --
+`ROW_SELECTION_CHANGED` | `MDCDataTable:rowSelectionChanged` | `MDCDataTableRowSelectionChangedEventDetail` | 行のチェックボックスが選択もしくは選択解除されたときに発生する。
+`SELECTED_ALL` | `MDCDataTable:selectedAll` | `void` | ヘッダー行のチェックボックスが選択されたときに発生する。
+`UNSELECTED_ALL` | `MDCDataTable:unselectedAll` | `void` | ヘッダー行のチェックボックスが非選択になったときに発生する。
+
+### ソート可能な列を含むデータテーブル
+
+ソート列の機能はユーザーが列の値に基づき昇順もしくは降順に並べ替えられるようにします。
+
+データテーブルでは以下のようにソートを制御します。
+
+- ソートアイコンがクリックされたときにイベントが起動する。
+- ソートの方向に基づきソートアイコンを反転する。
+- ソート状態に基づき適切な ARIA 属性を設定する。
+
+
+データテーブルの利用者は `events.SORTED` イベントで table body（行）をソート順に再描画する必要があります。
+
+#### HTML 構造
+
+ソートに必要な列を一意に識別するためにソート可能なヘッダのセル要素に `data-column-id` を設定してください。
+
+```html
+<div class="mdc-data-table">
+  <table class="mdc-data-table__table" aria-label="Dessert calories">
+    <thead>
+      <tr class="mdc-data-table__header-row">
+        <th
+          class="mdc-data-table__header-cell mdc-data-table__header-cell--with-sort"
+          role="columnheader"
+          scope="col"
+          aria-sort="none"
+          data-column-id="dessert"
+        >
+          <div class="mdc-data-table__header-cell-wrapper">
+            <div class="mdc-data-table__header-cell-label">
+              Dessert
+            </div>
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
+          </div>
+        </th>
+        <th
+          class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort mdc-data-table__header-cell--sorted"
+          role="columnheader"
+          scope="col"
+          aria-sort="ascending"
+          data-column-id="carbs"
+        >
+          <div class="mdc-data-table__header-cell-wrapper">
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
+            <div class="mdc-data-table__header-cell-label">
+              Carbs (g)
+            </div>
+          </div>
+        </th>
+        <th
+          class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort"
+          role="columnheader"
+          scope="col"
+          aria-sort="none"
+          data-column-id="protein"
+        >
+          <div class="mdc-data-table__header-cell-wrapper">
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
+            <div class="mdc-data-table__header-cell-label">
+              Protein (g)
+            </div>
+          </div>
+        </th>
+        <th
+          class="mdc-data-table__header-cell"
+          role="columnheader"
+          scope="col"
+          data-column-id="comments"
+        >
+          Comments
+        </th>
+      </tr>
+    </thead>
+    <tbody class="mdc-data-table__content">
+      <tr class="mdc-data-table__row">
+        <td class="mdc-data-table__cell">Frozen yogurt</td>
+        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+          24
+        </td>
+        <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+          4.0
+        </td>
+        <td class="mdc-data-table__cell">Super tasty</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+#### イベント
+
+イベント定数 | イベント名 | detail | 説明
+-- | -- | -- | --
+`SORTED` | `MDCDataTable:sorted` | `SortActionEventDetail` | ソート可能なヘッダセルがクリックされたときに発生する。
+
 ## スタイルのカスタマイズ
 
 ### CSS クラス
@@ -236,99 +360,23 @@ CSS クラス | 説明
 `mdc-data-table__header-row-checkbox` | オプション。テーブルヘッダー行要素に描画されるチェックボックス要素。データテーブルに必須なスタイルに上書きするためにこのクラス名を `mdc-checkbox` 要素に追加する。
 `mdc-data-table__row-checkbox` | オプション。テーブル行要素に描画されるチェックボックス要素。データテーブルに必須なスタイルに上書きするためにこのクラス名を `mdc-checkbox` 要素に追加する。
 `mdc-data-table__row--selected` | オプション。テーブル行が選択されたときに `mdc-data-table__row` に追加する修飾クラス。
+`mdc-data-table__header-cell--sorted` | オプション。列でソートが可能なときにヘッダーセル要素に追加する修飾クラス。
+`mdc-data-table__header-cell--sorted-descending` | オプション。列が降順にソートされているときにヘッダーセル要素に追加する修飾クラス。
+`mdc-data-table__header-cell--with-sort` | オプション。列がソートをサポートしているときにヘッダーセル要素に追加する修飾クラス。
+`mdc-data-table__header-cell-wrapper` | オプション。ヘッダーセルのラベルとソートボタンのコンテナ。ヘッダーセルを中央に配置するために使用する。
+`mdc-data-table__sort-icon-button` | オプション。ソートアイコンボタンとして使用するアイコンボタンに追加するクラス名。ヘッダーセルラベルの兄弟要素に付加する。
+`mdc-data-table__header-cell-label` | 必須。ヘッダーセルラベルに追加するクラス名。ヘッダーセルラッパー要素の子要素に付加する。
 
 ### Sass ミキシン
 
-ミキシン | 説明
---- | ---
-`fill-color($color)` | データテーブル面の背景色を設定する。
-`row-fill-color($color)` | テーブル行のコンテナの背景色を設定する。
-`header-row-fill-color($color)` | テーブルヘッダー行のコンテナの背景色を設定する。
-`selected-row-fill-color($color)` | 選択行のコンテナの背景色を設定する。
-`checked-icon-color($color)` | チェック時のアイコン色を設定する。
-`divider-color($color)` | テーブル行の境界の色を設定する。
-`divider-size($size)` | テーブル行の境界の大きさを設定する。
-`row-hover-fill-color($color)` | テーブル行のホバー時の背景色を設定する。
-`header-row-text-color($color)` | ヘッダー行の文字色を設定する。
-`row-text-color($color)` | 行の文字色を設定する。
-`shape-radius($radius)` | 与えられた半径の大きさに角の丸めの大きさを設定する。`$radius` は一つの半径、もしくは最大4つの値のリスト使う。
-`stroke-size($size)` | データテーブルの境界の大きさを設定する。
-`stroke-color($color)` | データテーブルの境界色を設定する。
-`header-cell-height($height)` | テーブルヘッダーセルの高さを設定する。
-`cell-height($height)` | テーブルセルの高さを設定する。
-`cell-padding($leading-padding, $trailing-padding)` | すべてのセルの先頭と末尾のパディングを設定する。
-`column-widths($width-list)` | テーブル各行の幅を個別に設定する。
-`density($density-scale)` | データテーブルの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1`、`0`。コンテンツとしてデータテーブル内に描画される密度スケールを適用するために、子コンポーネント（Checkbox など）の対応する密度ミキシンを使用する。
-
-## イベント
-
-イベント定数にアクセスするには MDCDataTable の定数ファイルを使ってください。
-
-```ts
-const {events} from '@material/data-table/constants';
-// `events.ROW_SELECTION_CHANGED` イベント定数にアクセスに必要
-```
-
-イベント定数 | イベント名 | 説明
--- | -- | --
-`ROW_SELECTION_CHANGED` | `MDCDataTable:rowSelectionChanged` | 行のチェックボックスがチェックされた、もしくはチェックが外されたときに発生するイベント。
-`SELECTED_ALL` | `MDCDataTable:selectedAll` | ヘッダー行のチェックボックスがチェックされたときに発生するイベント。
-`UNSELECTED_ALL` | `MDCDataTable:unselectedAll` | ヘッダー行のチェックボックスのチェックが外されたときに発生するイベント。
+データテーブルテーマ API の最新のコードドキュメントは [_mixins.scss](./_mixins.scss) ファイルを参照してください。
 
 ## `MDCDataTable` プロパティとメソッド
 
-メソッド | 説明
---- | ---
-`layout() => void` | 新たな行とヘッダー行のチェックボックスを登録し、ヘッダー行のチェックボックスの状態を更新する。行をデータテーブルから登録/削除した際にはこれを使用する。
-`getRows() => HTMLElement[]` | 行要素の配列を返す。
-`getSelectedRowIds() => Array<string \| null>` | 選択されている行の id の配列を返す。
-`setSelectedRowIds(rowIds: string[])` | 選択された行の id を設定する。直前の選択状態を上書きする。
+データテーブルコンポーネント API の最新のコードドキュメントは [component.ts](./component.ts) ファイルを参照してください。
 
 ## Web フレームワークでの使用
 
 React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のデータテーブルを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
-### `MDCDataTableAdapter`
-
-メソッド | 説明
---- | ---
-`addClass(className: string) => void` | ルート要素に CSS クラス名を追加する。
-`removeClass(className: string) => void` | ルート要素から CSS クラス名を削除する。
-`addClassAtRowIndex(rowIndex: number, cssClasses: string) => void` | ヘッダー行を除いて、与えられた行のインデックスにある行要素にクラス名を追加する。
-`getRowCount() => number` | ヘッダー行を除いた行数を返す。
-`getRowElements() => HTMLElement[]` | ヘッダー行を除いた行要素の配列を返す。
-`getRowIdAtIndex(rowIndex: number) => string \| null` | 与えられた行インデックスの行要素 `tr` 上の `data-row-id` 属性に基づく行要素の id を返す。
-`getRowIndexByChildElement(el: Element) => number` | 与えられた子要素を含んでいる行要素のインデックスを返す。
-`getSelectedRowCount() => number` | 選択されている行数を返す。
-`isCheckboxAtRowIndexChecked(rowIndex: number) => boolean;` | 与えられた行インデックスの行のチェックボックスがチェックされていれば true を返す。
-`isHeaderRowCheckboxChecked() => boolean` | ヘッダー行のチェックボックスがチェックされていれば true を返す。
-`isRowsSelectable() => boolean` | テーブル行が選択可能であれば true を返す。
-`notifyRowSelectionChanged(data: MDCDataTableRowSelectionChangedEventDetail) => void` | 行の選択状態が変更されたことを通知する。
-`notifySelectedAll() => void` | ヘッダー行がチェックされたことを通知する。
-`notifyUnselectedAll() => void` | ヘッダー行のチェックが外されたことを通知する。
-`registerHeaderRowCheckbox() => Promise<void> \| void` | ヘッダー行のチェックボックスを初期化する。直前の状態でヘッダー行のチェックボックスのインスタンスが存在するなら破棄する。登録されているチェックボックスが非同期の場合にのみ Promise を返すことができる。
-`registerRowCheckboxes() => Promise<void> \| void` | すべての行のチェックボックスを初期化する。直前の状態で行のチェックボックスのインスタンスが存在するなら破棄する。これは通常、テーブルにチェックボックスが追加または削除されたときに呼ばれる。登録されているチェックボックスが非同期の場合にのみ Promise を返すことができる。
-`removeClassAtRowIndex(rowIndex: number, cssClasses: string) => void` | 与えられた行インデックスの行要素からクラス名を削除する。
-`setAttributeAtRowIndex(rowIndex: number, attr: string, value: string) => void` | 与えられた行インデックスの行要素の属性を設定する。
-`setHeaderRowCheckboxChecked(checked: boolean) => void` | ヘッダー行のチェックボックスをチェックまたはチェックの解除をする。
-`setHeaderRowCheckboxIndeterminate(indeterminate: boolean) => void` | ヘッダー行のチェックボックスを未定状態にする。
-`setRowCheckboxCheckedAtIndex(rowIndex: number, checked: boolean) => void` | 与えられた行インデックスの行のチェックボックスをチェックまたはチェックの解除をする。
-`getHeaderCellCount(): number;` | ヘッダーセルの総数を返す。
-`getHeaderCellElements(): Element[];` | ヘッダーセル要素の配列を返す
-`getAttributeByHeaderCellIndex(columnIndex: number, attribute: string) => string` | 与えられたインデックスのヘッダーセルの属性値を返す。
-`setAttributeByHeaderCellIndex(columnIndex: number, attribute: string, value: string) => void` | インデックスのヘッダーセルの属性を設定する。
-`setClassNameByHeaderCellIndex(columnIndex: number, className: string) => void` | インデックスのヘッダーセルのクラス名を設定する。
-`removeClassNameByHeaderCellIndex(columnIndex: number, className: string) => void` | インデックスのヘッダーセルクラス名を削除する。
-
-### `MDCDataTableFoundation`
-
-メソッド | 説明
---- | ---
-`layout() => void` | 選択可能な行がテーブルに追加/削除された際にヘッダー行のチェックボックスと行のチェックボックスを再初期化する。チェックボックスの登録が同期しているときに使用する。
-`layoutAsync() => Promise<void> \| void` | 選択可能な行がテーブルに追加/削除された際にヘッダー行のチェックボックスと行のチェックボックスを再初期化する。`registerRowCheckboxes` と `registerHeaderRowCheckbox` が同期しているときのみ使用する。
-`getRows() => HTMLElement[]` | 行要素の配列を返す。
-`setSelectedRowIds(rowIds: string[]) => void` | 選択された行の id を設定する。直前の選択状態を上書きする。
-`getSelectedRowIds() => Array<string \| null>` | 選択されている行の id の配列を返す。
-`handleHeaderRowCheckboxChange() => void` | ヘッダー行のチェックボックスの変更イベントをハンドリングする。
-`handleRowCheckboxChange(event: Event) => void` | 行チェックボックスから発生した変更イベントをハンドリングする。
-`getHeaderCells() => Elements[]` | ヘッダーセル要素の配列を返す。
+データテーブルファンデーション API の最新のコードドキュメントは [MDCDataTableAdapter](./adapter.ts) と [MDCDataTableFoundation](./foundation.ts) 参照してください。

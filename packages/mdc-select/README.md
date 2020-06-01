@@ -45,14 +45,13 @@ npm install @material/select
 ### HTML
 
 ```html
-<div class="mdc-select demo-width-class">
+<div class="mdc-select mdc-select--filled demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -135,8 +134,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span id="demo-selected-text" class="mdc-select__selected-text">Vegetables</span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -185,8 +183,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span id="demo-selected-text" class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -229,14 +226,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 事前に選択された値を持つセレクトコンポーネントを表示するには、選択している項目に `mdc-list-item--selected` クラスを使います。セレクトは選択された要素から `mdc-select__selected-text` 要素にテキストをコピーすることも必要です。
 
 ```html
-<div class="mdc-select demo-width-class">
+<div class="mdc-select mdc-select--filled demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-select__selected-text">Vegetables</span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -286,14 +282,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 必須で検証が有効なセレクトをスタイルするには、`mdc-select--required` クラスを `mdc-select` 要素に追加し、`mdc-select__anchor` 要素の `aria-required` 属性を `"true"` にします。
 
 ```html
-<div class="mdc-select mdc-select--required">
+<div class="mdc-select mdc-select--filled mdc-select--required">
   <span class="mdc-select__ripple"></span>
   <div class="mdc-select__anchor" aria-required="true">
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -326,14 +321,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `mdc-select--disabled` クラスを `mdc-select` 要素に追加し、`mdc-select__selected-text` 要素の `aria-disabled` 属性を `"true"` にします。
 
 ```html
-<div class="mdc-select mdc-select--disabled">
+<div class="mdc-select mdc-select--filled mdc-select--disabled">
   <div class="mdc-select__anchor" aria-disabled="true">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -366,7 +360,7 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `mdc-list-item--disabled` クラスを無効にするリスト項目に追加します。無効なリスト項目はリスト項目のインデックスから除外され、完全に無視されます。プログラムから無効なリスト項目を選択することはできません。
 
 ```html
-<div class="mdc-select">
+<div class="mdc-select mdc-select--filled">
   <div class="mdc-select__anchor">
     ...
   </div>
@@ -403,14 +397,13 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 #### 幅いっぱい
 
 ```html
-<div class="mdc-select mdc-select--no-label demo-width-class">
+<div class="mdc-select mdc-select--filled mdc-select--no-label demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -454,8 +447,7 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
-          width="10px"
-          height="5px"
+          class="mdc-select__dropdown-icon-graphic"
           viewBox="7 10 10 5">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
@@ -531,10 +523,12 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 `hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
 `disabled-outline-color($color)` | セレクトが無効なときのへこんだ輪郭の色を設定する。
 `outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`density($density-scale)` | デフォルトタイプのセレクト（アウトラインされていないもの）の密度スケールを設定する。
+`filled-density($density-scale)` | 塗られたタイプのセレクト（先頭アイコン付きの塗られたセレクトを除く）の密度スケールを設定する。
+`filled-with-leading-icon-density($density-scale)` | 先頭アイコン付きの塗られたセレクトの密度スケールを設定する。
 `outlined-density($density-scale)` | アウトラインされたセレクト（先頭アイコンのあるアウトラインされたセレクトを除く）の密度スケールを設定する。
 `outlined-with-leading-icon-density($density-scale)` | 先頭アイコンのあるアウトラインされたセレクトの密度スケールを設定する。
-`height($height)` | 塗られたタイプのセレクトの高さを設定する。
+`filled-height($height)` | 塗られたタイプのセレクト（先頭アイコン付きの塗られたセレクトを除く）の高さを設定する。
+`filled-with-leading-icon-height($height)` | 先頭アイコン付きの塗られたセレクトの高さを設定する。
 `outlined-height($height)` | アウトラインされたセレクト（先頭アイコンのあるアウトラインされたセレクトを除く）の高さを設定する。
 `outlined-with-leading-icon-height($height)` | 先頭アイコンのあるアウトラインされたセレクトの高さを設定する。
 `min-width($min-width)` | セレクトの最小幅を設定する。
@@ -596,6 +590,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `isSelectAnchorFocused() => boolean` | 選択されたアンカー要素がフォーカスされているかどうかを返す。 |
 | `getSelectAnchorAttr(attr: string) => string` | 選択されたアンカー要素の与えられた属性を取得する。 |
 | `setSelectAnchorAttr(attr: string, value: string) => void` | 選択されたアンカー要素の与えられた属性を設定する。 |
+| `removeSelectAnchorAttr(attr: string) => void` | 選択されたアンカー要素の与えられた属性を削除する。 |
 | `openMenu() => void` | セレクトのメニュー要素を開く。 |
 | `closeMenu() => void` | セレクトのメニュー要素を閉じる。 |
 | `getAnchorElement() => Element` | セレクトのアンカー要素を返す。 |

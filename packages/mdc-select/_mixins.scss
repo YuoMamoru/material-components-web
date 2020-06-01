@@ -28,7 +28,9 @@
 @use "@material/feature-targeting/mixins" as feature-targeting-mixins;
 @use "@material/floating-label/mixins" as floating-label-mixins;
 @use "@material/line-ripple/mixins" as line-ripple-mixins;
+@use "@material/list/mixins" as list-mixins;
 @use "@material/menu/mixins" as menu-mixins;
+@use "@material/menu-surface/mixins" as menu-surface-mixins;
 @use "@material/notched-outline/mixins" as notched-outline-mixins;
 @use "@material/notched-outline/variables" as notched-outline-variables;
 @use "@material/ripple/mixins" as ripple-mixins;
@@ -84,7 +86,7 @@
     @include floating-label_($query: $query);
 
     // structural
-    @include height(variables.$height, $query: $query);
+    @include filled-height(variables.$height, $query: $query);
     @include shape-radius(small, $query: $query);
     @include padding-horizontal_(
       $left: variables.$anchor-padding-left,
@@ -94,6 +96,7 @@
     );
     @include min-width(variables.$min-width, $query: $query);
     @include icon-mixins.size(icon-variables.$icon-size, $query: $query);
+    @include _dropdown-icon-size(icon-variables.$icon-size, $query: $query);
 
     @include feature-targeting-mixins.targets($feat-structure) {
       display: inline-flex;
@@ -110,8 +113,6 @@
           icon-variables.$icon-horizontal-margin);
         display: inline-flex;
         position: relative;
-        width: 24px;
-        height: 24px;
         align-self: center;
         align-items: center;
         justify-content: center;
@@ -191,6 +192,10 @@
 
   .mdc-select--with-leading-icon {
     @include with-leading-icon_($query: $query);
+  }
+
+  .mdc-select--filled {
+    @include menu-surface-mixins.flatten-top-when-opened-below($query: $query);
   }
 
   .mdc-select__menu .mdc-list .mdc-list-item--selected {
@@ -511,6 +516,31 @@
       left: 0;
     }
   }
+
+  .mdc-select__dropdown-icon-graphic {
+    $svg-natural-width: 10px;
+    $svg-natural-height: 5px;
+
+    @include feature-targeting-mixins.targets($feat-structure) {
+      width: $svg-natural-width / icon-variables.$icon-size * 100%;
+      height: $svg-natural-height / icon-variables.$icon-size * 100%;
+    }
+  }
+}
+
+///
+/// Sets the dropdown icon to the specified size.
+/// @access private
+///
+@mixin _dropdown-icon-size($size, $query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  .mdc-select__dropdown-icon {
+    @include feature-targeting-mixins.targets($feat-structure) {
+      width: $size;
+      height: $size;
+    }
+  }
 }
 
 ///
@@ -589,6 +619,22 @@
   }
 }
 
+///
+/// Sets the leading padding for option text.
+/// @access private
+///
+@mixin _option-text-leading-padding($padding, $query: feature-targeting-functions.all()) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  .mdc-select__menu .mdc-list-item__text {
+    // TODO(b/151457624): Replace this mixin by a dummy list icon and apply the
+    // `list.icon-margin` mixin instead once it lands.
+    @include feature-targeting-mixins.targets($feat-structure) {
+      @include rtl-mixins.reflexive-box(padding, left, $padding);
+    }
+  }
+}
+
 @mixin outline-color_($color, $query: feature-targeting-functions.all()) {
   @include notched-outline-mixins.color($color, $query: $query);
 }
@@ -637,18 +683,13 @@
   $feat-structure: feature-targeting-functions.create-target($query, structure);
 
   @include _leading-icon-floating-label-position(icon-variables.$icon-size, $query: $query);
+  @include _option-text-leading-padding(32px, $query: $query);
 
   &.mdc-select--outlined {
     @include _outlined-with-leading-icon-floating-label-position-animation(
       variables.$height,
       icon-variables.$icon-size,
       $query: $query);
-  }
-
-  .mdc-select__menu .mdc-list-item__text {
-    @include feature-targeting-mixins.targets($feat-structure) {
-      @include rtl-mixins.reflexive-box(padding, left, 32px);
-    }
   }
 }
 
@@ -803,21 +844,41 @@
 }
 
 ///
-/// Sets density scale for default select variant.
+/// Sets density scale for filled select variant.
 ///
 /// @param {Number | String} $density-scale - Density scale value for component. Supported density scale values `-4`,
 ///     `-3`, `-2`, `-1`, `0`. Default is `0`.
 /// @param {Number} $minimum-height-for-filled-label Sets the minimum height for
 ///     filled selects at which to allow floating labels.
 ///
-@mixin density($density-scale, $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label, $query: feature-targeting-functions.all()) {
+@mixin filled-density($density-scale, $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label, $query: feature-targeting-functions.all()) {
   $height: density-functions.prop-value(
     $density-config: variables.$density-config,
     $density-scale: $density-scale,
     $property-name: height,
   );
 
-  @include height($height, $minimum-height-for-filled-label: $minimum-height-for-filled-label, $query: $query);
+  @include filled-height($height, $minimum-height-for-filled-label: $minimum-height-for-filled-label, $query: $query);
+  @include list-mixins.single-line-density($density-scale, $query: $query);
+}
+
+///
+/// Sets density scale for filled select variant with leading icon.
+///
+/// @param {Number | String} $density-scale - Density scale value for component. Supported density scale values `-4`,
+///     `-3`, `-2`, `-1`, `0`. Default is `0`.
+/// @param {Number} $minimum-height-for-filled-label Sets the minimum height for
+///     filled selects at which to allow floating labels.
+///
+@mixin filled-with-leading-icon-density($density-scale, $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label, $query: feature-targeting-functions.all()) {
+  $height: density-functions.prop-value(
+    $density-config: variables.$density-config,
+    $density-scale: $density-scale,
+    $property-name: height,
+  );
+
+  @include filled-with-leading-icon-height($height, $minimum-height-for-filled-label: $minimum-height-for-filled-label, $query: $query);
+  @include list-mixins.single-line-density($density-scale, $query: $query);
 }
 
 ///
@@ -834,6 +895,7 @@
   );
 
   @include outlined-height($height, $query: $query);
+  @include list-mixins.single-line-density($density-scale, $query: $query);
 }
 
 ///
@@ -850,6 +912,7 @@
   );
 
   @include outlined-with-leading-icon-height($height, $query: $query);
+  @include list-mixins.single-line-density($density-scale, $query: $query);
 }
 
 ///
@@ -862,7 +925,7 @@
 ///     that the input should be aligned to for a filled variant with a label
 /// @access public
 ///
-@mixin height(
+@mixin filled-height(
   $height,
   $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label,
   $filled-baseline-top: variables.$filled-baseline-top,
@@ -895,7 +958,38 @@
   }
 
   @if $height < variables.$height {
-    &.mdc-select--with-leading-icon .mdc-select__anchor {
+    @include _dropdown-icon-size(icon-variables.$dense-icon-size, $query: $query);
+  }
+}
+
+///
+/// Sets height of filled select variant with leading icon.
+///
+/// @param {Number} $height
+/// @param {Number} $minimum-height-for-filled-label Sets the minimum height for
+///     filled selects at which to allow floating labels.
+/// @param {Number} $filled-baseline-top The baseline from the top of the anchor
+///     that the input should be aligned to for a filled variant with a label
+/// @access public
+///
+@mixin filled-with-leading-icon-height(
+  $height,
+  $minimum-height-for-filled-label: variables.$minimum-height-for-filled-label,
+  $filled-baseline-top: variables.$filled-baseline-top,
+  $query: feature-targeting-functions.all()
+) {
+  $feat-structure: feature-targeting-functions.create-target($query, structure);
+
+  @include filled-height($height,
+    $minimum-height-for-filled-label: $minimum-height-for-filled-label,
+    $filled-baseline-top: $filled-baseline-top,
+    $query: $query
+  );
+
+  @if $height < variables.$height {
+    @include _option-text-leading-padding(28px, $query: $query);
+
+    .mdc-select__anchor {
       @include icon-mixins.size(icon-variables.$dense-icon-size, $query: $query);
       @include _leading-icon-floating-label-position(icon-variables.$dense-icon-size, $query: $query);
     }
@@ -946,6 +1040,10 @@
       height: $height;
     }
   }
+
+  @if $height < variables.$height {
+    @include _dropdown-icon-size(icon-variables.$dense-icon-size, $query: $query);
+  }
 }
 
 ///
@@ -964,6 +1062,7 @@
 
   .mdc-select__anchor {
     @if $height < variables.$height {
+      @include _dropdown-icon-size(icon-variables.$dense-icon-size, $query: $query);
       @include icon-mixins.size(icon-variables.$dense-icon-size, $query: $query);
       @include _outlined-with-leading-icon-floating-label-position-animation(
         $height,
@@ -982,6 +1081,10 @@
     @include feature-targeting-mixins.targets($feat-structure) {
       height: $height;
     }
+  }
+
+  @if $height < variables.$height {
+    @include _option-text-leading-padding(28px, $query: $query);
   }
 }
 

@@ -38,7 +38,7 @@ npm install @material/shape
 
 ### Sass 変数
 
-シェイプシステムではコンポーネントは小さいもの、中程度のもの、大きいものに分類されます。以下の sass 変数を上書きすることにより、（角の丸い）シェイプはそれぞれの分類に適用されます。例えば、`$medium-radius` 変数を上書きすると中程度の分類に属するすべてのコンポーネントに対して適用されます。
+マテリアルシェイプシステムではコンポーネントは小さいもの、中程度のもの、大きいものに分類されます。以下の Sass 変数を上書きすることにより、それぞれの分類のすべてのコンポーネントが変更されます。
 
 変数 | 説明
 --- | ---
@@ -48,22 +48,32 @@ npm install @material/shape
 
 コンポーネントの分類方法について学ぶには [Material Design guidelines: シェイプ](https://material.io/go/design-shape) を参照してください。
 
+**注意: 現在は丸まったシェイプで残だけをサポートしています。**
+
+### CSS カスタムプロパティ
+
+CSS カスタムプロパティ | 説明
+--- | ---
+`--mdc-shape-small` | 小さいコンポーネントのための丸まったシェイプの半径の大きさ。デフォルトは `4px`。
+`--mdc-shape-medium` | 小さい（訳注: 記載誤りと思われる）コンポーネントのための丸まったシェイプの半径の大きさ。デフォルトは `4px`。
+`--mdc-shape-large` | 小さい（訳注: 記載誤りと思われる）コンポーネントのための丸まったシェイプの半径の大きさ。デフォルトは `0`。
+
+**注意: ランタイムで  `shape.radius()` が解決できないため、カスタムプロパティにパーセント値を使用しないでください。**
+
 ### Sass ミキシン
 
 ミキシン | 説明
 --- | ---
 `radius($radius, $rtl-reflexive)` | 適当な角を丸めの半径を適用するためにその他のすべてのコンポーネントが使用するシェープ API。`$radius` には単一の値、もしくは、四隅の角の丸めの半径を指定する。`$rtl-reflexive` を true に設定すると RTL のときに反転される。デフォルトは `false`。
 
-> パーセント単位の値を絶対的な半径の大きさにするには `resolve-percentage-radius` sass 関数を使ってください。
-
 ### Sass 関数
 
 関数 | 説明
 --- | ---
+`resolve-radius($radius, $component-height)` | シェイプ分類 ― `large`、`medium`、`small` ― の解決された半径の値を返す。$radius が分類にないもののとき、この関数は有効な値であればその値を返す。有効な値とは数値かパーセント値です。`$radius` がパーセント値の場合、`$component-height` を指定する必要があります。
 `flip-radius($radius)` | RTL コンテンツ内で半径の値を反転します。`$radius` は 2-4 の角の値のリスト。
-`resolve-percentage-radius($component-height, $radius)` | コンポーネントの高さをもとに半径の絶対的な値を計算する。高さが固定されたコンポーネントでのみ使用する。
 `mask-radius($radius, $masked-corners)` | 半径の値、もしくは、半径の 2-4 の値のリストを指定し、`$masked-corners` に指定にしたがい、マスクされた 4 つの値のリストを返す。
-`prop-value($radius)` | シェイプ分類 - `large`、`medium` または `small` - の`$radius` の値を返す。もしくは、有効であれば `$radius` 自身を返す。`$radius` は単一の値、もしくは最大 4 津の値のリスト。
+`unpack-radius($radius)` | border-radius の省略値（すなわち、1個から3個の値のリスト）をアンパックする。4つの値が与えられたときはそのまま返す。
 
 ### 追加情報
 
@@ -74,10 +84,10 @@ npm install @material/shape
 ```scss
 @use "@material/button";
 
-@include shape.radius(shape.resolve-percentage-radius(button.$height, $radius));
+@include shape.radius($radius, $component-height: button.$height);
 ```
 
-ここで、`button.$height` は標準的なボタンの高さ、`$radius` はシェイプのサイズです。`resolve-percentage-radius` 関数はコンポーネントの高さに基づきパーセント単位の値を絶対的な `$radius` の値にsるために使われます。
+ここで、`button.$height` は標準的なボタンの高さ、`$radius` はシェイプのサイズです。`shape.radius()` はコンポーネントの高さに基づきパーセント単位の値を絶対的な半径の値を解決します。
 
 #### 動的な高さのコンポーネントのためのシェイプ
 
@@ -87,7 +97,7 @@ npm install @material/shape
 @include shape.radius($radius);
 ```
 
-ここで、`$radius` は絶対的な値しか許されません。
+ここで `$radius` は絶対的な値しか許されません。
 
 #### 特殊な角をもつコンポーネントのためのシェイプ
 
@@ -97,11 +107,11 @@ npm install @material/shape
 @include shape.radius(0 $radius $radius 0, $rtl-reflexive: true);
 ```
 
-ここで、右上と右下の角だけがカスタマイズでき、`$rtl-reflexive` を true に設定すれば自動的に RTL コンテンツに基づき、半径の値が反転されます。
+ここで右上と右下の角だけがカスタマイズできます。`$rtl-reflexive` を true に設定すれば `shape.radius()` は自動的に RTL コンテンツに基づき、半径の値を反転します。
 
 #### コンポーネントのテーマ
 
-カスタムシェイプをボタンコンポーネントインスタンスに適用するにためのスタイルは次のようにします。
+カスタムシェイプをボタンコンポーネントに適用するにためのスタイルは次のようにします。
 
 ```scss
 @use "@material/button";
@@ -111,6 +121,6 @@ npm install @material/shape
 }
 ```
 
-この例では、上のスタイルはボタンに 50%（円形）シェイプを適用します。また、絶対的な値（例： `8px`）を指定することもできます。
+この例では、上のスタイルはボタンに 50% 円形シェイプを適用します。また、絶対的な値（例： `8px`）を指定することもできます。
 
-> シェイプ API はそれぞれのコンポーネントのすべてのバリエーションの角に丸みを適用することのできるミキシンを介して暗黙に使用されます。
+> シェイプ API は通常、各コンポーネントのミキシンを介して暗黙に使用されます。これによって、すべてのバリエーションの高さを設定し、該当する角に丸みに半径を適用します。

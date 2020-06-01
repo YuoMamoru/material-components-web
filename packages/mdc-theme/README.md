@@ -47,7 +47,7 @@ https://www.w3.org/TR/WCAG20
 
 ### 高度なカスタマイズ
 
-色の体系ではよく設計されたアプリにおける道のりの80%しか得られません。必然的に「枠の外」には動作しないコンポーネントがでてきます。視認性とデザインの問題を解決するためには、`mdc-button-filled-accessible` のような Sass ミキシンを使うとよいでしょう。詳細は各コンポーネントのドキュメントを参照してください。
+色の体系ではよく設計されたアプリにおける道のりの80%しか得られません。必然的に「枠の外」には動作しないコンポーネントがでてきます。視認性とデザインの問題を解決するためには、`button.filled-accessible()` のような Sass ミキシンを使うとよいでしょう。詳細は各コンポーネントのドキュメントを参照してください。
 
 ### <a name="text-styles"></a>テキストスタイル
 
@@ -105,13 +105,13 @@ CSS クラス | 説明
 
 ミキシン | 説明
 --- | ---
-`prop($property, $style, $important)` | テーマカラーもしくは CSS プロパティ形式のカスタムカラーを、必要であれば `!important` を付けて適用する。
+`property($property, $value, $gss, $important)` | 指定したプロパティに動的に値を適用する。値は標準の CSS 値、カスタムプロパティマップ、あるいはマテリアルテーマのキーでなくてはならない。
 
-#### `mdc-theme-prop` のプロパティ
+#### Material theme keys with `theme.property()`
 
-`mdc-theme-prop` ミキシンでは以下のプロパティを `$style` 引数として使用することができます。これらの代わりに色リテラル（例: `rgba(0, 0, 0, .75)`）を使うこともできます。
+マテリアルテーマのキー名は `theme.property()` ミキシンの `$value` 引数として使用することができます。いくつかのキーは動的で、他のキーの値によってコンテキストが変わります。キーは動的ランタイムテーマによってカスタムプロパティに変換することも可能です。
 
-プロパティ名 | 説明
+キー名 | 説明
 --- | ---
 `primary` | テーマのプライマリカラー
 `secondary` | テーマのセカンダリカラー
@@ -123,27 +123,20 @@ CSS クラス | 説明
 `on-secondary` | セカンダリカラーの背景の上に使用されるテキスト/アイコンの色
 `on-surface` | サーフェイスカラーの背景の上に使用されるテキスト/アイコンの色
 
-#### CSS カスタムプロパティを利用した `mdc-theme-prop`
+#### `theme.property()` に使うカスタムプロパティ
 
-> **注意** Sass マップの `$style` 引数はカラーミキシンでの使用に *限って* 用意されたものです。
+`theme.property()` ミキシンは `$value` 引数にカスタムプロパティマップを受け取ることもできます。マップはカスタムプロパティの名前として `varname` キーを含んでいなければならず、オプションでカスタムプロパティ名とともに `fallback` キーを含めなくてはなりません。
 
-`mdc-theme-prop` ミキシンは `$style` 引数用の Sass マップも使えます。このマップは以下のフィードを含めなくてはなりません。
-
-フィールド | 説明
---- | ---
-`varname` | CSS カスタムプロパティの名前
-`fallback` | CSS カスタムプロパティの代替値
+カスタムプロパティマップを作るには `@material/theme/custom-properties` を使います。
 
 例えば、以下の Sass は
 
 ```scss
 @use "@material/theme";
+@use "@material/theme/custom-properties";
 
 .foo {
-  @include theme.prop(color, (
-    varname: --foo-color,
-    fallback: red,
-  ));
+  @include theme.property(color, custom-properties.create(--foo-color, red));
 }
 ```
 
@@ -158,7 +151,7 @@ CSS クラス | 説明
 
 上記の CSS 出力は、CSS カスタムプロパティを革新的な拡張として使用するとともに、すべてのサポートしているブラウザ（IE11 を含め）で `fallback` フィールドの値を提供します。IE11 のように CSS カスタムプロパティをサポートしないブラウザでは `color: red;` を適用し、 `color: var(--foo-color, red);` は無視されます。この引数タイプのやり方は既存のテーマプロパティ以外にカスタムカラーアプリケーションが必要なクライアントのために用意しています。
 
-#### `mdc-theme-luminance($color)`
+#### `theme.luminance($color)`
 
 与えられた色の輝度値（0～1）を計算します。
 
@@ -166,7 +159,7 @@ CSS クラス | 説明
 @debug theme.luminance(#9c27b0); // 0.11654
 ```
 
-#### `mdc-theme-contrast($back, $front)`
+#### `theme.contrast($back, $front)`
 
 2つの色のコントラスト比を計算します。
 
@@ -174,7 +167,7 @@ CSS クラス | 説明
 @debug theme.contrast(#9c27b0, #000); // 3.33071
 ```
 
-#### `mdc-theme-tone($color)`
+#### `theme.tone($color)`
 
 与えられた色が「明るい」か「暗い」かを判定します。
 
@@ -185,7 +178,7 @@ CSS クラス | 説明
 @debug theme.tone(light);   // light
 ```
 
-#### `mdc-theme-contrast-tone($color)`
+#### `theme.contrast-tone($color)`
 
 与えられた色の上にのせるテキストを明るくすべきか暗くすべきかを判定します。
 
@@ -193,22 +186,7 @@ CSS クラス | 説明
 @debug theme.contrast-tone(#9c27b0); // light
 ```
 
-#### `mdc-theme-prop-value($style)`
-
-`$style` が色（色リテラルや `currentColor` 、もしくは CSS カスタムプロパティ）のときは入力値をそのまま返します。そうでないときは `$style` をテーマのプロパティ名とみなし、`$property-values` から一致する値を返します。処理が失敗するときにはエラーがスローされます。
-
-これは主に `prop` を直接利用できない状況（例: `box-shadow`）で役立ちます。
-
-`prop` ミキシンと違って、この関数は CSS カスタムプロパティをサポートして <em>いません</em>。テーマプロパティに指定された生の色だけを返します。
-
-> 注意: 循環インポートを避けるため、この関数は `_functions.scss` ではなく、`_variables.scss` で定義されています。
-
-```scss
-@debug theme.prop-value(primary); // #3f51b5
-@debug theme.prop-value(blue);    // blue
-```
-
-#### `mdc-theme-accessible-ink-color($fill-color, $text-style: primary)`
+#### `theme.accessible-ink-color($fill-color, $text-style: primary)`
 
 与えられた塗りの色に対して十分なコントラストを持ち視認性のあるインクの色を返します。
 
@@ -223,7 +201,7 @@ CSS クラス | 説明
 @debug theme.accessible-ink-color(secondary); // rgba(0, 0, 0, .87) (text-primary-on-light)
 @debug theme.accessible-ink-color(blue);      // white              (text-primary-on-dark)
 ```
-#### `mdc-theme-text-emphasis($emphasis)`
+#### `theme.text-emphasis($emphasis)`
 
 与えられた修飾子の不透明度の値を返します。
 

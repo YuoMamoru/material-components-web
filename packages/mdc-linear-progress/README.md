@@ -69,7 +69,9 @@ npm install @material/linear-progress
 
 ### スタイル
 ```scss
-@use "@material/linear-progress/mdc-linear-progress";
+@use "@material/linear-progress";
+
+@include linear-progress.core-styles;
 ```
 
 ### JavaScript のインスタンス化
