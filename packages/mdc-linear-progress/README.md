@@ -113,7 +113,7 @@ MDC リニアプログレスは外部フレームワークや外部ライブラ�
 | `hasClass(className: string) => boolean` | ルート要素が与えられたクラスを持っているかどうかを表す真偽値を返す。 |
 | `forceLayout() => void` | ルート要素のレイアウトを強制的に設定する。これは、アニメーションを正しく再起動するために必要。 |
 | `setAttribute(attributeName: string, value: string) => void` | ルート要素に指定した属性を設定する。 |
-| `setBufferBarStyle(styleProperty: string, value: string) => void` | バッファバー上のインラインスタイルを設定する。 |
+| `setBufferBarStyle(styleProperty: string, value: string) => void` | バッファーバー上のインラインスタイルを設定する。 |
 | `setPrimaryBarStyle(styleProperty: string, value: string) => void` | プライマリバー上のインラインスタイルを設定する。 |
 
 ### MDCLinearProgressFoundation API
