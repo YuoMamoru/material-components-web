@@ -584,6 +584,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `notchOutline(labelWidth: number) => void` | へこんだ輪郭要素を "へこんだ状態" に切り替える。 |
 | `closeOutline() => void` | へこんだ輪郭要素を閉じた状態に切り替える。 |
 | `setDisabled(isDisabled: boolean) => void` | セレクトを利用できなくする。 |
+| `openMenu() => void` | メニューを開き、有効になった際のスタイルを適用する。 |
 | `setRippleCenter(normalizedX: number) => void` | ラインリップルの中心を与えた normalizedX の値に設定する。 |
 | `notifyChange(value: string) => void` | 要素が選択された際に `MDCSelect:change` イベントを発生させる。 |
 | `setSelectedText(text: string) => void` | selectedText 要素のテキストコンテンツを与えられた文字列に設定する。 |
@@ -605,6 +606,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `getMenuItemTextAtIndex(index: number) => string` | 与えられたインデックスのメニュー項目要素のテキストコンテンツを取得する。 |
 | `addClassAtIndex(menuItem: Element, className: string) => void` | 与えられたインデックスのメニュー項目にクラス名を追加する。 |
 | `removeClassAtIndex(menuItem: Element, className: string) => void` | 与えられたインデックスのメニュー項目からクラス名を削除する。 |
+| `isTypeaheadInProgress() => boolean` | メニュー内のタイプアヘッドが進行中かどうかを返す。 |
+| `typeaheadMatchItem: (nextChar: string, startingIndex: number) => number` | タイプアヘッドバッファーに文字を追加し、バッファーに一致するリスト内の次の項目のインデックスを返す。 |
 
 ### `MDCSelectFoundation`
 

@@ -234,6 +234,21 @@ describe('MDCList', () => {
        expect(mockFoundation.setEnabled).toHaveBeenCalledTimes(1);
      });
 
+  it('#getTypeaheadInProgress calls foundation method', () => {
+    const {component, mockFoundation} = setupTest();
+    component.typeaheadInProgress;
+    expect(mockFoundation.isTypeaheadInProgress).toHaveBeenCalled();
+  });
+
+  it('#typeaheadMatchItem calls foundation method with given index and starting index.',
+     () => {
+       const {component, mockFoundation} = setupTest();
+       component.typeaheadMatchItem('a', 2);
+       expect(mockFoundation.typeaheadMatchItem)
+           .toHaveBeenCalledWith('a', 2, true);
+       expect(mockFoundation.typeaheadMatchItem).toHaveBeenCalledTimes(1);
+     });
+
   it('adapter#getListItemCount returns correct number of list items', () => {
     const {root, component} = setupTest();
     document.body.appendChild(root);
@@ -374,6 +389,22 @@ describe('MDCList', () => {
   it('layout adds tabindex=-1 to all list item button/a elements', () => {
     const {root} = setupTest();
     expect(0).toEqual(root.querySelectorAll('button:not([tabindex])').length);
+  });
+
+  it('#getPrimaryText returns the appropriate text for one line list', () => {
+    const {root, component} = setupTest();
+    const item = root.querySelectorAll('.mdc-list-item')[2] as HTMLElement;
+    document.body.appendChild(root);
+    expect(component.getPrimaryText(item)).toEqual('Pasta');
+    document.body.removeChild(root);
+  });
+
+  it('#getPrimaryText returns the appropriate text for two line list', () => {
+    const {root, component} = setupTest(getTwoLineFixture());
+    const item = root.querySelectorAll('.mdc-list-item')[2] as HTMLElement;
+    document.body.appendChild(root);
+    expect(component.getPrimaryText(item)).toEqual('Pasta');
+    document.body.removeChild(root);
   });
 
   it('vertical calls setVerticalOrientation on foundation', () => {

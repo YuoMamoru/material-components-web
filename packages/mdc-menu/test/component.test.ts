@@ -83,11 +83,14 @@ function getFixtureWithMultipleSelectionGroups(open = false) {
 }
 
 class FakeList {
-  destroy: Function = jasmine.createSpy('.destroy');
-  itemsContainer: Function = jasmine.createSpy('.root_');
-  layout: Function = jasmine.createSpy('layout');
+  destroy: jasmine.Spy = jasmine.createSpy('.destroy');
+  itemsContainer: jasmine.Spy = jasmine.createSpy('.root_');
+  layout: jasmine.Spy = jasmine.createSpy('layout');
   wrapFocus: boolean = true;
+  typeaheadInProgress: boolean = false;
+  typeaheadMatchItem: jasmine.Spy = jasmine.createSpy('.typeaheadMatchItem');
   listElements: HTMLElement[];
+  getPrimaryText: jasmine.Spy = jasmine.createSpy('.getPrimaryText');
 
   constructor(root: HTMLElement) {
     this.listElements = [].slice.call(root.querySelectorAll('.mdc-list-item'))
@@ -222,6 +225,22 @@ describe('MDCMenu', () => {
     expect(list.wrapFocus).toBe(false);
   });
 
+  it('typeaheadInProgress proxies to MDCList#typeaheadInProgress property',
+     () => {
+       const {component, list} = setupTestWithFakes();
+
+       expect(component.typeaheadInProgress).toBeFalse();
+       list.typeaheadInProgress = true;
+       expect(component.typeaheadInProgress).toBeTrue();
+     });
+
+  it('typeaheadMatchItem proxies to MDCList#typeaheadMatchItem method', () => {
+    const {component, list} = setupTestWithFakes();
+
+    component.typeaheadMatchItem('a', 2);
+    expect(list.typeaheadMatchItem).toHaveBeenCalledWith('a', 2);
+  });
+
   it('layout proxies to MDCList#layout method', () => {
     const {component, list} = setupTestWithFakes();
 
@@ -292,6 +311,14 @@ describe('MDCMenu', () => {
     const items = [].slice.call(root.querySelectorAll('[role="menuitem"]'));
     list.listElements = items;
     expect(component.getOptionByIndex(items.length)).toBe(null);
+  });
+
+  it('getPrimaryTextAtIndex', () => {
+    const {component, list} = setupTestWithFakes();
+    list.getPrimaryText.withArgs(jasmine.any(Element))
+        .and.returnValue('Another Item');
+
+    expect(component.getPrimaryTextAtIndex(1)).toEqual('Another Item');
   });
 
   it('setFixedPosition', () => {

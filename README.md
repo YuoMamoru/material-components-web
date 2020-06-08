@@ -33,10 +33,11 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 
 <!-- Render textfield component -->
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
+  <span class="mdc-text-field__ripple"></span>
   <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
   <span class="mdc-floating-label" id="my-label">Label</span>
-  <div class="mdc-line-ripple"></div>
+  <span class="mdc-line-ripple"></span>
 </label>
 
 <!-- Required Material Web JavaScript library -->
@@ -64,10 +65,11 @@ npm install @material/textfield
 text field コンポーネントの使用例です。さらなるオプションに関しては [Textfield](packages/mdc-textfield) コンポーネントのページを参照してください。
 
 ```html
-<label class="mdc-text-field">
+<label class="mdc-text-field mdc-text-field--filled">
+  <span class="mdc-text-field__ripple"></span>
   <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
   <span class="mdc-floating-label" id="my-label">Label</span>
-  <div class="mdc-line-ripple"></div>
+  <span class="mdc-line-ripple"></span>
 </label>
 ```
 
@@ -84,7 +86,7 @@ text field コンポーネントの使用例です。さらなるオプション
 text field コンポーネントをインスタンス化するために `MDCTextField` モジュールをインポートします。
 
 ```js
-import {MDCTextField} from '@material/textfield/index';
+import {MDCTextField} from '@material/textfield';
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 ```
 

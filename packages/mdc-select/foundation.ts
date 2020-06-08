@@ -22,7 +22,7 @@
  */
 
 import {MDCFoundation} from '@material/base/foundation';
-import {normalizeKey} from '@material/dom/keyboard';
+import {KEY, normalizeKey} from '@material/dom/keyboard';
 import {Corner} from '@material/menu-surface/constants';
 
 import {MDCSelectAdapter} from './adapter';
@@ -59,6 +59,7 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
       hasLabel: () => false,
       floatLabel: () => undefined,
       getLabelWidth: () => 0,
+      setLabelRequired: () => undefined,
       hasOutline: () => false,
       notchOutline: () => undefined,
       closeOutline: () => undefined,
@@ -69,6 +70,8 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
       getSelectAnchorAttr: () => '',
       setSelectAnchorAttr: () => undefined,
       removeSelectAnchorAttr: () => undefined,
+      addMenuClass: () => undefined,
+      removeMenuClass: () => undefined,
       openMenu: () => undefined,
       closeMenu: () => undefined,
       getAnchorElement: () => null,
@@ -83,6 +86,8 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
       getMenuItemAttr: () => '',
       addClassAtIndex: () => undefined,
       removeClassAtIndex: () => undefined,
+      isTypeaheadInProgress: () => false,
+      typeaheadMatchItem: () => -1,
     };
     // tslint:enable:object-literal-sort-keys
   }
@@ -178,6 +183,14 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
     this.adapter.setSelectAnchorAttr('aria-disabled', this.disabled.toString());
   }
 
+  /** Opens the menu. */
+  openMenu() {
+    this.adapter.addClass(cssClasses.ACTIVATED);
+    this.adapter.openMenu();
+    this.isMenuOpen = true;
+    this.adapter.setSelectAnchorAttr('aria-expanded', 'true');
+  }
+
   /**
    * @param content Sets the content of the helper text.
    */
@@ -196,9 +209,11 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
       const optionHasValue = this.getValue().length > 0;
       const isFocused = this.adapter.hasClass(cssClasses.FOCUSED);
       const shouldFloatAndNotch = optionHasValue || isFocused;
+      const isRequired = this.adapter.hasClass(cssClasses.REQUIRED);
 
       this.notchOutline(shouldFloatAndNotch);
       this.adapter.floatLabel(shouldFloatAndNotch);
+      this.adapter.setLabelRequired(isRequired);
     }
   }
 
@@ -279,37 +294,50 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
     }
     this.adapter.setRippleCenter(normalizedX);
 
-    this.adapter.addClass(cssClasses.ACTIVATED);
-    this.adapter.openMenu();
-    this.isMenuOpen = true;
-    this.adapter.setSelectAnchorAttr('aria-expanded', 'true');
+    this.openMenu();
   }
 
+  /**
+   * Handles keydown events on select element. Depending on the type of
+   * character typed, does typeahead matching or opens menu.
+   */
   handleKeydown(event: KeyboardEvent) {
     if (this.isMenuOpen || !this.adapter.hasClass(cssClasses.FOCUSED)) {
       return;
     }
 
-    const isEnter = normalizeKey(event) === 'Enter';
-    const isSpace = normalizeKey(event) === 'Spacebar';
-    const arrowUp = normalizeKey(event) === 'ArrowUp';
-    const arrowDown = normalizeKey(event) === 'ArrowDown';
+    const isEnter = normalizeKey(event) === KEY.ENTER;
+    const isSpace = normalizeKey(event) === KEY.SPACEBAR;
+    const arrowUp = normalizeKey(event) === KEY.ARROW_UP;
+    const arrowDown = normalizeKey(event) === KEY.ARROW_DOWN;
 
-    if (isEnter || isSpace || arrowUp || arrowDown) {
-      if (arrowUp && this.selectedIndex > 0) {
-        this.setSelectedIndex(this.selectedIndex - 1);
-      } else if (
-          arrowDown &&
-          this.selectedIndex < this.adapter.getMenuItemCount() - 1) {
-        this.setSelectedIndex(this.selectedIndex + 1);
+    // Typeahead
+    if (event.key && event.key.length === 1 ||
+        isSpace && this.adapter.isTypeaheadInProgress()) {
+      const key = isSpace ? ' ' : event.key;
+      const typeaheadNextIndex =
+          this.adapter.typeaheadMatchItem(key, this.selectedIndex);
+      if (typeaheadNextIndex >= 0) {
+        this.setSelectedIndex(typeaheadNextIndex);
       }
-
-      this.adapter.addClass(cssClasses.ACTIVATED);
-      this.adapter.openMenu();
-      this.isMenuOpen = true;
-      this.adapter.setSelectAnchorAttr('aria-expanded', 'true');
       event.preventDefault();
+      return;
     }
+
+    if (!isEnter && !isSpace && !arrowUp && !arrowDown) {
+      return;
+    }
+
+    // Increment/decrement index as necessary and open menu.
+    if (arrowUp && this.selectedIndex > 0) {
+      this.setSelectedIndex(this.selectedIndex - 1);
+    } else if (
+        arrowDown && this.selectedIndex < this.adapter.getMenuItemCount() - 1) {
+      this.setSelectedIndex(this.selectedIndex + 1);
+    }
+
+    this.openMenu();
+    event.preventDefault();
   }
 
   /**
@@ -360,8 +388,10 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
     this.adapter.setSelectAnchorAttr('aria-invalid', (!isValid).toString());
     if (isValid) {
       this.adapter.removeClass(cssClasses.INVALID);
+      this.adapter.removeMenuClass(cssClasses.MENU_INVALID);
     } else {
       this.adapter.addClass(cssClasses.INVALID);
+      this.adapter.addMenuClass(cssClasses.MENU_INVALID);
     }
   }
 
@@ -384,6 +414,7 @@ export class MDCSelectFoundation extends MDCFoundation<MDCSelectAdapter> {
       this.adapter.removeClass(cssClasses.REQUIRED);
     }
     this.adapter.setSelectAnchorAttr('aria-required', isRequired.toString());
+    this.adapter.setLabelRequired(isRequired);
   }
 
   getRequired() {

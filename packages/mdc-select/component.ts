@@ -356,6 +356,12 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> {
       removeSelectAnchorAttr: (attr: string) => {
         this.selectAnchor.removeAttribute(attr);
       },
+      addMenuClass: (className: string) => {
+        this.menuElement.classList.add(className);
+      },
+      removeMenuClass: (className: string) => {
+        this.menuElement.classList.remove(className);
+      },
       openMenu: () => {
         this.menu.open = true;
       },
@@ -387,13 +393,16 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> {
       getMenuItemValues: () => this.menu.items.map(
           (el) => el.getAttribute(strings.VALUE_ATTR) || ''),
       getMenuItemTextAtIndex: (index: number) =>
-          this.menu.items[index].textContent as string,
+          this.menu.getPrimaryTextAtIndex(index),
       addClassAtIndex: (index: number, className: string) => {
         this.menu.items[index].classList.add(className);
       },
       removeClassAtIndex: (index: number, className: string) => {
         this.menu.items[index].classList.remove(className);
       },
+      isTypeaheadInProgress: () => this.menu.typeaheadInProgress,
+      typeaheadMatchItem: (nextChar: string, startingIndex: number) =>
+          this.menu.typeaheadMatchItem(nextChar, startingIndex),
     };
     // tslint:enable:object-literal-sort-keys
   }
@@ -447,6 +456,9 @@ export class MDCSelect extends MDCComponent<MDCSelectFoundation> {
         this.label && this.label.float(shouldFloat);
       },
       getLabelWidth: () => this.label ? this.label.getWidth() : 0,
+      setLabelRequired: (isRequired: boolean) => {
+        this.label && this.label.setRequired(isRequired);
+      },
     };
     // tslint:enable:object-literal-sort-keys
   }

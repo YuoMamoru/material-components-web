@@ -400,7 +400,12 @@ CSS クラス | 説明
 --- | ---
 `mdc-list` | リスト要素で必須。
 `mdc-list--dense` | オプション。リストを密集型にスタイルし、よりコンパクトにする。
-`mdc-list--avatar-list` | オプション。各行にアイコンの代わりの画像を表示するための先頭タイルを設定する。リスト項目の画像をより大きくする。
+`mdc-list--textual-list` | オプション。テキストで始まるリスト（例えば先頭タイルがないもの）を設定する。
+`mdc-list--avatar-list` | オプション。各行にアバターを表示するための先頭タイルを設定する。
+`mdc-list--icon-list` | オプション。各行にアイコンを表示するための先頭タイルを設定する。
+`mdc-list--image-list` | オプション。画像を表示するための先頭タイルを設定する。
+`mdc-list--thumbnail-list` | オプション。小さな画像（アバターリストに似ていますが、画像は丸められません）を表示するための先頭タイルを設定する。
+`mdc-list--video-list` | オプション。動画を表示するための先頭タイルを設定する。
 `mdc-list--two-line` | オプション。2行（主たる行と副次的な行）を伴うリストにスタイルを変更する。
 `mdc-list-item` | リスト項目で必須。
 `mdc-list-item__text` |	必須。リスト項目テキストコンテンツのラッパー（リスト項目の中央に表示させる）。
@@ -409,13 +414,16 @@ CSS クラス | 説明
 `mdc-list-item--disabled` | オプション。行を利用不可の状態にスタイルする。
 `mdc-list-item--selected` | オプション。行を選択状態* にスタイルする。
 `mdc-list-item--activated` | オプション。行を活性化状態* にスタイルする。
-`mdc-list-item__graphic` | オプション。行の最初の領域（LTR 言語においてはリスト項目の最初の列）。一般的にはアイコンかイメージ。
+`mdc-list-item__graphic` | オプション。行の最初のタイル（LTR 言語においてはリスト項目の最初の列）。デフォルトはアイコンだが、アバターリストではアバター、通信リストでは画像または動画。
 `mdc-list-item__meta`	| オプション。行の最後の領域（LTR 減とに置いてはリスト項目の最後の列）。一般的には小さなテキスト、アイコンまたはイメージ。
 `mdc-list-group` | オプション。一緒にグループ化する2つ以上の mdc-list 要素をラップする。
 `mdc-list-group__subheader` |	オプション。グループの各リストの上に表示するヘッダーテキスト。
 `mdc-list-divider` | オプション。リストの区切線要素。
-`mdc-list-divider--padded` | オプション。`list-item__meta` のパディングと一致するように区切線の両脇の空白を残す。
-`mdc-list-divider--inset` | オプション。アバター列と交差しないように区切線の先頭マージンを増やす。
+`mdc-list-divider--padded` | オプション。`list-item__meta` のパディングと一致するように区切線の両脇の空白を残す。非推奨：代わりにより柔軟な "inset-" クラスを使う。
+`mdc-list-divider--inset` | オプション。アバター列と交差しないように区切線の先頭と末尾のマージンを増やす。非推奨：代わりにより柔軟な "inset-" クラスを使う。
+`mdc-list-divider--inset-leading` | オプション。動画列と交差しないように区切線の先頭マージンを増やす。
+`mdc-list-divider--inset-trailing` | オプション。区切線の末尾マージンを増やして項目のパディングと一致させる。
+`mdc-list-divider--inset-padding` | オプション。先頭の画像列ではなく、項目のパディングに対応するよう、画像等を変更する。
 
 **注意: `mdc-list-divider` クラスはアイテム間、*もしくは*、2つのリスト間で使用できる（それぞれの例は [リスト区切線](#list-dividers) 以下を参照）。**
 
@@ -440,14 +448,21 @@ CSS クラス | 説明
 `item-disabled-text-opacity($opacity)` | リスト項目が無効なときのテキストの不透明度を設定する。
 `single-line-density($density-scale)` | 1行型リストの密度スケールを設定する。サポートしている密度スケールは `-4`、`-3`、`-2`、`-1` そして `0`。
 `single-line-height($height)` | 1行型リストの高さを設定する。
+`list-item-padding($leading-padding)` | 各リスト項目で使用されるパディングを設定する。
+`list-item-height($height)` | 各リスト項目で使用される高さを設定する。
+`icon-margin($margin)` | アイコンで使われる末尾マージンを設定する。
+`divider-insets($leading-padding, $text-offset)` | 指定したパディングとテキストオフセットを使って区切線領域スタイルの完全な設定を生成する。
+`divider-insets($leading-padding, $text-offset)` | 指定したパディングとテキストオフセットと構造を使って単一区切線領域を設定する。
+`graphic-size($leading-padding, $text-offset, $width, $height)` | 先頭画像の大きさと末尾マージンを設定する。
 
 ## `MDCList` プロパティとメソッド
 
 プロパティ | 値の型 | 説明
 --- | --- | ---
 `vertical` | `boolean` (書込専用) | ファンデーションの `setVerticalOrientation()` メソッドの代替。
-`listElements` | `Array<Element>` (読込専用) | 無効なリスト項目を含めたすべてのリスト項目を返す。
+`listElements` | `Array<Element>` (読取専用) | 無効なリスト項目を含めたすべてのリスト項目を返す。
 `wrapFocus` | `boolean` (書込専用) | ファンデーションの `setWrapFocus()` メソッドの代替。
+`typeaheadInProgress` | `boolean` (読取専用) | ファンデーションの `isTypeaheadInProgress()` メソッドの代替。
 `hasTypeahead` | `boolean` (書込専用) | ファンデーションの `setHasTypeahead()` メソッドの代替。
 `singleSelection` | `boolean` (書込専用) | ファンデーションの `setSingleSelection()` メソッドの代替。
 `selectedIndex` | `MDCListIndex` | ファンデーションの `getSelectedIndex()` メソッドと `setSelectedIndex()` メソッドの代替。
@@ -455,6 +470,7 @@ CSS クラス | 説明
 メソッド | 説明
 --- | ---
 `layout() => void` | レイアウトの方向を再計算する。
+`getPrimaryText(item: Element) => string` | 与えられた要素のプライマリテキストを取得する。
 `initializeListType() => void` | 選択済みチェックボックス、単一選択、またはラジオボタンに基づいて `selectedIndex` の値を初期化する。
 `setEnabled(itemIndex: number, isEnabled: boolean) => void` | `itemIndex` のリスト項目を希望する `isEnabled` の状態に更新する。 
 
@@ -553,3 +569,5 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `setEnabled(itemIndex: number, isEnabled: Boolean) => void` | リスト項目の無効状態を更新する。
 `setHasTypeahead(hasTypeahead: Boolean) => void` | リスト上でタイプアヘッドが有効かどうかを設定する。
 `isTypeaheadInProgress() => Boolean` | タイプアヘッドがユーザーの指定したプレフィックスと現在マッチしているかどうかを返す。
+`typeaheadMatchItem(nextChar: string) => number` | タイプアヘッドバッファーに文字を追加し、バッファーに一致するリスト内の次の項目のインデックスを返す。
+`clearTypeaheadBuffer() => void` | タイプアヘッドバッファーをクリアする。

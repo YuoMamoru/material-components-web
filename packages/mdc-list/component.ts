@@ -46,6 +46,13 @@ export class MDCList extends MDCComponent<MDCListFoundation> {
   }
 
   /**
+   * @return Whether typeahead is currently matching a user-specified prefix.
+   */
+  get typeaheadInProgress(): boolean {
+    return this.foundation.isTypeaheadInProgress();
+  }
+
+  /**
    * Sets whether typeahead functionality is enabled on the list.
    * @param hasTypeahead Whether typeahead is enabled.
    */
@@ -112,6 +119,23 @@ export class MDCList extends MDCComponent<MDCListFoundation> {
   }
 
   /**
+   * Extracts the primary text from a list item.
+   * @param item The list item element.
+   * @return The primary text in the element.
+   */
+  getPrimaryText(item: Element): string {
+    const primaryText =
+        item.querySelector(`.${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`);
+    if (primaryText) {
+      return primaryText.textContent || '';
+    }
+
+    const singleLineText =
+        item.querySelector(`.${cssClasses.LIST_ITEM_TEXT_CLASS}`);
+    return (singleLineText && singleLineText.textContent) || '';
+  }
+
+  /**
    * Initialize selectedIndex value based on pre-selected checkbox list items, single selection or radio.
    */
   initializeListType() {
@@ -150,6 +174,21 @@ export class MDCList extends MDCComponent<MDCListFoundation> {
     this.foundation.setEnabled(itemIndex, isEnabled);
   }
 
+  /**
+   * Given the next desired character from the user, adds it to the typeahead
+   * buffer. Then, attempts to find the next option matching the buffer. Wraps
+   * around if at the end of options.
+   *
+   * @param nextChar The next character to add to the prefix buffer.
+   * @param startingIndex The index from which to start matching. Defaults to
+   *     the currently focused index.
+   * @return The index of the matched item.
+   */
+  typeaheadMatchItem(nextChar: string, startingIndex?: number): number {
+    return this.foundation.typeaheadMatchItem(
+        nextChar, startingIndex, /** skipFocus */ true);
+  }
+
   getDefaultFoundation() {
     // DO NOT INLINE this variable. For backward compatibility, foundations take a Partial<MDCFooAdapter>.
     // To ensure we don't accidentally omit any methods, we need a separate, strongly typed adapter variable.
@@ -171,17 +210,8 @@ export class MDCList extends MDCComponent<MDCListFoundation> {
       getFocusedElementIndex: () =>
           this.listElements.indexOf(document.activeElement!),
       getListItemCount: () => this.listElements.length,
-      getPrimaryTextAtIndex: (index) => {
-        const primaryText = this.listElements[index].querySelector(
-            `.${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`);
-        if (primaryText) {
-          return primaryText.textContent || '';
-        }
-
-        const singleLineText = this.listElements[index].querySelector(
-            `.${cssClasses.LIST_ITEM_TEXT_CLASS}`);
-        return (singleLineText && singleLineText.textContent) || '';
-      },
+      getPrimaryTextAtIndex: (index) =>
+          this.getPrimaryText(this.listElements[index]),
       hasCheckboxAtIndex: (index) => {
         const listItem = this.listElements[index];
         return !!listItem.querySelector(strings.CHECKBOX_SELECTOR);

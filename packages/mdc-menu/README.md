@@ -232,10 +232,12 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `setIsHoisted(isHoisted: boolean) => void` | メニュー表面の `setIsHoisted(isHoisted: boolean)` メソッドの代替。
 `setAnchorElement(element: Element) => void` | メニュー表面の `setAnchorElement(element)` メソッドの代替。
 `getOptionByIndex(index: number) => Element \| null` | `index` に指定したところにあるリスト項目を返す。
+`getPrimaryTextAtIndex(index: number) => string` | 指定した `index` のプライマリテキストを返す。
 `getDefaultFoundation() => MDCMenuFoundation` | ファンデーションを返す。
 `setDefaultFocusState(focusState: DefaultFocusState) => void` | メニューが開かれたときに常にメニューのフォーカスされる場所のデフォルトを設定する。デフォルトではリストのルート要素（`DefaultFocusState.LIST_ROOT`）がフォーカスされる。
 `setEnabled(index: number, isEnabled: boolean) => void` | 与えられた `index` のメニュー項目の無効かどうかの状態を `isEnabled` に設定する。
 `layout() => void` | リストの `layout` メソッドの代替。
+`typeaheadMatchItem(nextChar: string) => number` | タイプアヘッドバッファーに文字を追加し、バッファーに一致するリスト内の次の項目のインデックスを返す。
 
 > プロキシメソッドとプロパティについてのより詳細な情報は [メニュー表面](../mdc-menu-surface/README.md) and [リスト](../mdc-list/README.md)  を参照してください。
 
