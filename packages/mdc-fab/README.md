@@ -7,37 +7,37 @@ iconId: button
 path: /catalog/buttons/floating-action-buttons/
 -->
 
-# Floating Action Button
+# Floating action buttons
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/fab">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/fabs.png" width="78" alt="Floating action button screenshot">
-  </a>
-</div>-->
+フローティング操作ボタン（FAB）は画面の主要な操作を表すものです。
 
-フローティング操作ボタンはアプリケーションの主要な操作を表すものです。
+FAB には3つのタイプがあります。
 
-## デザインと API ドキュメント
+1. [通常の FAB](#regular-fabs)
+2. [小さな FAB](#mini-fabs)
+3. [拡張 FAB](#extended-fabs)
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-fab">マテリアルデザインガイドライン: フローティング操作ボタン</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/fab">デモ</a>
-  </li>
-</ul>
+![通常 FAB の例](images/FAB_types.png)
 
-## インストール
+## FAB の使用法
+
+FAB は画面上の主要な、もしくは最も一般的な操作を実行します。画面のすべてのコンテンツの前面に表示され、典型的には中心にアイコンのある丸い形状をしています。
+
+### インストール
 
 ```
 npm install @material/fab
 ```
 
-## 基本的な使用法
+### スタイル
 
-### Material Icons のロード
+```scss
+@use "@material/fab";
+
+@include fab.core-styles;
+```
+
+### アイコンの読み込み
 
 Google フォントにある [Material Icons](https://material.io/tools/icons/) を使うことを推奨します。
 
@@ -48,25 +48,6 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ```
 
 また、SVG や [Font Awesome](https://fontawesome.com/) 、そのほかの利用したいアイコンライブラリを使うこともできます。
-
-### HTML 構造
-
-```html
-<button class="mdc-fab" aria-label="Favorite">
-  <div class="mdc-fab__ripple"></div>
-  <span class="mdc-fab__icon material-icons">favorite</span>
-</button>
-```
-
-> _注意:_ フローティング操作ボタンには `span`、`i`、`img` もしくは `svg` 要素を使うことができます。
-
-> _注意:_ マテリアルアイコンテキストの後ろに改行もしくはスペースがあるとき、IE 11 はアイコンを正しく中央に配置しません。
-
-### スタイル
-
-```scss
-@use "@material/fab/mdc-fab";
-```
 
 ### JavaScript のインスタンス化
 
@@ -80,9 +61,60 @@ const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
 
 > JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-## バリエーション
+### FAB を操作しやすくする
 
-### 拡張された FAB
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。FAB はデフォルトで 48 x 48 px で、ミニ FAB は 40 x 40 px です。ミニ FAB ではこの要件を満たすために以下のものを追加します。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <button class="mdc-fab mdc-fab--mini mdc-fab--touch">
+    <div class="mdc-fab__ripple"></div>
+    <span class="material-icons mdc-fab__icon">add</span>
+    <span class="mdc-fab__label">Create</span>
+    <div class="mdc-fab__touch"></div>
+  </button>
+</div>
+```
+
+**注意: 隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要です。**
+
+## <a name="regular-fabs"></a>通常の FAB
+
+通常の FAB は拡張のない通常のサイズの FAB です。
+
+### 通常の FAB の例
+
+```html
+<button class="mdc-fab" aria-label="Favorite">
+  <div class="mdc-fab__ripple"></div>
+  <span class="mdc-fab__icon material-icons">favorite</span>
+</button>
+```
+
+**注意: フローティング操作ボタンには `span`、`i`、`img` もしくは `svg` 要素を使うことができます。**
+
+**注意: マテリアルアイコンテキストの後ろに改行もしくはスペースがあるとき、IE 11 はアイコンを正しく中央に配置しません。**
+
+## <a name="mini-fabs"></a>小さな FAB
+
+小さな FAB はより小さな画面で使われるものです。
+
+小さな FAB は他の画面要素との視覚的な連続性を作り出すこともできます。
+
+### 小さな FAB の例
+
+```html
+<button class="mdc-fab mdc-fab--mini" aria-label="Favorite">
+  <div class="mdc-fab__ripple"></div>
+  <span class="mdc-fab__icon material-icons">favorite</span>
+</button>
+```
+
+## <a name="extended-fabs"></a>拡張 FAB
+
+拡張 FAB は広く、テキストラベルを含んでいます。
+
+### 拡張 FAB の例
 
 ```html
 <button class="mdc-fab mdc-fab--extended">
@@ -92,9 +124,9 @@ const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
 </button>
 ```
 
-> _注意:_ 拡張 FAB はアイコンがオプションであるのに対してラベルは必ず入れる必要があります。アイコントラベルはコンテキストに基づいて適切な順序で指定することができます。
+**注意: 拡張 FAB はアイコンがオプションであるのに対してラベルは必ず入れる必要があります。アイコントラベルはコンテキストに基づいて適切な順序で指定することができます。**
 
-## スタイルのカスタマイズ
+## API
 
 ### CSS クラス
 
@@ -134,52 +166,3 @@ MDC FAB はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラ�
 `extended-label-padding($label-padding)` | 拡張 FAB のラベルの両側のパディングを設定する。アイコンのない拡張 FAB のスタイルを設定するする際に便利。
 `shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に通常 FAB とミニ FAB に限ってを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `extended-shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に拡張 FAB を設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-
-FAB コンポーネントのリップルエフェクトは [MDC Ripple](../mdc-ripple) のミキシンを使って設定されています。
-
-### 追加情報
-
-#### アクセシビリティ
-
-マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。FAB はデフォルトで 48 x 48 px で、ミニ FAB は 40 x 40 px です。ミニ FAB ではこの要件を満たすために以下のものを追加します。
-
-```html
-<div class="mdc-touch-target-wrapper">
-  <button class="mdc-fab mdc-fab--mini mdc-fab--touch">
-    <div class="mdc-fab__ripple"></div>
-    <span class="material-icons mdc-fab__icon">add</span>
-    <span class="mdc-fab__label">Create</span>
-    <div class="mdc-fab__touch"></div>
-  </button>
-</div>
-```
-
-隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
-
-#### 配置
-
-必要に応じてアプリケーションのデザイン内に MDC FAB を配置しなくてはいけません。
-
-```html
-<!--
-  ここでは FAB を右下の隅に配置している。
-  デザインの要件に合わせて変更すること。
--->
-<style>
-.app-fab--absolute {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-}
-
-@media(min-width: 1024px) {
-   .app-fab--absolute {
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-}
-</style>
-<button class="mdc-fab app-fab--absolute" aria-label="Favorite">
-  <span class="mdc-fab__icon material-icons">favorite</span>
-</button>
-```

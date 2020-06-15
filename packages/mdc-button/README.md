@@ -136,7 +136,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 </button>
 ```
 
-**注意**: `mdc-button--raised` は浮き上がっている囲みボタンに適用し、`mdc-button--unelevated` は表面と同じ高さの囲みボタンに適用します。
+**注意: `mdc-button--raised` は浮き上がっている囲みボタンに適用し、`mdc-button--unelevated` は表面と同じ高さの囲みボタンに適用します。**
 
 <b>アイコンを伴う囲みボタンの例</b>
 
@@ -219,7 +219,7 @@ SVG アイコンを使うことも可能です。
 </button>
 ```
 
-> <em>注意</em>: `mdc-button__label` 要素は後置アイコンが適切にスタイルされるためには <em>必須</em> です。
+> **注意: `mdc-button__label` 要素は後置アイコンが適切にスタイルされるためには <em>必須</em> です。**
 
 ### 無効の状態
 
