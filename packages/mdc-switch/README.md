@@ -6,37 +6,58 @@ iconId: switch
 path: /catalog/input-controls/switches/
 -->
 
-# Switches
+# 選択コントロール: スイッチ
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/switch">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/switches.png" width="37" alt="Switches screenshot">
-  </a>
-</div>-->
+[選択コントロール](https://material.io/components/selection-controls#usage) はユーザーにオプションを選択させるものです。
 
 スイッチはオンまたはオフの単一の状態を切り替えるものです。モバイル上で設定を変えるにあたって優れた方法です。
 
-## デザインと API ドキュメント
+![メニューオプションのためのスイッチの例](images/switch-hero.png)
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-switches">マテリアルデザインガイドライン: スイッチ</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/switch">デモ</a>
-  </li>
-</ul>
+## コンテンツ
 
-## インストール
+* [スイッチの使用法](#using-switches)
+* [スイッチ](#switches)
+* [その他のバリエーション](#other-variants)
+* [API](#api)
+* [Web フレームワークでの使用](#usage-within-web-frameworks)
+
+## <a name="using-switches"></a>スイッチの使用法
+
+スイッチは次のような場所で使います。
+
+* モバイルやタブレット上での単一項目のオンかオフの切り替え
+* 直ちに何かを有効または無効にする
+
+### スイッチのインストール
 
 ```
 npm install @material/switch
 ```
 
-## 基本的な使用法
+### スタイル
 
-### HTML 構造
+```scss
+@use "@material/switch";
+
+@include switch.core-styles;
+```
+
+### JavaScript のインスタンス化
+
+スイッチは機能するうえで JavaScript が必須で、そのため、`mdc-switch` 要素上に `MDCSwitch` をインスタンス化する必要があります。
+
+```js
+import {MDCSwitch} from '@material/switch';
+
+const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
+```
+
+**注意: See JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。**
+
+## <a name="switches"></a>スイッチ
+
+### スイッチの例
 
 ```html
 <div class="mdc-switch">
@@ -49,29 +70,17 @@ npm install @material/switch
 <label for="basic-switch">off/on</label>
 ```
 
-### スタイル
+### スイッチの状態
 
-```scss
-@use "@material/switch/mdc-switch";
-```
+スイッチはオンかオフにすることができます。スイッチは利用可能、ホバー、フォーカス、押下の状態をとります。
 
-### JavaScript のインスタンス化
+![スイッチの状態の表。列は利用可能、利用不可、ホバー、フォーカス、押下を表す。行はオン・オフ。](images/switch-states.png)
 
-スイッチを機能させるは JavaScript が必須で、そのため HTML 上で MDCSwitch をインスタンス化することが必要です。
+## <a name="other-variants"></a>その他のバリエーション
 
-```js
-import {MDCSwitch} from '@material/switch';
+### 初期状態が利用不可のスイッチ
 
-const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
-```
-
-> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
-
-## バリエーション
-
-### 無効なスイッチの初期化
-
-`mdc-switch` 要素に `mdc-switch--disabled` クラスを追加し、スイッチを無効にするために `mdc-switch__native-control` 要素に `disabled` 属性を追加します。このロジックは `MDCSwitchFoundation.setDisabled` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
+`mdc-switch` 要素に `mdc-switch--disabled` クラスを追加し、スイッチを利用不可にするために `mdc-switch__native-control` 要素に `disabled` 属性を追加します。このロジックは `MDCSwitchFoundation.setDisabled` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
 
 ```html
 <div class="mdc-switch mdc-switch--disabled">
@@ -84,7 +93,7 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 <label for="another-basic-switch">off/on</label>
 ```
 
-### "On" のスイッチの初期化
+### 初期状態が "on" のスイッチ
 
 `mdc-switch` 要素に `mdc-switch--checked` クラスを追加し、スイッチを "on" に切り替えるために `mdc-switch__native-control` 要素に `checked` 属性を追加します。このロジックは `MDCSwitchFoundation.setChecked` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
 
@@ -100,7 +109,7 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 <label for="another-basic-switch">off/on</label>
 ```
 
-## スタイルのカスタマイズ
+## API
 
 ### CSS クラス
 
@@ -132,14 +141,14 @@ MDC Switch はデフォルトでチェックさえた状態（トグルが ON）
 `density($density-scale)` | スイッチの密度スケールを設定する。サポートしている密度スケールは `-5`、`-4`、`-3`、`-2`、`-1` そして `0`（デフォルト）。
 `ripple-states-opacity($opacity-map)` | `hover`、`focus`、`press` いずれかの状態のつまみを囲むリップルの不透明度を設定する。`opacity-map` にはこれらの状態をキーとして指定できる。マップに指定していない状態はデフォルトの不透明度が使われる。
 
-## `MDCSwitch` プロパティとメソッド
+### `MDCSwitch` プロパティとメソッド
 
 プロパティ | 値の型 | 説明
 --- | --- | ---
 `checked` | Boolean | スイッチのチェック状態のセッタ/ゲッタ
 `disabled` | Boolean | スイッチの利用不可かどうかの状態のセッタ/ゲッタ
 
-## Web フレームワーク内での使用
+## <a name="usage-within-web-frameworks"></a>Web フレームワーク内での使用
 
 React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
@@ -162,6 +171,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `handleChange(evt: Event) => void` | ネイティブコントロールからの change イベントをハンドリングする。 |
 
 ### `MDCSwitchFoundation` イベントハンドラー
+
 スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラーを追加する必要があります。この例としては、[`MDCSwitch`](component.ts) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
 
 | イベント | 要素セレクター | ファンデーションハンドラー |

@@ -6,60 +6,47 @@ iconId: radio_button
 path: /catalog/input-controls/radio-buttons/
 -->
 
-# Radio Buttons
+# 選択コントロール: ラジオボタン
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/radio">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/radios.png" width="60" alt="Radio buttons screenshot">
-  </a>
-</div>-->
+[選択コントロール](https://material.io/components/selection-controls#usage) はユーザーにオプションを選択させるものです。
 
-ラジオボタンは利用できるすべての選択肢を見ながら一つの選択肢をユーザーに選ばせるものです。
+ラジオボタンは次のような場所で使います。
 
-## デザインと API ドキュメント
+* リストから一つのオプションを選択する
+* 利用できるすべてのオプションを公開する
+* 利用できるオプションを折りたためるときには、代わりにより少ないスペースを使用するドロップダウンメニューを使うとこと検討する
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-radio-buttons">マテリアルデザインガイドライン: 選択コントロール – ラジオボタン</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/radio">デモ</a>
-  </li>
-</ul>
+![メニューオプションのためのラジオボタンの例](images/radio-button-hero.png)
 
-## インストール
+## コンテンツ
+
+* [ラジオボタンの使用法](#using-radio-buttons)
+* [ラジオボタン](#radio-buttons)
+* [その他のバリエーション](#other-variants)
+* [API](#api)
+* [Web フレームワークでの使用](#usage-within-web-frameworks)
+
+## <a name="using-radio-buttons"></a>ラジオボタンの使用法
+
+ラジオボタンは集合から一つのオプションをユーザーが選ぶようにします。ユーザーが利用できるすべてのオプションを見る必要があるときはラジオボタンを使ってください。利用可能なオプションを折りたためるようなときは、ドロップダウンメニューを使ってください。そうすると、少ないスペースですませられます。
+
+### ラジオボタンのインストール
 
 ```
 npm install @material/radio
 ```
 
-## 基本的な使用法
-
-ラベルの配置、ラベルが有効な際のリップルのインタラクティブな効果、そしてRTL認識といった機能強化のために MDC Radio は [MDC Form Field](../mdc-form-field) と共に使用することを推奨します。
-
-### HTML 構造
-
-```html
-<div class="mdc-form-field">
-  <div class="mdc-radio">
-    <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" checked>
-    <div class="mdc-radio__background">
-      <div class="mdc-radio__outer-circle"></div>
-      <div class="mdc-radio__inner-circle"></div>
-    </div>
-    <div class="mdc-radio__ripple"></div>
-  </div>
-  <label for="radio-1">Radio 1</label>
-</div>
-```
-
 ### スタイル
 
 ```scss
-@use "@material/form-field/mdc-form-field";
-@use "@material/radio/mdc-radio";
+@use "@material/radio";
+@use "@material/form-field";
+
+@include radio.core-styles;
+@include form-field.core-styles;
 ```
+
+**注意: フォームフィールドスタイルはラジオボタンをフォームフィールドと共に使うときのみ必須です**
 
 ### JavaScript のインスタンス化
 
@@ -74,33 +61,11 @@ const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
 formField.input = radio;
 ```
 
-> JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
+**注意: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。**
 
-## バリエーション
+### ラジオボタンを操作しやすくする
 
-### 無効の状態 
-
-ラジオボタンを無効にするには、ルート要素に `mdc-radio--disabled` クラスを追加し、`<input>` 要素に `disabled` 属性を設定します。無効なラジオボタンは入力を受け付けず、視覚的にも入力が受け付けられないように見えます。
-
-```html
-<div class="mdc-form-field">
-  <div class="mdc-radio mdc-radio--disabled">
-    <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" disabled>
-    <div class="mdc-radio__background">
-      <div class="mdc-radio__outer-circle"></div>
-      <div class="mdc-radio__inner-circle"></div>
-    </div>
-    <div class="mdc-radio__ripple"></div>
-  </div>
-  <label for="radio-1">Radio 1</label>
-</div>
-```
-
-## 追加情報
-
-### アクセシビリティ
-
-マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。この要件を満たすために以下のようにラジオボタンに `mdc-radio--touch` クラスを追加してください。
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48px x 48px にすることを勧めています。この要件を満たすために以下のようにラジオボタンに `mdc-radio--touch` クラスを追加してください。
 
 ```html
 <div class="mdc-touch-target-wrapper">
@@ -117,11 +82,57 @@ formField.input = radio;
 
 隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。
 
-## スタイルのカスタマイズ
+## <a name="radio-buttons"></a>ラジオボタン
 
-MDC Checkbox はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラーを使います。カスタマイズするには以下のミキシンを使います。
+ラベルの配置、ラベルが有効な際のリップルのインタラクティブな効果、そしてRTL認識といった機能強化のために MDC Radio は [MDC Form Field](../mdc-form-field) と共に使用することを推奨します。
+
+### ラジオボタンの例
+
+```html
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" checked>
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <div class="mdc-radio__ripple"></div>
+  </div>
+  <label for="radio-1">Radio 1</label>
+</div>
+```
+
+### ラジオボタンの状態
+
+ラジオボタンは選択か非選択にすることができます。ラジオボタンは利用可能、利用不可、ホバー、フォーカス、押下の状態をとります。
+
+![ラジオボタンの状態の表。列は利用可能、利用不可、ホバー、フォーカス、押下を表す。行は選択・非選択](images/radio-button-states.png)
+
+## <a name="other-variants"></a>その他のバリエーション
+
+### 利用不可のラジオボタン
+
+ラジオボタンを利用不可にするには、ルート要素に `mdc-radio--disabled` クラスを追加し、`<input>` 要素に `disabled` 属性を設定します。無効なラジオボタンは入力を受け付けず、視覚的にも入力が受け付けられないように見えます。
+
+```html
+<div class="mdc-form-field">
+  <div class="mdc-radio mdc-radio--disabled">
+    <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" disabled>
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <div class="mdc-radio__ripple"></div>
+  </div>
+  <label for="radio-1">Radio 1</label>
+</div>
+```
+
+## API
 
 ### Sass ミキシン
+
+MDC Checkbox はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カラーを使います。カスタマイズするには以下のミキシンを使います。
 
 ミキシン | 説明
 --- | ---
@@ -144,7 +155,7 @@ MDC Checkbox はデフォルトで [MDC Theme](../mdc-theme) の `secondary` カ
 `disabled` | Boolean | ラジオボタンが無効かどうかの状態を取得/設定する。セッタはファンデーションの `setDisabled` の代替。
 `value` | String | ラジオボタンの値を取得/設定する。
 
-## Web フレームワークでの使用
+## <a name="usage-within-web-frameworks"></a>Web フレームワーク内での使用
 
 React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のラジオボタンを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 

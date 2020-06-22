@@ -45,9 +45,11 @@ npm install @material/menu
 <div class="mdc-menu mdc-menu-surface">
   <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
     <li class="mdc-list-item" role="menuitem">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">A Menu Item</span>
     </li>
     <li class="mdc-list-item" role="menuitem">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">Another Menu Item</span>
     </li>
   </ul>
@@ -85,12 +87,14 @@ menu.open = true;
     <li>
       <ul class="mdc-menu__selection-group">
         <li class="mdc-list-item" role="menuitem">
+          <span class="mdc-list-item__ripple"></span>
           <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
             ...
           </span>
           <span class="mdc-list-item__text">Single</span>
         </li>
         <li class="mdc-list-item" role="menuitem">
+          <span class="mdc-list-item__ripple"></span>
           <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
            ...
           </span>
@@ -100,6 +104,7 @@ menu.open = true;
     </li>
     <li class="mdc-list-divider" role="separator"></li>
     <li class="mdc-list-item" role="menuitem">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">Add space before paragraph</span>
     </li>
     ...
@@ -217,7 +222,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 プロパティ | 値の型 | 説明
 --- | --- | ---
 `open` | Boolean | メニュー表面の `open` プロパティの代替。
-`items` | Array<Element> | 全 `.mdc-list-item` 要素の問い合わせ用のリストの代替。
+`items` | `Array<Element>` | 全 `.mdc-list-item` 要素の問い合わせ用のリストの代替。
 `quickOpen` | Boolean | メニュー表面の `quickOpen` プロパティの代替。
 `wrapFocus` | Boolean | リストの `wrapFocus` プロパティの代替。
 `hasTypeahead` | Boolean | リストの `hasTypeahead` プロパティの代替。

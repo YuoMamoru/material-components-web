@@ -468,7 +468,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
 
-すべてのソースファイルの冒頭のコメントにこれを記載し、<YEAR> をファイルを作成した年に置き換えてください。
+すべてのソースファイルの冒頭のコメントにこれを記載し、`<YEAR>` をファイルを作成した年に置き換えてください。
 
 ### Scss
 

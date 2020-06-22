@@ -276,7 +276,10 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
             <div class="mdc-data-table__header-cell-label">
               Dessert
             </div>
-            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                    aria-label="Sort by dessert" aria-describedby="dessert-status-label">arrow_upward</button>
+            <div class="mdc-data-table__sort-status-label" aria-hidden="true" id="dessert-status-label">
+            </div>
           </div>
         </th>
         <th
@@ -287,10 +290,12 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           data-column-id="carbs"
         >
           <div class="mdc-data-table__header-cell-wrapper">
-            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                    aria-label="Sort by carbs" aria-describedby="carbs-status-label">arrow_upward</button>
             <div class="mdc-data-table__header-cell-label">
               Carbs (g)
             </div>
+            <div class="mdc-data-table__sort-status-label" aria-hidden="true" id="carbs-status-label"></div>
           </div>
         </th>
         <th
@@ -301,10 +306,12 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
           data-column-id="protein"
         >
           <div class="mdc-data-table__header-cell-wrapper">
-            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button">arrow_upward</button>
+            <button class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
+                    aria-label="Sort by protein" aria-describedby="protein-status-label">arrow_upward</button>
             <div class="mdc-data-table__header-cell-label">
               Protein (g)
             </div>
+            <div class="mdc-data-table__sort-status-label" aria-hidden="true" id="protein-status-label"></div>
           </div>
         </th>
         <th
@@ -366,6 +373,7 @@ CSS クラス | 説明
 `mdc-data-table__header-cell-wrapper` | オプション。ヘッダーセルのラベルとソートボタンのコンテナ。ヘッダーセルを中央に配置するために使用する。
 `mdc-data-table__sort-icon-button` | オプション。ソートアイコンボタンとして使用するアイコンボタンに追加するクラス名。ヘッダーセルラベルの兄弟要素に付加する。
 `mdc-data-table__header-cell-label` | 必須。ヘッダーセルラベルに追加するクラス名。ヘッダーセルラッパー要素の子要素に付加する。
+`mdc-data-table__sort-status-label` | オプション。視覚的に非表示になっているソート状態のラベルに追加するクラス名。スクリーンリーダーのユーザーに対してのみ表示される。
 
 ### Sass ミキシン
 

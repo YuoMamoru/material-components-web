@@ -88,12 +88,15 @@ MDCList JavaScript コンポーネントは [listbox](https://www.w3.org/TR/wai-
 ```html
 <ul class="mdc-list">
   <li class="mdc-list-item" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
 </ul>
@@ -110,18 +113,21 @@ MDCList JavaScript コンポーネントは [listbox](https://www.w3.org/TR/wai-
 ```html
 <ul class="mdc-list mdc-list--two-line">
   <li class="mdc-list-item" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">
       <span class="mdc-list-item__primary-text">Two-line item</span>
       <span class="mdc-list-item__secondary-text">Secondary text</span>
     </span>
   </li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">
       <span class="mdc-list-item__primary-text">Two-line item</span>
       <span class="mdc-list-item__secondary-text">Secondary text</span>
     </span>
   </li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">
       <span class="mdc-list-item__primary-text">Two-line item</span>
       <span class="mdc-list-item__secondary-text">Secondary text</span>
@@ -149,24 +155,30 @@ MDC Web は今のところ3行リストをサポートしていません。
   <h3 class="mdc-list-group__subheader">List 1</h3>
   <ul class="mdc-list">
     <li class="mdc-list-item" tabindex="0">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">line item</span>
     </li>
     <li class="mdc-list-item">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">line item</span>
     </li>
     <li class="mdc-list-item">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">line item</span>
     </li>
   </ul>
   <h3 class="mdc-list-group__subheader">List 2</h3>
   <ul class="mdc-list">
     <li class="mdc-list-item">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">line item</span>
     </li>
     <li class="mdc-list-item">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">line item</span>
     </li>
     <li class="mdc-list-item">
+      <span class="mdc-list-item__ripple"></span>
       <span class="mdc-list-item__text">line item</span>
     </li>
   </ul>
@@ -180,16 +192,20 @@ MDC Web は今のところ3行リストをサポートしていません。
 ```html
 <ul class="mdc-list">
   <li class="mdc-list-item" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Item 1 - Division 1</span>
   </li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Item 2 - Division 1</span>
   </li>
   <li role="separator" class="mdc-list-divider"></li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Item 1 - Division 2</span>
   </li>
   <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Item 2 - Division 2</span>
   </li>
 </ul>
@@ -226,12 +242,15 @@ MDC List はクリックまたはキーボード操作に基づきリスト項�
 ```html
 <ul id="my-list" class="mdc-list" role="listbox">
   <li class="mdc-list-item" role="option" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
   <li class="mdc-list-item" role="option">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
   <li class="mdc-list-item" role="option">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
 </ul>
@@ -272,6 +291,7 @@ list.singleSelection = true;
 ```html
 <ul class="mdc-list" role="radiogroup">
   <li class="mdc-list-item" role="radio" aria-checked="false">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__graphic">
       <div class="mdc-radio">
         <input class="mdc-radio__native-control"
@@ -288,6 +308,7 @@ list.singleSelection = true;
     <label class="mdc-list-item__text" for="demo-list-radio-item-1">Option 1</label>
   </li>
   <li class="mdc-list-item" role="radio" aria-checked="true" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__graphic">
       <div class="mdc-radio">
         <input class="mdc-radio__native-control"
@@ -305,6 +326,7 @@ list.singleSelection = true;
     <label class="mdc-list-item__text" for="demo-list-radio-item-2">Option 2</label>
   </li>
   <li class="mdc-list-item" role="radio" aria-checked="false">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__graphic">
       <div class="mdc-radio">
         <input class="mdc-radio__native-control"
@@ -330,6 +352,7 @@ list.singleSelection = true;
 ```html
 <ul class="mdc-list" role="group" aria-label="List with checkbox items">
   <li class="mdc-list-item" role="checkbox" aria-checked="false">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__graphic">
       <div class="mdc-checkbox">
         <input type="checkbox"
@@ -349,6 +372,7 @@ list.singleSelection = true;
     <label class="mdc-list-item__text" for="demo-list-checkbox-item-1">Option 1</label>
   </li>
   <li class="mdc-list-item" role="checkbox" aria-checked="true" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__graphic">
         <div class="mdc-checkbox">
             <input type="checkbox"
@@ -369,6 +393,7 @@ list.singleSelection = true;
     <label class="mdc-list-item__text" for="demo-list-checkbox-item-2">Option 2</label>
   </li>
   <li class="mdc-list-item" role="checkbox" aria-checked="false">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__graphic">
         <div class="mdc-checkbox">
             <input type="checkbox"
@@ -495,13 +520,16 @@ React や Angular のような JavaScript フレームワークを使ってい�
 ```html
 <ul id="my-list" class="mdc-list">
   <li class="mdc-list-item" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
     <button tabindex="-1"></button>
   </li>
   <li class="mdc-list-item" tabindex="-1">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
   <li class="mdc-list-item" tabindex="-1">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
 </ul>
@@ -514,13 +542,16 @@ React や Angular のような JavaScript フレームワークを使ってい�
 ```html
 <ul id="my-list" class="mdc-list">
   <li class="mdc-list-item" tabindex="-1">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
     <button tabindex="-1"></button>
     </li>
   <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
   <li class="mdc-list-item" tabindex="-1">
+    <span class="mdc-list-item__ripple"></span>
     <span class="mdc-list-item__text">Single-line item</span>
   </li>
 </ul>

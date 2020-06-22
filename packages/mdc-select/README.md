@@ -73,14 +73,19 @@ npm install @material/select
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
     <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
+      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
+        <span class="mdc-list-item__ripple"></span>
+      </li>
       <li class="mdc-list-item" data-value="grains">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item" data-value="vegetables">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
@@ -254,14 +259,19 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 
   <div class="mdc-select__menu demo-width-class mdc-menu mdc-menu-surface">
     <ul class="mdc-list">
-      <li class="mdc-list-item" data-value=""></li>
+      <li class="mdc-list-item" data-value="">
+        <span class="mdc-list-item__ripple"></span>
+      </li>
       <li class="mdc-list-item" data-value="grains">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item mdc-list-item--selected" data-value="vegetables" aria-selected="true">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
@@ -367,14 +377,19 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface">
     <ul class="mdc-list">
-      <li class="mdc-list-item" data-value=""></li>
+      <li class="mdc-list-item" data-value="">
+        <span class="mdc-list-item__ripple"></span>
+      </li>
       <li class="mdc-list-item" data-value="grains">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item mdc-list-item--selected mdc-list-item--disabled" data-value="vegetables">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
@@ -424,14 +439,19 @@ The Select Fullwidth variant takes up the entirety of the width of its parent co
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
     <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true"></li>
+      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
+        <span class="mdc-list-item__ripple"></span>
+      </li>
       <li class="mdc-list-item" data-value="grains">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
       </li>
       <li class="mdc-list-item" data-value="vegetables">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Vegetables</span>
       </li>
       <li class="mdc-list-item" data-value="fruit">
+        <span class="mdc-list-item__ripple"></span>
         <span class="mdc-list-item__text">Fruit</span>
       </li>
     </ul>
