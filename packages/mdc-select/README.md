@@ -122,7 +122,6 @@ select.listen('MDCSelect:change', () => {
 });
 ```
 
-See [Importing the JS component](../../docs/importing-js.md) for more information on how to import JavaScript.
 JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
 #### アクセシビリティ (a11y)
@@ -217,12 +216,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">...</div>
 </div>
 ```
-
-### 幅いっぱいのセレクト
-
-The Select Fullwidth variant takes up the entirety of the width of its parent container. To use this variant, place the
-`mdc-select--fullwidth` modifier class on the root element.
-セレクトの幅いっぱいのタイプは親コンテナの幅全体を占めます。このタイプを使うにはルート要素に `mdc-select--fullwidth` 修飾クラスを付けます。
 
 ### 追加情報
 
