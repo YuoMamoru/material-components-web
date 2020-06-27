@@ -353,6 +353,7 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
 CSS クラス | 説明
 --- | ---
 `mdc-data-table` | 必須。`table` とその他の補助的な要素を含んだルート DOM 要素。
+`mdc-data-table--sticky-header` | オプション。垂直スクロールでヘッダ行を固定するためにルート要素に追加する修飾クラス名。（注意: 固定ヘッダ機能は IE11 ブラウザと互換性がない。）
 `mdc-data-table__table-container` | 必須。テーブル要素のコンテナ。テーブルコンテンツが水平方向にはみ出したときに使われる。
 `mdc-data-table__table` | 必須。テーブル要素。`table` HTML タグに追加する。
 `mdc-data-table__header-row` | 必須。テーブルヘッダー行要素。`thead > tr` HTML タグに追加する。

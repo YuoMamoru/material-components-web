@@ -91,25 +91,6 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 ## その他のバリエーション
 
-### 幅いっぱい
-
-幅いっぱいのテキスト欄は詳細な作業や複雑な情報の入力の際に便利です。
-
-```html
-<label class="mdc-text-field mdc-text-field--filled mdc-text-field--fullwidth">
-  <span class="mdc-text-field__ripple"></span>
-  <input class="mdc-text-field__input"
-         type="text"
-         placeholder="Full-Width Text Field"
-         aria-label="Full-Width Text Field">
-  <span class="mdc-line-ripple"></span>
-</label>
-```
-
-**注意: `mdc-text-field--outlined` はフル幅のテキスト欄では使えません。**
-
-**注意: `mdc-text-field--fullwidth` の内部で `mdc-floating-label` を使わないでください。フル幅のテキスト欄の DOM 構造の一部としてラベルを含めることはできません。**
-
 ### テキストエリア
 
 #### 幅いっぱい
@@ -356,7 +337,6 @@ CSS クラス | 説明
 `mdc-text-field` | 必須。
 `mdc-text-field--filled` | テキスト欄を塗られたテキスト欄として表示する。
 `mdc-text-field--outlined` | アウトラインされたテキスト欄として表示する。
-`mdc-text-field--fullwidth` | フル幅のテキスト欄として表示する。
 `mdc-text-field--textarea` | テキスト欄が `<textarea>` であることを表す。
 `mdc-text-field--disabled` | 無効なテキスト欄として表示する。
 `mdc-text-field--with-leading-icon` | 先頭にアイコンのあるテキスト欄として表示する。
