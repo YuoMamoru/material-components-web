@@ -530,12 +530,12 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
 `focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
 `disabled-bottom-line-color($color)` | セレクトが無効なときのセレクトの下線の色を設定する。
-`shape-radius($radius, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボックス型セレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`filled-shape-radius($radius, $density-scale, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に塗られたセレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `outline-color($color)` | へこんだ輪郭の色を設定する。
 `focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
 `hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
 `disabled-outline-color($color)` | セレクトが無効なときのへこんだ輪郭の色を設定する。
-`outline-shape-radius($radius, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
+`outline-shape-radius($radius, $density-scale, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `filled-density($density-scale)` | 塗られたタイプのセレクト（先頭アイコン付きの塗られたセレクトを除く）の密度スケールを設定する。
 `filled-with-leading-icon-density($density-scale)` | 先頭アイコン付きの塗られたセレクトの密度スケールを設定する。
 `outlined-density($density-scale)` | アウトラインされたセレクト（先頭アイコンのあるアウトラインされたセレクトを除く）の密度スケールを設定する。
