@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2019 Google Inc.
+ * Copyright 2020 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +21,46 @@
  * THE SOFTWARE.
  */
 
-declare interface Element {
-  msMatchesSelector?: (selector: string) => boolean;
-}
+import {MDCFoundation} from '@material/base/foundation';
+import {MDCSegmentedButtonAdapter} from './adapter';
+import {SegmentDetail} from '../types';
 
-declare interface Window {
-  CSS: typeof CSS;
+export class MDCSegmentedButtonFoundation extends MDCFoundation<MDCSegmentedButtonAdapter> {
+  static get defaultAdapter(): MDCSegmentedButtonAdapter {
+    return {
+      hasClass: () => false,
+      getSegments: () => [],
+      selectSegment: () => undefined,
+      unselectSegment: () => undefined,
+      notifySelectedChange: () => undefined
+    }
+  }
+
+  constructor(adapter?: Partial<MDCSegmentedButtonAdapter>) {
+    super({...MDCSegmentedButtonFoundation.defaultAdapter, ...adapter});
+  }
+
+  selectSegment(_indexOrSegmentId: number | string) {
+    return;
+  }
+
+  unselectSegment(_indexOrSegmentId: number | string) {
+    return;
+  }
+
+  getSelectedSegments(): readonly SegmentDetail[] {
+    return [];
+  }
+
+  isSegmentSelected(_indexOrSegmentId: number | string): boolean {
+    return false;
+  }
+
+  isSingleSelect(): boolean {
+    return false;
+  }
+
+  handleSelected(_detail: SegmentDetail) {
+    return;
+  }
 }

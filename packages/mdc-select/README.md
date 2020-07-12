@@ -559,7 +559,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `disabled` | `boolean` | コンポーネントが無効かどうか。これを設定するとコンポーネントの無効かどうかの状態が設定される。
 `useDefaultValidation` | `boolean` | 必須のセレクトが空でないというデフォルトの検証スキームを利用するかどうか。カスタム検証の際には false を指定する。
 `valid` | `boolean` | コンポーネントが有効な状態かどうか。これを設定すると、コンポーネントのスタイルが更新されるが、ネイティブな有効状態には影響しない。
-`required` | `boolean` | コンポーネントが必須かどうか。これおw設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。
+`required` | `boolean` | コンポーネントが必須かどうか。これを設定すると、コンポーネントの `required` または `aria-required` 属性が更新され、検証が有効になる。
 `leadingIconAriaLabel` | `string` (書込専用) | ファンデーションの `setLeadingIconAriaLabel` メソッドの代替。
 `leadingIconContent` | `string` (書込専用) | ファンデーションの `setLeadingIconContent` メソッドの代替。
 `helperTextContent` | `string` (書込専用)| 設定時のファンデーションの `setHelperTextContent` メソッドの代替。
@@ -589,7 +589,6 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `hasClass(className: string) => boolean` | セレクト要素がクラスリストにクラス名を持っていれば true を返す。 |
 | `activateBottomLine() => void` | 下線のコンポーネントを有効にする。 |
 | `deactivateBottomLine() => void` | 下線のコンポーネントを無効にする。 |
-| `getSelectedMenuItem() => Element` | 選択されたメニュー項目要素を返す。 |
 | `hasLabel() => boolean` | セレクトがレベルを含んでいる場合は true を返す。 |
 | `floatLabel(value: boolean) => void` | ラベルを上に動かしたり戻したりする。 |
 | `getLabelWidth() => number` | ラベル要素の offsetWidth を返す。 |
@@ -611,14 +610,12 @@ React や Angular のような JavaScript フレームワークを使ってい�
 | `setMenuAnchorElement(anchorEl: Element) => void` | メニューのアンカー要素を設定する。 |
 | `setMenuAnchorCorner(anchorCorner: Corner) => void` | メニューのアンカーの角を設定する。 |
 | `setMenuWrapFocus(wrapFocus: boolean) => void` | メニューがフォーカスをラップするかどうかを設定する。 |
-| `setAttributeAtIndex(index: number, attributeName: string, attributeValue: string) => void` | 与えられたインデックスのメニュー項目の属性を設定する。 |
 | `focusMenuItemAtIndex(index: number) => void` | 与えられたインデックスのメニュー項目にフォーカスをあてる。 |
 | `getMenuItemValues() => string[]` | 各メニュー項目の VALUE_ATTR 属性を表す配列を返す。 |
 | `getMenuItemCount() => number` | メニュー項目の数を返す。 |
-| `getMenuItemAttr(menuItem: Element, attr: string) => string` | メニュー項目要素の与えられた属性を返す。 |
 | `getMenuItemTextAtIndex(index: number) => string` | 与えられたインデックスのメニュー項目要素のテキストコンテンツを取得する。 |
-| `addClassAtIndex(menuItem: Element, className: string) => void` | 与えられたインデックスのメニュー項目にクラス名を追加する。 |
-| `removeClassAtIndex(menuItem: Element, className: string) => void` | 与えられたインデックスのメニュー項目からクラス名を削除する。 |
+| `getSelectedIndex() => number` | メニュー内の選択されたインデックスを返す。 |
+| `setSelectedIndex() => number` | メニュー内の選択されたインデックスを設定する。 |
 | `isTypeaheadInProgress() => boolean` | メニュー内のタイプアヘッドが進行中かどうかを返す。 |
 | `typeaheadMatchItem: (nextChar: string, startingIndex: number) => number` | タイプアヘッドバッファーに文字を追加し、バッファーに一致するリスト内の次の項目のインデックスを返す。 |
 

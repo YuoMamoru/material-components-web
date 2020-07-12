@@ -76,7 +76,7 @@ npm install @material/layout-grid
 ### スタイル
 
 ```scss
-@import "@material/layout-grid/mdc-layout-grid";
+@use "@material/layout-grid/mdc-layout-grid";
 ```
 
 ### CSS クラス

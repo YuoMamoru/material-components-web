@@ -95,6 +95,7 @@ CSS クラス | 説明
 --- | ---
 `transition-value($duration, $easing)` | エレベーション間の要素のトランジッションの際の `transision` プロパティの値を返す
 `overlay-transition-value($duration, $easing)` | エレベーション間のエレベーションオーバーレイの遷移のための `transition` プロパティの値を返す
+`elevation-box-shadow($z-value, $color, $opacity-boost)` | 与えられたエレベーション z-value のエレベーション z-space の box-shadow を返し、オプションで影の色を設定したり、影の不透明度を上げたりする。
 
 変数 | 説明
 --- | ---

@@ -78,7 +78,13 @@ text field コンポーネントの使用例です。さらなるオプション
 必須である text field コンポーネントを読み込みます。
 
 ```scss
-@import "@material/textfield/mdc-text-field";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+
+@include textfield.core-styles;
+
 ```
 
 #### JavaScript
