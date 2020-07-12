@@ -47,7 +47,7 @@ npm install @material/checkbox
 @include form-field.core-styles;
 ```
 
-**注意: フォームフィールドスタイルはラジオボタンをフォームフィールドと共に使うときのみ必須です**
+**注意: フォームフィールドスタイルはチェックボックスをフォームフィールドと共に使うときのみ必須です**
 
 ### JavaScript のインスタンス化
 
@@ -66,7 +66,7 @@ formField.input = checkbox;
 
 ### チェックボックスを操作しやすくする
 
-マテリアルデザイン仕様ではタッチの対象は少なくとも  48px x 48px にすることを勧めています。この要件を満たすために以下のようにラジオボタンに `mdc-radio--touch` クラスを追加してください。
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48px x 48px にすることを勧めています。この要件を満たすために以下のようにチェックボックスに `mdc-checkbox--touch` クラスを追加してください。
 
 ```html
 <div class="mdc-touch-target-wrapper">
