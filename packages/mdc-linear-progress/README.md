@@ -56,7 +56,7 @@ npm install @material/linear-progress
 
 ### アクセシビリティ
 
-プログレスバーは [WAI-ARIA プログレスバー仕様](https://www.w3.org/TR/wai-aria/#progressbar) に準拠しています。プログレスバーのサポートしている ARIA ぞくせいは以下の通りです。
+プログレスバーは [WAI-ARIA プログレスバー仕様](https://www.w3.org/TR/wai-aria/#progressbar) に準拠しています。プログレスバーのサポートしている ARIA 属性は以下の通りです。
 
 | 属性 | 説明 |
 | --------- | ----------- |
