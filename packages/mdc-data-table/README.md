@@ -233,6 +233,194 @@ MDC Data Table コンポーネントはヘッダー行のチェックボック�
   - `getSelectedRowIds()`
   - `setSelectedRowIds(string[])`
 
+### ページ切り替え付きデータテーブル
+
+ページ切り替えはデータテーブルのフッター部に表示します。ページ切り替えはページ当たりの行数（ページサイズ）とテーブルのページ間の操作をユーザーが変更するのを助けます。
+
+#### HTML 構造
+
+```html
+<div class="mdc-data-table">
+  <div class="mdc-data-table__table-container">
+    <table class="mdc-data-table__table" aria-label="Dessert calories">
+      <thead>
+        <tr class="mdc-data-table__header-row">
+          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Dessert</th>
+          <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Carbs (g)</th>
+          <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Protein (g)</th>
+          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Comments</th>
+        </tr>
+      </thead>
+      <tbody class="mdc-data-table__content">
+        <tr class="mdc-data-table__row">
+          <th class="mdc-data-table__cell" scope="row">Frozen yogurt</th>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.0</td>
+          <td class="mdc-data-table__cell">Super tasty</td>
+        </tr>
+        <tr class="mdc-data-table__row">
+          <th class="mdc-data-table__cell" scope="row">Ice cream sandwich</th>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37</td>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.33333333333</td>
+          <td class="mdc-data-table__cell">I like ice cream more</td>
+        </tr>
+        <tr class="mdc-data-table__row">
+          <th class="mdc-data-table__cell" scope="row">Eclair</th>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">6.0</td>
+          <td class="mdc-data-table__cell">New filing flavor</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mdc-data-table__pagination">
+    <div class="mdc-data-table__pagination-trailing">
+      <div class="mdc-data-table__pagination-rows-per-page">
+        <div class="mdc-data-table__pagination-rows-per-page-label">
+          Rows per page
+        </div>
+
+        <div class="mdc-select mdc-select--outlined mdc-select--no-label mdc-data-table__pagination-rows-per-page-select">
+          <div class="mdc-select__anchor" role="button" aria-haspopup="listbox"
+                aria-labelledby="demo-pagination-select" tabindex="0">
+            <span id="demo-pagination-select" class="mdc-select__selected-text">10</span>
+            <span class="mdc-select__dropdown-icon">
+              <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5">
+                <polygon
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10">
+                </polygon>
+                <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15">
+                </polygon>
+              </svg>
+            </span>
+            <span class="mdc-notched-outline mdc-notched-outline--notched">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+          </div>
+
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth" role="listbox">
+            <ul class="mdc-list">
+              <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" role="option" data-value="10">
+                <span class="mdc-list-item__text">10</span>
+              </li>
+              <li class="mdc-list-item" role="option" data-value="25">
+                <span class="mdc-list-item__text">25</span>
+              </li>
+              <li class="mdc-list-item" role="option" data-value="100">
+                <span class="mdc-list-item__text">100</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mdc-data-table__pagination-navigation">
+        <div class="mdc-data-table__pagination-total">
+          1‑10 of 100
+        </div>
+        <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-first-page="true" disabled>
+          <div class="mdc-button__icon">first_page</div>
+        </button>
+        <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-prev-page="true" disabled>
+          <div class="mdc-button__icon">chevron_left</div>
+        </button>
+        <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-next-page="true">
+          <div class="mdc-button__icon">chevron_right</div>
+        </button>
+        <button class="mdc-icon-button material-icons mdc-data-table__pagination-button" data-last-page="true">
+          <div class="mdc-button__icon">last_page</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### JavaScript API
+
+データテーブルコンポーネントはページ切り替え用の JavaScript API を提供しません。
+
+- ページ切り替え機能をサポートする以下のコンポーネントを手動で初期化する必要があります。
+  - セレクトコンポーネント: ページ当たりの行数（ページサイズ）の変更に使用
+  - アイコンボタン: データテーブルのページ間の切り替えに使用
+- セレクトやページ切り替えボタンによるイベントをトリガーにしてページ当たりの行数の変更や他のページに移動した際にデータテーブルコンポーネントを再描画する必要があります。
+- データテーブルが最初もしくは最後のページに達したとき、ページ切り替えボタンを手動で有効もしくは無効にする必要があります。
+
+### 進行状況インジケーター付きデータテーブル
+
+進行状況インジケーターは、データの読み込みなど、進行中のプロセスの状態についてユーザーに知らせます。テーブルコンテンツのブロックする際にスクリムと共に不確定リニア進行インジケーターが表示されます。
+
+#### HTML 構造
+
+```html
+<div class="mdc-data-table">
+  <div class="mdc-data-table__table-container">
+    <table class="mdc-data-table__table" aria-label="Dessert calories">
+      <thead>
+        <tr class="mdc-data-table__header-row">
+          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Dessert</th>
+          <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Carbs (g)</th>
+          <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Protein (g)</th>
+          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Comments</th>
+        </tr>
+      </thead>
+      <tbody class="mdc-data-table__content">
+        <tr class="mdc-data-table__row">
+          <th class="mdc-data-table__cell" scope="row">Frozen yogurt</th>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.0</td>
+          <td class="mdc-data-table__cell">Super tasty</td>
+        </tr>
+        <tr class="mdc-data-table__row">
+          <th class="mdc-data-table__cell" scope="row">Ice cream sandwich</th>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37</td>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">4.33333333333</td>
+          <td class="mdc-data-table__cell">I like ice cream more</td>
+        </tr>
+        <tr class="mdc-data-table__row">
+          <th class="mdc-data-table__cell" scope="row">Eclair</th>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24</td>
+          <td class="mdc-data-table__cell mdc-data-table__cell--numeric">6.0</td>
+          <td class="mdc-data-table__cell">New filing flavor</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mdc-data-table__progress-indicator">
+    <div class="mdc-data-table__scrim"></div>
+    <div class="mdc-linear-progress mdc-linear-progress--indeterminate mdc-data-table__linear-progress" role="progressbar" aria-label="Data is being loaded...">
+      <div class="mdc-linear-progress__buffer">
+        <div class="mdc-linear-progress__buffer-bar"></div>
+        <div class="mdc-linear-progress__buffer-dots"></div>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+#### JavaScript API
+
+- 進行状況インジケーターを表示または隠すには `showProgress()` API と `hideProgress()` API を使います。
+- データテーブルコンポーネントはリニアインジケーターサブコンポーネントを自動的に初期化します。
+
 #### イベント
 
 行選択の機能からは以下のイベントが生成されます。
@@ -375,6 +563,15 @@ CSS クラス | 説明
 `mdc-data-table__sort-icon-button` | オプション。ソートアイコンボタンとして使用するアイコンボタンに追加するクラス名。ヘッダーセルラベルの兄弟要素に付加する。
 `mdc-data-table__header-cell-label` | 必須。ヘッダーセルラベルに追加するクラス名。ヘッダーセルラッパー要素の子要素に付加する。
 `mdc-data-table__sort-status-label` | オプション。視覚的に非表示になっているソート状態のラベルに追加するクラス名。スクリーンリーダーのユーザーに対してのみ表示される。
+`mdc-data-table__pagination` | ページ切り替えのルート要素。ページ切り替えブロック要素はデータテーブルのルート要素の直接の子要素として描画される。
+`mdc-data-table__pagination-trailing` | ページ切り替えの直接の子要素。ページ切り替えコンテンツをラップするために使う。
+`mdc-data-table__pagination-rows-per-page` | ページ当たりの行数ラベルとページ当たり行数セレクトのコンテナ。
+`mdc-data-table__pagination-rows-per-page-select` | ページ当たりの行数（ページサイズ）を切り替えるために使うセレクトコンポーネントに追加するクラス名。
+`mdc-data-table__pagination-navigation` | データテーブルのページ間を操作するのに使うすべてのアイコンボタンを含むブロック要素。
+`mdc-data-table__pagination-button` | データベールのページ間の操作に使うアイコンボタンコンポーネントに追加すするクラス名。
+`mdc-data-table__progress-indicator` | データテーブルのルート要素の直接の子要素として描画されるブロック要素。リニアプログレスとスクリムによるデータテーブルコンテンツのブロックを含んでいる。
+`mdc-data-table__scrim` | データテーブルコンテンツをブロックする要素。プログレスインジケータールート要素の内部に描画される。
+`mdc-data-table__linear-progress` | リニアプログレスコンポーネントに追加されるクラス名。プログレスインジケータールート要素の内部に描画される。
 
 ### Sass ミキシン
 

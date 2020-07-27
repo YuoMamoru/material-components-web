@@ -2,292 +2,275 @@
 title: "Sliders"
 layout: detail
 section: components
-excerpt: "A select over a range of values by moving the slider thumb."
+excerpt: "Sliders allow users to make selections from a range of values."
 iconId: slider
 path: /catalog/input-controls/sliders/
 -->
 
 # Slider
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/slider">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/slider.png" width="400" alt="Select screenshot">
-  </a>
-</div>-->
+[Sliders](https://material.io/components/sliders/) はユーザーに値の範囲から選択させるようにするものです。
 
-MDC Slider はマテリアルデザインのスライダーコンポーネントの実装を提供します。これはブラウザの `<input type="range">` 要素にならって作られています。Slider は完全に RTL 対応しており、WAI-ARIA の [スライダー作成手法](https://www.w3.org/TR/wai-aria-practices-1.1/#slider) に従っています。
+MDC Slider の実装は1点スライダー（1つのつまみ）と範囲スライダー（2つのつまみ）の両方をサポートします。これはブラウザの `<input type="range">` 要素にならって作られています。
 
-**鉛直スライダーとレンジスライダー（複数つまみ）は、マテリアルデザイン仕様に存在しないため、サポートしていません**。
+スライダーは [WAI-ARIA 仕様](https://www.w3.org/TR/wai-aria-practices/#slider) に沿ったアクセシビリティのベストプラクティスに沿っており、完全に RTL 対応しています。
 
-また、仕様内において UX からある程度逸脱していることも気に留めておいてください。例えば、トラック上のスライダーの動作のニュアンスや目盛の色がそれにあたります。したがって、モックから逸脱した使い方があるでしょう。これらの逸脱は web 上で使用されているスライダーを確認することによる設計のフィードバックから生じたものであり、マテリアルデザインチームから支持されています。
+## コンテンツ
 
-## デザインと API ドキュメント
+*   [スライダーの使用法](#using-sliders)
+*   [スライダー](#sliders)
+*   [その他のバリエーション](#other-variants)
+*   [追加の情報](#additional-information)
+*   [API](#api)
 
-<ul class="icon-list">
-  <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-sliders">マテリアルデザインガイドライン: スライダー</a>
-  </li>
-  <li class="icon-list-item icon-list-item--link">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/slider">デモ</a>
-  </li>
-</ul>
+## <a name="using-sliders"></a>スライダーの使用
 
-## インストール
+### スライダーのインストール
 
 ```
 npm install @material/slider
 ```
 
-## 使用法
+### スタイル
 
-### 連続スライダー
+```scss
+@use "@material/slider";
 
-```html
-<div class="mdc-slider" tabindex="0" role="slider"
-     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-     aria-label="Select Value">
-  <div class="mdc-slider__track-container">
-    <div class="mdc-slider__track"></div>
-  </div>
-  <div class="mdc-slider__thumb-container">
-    <svg class="mdc-slider__thumb" width="21" height="21">
-      <circle cx="10.5" cy="10.5" r="7.875"></circle>
-    </svg>
-    <div class="mdc-slider__focus-ring"></div>
-  </div>
-</div>
+@include slider.core-styles;
 ```
 
-### 非連続スライダー
-
-```html
-<div class="mdc-slider mdc-slider--discrete" tabindex="0" role="slider"
-     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-     aria-label="Select Value">
-  <div class="mdc-slider__track-container">
-    <div class="mdc-slider__track"></div>
-  </div>
-  <div class="mdc-slider__thumb-container">
-    <div class="mdc-slider__pin">
-      <span class="mdc-slider__pin-value-marker"></span>
-    </div>
-    <svg class="mdc-slider__thumb" width="21" height="21">
-      <circle cx="10.5" cy="10.5" r="7.875"></circle>
-    </svg>
-    <div class="mdc-slider__focus-ring"></div>
-  </div>
-</div>
-```
-
-JS は以下のようにします。
+### JavaScript のインスタンス化
 
 ```js
 import {MDCSlider} from '@material/slider';
 
 const slider = new MDCSlider(document.querySelector('.mdc-slider'));
-slider.listen('MDCSlider:change', () => console.log(`Value changed to ${slider.value}`));
 ```
 
-`dist/mdc.slider[.min].js` にある UMD バージョンを通じて MDCSlider をインクルードすることもできます。
+**注意**: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
-```js
-// CommonJS
-const {MDCSlider} = require('@material/slider/dist/mdc.slider');
+## <a name="sliders"></a>スライダー
 
-// AMD
-require(['/path/to/@material/slider/dist/mdc.slider'], ({MDCSlider}) => {
-  // MDCSlider を使う
-});
+スライダーには2つのタイプがあります。
 
-// Global
-const {MDCSlider} = mdc.slider;
-```
+1.  [連続スライダー](#continuous-slider)
+1.  [離散スライダー](#discrete-slider)
 
-### 指定した範囲/値を持つスライダーの初期化
+### <a name="continuous-slider"></a>連続スライダー
 
-`MDCSlider` が初期化される際に、要素の `aria-valuemin` と `aria-valuemax` と `aria-valuenow` の値があるなら読み込み、コンポーネントの `min`、 `max`、 `value` の各プロパティの設定に使用します。スライダーにこれらの値を設定すのに DOM 内のこれらの属性を使うことができるということをこれは意味しています。
+連続スライダーはユーザーに特定の値を必要としな意味のある選択をさせるようにするものです。
+
+<img src="images/continuous-slider.png" alt="Continuous slider with a value of 50">
 
 ```html
-<div class="mdc-slider" tabindex="0" role="slider"
-     aria-valuemin="-5" aria-valuemax="50" aria-valuenow="10"
-     aria-label="Select Value">
-  <!-- ... -->
-</div>
-```
-
-### 刻み幅の指定
-
-> **注意**: スライダーに刻み幅があるということは「非連続」スライダーであるということを意味するものでは <em>ありません</em>。「非連続スライダー」は UX の議論であり、刻み幅は振舞いの話です。
-
-`MDCSlider` は `data-step` 属性を使って不動小数点の `step` の値をユーザーに提供することにより離散的な値を取ることができます。
-
-```html
-<div class="mdc-slider" tabindex="0" role="slider"
-     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-     data-step="2" aria-label="Select Value">
-  <!-- ... -->
-</div>
-```
-
-刻み幅が与えられると、スライダーは最大値と最小値を <em>除く</em> すべての値を刻み幅に合うように設定し、最大値と最小値も設定できるようにします。これにより一貫した挙動が保証されます。
-
-刻み幅は正の浮動小数点の数値か `0` でなくてはなりません。刻み幅を `0` にするとスライダーは刻み幅を持たないとみなします。刻み幅に負の数を設定するとエラーが投げられます。
-
-非連続スライダーは 0 以外の正の刻み幅が必要です。刻み幅に 0 を指定するか値を設定しないときは、刻み幅はデフォルトで 1 になります。
-
-### トラックマーカーの表示（非連続スライダーのみ）
-
-非連続スライダーは、`mdc-slider` に `mdc-slider--display-markers` 修飾クラスを追加し、トラックのコンテナに `<div class="mdc-slider__track-marker-container"></div>` を追加することにより、トラック上にマーカーを表示することができます。
-
-```html
-<div class="mdc-slider mdc-slider--discrete mdc-slider--display-markers" tabindex="0" role="slider"
-     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-     data-step="2" aria-label="Select Value">
-     <div class="mdc-slider__track-container">
-      <div class="mdc-slider__track"></div>
-      <div class="mdc-slider__track-marker-container"></div>
+<div class="mdc-slider">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <!-- ... -->
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0"
+       aria-valuemax="100" aria-valuenow="50">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
 </div>
 ```
 
-> **注意**: 最大値と最小値の間隔が与えられた目盛の間隔で割り切れないとき、最後から 2 番目のマーカーを目盛の間隔に比例させたことろに配置し、最後のマーカーは最大値のところに配置します。
+#### 連続範囲スライダー
+
+<img src="images/continuous-range-slider.png" alt="Continuous range slider with values of 30 and 70">
+
+```html
+<div class="mdc-slider mdc-slider--range">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</div>
+```
+
+### <a name="discrete-slider"></a>離散スライダー
+
+離散スライダーはつまみを押さえると数値ラベルを表示し、ユーザーに正確な値を選ばせるようにするものです。
+
+<img src="images/discrete-slider.png" alt="Discrete slider with a value of 50">
+
+離散スライダーを作るには以下のものを追加します。
+
+*   ルート要素の `mdc-slider--discrete` クラス
+*   ルート要素の `data-step` 属性。これは値の刻み幅を表します。設定しなければデフォルトで 1 になります。
+*   以下に示すような値インジケーター要素（`mdc-slider__value-indicator-container`）。
+
+```html
+<div class="mdc-slider mdc-slider--discrete" data-step="10">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+    <div class="mdc-slider__value-indicator-container">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text">
+          50
+        </span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</div>
+```
+
+#### 目盛付き離散スライダー
+
+離散スライダーはオプションで目盛を表示することができます。目盛はユーザーがスライダーを動かくすことのできるあらかじめ決められた値を表します。
+
+<img src="images/discrete-slider-tick-marks.png" alt="Discrete slider (with tick marks), with a value of 50">
+
+離散スライダーにメモリを追加するには、以下のものを追加します。
+
+*   ルート要素の `mdc-slider--tick-marks` クラス
+
+```html
+<div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks" data-step="10">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+    <div class="mdc-slider__value-indicator-container">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text">
+          50
+        </span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</div>
+```
+
+#### 離散範囲スライダー
+
+```html
+<div class="mdc-slider mdc-slider--range mdc-slider--discrete" data-step="10">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+    <div class="mdc-slider__value-indicator-container">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text">
+          20
+        </span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+    <div class="mdc-slider__value-indicator-container">
+      <div class="mdc-slider__value-indicator">
+        <span class="mdc-slider__value-indicator-text">
+          50
+        </span>
+      </div>
+    </div>
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</div>name
+```
+
+## <a name="other-variants"></a>その他のバリエーション
 
 ### 無効なスライダー
 
-スライダーを最初から無効にするには `aria-disabled` 属性を追加します。
+スライダーを無効にするには、以下のものを追加します。
+
+*   ルート要素の `mdc-slider--disabled` クラス
+*   つまみの `tabindex="-1"` 属性
+*   つまみの `aria-disabled="true"`
 
 ```html
-<div class="mdc-slider" tabindex="0" role="slider"
-     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-     aria-label="Select Value" aria-disabled="true">
-  <!-- ... -->
+<div class="mdc-slider mdc-slider--disabled">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-disabled="true">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
 </div>
 ```
 
-### MDC Slider コンポーネント API
+## <a name="additional-information"></a>追加の情報
 
-`MDCSlider` API は `<input type="range">` 要素に倣って作られており、この要素がサポートしているプロパティの一部をサポートしています。また、`<input type="range">` の `input` および `change` イベントと同様のイベントも提供しています。
+### 指定した範囲と値を持つスライダーの初期化
 
-#### プロパティ
+`MDCSlider` が初期化される際に、要素の `aria-valuemin` と `aria-valuemax` と `aria-valuenow` の値があるなら読み込み、コンポーネント内部の `min`、 `max`、 `value` の各プロパティに設定します。
 
-| プロパティ | 型 | 説明 |
-| --- | --- | --- |
-| `value` | `number` | スライダーの現在の値。これを変更するとスライダーの値も更新される。 |
-| `min` | `number` | スライダーが取れる値の最小値。プログラムから設定された値は最小値として固定される。このプロパティを変更した際にスライダーの値が新しい最小値より小さいときはスライダーの値も更新される。 |
-| `max` | `number` | スライダーが取れる値の最大値。プログラムから設定された値は最大値として固定される。このプロパティを変更した際にスライダーの値が新しい最大値より大きいときはスライダーの値も更新される。 |
-| `step` | `number` | スライダーに設定できる値の増分を指定する。正の数か、刻み幅がないなら `0` をとることができる。このプロパティを変更すると新しい刻み幅に応じた値にスライダーの値が更新される。 |
-| `disabled` | `boolean` | スライダーが無効かそうでないか。 |
+これらの属性を指定した範囲と値のスライダーの初期化に使うには以下のようにします。
 
-#### メソッド
+```html
+<div class="mdc-slider">
+  <!-- ... -->
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</div>
+```
 
-| メソッド | 説明 |
-| --- | --- |
-| `layout() => void` | 大きさを再計算し、コンポーネントを再配置する。このメソッドはスライダー自身か親要素のいずれかの大きさが変わったときに呼び出される（これを自動リサイズという）。 |
-| `stepUp(amount = 1) => void` | スライダーの値を与えられた `amount` の分だけ増やす。引数を与えないときは `1` 増やす。 |
-| `stepDown(amount = 1) => void` | スライダーの値を与えられた `amount` の分だけ減らす。引数を与えないときは `1` 減らす。 |
+## API
 
-#### イベント
-
-ユーザーのイベントによりスライダーの値が変更されたときに、`MDCSlider` はルート要素から `MDCSlider:input` カスタムイベントを送出します。例えば、ユーザーがスライダーをドラッグしたり、方向キーで値を変更したりしたときに発生します。イベントの `detail` プロパティには対象となったスライダーのインスタンスが設定されます。
-
-ユーザーのイベントによりスライダーの値の変更が <em>確定</em> したときに、`MDCSlider` はルート要素から `MDCSlider:change` カスタムイベントを送出します。例えば、ユーザーがスライダーをドラッグし終えたり、方向キーで値を変更したりしたときに発生します。イベントの `detail` プロパティには対象となったスライダーのインスタンスが設定されます。
-
-### ファンデーションクラスの使用
-
-フレームワーク制作者が自身のフレームワークにおいてカスタム MDCSlicer コンポーネントを構築するために使用できる `MDCSliderFoundation` クラスが `@material/slider` パッケージには付属しています。
-
-#### アダプター API
-
-| メソッド | 説明 |
-| --- | --- |
-| `hasClass(className: string) => boolean` | ルート要素に `className` が存在するか確認する。 |
-| `addClass(className: string) => void` | ルート要素にクラス `className` を追加する。 |
-| `removeClass(className: string) => void` | ルート要素からクラス `className` を削除する。 |
-| `getAttribute(name: string) => string?` | ルート要素の属性 `name` の値を返す。ルート要素にその属性がないときは `null` を返す。 |
-| `setAttribute(name: string, value: string) => void` | ルート要素の属性 `name` に値 `value` を設定する。 |
-| `removeAttribute(name: string) => void` | ルート要素から属性 `name` を削除する。 |
-| `computeBoundingRect() => ClientRect` | ルート要素に結びついている client rect を計算して返す。私たちの実装では `getBoundingClientRect()` を呼んでいる。 |
-| `getTabIndex() => number` | ルート要素の `tabIndex` プロパティの値を返す。 |
-| `registerInteractionHandler(type: string, handler: EventListener) => void` | スライダーのルート要素にイベント `type` のイベントリスナー `handler` を追加する。 |
-| `deregisterInteractionHandler(type: string, handler: EventListener) => void` | スライダーのルート要素からイベント `type` のイベントリスナー `handler` を削除する。 |
-| `registerThumbContainerInteractionHandler(type: string, handler: EventListener) => void` | スライダーのつまみのコンテナ要素にイベント `type` のイベントリスナー `handler` を追加する。 |
-| `deregisterThumbContainerInteractionHandler(type: string, handler: EventListener) => void` | スライダーのつまみのコンテナ要素からイベント `type` のイベントリスナー `handler` を削除する。 |
-| `registerBodyInteractionHandler(type: string, handler: EventListener) => void` | スライダーのドキュメントの `<body>` 要素にイベント `type` のイベントリスナー `handler` を追加する。 |
-| `deregisterBodyInteractionHandler(type: string, handler: EventListener) => void` | スライダーのドキュメントの `<body>` 要素からイベント `type` のイベントリスナー `handler` を削除する。 |
-| `registerResizeHandler(handler: EventListener) => void` | コンポーネントのビューポートがリサイズされたとき（例えば `window.onresize`）に呼び出されるイベントリスナー `handler` を追加する。 |
-| `deregisterResizeHandler(handler: EventListener) => void` | `registerResizeHandler` を使ってアタッチしたイベントリスナー `handler` を削除する。 |
-| `notifyInput() => void` | スライダーの値が現在変わっている最中であることをクライアントに通知する "input" イベントを発生させる。実装ではこのイベントに関連する適切な情報を渡さなくてはならない。私たちのケースではイベントのトリガーとなったコンポーネントのインスタンスを渡している。 |
-| `notifyChange() => void` | ユーザーによってスライダーの値の変更が確定したことをクライアントに通知する "change" イベントを発生させる。`notifyInput()` と同じことがここでもいえる。 |
-| `setThumbContainerStyleProperty(propertyName: string, value: string) => void` | つまみのコンテナ要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
-| `setTrackStyleProperty(propertyName: string, value: string) => void` | トラック要素のダッシュの付いたスタイルのプロパティ `propertyName` に与えた `value` を設定する。 |
-| `setMarkerValue(value: number) => void` | 非連続スライダーのつまみが動かす際にピンの値にマーカーの値を設定する。 |
-| `setTrackMarkers(step: number, max: number, min: number) => void` | トラックのコンテナにトラックマーカー背景スタイルを追加する。 |
-| `isRTL() => boolean` | スライダーが RTL コンテキスト内にあるなら true を返し、そうでなければ False を返す。 |
-
-#### MDCSliderFoundation API
-
-| メソッド | 説明 |
-| --- | --- |
-| `layout() => void` | コンポーネントメソッドの表の中で説明した layout() に同じ。作業の大半を行い、コンポーネントの layout メソッドは単なるこのメソッドのプロキシ。 |
-| `getValue() => number` | 現在のスライダーの値を返す。 |
-| `setValue(value: number) => void` | 現在のスライダーの値を設定する。 |
-| `getMax() => number` | スライダーがとりうる最大値を返す。 |
-| `setMax(max: number) => void` | スライダーがとりうる最大値を設定する。 |
-| `getMin() => number` | スライダーがとりうる最小値を返す。 |
-| `setMin(min: number) => number` | スライダーがとりうる最小値を設定する。 |
-| `getStep() => number` | スライダーの刻み幅を返す。 |
-| `setStep(step: number) => void` | スライダーの刻み幅を設定する。 |
-| `isDisabled() => boolean` | スライダーが無効かそうでないかを返す。 |
-| `setDisabled(disabled: boolean) => void` | true を与えるとスライダーを無効にし、そうでないときは有効にする。 |
-| `setupTrackMarker() => void` | トラックマーカーを表示している非連続スライダーのトラック上のマーカーの正確な数を設定する。それらの条件を満たしていないときは何もしない。 |
-
-### テーマ
-
-デフォルトでスライダーのすべてのテーマを持つ要素は **セカンダリテーマカラー** を使用します。
-
-#### Sass ミキシン
-
-以下のミキシンは <em>有効な</em> スライダーでのみ適用されています。<em>無効な</em> スライダーの色を設定することは現在できません。
+### Sass ミキシン
 
 ミキシン | 説明
 --- | ---
-`color-accessible($color)` | スライダーのすべての要素の色を設定し、値表示ピンのインク色を高いコントラストの識別しやすい色に自動的に設定する。
-`highlight-color($color)` | スライダーのハイライトされた（別名「オン」）部分の色を設定する。
-`rail-color($color, $opacity)` | レールの色（オプションで不透明度も）を設定する。
-`rail-tick-mark-color($color)` | レール上の目盛の色を設定する。
-`thumb-color($color)` | つまみ（つかむ部分）の色を設定する。
-`focus-halo-color($color)` | フォーカス時の背景の光輪の色を設定する。
-`value-pin-fill-color-accessible($color)` | 値表示ピンの塗りの色を設定し、インク色を高いコントラストの識別しやすい色に自動的に設定する。
-`value-pin-fill-color($color)` | 値表示ピンの塗りの色を設定する。
-`value-pin-ink-color($color)` | 値表示ピンのインク色を設定する。
+`track-active-color($color)` | 有効なトラックの色を設定する。
+`track-inactive-color($color, $opacity)` | 有効でないトラックの色と不透明度を設定する。
+`thumb-color($color)` | つまみの色を設定する。
+`thumb-ripple-color($color)` | つまみのリップルの色を設定する。
+`tick-mark-active-color($color)` | 有効なトラック上の目盛の色を設定する。
+`tick-mark-inactive-color($color)` | 有効でないトラック上の目盛の色を設定する。
+`value-indicator-color($color, $opaicty)` | 値インジケーターの色と不透明度を設定する。
+`value-indicator-text-color($color, $opaicty)` | 値インジケーターのテキストの色を設定する。
 
-#### 無効なスライダーつまみに対する適切な色の設定
+### `MDCSlider` イベント
 
-スライダーの難しい問題の一つに、無効な状態のときつまみをどのように見せるかというものがあります。この場合、スライダーのつまみとトラックの確かな部分は「透明」になり、背後にある背景色で表示することになります。しかしながら、この方法は、スライダーの背後にくる背景色を何にすべきかというエレガントな解決策のない問題を発生させてしまいます。論理的には背景色を持つ祖先が見つかるまで DOM をさかのぼることはできますが、これはコンポーネントのカプセル化に反することになります。
+イベント名 | `event.detail` | 説明
+--- | --- | ---
+`MDCSlider:change` | `MDCSliderChangeEventDetail` | 値が変わり、ユーザーイベントが完了したときに発生する。ネイティブな `change` イベント (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) の鏡
+`MDCSlider:input` | `MDCSliderChangeEventDetail` | ユーザーイベントにより値が変わったときに発生する。ネイティブな `input` イベント (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) の鏡
 
-この問題を解決するために、CSS カスタムプロパティ `--mdc-slider-bg-color-behind-component` を適用することができます。これを使うと、無効のスライダーのつまみが使用しているデフォルト色を上書きされ、してした色にすることができます。
+### `MDCSlider` メソッド
 
-```css
-.container {
-  background: #fafafa;
-}
+メソッド | 説明
+--- | ---
+`getValueStart() => number` | 開始つまみの値を取得する（範囲スライダーのみに適用）。
+`setValueStart(valueStart: number) => void` | 開始つまみの値を設定する（範囲スライダーのみに適用）。
+`getValue() => number` | つまみ（1点スライダーのとき）、または、終了つまみ（範囲スライダーのとき）の値を取得する。
+`setValue(value: number) => void` | つまみ（1点スライダーのとき）、または、終了つまみ（範囲スライダーのとき）の値を設定する。
+`getDisabled() => boolean` | スライダーの無効状態を取得する。
+`setDisabled(disabled: boolean) => void` |スライダーの無効状態を設定する。
 
-.container > .mdc-slider {
-  --mdc-slider-bg-color-behind-component: #fafafa;
-}
-```
+### フレームワーク内での使用
 
-### ヒント/小技
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のスライダーを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
-#### [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) の防止
-
-`MDCSlider` はインスタンス化されたときに読み込んだ値をもとに UI を構築するので、`MDCSlider` インスタンスロジックの含まれるスクリプトが実行される前の最初の描画が不適切である可能性があります。これを避けるために、やれることがいくつかあります。
-
-インスタンス化されるときにスライダーの幅がわかっているなら、私たちのコードの中でやっているのと同じ方法で `mdc-slider__thumb-container`/`mdc-slider__track` 要素にインラインスタイルを追加することができます。
-
-1. `(value - min) / (max - min)` を計算することにより、つまみがトラック上を動く長さの割合を求めます。これを `pctComplete` とします。
-1. スライダー要素の幅に `pctComplete` をかけてスライダーつまみのコンテナの大きさを計算します。これを `translatePx` とします。RTL コンテンツでスライダーを使っているときは、`translatePx` は `translatePx = <width of the slider element> - translatePx` に変えてください。
-1. `mdc-slider__thumb-container` の `transform` スタイルを `translateX(${translatePx}px) translateX(-50%)` に設定します。
-1. `mdc-slider__track` の `transform` スタイルを `scale(pctComplete)` に設定します。
+スライダーのファンデーション API の 最新コードのドキュメントに関しては [MDCSliderAdapter](./adapter.ts) と [MDCSliderFoundation](./foundation.ts) を参照してください。

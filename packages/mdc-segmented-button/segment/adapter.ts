@@ -24,7 +24,7 @@
 export interface MDCSegmentedButtonSegmentAdapter {
   isSingleSelect(): boolean;
   
-  getAttr(attrName: string): string;
+  getAttr(attrName: string): string | null;
 
   setAttr(attrName: string, value: string): void;
 

@@ -48,6 +48,7 @@ npm install @material/select
 <div class="mdc-select mdc-select--filled demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
+    <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -67,7 +68,6 @@ npm install @material/select
         </polygon>
       </svg>
     </span>
-    <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -135,6 +135,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
        aria-haspopup="listbox"
        aria-labelledby="demo-label demo-selected-text">
     <span class="mdc-select__ripple"></span>
+    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span id="demo-selected-text" class="mdc-select__selected-text">Vegetables</span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -154,7 +155,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
         </polygon>
       </svg>
     </span>
-    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -184,6 +184,13 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 ```html
 <div class="mdc-select mdc-select--outlined">
   <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span id="outlined-select-label" class="mdc-floating-label">Pick a Food Group</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
     <span id="demo-selected-text" class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -203,13 +210,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
         </polygon>
       </svg>
     </span>
-    <span class="mdc-notched-outline">
-      <span class="mdc-notched-outline__leading"></span>
-      <span class="mdc-notched-outline__notch">
-        <span id="outlined-select-label" class="mdc-floating-label">Pick a Food Group</span>
-      </span>
-      <span class="mdc-notched-outline__trailing"></span>
-    </span>
   </div>
 
   <!-- セレクトに残っているその他の要素 -->
@@ -227,6 +227,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 <div class="mdc-select mdc-select--filled demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
+    <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-select__selected-text">Vegetables</span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -246,7 +247,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
         </polygon>
       </svg>
     </span>
-    <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -286,8 +286,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 ```html
 <div class="mdc-select mdc-select--filled mdc-select--required">
-  <span class="mdc-select__ripple"></span>
   <div class="mdc-select__anchor" aria-required="true">
+    <span class="mdc-select__ripple"></span>
+    <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -307,7 +308,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
         </polygon>
       </svg>
     </span>
-    <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -327,6 +327,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 <div class="mdc-select mdc-select--filled mdc-select--disabled">
   <div class="mdc-select__anchor" aria-disabled="true">
     <span class="mdc-select__ripple"></span>
+    <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -346,7 +347,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
         </polygon>
       </svg>
     </span>
-    <span class="mdc-floating-label">Pick a Food Group</span>
     <span class="mdc-line-ripple"></span>
   </div>
 
@@ -457,6 +457,10 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 ```html
 <div class="mdc-select mdc-select--outlined mdc-select--no-label demo-width-class">
   <div class="mdc-select__anchor">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
     <span class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
@@ -475,10 +479,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
             points="7 15 12 10 17 15">
         </polygon>
       </svg>
-    </span>
-    <span class="mdc-notched-outline">
-      <span class="mdc-notched-outline__leading"></span>
-      <span class="mdc-notched-outline__trailing"></span>
     </span>
   </div>
 

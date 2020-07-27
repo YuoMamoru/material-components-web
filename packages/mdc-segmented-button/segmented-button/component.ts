@@ -21,24 +21,45 @@
  * THE SOFTWARE.
  */
 
-import {getCorrectPropertyName} from '../../mdc-animation/index';
-import {captureHandlers} from '../../../testing/helpers/foundation';
-import {setUpFoundationTest} from '../../../testing/helpers/setup';
+import {MDCComponent} from '@material/base/component';
+import {MDCSegmentedButtonSegmentFactory} from '../segment/component';
+import {SegmentDetail} from '../types';
+import {MDCSegmentedButtonFoundation} from './foundation';
 
-import {MDCSliderFoundation} from '../foundation';
+export class MDCSegmentedButton extends MDCComponent<MDCSegmentedButtonFoundation> {
+  static attachTo(root: Element): MDCSegmentedButton {
+    return new MDCSegmentedButton(root);
+  }
 
-export const TRANSFORM_PROP = getCorrectPropertyName(window, 'transform');
+  initialize(_segmentFactory: MDCSegmentedButtonSegmentFactory) {
+    return;
+  }
 
-export function setupEventTest() {
-  const {foundation, mockAdapter} = setUpFoundationTest(MDCSliderFoundation);
+  initialSyncWithDOM() {
+    return;
+  }
 
-  return {
-    foundation,
-    mockAdapter,
-    rootHandlers: captureHandlers(mockAdapter, 'registerInteractionHandler'),
-    thumbContainerHandlers: captureHandlers(
-        mockAdapter, 'registerThumbContainerInteractionHandler'),
-    bodyHandlers:
-        captureHandlers(mockAdapter, 'registerBodyInteractionHandler'),
-  };
+  destroy() {
+    super.destroy();
+  }
+
+  getDefaultFoundation(): MDCSegmentedButtonFoundation {
+    return new MDCSegmentedButtonFoundation();
+  }
+
+  getSelectedSegments(): readonly SegmentDetail[] {
+    return [];
+  }
+
+  selectSegment(_indexOrSegmentId: number | string) {
+    return;
+  }
+
+  unselectSegment(_indexOrSegmentId: number | string) {
+    return;
+  }
+
+  isSegmentSelected(_indexOrSegmentId: number | string): boolean {
+    return false;
+  }
 }

@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Google Inc.
+// Copyright 2020 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,4 +20,11 @@
 // THE SOFTWARE.
 //
 
-$baseline-rail-opacity: 0.26 !default;
+@use '@material/feature-targeting/functions' as feature-targeting-functions;
+@use './select-helper-text';
+@use './select-icon';
+
+@mixin core-styles($query: feature-targeting-functions.all()) {
+  @include select-helper-text.helper-text-core-styles($query: $query);
+  @include select-icon.icon-core-styles($query: $query);
+}

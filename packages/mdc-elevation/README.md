@@ -78,7 +78,7 @@ CSS クラス | 説明
 `mdc-elevation--z<N>` | (N)dp のエレベーションを設定する。N は 1 <= N <= 24 の範囲。
 `mdc-elevation-transition` | エレベーション間の要素のトランジッションをするにあたり適切な CSS ルールを適用する。
 
-### Sass ミキシン、変数と関数
+### Sass ミキシン、変数、関数とカスタムプロパティ
 
 ミキシン | 説明
 --- | ---
@@ -106,6 +106,13 @@ CSS クラス | 説明
 `$overlay-property` | エレベーションオーバーレイトランジッションのデフォルトプロパティ
 
 よりトランジッションに関して設定が必要なら、エクスポートした sass 変数とともに `transition-value` 関数を使用します。
+
+カスタムプロパティ | デフォルト値 | 説明
+--- | ---
+`--mdc-elevation-overlay-opacity` | `0` | エレベーションオーバーレイの不透明度
+`--mdc-elevation-overlay-fill-color` | `#fff` | エレベーションオーバーレイの色
+
+トランジションをさらに設定する必要がある場合は、エクスポートされた sass 変数と組み合わせて `transition-value` 関数を使います。
 
 ```scss
 @use "@material/elevation";
