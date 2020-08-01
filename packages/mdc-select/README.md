@@ -44,12 +44,21 @@ npm install @material/select
 
 ### HTML
 
+The HTML for the select component follows the WAI-ARIA recommendations for
+[Collapsible Dropdown Listboxes](https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html) in order to meet WCAG and ARIA accessibility standards, and to be compatible with assistive technology like screen readers.
+
+The following example applies ARIA attributes that provide the semantic structure required for assistive technology:
+
 ```html
 <div class="mdc-select mdc-select--filled demo-width-class">
-  <div class="mdc-select__anchor">
+  <div class="mdc-select__anchor"
+       role="button"
+       aria-haspopup="listbox"
+       aria-expanded="false"
+       aria-labelledby="demo-label demo-selected-text">
     <span class="mdc-select__ripple"></span>
-    <span class="mdc-floating-label">Pick a Food Group</span>
-    <span class="mdc-select__selected-text"></span>
+    <span id="demo-label" class="mdc-floating-label">Pick a Food Group</span>
+    <span id="demo-selected-text" class="mdc-select__selected-text"></span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -72,21 +81,27 @@ npm install @material/select
   </div>
 
   <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
-    <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
+    <ul class="mdc-list" role="listbox" aria-label="Food picker listbox">
+      <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option">
         <span class="mdc-list-item__ripple"></span>
       </li>
-      <li class="mdc-list-item" data-value="grains">
+      <li class="mdc-list-item" aria-selected="false" data-value="grains" role="option">
         <span class="mdc-list-item__ripple"></span>
-        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
+        <span class="mdc-list-item__text">
+          Bread, Cereal, Rice, and Pasta
+        </span>
       </li>
-      <li class="mdc-list-item" data-value="vegetables">
+      <li class="mdc-list-item mdc-list-item--disabled" aria-selected="false" data-value="vegetables" aria-disabled="true" role="option">
         <span class="mdc-list-item__ripple"></span>
-        <span class="mdc-list-item__text">Vegetables</span>
+        <span class="mdc-list-item__text">
+          Vegetables
+        </span>
       </li>
-      <li class="mdc-list-item" data-value="fruit">
+      <li class="mdc-list-item" aria-selected="false" data-value="fruit" role="option">
         <span class="mdc-list-item__ripple"></span>
-        <span class="mdc-list-item__text">Fruit</span>
+        <span class="mdc-list-item__text">
+          Fruit
+        </span>
       </li>
     </ul>
   </div>
@@ -103,7 +118,7 @@ npm install @material/select
 @use "@material/list/mdc-list";
 @use "@material/menu-surface/mdc-menu-surface";
 @use "@material/menu/mdc-menu";
-@use "@material/select/mdc-select";
+@use "@material/select/styles";
 
 .demo-width-class {
   width: 400px;
@@ -123,57 +138,6 @@ select.listen('MDCSelect:change', () => {
 ```
 
 JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
-
-#### アクセシビリティ (a11y)
-
-ユーザーにアクセス可能なコンポーネントを提供するために、[Collapsible Dropdown Listbox](https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html) の WAI-ARIA の例にしたがうことをお勧めします。以下は必要な aria 属性をすべて付加したセレクトコンポーネントの例です。
-
-```html
-<div class="mdc-select">
-  <div class="mdc-select__anchor"
-       role="button"
-       aria-haspopup="listbox"
-       aria-labelledby="demo-label demo-selected-text">
-    <span class="mdc-select__ripple"></span>
-    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
-    <span id="demo-selected-text" class="mdc-select__selected-text">Vegetables</span>
-    <span class="mdc-select__dropdown-icon">
-      <svg
-          class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
-        <polygon
-            class="mdc-select__dropdown-icon-inactive"
-            stroke="none"
-            fill-rule="evenodd"
-            points="7 10 12 15 17 10">
-        </polygon>
-        <polygon
-            class="mdc-select__dropdown-icon-active"
-            stroke="none"
-            fill-rule="evenodd"
-            points="7 15 12 10 17 15">
-        </polygon>
-      </svg>
-    </span>
-    <span class="mdc-line-ripple"></span>
-  </div>
-
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">
-    <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option"></li>
-      <li class="mdc-list-item" data-value="grains" role="option">
-        <span class="mdc-list-item__text">Bread, Cereal, Rice, and Pasta</span>
-      </li>
-      <li class="mdc-list-item mdc-list-item--disabled" data-value="vegetables" aria-disabled="true" role="option">
-        <span class="mdc-list-item__text">Vegetables</span>
-      </li>
-      <li class="mdc-list-item" data-value="fruit" role="option">
-        <span class="mdc-list-item__text">Fruit</span>
-      </li>
-    </ul>
-  </div>
-</div>
-```
 
 ## バリエーション
 
@@ -213,7 +177,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   </div>
 
   <!-- セレクトに残っているその他の要素 -->
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface" role="listbox">...</div>
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">...</div>
 </div>
 ```
 

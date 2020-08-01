@@ -20,12 +20,15 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '@material/rtl/mixins' as rtl-mixins;
 @use '@material/theme/theme-color';
 @use '@material/theme/theme';
 @use '@material/feature-targeting/feature-targeting';
 @use '@material/animation/variables' as animation-variables;
-@use '@material/typography/mixins' as typography-mixins;
+@use '@material/typography/typography';
 @use './variables';
 
 @mixin core-styles($query: feature-targeting.all()) {
@@ -34,7 +37,7 @@
 
   // postcss-bem-linter: define floating-label
   .mdc-floating-label {
-    @include typography-mixins.typography(
+    @include typography.typography(
       subtitle1,
       $exclude-props: (line-height),
       $query: $query

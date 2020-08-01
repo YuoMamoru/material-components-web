@@ -20,9 +20,12 @@
 // THE SOFTWARE.
 //
 
+// Selector '.mdc-*' should only be used in this project.
+// stylelint-disable selector-class-pattern
+
 @use '@material/feature-targeting/feature-targeting';
 @use '@material/animation/functions' as animation-functions;
-@use '@material/typography/mixins' as typography-mixins;
+@use '@material/typography/typography';
 @use './tooltip-theme';
 
 $_padding-x: 4px;
@@ -30,6 +33,7 @@ $_padding-y: 8px;
 $_max-width: 120px;
 $_min-width: 40px;
 $_label-type-scale: caption;
+$_z-index: 2;
 
 $enter-duration: 150ms;
 $exit-duration: 75ms;
@@ -55,6 +59,7 @@ $exit-duration: 75ms;
     @include feature-targeting.targets($feat-structure) {
       position: fixed;
       display: none;
+      z-index: $_z-index;
     }
   }
 
@@ -67,7 +72,7 @@ $exit-duration: 75ms;
   }
 
   .mdc-tooltip__surface {
-    @include typography-mixins.typography($_label-type-scale, $query: $query);
+    @include typography.typography($_label-type-scale, $query: $query);
 
     @include feature-targeting.targets($feat-structure) {
       padding: $_padding-x $_padding-y;
@@ -83,7 +88,9 @@ $exit-duration: 75ms;
         transform: scale(1);
         opacity: 1;
       }
+    }
 
+    .mdc-tooltip--showing-transition & {
       @include feature-targeting.targets($feat-animation) {
         transition: animation-functions.enter(opacity, $enter-duration),
           animation-functions.enter(transform, $enter-duration);
@@ -94,7 +101,9 @@ $exit-duration: 75ms;
       @include feature-targeting.targets($feat-structure) {
         transform: scale(1);
       }
+    }
 
+    .mdc-tooltip--hide-transition & {
       @include feature-targeting.targets($feat-animation) {
         transition: animation-functions.exit-permanent(opacity, $exit-duration);
       }

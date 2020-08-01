@@ -1,13 +1,11 @@
-@use "../mixins" as select;
-@use "../helper-text/mixins" as helper-text;
-@use "../icon/mixins" as icon;
-@use "@material/feature-targeting/functions" as feature;
+@use '../mixins' as select;
+@use '../helper-text/mixins' as helper-text;
+@use '../icon/mixins' as icon;
+@use '@material/feature-targeting/functions' as feature;
 
 @mixin test($query) {
   .test {
     @include select.core-styles($query: $query);
-    @include select.without-ripple($query: $query);
-    @include select.ripple($query: $query);
     @include select.ink-color(red, $query: $query);
     @include select.container-fill-color(red, $query: $query);
     @include select.focused-label-color(red, $query: $query);

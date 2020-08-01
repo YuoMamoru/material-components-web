@@ -23,8 +23,8 @@
 @use '@material/elevation/variables' as elevation-variables;
 @use '@material/feature-targeting/feature-targeting';
 @use '@material/dom/mixins' as dom-mixins;
-@use '@material/ripple/mixins' as ripple-mixins;
-@use '@material/ripple/variables' as variables2;
+@use '@material/ripple/ripple';
+@use '@material/ripple/ripple-theme';
 @use '@material/rtl/mixins' as rtl-mixins;
 @use '@material/shape/mixins' as shape-mixins;
 @use '@material/shape/functions' as shape-functions;
@@ -32,7 +32,7 @@
 @use '@material/theme/theme-color';
 @use '@material/theme/theme';
 @use '@material/touch-target/mixins' as touch-target-mixins;
-@use '@material/typography/mixins' as typography-mixins;
+@use '@material/typography/typography';
 @use './variables';
 
 $ripple-target: '.mdc-fab__ripple';
@@ -107,20 +107,17 @@ $ripple-target: '.mdc-fab__ripple';
 @mixin ripple($query: feature-targeting.all()) {
   $feat-structure: feature-targeting.create-target($query, structure);
 
-  @include ripple-mixins.common($query); // COPYBARA_COMMENT_THIS_LINE
+  @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   // postcss-bem-linter: define fab
 
   .mdc-fab {
-    @include ripple-mixins.surface(
+    @include ripple.surface($query: $query, $ripple-target: $ripple-target);
+    @include ripple.radius-bounded(
       $query: $query,
       $ripple-target: $ripple-target
     );
-    @include ripple-mixins.radius-bounded(
-      $query: $query,
-      $ripple-target: $ripple-target
-    );
-    @include ripple-mixins.states(
+    @include ripple-theme.states(
       on-secondary,
       $query: $query,
       $ripple-target: $ripple-target
@@ -128,7 +125,7 @@ $ripple-target: '.mdc-fab__ripple';
 
     // stylelint-disable-next-line plugin/selector-bem-pattern
     #{$ripple-target} {
-      @include ripple-mixins.target-common($query: $query);
+      @include ripple.target-common($query: $query);
 
       @include feature-targeting.targets($feat-structure) {
         overflow: hidden;
@@ -146,14 +143,14 @@ $ripple-target: '.mdc-fab__ripple';
 
   @if ($fill-tone == 'dark') {
     @include ink-color(text-primary-on-dark, $query: $query);
-    @include ripple-mixins.states(
+    @include ripple-theme.states(
       text-primary-on-dark,
       $query: $query,
       $ripple-target: $ripple-target
     );
   } @else {
     @include ink-color(text-primary-on-light, $query: $query);
-    @include ripple-mixins.states(
+    @include ripple-theme.states(
       text-primary-on-light,
       $query: $query,
       $ripple-target: $ripple-target
@@ -439,7 +436,7 @@ $icon-enter-duration_: 180ms;
 }
 
 @mixin extended_($query: feature-targeting.all()) {
-  @include typography-mixins.typography(button, $query: $query);
+  @include typography.typography(button, $query: $query);
   @include extended-shape-radius(variables.$shape-radius, $query: $query);
   @include extended-padding(
     variables.$extended-icon-padding,
