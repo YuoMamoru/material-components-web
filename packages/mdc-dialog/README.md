@@ -162,7 +162,7 @@ dialog.listen('MDCDialog:closing', function() {
 </div>
 ```
 
-**Note: Note the inclusion of the `mdc-list--avatar-list` class, which aligns with the Simple Dialog spec.**
+**注意: `mdc-list--avatar-list` クラスが含まれていることに注意してください。これはシンプルダイアログ仕様に沿ったものです。**
 
 ## <a name="confirmation-dialog"></a>確認ダイアログ
 
