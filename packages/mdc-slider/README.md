@@ -236,6 +236,37 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 </div>
 ```
 
+### コンポーネン初期化前のスライダー位置の設定
+
+`MDCSlider` が初期化されると、内部変数に基づいてスタイダートラックとつまみの位置が更新されます。コンポーネント初期化前に正しいトラックとつまみの位置を設定するには DOM を以下のようにマークアップします。
+
+- 有効なトラック幅を全トラックに対してのパーセンテージ、すなわち、`(valueEnd - valueStart) / (max - min)` として計算します。これを `rangePercentDecimal` とします。
+- 終了つまみの位置を全トラックのパーセンテージとして計算します。これを `thumbEndPercent` とします。終了つまみ（`mdc-slider__thumb`）要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:calc(<thumbEndPercent>% - 24px)` を設定します。
+- *[範囲スライダーのみ]* 開始つまみの内部位置を全トラックに対してのパーセンテージとして計算します。これを `thumbStartPercent` とします。開始つまみ（`mdc-slider__thumb`）要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:calc(<thumbStartPercent>% - 24px` を設定します。
+- *[範囲スライダーのみ]* これまで計算した `thumbStartPercent` を使って、`mdc-slider__track--active_fill` 要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:<thumbStartPercent>%` を設定します。
+
+#### 範囲スライダーの例
+
+以下は `[min, max] = [0, 100]` と `[start, end] = [30, 70]` の内部変数値を持つ範囲スライダーの例です。
+
+```html
+<div class="mdc-slider mdc-slider--range">
+  <div class="mdc-slider__track">
+    <div class="mdc-slider__track--active">
+      <div class="mdc-slider__track--active_fill"
+           style="transform:scaleX(.4); left:30%"></div>
+    </div>
+    <div class="mdc-slider__track--inactive"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" style="left:calc(30%-24px)">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" style="left:calc(70%-24px)">
+    <div class="mdc-slider__thumb-knob"></div>
+  </div>
+</div>
+```
+
 ## API
 
 ### Sass ミキシン

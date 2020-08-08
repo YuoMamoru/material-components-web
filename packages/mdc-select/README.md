@@ -62,7 +62,7 @@ The following example applies ARIA attributes that provide the semantic structur
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -118,7 +118,9 @@ The following example applies ARIA attributes that provide the semantic structur
 @use "@material/list/mdc-list";
 @use "@material/menu-surface/mdc-menu-surface";
 @use "@material/menu/mdc-menu";
-@use "@material/select/styles";
+@use "@material/select/select";
+
+@include select.core-styles();
 
 .demo-width-class {
   width: 400px;
@@ -159,7 +161,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -196,7 +198,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -257,7 +259,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -296,7 +298,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -376,7 +378,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -429,7 +431,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
-          viewBox="7 10 10 5">
+          viewBox="7 10 10 5" focusable="false">
         <polygon
             class="mdc-select__dropdown-icon-inactive"
             stroke="none"
@@ -466,7 +468,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 | `mdc-select--activated` | オプション。セレクトのアクティブ状態のスタイル。このクラスはメニューが開かれた際に自動的に追加される。 |
 | `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に `disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
 | `mdc-select--outlined` | オプション。セレクトをアウトラインされたセレクトとしてスタイルを設定する。 |
-| `mdc-select--fullwidth` | オプション。セレクトを幅いっぱいのセレクトとしてスタイルを設定する。 |
 | `mdc-select--with-leading-icon` | セレクトを先頭アイコンのあるセレクトとしてスタイルを設定する。 |
 | `mdc-select--no-label` | セレクトをラベルのないセレクトとしてスタイルを設定する。 |
 > _注意_: セレクト内に含まれる [MDCMenu](./../mdc-menu) や [MDCList](./../mdc-list) コンポーネントをさらにカスタマイズするには、それぞれのドキュメントを参照してください。
@@ -477,28 +478,14 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 ミキシン | 説明
 --- | ---
-`ink-color($color)` | セレクト内の選択された項目を表示する色を設定する。
-`container-fill-color($color)` | セレクトの背景色を設定する。
-`disabled-container-fill-color($color)` | 無効なときのセレクトの背景色を設定する。
-`dropdown-icon-color($color)` | セレクトのドロップダウンアイコンの色を設定する。
-`hover-dropdown-icon-color($color)` | ホバー時のセレクトのドロップダウンアイコンの色を設定する。
-`focused-dropdown-icon-color($color)` | フォーカス時のセレクトのドロップダウンアイコンの色を設定する。
-`disabled-dropdown-icon-color($color)` | 無効なときのセレクトのドロップダウンアイコンの色を設定する。
-`label-color($color)` | フォーカスのないセレクトのラベルの色を設定する。
-`hover-label-color($color)` | ホバー時のセレクトのラベルの色を設定する。
-`focused-label-color($color)` | フォーカス時のセレクトのラベルの色を設定する。
-`label-floating-color($color)` | ラベルが浮いているが、セレクトにフォーカスの必要がないときのセレクトのラベルの色を設定する。
-`hover-label-floating-color($color)` | ホバー時でラベルが浮いているときのセレクトの色を設定する。
-`disabled-label-color($color)` | 無効なときのセレクトのラベルの色を設定する。
-`bottom-line-color($color)` | セレクトのデフォルトの下線の色を設定する。
-`hover-bottom-line-color($color)` | セレクトがホバーされた際の下線の色を設定する。
-`focused-bottom-line-color($color)` | フォーカス時のセレクトの下線の色を設定する。
-`disabled-bottom-line-color($color)` | セレクトが無効なときのセレクトの下線の色を設定する。
+`ink-color($state)` | セレクト内の選択された項目を表示する色を設定する。`default` と `disabled` の状態を Map として設定する。
+`container-fill-color($state)` | セレクトの背景色を設定する。`default` と `disabled` の状態を Map として設定する。
+`dropdown-icon-color($state)` | セレクトのドロップダウンアイコンの色を設定する。`default`、`hover`、`focus` と `disabled` の状態を Map として設定する。
+`label-color($state)` | セレクトのラベルの色を設定する。`default`、`hover`、`focus` と `disabled` の状態を Map として設定する。
+`label-floating-color($state)` | ラベルが浮いているときのセレクトのラベルの色を設定する。`default` と `hover` の状態を Map として設定する。
+`bottom-line-color($state)` | セレクトの下線の色を設定する。`default`、`hover`、`focus` と `disabled` の状態を Map として設定する。
 `filled-shape-radius($radius, $density-scale, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状に塗られたセレクトを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
-`outline-color($color)` | へこんだ輪郭の色を設定する。
-`focused-outline-color($color)` | フォーカス時のセレクトのアウトラインの色を設定する。
-`hover-outline-color($color)` | セレクトがホバーされた際のアウトラインの色を設定する。
-`disabled-outline-color($color)` | セレクトが無効なときのへこんだ輪郭の色を設定する。
+`outline-color($state)` | へこんだ輪郭の色を設定する。`default`、`hover`、`focus` と `disabled` の状態を Map として設定する。
 `outline-shape-radius($radius, $density-scale, $rtl-reflexive)` | アウトラインされたタイプのセレクトの角の丸めを設定する。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `filled-density($density-scale)` | 塗られたタイプのセレクト（先頭アイコン付きの塗られたセレクトを除く）の密度スケールを設定する。
 `filled-with-leading-icon-density($density-scale)` | 先頭アイコン付きの塗られたセレクトの密度スケールを設定する。
