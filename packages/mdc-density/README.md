@@ -8,46 +8,45 @@ path: /catalog/density/
 
 # Density
 
-Density subsystem provides adaptive layout to components. Material Design uses low-density space by default but offers high-density space when it improves the user experience. Components with high density enable users to process and take action against large amounts of information in a more manageable way. List, tables, and long forms are components that benefit from increased density.
+Density サブシステムはコンポーネントに適応性のあるレイアウトを提供します。マテリアルデザインはデフォルトでは低密度空間を使いますが、ユーザーエクスペリエンスを向上させるときには高密度空間を提供します。高密度コンポーネントはユーザーが大量の情報をより管理しやすい方法で処理し、操作を実行できるようにします。リスト、表、そして大きなフォームは密度をあげることにより利益を受けるコンポーネントです。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/design/layout/applying-density.html">Material Design guidelines: Applying density</a>
+    <a href="https://material.io/design/layout/applying-density.html">マテリアルデザインガイドライン: 密度の適用</a>
   </li>
   <li class="icon-list-item icon-list-item--link">
-    <a href="https://glitch.com/~material-density" target="_blank">Demo: Glitch</a>
+    <a href="https://glitch.com/~material-density" target="_blank">デモ: Glitch</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/density
 ```
 
-> NOTE: You do not need to directly depend on `@material/density`, use component provided density Sass mixins instead.
+> 注意: 直接、`@material/density` に依存する必要はなく、デンシティ Sass ミキシンを代わりに提供しているコンポーネントを使います。
 
-## Basic Usage
+## 基本的な使用法
 
-The styles for applying density to button component instance looks like this:
+ボタンコンポーネントインスタンスにデンシティを摘要したスタイルにするには次のようにします。
 
 ```scss
 @use "@material/button";
 
 .my-custom-button {
-  // Sets button density scale to `-3`, i.e. button height to `24px`.
+  // ボタンの密度スケールを `-3`、すなわち `24px` の高さにする
   @include button.density(-3);
 }
 ```
 
-This would apply `-3` (high density) to button component instance.
+これはボタンコンポーネントのインスタンスに `-3`（高密度）を摘要します。
 
-> You would indirectly use the Density API through respective component's mixin which takes care of setting appropriate
-> component height.
+> 適切なコンポーネントの高さに設定に処理を行う各コンポーネントのミキシンを通じて Density API を間接的に使うことになります。
 
-Here are the components that do provide density Sass mixins:
+デンシティ Sass ミキシンを提供するコンポーネントは以下の通りです。
 
   * [Button](../mdc-button/README.md#sass-mixins)
   * [Checkbox](../mdc-checkbox/README.md#sass-mixins)
@@ -60,13 +59,13 @@ Here are the components that do provide density Sass mixins:
   * [Tab Bar](../mdc-tab-bar/README.md#sass-mixins)
   * [Text Field](../mdc-textfield/README.md#sass-mixins)
 
-## Density Mixins
+## デンシティミキシン
 
-Components that supports density provides Sass mixins to customize density for that component. Each density mixin takes in a density scale number, e.g. 0 (the default) or -1 (higher density).
+デンシティをサポートするコンポーネントはコンポーネントの密度をカスタマイズする Sass ミキシンを提供します。各デンシティミキシンは密度スケールの数値、例えば 0（デフォルト）もしくは -1（高密度）、を引数に取ります。 
 
-Currently, the density system only allows negative numbers to customize for high density. The lower the density scale, the higher the component density. The exact density scale range depends on the component. If the scale number is unsupported by the component density mixin, the compiler will report an error at build time.
+現在、デンシティシステムでは高密度にカスタマイズするために負の数値のみが使えます。より低い密度スケールは高いコンポーネント密度になります。実際の密度スケールの範囲はコンポーネントによります。スケールの数値がコンポーネントのデンシティミキシンのサポートしていない値のときは、コンパイラはビルド時にエラーを報告します。
 
-The height or size of a component is calculated with the following formula:
+コンポーネントの高さまたは大きさは以下の式で計算されます。
 
 ```scss
 @use "@material/button";
@@ -76,45 +75,44 @@ $height: button.$height + density.$interval * $density-scale
 /// @example 36px + 4px * (-3) => 24px
 ```
 
-The density interval is set to 4px for visual consistency.
+密度間隔は視覚的な一貫性のために 4px に設定されます。
 
-It is recommended to customize density via the provided density mixins, rather than arbitrarily applying component height.
+コンポーネントの高さを独自に摘要するのではなく、提供されたデンシティミキシンを通じて密度をカスタマイズすることが推奨されます。
 
-NOTE: Touch targets are automatically disabled when density mixins are applied, since dense components should be optionally enabled and therefore do not have the same default accessibility requirements.
+注意: デンシティミキシンを摘要するとタッチターゲットは自動的に無効になります。これは高密度コンポーネントはオプションで有効にすべきであり、したがって同じデフォルトアクセサビリティが必要とされるわけではないためです。
 
-## Component variants
+## コンポーネントのバリエーション
 
-Components that has different variants may have their own density mixin.
+異なるバリエーションをもつコンポーネントではそれぞれ独自のデンシティミキシンを持ちます。
 
-For example, Tab Bar has two density mixins:
+例えば、Tab Bar には2つのデンシティミキシンがあります。
 
-  * `tab-bar.density()`: Density mixin for standard tab bar.
-  * `tab-bar.stacked-density()`: Density mixin for tab bar that has icon stacked on top of label.
+  * `tab-bar.density()`: 標準のタブバーのデンシティミキシン。
+  * `tab-bar.stacked-density()`: ラベルのうえにアイコンのあるタブバーのデンシティミキシン。
 
-Similarly, text field provides 3 different density mixins based on its variant.
+同様に、テキスト欄はそれぞれのバリエーションにもとづいた3つの異るデンシティミキシンを提供しています。
 
-## Nested components
+## ネストされたコンポーネント
 
-Material component that renders another component inside it needs set its own density scale accordingly. Applying density mixin on parent component does not automatically apply density to its children.
+他のコンポーネントの内部に描画するマテリアルコンポーネントはそれぞれ独自の密度スケールを設定する必要があります。親コンポーネントへのデンシティミキシンの適用により、子要素に密度を自動的に適用されるわけではありません。
 
-For example, Applying density to data table does not automatically set density scale to row checkbox. You'll have to explicitly set density scale to its children. This'll allow clients to have full control on the layout.
+例えば、データテーブルへの密度の適用により、自動的に行のチェックボックスに密度が適用されることはありません。明示的に子要素に対して密度スケールを設定しなくてはなりません。これにより、クライアントはレイアウトを完全に制御することができます。
 
-## Style Customization
+## スタイルのカスタマイズ
 
-This package is used as utility for other components' density mixins. Customizations provided by this package is not intended to
-be consumed directly by developers, use component's density mixin instead.
+このパッケージは他のコンポーネントのデンシティミキシンのためのユーティリティとして使われます。このパッケージにより提供されるカスタマイズは開発者が直接的に利用することを想定したものではなく、代わりにコンポーネントのデンシティミキシンを使ってください。
 
-### Sass Variables
+### Sass 変数
 
-Variable | Description
+変数 | 説明
 --- | ---
-`$interval` | Density interval between each dense scale. This interval is used for numbered density scale to calculate dense height based on baseline component height.
-`$minimum-scale` | Minimum scale supported by density subsystem. This scale always maps to highest dense scale.
-`$maximum-scale` | Maximum scale supported by density subsystem. This scale always maps to lowest dense scale.
-`$supported-scales` | Supported density scale when density literal is used (For example, `minimum`).
+`$interval` | 各密度スケール間の密度間隔。この間隔はベースラインコンポーネントのたかさにもとづき、密度の高さを計算するために密度スケールの番号で使われます。
+`$minimum-scale` | デンシティシステムによりサポートする密度スケールの最小値。この大きさは常に最高の密度スケールにマッピングされる。
+`$maximum-scale` | デンシティシステムによりサポートする密度スケールの最大値。この大きさは常に最小の密度スケールにマッピングされる。
+`$supported-scales` | 密度リテラルが使用されるときに差ボールする密度スケール（例えば `minimum`）。
 
-### Sass Functions
+### Sass 関数
 
-Function | Description
+関数 | 説明
 --- | ---
-`prop-value($density-config, $density-scale, $property-name)` | Returns component property value based on given density config and density scale.
+`prop-value($density-config, $density-scale, $property-name)` | 与えられた密度設定と密度スケールにもとづき、コンポーネントのプロパティ値を返す。
