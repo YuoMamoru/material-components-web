@@ -8,40 +8,40 @@ path: /catalog/input-controls/floating-label/
 
 # Floating Label
 
-Floating labels display the type of input a field requires. Every Text Field and Select should have a label, except for full-width text fields, which use the input's `placeholder` attribute instead. Labels are aligned with the input line and always visible. They can be resting (when a field is inactive and empty) or floating. The label is a text caption or description for the Text Field.
+フローティングラベルは入力欄に必要な入力のタイプを表示します。フル幅のテキスト欄を除くすべてのテキスト欄とセレクトにはラベルが必要で、フル幅のテキスト欄は代わりに `placeholder` 属性を使用します。ラベルは入力ラインにそろえられ、常に表示されています。ラベルは休んでいる（フィールドがアクティブでなく、空のとき）もしくは浮いています（訳注： アクティブでなく、空のときは入力欄に表示され、そうでないときは入力欄の上部に表示される、ということ）。ラベルはテキスト欄の見出しか説明となっています。
 
-## Design & API Documentation
+## デザインと API ドキュメント
 
 <ul class="icon-list">
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material.io/go/design-text-fields#text-fields-layout">Material Design guidelines: Text Fields Layout</a>
+    <a href="https://material.io/go/design-text-fields#text-fields-layout">マテリアルデザインガイドライン: テキスト欄のレイアウト</a>
   </li>
   <li class="icon-list-item icon-list-item--spec">
-    <a href="https://material-components.github.io/material-components-web-catalog/#/component/text-field">Demo with Text Field</a>
+    <a href="https://material-components.github.io/material-components-web-catalog/#/component/text-field">テキスト欄のデモ</a>
   </li>
 </ul>
 
-## Installation
+## インストール
 
 ```
 npm install @material/floating-label
 ```
 
-## Basic Usage
+## 基本的な使用法
 
-### HTML Structure
+### HTML 構造
 
 ```html
 <span class="mdc-floating-label" id="my-label-id">Hint text</span>
 ```
 
-### Styles
+### スタイル
 
 ```scss
 @use "@material/floating-label/mdc-floating-label";
 ```
 
-### JavaScript Instantiation
+### JavaScript のインスタンス化
 
 ```js
 import {MDCFloatingLabel} from '@material/floating-label';
@@ -49,57 +49,57 @@ import {MDCFloatingLabel} from '@material/floating-label';
 const floatingLabel = new MDCFloatingLabel(document.querySelector('.mdc-floating-label'));
 ```
 
-## Style Customization
+## スタイルのカスタマイズ
 
-### CSS Classes
+### CSS クラス
 
-CSS Class | Description
+CSS クラス | 説明
 --- | ---
-`mdc-floating-label` | Mandatory.
-`mdc-floating-label--float-above` | Indicates the label is floating in the floating position.
-`mdc-floating-label--shake` | Shakes the label.
-`mdc-floating-label--required` | Indicates the label is required and adds an asterisk.
+`mdc-floating-label` | 必須。
+`mdc-floating-label--float-above` | ラベルがフローティングポジションに浮いていることを示す。
+`mdc-floating-label--shake` | ラベルを震えさせる。
+`mdc-floating-label--required` | ラベルに必須であることを示し、アスタリスクを追加する。
 
-### Sass Mixins
+### Sass ミキシン
 
-Mixin | Description
+ミキシン | 説明
 --- | ---
-`ink-color($color)` | Customizes the ink color of the label.
-`fill-color($color)` | Customizes the fill color of the label.
-`shake-keyframes($modifier, $positionY, $positionX, $scale)` | Generates a CSS `@keyframes` at-rule for an invalid label shake. Used in conjunction with the `shake-animation` mixin.
-`shake-animation($modifier)` | Applies shake keyframe animation to label.
-`float-position($positionY, $positionX, $scale)` | Sets position of label when floating.
-`max-width($max-width)` | Sets the max width of the label.
-`float-transition($duration-ms, $timing-function)` | Customizes the duration and optional timing function for the "float" transition.
+`ink-color($color)` | ラベルのインク色を設定する。
+`fill-color($color)` | ラベルの塗りの色を設定する。
+`shake-keyframes($modifier, $positionY, $positionX, $scale)` | 無効なラベルの震えに対して CSS の `@keyframes` ルールを生成する。`shake-animation` ミキシンと組み合わせて使用する。
+`shake-animation($modifier)` | ラベルに振動のキーフレームアニメーションを適用する。
+`float-position($positionY, $positionX, $scale)` | 浮いているときのラベルの位置を設定する。
+`max-width($max-width)` | ラベルの最大幅を設定する。
+`float-transition($duration-ms, $timing-function)` | "float" への移動の期間とオプションでタイミング関数を設定する。
 
-## `MDCFloatingLabel` Properties and Methods
+## `MDCFloatingLabel` プロパティとメソッド
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`shake(shouldShake: boolean) => void` | Proxies to the foundation's `shake()` method.
-`float(shouldFloat: boolean) => void` | Proxies to the foundation's `float()` method.
-`setRequired(isRequired: boolean) => void` | Proxies to the foundation's `setRequired()` method.
-`getWidth() => number` | Proxies to the foundation's `getWidth()` method.
+`shake(shouldShake: boolean) => void` | ファンデーションの `shake()` メソッドの代替。
+`float(shouldFloat: boolean) => void` | ファンデーションの `float()` メソッドの代替。
+`setRequired(isRequired: boolean) => void` | ファンデーションの `setRequired()` メソッドの代替。
+`getWidth() => number` | ファンデーションの `getWidth()` メソッドの代替。
 
-## Usage Within Frameworks
+## フレームワーク内での使用
 
-If you are using a JavaScript framework, such as React or Angular, you can create a Floating Label for your framework. Depending on your needs, you can use the _Simple Approach: Wrapping MDC Web Vanilla Components_, or the _Advanced Approach: Using Foundations and Adapters_. Please follow the instructions [here](../../docs/integrating-into-frameworks.md).
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のフローティングラベルを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
 ### `MDCFloatingLabelAdapter`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`addClass(className: string) => void` | Adds a class to the label element.
-`removeClass(className: string) => void` | Removes a class from the label element.
-`getWidth() => number` | Returns the width of the label element.
-`registerInteractionHandler(evtType: string, handler: EventListener) => void` | Registers an event listener for a given event.
-`deregisterInteractionHandler(evtType: string, handler: EventListener) => void` | Deregisters an event listener for a given event.
+`addClass(className: string) => void` | ラベル要素にクラスを追加する。
+`removeClass(className: string) => void` | ラベル要素からクラスを削除する。
+`getWidth() => number` | ラベル要素の幅を返す。
+`registerInteractionHandler(evtType: string, handler: EventListener) => void` | 与えられた要素にイベントリスナーを登録する。
+`deregisterInteractionHandler(evtType: string, handler: EventListener) => void` | 与えられた要素からイベントリスナーを登録解除する。
 
 ### `MDCFloatingLabelFoundation`
 
-Method Signature | Description
+メソッド | 説明
 --- | ---
-`shake(shouldShake: boolean)` | Shakes or stops shaking the label, depending on the value of `shouldShake`.
-`float(shouldFloat: boolean)` | Floats or docks the label, depending on the value of `shouldFloat`.
-`setRequired(isRequired: boolean)` | Styles the label as required, depending on the value of `isRequired`.
-`getWidth() => number` | Returns the width of the label element.
+`shake(shouldShake: boolean)` | `shouldShake` の値に応じて、ラベルを震えさせる、もしくは震えを止める。
+`float(shouldFloat: boolean)` | `shouldFloat` の値に応じて、ラベルを浮かせる、もしくはもとに元す。
+`setRequired(isRequired: boolean)` | `isRequired` の値に応じて、ラベルを必須としてスタイルする
+`getWidth() => number` | ラベル要素の幅を返す。
