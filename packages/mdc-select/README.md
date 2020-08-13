@@ -185,6 +185,20 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 ### 追加情報
 
+#### hidden input を伴うセレクト (HTML フォーム用)
+
+セレクトの値を HTML フォームで簡単に送信できるように hidden input 要素をルート要素の下に加えることができます。このコンポーネントではそれ自身の値と hidden input の値は同期します。
+
+```html
+<div class="mdc-select mdc-select--filled demo-width-class">
+  <input type="hidden" name="demo-input">
+  <div class="mdc-select__anchor">
+    <!-- 簡潔にするため、残りのコンポーネントは省略 -->
+  </div>
+</div>
+
+```
+
 #### 選択済みの選択肢を持つセレクト
 
 事前に選択された値を持つセレクトコンポーネントを表示するには、選択している項目に `mdc-list-item--selected` クラスを使います。セレクトは選択された要素から `mdc-select__selected-text` 要素にテキストをコピーすることも必要です。
@@ -287,7 +301,7 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 
 #### 無効なセレクト
 
-`mdc-select--disabled` クラスを `mdc-select` 要素に追加し、`mdc-select__selected-text` 要素の `aria-disabled` 属性を `"true"` にします。
+`mdc-select--disabled` クラスを `mdc-select` 要素に追加、`mdc-select__selected-text` 要素の `aria-disabled` 属性を `"true"` にし、hidden input 要素の disabled 属性を設定します。
 
 ```html
 <div class="mdc-select mdc-select--filled mdc-select--disabled">
