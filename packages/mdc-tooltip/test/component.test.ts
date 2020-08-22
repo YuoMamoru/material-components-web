@@ -25,7 +25,7 @@ import {getFixture} from '../../../testing/dom';
 import {emitEvent} from '../../../testing/dom/events';
 import {createMockFoundation} from '../../../testing/helpers/foundation';
 import {setUpMdcTestEnvironment} from '../../../testing/helpers/setup';
-import {AnchorBoundaryType, Position} from '../constants';
+import {AnchorBoundaryType, XPosition, YPosition} from '../constants';
 import {MDCTooltip, MDCTooltipFoundation} from '../index';
 
 function setupTestWithMockFoundation(fixture: HTMLElement) {
@@ -161,9 +161,10 @@ describe('MDCTooltip', () => {
 
   it('#setTooltipPosition fowards to MDCFoundation#setTooltipPosition', () => {
     const {mockFoundation, component} = setupTestWithMockFoundation(fixture);
-    component.setTooltipPosition(Position.CENTER);
+    component.setTooltipPosition(
+        {xPos: XPosition.CENTER, yPos: YPosition.ABOVE});
     expect(mockFoundation.setTooltipPosition)
-        .toHaveBeenCalledWith(Position.CENTER);
+        .toHaveBeenCalledWith({xPos: XPosition.CENTER, yPos: YPosition.ABOVE});
     component.destroy();
   });
 
@@ -174,5 +175,44 @@ describe('MDCTooltip', () => {
        expect(mockFoundation.setAnchorBoundaryType)
            .toHaveBeenCalledWith(AnchorBoundaryType.UNBOUNDED);
        component.destroy();
+     });
+
+  it('sets aria-hidden to false when showing tooltip on an anchor annotated with `aria-describedby`',
+     () => {
+       const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+       const anchorElem =
+           fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+       MDCTooltip.attachTo(tooltipElem);
+
+       emitEvent(anchorElem, 'mouseenter');
+       jasmine.clock().tick(1);
+       expect(tooltipElem.getAttribute('aria-hidden')).toEqual('false');
+     });
+
+  it('leaves aria-hidden as true when showing tooltip on an anchor annotated with `data-tooltip-id`',
+     () => {
+       document.body.removeChild(fixture);
+       fixture = getFixture(`<div>
+        <button data-tooltip-id="tt0">
+          anchor
+        </button>
+        <div id="tt0"
+             class="mdc-tooltip"
+             aria-role="tooltip"
+             aria-hidden="true">
+          <div class="mdc-tooltip__surface">
+            demo tooltip
+          </div>
+        </div>
+      </div>`);
+       document.body.appendChild(fixture);
+       const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+       const anchorElem =
+           fixture.querySelector<HTMLElement>('[data-tooltip-id]')!;
+       MDCTooltip.attachTo(tooltipElem);
+
+       emitEvent(anchorElem, 'mouseenter');
+       jasmine.clock().tick(1);
+       expect(tooltipElem.getAttribute('aria-hidden')).toEqual('true');
      });
 });

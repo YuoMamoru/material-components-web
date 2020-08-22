@@ -65,10 +65,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0"
        aria-valuemax="100" aria-valuenow="50">
@@ -84,10 +84,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider mdc-slider--range">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
     <div class="mdc-slider__thumb-knob"></div>
@@ -113,10 +113,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider mdc-slider--discrete" data-step="10">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
     <div class="mdc-slider__value-indicator-container">
@@ -144,10 +144,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks" data-step="10">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
     <div class="mdc-slider__value-indicator-container">
@@ -167,10 +167,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider mdc-slider--range mdc-slider--discrete" data-step="10">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
     <div class="mdc-slider__value-indicator-container">
@@ -208,10 +208,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider mdc-slider--disabled">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-disabled="true">
     <div class="mdc-slider__thumb-knob"></div>
@@ -252,11 +252,11 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider mdc-slider--range">
   <div class="mdc-slider__track">
+    <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"
            style="transform:scaleX(.4); left:30%"></div>
     </div>
-    <div class="mdc-slider__track--inactive"></div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" style="left:calc(30%-24px)">
     <div class="mdc-slider__thumb-knob"></div>

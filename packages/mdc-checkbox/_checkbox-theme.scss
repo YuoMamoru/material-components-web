@@ -68,6 +68,95 @@ $density-config: (
 
 $ripple-target: '.mdc-checkbox__ripple';
 
+/// Material baseline light theme configuration of checkbox.
+/// See https://material.io/components/selection-controls for spec.
+$light-theme: (
+  density-scale: 0,
+  checkmark-color: $mark-color,
+  container-checked-color: theme-color.prop-value($baseline-theme-color),
+  container-checked-hover-color: null,
+  container-disabled-color: $disabled-color,
+  outline-color: $border-color,
+  outline-hover-color: null,
+  ripple-color: theme-color.$on-surface,
+  ripple-opacity: ripple-theme.$dark-ink-opacities,
+  ripple-checked-color: theme-color.prop-value($baseline-theme-color),
+  ripple-checked-opacity: ripple-theme.$dark-ink-opacities,
+);
+
+/// Sets theme to checkbox based on provided theme configuration.
+/// Only emits theme related styles. Theme styles should be included after
+/// `static-styles()`.
+/// @param {Map} $theme - Theme configuration to use for theming checkbox.
+@mixin theme($theme, $query: feature-targeting.all()) {
+  $ripple-color: map.get($theme, ripple-color);
+  $ripple-opacity: map.get($theme, ripple-opacity);
+  @if $ripple-color {
+    @include ripple-color(
+      $color: $ripple-color,
+      $opacity-map: $ripple-opacity,
+      $query: $query
+    );
+  }
+
+  $ripple-checked-color: map.get($theme, ripple-checked-color);
+  $ripple-checked-opacity: map.get($theme, ripple-checked-opacity);
+  @if $ripple-checked-color {
+    @include focus-indicator-color(
+      $color: $ripple-checked-color,
+      $opacity-map: $ripple-checked-opacity,
+      $query: $query
+    );
+  }
+
+  $density-scale: map.get($theme, density-scale);
+  @if $density-scale != null {
+    @include density($density-scale: $density-scale, $query: $query);
+  }
+
+  $outline-color: map.get($theme, outline-color);
+  $container-checked-color: map.get($theme, container-checked-color);
+  @if ($outline-color and $container-checked-color) {
+    @include container-colors(
+      $unmarked-stroke-color: $outline-color,
+      $marked-stroke-color: $container-checked-color,
+      $marked-fill-color: $container-checked-color,
+      $query: $query
+    );
+  }
+
+  $outline-hover-color: map.get($theme, outline-hover-color);
+  $container-checked-hover-color: map.get(
+    $theme,
+    container-checked-hover-color
+  );
+  @if ($outline-hover-color and $container-checked-hover-color) {
+    @include ripple-theme.states-selector() {
+      @include container-colors(
+        $unmarked-stroke-color: $outline-hover-color,
+        $marked-stroke-color: $container-checked-hover-color,
+        $marked-fill-color: $container-checked-hover-color,
+        $query: $query
+      );
+    }
+  }
+
+  $container-disabled-color: map.get($theme, container-disabled-color);
+  @if $container-disabled-color {
+    @include disabled-container-colors(
+      $unmarked-stroke-color: $container-disabled-color,
+      $marked-fill-color: $container-disabled-color,
+      $query: $query
+    );
+  }
+
+  $checkmark-color: map.get($theme, checkmark-color);
+  @if $checkmark-color {
+    @include ink-color($checkmark-color, $query: $query);
+    @include disabled-ink-color($checkmark-color, $query: $query);
+  }
+}
+
 ///
 /// Sets density scale for checkbox.
 ///
@@ -82,13 +171,18 @@ $ripple-target: '.mdc-checkbox__ripple';
   );
 
   @include ripple-size($size, $query: $query);
-
-  @if $density-scale != 0 {
-    @include touch-target-reset_($query: $query);
-  }
 }
 
-@mixin ripple-size($ripple-size, $query: feature-targeting.all()) {
+/// Sets ripple size of checkbox and optionally set touch target size which can
+/// be more than the size of ripple.
+/// @param {Number} $ripple-size - Visual ripple size of checkbox.
+/// @param {Number} $touch-target-size [null] - Touch target size that is
+///   visually hidden. Defaults to the size of provided `$ripple-size`.
+@mixin ripple-size(
+  $ripple-size,
+  $touch-target-size: null,
+  $query: feature-targeting.all()
+) {
   $feat-structure: feature-targeting.create-target($query, structure);
   $checkbox-padding: ($ripple-size - $icon-size) / 2;
 
@@ -112,8 +206,11 @@ $ripple-target: '.mdc-checkbox__ripple';
     }
   }
 
+  @if ($touch-target-size == null) {
+    $touch-target-size: $ripple-size;
+  }
   @include touch-target(
-    $ripple-size,
+    $touch-target-size: $touch-target-size,
     $ripple-size: $ripple-size,
     $query: $query
   );
@@ -306,7 +403,26 @@ $ripple-target: '.mdc-checkbox__ripple';
   }
 }
 
-@mixin focus-indicator-color($color, $query: feature-targeting.all()) {
+/// Sets ripple color when checkbox is not in checked state.
+@mixin ripple-color(
+  $color,
+  $opacity-map: null,
+  $query: feature-targeting.all()
+) {
+  @include ripple-theme.states(
+    $color: $color,
+    $opacity-map: $opacity-map,
+    $query: $query,
+    $ripple-target: $ripple-target
+  );
+}
+
+/// Sets focus indicator color when checkbox is in checked state.
+@mixin focus-indicator-color(
+  $color,
+  $opacity-map: null,
+  $query: feature-targeting.all()
+) {
   $feat-color: feature-targeting.create-target($query, color);
 
   .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background::before,
@@ -322,6 +438,7 @@ $ripple-target: '.mdc-checkbox__ripple';
   &.mdc-checkbox--selected {
     @include ripple-theme.states(
       $color: $color,
+      $opacity-map: $opacity-map,
       $query: $query,
       $ripple-target: $ripple-target
     );
@@ -336,28 +453,34 @@ $ripple-target: '.mdc-checkbox__ripple';
   }
 }
 
-///
-/// Sets checkbox touch target size which can be more than the ripple size. Param `$ripple-size` is required for custom
-/// ripple size.
-///
-/// @param {Number} $size Size of touch target (Native input) in `px`.
-/// @param {Number} $ripple-size Size of ripple in `px`. Required only for custom ripple size.
-///
+/// Sets the touch target size and appropriate margin to accommodate the
+/// touch target.
+/// @param {Number} $touch-target-size Size of touch target (Native input) in `px`.
+/// @param {Number} $ripple-size Size of ripple in `px`.
 @mixin touch-target(
-  $size: $ripple-size,
-  $ripple-size: $ripple-size,
+  $touch-target-size,
+  $ripple-size,
   $query: feature-targeting.all()
 ) {
   $feat-structure: feature-targeting.create-target($query, structure);
-  $offset: ($ripple-size - $size) / 2;
+
+  @include touch-target-mixins.margin(
+    $component-height: $ripple-size,
+    $component-width: $ripple-size,
+    $touch-target-height: $touch-target-size,
+    $touch-target-width: $touch-target-size,
+    $query: $query
+  );
+
+  $offset: ($ripple-size - $touch-target-size) / 2;
 
   @include feature-targeting.targets($feat-structure) {
     .mdc-checkbox__native-control {
       top: $offset;
       right: $offset;
       left: $offset;
-      width: $size;
-      height: $size;
+      width: $touch-target-size;
+      height: $touch-target-size;
     }
   }
 }
@@ -490,20 +613,6 @@ $ripple-target: '.mdc-checkbox__ripple';
         @include theme.prop(border-color, $color);
       }
     }
-  }
-}
-
-///
-/// Resets touch target-related styles. This is called from the density mixin to
-/// automatically remove the increased touch target, since dense components
-/// don't have the same default a11y requirements.
-/// @access private
-///
-@mixin touch-target-reset_($query: feature-targeting.all()) {
-  $feat-structure: feature-targeting.create-target($query, structure);
-
-  @include feature-targeting.targets($feat-structure) {
-    margin: 0;
   }
 }
 
