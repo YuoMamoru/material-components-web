@@ -27,6 +27,7 @@ enum CssClasses {
   SHOWING_TRANSITION = 'mdc-tooltip--showing-transition',
   HIDE = 'mdc-tooltip--hide',
   HIDE_TRANSITION = 'mdc-tooltip--hide-transition',
+  MULTILINE_TOOLTIP = 'mdc-tooltip--multiline',
 }
 
 const numbers = {
@@ -34,6 +35,11 @@ const numbers = {
   UNBOUNDED_ANCHOR_GAP: 8,
   MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
   HIDE_DELAY_MS: 600,
+  SHOW_DELAY_MS: 500,
+  // LINT.IfChange(tooltip-dimensions)
+  MIN_HEIGHT: 24,
+  MAX_WIDTH: 200,
+  // LINT.ThenChange(_tooltip.scss:tooltip-dimensions)
 };
 
 const events = {

@@ -140,6 +140,8 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 離散スライダーにメモリを追加するには、以下のものを追加します。
 
 *   ルート要素の `mdc-slider--tick-marks` クラス
+*   `mdc-slider__track` 要素の子要素として `mdc-slider__tick-marks` 要素
+*   `mdc-slider__tick-marks` 要素の子要素として `mdc-slider__tick-mark--active` 要素と `mdc-slider__tick-mark--inactive` 要素
 
 ```html
 <div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks" data-step="10">
@@ -147,6 +149,19 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
+    </div>
+    <div class="mdc-slider__tick-marks">
+      <div class="mdc-slider__tick-mark--active"></div>
+      <div class="mdc-slider__tick-mark--active"></div>
+      <div class="mdc-slider__tick-mark--active"></div>
+      <div class="mdc-slider__tick-mark--active"></div>
+      <div class="mdc-slider__tick-mark--active"></div>
+      <div class="mdc-slider__tick-mark--active"></div>
+      <div class="mdc-slider__tick-mark--inactive"></div>
+      <div class="mdc-slider__tick-mark--inactive"></div>
+      <div class="mdc-slider__tick-mark--inactive"></div>
+      <div class="mdc-slider__tick-mark--inactive"></div>
+      <div class="mdc-slider__tick-mark--inactive"></div>
     </div>
   </div>
   <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
@@ -242,8 +257,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 - 有効なトラック幅を全トラックに対してのパーセンテージ、すなわち、`(valueEnd - valueStart) / (max - min)` として計算します。これを `rangePercentDecimal` とします。
 - 終了つまみの位置を全トラックのパーセンテージとして計算します。これを `thumbEndPercent` とします。終了つまみ（`mdc-slider__thumb`）要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:calc(<thumbEndPercent>% - 24px)` を設定します。
-- *[範囲スライダーのみ]* 開始つまみの内部位置を全トラックに対してのパーセンテージとして計算します。これを `thumbStartPercent` とします。開始つまみ（`mdc-slider__thumb`）要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:calc(<thumbStartPercent>% - 24px` を設定します。
+- *[範囲スライダーのみ]* 開始つまみの内部位置を全トラックに対してのパーセンテージとして計算します。これを `thumbStartPercent` とします。開始つまみ（`mdc-slider__thumb`）要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:calc(<thumbStartPercent>% - 24px)` を設定します。
 - *[範囲スライダーのみ]* これまで計算した `thumbStartPercent` を使って、`mdc-slider__track--active_fill` 要素（もしくは RTL レイアウトの際の `right`）のインラインスタイルに `left:<thumbStartPercent>%` を設定します。
+
+加えて、MDCSlider コンポーネントは `skipInitialUIUpdate` を true に設定して初期化しなくてはなりません。
 
 #### 範囲スライダーの例
 
