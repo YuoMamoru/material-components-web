@@ -58,7 +58,9 @@ The following example applies ARIA attributes that provide the semantic structur
        aria-labelledby="demo-label demo-selected-text">
     <span class="mdc-select__ripple"></span>
     <span id="demo-label" class="mdc-floating-label">Pick a Food Group</span>
-    <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+    <span class="mdc-select__selected-text-container">
+      <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -157,7 +159,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
       </span>
       <span class="mdc-notched-outline__trailing"></span>
     </span>
-    <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+    <span class="mdc-select__selected-text-container">
+      <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -208,7 +212,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-floating-label mdc-floating-label--float-above">Pick a Food Group</span>
-    <span class="mdc-select__selected-text">Vegetables</span>
+    <span class="mdc-select__selected-text-container">
+      <span class="mdc-select__selected-text">Vegetables</span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -269,7 +275,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   <div class="mdc-select__anchor" aria-required="true">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-floating-label">Pick a Food Group</span>
-    <span class="mdc-select__selected-text"></span>
+    <span class="mdc-select__selected-text-container">
+      <span class="mdc-select__selected-text"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -308,7 +316,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
   <div class="mdc-select__anchor" aria-disabled="true">
     <span class="mdc-select__ripple"></span>
     <span class="mdc-floating-label">Pick a Food Group</span>
-    <span class="mdc-select__selected-text"></span>
+    <span class="mdc-select__selected-text-container">
+      <span class="mdc-select__selected-text"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -388,7 +398,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 <div class="mdc-select mdc-select--filled mdc-select--no-label demo-width-class">
   <div class="mdc-select__anchor">
     <span class="mdc-select__ripple"></span>
-    <span class="mdc-select__selected-text"></span>
+    <span class="mdc-select__selected-text-container">
+      <span class="mdc-select__selected-text"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -441,7 +453,9 @@ JavaScript をインポートする方法についてのさらなる情報は [J
       <span class="mdc-notched-outline__leading"></span>
       <span class="mdc-notched-outline__trailing"></span>
     </span>
-    <span class="mdc-select__selected-text"></span>
+    <span class="mdc-select__selected-text-container">
+      <span class="mdc-select__selected-text"></span>
+    </span>
     <span class="mdc-select__dropdown-icon">
       <svg
           class="mdc-select__dropdown-icon-graphic"
@@ -477,7 +491,8 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 | `mdc-select__anchor` | 必須。この要素は `mdc-select` 要素内に配置されなくてはならない。 |
 | `mdc-select__menu` | 必須。このクラスは `mdc-select` 要素内の `mdc-menu` 要素に配置されなくてはならない。 |
 | `mdc-select__dropdown-icon` | 必須。`mdc-select__anchor` 要素内の `i` 要素に配置されなくてはならない。ドロップダウンの矢印 SVG とアニメーションに使用される。 |
-| `mdc-select__selected-text` | 必須。このクラスは `mdc-select__anchor` 要素内の `div` に配置されなくてはならない。 |
+| `mdc-select__selected-text-container` | 必須。このクラスは `mdc-select__selected-text` をラップし、ここ上での `text-overflow: ellipsis` を容易にする。 |
+| `mdc-select__selected-text` | 必須。このクラスは `mdc-select__anchor` 要素内の `span` に配置されなくてはならない。 |
 | `mdc-select__icon` | オプション。`mdc-select__anchor` 要素内の `i` 要素か `svg` 要素に配置されなくてはならない。先頭アイコンに使用される。 |
 | `mdc-select--activated` | オプション。セレクトのアクティブ状態のスタイル。このクラスはメニューが開かれた際に自動的に追加される。 |
 | `mdc-select--disabled` | オプション。無効となっているセレクトのスタイル。このクラスは `<select>` 要素に `disabled` 属性が適用されている際にルート要素に適用しなくてはならない。 |
