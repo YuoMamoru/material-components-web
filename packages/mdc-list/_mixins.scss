@@ -32,6 +32,7 @@
 @use '@material/feature-targeting/feature-targeting';
 @use './variables';
 @use '@material/theme/theme-color';
+@use './evolution-mixins';
 
 //
 // Public
@@ -471,6 +472,8 @@
       margin: $mdc-list-subheader-margin variables.$side-padding;
     }
   }
+
+  @include evolution-mixins.evolution($query: $query);
 }
 
 // This API is intended for use by frameworks that may want to separate the ripple-related styles from the other
@@ -479,6 +482,7 @@
   @include ripple.common($query); // COPYBARA_COMMENT_THIS_LINE
 
   // List items should support states by default, but it should be possible to opt out.
+  :not(.mdc-list-item--disabled).mdc-evolution-list-item,
   :not(.mdc-list-item--disabled).mdc-list-item {
     @include item-interactive-ripple_($query);
   }

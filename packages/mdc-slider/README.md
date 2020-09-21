@@ -49,6 +49,21 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 **注意**: JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。
 
+### 利用しやすいスライダーの作成
+
+スライダーは [WAI-ARIA ガイドライン](https://www.w3.org/TR/wai-aria-practices/#slider) に沿っています。仕様にしたがって、以下の属性が `mdc-slider__thumb` 要素に追加されていることを確認してください。
+
+* `role="slider"`
+* `aria-valuenow`: 現在の値を表す値。
+* `aria-valuemin`: 許容される最小値を表す値。
+* `aria-valuemax`: 許容される最大値を表す値。
+* `aria-label` もしくは `aria-labelledby`: スライダーのラベル。
+
+`aria-valuenow` の値がユーザーフレンドリーでない（例えば曜日を表す数値）なら、以下のように設定します。
+
+* `aria-valuetext`: 例えば「月曜日」のように、スライダーの値を分かりやすくする文字列を設定する。
+* `MDCSlider#setValueToAriaValueTextFn` メソッドを通じてスライダーの値を `aria-valuetext` にマッピングする関数を追加する。
+
 ## <a name="sliders"></a>スライダー
 
 スライダーには2つのタイプがあります。
@@ -70,7 +85,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0"
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Continuous slider demo" aria-valuemin="0"
        aria-valuemax="100" aria-valuenow="50">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
@@ -89,10 +104,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Continuous range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Continuous range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -118,7 +133,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -164,7 +179,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__tick-mark--inactive"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete slider with tick marks demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -187,7 +202,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -197,7 +212,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     </div>
     <div class="mdc-slider__thumb-knob"></div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -228,7 +243,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="-1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-disabled="true">
+  <div class="mdc-slider__thumb" role="slider" tabindex="-1" aria-label="Disabled slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-disabled="true">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -245,7 +260,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 ```html
 <div class="mdc-slider">
   <!-- ... -->
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -275,10 +290,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
            style="transform:scaleX(.4); left:30%"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" style="left:calc(30%-24px)">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" style="left:calc(30%-24px)">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" style="left:calc(70%-24px)">
+  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" style="left:calc(70%-24px)">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -316,6 +331,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 `setValue(value: number) => void` | つまみ（1点スライダーのとき）、または、終了つまみ（範囲スライダーのとき）の値を設定する。
 `getDisabled() => boolean` | スライダーの無効状態を取得する。
 `setDisabled(disabled: boolean) => void` |スライダーの無効状態を設定する。
+`setValueToAriaValueTextFn((mapFn: ((value: number) => string)|null) => void` | スライダーの値とつまみ要素の `aria-valuetext` 属性の値をマッピングする関数を設定します。設定しないと、値が変わっても `aria-valuetext` 属性は変わらない。
 
 ### フレームワーク内での使用
 
