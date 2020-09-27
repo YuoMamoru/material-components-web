@@ -71,6 +71,50 @@ const banner = new MDCBanner(document.querySelector('.mdc-banner'));
 
 ### Variants
 
+#### Centered
+
+By default, banners are positioned as leading.
+
+They can optionally be displayed centered by adding the `mdc-banner--centered` modifier class to the root element:
+
+```html
+<div class="mdc-banner mdc-banner--centered">
+  ...
+</div>
+```
+
+Alternatively, you can call the `position-centered` mixin from Sass:
+
+```scss
+.my-banner {
+  @include banner.position-centered;
+}
+```
+
+#### Fixed Banner
+
+When used below top app bars, banners should remain fixed at the top of the screen. This can be done by adding the `mdc-banner__fixed` wrapper element around the content element:
+
+```html
+<div class="mdc-banner" role="banner">
+  <div class="mdc-banner__fixed">
+    <div class="mdc-banner__content"
+         role="status"
+         aria-live="assertive">
+      <div class="mdc-banner__text">
+      There was a problem processing a transaction on your credit card.
+      </div>
+      <div class="mdc-banner__actions">
+        <button type="button" class="mdc-button mdc-banner__primary-action">
+          <div class="mdc-button__ripple"></div>
+          <div class="mdc-button__label">Fix it</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
 #### Banner with graphic
 
 Images can help communicate a banner’s message.

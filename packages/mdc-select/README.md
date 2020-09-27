@@ -524,7 +524,6 @@ JavaScript をインポートする方法についてのさらなる情報は [J
 `filled-with-leading-icon-height($height)` | 先頭アイコン付きの塗られたセレクトの高さを設定する。
 `outlined-height($height)` | アウトラインされたセレクト（先頭アイコンのあるアウトラインされたセレクトを除く）の高さを設定する。
 `outlined-with-leading-icon-height($height)` | 先頭アイコンのあるアウトラインされたセレクトの高さを設定する。
-`min-width($min-width)` | セレクトの最小幅を設定する。
 
 > _注意_: これ以上にフローティングラベルを変更する方法は [フローティングラベルのドキュメント](./../mdc-floating-label/README.md) を参照してください。
 
