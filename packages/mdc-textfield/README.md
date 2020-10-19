@@ -521,5 +521,7 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `notchOutline(openNotch: boolean) => void` | ノッチ化したアウトラインを開く、もしくは閉じる。
 `setTransformOrigin(evt: TouchEvent \| MouseEvent) => void` | ラインリップルのアニメーションがユーザーがクリックされた位置から始まるように、ラインリップルの transform origin を設定する。
 `autoCompleteFocus() => void` | 入力値がプログラム的に変更された（つまり、ユーザーの操作なしで）ときにテキスト欄のフォーカス状態をアクティブにする。
+`setAutovalidate(shouldAutovalidate: boolean) => void` | `value` が変更されたときにテキスト欄が入力を検証するかどうかを設定する。
+`getAutovalidate() => boolean` | `value` が変更されたときにテキスト欄が入力を検証するかどうか。デフォルトは `true`。
 
 `MDCTextFieldFoundation` は複数のオプションのサブ要素 - ヘルパーテキストとアイコン - をサポートしています。これらのサブ要素のファンデーションはコンストラクターの引数として `MDCTextFieldFoundation` に渡さなくてはなりません。
