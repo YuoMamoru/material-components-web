@@ -6,7 +6,7 @@ section: docs
 path: /docs/framework-wrappers/
 -->
 
-## ほかのフレームワーク上での MDC Web
+# ほかのフレームワーク上での MDC Web
 
 Material Components for the web は様々な主要 Web フレームワークに適応できるように設計されています。次のラッパーライブラリが利用可能です。
 

@@ -160,7 +160,6 @@ CSS クラス | 説明
 --- | ---
 `density($density-scale)` | アイコンボタンの密度スケールを設定する。サポートしている密度スケールの範囲は `-5` から `0`（`0` がデフォルト）。
 `size($size)` | 全体のサイズをもとにアイコンボタンのパディングを設定する。
-`icon-size($width, $height, $padding)` | アイコンとリップルの幅、高さ、フォントサイズ、そしてパディングを設定する。`$height` はオプションで、デフォルトでは  `$width` の値が使われる。`$padding` もオプションで、デフォルトでは `max($width, $height)/2` になる。`font-size` には `max($width, $height)` が設定される。
 `ink-color($color)` | フォント色とリップルの色を指定した色に設定する。
 `disabled-ink-color($color)` | 無効なアイコンボタンのフォント色を指定した色に設定する。
 `flip-icon-in-rtl()` | RTL コンテンツ内でのみ反転させる。
