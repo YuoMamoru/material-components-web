@@ -70,7 +70,6 @@ const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
   <button class="mdc-fab mdc-fab--mini mdc-fab--touch">
     <div class="mdc-fab__ripple"></div>
     <span class="material-icons mdc-fab__icon">add</span>
-    <span class="mdc-fab__label">Create</span>
     <div class="mdc-fab__touch"></div>
   </button>
 </div>
