@@ -22,7 +22,6 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 - [ブラウザポート](docs/supported-browsers.md)
 - [すべてのパッケージ](packages/)
 - [Changelog](./CHANGELOG.md)
-- [Roadmap](./ROADMAP.md)
 
 ## クイックスタート
 
@@ -98,7 +97,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 これで一つだけある `.mdc-text-field` 要素上に text field が初期化されました。
 
-> すべてのサンプルについては glitch の [quick start demo](https://glitch.com/~mdc-web-quick-start) を参照してください。
+> すべてのサンプルについては glitch の [quick start demo](https://glitch.com/edit/#!/remix/new-web) を参照してください。
 
 ## 助けが必要ですか？
 
