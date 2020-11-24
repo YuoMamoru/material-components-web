@@ -73,12 +73,15 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ### <a name="continuous-slider"></a>連続スライダー
 
-連続スライダーはユーザーに特定の値を必要としな意味のある選択をさせるようにするものです。
+連続スライダーはユーザーに特定の値を必要とせずに意味のある選択をさせるようにするものです。
+
+注意: 値の刻み幅はデフォルトで 1 です。設定した刻み幅を指定するには、`input` 要素の `step` 属性に値を設定します。
 
 <img src="images/continuous-slider.png" alt="Continuous slider with a value of 50">
 
 ```html
 <div class="mdc-slider">
+  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" name="volume">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -98,6 +101,8 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--range">
+  <input class="mdc-slider__input" type="hidden" min="0" max="70" value="30" name="rangeStart">
+  <input class="mdc-slider__input" type="hidden" min="30" max="100" value="70" name="rangeEnd">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -122,11 +127,11 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 離散スライダーを作るには以下のものを追加します。
 
 *   ルート要素の `mdc-slider--discrete` クラス
-*   ルート要素の `data-step` 属性。これは値の刻み幅を表します。設定しなければデフォルトで 1 になります。
 *   以下に示すような値インジケーター要素（`mdc-slider__value-indicator-container`）。
 
 ```html
-<div class="mdc-slider mdc-slider--discrete" data-step="10">
+<div class="mdc-slider mdc-slider--discrete">
+  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" name="volume" step="10">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -159,7 +164,8 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 *   `mdc-slider__tick-marks` 要素の子要素として `mdc-slider__tick-mark--active` 要素と `mdc-slider__tick-mark--inactive` 要素
 
 ```html
-<div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks" data-step="10">
+<div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks">
+  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" name="volume" step="10">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -195,7 +201,9 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 #### 離散範囲スライダー
 
 ```html
-<div class="mdc-slider mdc-slider--range mdc-slider--discrete" data-step="10">
+<div class="mdc-slider mdc-slider--range mdc-slider--discrete">
+  <input class="mdc-slider__input" type="hidden" min="0" max="50" value="20" step="10" name="rangeStart">
+  <input class="mdc-slider__input" type="hidden" min="20" max="100" value="50" step="10" name="rangeEnd">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -237,6 +245,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--disabled">
+  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" step="10" disabled name="volume">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">

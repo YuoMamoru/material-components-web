@@ -21,6 +21,7 @@
  * THE SOFTWARE.
  */
 
+import {AnimationFrame} from '@material/animation/animationframe';
 import {MDCFoundation} from '@material/base/foundation';
 import {SpecificEventListener} from '@material/base/types';
 import {KEY, normalizeKey} from '@material/dom/keyboard';
@@ -29,6 +30,7 @@ import {AnchorBoundaryType, CssClasses, numbers, XPosition, YPosition} from './c
 import {ShowTooltipOptions} from './types';
 
 const {
+  RICH,
   SHOWN,
   SHOWING,
   SHOWING_TRANSITION,
@@ -36,6 +38,10 @@ const {
   HIDE_TRANSITION,
   MULTILINE_TOOLTIP
 } = CssClasses;
+
+enum AnimationKeys {
+  POLL_ANCHOR = 'poll_anchor'
+}
 
 export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
   static get defaultAdapter(): MDCTooltipAdapter {
@@ -52,13 +58,19 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
       getAnchorBoundingRect: () =>
           ({top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0}),
       getAnchorAttribute: () => null,
+      setAnchorAttribute: () => null,
       isRTL: () => false,
+      registerEventHandler: () => undefined,
+      deregisterEventHandler: () => undefined,
       registerDocumentEventHandler: () => undefined,
       deregisterDocumentEventHandler: () => undefined,
+      registerWindowEventHandler: () => undefined,
+      deregisterWindowEventHandler: () => undefined,
       notifyHidden: () => undefined,
     };
   }
 
+  private isRich!: boolean;  // assigned in init()
   private isShown = false;
   private anchorGap = numbers.BOUNDED_ANCHOR_GAP;
   private xTooltipPos = XPosition.DETECTED;
@@ -69,14 +81,21 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
   private readonly hideDelayMs = numbers.HIDE_DELAY_MS;
   private readonly showDelayMs = numbers.SHOW_DELAY_MS;
 
+  private anchorRect: ClientRect|null = null;
   private frameId: number|null = null;
   private hideTimeout: number|null = null;
   private showTimeout: number|null = null;
+  private readonly animFrame: AnimationFrame;
   private readonly documentClickHandler: SpecificEventListener<'click'>;
   private readonly documentKeydownHandler: SpecificEventListener<'keydown'>;
+  private readonly richTooltipMouseEnterHandler:
+      SpecificEventListener<'mouseenter'>;
+  private readonly windowScrollHandler: SpecificEventListener<'scroll'>;
+  private readonly windowResizeHandler: SpecificEventListener<'resize'>;
 
   constructor(adapter?: Partial<MDCTooltipAdapter>) {
     super({...MDCTooltipFoundation.defaultAdapter, ...adapter});
+    this.animFrame = new AnimationFrame();
 
     this.documentClickHandler = () => {
       this.handleClick();
@@ -85,6 +104,22 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.documentKeydownHandler = (evt) => {
       this.handleKeydown(evt);
     };
+
+    this.richTooltipMouseEnterHandler = () => {
+      this.handleRichTooltipMouseEnter();
+    };
+
+    this.windowScrollHandler = () => {
+      this.handleWindowChangeEvent();
+    };
+
+    this.windowResizeHandler = () => {
+      this.handleWindowChangeEvent();
+    };
+  }
+
+  init() {
+    this.isRich = this.adapter.hasClass(RICH);
   }
 
   handleAnchorMouseEnter() {
@@ -135,6 +170,23 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     }
   }
 
+  private handleRichTooltipMouseEnter() {
+    this.show();
+  }
+
+  /**
+   * On window resize or scroll, check the anchor position and size and
+   * repostion tooltip if necessary.
+   */
+  private handleWindowChangeEvent() {
+    // Since scroll and resize events can fire at a high rate, we throttle
+    // the potential re-positioning of tooltip component using
+    // requestAnimationFrame.
+    this.animFrame.request(AnimationKeys.POLL_ANCHOR, () => {
+      this.repositionTooltipOnAnchorMove();
+    });
+  }
+
   show() {
     this.clearHideTimeout();
     this.clearShowTimeout();
@@ -148,19 +200,26 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     if (!showTooltipOptions.hideFromScreenreader) {
       this.adapter.setAttribute('aria-hidden', 'false');
     }
+    if (this.isRich) {
+      this.adapter.setAnchorAttribute('aria-expanded', 'true');
+      this.adapter.registerEventHandler(
+          'mouseenter', this.richTooltipMouseEnterHandler);
+    }
     this.adapter.removeClass(HIDE);
     this.adapter.addClass(SHOWING);
-    if (this.isTooltipMultiline()) {
+    if (this.isTooltipMultiline() && !this.isRich) {
       this.adapter.addClass(MULTILINE_TOOLTIP);
     }
-    const {top, left} = this.calculateTooltipDistance();
-    this.adapter.setStyleProperty('top', `${top}px`);
-    this.adapter.setStyleProperty('left', `${left}px`);
+    this.anchorRect = this.adapter.getAnchorBoundingRect();
+    this.positionTooltip();
 
     this.adapter.registerDocumentEventHandler(
         'click', this.documentClickHandler);
     this.adapter.registerDocumentEventHandler(
         'keydown', this.documentKeydownHandler);
+
+    this.adapter.registerWindowEventHandler('scroll', this.windowScrollHandler);
+    this.adapter.registerWindowEventHandler('resize', this.windowResizeHandler);
 
     this.frameId = requestAnimationFrame(() => {
       this.clearAllAnimationClasses();
@@ -183,6 +242,11 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
 
     this.isShown = false;
     this.adapter.setAttribute('aria-hidden', 'true');
+    if (this.isRich) {
+      this.adapter.setAnchorAttribute('aria-expanded', 'false');
+      this.adapter.deregisterEventHandler(
+          'mouseenter', this.richTooltipMouseEnterHandler);
+    }
     this.clearAllAnimationClasses();
     this.adapter.addClass(HIDE);
     this.adapter.addClass(HIDE_TRANSITION);
@@ -192,6 +256,10 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
         'click', this.documentClickHandler);
     this.adapter.deregisterDocumentEventHandler(
         'keydown', this.documentKeydownHandler);
+    this.adapter.deregisterWindowEventHandler(
+        'scroll', this.windowScrollHandler);
+    this.adapter.deregisterWindowEventHandler(
+        'resize', this.windowResizeHandler);
   }
 
   handleTransitionEnd() {
@@ -247,6 +315,12 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
         tooltipSize.width >= numbers.MAX_WIDTH;
   }
 
+  private positionTooltip() {
+    const {top, left} = this.calculateTooltipDistance(this.anchorRect);
+    this.adapter.setStyleProperty('top', `${top}px`);
+    this.adapter.setStyleProperty('left', `${left}px`);
+  }
+
   /**
    * Calculates the position of the tooltip. A tooltip will be placed beneath
    * the anchor element and aligned either with the 'start'/'end' edge of the
@@ -261,8 +335,7 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
    * Users can specify an alignment, however, if this alignment results in the
    * tooltip colliding with the viewport, this specification is overwritten.
    */
-  private calculateTooltipDistance() {
-    const anchorRect = this.adapter.getAnchorBoundingRect();
+  private calculateTooltipDistance(anchorRect: ClientRect|null) {
     if (!anchorRect) {
       return {top: 0, left: 0};
     }
@@ -314,8 +387,14 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     // Indicates that all potential positions would result in the tooltip
     // colliding with the viewport. This would only occur when the anchor
     // element itself collides with the viewport, or the viewport is very
-    // narrow.
-    return centerPos;
+    // narrow. In this case, we allow the tooltip to be mis-aligned from the
+    // anchor element.
+    if (anchorRect.left < 0) {
+      return this.minViewportTooltipThreshold;
+    } else {
+      const viewportWidth = this.adapter.getViewportWidth();
+      return viewportWidth - (tooltipWidth + this.minViewportTooltipThreshold);
+    }
   }
 
   /**
@@ -451,6 +530,19 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     return yPos + tooltipHeight <= viewportHeight && yPos >= 0;
   }
 
+  private repositionTooltipOnAnchorMove() {
+    const newAnchorRect = this.adapter.getAnchorBoundingRect();
+    if (!newAnchorRect || !this.anchorRect) return;
+
+    if (newAnchorRect.top !== this.anchorRect.top ||
+        newAnchorRect.left !== this.anchorRect.left ||
+        newAnchorRect.height !== this.anchorRect.height ||
+        newAnchorRect.width !== this.anchorRect.width) {
+      this.anchorRect = newAnchorRect;
+      this.positionTooltip();
+    }
+  }
+
   private clearShowTimeout() {
     if (this.showTimeout) {
       clearTimeout(this.showTimeout);
@@ -480,10 +572,22 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.adapter.removeClass(HIDE);
     this.adapter.removeClass(HIDE_TRANSITION);
 
+    if (this.isRich) {
+      this.adapter.deregisterEventHandler(
+          'mouseenter', this.richTooltipMouseEnterHandler);
+    }
+
     this.adapter.deregisterDocumentEventHandler(
         'click', this.documentClickHandler);
     this.adapter.deregisterDocumentEventHandler(
         'keydown', this.documentKeydownHandler);
+
+    this.adapter.deregisterWindowEventHandler(
+        'scroll', this.windowScrollHandler);
+    this.adapter.deregisterWindowEventHandler(
+        'resize', this.windowResizeHandler);
+
+    this.animFrame.cancelAll();
   }
 }
 

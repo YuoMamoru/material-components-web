@@ -22,6 +22,7 @@
  */
 
 enum CssClasses {
+  RICH = 'mdc-tooltip--rich',
   SHOWN = 'mdc-tooltip--shown',
   SHOWING = 'mdc-tooltip--showing',
   SHOWING_TRANSITION = 'mdc-tooltip--showing-transition',
@@ -33,7 +34,7 @@ enum CssClasses {
 const numbers = {
   BOUNDED_ANCHOR_GAP: 4,
   UNBOUNDED_ANCHOR_GAP: 8,
-  MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
+  MIN_VIEWPORT_TOOLTIP_THRESHOLD: 8,
   HIDE_DELAY_MS: 600,
   SHOW_DELAY_MS: 500,
   // LINT.IfChange(tooltip-dimensions)

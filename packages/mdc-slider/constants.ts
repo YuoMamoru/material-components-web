@@ -25,6 +25,7 @@
 export const cssClasses = {
   DISABLED: 'mdc-slider--disabled',
   DISCRETE: 'mdc-slider--discrete',
+  INPUT: 'mdc-slider__input',
   RANGE: 'mdc-slider--range',
   THUMB: 'mdc-slider__thumb',
   THUMB_KNOB: 'mdc-slider__thumb-knob',
@@ -43,6 +44,8 @@ export const cssClasses = {
 
 /** Slider numbers. */
 export const numbers = {
+  // Default step size.
+  STEP_SIZE: 1,
   // Default factor to multiply `step` by for big step value, if
   // `DATA_ATTR_BIG_STEP` is not set.
   BIG_STEP_FACTOR: 4,
@@ -62,7 +65,11 @@ export const attributes = {
   ARIA_VALUETEXT: 'aria-valuetext',
   // Step value to increment/decrement by for PAGE_UP or PAGE_DOWN keypresses.
   DATA_ATTR_BIG_STEP: 'data-big-step',
-  DATA_ATTR_STEP: 'data-step',
+  INPUT_DISABLED: 'disabled',
+  INPUT_MIN: 'min',
+  INPUT_MAX: 'max',
+  INPUT_VALUE: 'value',
+  INPUT_STEP: 'step',
 };
 
 /** Slider events. */
