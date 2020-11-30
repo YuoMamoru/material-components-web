@@ -11,9 +11,7 @@ path: /catalog/input-controls/sliders/
 
 [Sliders](https://material.io/components/sliders/) はユーザーに値の範囲から選択させるようにするものです。
 
-MDC Slider の実装は1点スライダー（1つのつまみ）と範囲スライダー（2つのつまみ）の両方をサポートします。これはブラウザの `<input type="range">` 要素にならって作られています。
-
-スライダーは [WAI-ARIA 仕様](https://www.w3.org/TR/wai-aria-practices/#slider) に沿ったアクセシビリティのベストプラクティスに沿っており、完全に RTL 対応しています。
+MDC Slider の実装は1点スライダー（1つのつまみ）と範囲スライダー（2つのつまみ）の両方をサポートします。これはブラウザの `<input type="range">` 要素を背景にしており、完全にアクセス可能で、RTL 対応しています。
 
 ## コンテンツ
 
@@ -51,17 +49,18 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ### 利用しやすいスライダーの作成
 
-スライダーは [WAI-ARIA ガイドライン](https://www.w3.org/TR/wai-aria-practices/#slider) に沿っています。仕様にしたがって、以下の属性が `mdc-slider__thumb` 要素に追加されていることを確認してください。
+スライダーは `<input>` を背景としており、これは完全にアクセス可能だと言うことです。[ARIA ベースのスライダー](https://www.w3.org/TR/wai-aria-practices/#slider) とは異なり、MDC スライダー は Android 上の TalkBack のようなタッチベースの支援技術を使って調整できます。
 
-* `role="slider"`
-* `aria-valuenow`: 現在の値を表す値。
-* `aria-valuemin`: 許容される最小値を表す値。
-* `aria-valuemax`: 許容される最大値を表す値。
+仕様にしたがって、以下の属性が `input` 要素の追加されていることを確認してください。
+
+* `value`: 現在の値を表す値。
+* `min`: 許容される最小値を表す値。
+* `max`: 許容される最大値を表す値。
 * `aria-label` もしくは `aria-labelledby`: スライダーのラベル。
 
-`aria-valuenow` の値がユーザーフレンドリーでない（例えば曜日を表す数値）なら、以下のように設定します。
+値がユーザーフレンドリーでない（例えば曜日を表す数値）なら、以下のように設定します。
 
-* `aria-valuetext`: 例えば「月曜日」のように、スライダーの値を分かりやすくする文字列を設定する。
+* `aria-valuetext`: 例えば「月曜日」のように、この入力属性にスライダーの値を分かりやすくする文字列を設定する。
 * `MDCSlider#setValueToAriaValueTextFn` メソッドを通じてスライダーの値を `aria-valuetext` にマッピングする関数を追加する。
 
 ## <a name="sliders"></a>スライダー
@@ -81,15 +80,14 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider">
-  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" name="volume">
+  <input class="mdc-slider__input" type="range" min="0" max="100" value="50" name="volume" aria-label="Continuous slider demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Continuous slider demo" aria-valuemin="0"
-       aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -101,18 +99,18 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--range">
-  <input class="mdc-slider__input" type="hidden" min="0" max="70" value="30" name="rangeStart">
-  <input class="mdc-slider__input" type="hidden" min="30" max="100" value="70" name="rangeEnd">
+  <input class="mdc-slider__input" type="range" min="0" max="70" value="30" name="rangeStart" aria-label="Continuous range slider demo">
+  <input class="mdc-slider__input" type="range" min="30" max="100" value="70" name="rangeEnd" aria-label="Continuous range slider demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Continuous range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Continuous range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -131,14 +129,14 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--discrete">
-  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" name="volume" step="10">
+  <input class="mdc-slider__input" type="range" min="0" max="100" value="50" name="volume" step="10" aria-label="Discrete slider demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -165,7 +163,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks">
-  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" name="volume" step="10">
+  <input class="mdc-slider__input" type="range" min="0" max="100" value="50" name="volume" step="10" aria-label="Discrete slider with tick marks demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -185,7 +183,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
       <div class="mdc-slider__tick-mark--inactive"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete slider with tick marks demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -202,15 +200,15 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--range mdc-slider--discrete">
-  <input class="mdc-slider__input" type="hidden" min="0" max="50" value="20" step="10" name="rangeStart">
-  <input class="mdc-slider__input" type="hidden" min="20" max="100" value="50" step="10" name="rangeEnd">
+  <input class="mdc-slider__input" type="range" min="0" max="50" value="20" step="10" name="rangeStart" aria-label="Discrete range slider demo">
+  <input class="mdc-slider__input" type="range" min="20" max="100" value="50" step="10" name="rangeEnd" aria-label="Discrete range slider demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -220,7 +218,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     </div>
     <div class="mdc-slider__thumb-knob"></div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Discrete range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__value-indicator-container">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
@@ -245,14 +243,14 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--disabled">
-  <input class="mdc-slider__input" type="hidden" min="0" max="100" value="50" step="10" disabled name="volume">
+  <input class="mdc-slider__input" type="range" min="0" max="100" value="50" step="10" disabled name="volume" aria-label="Disabled slider demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
       <div class="mdc-slider__track--active_fill"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="-1" aria-label="Disabled slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-disabled="true">
+  <div class="mdc-slider__thumb">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
@@ -262,16 +260,14 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ### 指定した範囲と値を持つスライダーの初期化
 
-`MDCSlider` が初期化される際に、要素の `aria-valuemin` と `aria-valuemax` と `aria-valuenow` の値があるなら読み込み、コンポーネント内部の `min`、 `max`、 `value` の各プロパティに設定します。
+`MDCSlider` が初期化される際に、input 要素の `min` と `max` と `value` の値があるなら読み込み、コンポーネント内部の `min`、 `max`、 `value` の各プロパティに設定します。
 
 これらの属性を指定した範囲と値のスライダーの初期化に使うには以下のようにします。
 
 ```html
 <div class="mdc-slider">
+  <input class="mdc-slider__input" aria-label="Slider demo" min="0" max="100" value="75">
   <!-- ... -->
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
-    <div class="mdc-slider__thumb-knob"></div>
-  </div>
 </div>
 ```
 
@@ -292,6 +288,8 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 
 ```html
 <div class="mdc-slider mdc-slider--range">
+  <input class="mdc-slider__input" type="range" min="0" max="70" value="30" name="rangeStart" aria-label="Range slider demo">
+  <input class="mdc-slider__input" type="range" min="30" max="100" value="70" name="rangeEnd" aria-label="Range slider demo">
   <div class="mdc-slider__track">
     <div class="mdc-slider__track--inactive"></div>
     <div class="mdc-slider__track--active">
@@ -299,10 +297,10 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
            style="transform:scaleX(.4); left:30%"></div>
     </div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" style="left:calc(30%-24px)">
+  <div class="mdc-slider__thumb" style="left:calc(30%-24px)">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
-  <div class="mdc-slider__thumb" role="slider" tabindex="0" aria-label="Range slider demo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" style="left:calc(70%-24px)">
+  <div class="mdc-slider__thumb" style="left:calc(70%-24px)">
     <div class="mdc-slider__thumb-knob"></div>
   </div>
 </div>
