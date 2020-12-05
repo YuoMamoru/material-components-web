@@ -18,7 +18,7 @@ path: /catalog/input-controls/radio-buttons/
 
 ![メニューオプションのためのラジオボタンの例](images/radio-button-hero.png)
 
-## コンテンツ
+**コンテンツ**
 
 * [ラジオボタンの使用法](#using-radio-buttons)
 * [ラジオボタン](#radio-buttons)

@@ -25,8 +25,9 @@ import {AnimationFrame} from '@material/animation/animationframe';
 import {MDCFoundation} from '@material/base/foundation';
 import {SpecificEventListener} from '@material/base/types';
 import {KEY, normalizeKey} from '@material/dom/keyboard';
+
 import {MDCTooltipAdapter} from './adapter';
-import {AnchorBoundaryType, CssClasses, numbers, XPosition, YPosition} from './constants';
+import {AnchorBoundaryType, attributes, CssClasses, numbers, XPosition, YPosition} from './constants';
 import {ShowTooltipOptions} from './types';
 
 const {
@@ -60,6 +61,7 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
       getAnchorAttribute: () => null,
       setAnchorAttribute: () => null,
       isRTL: () => false,
+      anchorContainsElement: () => false,
       registerEventHandler: () => undefined,
       deregisterEventHandler: () => undefined,
       registerDocumentEventHandler: () => undefined,
@@ -71,6 +73,7 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
   }
 
   private isRich!: boolean;  // assigned in init()
+  private isPersistent!: boolean;  // assigned in init()
   private isShown = false;
   private anchorGap = numbers.BOUNDED_ANCHOR_GAP;
   private xTooltipPos = XPosition.DETECTED;
@@ -90,6 +93,8 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
   private readonly documentKeydownHandler: SpecificEventListener<'keydown'>;
   private readonly richTooltipMouseEnterHandler:
       SpecificEventListener<'mouseenter'>;
+  private readonly richTooltipMouseLeaveHandler:
+      SpecificEventListener<'mouseleave'>;
   private readonly windowScrollHandler: SpecificEventListener<'scroll'>;
   private readonly windowResizeHandler: SpecificEventListener<'resize'>;
 
@@ -97,8 +102,8 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     super({...MDCTooltipFoundation.defaultAdapter, ...adapter});
     this.animFrame = new AnimationFrame();
 
-    this.documentClickHandler = () => {
-      this.handleClick();
+    this.documentClickHandler = (evt) => {
+      this.handleDocumentClick(evt);
     };
 
     this.documentKeydownHandler = (evt) => {
@@ -107,6 +112,10 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
 
     this.richTooltipMouseEnterHandler = () => {
       this.handleRichTooltipMouseEnter();
+    };
+
+    this.richTooltipMouseLeaveHandler = () => {
+      this.handleRichTooltipMouseLeave();
     };
 
     this.windowScrollHandler = () => {
@@ -120,6 +129,16 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
 
   init() {
     this.isRich = this.adapter.hasClass(RICH);
+    this.isPersistent =
+        this.adapter.getAttribute(attributes.PERSISTENT) === 'true';
+  }
+
+  getIsRich() {
+    return this.isRich;
+  }
+
+  getIsPersistent() {
+    return this.isPersistent;
   }
 
   handleAnchorMouseEnter() {
@@ -157,7 +176,25 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.hide();
   }
 
-  handleClick() {
+  handleAnchorClick() {
+    if (this.isShown) {
+      this.hide();
+    } else {
+      this.show();
+    }
+  }
+
+  handleDocumentClick(evt: MouseEvent) {
+    const anchorContainsTargetElement = evt.target instanceof HTMLElement &&
+        this.adapter.anchorContainsElement(evt.target);
+    // For persistent rich tooltips, we will only hide if the click target is
+    // not within the anchor element, otherwise both the anchor element's click
+    // handler and this handler will handle the click (due to event
+    // propagation), resulting in a shown tooltip being immediately hidden if
+    // the tooltip was initially hidden.
+    if (this.isRich && this.isPersistent && anchorContainsTargetElement) {
+      return;
+    }
     // Hide the tooltip immediately on click.
     this.hide();
   }
@@ -172,6 +209,13 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
 
   private handleRichTooltipMouseEnter() {
     this.show();
+  }
+
+  private handleRichTooltipMouseLeave() {
+    this.clearShowTimeout();
+    this.hideTimeout = setTimeout(() => {
+      this.hide();
+    }, this.hideDelayMs);
   }
 
   /**
@@ -202,8 +246,12 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     }
     if (this.isRich) {
       this.adapter.setAnchorAttribute('aria-expanded', 'true');
-      this.adapter.registerEventHandler(
-          'mouseenter', this.richTooltipMouseEnterHandler);
+      if (!this.isPersistent) {
+        this.adapter.registerEventHandler(
+            'mouseenter', this.richTooltipMouseEnterHandler);
+        this.adapter.registerEventHandler(
+            'mouseleave', this.richTooltipMouseLeaveHandler);
+      }
     }
     this.adapter.removeClass(HIDE);
     this.adapter.addClass(SHOWING);
@@ -244,8 +292,12 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.adapter.setAttribute('aria-hidden', 'true');
     if (this.isRich) {
       this.adapter.setAnchorAttribute('aria-expanded', 'false');
-      this.adapter.deregisterEventHandler(
-          'mouseenter', this.richTooltipMouseEnterHandler);
+      if (!this.isPersistent) {
+        this.adapter.deregisterEventHandler(
+            'mouseenter', this.richTooltipMouseEnterHandler);
+        this.adapter.deregisterEventHandler(
+            'mouseleave', this.richTooltipMouseLeaveHandler);
+      }
     }
     this.clearAllAnimationClasses();
     this.adapter.addClass(HIDE);
@@ -572,9 +624,11 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.adapter.removeClass(HIDE);
     this.adapter.removeClass(HIDE_TRANSITION);
 
-    if (this.isRich) {
+    if (this.isRich && !this.isPersistent) {
       this.adapter.deregisterEventHandler(
           'mouseenter', this.richTooltipMouseEnterHandler);
+      this.adapter.deregisterEventHandler(
+          'mouseleave', this.richTooltipMouseLeaveHandler);
     }
 
     this.adapter.deregisterDocumentEventHandler(

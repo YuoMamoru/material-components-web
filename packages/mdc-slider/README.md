@@ -13,7 +13,7 @@ path: /catalog/input-controls/sliders/
 
 MDC Slider の実装は1点スライダー（1つのつまみ）と範囲スライダー（2つのつまみ）の両方をサポートします。これはブラウザの `<input type="range">` 要素を背景にしており、完全にアクセス可能で、RTL 対応しています。
 
-## コンテンツ
+**コンテンツ**
 
 *   [スライダーの使用法](#using-sliders)
 *   [スライダー](#sliders)
@@ -238,8 +238,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 スライダーを無効にするには、以下のものを追加します。
 
 *   ルート要素の `mdc-slider--disabled` クラス
-*   つまみの `tabindex="-1"` 属性
-*   つまみの `aria-disabled="true"`
+*   input 要素の `disabled` 属性
 
 ```html
 <div class="mdc-slider mdc-slider--disabled">

@@ -19,7 +19,7 @@ path: /catalog/input-controls/checkboxes/
 
 ![メニューオプションのためのチェックボックスの例](images/checkbox-hero.png)
 
-## コンテンツ
+**コンテンツ**
 
 * [チェックボックスの使用法](#using-checkboxes)
 * [チェックボックス](#checkboxes)

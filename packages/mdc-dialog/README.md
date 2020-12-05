@@ -68,7 +68,7 @@ dialog.listen('MDCDialog:opened', () => {
 
 ### ダイアログを操作しやすくする
 
-##### `aria-modal` の代替として `aria-hidden` を使う
+#### `aria-modal` の代替として `aria-hidden` を使う
 
 `aria-modal` は ARIA 1.1 仕様の一部であり、スクリーンリーダーに対して単一の要素にとどめること表しています（訳注: スクリーンリーダーは `aria-modal` で指定された領域しか読み上げの対象にしない、ということ）。その DOM 構造のルート要素に `aria-modal="true"` を付加することを推奨します。
 

@@ -126,7 +126,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 [囲みボタン](https://material.io/components/buttons/#contained-button) は非常に重要なもので、浮き上がりと塗りを使うことによって目立せたものです。これにはアプリケーションの主要なアクションが含まれます。
 
-#### 囲みボタンの例
+### 囲みボタンの例
 
 <img src="images/contained-button.png" alt="Contained button example">
 

@@ -8,6 +8,7 @@ path: /catalog/progress-indicator/
 -->
 
 # Progress Indicators
+
 MDC Progress Indicator コンポーネントはプログレスインジケーターに共通する基盤とコンポーネントインターフェースを提供します。これらのインターフェースを実装するコンポーネントには [linear progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-linear-progress) と [circular progress](https://github.com/material-components/material-components-web/tree/master/packages/mdc-circular-progress) が含まれています。[マテリアルデザインプログレスと動作要件](https://material.io/go/design-progress-indicators).
 
 ## インストール

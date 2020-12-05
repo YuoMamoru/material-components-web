@@ -348,7 +348,7 @@ MDC Chips パッケージには2つの JavaScript クラスが同梱されてい
 
 `MDCChip` クラスと `MDCChipSet` クラスを使うには、`@material/chips` から両方のクラスを [import](../../docs/importing-js.md) します。
 
-#### `MDCChip`
+### `MDCChip`
 
 メソッド | 説明
 --- | ---
@@ -369,7 +369,7 @@ MDC Chips パッケージには2つの JavaScript クラスが同梱されてい
 
 > \*\*<em>注意</em>: `shouldRemoveOnTrailingIconClick` が false に設定されているときは、チップを削除するのに `beginExit()` を手動で呼ぶ必要があります。
 
-##### イベント
+#### イベント
 
 イベント | `event.detail` | 説明
 --- | --- | ---
@@ -381,7 +381,7 @@ MDC Chips パッケージには2つの JavaScript クラスが同梱されてい
 
 > <em>注意</em>: `MDCChip` のすべてが DOM を通じてイベントバブルを生じます。
 
-#### `MDCChipSet`
+### `MDCChipSet`
 
 メソッド | 説明
 --- | ---

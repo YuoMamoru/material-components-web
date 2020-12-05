@@ -14,7 +14,7 @@ path: /catalog/input-controls/switches/
 
 ![メニューオプションのためのスイッチの例](images/switch-hero.png)
 
-## コンテンツ
+**コンテンツ**
 
 * [スイッチの使用法](#using-switches)
 * [スイッチ](#switches)
