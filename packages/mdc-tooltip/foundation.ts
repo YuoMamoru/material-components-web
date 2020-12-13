@@ -62,6 +62,7 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
       setAnchorAttribute: () => null,
       isRTL: () => false,
       anchorContainsElement: () => false,
+      tooltipContainsElement: () => false,
       registerEventHandler: () => undefined,
       deregisterEventHandler: () => undefined,
       registerDocumentEventHandler: () => undefined,
@@ -72,8 +73,9 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     };
   }
 
-  private isRich!: boolean;  // assigned in init()
-  private isPersistent!: boolean;  // assigned in init()
+  private isInteractive!: boolean;  // assigned in init()
+  private isRich!: boolean;         // assigned in init()
+  private isPersistent!: boolean;   // assigned in init()
   private isShown = false;
   private anchorGap = numbers.BOUNDED_ANCHOR_GAP;
   private xTooltipPos = XPosition.DETECTED;
@@ -95,6 +97,8 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
       SpecificEventListener<'mouseenter'>;
   private readonly richTooltipMouseLeaveHandler:
       SpecificEventListener<'mouseleave'>;
+  private readonly richTooltipFocusOutHandler:
+      SpecificEventListener<'focusout'>;
   private readonly windowScrollHandler: SpecificEventListener<'scroll'>;
   private readonly windowResizeHandler: SpecificEventListener<'resize'>;
 
@@ -118,6 +122,10 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
       this.handleRichTooltipMouseLeave();
     };
 
+    this.richTooltipFocusOutHandler = (evt) => {
+      this.handleRichTooltipFocusOut(evt);
+    };
+
     this.windowScrollHandler = () => {
       this.handleWindowChangeEvent();
     };
@@ -131,6 +139,9 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.isRich = this.adapter.hasClass(RICH);
     this.isPersistent =
         this.adapter.getAttribute(attributes.PERSISTENT) === 'true';
+    this.isInteractive =
+        !!this.adapter.getAnchorAttribute(attributes.ARIA_EXPANDED) &&
+        this.adapter.getAnchorAttribute(attributes.ARIA_HASPOPUP) === 'true';
   }
 
   getIsRich() {
@@ -171,7 +182,16 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     }, this.hideDelayMs);
   }
 
-  handleAnchorBlur() {
+  handleAnchorBlur(evt: FocusEvent) {
+    if (this.isRich) {
+      const tooltipContainsRelatedTargetElement =
+          evt.relatedTarget instanceof HTMLElement &&
+          this.adapter.tooltipContainsElement(evt.relatedTarget);
+      // If focus changed to the tooltip element, don't hide the tooltip.
+      if (tooltipContainsRelatedTargetElement) {
+        return;
+      }
+    }
     // Hide tooltip immediately on focus change.
     this.hide();
   }
@@ -218,6 +238,19 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     }, this.hideDelayMs);
   }
 
+  private handleRichTooltipFocusOut(evt: FocusEvent) {
+    const anchorOrTooltipContainsRelatedTargetElement =
+        evt.relatedTarget instanceof HTMLElement &&
+        (this.adapter.anchorContainsElement(evt.relatedTarget) ||
+         this.adapter.tooltipContainsElement(evt.relatedTarget));
+    // If the focus is still within the anchor or the tooltip, do not hide the
+    // tooltip.
+    if (anchorOrTooltipContainsRelatedTargetElement) {
+      return;
+    }
+    this.hide();
+  }
+
   /**
    * On window resize or scroll, check the anchor position and size and
    * repostion tooltip if necessary.
@@ -245,7 +278,11 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
       this.adapter.setAttribute('aria-hidden', 'false');
     }
     if (this.isRich) {
-      this.adapter.setAnchorAttribute('aria-expanded', 'true');
+      if (this.isInteractive) {
+        this.adapter.setAnchorAttribute('aria-expanded', 'true');
+      }
+      this.adapter.registerEventHandler(
+          'focusout', this.richTooltipFocusOutHandler);
       if (!this.isPersistent) {
         this.adapter.registerEventHandler(
             'mouseenter', this.richTooltipMouseEnterHandler);
@@ -290,8 +327,12 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
 
     this.isShown = false;
     this.adapter.setAttribute('aria-hidden', 'true');
+    this.adapter.deregisterEventHandler(
+        'focusout', this.richTooltipFocusOutHandler);
     if (this.isRich) {
-      this.adapter.setAnchorAttribute('aria-expanded', 'false');
+      if (this.isInteractive) {
+        this.adapter.setAnchorAttribute('aria-expanded', 'false');
+      }
       if (!this.isPersistent) {
         this.adapter.deregisterEventHandler(
             'mouseenter', this.richTooltipMouseEnterHandler);
@@ -624,11 +665,15 @@ export class MDCTooltipFoundation extends MDCFoundation<MDCTooltipAdapter> {
     this.adapter.removeClass(HIDE);
     this.adapter.removeClass(HIDE_TRANSITION);
 
-    if (this.isRich && !this.isPersistent) {
+    if (this.isRich) {
       this.adapter.deregisterEventHandler(
-          'mouseenter', this.richTooltipMouseEnterHandler);
-      this.adapter.deregisterEventHandler(
-          'mouseleave', this.richTooltipMouseLeaveHandler);
+          'focusout', this.richTooltipFocusOutHandler);
+      if (!this.isPersistent) {
+        this.adapter.deregisterEventHandler(
+            'mouseenter', this.richTooltipMouseEnterHandler);
+        this.adapter.deregisterEventHandler(
+            'mouseleave', this.richTooltipMouseLeaveHandler);
+      }
     }
 
     this.adapter.deregisterDocumentEventHandler(

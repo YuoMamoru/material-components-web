@@ -39,10 +39,9 @@ npm install @material/radio
 ### スタイル
 
 ```scss
-@use "@material/radio";
+@use "@material/radio/styles";
 @use "@material/form-field";
 
-@include radio.core-styles;
 @include form-field.core-styles;
 ```
 

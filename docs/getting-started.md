@@ -74,7 +74,7 @@ npm i @material/button @material/ripple
 ```json
 {
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack serve"
   }
 }
 ```
@@ -226,12 +226,16 @@ const autoprefixer = require('autoprefixer');
 ```js
 { loader: 'extract-loader' },
 { loader: 'css-loader' },
-{
-  loader: 'postcss-loader',
-  options: {
-     plugins: () => [autoprefixer()]
-  }
-},
+  {
+    loader: 'postcss-loader',
+    options: {
+      postcssOptions: {
+        plugins: [
+          autoprefixer()
+        ]
+      }
+    } 
+  },
 {
   loader: 'sass-loader',
   options: {
@@ -337,8 +341,12 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [autoprefixer()]
-            }
+              postcssOptions: {
+                plugins: [
+                  autoprefixer()
+                ]
+              }
+            } 
           },
           {
             loader: 'sass-loader',
@@ -399,7 +407,7 @@ const ripple = new MDCRipple(document.querySelector('.foo-button'));
 ```json
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack serve"
   }
 ```
 
@@ -450,10 +458,18 @@ function materialImporter(url, prev) {
 そして `sass-loader` の設定を次のように更新してください。
 
 ```js
-{
-  loader: 'sass-loader',
-  options: {
-    importer: materialImporter
-  },
-}
+ {
+   loader: 'sass-loader',
+   options: {   
+     // Prefer Dart Sass
+     implementation: require('sass'),
+
+     // See https://github.com/webpack-contrib/sass-loader/issues/804
+     webpackImporter: false,
+     sassOptions: {
+       importer: materialImporter,
+       includePaths: ['./node_modules'],
+     },
+   },
+ }
 ```

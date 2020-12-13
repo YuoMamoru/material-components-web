@@ -33,7 +33,7 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
     return new MDCTooltip(root);
   }
 
-  private anchorElem!: HTMLElement|null;  // assigned in initialSyncWithDOM
+  private anchorElem!: HTMLElement;        // assigned in initialize
   private isTooltipRich!: boolean;        // assigned in initialSyncWithDOM
   private isTooltipPersistent!: boolean;  // assigned in initialSyncWithDOM
 
@@ -44,20 +44,23 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
   private handleTransitionEnd!: SpecificEventListener<'transitionend'>;
   private handleClick!: SpecificEventListener<'click'>;
 
-  initialSyncWithDOM() {
+  initialize() {
     const tooltipId = this.root.getAttribute('id');
     if (!tooltipId) {
       throw new Error('MDCTooltip: Tooltip component must have an id.');
     }
 
-    this.anchorElem = document.querySelector<HTMLElement>(
-                          `[aria-describedby="${tooltipId}"]`) ||
+    const anchorElem = document.querySelector<HTMLElement>(
+                           `[aria-describedby="${tooltipId}"]`) ||
         document.querySelector<HTMLElement>(`[data-tooltip-id="${tooltipId}"]`);
-    if (!this.anchorElem) {
+    if (!anchorElem) {
       throw new Error(
           'MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.');
     }
+    this.anchorElem = anchorElem;
+  }
 
+  initialSyncWithDOM() {
     this.isTooltipRich = this.foundation.getIsRich();
     this.isTooltipPersistent = this.foundation.getIsPersistent();
 
@@ -73,8 +76,8 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       this.foundation.handleAnchorMouseLeave();
     };
 
-    this.handleBlur = () => {
-      this.foundation.handleAnchorBlur();
+    this.handleBlur = (evt) => {
+      this.foundation.handleAnchorBlur(evt);
     };
 
     this.handleTransitionEnd = () => {
@@ -85,6 +88,7 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       this.foundation.handleAnchorClick();
     };
 
+    this.anchorElem.addEventListener('blur', this.handleBlur);
     if (this.isTooltipRich && this.isTooltipPersistent) {
       this.anchorElem.addEventListener('click', this.handleClick);
     } else {
@@ -92,7 +96,6 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       // TODO(b/157075286): Listening for a 'focus' event is too broad.
       this.anchorElem.addEventListener('focus', this.handleFocus);
       this.anchorElem.addEventListener('mouseleave', this.handleMouseLeave);
-      this.anchorElem.addEventListener('blur', this.handleBlur);
     }
 
     this.listen('transitionend', this.handleTransitionEnd);
@@ -100,6 +103,7 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
 
   destroy() {
     if (this.anchorElem) {
+      this.anchorElem.removeEventListener('blur', this.handleBlur);
       if (this.isTooltipRich && this.isTooltipPersistent) {
         this.anchorElem.removeEventListener('click', this.handleClick);
       } else {
@@ -108,7 +112,6 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
         this.anchorElem.removeEventListener('focus', this.handleFocus);
         this.anchorElem.removeEventListener(
             'mouseleave', this.handleMouseLeave);
-        this.anchorElem.removeEventListener('blur', this.handleBlur);
       }
     }
 
@@ -159,8 +162,10 @@ export class MDCTooltip extends MDCComponent<MDCTooltipFoundation> {
       },
       isRTL: () => getComputedStyle(this.root).direction === 'rtl',
       anchorContainsElement: (element) => {
-        const hasAnchorElem = Boolean(this.anchorElem);
-        return hasAnchorElem && this.anchorElem!.contains(element);
+        return !!this.anchorElem?.contains(element);
+      },
+      tooltipContainsElement: (element) => {
+        return this.root.contains(element);
       },
       registerEventHandler: (evt, handler) => {
         if (this.root instanceof HTMLElement) {

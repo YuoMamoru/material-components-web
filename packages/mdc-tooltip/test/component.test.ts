@@ -36,6 +36,11 @@ function setupTestWithMockFoundation(fixture: HTMLElement) {
   return {anchorElem, tooltipElem, mockFoundation, component};
 }
 
+function isIE() {
+  return navigator.userAgent.indexOf('MSIE') !== -1 ||
+      navigator.userAgent.indexOf('Trident') !== -1;
+}
+
 describe('MDCTooltip', () => {
   let fixture: HTMLElement;
   setUpMdcTestEnvironment();
@@ -256,7 +261,7 @@ describe('MDCTooltip', () => {
     });
   });
 
-  describe('default rich tooltip tests', () => {
+  describe('default interactive rich tooltip tests', () => {
     beforeEach(() => {
       fixture = getFixture(`<div>
         <button aria-describedby="tt0" aria-haspopup="true" aria-expanded="false">
@@ -310,7 +315,7 @@ describe('MDCTooltip', () => {
          expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
        });
 
-    it('aria-expanded remains true on anchor when mouseleave rich tooltip and mouseenter anchor`',
+    it('aria-expanded remains true on anchor when mouseleave rich tooltip and mouseenter anchor',
        () => {
          const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
          const anchorElem =
@@ -321,6 +326,112 @@ describe('MDCTooltip', () => {
          jasmine.clock().tick(numbers.SHOW_DELAY_MS);
          emitEvent(tooltipElem, 'mouseleave');
          emitEvent(anchorElem, 'mouseenter');
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+       });
+
+    it('aria-expanded becomes false on anchor when anchor blurs and non-tooltip element is focused',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'focus');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         anchorElem.dispatchEvent(
+             new FocusEvent('blur', {relatedTarget: document.body}));
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('false');
+       });
+
+    it('aria-expanded remains true on anchor when anchor blurs and rich tooltip focuses',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'focus');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         anchorElem.dispatchEvent(
+             new FocusEvent('blur', {relatedTarget: tooltipElem}));
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+       });
+
+    it('aria-expanded becomes false on anchor when rich tooltip focuses out and anchor does not receive focus',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'focus');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         tooltipElem.dispatchEvent(new FocusEvent('focusout'));
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('false');
+       });
+
+    it('aria-expanded remains true on anchor when rich tooltip focuses out and anchor receives focus',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'focus');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         tooltipElem.dispatchEvent(
+             new FocusEvent('focusout', {relatedTarget: anchorElem}));
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+       });
+
+    it('aria-expanded remains true on anchor when rich tooltip focuses out and element within tooltip receives focus',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const tooltipContent =
+             fixture.querySelector<HTMLElement>('.mdc-tooltip__content')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'focus');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         tooltipElem.dispatchEvent(
+             new FocusEvent('focusout', {relatedTarget: tooltipContent}));
 
          expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
        });
@@ -345,6 +456,35 @@ describe('MDCTooltip', () => {
 
     afterEach(() => {
       document.body.removeChild(fixture);
+    });
+
+    it('#initialSyncWithDOM registers click event handler on the anchor element',
+       () => {
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         const component = MDCTooltip.attachTo(tooltipElem);
+         const foundation = component['foundation'];
+         spyOn(foundation, 'handleAnchorClick');
+
+         emitEvent(anchorElem, 'click');
+
+         expect(foundation.handleAnchorClick).toHaveBeenCalled();
+         component.destroy();
+       });
+
+    it('#destroy deregisters click event handler on the anchor element', () => {
+      const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+      const anchorElem =
+          fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+      const component = MDCTooltip.attachTo(tooltipElem);
+      const foundation = component['foundation'];
+      spyOn(foundation, 'handleAnchorClick');
+
+      component.destroy();
+      emitEvent(anchorElem, 'click');
+
+      expect(foundation.handleAnchorClick).not.toHaveBeenCalled();
     });
 
     it('aria-expanded remains false on anchor when mouseenter anchor', () => {
@@ -404,6 +544,78 @@ describe('MDCTooltip', () => {
 
          expect(tooltipElem.getAttribute('aria-hidden')).toEqual('true');
          expect(anchorElem.getAttribute('aria-expanded')).toEqual('false');
+       });
+
+    it('aria-expanded remains true on anchor when mouseleave anchor while tooltip is shown',
+       () => {
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'click');
+         expect(tooltipElem.getAttribute('aria-hidden')).toEqual('false');
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         emitEvent(anchorElem, 'mouseleave');
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+       });
+
+    it('aria-expanded remains true on anchor when mouseleave tooltip while tooltip is shown',
+       () => {
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'click');
+         expect(tooltipElem.getAttribute('aria-hidden')).toEqual('false');
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         emitEvent(tooltipElem, 'mouseleave');
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+       });
+
+    it('aria-expanded becomes false on anchor when anchor blurs and non-tooltip element is focused',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'click');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         anchorElem.dispatchEvent(
+             new FocusEvent('blur', {relatedTarget: document.body}));
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('false');
+       });
+
+    it('aria-expanded remains true on anchor when anchor blurs and rich tooltip focuses',
+       () => {
+         // FocusEvent is not supported on IE11 so this test will not be run on
+         // it.
+         if (isIE()) {
+           return;
+         }
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'click');
+         jasmine.clock().tick(numbers.SHOW_DELAY_MS);
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         anchorElem.dispatchEvent(
+             new FocusEvent('blur', {relatedTarget: tooltipElem}));
+
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
        });
   });
 });
