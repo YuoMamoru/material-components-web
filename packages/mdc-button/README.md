@@ -57,9 +57,9 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 ```html
 <div class="mdc-touch-target-wrapper">
   <button class="mdc-button mdc-button--touch">
-    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__ripple"></span>
     <span class="mdc-button__label">My Accessible Button</span>
-    <div class="mdc-button__touch"></div>
+    <span class="mdc-button__touch"></span>
   </button>
 </div>
 ```
@@ -75,7 +75,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 ```html
  <button class="mdc-button">
-   <div class="mdc-button__ripple"></div>
+   <span class="mdc-button__ripple"></span>
    <span class="mdc-button__label">Text Button</span>
 </button>
 ```
@@ -86,7 +86,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 ```html
 <button class="mdc-button">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true"
     >bookmark</i
   >
@@ -105,7 +105,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 ```html
 <button class="mdc-button mdc-button--outlined">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <span class="mdc-button__label">Outlined Button</span>
 </button>
 ```
@@ -116,7 +116,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 ```html
 <button class="mdc-button mdc-button--outlined">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true">bookmark</i>
   <span class="mdc-button__label">Outlined Button plus Icon</span>
 </button>
@@ -144,7 +144,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 
 ```html
 <button class="mdc-button mdc-button--raised">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true"
     >bookmark</i
   >
@@ -189,7 +189,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 ```html
 <button class="mdc-button">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
   <span class="mdc-button__label">Button</span>
 </button>
@@ -199,7 +199,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <svg class="mdc-button__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="...">
   ...
   </svg>
@@ -213,7 +213,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button">
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <span class="mdc-button__label">Button</span>
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
 </button>
@@ -227,7 +227,7 @@ SVG アイコンを使うことも可能です。
 
 ```html
 <button class="mdc-button" disabled>
-  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__ripple"></span>
   <span class="mdc-button__label">Button</span>
 </button>
 ```
