@@ -269,18 +269,18 @@ describe('MDCTooltip', () => {
         <button aria-describedby="tt0" aria-haspopup="true" aria-expanded="false">
           anchor
         </button>
-        <aside id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true">
+        <div id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" role="dialog">
           <div class="mdc-tooltip__surface">
             <h2 class="mdc-tooltip__title">Title</h2>
             <p class="mdc-tooltip__content">Content <a class="mdc-tooltip__content-link" href="google.com">link</a></p>
             <div class="mdc-tooltip--rich-actions">
-              <button class="mdc-button mdc-tooltip__action" aria-label="action">
+              <button class="mdc-button mdc-tooltip__action">
                 <div class="mdc-button__ripple"></div>
                 <span class="mdc-button__label">Action</span>
               </button>
             </div>
           </div>
-        </aside>
+        </div>
       </div>`);
       document.body.appendChild(fixture);
     });
@@ -496,13 +496,13 @@ describe('MDCTooltip', () => {
         <button aria-describedby="tt0" aria-haspopup="true" aria-expanded="false">
           anchor
         </button>
-        <aside id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" data-mdc-tooltip-persistent="true">
+        <div id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" data-mdc-tooltip-persistent="true" role="tooltip" tabindex="-1">
           <div class="mdc-tooltip__surface">
             <p class="mdc-tooltip__content">
               demo tooltip
             </p>
           </div>
-        </aside>
+        </div>
       </div>`);
       document.body.appendChild(fixture);
     });
@@ -583,7 +583,7 @@ describe('MDCTooltip', () => {
          expect(anchorElem.getAttribute('aria-expanded')).toEqual('false');
        });
 
-    it('set aria-expanded to false on anchor when element other than anchor is clicked while tooltip is shown',
+    it('set aria-expanded to false on anchor when element other than anchor or the tooltip is clicked while tooltip is shown',
        () => {
          const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
          const anchorElem =
@@ -597,6 +597,22 @@ describe('MDCTooltip', () => {
 
          expect(tooltipElem.getAttribute('aria-hidden')).toEqual('true');
          expect(anchorElem.getAttribute('aria-expanded')).toEqual('false');
+       });
+
+    it('aria-expanded remains true on anchor when tooltip is clicked while tooltip is shown',
+       () => {
+         const tooltipElem = fixture.querySelector<HTMLElement>('#tt0')!;
+         const anchorElem =
+             fixture.querySelector<HTMLElement>('[aria-describedby]')!;
+         MDCTooltip.attachTo(tooltipElem);
+
+         emitEvent(anchorElem, 'click');
+         expect(tooltipElem.getAttribute('aria-hidden')).toEqual('false');
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
+         emitEvent(tooltipElem, 'click');
+
+         expect(tooltipElem.getAttribute('aria-hidden')).toEqual('false');
+         expect(anchorElem.getAttribute('aria-expanded')).toEqual('true');
        });
 
     it('aria-expanded remains true on anchor when mouseleave anchor while tooltip is shown',
