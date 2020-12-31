@@ -337,7 +337,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
 `setValue(value: number) => void` | つまみ（1点スライダーのとき）、または、終了つまみ（範囲スライダーのとき）の値を設定する。
 `getDisabled() => boolean` | スライダーの無効状態を取得する。
 `setDisabled(disabled: boolean) => void` |スライダーの無効状態を設定する。
-`setValueToAriaValueTextFn((mapFn: ((value: number) => string)|null) => void` | スライダーの値とつまみ要素の `aria-valuetext` 属性の値をマッピングする関数を設定します。設定しないと、値が変わっても `aria-valuetext` 属性は変わらない。
+`setValueToAriaValueTextFn((mapFn: ((value: number) => string) \|null) => void` | スライダーの値とつまみ要素の `aria-valuetext` 属性の値をマッピングする関数を設定します。設定しないと、値が変わっても `aria-valuetext` 属性は変わらない。
 
 ### フレームワーク内での使用
 

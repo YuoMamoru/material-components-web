@@ -70,6 +70,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
     </section>
   </div>
 </header>
+<main class="mdc-top-app-bar--fixed-adjust">
+  App content
+</main>
 ```
 
 #### メニューアイコン
@@ -108,7 +111,10 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
     </section>
   </div>
 </header>
-```
+<main class="mdc-top-app-bar--fixed-adjust">
+  App content
+</main>
+````
 
 ## その他のバリエーション
 
@@ -128,6 +134,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
     </section>
   </div>
 </header>
+<main class="mdc-top-app-bar--short-fixed-adjust">
+  App content
+</main>
 ```
 
 **注意: 短いトップアプリバーは1つ以下の操作アイテムと共に使う必要があります。**
@@ -140,6 +149,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 <header class="mdc-top-app-bar mdc-top-app-bar--short mdc-top-app-bar--short-collapsed">
   ...
 </header>
+<main class="mdc-top-app-bar--short-fixed-adjust">
+  App content
+</main>
 ```
 
 ### 固定されたもの
@@ -150,6 +162,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
   ...
 </header>
+<main class="mdc-top-app-bar--fixed-adjust">
+  App content
+</main>
 ```
 
 ### 目立つもの
@@ -160,6 +175,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 <header class="mdc-top-app-bar mdc-top-app-bar--prominent">
   ...
 </header>
+<main class="mdc-top-app-bar--prominent-fixed-adjust">
+  App content
+</main>
 ```
 
 ### 高密度
@@ -170,6 +188,9 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 <header class="mdc-top-app-bar mdc-top-app-bar--dense">
   ...
 </header>
+<main class="mdc-top-app-bar--dense-fixed-adjust">
+  App content
+</main>
 ```
 
 ## スタイルのカスタマイズ
@@ -180,7 +201,7 @@ const topAppBar = new MDCTopAppBar(topAppBarElement);
 --- | ---
 `mdc-top-app-bar` | 必須。
 `mdc-top-app-bar--fixed` | 固定されたトップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
-`mdc-top-app-bar--fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために標準のトップアップバーおよび固定されたトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
+`mdc-top-app-bar--fixed-adjust` | 通常のトップアプリバーと固定されたトップアップバーがコンテンツを隠すことを防ぐために標準のトップアップバーおよび固定されたトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
 `mdc-top-app-bar--prominent` | 目立つトップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。
 `mdc-top-app-bar--prominent-fixed-adjust` | トップアプリバーがコンテンツを隠すことを防ぐために目立つトップアプリバーの下のコンテンツをスタイルするのに使われるクラス。
 `mdc-top-app-bar--dense` | 高密度トップアプリバーとしてトップアプリバーをスタイルするために使われるクラス。

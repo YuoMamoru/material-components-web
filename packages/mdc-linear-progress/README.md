@@ -115,7 +115,7 @@ MDC リニアプログレスは外部フレームワークや外部ライブラ�
 | `setAttribute(attributeName: string, value: string) => void` | ルート要素に指定した属性を設定する。 |
 | `setBufferBarStyle(styleProperty: string, value: string) => void` | バッファーバー上のインラインスタイルを設定する。 |
 | `setPrimaryBarStyle(styleProperty: string, value: string) => void` | プライマリバー上のインラインスタイルを設定する。 |
-| `attachResizeObserver(callback: ResizeObserverCallback) => ResizeObserver|null` | 与えられたコールバックをルート上で呼び出す `observe` を保持する `ResizeObserver` を返す（、モダンブラウザでのパフォーマンス向上のため）。`ResizeObserver` が実装されていない、もしくはポリフィルがないときは `null` を返す。 |
+| `attachResizeObserver(callback: ResizeObserverCallback) => ResizeObserver \|null` | 与えられたコールバックをルート上で呼び出す `observe` を保持する `ResizeObserver` を返す（、モダンブラウザでのパフォーマンス向上のため）。`ResizeObserver` が実装されていない、もしくはポリフィルがないときは `null` を返す。 |
 | `setStyle(styleProperty: string, value: string) => void` | ルート要素のインラインスタイルを設定する。 |
 | `getWidth() => number` | ルート要素の幅を返す。 |
 

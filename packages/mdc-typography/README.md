@@ -160,7 +160,7 @@ CSS カスタムプロパティの場合:
 ```css
 html {
   --mdc-typography-button-font-size: 16px;
-  --mdc-typography-button-text-transform: 16px;
+  --mdc-typography-button-text-transform: none;
 }
 ```
 
