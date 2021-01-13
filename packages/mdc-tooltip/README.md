@@ -160,13 +160,17 @@ Mixin | Description
 `shape-radius($radius, $rtl-reflexive)` | Sets the rounded shape to tooltip surface with given radius size. Set `$rtl-reflexive` to true to flip radius values in RTL context, defaults to false.
 `word-break($value, $fallbackValue)` | Sets the `word-break` property for the tooltip label. This is used to force-wrap long tooltip labels that lack spaces and hyphens. The optional $fallbackValue param can be used for IE11 as it does not support the `break-word` option. Users for IE11 who do not want their tooltip labels to be broken in the middle of the word can use this mixin to remove the default IE11 behavior of `break-all`.
 `z-index($z-index)` | Sets the z-index of the tooltip.
+`show-transition($enter-duration)` | Sets the duration for the animation that shows the tooltip.
+`exit-transition($exit-duration)` | Sets the duration for the animation that hides the tooltip.
 
 ### `MDCTooltip` Methods
 
 Method Signature | Description
 --- | ---
 `setTooltipPosition(position: {xPos?: XPosition, yPos?: YPosition}) => void` | Specify how the tooltip should be aligned with the anchor element. See [tooltip positioning](#tooltip-positioning) section for more information.
-`setAnchorBoundaryType(type: AnchorBoundaryType) => void` | Specify whether the anchor element is `bounded` (element has an identifiable boundary such as a button) or `unbounded` (element does not have a visually declared boundary such as a text link). Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to `bounded`
+`setAnchorBoundaryType(type: AnchorBoundaryType) => void` | Specify whether the anchor element is `bounded` (element has an identifiable boundary such as a button) or `unbounded` (element does not have a visually declared boundary such as a text link). Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to `bounded`.
+`hide() => void` | Proxies to the foundation's `hide` method, immediately hides the tooltip if it is shown.
+`isShown() => boolean` | Returns whether or not the tooltip is shown.
 
 ### Usage Within Frameworks
 

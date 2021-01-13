@@ -9,13 +9,6 @@ path: /catalog/image-lists/
 
 # Image List
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/image-list">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/image-list.png" width="294" alt="Image list screenshot">
-  </a>
-</div>-->
-
 MDC Image List は RTL 対応のマテリアルデザインイメージリストコンポーネントを提供します。イメージリストはいくつかの項目からできており、それぞれイメージとオプションとなるサポートコンテンツ（例えばテキストラベル）を含んでいます。
 
 ## デザインと API ドキュメント

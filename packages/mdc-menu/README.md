@@ -9,13 +9,6 @@ path: /catalog/menus/
 
 # Menus
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/menu">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/menus.png" width="178" alt="Menus screenshot">
-  </a>
-</div>-->
-
 MDC Menu コンポーネントは [マテリアルデザインメニュー仕様](https://material.io/go/design-menus) に準拠したメニューコンポーネントです。メニューが開く際に正しい位置に配置するには JavaScript が必要です。
 
 メニューは一時的な領域に選択肢のリストを表示します。ユーザーがボタン、アクション、その他のコントロールを使う際に選択肢のリストは表示されます。

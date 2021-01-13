@@ -8,13 +8,6 @@ path: /catalog/input-controls/select-menus/
 
 # Select Menus
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/select">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/selects.png" width="376" alt="Select screenshot">
-  </a>
-</div>-->
-
 MDC Select は MDC メニューを利用してマテリアルデザインの単一選択ができるセレクトメニューを提供します。MDC Select コンポーネントは完全なアクセス可能で RTL 描画をサポートしています。
 
 ## デザインと API ドキュメント

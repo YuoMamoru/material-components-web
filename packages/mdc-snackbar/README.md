@@ -9,13 +9,6 @@ path: /catalog/snackbars/
 
 # Snackbars
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/snackbar">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/snackbars.png" width="336" alt="Snackbar screenshot">
-  </a>
-</div>-->
-
 スナックバーは画面の下部にアプリのプロセスに関する簡素なメッセージを提供します。
 
 ## デザインと API ドキュメント

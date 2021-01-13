@@ -9,13 +9,6 @@ path: /catalog/linear-progress/
 
 # Linear Progress
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-      href="https://material-components.github.io/material-components-web-catalog/#/component/linear-progress-indicator">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/linear-progress.png" width="586" alt="Linear progress screenshot">
-  </a>
-</div>-->
-
 MDC Linear Progress コンポーネントは [マテリアルデザインプログレスと動作の要件](https://material.io/go/design-progress-indicators) に準拠したリニアプログレスインジケーターです。
 
 ## デザインと API ドキュメント

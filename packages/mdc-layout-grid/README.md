@@ -9,13 +9,6 @@ path: /catalog/layout-grid/
 
 # Layout Grid
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/layout-grid">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/layout.png" width="256" alt="Layout grid screenshot">
-  </a>
-</div>-->
-
 マテリアルデザインのレスポンシブ UI は列可変のグリッドレイアウトに基づいています。この UI はデスクトップでは 12 列、タブレットでは 8 列、スマートフォンでは 4 列持っています。
 
 

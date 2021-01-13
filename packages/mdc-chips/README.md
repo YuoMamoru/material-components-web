@@ -9,13 +9,6 @@ path: /catalog/chips/
 
 # Chips
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/chips">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/chips.png" width="363" alt="Chips screenshot">
-  </a>
-</div>-->
-
 チップはユーザーに情報を入力させたり、選択したり、コンテンツを絞ったりするなどの操作のトリガーとなるコンパクトな要素です。
 
 ## デザインと API ドキュメント

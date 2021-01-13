@@ -9,13 +9,6 @@ path: /catalog/buttons/icon-buttons/
 
 # Icon buttons
 
-<!--<div class="article__asset">
-  <a class="article__asset-link"
-     href="https://material-components.github.io/material-components-web-catalog/#/component/icon-button">
-    <img src="{{ site.rootpath }}/images/mdc_web_screenshots/icon-toggles.png" width="20" alt="Icon buttons screenshot">
-  </a>
-</div>-->
-
 [Icon buttons](https://material.io/components/buttons/) は一回のタップでユーザーに操作を実行させたり選択させたりすることができます。
 
 **注意**: アイコンとテキストの両方のあるボタンについては、`mdc-button` コンポーネントを使ってください。さらなる情報は `mdc-button` [ドキュメント](../mdc-button) を参照してください。

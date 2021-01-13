@@ -32,9 +32,7 @@ npm install @material/slider
 ### スタイル
 
 ```scss
-@use "@material/slider";
-
-@include slider.core-styles;
+@use "@material/slider/styles";
 ```
 
 ### JavaScript のインスタンス化
@@ -137,7 +135,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     </div>
   </div>
   <div class="mdc-slider__thumb">
-    <div class="mdc-slider__value-indicator-container">
+    <div class="mdc-slider__value-indicator-container" aria-hidden="true">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
           50
@@ -184,7 +182,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     </div>
   </div>
   <div class="mdc-slider__thumb">
-    <div class="mdc-slider__value-indicator-container">
+    <div class="mdc-slider__value-indicator-container" aria-hidden="true">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
           50
@@ -209,7 +207,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     </div>
   </div>
   <div class="mdc-slider__thumb">
-    <div class="mdc-slider__value-indicator-container">
+    <div class="mdc-slider__value-indicator-container" aria-hidden="true">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
           20
@@ -219,7 +217,7 @@ const slider = new MDCSlider(document.querySelector('.mdc-slider'));
     <div class="mdc-slider__thumb-knob"></div>
   </div>
   <div class="mdc-slider__thumb">
-    <div class="mdc-slider__value-indicator-container">
+    <div class="mdc-slider__value-indicator-container" aria-hidden="true">
       <div class="mdc-slider__value-indicator">
         <span class="mdc-slider__value-indicator-text">
           50
