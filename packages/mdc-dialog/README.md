@@ -401,6 +401,8 @@ React や Angular のような JavaScript フレームワークを使ってい�
 `handleClick(event: MouseEvent)` | ダイアログのルート要素上、もしくは要素内の `click` イベントをハンドリングする。
 `handleKeydown(event: KeyboardEvent)` | ダイアログのルート要素上、もしくは要素内の `keydown` イベントをハンドリングする。
 `handleDocumentKeydown(event: Event)` | ダイアログが開いている間、ドキュメント上、もしくはドキュメント内の `keydown` イベントをハンドリングする。
+`getSuppressDefaultPressSelector() => string` | テキストエリアでエンターを押すなどのデフォルトでダイアログプレス操作を抑制する要素のセレクター文字列を返す。
+`setSuppressDefaultPressSelector(selector: string)` | デフォルトでダイアログプレス操作を抑制するセレクター文字列を設定する。空の文字列はデフォルトで操作を抑制する要素がないことを示す。
 
 #### イベントハンドラー
 
