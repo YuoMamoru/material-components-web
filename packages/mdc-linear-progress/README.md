@@ -60,6 +60,10 @@ npm install @material/linear-progress
 
 `aria-label` と `aria-valuemin`、`aria-valuemax` は静的な値で、HTML で指定する必要があることに注意してください。`aria-valuenow` は、対象のプログレスバーで進行値が更新された際に、ファンデーションによって動的に更新されます。
 
+### RTL ローカリゼーション
+
+プログレスバーの方向は最も近い祖先要素の `dir` 属性にしたがいます。例えば、プログレスのルートに `dir="rtl"` を設定するとインジケータの方向が逆になります。ツリー上に複数の `dir` 属性が指定されているときは、プログレスバーのルートの属性が優先されます。
+
 ### スタイル
 ```scss
 @use "@material/linear-progress";

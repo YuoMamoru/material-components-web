@@ -1,5 +1,5 @@
 //
-// Copyright 2020 Google Inc.
+// Copyright 2021 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,15 @@
 // THE SOFTWARE.
 //
 
-@forward './button-base' show horizontal-padding;
-@forward './button-outlined-theme';
-@forward './button-ripple' show $ripple-target;
-@forward './button-shared-theme' hide theme;
-
-// TODO(b/175614964): add theme mixin for all variants
+/// Returns either the first provided value if it is truthy, or the second
+/// value if not.
+///
+/// @example scss
+///   $value: either(map.get($theme, key), 1rem);
+///
+/// @param {*} $first - The first value to use if the first value is truthy.
+/// @param {*} $second - The second value to use if the first value is falsy.
+/// @return Either the first or the second value.
+@function either($first, $second) {
+  @return if($first, $first, $second);
+}
