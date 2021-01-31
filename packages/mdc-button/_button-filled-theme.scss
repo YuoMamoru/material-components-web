@@ -1,5 +1,5 @@
 //
-// Copyright 2020 Google Inc.
+// Copyright 2021 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,42 +20,27 @@
 // THE SOFTWARE.
 //
 
-// stylelint-disable selector-class-pattern
-// NOTE: We disable `selector-class-pattern` above to allow using `mdc-` class
-// selectors.
-
-@use 'sass:list';
 @use '@material/feature-targeting/feature-targeting';
 @use '@material/theme/theme';
+@use './button-shared-theme';
 
-@mixin core-styles($query: feature-targeting.all()) {
-  $feat-structure: feature-targeting.create-target($query, structure);
+$light-theme: (
+  container-color: primary,
+  container-disabled-color: button-shared-theme.$disabled-container-color,
+  density: button-shared-theme.$density-scale,
+  icon-color: null,
+  icon-disabled-color: null,
+  label-color: on-primary,
+  label-disabled-color: button-shared-theme.$disabled-ink-color,
+  ripple-color: on-primary,
+  ripple-opacity: null,
+  shape: button-shared-theme.$shape-radius,
+);
 
-  .mdc-data-table__progress-indicator {
-    @include feature-targeting.targets($feat-structure) {
-      display: none;
-      position: absolute;
-      width: 100%;
-    }
-
-    .mdc-data-table--in-progress & {
-      @include feature-targeting.targets($feat-structure) {
-        display: block;
-      }
-    }
-  }
-
-  .mdc-data-table__scrim {
-    @include feature-targeting.targets($feat-structure) {
-      @include theme.property('background-color', surface);
-
-      height: 100%;
-      // TODO(b/151453287): Set appropriate opacity value once we've a UX
-      // guidance.
-      opacity: 0.32;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
-  }
+/// Sets theme based on provided theme configuration.
+/// Only emits theme related styles.
+/// @param {Map} $theme - Theme configuration to use.
+@mixin theme($theme, $query: feature-targeting.all()) {
+  @include theme.validate-keys($light-theme, $theme);
+  @include button-shared-theme.theme($theme, $query: $query);
 }

@@ -168,37 +168,18 @@
   }
 }
 
-// Applies the correct theme color style to the specified property.
-// $property is typically color or background-color, but can be any CSS property that accepts color values.
-// $style should be one of the map keys in $mdc-theme-property-values (_variables.scss), or a color value.
 // @deprecated use the `property()` mixin instead
 @mixin prop($property, $style, $important: false) {
-  @if custom-properties.is-custom-prop($style) {
-    @include custom-properties.apply($property, $style, $important: $important);
-  } @else if theme-color.is-valid-theme-prop-value_($style) {
-    @include css.declaration($property, $style, $important: $important);
-  } @else {
-    @if not map.has-key(theme-color.$property-values, $style) {
-      @error "Invalid style: '#{$style}'. Choose one of: #{map.keys(theme-color.$property-values)}";
-    }
-    $value: map.get(theme-color.$property-values, $style);
-
-    @include css.declaration(
-      $property,
-      $value: var(--mdc-theme-#{$style}, $value),
-      $fallback-value: $value,
-      $important: $important
-    );
-  }
+  @include property($property, $style, $important: $important);
 }
 
 /// Validates keys in provided theme configuration by comparing with original
 /// theme configuration.
 /// Use this in component's `theme()` mixin implementation to validate if
 /// provided theme configuration has supported theme configuration keys.
-/// @param {Map} $origin-theme Original theme configuration in Sass map format
+/// @param {Map} $origin-theme - Original theme configuration in Sass map format
 ///     that has all supported keys.
-/// @param {Map} $custom-theme Provided theme configuration in Sass map format
+/// @param {Map} $custom-theme - Provided theme configuration in Sass map format
 ///     that should be validated against `$origin-theme`.
 /// @examples
 ///     @mixin theme($theme) {
@@ -208,17 +189,41 @@
 ///     }
 @mixin validate-keys($origin-theme, $custom-theme, $test-only: false) {
   $origin-keys: map.keys($origin-theme);
-  $custom-keys: map.keys($custom-theme);
   $unsupported-keys: ();
+  $unsupported-custom-prop-keys: ();
 
-  @each $key in $custom-keys {
+  @each $key, $value in $custom-theme {
     @if (not list.index($origin-keys, $key)) {
-      $unsupported-keys: list.append($unsupported-keys, $key);
+      $unsupported-keys: list.append(
+        $unsupported-keys,
+        $key,
+        $separator: comma
+      );
+    }
+
+    $is-prop: custom-properties.is-custom-prop($value) or
+      custom-properties.is-custom-prop-string($value);
+    @if $is-prop {
+      $unsupported-custom-prop-keys: list.append(
+        $unsupported-custom-prop-keys,
+        $key,
+        $separator: comma
+      );
     }
   }
 
   @if list.length($unsupported-keys) > 0 {
     $error-message: 'Unsupported keys found: #{$unsupported-keys}. Expected one of: #{$origin-keys}.';
+
+    @if $test-only {
+      content: $error-message;
+    } @else {
+      @error $error-message;
+    }
+  }
+
+  @if list.length($unsupported-custom-prop-keys) > 0 {
+    $error-message: 'Custom properties are not supported for theme map keys: #{$unsupported-custom-prop-keys}';
 
     @if $test-only {
       content: $error-message;
