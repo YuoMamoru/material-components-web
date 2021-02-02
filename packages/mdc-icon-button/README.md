@@ -80,7 +80,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 </button>
 ```
 
-Then, instantiate an `MDCIconButtonToggle` on the root element.
+そして、ルート要素の `MDCIconButtonToggle` をインスタンス化します。
 
 ```js
 import {MDCIconButtonToggle} from '@material/icon-button';
