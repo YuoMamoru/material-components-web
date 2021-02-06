@@ -317,16 +317,12 @@ MDC Button はデフォルトで [MDC Theme](../mdc-theme) の `primary` カラ�
 
 ミキシン | 説明
 --- | ---
-`container-fill-color($color)` | 有効なボタンにおいて与えた色にコンテナの塗りの色を設定する。
-`disabled-container-fill-color($color)` | 無効なボタンにおいて与えた色にコンテナの塗りの色を設定する。
-`icon-color($color)` | 有効なボタンにおいて与えられた色にアイコンの色を設定する。
-`disabled-icon-color($color)` | 無効なボタンにおいて与えられた色にアイコンの色を設定する。
-`ink-color($color)` | 有効なボタンにおいて与えた色にインクの色を設定し、`icon-color` を使わないときはアイコンの色も与えられた色にする。
-`disabled-ink-color($color)` |  無効なボタンにおいて与えた色にインクの色を設定し、`icon-color` を使わないときはアイコンの色も与えられた色にする。
+`container-fill-color($color-or-map)` | 色が渡されたときはデフォルトの塗りの色を与えられた色に設定する。集合 {default, hover, focus, pressed, disabled} をキーに含むマップを渡されたときは、指定した状態に該当する値に設定する。
+`icon-color($color-or-map)` | 色が渡されたときはデフォルトのアイコンの色を与えられた色に設定する。集合 {default, hover, focus, pressed, disabled} をキーに含むマップを渡されたときは、指定した状態に該当する値に設定する。
+`ink-color($color-or-map)` | 色が渡されたときはデフォルトのインクの色を与えられた色に設定し、`icon-color` を使わないときはアイコンの色も与えられた色にする。集合 {default, hover, focus, pressed, disabled} をキーに含むマップを渡されたときは、指定した状態に該当する値に設定する。
 `density($density-scale)` | ボタンの密度スケールを設定する。サポートしている密度スケール値は (`-3`, `-2`, `-1`, `0`)。
 `height($height)` | ボタンのカスタムの高さを設定する。
 `shape-radius($radius, $density-scale, $rtl-reflexive)` | 与えられた半径の大きさの丸い形状にボタンを設定する。`$density-scale` は `$radius` 値がパーセント単位のときのみ必須で、デフォルトは `$density-default-scale`。`$rtl-reflexive` を true にする（デフォルトは false）と RTL コンテキスト において半径の値を反転する。
 `horizontal-padding($padding)` | 与えた大きさに水平方向のパディングを設定する。
-`outline-color($color)` | 有効なボタンにおいて与えた色に境界の色を設定する。
-`disabled-outline-color($color)` | 無効なボタンにおいて与えた色に境界の色を設定する。
+`outline-color($color-or-map)` | 色が渡されたときはデフォルトの境界の色を与えられた色に設定する。集合 {default, hover, focus, pressed, disabled} をキーに含むマップを渡されたときは、指定した状態に該当する値に設定する。
 `outline-width($width, $padding)` | 与えた大きさ（デフォルトは 2px）に境界線の太さを設定し、適切なパディングに調整する。`$padding` は `$horizontal-padding` に固有の値が設定されている場合に限り必須。
