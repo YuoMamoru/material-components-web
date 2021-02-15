@@ -33,9 +33,7 @@ npm install @material/button
 ### スタイル
 
 ```scss
-@use "@material/button";
-
-@include button.core-styles;
+@use "@material/button/styles";
 ```
 
 ### JavaScript のインスタンス化
@@ -254,8 +252,6 @@ SVG アイコンを使うことも可能です。
 ```scss
 @use "@material/button";
 
-@include button.core-styles;
-
 .custom-text-button,
 .custom-outlined-button {
   @include button.ink-color(#84565E);
@@ -268,8 +264,6 @@ SVG アイコンを使うことも可能です。
 
 ```scss
 @use "@material/button";
-
-@include button.core-styles;
 
 .custom-text-button,
 .custom-outlined-button {
