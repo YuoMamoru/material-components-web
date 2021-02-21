@@ -88,7 +88,7 @@ const linearProgress = new MDCLinearProgress(document.querySelector('.mdc-linear
 | クラス                | 説明                                                    |
 | --------------------- | ------------------------------------------------------- |
 | `mdc-linear-progress--indeterminate`   | リニアプログレスインジケーターを不定状態にする。 |
-| `mdc-linear-progress--closed`  | リニアプログラスインジケーターを隠す。 |
+| `mdc-linear-progress--closed`  | リニアプログレスインジケーターを隠す。 |
 
 ### Sass ミキシン
 
@@ -126,7 +126,7 @@ MDC リニアプログレスファンデーションは以下のメソッドを�
 | `setBuffer(value: number) => void` | バッファーバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
 | `open() => void` | コンポーネントを開いた状態にする。 |
 | `close() => void` | コンポーネントを閉じた状態にする。 |
-
+| `isClosed() => boolean` | プログレスインジケーターが閉じているか否か。 |
 ### MDCLinearProgress API
 
 MDC リニアプログレスは以下のメソッドを公開しています。

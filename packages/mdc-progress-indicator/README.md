@@ -26,9 +26,12 @@ MDC Progress Indicator ファンデーションは以下のメソッドを提供
 | メソッド | 説明 |
 | --- | --- |
 | `setDeterminate(value: boolean) => void` | コンポーネントに対して確定状態と未確定状態とを切り替える。 |
+| `isDeterminate() => boolean` | コンポーネントが確定状態であるか否か。 |
 | `setProgress(value: number) => void` | プログレスに値を設定する。値は [0, 1] の範囲で指定する。 |
+| `getProgress() => number` | [0,1] 間の現在のプログレスの値。 |
 | `open() => void` | コンポーネントを開いた状態にする。 |
 | `close() => void` | コンポーネントを閉じた状態にする。 |
+| `isClosed() => boolean` | プログレスインジケーターが閉じているか否か。 |
 
 ### MDCProgressIndicator Component API
 

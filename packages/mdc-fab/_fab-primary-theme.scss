@@ -1,4 +1,4 @@
-// Copyright 2016 Google Inc.
+// Copyright 2021 Google Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -18,5 +18,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@use './mixins';
-@include mixins.deprecated-core-styles;
+@use '@material/elevation/elevation-theme';
+@use '@material/theme/theme-color';
+@use '@material/theme/theme';
+@use './fab-theme';
+
+$primary-light-theme: (
+  container-color: theme-color.$surface,
+  container-elevation: elevation-theme.get-elevation(3),
+  container-height: 56px,
+  container-shape: 50%,
+  container-width: 56px,
+  focus-container-elevation: null,
+  focus-icon-color: null,
+  focus-state-layer-color: theme-color.$primary,
+  focus-state-layer-opacity: null,
+  hover-container-elevation: null,
+  hover-icon-color: null,
+  hover-state-layer-color: theme-color.$primary,
+  hover-state-layer-opacity: null,
+  icon-color: theme-color.$primary,
+  icon-size: 24px,
+  pressed-container-elevation: null,
+  pressed-icon-color: null,
+  pressed-ripple-color: theme-color.$primary,
+  pressed-ripple-opacity: null,
+);
+
+@mixin theme($theme) {
+  @include theme.validate-keys($primary-light-theme, $theme);
+  @include fab-theme.theme($theme);
+}
