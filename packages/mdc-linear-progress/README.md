@@ -122,8 +122,11 @@ MDC リニアプログレスファンデーションは以下のメソッドを�
 | メソッド | 説明 |
 | --- | --- |
 | `setDeterminate(value: boolean) => void` | コンポーネントを確定状態と不定状態を切り替える。 |
-| `setProgress(value: number) => void` | ブログレスバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
-| `setBuffer(value: number) => void` | バッファーバーに値を設定する。値は [0, 1] の間でなくてはならない。 |
+| `isDeterminate() => boolean` | コンポーネントが確定状態か否か。 |
+| `setProgress(value: number) => void` | ブログレスバーに値を設定する。値は [0,1] の間でなくてはならない。 |
+| `getProgress() => number` | 現在のプログレス値を [0,1] の範囲で指定する。 |
+| `setBuffer(value: number) => void` | バッファーバーに値を設定する。値は [0,1] の間でなくてはならない。 |
+| `getBuffer() => number` | 現在のバッファー値を [0,1] の範囲で指定する。 |
 | `open() => void` | コンポーネントを開いた状態にする。 |
 | `close() => void` | コンポーネントを閉じた状態にする。 |
 | `isClosed() => boolean` | プログレスインジケーターが閉じているか否か。 |
