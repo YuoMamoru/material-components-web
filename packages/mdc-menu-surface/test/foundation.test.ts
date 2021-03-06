@@ -611,6 +611,17 @@ describe('MDCMenuSurfaceFoundation', () => {
       });
 
   testFoundation(
+      '#open tall surface restricts max height if set',
+      ({foundation, mockAdapter}) => {
+        initAnchorLayout(mockAdapter, smallAboveMiddleLeft, false, 700);
+        foundation.setAnchorCorner(Corner.BOTTOM_START);
+        foundation.setMaxHeight(150);
+        foundation.open();
+        jasmine.clock().tick(1);  // Run to frame.
+        expect(mockAdapter.setMaxHeight).toHaveBeenCalledWith('150px');
+      });
+
+  testFoundation(
       '#open tall surface from small anchor in left above middle of viewport, BOTTOM_START anchor corner, LTR',
       ({foundation, mockAdapter}) => {
         initAnchorLayout(mockAdapter, smallAboveMiddleLeft, false, 700);
@@ -1101,7 +1112,7 @@ describe('MDCMenuSurfaceFoundation', () => {
      () => {
        const {foundation, mockAdapter} = setupTest();
        const target = {};
-       const event = {target, key: 'Escape'};
+       const event = {target, key: 'Escape'} as KeyboardEvent;
 
        (foundation as unknown as WithIsSurfaceOpen).isSurfaceOpen = true;
        foundation.init();
@@ -1116,8 +1127,9 @@ describe('MDCMenuSurfaceFoundation', () => {
      () => {
        const {foundation} = setupTest();
        const target = {};
-       const preventDefault = jasmine.createSpy('event.preventDefault');
-       const event = {target, key: 'Foo', preventDefault};
+       const preventDefault =
+           jasmine.createSpy('event.preventDefault') as Function;
+       const event = {target, key: 'Foo', preventDefault} as KeyboardEvent;
 
        foundation.init();
        foundation.handleKeydown(event);
@@ -1130,7 +1142,7 @@ describe('MDCMenuSurfaceFoundation', () => {
     const {foundation, mockAdapter} = setupTest();
     const mockEvt = {
       target: {},
-    };
+    } as MouseEvent;
 
     mockAdapter.hasClass.withArgs(MDCMenuSurfaceFoundation.cssClasses.OPEN)
         .and.returnValue(true);
@@ -1152,7 +1164,7 @@ describe('MDCMenuSurfaceFoundation', () => {
     const {foundation, mockAdapter} = setupTest();
     const mockEvt = {
       target: {},
-    };
+    } as MouseEvent;
     mockAdapter.isElementInContainer.withArgs(jasmine.anything())
         .and.returnValue(true);
     foundation.init();
