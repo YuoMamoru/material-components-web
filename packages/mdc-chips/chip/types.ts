@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2019 Google Inc.
+ * Copyright 2020 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,40 +21,45 @@
  * THE SOFTWARE.
  */
 
-import {EventSource} from './constants';
+import {ActionType} from '../action/constants';
+import {MDCChipActionInteractionEventDetail, MDCChipActionNavigationEventDetail} from '../action/types';
+import {Animation} from './constants';
 
+/** MDCChipInteractionEventDetail provides details for the interaction event. */
 export interface MDCChipInteractionEventDetail {
-  chipId: string;
+  actionID: string;
+  chipID: string;
+  source: ActionType;
+  shouldRemove: boolean;
+  isSelectable: boolean;
+  isSelected: boolean;
 }
 
-export interface MDCChipSelectionEventDetail extends MDCChipInteractionEventDetail {
-  selected: boolean;
-  shouldIgnore: boolean;
-}
-
-export interface MDCChipRemovalEventDetail extends MDCChipInteractionEventDetail {
-  removedAnnouncement: string|null;
-}
-
-export interface MDCChipNavigationEventDetail extends MDCChipInteractionEventDetail {
+/** MDCChipNavigationEventDetail provides details for the navigation event. */
+export interface MDCChipNavigationEventDetail {
+  chipID: string;
+  source: ActionType;
   key: string;
-  source: EventSource;
+  isRTL: boolean;
 }
 
-// Note: CustomEvent<T> is not supported by Closure Compiler.
-
-export interface MDCChipInteractionEvent extends Event {
-  readonly detail: MDCChipInteractionEventDetail;
+/** MDCChipAnimationEventDetail provides details for the animation event. */
+export interface MDCChipAnimationEventDetail {
+  chipID: string;
+  animation: Animation;
+  isComplete: boolean;
+  addedAnnouncement?: string;
+  removedAnnouncement?: string;
 }
 
-export interface MDCChipSelectionEvent extends Event {
-  readonly detail: MDCChipSelectionEventDetail;
-}
+/**
+ * MDCChipActionInteractionEvent is the custom event for the interaction event.
+ */
+export type ActionInteractionEvent =
+    CustomEvent<MDCChipActionInteractionEventDetail>;
 
-export interface MDCChipRemovalEvent extends Event {
-  readonly detail: MDCChipRemovalEventDetail;
-}
-
-export interface MDCChipNavigationEvent extends Event {
-  readonly detail: MDCChipNavigationEventDetail;
-}
+/**
+ * MDCChipActionInteractionEvent is the custom event for the interaction event.
+ */
+export type ActionNavigationEvent =
+    CustomEvent<MDCChipActionNavigationEventDetail>;

@@ -380,6 +380,55 @@ describe('MDCSliderFoundation', () => {
           .toHaveBeenCalledWith('transform', `scaleX(${0.6})`);
     });
 
+    it('quantizes value based on step and min', () => {
+      const {foundation, mockAdapter} = setUpAndInit({
+        min: -25,
+        max: 75,
+        value: 5,
+        isDiscrete: true,
+        step: 10,
+      });
+
+      foundation.handleDown(createMouseEvent('mousedown', {
+        clientX: 10,
+      }));
+      expect(foundation.getValue()).toBe(-15);  // -25 + 10
+      jasmine.clock().tick(1);                  // Tick for RAF.
+      expect(mockAdapter.setThumbStyleProperty)
+          .toHaveBeenCalledWith('transform', `translateX(${10}px)`, Thumb.END);
+      expect(mockAdapter.setTrackActiveStyleProperty)
+          .toHaveBeenCalledWith('transform', `scaleX(${0.1})`);
+    });
+
+    it('rounds values based on step decimal places', () => {
+      const {foundation} = setUpAndInit({
+        min: 0,
+        max: 1,
+        value: 0,
+        isDiscrete: true,
+        step: 0.1,
+      });
+      foundation.handleDown(createMouseEvent('mousedown', {
+        clientX: 30,
+      }));
+      expect(foundation.getValue()).toBe(0.3);
+    });
+
+    it('rounds values (using scientific notation) based on step decimal places',
+       () => {
+         const {foundation} = setUpAndInit({
+           min: 0,
+           max: 1e-8,
+           value: 0,
+           isDiscrete: true,
+           step: 1e-9,
+         });
+         foundation.handleDown(createMouseEvent('mousedown', {
+           clientX: 30,
+         }));
+         expect(foundation.getValue()).toBe(3e-9);
+       });
+
     it('down event does not update value if value is inside the range', () => {
       const {foundation, mockAdapter} = setUpAndInit({
         valueStart: 10,
@@ -1204,7 +1253,7 @@ describe('MDCSliderFoundation', () => {
       expect(mockAdapter.emitChangeEvent).toHaveBeenCalledWith(77, Thumb.END);
     });
 
-    it('fires `change` event on input change', () => {
+    it('fires `change` and `input` events on input change', () => {
       const {foundation, mockAdapter} = setUpAndInit({
         valueStart: 20,
         value: 50,
@@ -1215,10 +1264,12 @@ describe('MDCSliderFoundation', () => {
       mockAdapter.getInputValue.withArgs(Thumb.START).and.returnValue(5);
       foundation.handleInputChange(Thumb.START);
       expect(mockAdapter.emitChangeEvent).toHaveBeenCalledWith(5, Thumb.START);
+      expect(mockAdapter.emitInputEvent).toHaveBeenCalledWith(5, Thumb.START);
 
       mockAdapter.getInputValue.withArgs(Thumb.END).and.returnValue(60);
       foundation.handleInputChange(Thumb.END);
       expect(mockAdapter.emitChangeEvent).toHaveBeenCalledWith(60, Thumb.END);
+      expect(mockAdapter.emitInputEvent).toHaveBeenCalledWith(60, Thumb.END);
     });
 
     it('fires `dragStart`/`dragEnd` events across drag interaction', () => {

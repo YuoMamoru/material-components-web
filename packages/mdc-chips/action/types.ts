@@ -21,12 +21,23 @@
  * THE SOFTWARE.
  */
 
-import 'jasmine';
+import {ActionType, InteractionTrigger} from './constants';
 
-import * as path from 'path';
-import {expectStylesWithNoFeaturesToBeEmpty} from '../../../testing/featuretargeting';
+/**
+ * MDCChipActionInteractionEventDetail provides the details for the interaction
+ * event.
+ */
+export interface MDCChipActionInteractionEventDetail {
+  actionID: string;
+  source: ActionType;
+  trigger: InteractionTrigger;
+}
 
-describe('mdc-chips.scss', () => {
-  expectStylesWithNoFeaturesToBeEmpty(
-      path.join(__dirname, 'feature-targeting-any.test.css'));
-});
+/**
+ * MDCChipActionNavigationEventDetail provides the details for the navigation
+ * event.
+ */
+export interface MDCChipActionNavigationEventDetail {
+  source: ActionType;
+  key: string;
+}

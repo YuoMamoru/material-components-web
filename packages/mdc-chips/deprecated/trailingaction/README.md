@@ -1,4 +1,4 @@
-# Trailing Action
+# Trailing Action (deprecated)
 
 The trailing action is used in removable input chips. It is a subcomponent of the chips and intended only for use in the context of a chip.
 

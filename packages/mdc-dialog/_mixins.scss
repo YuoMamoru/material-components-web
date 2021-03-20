@@ -163,9 +163,8 @@
       position: relative;
       flex-shrink: 0;
       box-sizing: border-box;
-      margin: 0;
+      margin: 0 0 1px;
       padding: 0 24px variables.$title-bottom-padding;
-      border-bottom: 1px solid transparent;
 
       @include rtl-mixins.rtl('.mdc-dialog') {
         /* @noflip */
@@ -177,6 +176,7 @@
   // stylelint-disable-next-line plugin/selector-bem-pattern
   .mdc-dialog--scrollable .mdc-dialog__title {
     @include feature-targeting.targets($feat-structure) {
+      margin-bottom: 1px;
       // Adjust bottom padding to make title height align to spec when divider is present.
       // (Titles for alert dialogs w/o dividers align based on text baseline. All spec values are divisible by 4.)
       padding-bottom: variables.$title-bottom-padding + 6px;
@@ -192,19 +192,31 @@
         border-bottom: 1px solid transparent;
         justify-content: space-between;
         align-items: baseline;
+
+        @include _modal-header(
+          $close-icon-padding: variables.$close-icon-padding
+        );
       }
     }
 
     .mdc-dialog__title {
       @include feature-targeting.targets($feat-structure) {
+        margin-bottom: 0;
         padding: 0;
         border-bottom: 0;
       }
     }
 
+    &.mdc-dialog--scrollable .mdc-dialog__title {
+      @include feature-targeting.targets($feat-structure) {
+        border-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+
     .mdc-dialog__close {
       @include feature-targeting.targets($feat-structure) {
-        top: 4px;
+        top: 5px;
       }
     }
 
@@ -268,9 +280,9 @@
   }
 
   // stylelint-disable-next-line plugin/selector-bem-pattern
-  .mdc-dialog__content .mdc-list:first-child:last-child {
+  .mdc-dialog__content .mdc-deprecated-list:first-child:last-child {
     @include feature-targeting.targets($feat-structure) {
-      // Override default .mdc-list padding for content consisting exclusively of a MDC List
+      // Override default .mdc-deprecated-list padding for content consisting exclusively of a MDC List
       padding: 6px 0 0; // Top padding balances with title height
     }
   }
@@ -278,9 +290,9 @@
   // stylelint-disable-next-line plugin/selector-bem-pattern, selector-max-specificity
   .mdc-dialog--scrollable
     .mdc-dialog__content
-    .mdc-list:first-child:last-child {
+    .mdc-deprecated-list:first-child:last-child {
     @include feature-targeting.targets($feat-structure) {
-      // Override default .mdc-list padding for content consisting exclusively of a MDC List
+      // Override default .mdc-deprecated-list padding for content consisting exclusively of a MDC List
       padding: 0;
     }
   }
@@ -418,10 +430,19 @@
 
   .mdc-dialog__surface-scrim {
     @include feature-targeting.targets($feat-structure) {
+      display: none;
       opacity: 0;
       position: absolute;
       width: 100%;
       height: 100%;
+    }
+
+    .mdc-dialog__surface-scrim--shown &,
+    .mdc-dialog__surface-scrim--showing &,
+    .mdc-dialog__surface-scrim--hiding & {
+      @include feature-targeting.targets($feat-structure) {
+        display: block;
+      }
     }
   }
 
@@ -526,6 +547,13 @@
     .mdc-dialog__actions {
     @include feature-targeting.targets($feat-color) {
       border-color: rgba(theme-color.prop-value($color), $opacity);
+    }
+  }
+
+  &.mdc-dialog--scrollable .mdc-dialog__title {
+    @include feature-targeting.targets($feat-color) {
+      border-bottom: 1px solid rgba(theme-color.prop-value($color), $opacity);
+      margin-bottom: 0;
     }
   }
 
@@ -777,11 +805,13 @@
     @include theme.property(left, -#{$close-icon-padding});
   }
   .mdc-dialog__header {
+    padding: 0 variables.$fullscreen-header-side-padding
+      variables.$title-bottom-padding;
     justify-content: flex-start;
   }
   .mdc-dialog__title {
     @include theme.property(
-      padding-left,
+      margin-left,
       calc(title - 2 * close),
       $replace: (title: $title-side-padding, close: $close-icon-padding)
     );

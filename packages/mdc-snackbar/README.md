@@ -33,7 +33,7 @@ npm install @material/snackbar
 ### HTML 構造
 
 ```html
-<div class="mdc-snackbar">
+<aside class="mdc-snackbar">
   <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
     <div class="mdc-snackbar__label" aria-atomic="false">
       Can't send photo. Retry in 5 seconds.
@@ -45,7 +45,7 @@ npm install @material/snackbar
       </button>
     </div>
   </div>
-</div>
+</aside>
 ```
 
 ### スタイル
@@ -70,9 +70,9 @@ const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 長いテキストを伴う操作ボタンはラベルの横ではなく、ラベルの下に配置するべきです。これはルート要素に `mdc-snackbar--stacked` 修飾クラスを追加することによって実現できます。
 
 ```html
-<div class="mdc-snackbar mdc-snackbar--stacked">
+<aside class="mdc-snackbar mdc-snackbar--stacked">
   ...
-</div>
+</aside>
 ```
 
 あるいは、Sass から `layout-stacked` ミキシンを呼ぶこともできます。
@@ -94,9 +94,9 @@ const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 大きな画面では、オプションで `mdc-snackbar--leading` 修飾クラスをルート要素に追加することにより画面の前方の端（LTR では左側、RTL では右側）に表示させることができます。
 
 ```html
-<div class="mdc-snackbar mdc-snackbar--leading">
+<aside class="mdc-snackbar mdc-snackbar--leading">
   ...
-</div>
+</aside>
 ```
 
 あるいは、Sass から `position-leading` ミキシンを呼ぶこともできます。
