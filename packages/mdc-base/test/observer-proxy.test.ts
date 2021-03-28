@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2020 Google Inc.
+ * Copyright 2021 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,11 @@
 
 import 'jasmine';
 
-import * as path from 'path';
-import {expectStylesWithNoFeaturesToBeEmpty} from '../../../../../testing/featuretargeting';
+import {mdcObserver, observeProperty, setObserversEnabled} from '../observer-proxy';
+import {createObserverTests} from './observer-tests';
 
-describe('mdc-deprecated-chip-trailing-action.scss', () => {
-  expectStylesWithNoFeaturesToBeEmpty(
-      path.join(__dirname, 'feature-targeting-any.test.css'));
-});
+if (typeof Proxy === 'function') {
+  // When IE11 support is dropped, observer-proxy can directly replace observer
+  createObserverTests(
+      mdcObserver, observeProperty, setObserversEnabled, 'Proxy ');
+}

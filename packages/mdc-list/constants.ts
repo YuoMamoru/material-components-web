@@ -31,6 +31,29 @@ const cssClasses = {
   ROOT: 'mdc-list',
 };
 
+const evolutionClassNameMap = {
+  [`${cssClasses.LIST_ITEM_ACTIVATED_CLASS}`]: 'mdc-list-item--activated',
+  [`${cssClasses.LIST_ITEM_CLASS}`]: 'mdc-list-item',
+  [`${cssClasses.LIST_ITEM_DISABLED_CLASS}`]: 'mdc-list-item--disabled',
+  [`${cssClasses.LIST_ITEM_SELECTED_CLASS}`]: 'mdc-list-item--selected',
+  [`${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`]: 'mdc-list-item__primary-text',
+  [`${cssClasses.ROOT}`]: 'mdc-list',
+};
+
+const deprecatedClassNameMap = {
+  [`${cssClasses.LIST_ITEM_ACTIVATED_CLASS}`]:
+      'mdc-deprecated-list-item--activated',
+  [`${cssClasses.LIST_ITEM_CLASS}`]: 'mdc-deprecated-list-item',
+  [`${cssClasses.LIST_ITEM_DISABLED_CLASS}`]:
+      'mdc-deprecated-list-item--disabled',
+  [`${cssClasses.LIST_ITEM_SELECTED_CLASS}`]:
+      'mdc-deprecated-list-item--selected',
+  [`${cssClasses.LIST_ITEM_TEXT_CLASS}`]: 'mdc-deprecated-list-item__text',
+  [`${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`]:
+      'mdc-deprecated-list-item__primary-text',
+  [`${cssClasses.ROOT}`]: 'mdc-deprecated-list',
+};
+
 const strings = {
   ACTION_EVENT: 'MDCList:action',
   ARIA_CHECKED: 'aria-checked',
@@ -46,10 +69,29 @@ const strings = {
   ARIA_MULTI_SELECTABLE_SELECTOR: '[aria-multiselectable="true"]',
   CHECKBOX_RADIO_SELECTOR: 'input[type="checkbox"], input[type="radio"]',
   CHECKBOX_SELECTOR: 'input[type="checkbox"]',
-  CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: 'button:not(:disabled), a',
+  CHILD_ELEMENTS_TO_TOGGLE_TABINDEX: `
+    .${cssClasses.LIST_ITEM_CLASS} button:not(:disabled),
+    .${cssClasses.LIST_ITEM_CLASS} a,
+    .${
+      deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS]} button:not(:disabled),
+    .${deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS]} a
+  `,
   DEPRECATED_SELECTOR: '.mdc-deprecated-list',
-  FOCUSABLE_CHILD_ELEMENTS:
-      'button:not(:disabled), a, input[type="radio"]:not(:disabled), input[type="checkbox"]:not(:disabled)',
+  FOCUSABLE_CHILD_ELEMENTS: `
+    .${cssClasses.LIST_ITEM_CLASS} button:not(:disabled),
+    .${cssClasses.LIST_ITEM_CLASS} a,
+    .${cssClasses.LIST_ITEM_CLASS} input[type="radio"]:not(:disabled),
+    .${cssClasses.LIST_ITEM_CLASS} input[type="checkbox"]:not(:disabled),
+    .${
+      deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS]} button:not(:disabled),
+    .${deprecatedClassNameMap[cssClasses.LIST_ITEM_CLASS]} a,
+    .${
+      deprecatedClassNameMap
+          [cssClasses.LIST_ITEM_CLASS]} input[type="radio"]:not(:disabled),
+    .${
+      deprecatedClassNameMap
+          [cssClasses.LIST_ITEM_CLASS]} input[type="checkbox"]:not(:disabled)
+  `,
   RADIO_SELECTOR: 'input[type="radio"]',
   SELECTED_ITEM_SELECTOR: '[aria-selected="true"], [aria-current="true"]',
 };
@@ -57,34 +99,6 @@ const strings = {
 const numbers = {
   UNSET_INDEX: -1,
   TYPEAHEAD_BUFFER_CLEAR_TIMEOUT_MS: 300
-};
-
-const evolutionClassNameMap = {
-  [`${cssClasses.LIST_ITEM_ACTIVATED_CLASS}`]:
-      'mdc-evolution-list-item--activated',
-  [`${cssClasses.LIST_ITEM_CLASS}`]: 'mdc-evolution-list-item',
-  [`${cssClasses.LIST_ITEM_DISABLED_CLASS}`]:
-      'mdc-evolution-list-item--disabled',
-  [`${cssClasses.LIST_ITEM_SELECTED_CLASS}`]:
-      'mdc-evolution-list-item--selected',
-  [`${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`]:
-      'mdc-evolution-list-item__primary-text',
-  [`${cssClasses.ROOT}`]: 'mdc-evolution-list',
-};
-
-const deprecatedClassNameMap = {
-  [`${cssClasses.LIST_ITEM_ACTIVATED_CLASS}`]:
-      'mdc-deprecated-list-item--activated',
-  [`${cssClasses.LIST_ITEM_CLASS}`]: 'mdc-deprecated-list-item',
-  [`${cssClasses.LIST_ITEM_DISABLED_CLASS}`]:
-      'mdc-deprecated-list-item--disabled',
-  [`${cssClasses.LIST_ITEM_SELECTED_CLASS}`]:
-      'mdc-deprecated-list-item--selected',
-  [`${cssClasses.LIST_ITEM_TEXT_CLASS}`]:
-      'mdc-deprecated-list-item__text',
-  [`${cssClasses.LIST_ITEM_PRIMARY_TEXT_CLASS}`]:
-      'mdc-deprecated-list-item__primary-text',
-  [`${cssClasses.ROOT}`]: 'mdc-deprecated-list',
 };
 
 const evolutionAttribute = 'evolution';

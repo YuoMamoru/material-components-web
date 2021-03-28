@@ -32,7 +32,8 @@ describe('MDCSliderFoundation', () => {
 
   describe('#init sets values based on DOM', () => {
     it('sets min, max, value based on aria attributes', () => {
-      const {foundation} = setUpAndInit({min: 0, max: 100, value: 50.5});
+      const {foundation} =
+          setUpAndInit({min: 0, max: 100, value: 50.5, step: 0.5});
       expect(foundation.getMin()).toBe(0);
       expect(foundation.getMax()).toBe(100);
       expect(foundation.getValue()).toBe(50.5);
@@ -49,8 +50,7 @@ describe('MDCSliderFoundation', () => {
        });
 
     it('sets step based on step attribute', () => {
-      const {foundation} =
-          setUpAndInit({value: 50.5, step: 5, isDiscrete: true});
+      const {foundation} = setUpAndInit({value: 50, step: 5, isDiscrete: true});
       foundation.init();
 
       expect(foundation.getStep()).toBe(5);
@@ -122,6 +122,21 @@ describe('MDCSliderFoundation', () => {
     it('throws error if start value > end value', () => {
       expect(() => setUpAndInit({value: 10, valueStart: 25, isRange: true}))
           .toThrowError(/start value must be <= end value/);
+    });
+
+    it('range slider: throws error if start value is not divisible by step',
+       () => {
+         expect(() => setUpAndInit({valueStart: 2, step: 5, isRange: true}))
+             .toThrowError(/values must be valid based on the step value/);
+       });
+
+    it('throws error if value is not divisible by step', () => {
+      expect(() => setUpAndInit({value: 12, step: 5}))
+          .toThrowError(/value must be valid based on the step value/);
+    });
+
+    it('does not throw error with valid value and step < 1', () => {
+      expect(() => setUpAndInit({value: 12, step: 0.2})).not.toThrow();
     });
   });
 
@@ -429,28 +444,46 @@ describe('MDCSliderFoundation', () => {
          expect(foundation.getValue()).toBe(3e-9);
        });
 
-    it('down event does not update value if value is inside the range', () => {
-      const {foundation, mockAdapter} = setUpAndInit({
-        valueStart: 10,
-        value: 50,
-        isRange: true,
-      });
+    it('down event updates end value if value is inside the range and ' +
+           'closer to end thumb',
+       () => {
+         const {foundation, mockAdapter} = setUpAndInit({
+           valueStart: 10,
+           value: 50,
+           isRange: true,
+         });
 
-      // Reset UI update calls from initialization, so we can test
-      // that the next #handleDown call invokes no UI updates.
-      mockAdapter.setThumbStyleProperty.calls.reset();
-      mockAdapter.setTrackActiveStyleProperty.calls.reset();
+         foundation.handleDown(createMouseEvent('mousedown', {
+           clientX: 40,
+         }));
+         jasmine.clock().tick(1);  // Tick for RAF.
 
-      foundation.handleDown(createMouseEvent('mousedown', {
-        clientX: 40,
-      }));
-      jasmine.clock().tick(1);  // Tick for RAF.
+         expect(foundation.getValueStart()).toBe(10);
+         expect(foundation.getValue()).toBe(40);
+         expect(mockAdapter.setThumbStyleProperty)
+             .toHaveBeenCalledWith('transform', 'translateX(40px)', Thumb.END);
+       });
 
-      expect(foundation.getValueStart()).toBe(10);
-      expect(foundation.getValue()).toBe(50);
-      expect(mockAdapter.setThumbStyleProperty).not.toHaveBeenCalled();
-      expect(mockAdapter.setTrackActiveStyleProperty).not.toHaveBeenCalled();
-    });
+    it('down event updates start value if value is inside the range and ' +
+           'closer to start thumb',
+       () => {
+         const {foundation, mockAdapter} = setUpAndInit({
+           valueStart: 10,
+           value: 50,
+           isRange: true,
+         });
+
+         foundation.handleDown(createMouseEvent('mousedown', {
+           clientX: 25,
+         }));
+         jasmine.clock().tick(1);  // Tick for RAF.
+
+         expect(foundation.getValueStart()).toBe(25);
+         expect(foundation.getValue()).toBe(50);
+         expect(mockAdapter.setThumbStyleProperty)
+             .toHaveBeenCalledWith(
+                 'transform', 'translateX(25px)', Thumb.START);
+       });
 
     it('move event after down event (on end thumb) updates end thumb value ' +
        'inside the range',
