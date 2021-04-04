@@ -92,7 +92,7 @@ There are two types of tooltips:
 
 ```html
 <div id="tooltip-id" class="mdc-tooltip" role="tooltip" aria-hidden="true">
-  <div class="mdc-tooltip__surface">
+  <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
     lorem ipsum dolor
   </div>
 </div>
@@ -145,7 +145,7 @@ Default rich tooltip without interactive content
     <span class="mdc-button__label">Button</span>
   </button>
   <div id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" role="tooltip">
-     <div class="mdc-tooltip__surface">
+     <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
        <p class="mdc-tooltip__content">
          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
          pretium vitae est et dapibus. Aenean sit amet felis eu lorem fermentum
@@ -169,7 +169,7 @@ Default rich tooltip with interactive content
     <span class="mdc-button__label">Button</span>
   </button>
   <div id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" role="dialog">
-     <div class="mdc-tooltip__surface">
+     <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
         <h2 class="mdc-tooltip__title"> Lorem Ipsum </h2>
         <p class="mdc-tooltip__content">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -200,7 +200,7 @@ Persistent rich tooltip with interactive content
     <span class="mdc-button__label">Button</span>
   </button>
   <div id="tt0" class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" tabindex="-1" data-mdc-tooltip-persist="true" role="dialog">
-     <div class="mdc-tooltip__surface">
+     <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
         <h2 class="mdc-tooltip__title"> Lorem Ipsum </h2>
         <p class="mdc-tooltip__content">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -252,7 +252,7 @@ change is necessary for this variant of tooltip.
 </button>
 
 <div id="tooltip-id" class="mdc-tooltip" role="tooltip" aria-hidden="true">
-  <div class="mdc-tooltip__surface">
+  <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
     toggle favorite
   </div>
 </div>
@@ -314,6 +314,8 @@ Method Signature | Description
 `setAnchorBoundaryType(type: AnchorBoundaryType) => void` | Specify whether the anchor element is `bounded` (element has an identifiable boundary such as a button) or `unbounded` (element does not have a visually declared boundary such as a text link). Tooltips are placed closer to bounded anchor elements compared to unbounded anchor elements. If no type is specified, defaults to `bounded`.
 `hide() => void` | Proxies to the foundation's `hide` method, immediately hides the tooltip if it is shown.
 `isShown() => boolean` | Returns whether or not the tooltip is shown.
+`attachScrollHandler(addEventListenerFn: (event, handler) => void)` | Provided with a method that registers an event listener on a given element, will attach a `scroll` event handler on said element when the tooltip is shown. This should be used in situations where the anchor element is placed inside a scrollable container (that is not the body element), and will keep the tooltip "attached" to the anchor element when this element is scrolled.
+`removeScrollHandler(removeEventHandlerFn: (event, handler) => void)` | Should be used in conjunction with the above `attachScrollHandler` method. Removes the additional scroll handlers attached in the above method when the tooltip is hidden.
 
 ### Usage Within Frameworks
 
