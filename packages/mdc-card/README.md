@@ -106,6 +106,7 @@ MDC Card は様々な使用例で使用できますが、いくつか一般的�
 <div class="mdc-card">
   <div class="mdc-card__primary-action" tabindex="0">
     <!-- 操作可能な領域内のコンテンツ -->
+    <div class="mdc-card__ripple"></div>
   </div>
   <!-- ... コンテンツ ... -->
 </div>
@@ -221,6 +222,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
       <div class="mdc-card__media-content">Title</div>
     </div>
     <!-- ... 主要な操作領域のコンテンツを追加 ... -->
+    <div class="mdc-card__ripple"></div>
   </div>
   <div class="mdc-card__actions">
     <div class="mdc-card__action-buttons">
@@ -265,6 +267,7 @@ CSS クラス | 説明
 `mdc-card` | 必須。メインのカード要素。
 `mdc-card--outlined` | オプション。影を消し、代わりに細い枠を表示する。
 `mdc-card__primary-action` | オプション。カードの主たるタップ可能な領域。一般的には `mdc-card__actions` を除く大半（もしくはすべて）のカードコンテンツを含む。主たる表示をきっかけとした主要なアクションのあるカードに対してのみ適用する。
+`mdc-card__ripple` | オプション。要素をリップルスタイルで表示する。`mdc-card__primary-action` が使われているときは必須。主たる表示のトリガーとなる主要なアクションを持つカードにのみ適用する。
 `mdc-card__media` | オプション。`background-size: cover` のあるカスタム `background-image` を表示するメディア領域。
 `mdc-card__media--square` | オプション。自動的にメディア領域の高さを幅と同じにする。
 `mdc-card__media--16-9` | オプション。自動的にメディア領域の高さを幅に基づいて 16:9 のアスペクト比になるようにする。
