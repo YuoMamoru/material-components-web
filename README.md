@@ -13,13 +13,13 @@ Material Components for the web は [Material Design Lite](https://getmdl.io/) �
 
 ## 主要なリンク
 
-- [入門ガイド](g3doc/getting-started.md)
+- [入門ガイド](docs/getting-started.md)
 - [デモ](https://material-components.github.io/material-components-web-catalog) (外部サイト)
-- [ほかのフレームワーク上での Material](g3doc/framework-wrappers.md)
-- [Material Web の利用例](g3doc/examples.md)
+- [ほかのフレームワーク上での Material](docs/framework-wrappers.md)
+- [Material Web の利用例](docs/examples.md)
 - [Contributing](CONTRIBUTING.md)
 - [マテリアルデザインガイドライン](https://material.io/design) (外部サイト)
-- [ブラウザポート](g3doc/supported-browsers.md)
+- [ブラウザポート](docs/supported-browsers.md)
 - [すべてのパッケージ](packages/)
 - [Changelog](./CHANGELOG.md)
 

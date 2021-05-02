@@ -83,7 +83,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 <img src="images/text-icon-button.png" alt="Text button with bookmark icon example">
 
 ```html
-<button class="mdc-button">
+<button class="mdc-button mdc-button--icon-leading">
   <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true"
     >bookmark</i
@@ -113,7 +113,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 <img src="images/outlined-icon-button.png" alt="Outlined button with bookmark icon">
 
 ```html
-<button class="mdc-button mdc-button--outlined">
+<button class="mdc-button mdc-button--outlined mdc-button--icon-leading">
   <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true">bookmark</i>
   <span class="mdc-button__label">Outlined Button plus Icon</span>
@@ -141,7 +141,7 @@ const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));
 <img src="images/contained-icon-button.png" alt="Contained button with a bookmark icon">
 
 ```html
-<button class="mdc-button mdc-button--raised">
+<button class="mdc-button mdc-button--raised mdc-button--leading">
   <span class="mdc-button__ripple"></span>
   <i class="material-icons mdc-button__icon" aria-hidden="true"
     >bookmark</i
@@ -210,7 +210,7 @@ SVG アイコンを使うことも可能です。
 一部のアイコンはボタンのテキストラベルの前にあるよりも後ろにあるほうがより分かりやすくなります。アイコンのマークアップを `mdc-button__label` 要素の <em>後ろ</em> に置くことによって実現できます。
 
 ```html
-<button class="mdc-button">
+<button class="mdc-button mdc-button--icon-trailing">
   <span class="mdc-button__ripple"></span>
   <span class="mdc-button__label">Button</span>
   <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
@@ -287,6 +287,8 @@ CSS クラス | 説明
 `mdc-button--raised` | オプション。画面の表面から浮き上がったボタンにする。
 `mdc-button--unelevated` | オプション。画面の表面と同一平面上にあるボタンにする。
 `mdc-button--outlined` | オプション。画面の表面と同一平面上にあり、枠付きボタンにする。
+`mdc-button--icon-leading` | オプション。先頭アイコンを伴うボタンにする。
+`mdc-button--icon-trailing` | オプション。先頭アイコンを伴うボタンにする。
 `mdc-button__label` | 推奨\*。ボタンのテキストラベルを含む要素であることを示す。
 `mdc-button__icon` | オプション。ボタンのアイコンを含む要素であることを示す。
 
