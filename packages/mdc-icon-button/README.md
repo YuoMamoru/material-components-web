@@ -57,7 +57,10 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 ## アイコンボタン
 
 ```html
-<button class="mdc-icon-button material-icons">favorite</button>
+<button class="mdc-icon-button material-icons">
+  <div class="mdc-icon-button__ripple"></div>
+  favorite
+</button>
 ```
 
 **注意**: MDC Icon Button では `<button>` タグと `<a>` タグの両方を使うことができます。
@@ -75,6 +78,7 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
    class="mdc-icon-button"
    aria-label="Add to favorites"
    aria-pressed="false">
+   <div class="mdc-icon-button__ripple"></div>
    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
    <i class="material-icons mdc-icon-button__icon">favorite_border</i>
 </button>
@@ -96,6 +100,7 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
    class="mdc-icon-button mdc-icon-button--on"
    aria-label="Unstar this item"
    aria-pressed="true">
+   <div class="mdc-icon-button__ripple"></div>
    <svg class="mdc-icon-button__icon">
      ...
    </svg>
@@ -114,6 +119,7 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
    class="mdc-icon-button mdc-icon-button--on"
    aria-label="Unstar this item"
    aria-pressed="true">
+   <div class="mdc-icon-button__ripple"></div>
    <img src="" class="mdc-icon-button__icon"/>
    <img src="" class="mdc-icon-button__icon mdc-icon-button__icon--on"/>
 </button>
@@ -129,6 +135,7 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
    aria-label="Add to favorites"
    data-aria-label-on="Remove from favorites"
    data-aria-label-off="Add to favorites">
+   <div class="mdc-icon-button__ripple"></div>
    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
    <i class="material-icons mdc-icon-button__icon">favorite_border</i>
 </button>
@@ -141,6 +148,7 @@ const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-but
 CSS クラス | 説明
 --- | ---
 `mdc-icon-button` | 必須。
+`mdc-icon-button__ripple` | 必須。リップルスタイルを表示する要素であることを示す。
 `mdc-icon-button--on` | このクラスはルート要素に設定し、切り替えアイコンボタンを「オン」の状態であるかどうかを示すために使われる。
 `mdc-icon-button__icon` | このクラスはアイコン切り替えボタンの各アイコン要素に設定する。
 `mdc-icon-button__icon--on` | このクラスはアイコン要素に設定し、「オン」の状態を表す切り替えボタンのアイコンであることを示すために使われる。

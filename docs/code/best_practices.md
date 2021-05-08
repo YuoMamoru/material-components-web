@@ -36,10 +36,10 @@ TODO: コンポーネントの仕様からサブシステムを分離する方�
 * `<PROPERTY_NAME> has no initializer and is not definitely assigned in the constructor.` というエラーが発生した際には自由に `!` を使用する。つまり、
 
 ```
-private progress_!: number; // Assigned in init
+private progress!: number; // Assigned in init
 
 init() {
-  this.progress_ = 0;
+  this.progress = 0;
 }
 ```
 
@@ -84,7 +84,7 @@ import {MDCFoundation} from '@material/base/foundation';
 
 各アダプターはコンポーネントのパッケージディレクトリ内の `adapter.ts` ファイルに定義しなくてはなりません。すべてのメソッドはすべきことの概要を含める必要があります。この概要は README 内でアダプター API ドキュメントにコピーする必要があります。これにより将来アダプター API ドキュメントの自動生成が容易になるかもしれません。<em>これは `defaultAdapter` 内のメソッドにあるインラインコメントを書き換えることに注意してください</em>。
 
- ```ts
+```ts
 // adapter.ts
 export interface MDCComponentAdapter {
   /**
@@ -128,10 +128,9 @@ import MDCComponentFoundation from './foundation';
 export class MDCAwesomeComponent extends MDCComponent<MDCComponentFoundation> {
   getDefaultFoundation(): MDCComponentFoundation {
     return new MDCComponentFoundation({
-      addClass: (className: string) => this.root_.classList.add(className),
-      removeClass: (className: string) => this.root_.classList.remove(className),
+      addClass: (className: string) => this.root.classList.add(className),
+      removeClass: (className: string) => this.root.classList.remove(className),
     });
   }
 }
 ```
-

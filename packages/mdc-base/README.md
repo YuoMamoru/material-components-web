@@ -85,15 +85,15 @@ export default class MyFoundation extends MDCFoundation {
   constructor(adapter) {
     super({...MyFoundation.defaultAdapter, ...adapter});
     const {TOGGLED} = MyFoundation.cssClasses;
-    this.clickHandler_ = () => this.adapter_.toggleClass(TOGGLED);
+    this.clickHandler = () => this.adapter.toggleClass(TOGGLED);
   }
 
   init() {
-    this.adapter_.registerBtnClickHandler(this.clickHandler_);
+    this.adapter.registerBtnClickHandler(this.clickHandler);
   }
 
   destroy() {
-    this.adapter_.deregisterBtnClickHandler(this.clickHandler_);
+    this.adapter.deregisterBtnClickHandler(this.clickHandler);
   }
 }
 ```
@@ -156,8 +156,8 @@ export class MyComponent extends MDCComponent {
 
 | プロパティ | 説明 |
 | --- | --- |
-| `root_` | 最初の引数としてコンストラクターに渡されるルート要素。 |
-| `foundation_` | そのコンポーネントのファンデーションクラス。これはコンストラクターにオプションの第2引数としてわたされるか、 `getDefaultFoundation()` が呼び出された結果が設定される。 |
+| `root` | 最初の引数としてコンストラクターに渡されるルート要素。 |
+| `foundation` | そのコンポーネントのファンデーションクラス。これはコンストラクターにオプションの第2引数としてわたされるか、 `getDefaultFoundation()` が呼び出された結果が設定される。 |
 
 #### メソッド
 
@@ -169,8 +169,8 @@ export class MyComponent extends MDCComponent {
 | `getDefaultFoundation()` | コンポーネントにとって適切に設定されたファンデーションクラスのインスタンスを返す。コンストラクター内でファンデーションクラスが与えられなかった場合に呼び出される。サブクラスでは **必ず** このメソッドを実装しなくてはならない。 |
 | `initialSyncWithDOM()` | コンストラクター内で呼び出される。サブクラスがホストの DOM 要素と状態の最初の同期を取りたい場合、このメソッドを上書きする。例えばスライダーで、ホストとなる要素に値があらかじめ設定されているかどうかを確認して、それに応じてスライダーの初期状態を設定したいときなどである。ファンデーションクラスのライフサイクルメソッドと同様の注意点がこのメソッドにも適用されることに注意。デフォルトでは何もしない。 |
 | `destroy()` | コンポーネントが破棄される際に追加でクリーンアップをしたいならサブクラスでこのメソッドを上書きする。例えばコンポーネントがウィンドウリサイズのリスナーを削除したいときに使用する。 |
-| `listen(type: string, handler: EventListener)` | コンポーネントのルートノードに `type` で指定したイベントのリスナーを追加する。`this.root_.addEventListener` の単なる代替であることに注意。 |
-| `unlisten(type: string, handler: EventListener)` | コンポーネントのルートノードからイベントリスナーを削除する。`this.root_.removeEventListener` の単なる代替であることに注意。 |
+| `listen(type: string, handler: EventListener)` | コンポーネントのルートノードに `type` で指定したイベントのリスナーを追加する。`this.root.addEventListener` の単なる代替であることに注意。 |
+| `unlisten(type: string, handler: EventListener)` | コンポーネントのルートノードからイベントリスナーを削除する。`this.root.removeEventListener` の単なる代替であることに注意。 |
 | `emit(type: string, data: Object, shouldBubble: boolean = false)` | コンポーネントのルートノードから詳細な `data` とともに `type` のカスタムイベントを送る。オプション引数としてイベントがバブリングするかどうかを指定する `shouldBubble` をとる。これは素のコンポーネント内でイベントを発生させる好ましい方法である。 |
 
 #### 静的メソッド
@@ -192,13 +192,13 @@ export class MyComponent extends MDCComponent {
 ```js
 class MyComponent extends MDCComponent {
   initialize(childComponent = null) {
-    this.child_ = childComponent ?
-      childComponent : new ChildComponent(this.root_.querySelector('.child'));
+    this.child = childComponent ?
+      childComponent : new ChildComponent(this.root.querySelector('.child'));
   }
 
   getDefaultFoundation() {
     return new MyComponentFoundation({
-      doSomethingWithChildComponent: () => this.child_.doSomething(),
+      doSomethingWithChildComponent: () => this.child.doSomething(),
       // ...
     });
   }
@@ -229,7 +229,7 @@ class MyComponent {
   // ...
   getDefaultFoundation() {
     return new MyComponentFoundation({
-      toggleClass: className => util.toggleClass(this.root_, className),
+      toggleClass: className => util.toggleClass(this.root, className),
       // ...
     });
   }
