@@ -35,6 +35,9 @@ function getFixture() {
       <div class="mdc-switch__track"></div>
       <div class="mdc-switch__handle-track">
         <div class="mdc-switch__handle">
+          <div class="mdc-switch__shadow">
+            <div class="mdc-elevation-overlay"></div>
+          </div>
           <div class="mdc-switch__ripple"></div>
           <div class="mdc-switch__handle">
             <div class="mdc-switch__icons">
@@ -120,16 +123,6 @@ describe('MDCSwitch', () => {
     expect(Array.from(root.classList)).not.toContain(CssClasses.PROCESSING);
     adapter.addClass(CssClasses.PROCESSING);
     expect(Array.from(root.classList)).toContain(CssClasses.PROCESSING);
-  });
-
-  it('adapter.getAriaChecked() returns root aria-checked attribute', () => {
-    const {root, adapter} = setupTest();
-    root.setAttribute('aria-checked', 'true');
-    expect(adapter.getAriaChecked()).toBe('true');
-    root.setAttribute('aria-checked', 'false');
-    expect(adapter.getAriaChecked()).toBe('false');
-    root.removeAttribute('aria-checked');
-    expect(adapter.getAriaChecked()).toBe(null);
   });
 
   it('adapter.hasClass() checks classes on root', () => {

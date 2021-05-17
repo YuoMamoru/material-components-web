@@ -47,6 +47,8 @@ const CARET_POSITION_STYLES = new Map([
       rotation: 35,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: `${numbers.CARET_INDENTATION}px`,
+      yTransformOrigin: RICH_TOOLTIP_HEIGHT,
     }
   ],
   [
@@ -59,6 +61,10 @@ const CARET_POSITION_STYLES = new Map([
       rotation: 35,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: `calc((${RICH_TOOLTIP_WIDTH} - ${
+          CARET_WIDTH / numbers.ANIMATION_SCALE}px) / 2)`,
+      yTransformOrigin: RICH_TOOLTIP_HEIGHT,
+
     }
   ],
   [
@@ -70,6 +76,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: -35,
       skew: -20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin:
+          `calc(${RICH_TOOLTIP_WIDTH} - ${numbers.CARET_INDENTATION}px)`,
+      yTransformOrigin: RICH_TOOLTIP_HEIGHT,
     }
   ],
   [
@@ -81,6 +90,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: -55,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: RICH_TOOLTIP_WIDTH,
+      yTransformOrigin: `${numbers.CARET_INDENTATION}px`,
+
     }
   ],
   [
@@ -93,6 +105,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: -55,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: RICH_TOOLTIP_WIDTH,
+      yTransformOrigin: `calc((${RICH_TOOLTIP_HEIGHT} - ${
+          CARET_WIDTH / numbers.ANIMATION_SCALE}px) / 2)`,
     }
   ],
   [
@@ -104,6 +119,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: 55,
       skew: -20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: RICH_TOOLTIP_WIDTH,
+      yTransformOrigin:
+          `calc(${RICH_TOOLTIP_HEIGHT} - ${numbers.CARET_INDENTATION}px)`,
     }
   ],
   [
@@ -115,6 +133,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: 55,
       skew: -20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: 0,
+      yTransformOrigin: `${numbers.CARET_INDENTATION}px`,
+
     }
   ],
   [
@@ -127,6 +148,10 @@ const CARET_POSITION_STYLES = new Map([
       rotation: 55,
       skew: -20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: 0,
+      yTransformOrigin: `calc((${RICH_TOOLTIP_HEIGHT} - ${
+          CARET_WIDTH / numbers.ANIMATION_SCALE}px) / 2)`,
+
     }
   ],
   [
@@ -138,6 +163,10 @@ const CARET_POSITION_STYLES = new Map([
       rotation: -55,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: 0,
+      yTransformOrigin:
+          `calc(${RICH_TOOLTIP_HEIGHT} - ${numbers.CARET_INDENTATION}px)`,
+
     }
   ],
   [
@@ -149,6 +178,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: -35,
       skew: -20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: `${numbers.CARET_INDENTATION}px`,
+      yTransformOrigin: 0,
+
     }
   ],
   [
@@ -161,6 +193,10 @@ const CARET_POSITION_STYLES = new Map([
       rotation: -35,
       skew: -20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin: `calc((${RICH_TOOLTIP_WIDTH} - ${
+          CARET_WIDTH / numbers.ANIMATION_SCALE}px) / 2)`,
+      yTransformOrigin: 0,
+
     }
   ],
   [
@@ -172,6 +208,9 @@ const CARET_POSITION_STYLES = new Map([
       rotation: 35,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin:
+          `calc(${RICH_TOOLTIP_WIDTH} - ${numbers.CARET_INDENTATION}px)`,
+      yTransformOrigin: 0,
     }
   ]
 ]);
@@ -185,6 +224,10 @@ const CARET_POSITION_STYLES_RTL = new Map([
       rotation: 35,
       skew: 20,
       scaleX: 0.9396926207859084,
+      xTransformOrigin:
+          `calc(${RICH_TOOLTIP_WIDTH} - ${numbers.CARET_INDENTATION}px)`,
+      yTransformOrigin: 0,
+
     }
   ],
 ]);
@@ -279,7 +322,7 @@ describe('MDCTooltipFoundation', () => {
       'removeClass',
       'getComputedStyleProperty',
       'setStyleProperty',
-      'setSurfaceStyleProperty',
+      'setSurfaceAnimationStyleProperty',
       'getViewportWidth',
       'getViewportHeight',
       'getTooltipSize',
@@ -1326,7 +1369,7 @@ describe('MDCTooltipFoundation', () => {
     expect(mockAdapter.setStyleProperty).toHaveBeenCalledWith('left', `32px`);
   });
 
-  it('properly sets tooltip transform origin (top left)', () => {
+  it('properly sets tooltip transform origin (left top)', () => {
     const anchorHeight = 35;
 
     const {foundation, mockAdapter} = setUpFoundationTest(MDCTooltipFoundation);
@@ -1341,8 +1384,8 @@ describe('MDCTooltipFoundation', () => {
     });
     mockAdapter.getTooltipSize.and.returnValue({width: 100, height: 30});
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top left');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'left top');
   });
 
   it('properly calculates tooltip position (END alignment)', () => {
@@ -1363,7 +1406,7 @@ describe('MDCTooltipFoundation', () => {
     expect(mockAdapter.setStyleProperty).toHaveBeenCalledWith('left', `350px`);
   });
 
-  it('properly sets tooltip transform origin (top right)', () => {
+  it('properly sets tooltip transform origin (right top)', () => {
     const anchorBoundingRect =
         {top: 0, bottom: 35, left: 400, right: 450, width: 50, height: 35};
     const tooltipSize = {width: 100, height: 30};
@@ -1374,8 +1417,8 @@ describe('MDCTooltipFoundation', () => {
     mockAdapter.getTooltipSize.and.returnValue(tooltipSize);
 
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top right');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'right top');
   });
 
   it('properly calculates tooltip position (CENTER alignment)', () => {
@@ -1396,7 +1439,7 @@ describe('MDCTooltipFoundation', () => {
     expect(mockAdapter.setStyleProperty).toHaveBeenCalledWith('left', `80px`);
   });
 
-  it('properly sets tooltip transform origin (top center)', () => {
+  it('properly sets tooltip transform origin (center top)', () => {
     const anchorBoundingRect =
         {top: 0, bottom: 35, left: 0, right: 200, width: 200, height: 35};
     const tooltipSize = {width: 40, height: 30};
@@ -1407,8 +1450,8 @@ describe('MDCTooltipFoundation', () => {
     mockAdapter.getTooltipSize.and.returnValue(tooltipSize);
 
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top center');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'center top');
   });
 
   it('properly calculates tooltip position with an UNBOUNDED anchor', () => {
@@ -1467,7 +1510,7 @@ describe('MDCTooltipFoundation', () => {
         .toHaveBeenCalledWith('left', `${expectedTooltipLeft}px`);
   });
 
-  it('properly sets rich tooltip transform origin (top right)', () => {
+  it('properly sets rich tooltip transform origin (right top)', () => {
     const anchorBoundingRect =
         {top: 0, bottom: 35, left: 100, right: 150, width: 50, height: 35};
     const parentBoundingRect =
@@ -1481,8 +1524,8 @@ describe('MDCTooltipFoundation', () => {
     mockAdapter.getTooltipSize.and.returnValue(tooltipSize);
 
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top right');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'right top');
   });
 
   it('properly calculates rich tooltip position (END alignment)', () => {
@@ -1508,7 +1551,7 @@ describe('MDCTooltipFoundation', () => {
         .toHaveBeenCalledWith('left', `${expectedTooltipLeft}px`);
   });
 
-  it('properly calculates rich tooltip transform origin (top left)', () => {
+  it('properly calculates rich tooltip transform origin (left top)', () => {
     const anchorBoundingRect =
         {top: 0, bottom: 35, left: 0, right: 50, width: 50, height: 35};
     const parentBoundingRect =
@@ -1520,8 +1563,8 @@ describe('MDCTooltipFoundation', () => {
     mockAdapter.getParentBoundingRect.and.returnValue(parentBoundingRect);
 
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top left');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'left top');
   });
 
   it('allows users to specify the tooltip position for plain tooltips (START alignment instead of CENTER)',
@@ -1691,7 +1734,7 @@ describe('MDCTooltipFoundation', () => {
     expect(mockAdapter.setStyleProperty).toHaveBeenCalledWith('left', `50px`);
   });
 
-  it('properly calculates \"top right\" transform origin in RTL', () => {
+  it('properly calculates \"right top\" transform origin in RTL', () => {
     const anchorBoundingRect =
         {top: 0, bottom: 35, left: 0, right: 100, width: 100, height: 35};
     const tooltipSize = {width: 50, height: 30};
@@ -1704,8 +1747,8 @@ describe('MDCTooltipFoundation', () => {
 
     foundation.setTooltipPosition({xPos: XPosition.START});
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top right');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'right top');
   });
 
   it('properly calculates END tooltip position in RTL', () => {
@@ -1728,7 +1771,7 @@ describe('MDCTooltipFoundation', () => {
     expect(mockAdapter.setStyleProperty).toHaveBeenCalledWith('left', `32px`);
   });
 
-  it('properly calculates \"top left\" transform origin in RTL', () => {
+  it('properly calculates \"left top\" transform origin in RTL', () => {
     const anchorBoundingRect =
         {top: 0, bottom: 35, left: 32, right: 132, width: 100, height: 35};
     const tooltipSize = {width: 50, height: 30};
@@ -1741,8 +1784,8 @@ describe('MDCTooltipFoundation', () => {
 
     foundation.setTooltipPosition({xPos: XPosition.END});
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'top left');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'left top');
   });
 
   it('positions tooltip within viewport if threshold cannot be maintained (x-axis)',
@@ -1807,7 +1850,7 @@ describe('MDCTooltipFoundation', () => {
         .toHaveBeenCalledWith('top', `${expectedTooltipTop}px`);
   });
 
-  it('properly calculates tooltip transform origin (bottom left)', () => {
+  it('properly calculates tooltip transform origin (left bottom)', () => {
     const anchorBoundingRect =
         {top: 100, bottom: 125, left: 10, right: 60, width: 50, height: 25};
     const tooltipSize = {width: 60, height: 20};
@@ -1820,8 +1863,8 @@ describe('MDCTooltipFoundation', () => {
 
     foundation.setTooltipPosition({yPos: YPosition.ABOVE});
     foundation.show();
-    expect(mockAdapter.setSurfaceStyleProperty)
-        .toHaveBeenCalledWith('transform-origin', 'bottom left');
+    expect(mockAdapter.setSurfaceAnimationStyleProperty)
+        .toHaveBeenCalledWith('transform-origin', 'left bottom');
   });
 
   it('properly calculates tooltip y-position (BELOW alignment)', () => {
@@ -2216,7 +2259,12 @@ describe('MDCTooltipFoundation', () => {
       expect(mockAdapter.setTooltipCaretStyle)
           .toHaveBeenCalledWith(
               'transform-origin',
-              `${styleValues.yAlignment} ${styleValues.xAlignment}`);
+              `${styleValues.xAlignment} ${styleValues.yAlignment}`);
+      expect(mockAdapter.setSurfaceAnimationStyleProperty)
+          .toHaveBeenCalledWith(
+              'transform-origin',
+              `${styleValues.xTransformOrigin} ${
+                  styleValues.yTransformOrigin}`);
     });
   }
 
@@ -2848,7 +2896,7 @@ describe('MDCTooltipFoundation', () => {
        expect(mockAdapter.setTooltipCaretStyle)
            .toHaveBeenCalledWith(
                'transform-origin',
-               `${styleValues.yAlignment} ${styleValues.xAlignment}`);
+               `${styleValues.xAlignment} ${styleValues.yAlignment}`);
      });
 
   it('handles positioning for tooltip with caret when all possible positions are invalid (ABOVE_START)',
@@ -2903,7 +2951,7 @@ describe('MDCTooltipFoundation', () => {
        expect(mockAdapter.setTooltipCaretStyle)
            .toHaveBeenCalledWith(
                'transform-origin',
-               `${styleValues.yAlignment} ${styleValues.xAlignment}`);
+               `${styleValues.xAlignment} ${styleValues.yAlignment}`);
      });
 
   it('handles positioning for tooltip with caret when all possible positions are invalid (in RTL)',
@@ -2955,6 +3003,11 @@ describe('MDCTooltipFoundation', () => {
        expect(mockAdapter.setTooltipCaretStyle)
            .toHaveBeenCalledWith(
                'transform-origin',
-               `${styleValues.yAlignment} ${styleValues.xAlignment}`);
+               `${styleValues.xAlignment} ${styleValues.yAlignment}`);
+       expect(mockAdapter.setSurfaceAnimationStyleProperty)
+           .toHaveBeenCalledWith(
+               'transform-origin',
+               `${styleValues.xTransformOrigin} ${
+                   styleValues.yTransformOrigin}`);
      });
 });

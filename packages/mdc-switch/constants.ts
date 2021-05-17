@@ -26,4 +26,13 @@
  */
 export enum CssClasses {
   PROCESSING = 'mdc-switch--processing',
+  SELECTED = 'mdc-switch--selected',
+  UNSELECTED = 'mdc-switch--unselected',
+}
+
+/**
+ * Query selectors used for switch.
+ */
+export enum Selectors {
+  RIPPLE = '.mdc-switch__ripple',
 }
