@@ -50,8 +50,8 @@ npm install @material/touch-target
 <div class="mdc-touch-target-wrapper">
   <button class="mdc-button mdc-button--touch">
     <div class="mdc-button__ripple"></div>
-    <span class="mdc-button__label">アクセスできるボタン</span>
     <div class="mdc-button__touch"></div>
+    <span class="mdc-button__label">アクセスできるボタン</span>
   </button>
 </div>
 ```
