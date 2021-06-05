@@ -16,18 +16,18 @@ path: /catalog/input-controls/switches/
 
 **コンテンツ**
 
-* [スイッチの使用法](#using-switches)
-* [スイッチ](#switches)
-* [その他のバリエーション](#other-variants)
-* [API](#api)
-* [Web フレームワークでの使用](#usage-within-web-frameworks)
+*   [スイッチの使用法](#using-switches)
+*   [スイッチ](#switches)
+*   [その他のバリエーション](#other-variants)
+*   [API](#api)
+*   [Web フレームワークでの使用](#usage-within-web-frameworks)
 
 ## <a name="using-switches"></a>スイッチの使用法
 
 スイッチは次のような場所で使います。
 
-* モバイルやタブレット上での単一項目のオンかオフの切り替え
-* 直ちに何かを有効または無効にする
+*   モバイルやタブレット上での単一項目のオンかオフの切り替え
+*   直ちに何かを有効または無効にする
 
 ### スイッチのインストール
 
@@ -38,9 +38,7 @@ npm install @material/switch
 ### スタイル
 
 ```scss
-@use "@material/switch/deprecated" as switch;
-
-@include switch.core-styles;
+@use '@material/switch/styles';
 ```
 
 ### JavaScript のインスタンス化
@@ -48,9 +46,11 @@ npm install @material/switch
 スイッチは機能するうえで JavaScript が必須で、そのため、`mdc-switch` 要素上に `MDCSwitch` をインスタンス化する必要があります。
 
 ```js
-import {MDCSwitch} from '@material/switch/deprecated';
+import {MDCSwitch} from '@material/switch';
 
-const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
+for (const el of document.querySelectorAll('.mdc-switch')) {
+  const switchControl = new MDCSwitch(el);
+}
 ```
 
 **注意: See JavaScript をインポートする方法についてのさらなる情報は [JS コンポーネントのインポート](../../docs/importing-js.md) を参照してください。**
@@ -60,13 +60,25 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 ### スイッチの例
 
 ```html
-<div class="mdc-switch">
+<button id="basic-switch" class="mdc-switch mdc-switch--unselected" role="switch" aria-checked="false">
   <div class="mdc-switch__track"></div>
-  <div class="mdc-switch__thumb-underlay">
-    <div class="mdc-switch__thumb"></div>
-    <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="false">
+  <div class="mdc-switch__handle-track">
+    <div class="mdc-switch__handle">
+      <div class="mdc-switch__shadow">
+        <div class="mdc-elevation-overlay"></div>
+      </div>
+      <div class="mdc-switch__ripple"></div>
+      <div class="mdc-switch__icons">
+        <svg class="mdc-switch__icon mdc-switch__icon--on" viewBox="0 0 24 24">
+          <path d="M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z" />
+        </svg>
+        <svg class="mdc-switch__icon mdc-switch__icon--off" viewBox="0 0 24 24">
+          <path d="M20 13H4v-2h16v2z" />
+        </svg>
+      </div>
+    </div>
   </div>
-</div>
+</button>
 <label for="basic-switch">off/on</label>
 ```
 
@@ -80,100 +92,106 @@ const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 
 ### 初期状態が利用不可のスイッチ
 
-`mdc-switch` 要素に `mdc-switch--disabled` クラスを追加し、スイッチを利用不可にするために `mdc-switch__native-control` 要素に `disabled` 属性を追加します。このロジックは `MDCSwitchFoundation.setDisabled` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
+スイッチを利用不可にするには `mdc-switch` 要素に `disabled` 要素を追加します。このロジックは `MDCSwitch.disabled` プロパティにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
 
 ```html
-<div class="mdc-switch mdc-switch--disabled">
+<button id="disabled-switch" class="mdc-switch mdc-switch--unselected" role="switch" aria-checked="false" disabled>
   <div class="mdc-switch__track"></div>
-  <div class="mdc-switch__thumb-underlay">
-    <div class="mdc-switch__thumb"></div>
-    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="false" disabled>
+  <div class="mdc-switch__handle-track">
+    <div class="mdc-switch__handle">
+      <div class="mdc-switch__shadow">
+        <div class="mdc-elevation-overlay"></div>
+      </div>
+      <div class="mdc-switch__ripple"></div>
+      <div class="mdc-switch__icons">
+        <svg class="mdc-switch__icon mdc-switch__icon--on" viewBox="0 0 24 24">
+          <path d="M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z" />
+        </svg>
+        <svg class="mdc-switch__icon mdc-switch__icon--off" viewBox="0 0 24 24">
+          <path d="M20 13H4v-2h16v2z" />
+        </svg>
+      </div>
+    </div>
   </div>
-</div>
-<label for="another-basic-switch">off/on</label>
+</button>
+<label for="disabled-switch">off/on</label>
 ```
 
 ### 初期状態が "on" のスイッチ
 
-`mdc-switch` 要素に `mdc-switch--checked` クラスを追加し、スイッチを "on" に切り替えるために `mdc-switch__native-control` 要素に `checked` 属性を追加します。このロジックは `MDCSwitchFoundation.setChecked` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
+スイッチを "on" に切り替えるためには `mdc-switch` 要素に `mdc-switch--selected` クラスと `aria-checked="true"` 属性を追加します。このロジックは `MDCSwitch.selected` メソッドにより行われますが、初期化の際にクラスと属性を追加することにより FOUC を避けることができます。
 
 
 ```html
-<div class="mdc-switch mdc-switch--checked">
+<button id="selected-switch" class="mdc-switch mdc-switch--selected" role="switch" aria-checked="true">
   <div class="mdc-switch__track"></div>
-  <div class="mdc-switch__thumb-underlay">
-    <div class="mdc-switch__thumb"></div>
-    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch" aria-checked="true" checked>
+  <div class="mdc-switch__handle-track">
+    <div class="mdc-switch__handle">
+      <div class="mdc-switch__shadow">
+        <div class="mdc-elevation-overlay"></div>
+      </div>
+      <div class="mdc-switch__ripple"></div>
+      <div class="mdc-switch__icons">
+        <svg class="mdc-switch__icon mdc-switch__icon--on" viewBox="0 0 24 24">
+          <path d="M19.69,5.23L8.96,15.96l-4.23-4.23L2.96,13.5l6,6L21.46,7L19.69,5.23z" />
+        </svg>
+        <svg class="mdc-switch__icon mdc-switch__icon--off" viewBox="0 0 24 24">
+          <path d="M20 13H4v-2h16v2z" />
+        </svg>
+      </div>
+    </div>
   </div>
-</div>
-<label for="another-basic-switch">off/on</label>
+</button>
+<label for="selected-switch">off/on</label>
 ```
 
 ## API
 
 ### CSS クラス
 
-CSS クラス | 説明
---- | ---
-`mdc-switch` | 必須。親要素につける。
-`mdc-switch--disabled` | オプション。スイッチを無効にする。
-`mdc-switch--checked` | オプション。スイッチをチェック状態（"on"）にする。
-`mdc-switch__track` | 必須。トラック要素につける。
-`mdc-switch__thumb-underlay` | 必須。リップル効果に必要。
-`mdc-switch__thumb` | 必須。つまみ要素につける。
-`mdc-switch__native-control` | 必須。隠された input チェックボックスにつける。
+| CSS クラス                  | 説明                                    |
+| -------------------------- | ---------------------------------------------- |
+| `mdc-switch`               | 必須。親要素につける。             |
+| `mdc-switch--unselected`   | オプション。スイッチを非選択 ("off")　にする。 |
+| `mdc-switch--selected`     | オプション。スイッチを選択 ("on")　にする。 |
+| `mdc-switch__track`        | 必須。トラック要素につける。 |
+| `mdc-switch__handle-track` | 必須。トラックのハンドルのトラック要素につける。 |
+| `mdc-switch__handle`       | 必須。ハンドル要素につける。 |
+| `mdc-switch__shadow`       | 必須。シャドウ効果をつける。 |
+| `mdc-elevation-overlay`    | 必須。ダークモードでのシャドウ効果のオーバーレイにつける。 |
+| `mdc-switch__ripple`       | 必須。リップル効果をつける。 |
+| `mdc-switch__icons`        | 必須。アイコンにつける。 |
+| `mdc-switch__icon`         | 必須。アイコン要素につける。 |
+| `mdc-switch__icon--on`     | 必須。オンアイコンにつける。 |
+| `mdc-switch__icon--off`    | 必須。オフアイコンにつける。 |
 
-### Sass ミキシン
+### テーマミキシン
 
-MDC Switch はデフォルトでチェックさえた状態（トグルが ON）に [MDC Theme](../mdc-theme) の `secondary` カラーを使用します。<em>利用可能</em>なスイッチをカスタマイズするには以下のミキシンを使います。現時点では<em>利用不可</em>のスイッチの色をカスタマイズすることはできません。利用不可のスイッチは利用可能なスイッチと同じ色を使用しますが、透明度の値が異なります。
+スイッチは `theme()` ミキシンと [MDC Theme](../mdc-theme) 文字列 (`primary` のような) もしくはテーマのキーのその他の値を使ってカスタマイズできます。
 
-ミキシン | 説明
---- | ---
-`toggled-on-color($color)` | スイッチがオンの時のトラック、つまみとリップルの色を設定する。
-`toggled-off-color($color)` | スイッチがオフの時のトラック、つまみとリップルの色を設定する。
-`toggled-on-track-color($color)` | スイッチがオンの時のトラックの色を設定する。
-`toggled-off-track-color($color)` | スイッチがオフの時のトラックの色を設定する。
-`toggled-on-thumb-color($color)` | スイッチがオンの時のつまみの色を設定する。
-`toggled-off-thumb-color($color)` | スイッチがオフの時のつまみの色を設定する。
-`toggled-on-ripple-color($color)` | スイッチがオンの時のつまみを囲むリップルの色を設定する。
-`toggled-off-ripple-color($color)` | スイッチがオフの時のつまみを囲むリップルの色を設定する。
-`ripple-size($ripple-size)` | スイッチのリップルサイズを設定する。
-`density($density-scale)` | スイッチの密度スケールを設定する。サポートしている密度スケールは `-5`、`-4`、`-3`、`-2`、`-1` そして `0`（デフォルト）。
-`ripple-states-opacity($opacity-map)` | `hover`、`focus`、`press` いずれかの状態のつまみを囲むリップルの不透明度を設定する。`opacity-map` にはこれらの状態をキーとして指定できる。マップに指定していない状態はデフォルトの不透明度が使われる。
+```scss
+@use '@material/switch';
+@use '@material/theme/color-palette';
 
-### `MDCSwitch` プロパティとメソッド
+.my-switch {
+  @include switch.theme((
+    selected-handle-color: color-palette.$teal-600,
+    selected-track-color: color-palette.$teal-300,
+  ));
+}
+```
 
-プロパティ | 値の型 | 説明
---- | --- | ---
-`checked` | Boolean | スイッチのチェック状態のセッタ/ゲッタ
-`disabled` | Boolean | スイッチの利用不可かどうかの状態のセッタ/ゲッタ
+利用可能なキーとビルドインテーマについては [theme file](_switch-theme.scss) を見てください。
 
-## <a name="usage-within-web-frameworks"></a>Web フレームワーク内での使用
+### `MDCSwitch` プロパティ
 
-React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
+| プロパティ   | 値の型 | 説明                                        |
+| ---------- | ---------- | -------------------------------------------------- |
+| `disabled` | Boolean    | スイッチが無効かどうかを示す。 |
+| `selected` | Boolean    | true ならスイッチは on。false ならスイッチは off。 |
 
-### `MDCSwitchAdapter`
+## Web フレームワークでの使用
 
-| メソッド | 説明 |
-| --- | --- |
-| `addClass(className: string) => void` | ルート要素にクラスを追加する。 |
-| `removeClass(className: string) => void` | ルート要素からクラスを削除する。 |
-| `setNativeControlChecked(checked: boolean)` | ネイティブコントロールのチェック状態を設定する。 |
-| `setNativeControlDisabled(disabled: boolean)` | ネイティブコントロールの利用不可の状態を設定する。 |
-| `setNativeControlAttr(attr: string, value: string)` | ネイティブコントロールの HTML 属性を与えられた値に設定する。 |
+React や Angular のような JavaScript フレームワークを使っているなら、そのフレームワーク用のスイッチを作ることができます。ニーズに合わせて、<em>単純な手法: MDC Web の素のコンポーネントをラップする</em> や <em>高度な方法: ファンデーションアダプターを使用する</em> を使うことができます。[ここ](../../../docs/integrating-into-frameworks.md) にある説明にしたがってください。
 
-### `MDCSwitchFoundation`
-
-| メソッド | 説明 |
-| --- | --- |
-| `setChecked(checked: boolean) => void` | ネイティブコントロールのチェック状態を設定し、チェック状態を反映したスタイルに更新する。 |
-| `setDisabled(disabled: boolean) => void` | ネイティブコントロールの利用不可かどうかの値を設定し、利用不可かどうかの状態を反映したスタイルに更新する。 |
-| `handleChange(evt: Event) => void` | ネイティブコントロールからの change イベントをハンドリングする。 |
-
-### `MDCSwitchFoundation` イベントハンドラー
-
-スイッチコンポーネントをラプスるときには `handleChange` ファンデーションメソッドを呼び出すネイティブコントロールの change イベントのイベントハンドラーを追加する必要があります。この例としては、[`MDCSwitch`](component.ts) コンポーネントの `initialSyncWithDOM` メソッドを参照してください。
-
-| イベント | 要素セレクター | ファンデーションハンドラー |
-| --- | --- | --- |
-| `change` | `.mdc-switch__native-control` | `handleChange()` |
+スイッチのファンデーション API の最新のコードのドキュメントについては [MDCSwitchAdapter](./adapter.ts) and [MDCSwitchFoundation](./foundation.ts) を参照してください。
