@@ -67,6 +67,21 @@ Google フォントにある [Material Icons](https://material.io/tools/icons/) 
 
 **注意**: IE11 ではアイコンのテキストの後に改行かスペースがあるとアイコンを正しく中央揃えにしません。
 
+### アイコンボタンを操作しやすくする
+
+マテリアルデザイン仕様ではタッチの対象は少なくとも  48 x 48 px にすることを勧めています。この要件を満たすためにボタンに以下のものを追加してください。
+
+```html
+<div class="mdc-touch-target-wrapper">
+  <button class="mdc-icon-button mdc-icon-button--touch material-icons">
+    <div class="mdc-icon-button__ripple"></div>
+    favorite
+    <div class="mdc-icon-button__touch"></div>
+  </button>
+</div>
+```
+**注意: 隣接している要素において、潜在的に（マージンを縮小するために）タッチ対象が重なってしまうのを避けたい場合は、外側に `mdc-touch-target-wrapper` 要素だけが必要なことに注意してください。**
+
 ## トグルアイコンボタン
 
 アイコンボタンはオンとオフのアイコンを切り替えるために使用することができます。
