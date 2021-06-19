@@ -172,6 +172,10 @@ for (const el of document.querySelectorAll('.mdc-switch')) {
 ```scss
 @use '@material/switch';
 @use '@material/theme/color-palette';
+@use '@material/theme/shadow-dom';
+
+// Include for IE11 support
+// @include shadow-dom.enable-css-selector-fallback-declarations(true);
 
 .my-switch {
   @include switch.theme((

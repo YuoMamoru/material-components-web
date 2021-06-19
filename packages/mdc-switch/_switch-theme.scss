@@ -26,11 +26,13 @@
 @use 'sass:color';
 @use 'sass:map';
 @use '@material/density/density';
+@use '@material/dom/dom';
 @use '@material/elevation/elevation-theme';
 @use '@material/ripple/ripple-theme';
 @use '@material/theme/color-palette';
 @use '@material/theme/custom-properties';
 @use '@material/theme/keys';
+@use '@material/theme/shadow-dom';
 @use '@material/theme/state';
 @use '@material/theme/theme-color';
 @use '@material/theme/theme';
@@ -39,7 +41,7 @@
 
 $_density-config: (
   size: (
-    minimum: 36px,
+    minimum: 28px,
     default: 48px,
     maximum: 48px,
   ),
@@ -70,7 +72,6 @@ $_selectors: (
 $light-theme: (
   disabled-handle-elevation: 0,
   disabled-handle-opacity: 0.38,
-  disabled-handle-overlay-color: transparent,
   disabled-handle-overlay-opacity: 0,
   disabled-selected-handle-color: $_on-surface,
   disabled-selected-icon-color: on-primary,
@@ -149,6 +150,22 @@ $forced-colors-theme: (
 @mixin theme($theme) {
   @include theme.validate-keys($light-theme, $theme);
 
+  // TODO(b/185172301): replace with improved feature targeting
+  // IE11 Fallback
+  @if shadow-dom.$css-selector-fallback-declarations {
+    @include custom-properties.configure($emit-custom-properties: false) {
+      @include dom.ie11-support {
+        @include theme-styles($theme);
+      }
+    }
+  }
+
+  @include keys.declare-custom-properties($theme, switch);
+}
+
+@mixin theme-styles($theme) {
+  @include theme.validate-keys($light-theme, $theme);
+
   $theme: keys.create-theme-properties($theme, switch);
 
   @include _selected-handle-color(
@@ -191,13 +208,7 @@ $forced-colors-theme: (
     )
   );
 
-  @include _handle-overlay-color(
-    (
-      default: map.get($theme, handle-overlay-color),
-      disabled: map.get($theme, disabled-handle-overlay-color),
-    )
-  );
-
+  @include _handle-overlay-color(map.get($theme, handle-overlay-color));
   @include _handle-overlay-opacity(
     (
       default: map.get($theme, handle-overlay-opacity),
@@ -371,7 +382,6 @@ $forced-colors-theme: (
 }
 
 @mixin _set-handle-elevation($elevation, $shadow-color) {
-  // TODO: Support independent custom properties
   @if $elevation or $shadow-color {
     @if not $elevation or not $shadow-color {
       @error 'Both elevation and shadow color must be specified';
@@ -414,17 +424,7 @@ $forced-colors-theme: (
   }
 }
 
-@mixin _handle-overlay-color($colors) {
-  @include state.default($_selectors) {
-    @include _set-handle-overlay-color(state.get-default-state($colors));
-  }
-
-  @include state.disabled($_selectors) {
-    @include _set-handle-overlay-color(state.get-disabled-state($colors));
-  }
-}
-
-@mixin _set-handle-overlay-color($color) {
+@mixin _handle-overlay-color($color) {
   .mdc-elevation-overlay {
     @include elevation-theme.overlay-fill-color($color);
   }
