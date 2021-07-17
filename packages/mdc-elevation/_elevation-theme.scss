@@ -217,11 +217,11 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
 ///
 /// Returns a shadow or null if params are invalid.
 /// @param {Number} $level - the level of the Material elevation system.
-/// @param {String} $color - the color of the shadow.
+/// @param {String} $color [#000] - the color of the shadow.
 /// @return {List|null} the complete box shadow or null.
 ///
-@function _shadow($level, $color) {
-  @if $level < 0 or $level > 24 {
+@function _shadow($level, $color: #000) {
+  @if $level == null or $level < 0 or $level > 24 {
     @warn "$level must be between 0 and 24; received '#{$level}'";
     @return null;
   }
@@ -243,6 +243,19 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
 ///
 /// @param {String} $box-shadow - The shadow to apply to the element.
 ///
+@mixin _box-shadow($shadow, $query: feature-targeting.all()) {
+  $feat-color: feature-targeting.create-target($query, color);
+
+  @include feature-targeting.targets($feat-color) {
+    @include theme.property(box-shadow, $shadow);
+  }
+}
+
+///
+/// Sets the shadow of the element.
+///
+/// @param {String} $box-shadow - The shadow to apply to the element.
+///
 @mixin shadow($box-shadow, $query: feature-targeting.all()) {
   $feat-color: feature-targeting.create-target($query, color);
 
@@ -250,16 +263,25 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
     @if custom-properties.is-custom-prop($box-shadow) {
       // TODO(b/185188458): Use theme.property() once resolved.
       $fallback: custom-properties.get-fallback($box-shadow);
-      box-shadow: $fallback;
-      box-shadow: custom-properties.create-var(
-        custom-properties.create(
-          custom-properties.get-varname($box-shadow),
-          custom-properties.create(elevation-box-shadow-for-gss, none)
-        )
+
+      // var(--<box-shadow-prop>, var(--m-elevation-box-shadow-for-gss))
+      $gss-custom-prop: custom-properties.create(
+        custom-properties.get-varname($box-shadow),
+        custom-properties.create(elevation-box-shadow-for-gss)
       );
-      @include css.declaration(
-        custom-properties.create-varname(elevation-box-shadow-for-gss),
-        $fallback
+
+      $value: custom-properties.create-var($gss-custom-prop);
+      @if $value == null {
+        // Custom properties are disabled, since $gss-custom-prop
+        // does not have a fallback. Avoid emitting two non-custom
+        // prop declarations by setting $fallback to null.
+        $value: $fallback;
+        $fallback: null;
+      }
+
+      @include css.declaration(box-shadow, $value, $fallback-value: $fallback);
+      @include custom-properties.declaration(
+        custom-properties.create(elevation-box-shadow-for-gss, $fallback)
       );
     } @else {
       /* @alternate */
@@ -329,6 +351,16 @@ $transition-timing-function: animation-variables.$standard-curve-timing-function
 }
 
 ///
+/// Applies the given color to the container of the overlay.
+/// @param {color} $color - the color of the overlay container
+///
+@mixin _overlay-container-color($color, $query: feature-targeting.all()) {
+  .mdc-elevation-overlay {
+    @include overlay-fill-color($color, $query: $query);
+  }
+}
+
+///
 /// Sets the elevation overlay opacity.
 /// Expected to be called from a parent element.
 ///
@@ -377,36 +409,60 @@ $_theme-values: (
 /// @param {Function} $resolver - a function that returns a valid theme config.
 ///   @see resolver for an example and expected arguments and return value.
 /// Accepts the following optional keyword args:
-/// @param {Number} $level - the level in the elevation system.
+/// @param {Number} $elevation - the level in the elevation system.
 /// @param {String} $shadow-color - the color used for the shadow.
 ///
-@mixin with-resolver($resolver, $query: feature-targeting.all(), $args...) {
+@mixin with-resolver($resolver, $args...) {
   @if $resolver {
-    @include theme(meta.call($resolver, $args...), $query: $query);
+    @include _theme(meta.call($resolver, $args...));
   }
+}
+
+///
+/// Applies the given theme with validation.
+/// @param {Map} $theme - @see $_theme-values for accepted theme properties.
+///
+@mixin theme($theme: (), $query: feature-targeting.all()) {
+  @include theme.validate-keys($_theme-values, $theme);
+  @include _theme($theme, $query: $query);
 }
 
 ///
 /// Applies the given theme.
 /// @param {Map} $theme - @see $_theme-values for accepted theme properties.
 ///
-@mixin theme($theme: (), $query: feature-targeting.all()) {
-  @include theme.validate-keys($_theme-values, $theme);
+@mixin _theme($theme: (), $query: feature-targeting.all()) {
   @include shadow(map.get($theme, shadow), $query: $query);
   @include overlay-opacity(map.get($theme, overlay-opacity), $query: $query);
-  @include overlay-fill-color(map.get($theme, overlay-color), $query: $query);
+  @include _overlay-container-color(
+    map.get($theme, overlay-color),
+    $query: $query
+  );
 }
 
 ///
 /// Transforms the following optional parameters into a theme config.
-/// @param {Number} $level - the level of the elevation system in Material.
+/// @param {Number} $elevation - the level of the elevation system in Material.
 /// @param {String} $shadow-color - the color to be used by the shadow.
 /// @return {Map} @see $_theme-values for accepted theme properties.
 ///
 @function resolver($args...) {
   $opts: meta.keywords($args);
-  $level: map.get($opts, level);
+  $elevation: map.get($opts, elevation);
   $shadow-color: map.get($opts, shadow-color);
+  @if custom-properties.is-custom-prop($elevation) {
+    @return _resolve-custom-props($elevation, $shadow-color);
+  }
 
-  @return (shadow: _shadow($level, $shadow-color));
+  @return (shadow: _shadow($elevation, $shadow-color));
+}
+
+@function _resolve-custom-props($elevation, $shadow-color) {
+  $fallback-dp: custom-properties.get-fallback($elevation);
+  $fallback-shadow-color: custom-properties.get-fallback($shadow-color);
+  $shadow: custom-properties.set-fallback(
+    $elevation,
+    _shadow($fallback-dp, $fallback-shadow-color)
+  );
+  @return (shadow: $shadow);
 }
